@@ -1,0 +1,14 @@
+{
+  "welcome": "Encryptor",
+  "processing": {
+    "caesar": "Caesar cipher",
+    "morse": "Morse code",
+    "vigenere": "Vigènere cipher",
+    "playfair": "Playfair cipher"
+  },
+  "message": "Message",
+  "processType": {
+    "encode": "Encoded message",
+    "encrypt": "Cryptogram"
+  }
+}

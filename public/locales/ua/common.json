@@ -1,0 +1,14 @@
+{
+  "welcome": "Encryptor",
+  "processing": {
+    "caesar": "Шифр цезаря",
+    "morse": "Код морзе",
+    "vigenere": "Шифр Віженера",
+    "playfair": "Шифр Плейфера"
+  },
+  "message": "Повідомлення",
+  "processType": {
+    "encode": "Закодоване повідомлення",
+    "encrypt": "Криптограмма"
+  }
+}
