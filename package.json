@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@types/react": "17.0.3",
+    "evergreen-ui": "5.1.2",
     "i18next": "^20.2.1",
     "next": "10.1.2",
     "next-i18next": "^8.1.3",
