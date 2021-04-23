@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Link from 'next/link'
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Heading, Pane } from 'evergreen-ui';
-import { Footer } from '../components';
+import { Pane } from 'evergreen-ui';
+import { Footer } from '@molecues';
+import { Canon, DoublePica } from '@typography';
 
 const Index: React.FC = () => {
   return (
@@ -11,28 +12,28 @@ const Index: React.FC = () => {
     <Pane textAlign="center" paddingTop="64px" width="100%" maxWidth="640px" marginY="0" marginX="auto">
 
       <Pane>
-        <Heading paddingBottom="24px" size={900}>Modern handy decoder for old-fashioned ways of hide a truth</Heading>
-        <Heading paddingBottom="24px" size={700}>Here's what you can encrypt and descryot so far.</Heading>
+        <Canon>Modern handy decoder for old-fashioned ways of hide a truth</Canon>
+        <DoublePica>Here's what you can encrypt and descryot so far.</DoublePica>
       </Pane>
       <Pane>
         <ul>
           <li>
-            <Link href="/encoder/caesar/encrypt" passHref={true}>
+            <Link href="/encoder/caesar/direct" passHref={true}>
               caesar
             </Link>
           </li>
           <li>
-            <Link href="/encoder/playfair/encrypt" passHref={true}>
+            <Link href="/encoder/playfair/direct" passHref={true}>
               playfair
             </Link>
           </li>
           <li>
-            <Link href="/encoder/morse/encrypt" passHref={true}>
+            <Link href="/encoder/morse/direct" passHref={true}>
               morse
             </Link>
           </li>
           <li>
-            <Link href="/encoder/vigenere/encrypt" passHref={true}>
+            <Link href="/encoder/vigenere/direct" passHref={true}>
               vigenere
             </Link>
           </li>

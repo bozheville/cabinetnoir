@@ -1,14 +1,22 @@
 {
   "welcome": "Encryptor",
   "processing": {
-    "caesar": "Шифр цезаря",
-    "morse": "Код морзе",
-    "vigenere": "Шифр Віженера",
-    "playfair": "Шифр Плейфера"
+    "caesar": {
+      "title": "Шифр цезаря",
+      "messageLabel": "Криптограма"
+    },
+    "morse":  {
+      "title": "Код морзе",
+      "messageLabel": "EЗакодоване повідомлення"
+    },
+    "vigenere":  {
+      "title": "Шифр Віженера",
+      "messageLabel": "Криптограма"
+    },
+    "playfair":  {
+      "title": "Шифр Плейфера",
+      "messageLabel": "Криптограма"
+    }
   },
-  "message": "Повідомлення",
-  "processType": {
-    "encode": "Закодоване повідомлення",
-    "encrypt": "Криптограмма"
-  }
+  "message": "Повідомлення"
 }

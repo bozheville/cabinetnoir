@@ -1,14 +1,22 @@
 {
   "welcome": "Encryptor",
   "processing": {
-    "caesar": "Caesar cipher",
-    "morse": "Morse code",
-    "vigenere": "Vigènere cipher",
-    "playfair": "Playfair cipher"
+    "caesar": {
+      "title": "Caesar cipher",
+      "messageLabel": "Cryptogram"
+    },
+    "morse":  {
+      "title": "Morse code",
+      "messageLabel": "Encoded message"
+    },
+    "vigenere":  {
+      "title": "Vigènere cipher",
+      "messageLabel": "Cryptogram"
+    },
+    "playfair":  {
+      "title": "Playfair cipher",
+      "messageLabel": "Cryptogram"
+    }
   },
-  "message": "Message",
-  "processType": {
-    "encode": "Encoded message",
-    "encrypt": "Cryptogram"
-  }
+  "message": "Message"
 }
