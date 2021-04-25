@@ -5,6 +5,10 @@
       "title": "Шифр цезаря",
       "messageLabel": "Криптограма"
     },
+    "base64":  {
+      "title": "Base 64",
+      "messageLabel": "Закодоване повідомлення"
+    },
     "morse":  {
       "title": "Код морзе",
       "messageLabel": "EЗакодоване повідомлення"

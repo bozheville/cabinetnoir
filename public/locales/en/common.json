@@ -5,6 +5,10 @@
       "title": "Caesar cipher",
       "messageLabel": "Cryptogram"
     },
+    "base64":  {
+      "title": "Base 64",
+      "messageLabel": "Encoded message"
+    },
     "morse":  {
       "title": "Morse code",
       "messageLabel": "Encoded message"

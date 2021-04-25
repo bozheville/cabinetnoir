@@ -5,6 +5,10 @@
       "title": "Chiffre de César",
       "messageLabel": "Cryptogramme"
     },
+    "base64":  {
+      "title": "Base 64",
+      "messageLabel": "Message codé"
+    },
     "morse":  {
       "title": "Code Morse",
       "messageLabel": "Message codé"
