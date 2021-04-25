@@ -3,22 +3,32 @@
   "processing": {
     "caesar": {
       "title": "Chiffre de César",
+      "directAction": "Crypter",
+      "reverseAction": "Décrypter",
       "messageLabel": "Cryptogramme"
     },
     "base64":  {
       "title": "Base 64",
+      "directAction": "Encoder",
+      "reverseAction": "Décoder",
       "messageLabel": "Message codé"
     },
     "morse":  {
       "title": "Code Morse",
+      "directAction": "Encoder",
+      "reverseAction": "Décoder",
       "messageLabel": "Message codé"
     },
     "vigenere":  {
       "title": "Chiffre de Vigenère",
+      "directAction": "Crypter",
+      "reverseAction": "Décrypter",
       "messageLabel": "Cryptogramme"
     },
     "playfair":  {
       "title": "Chiffre de Playfair",
+      "directAction": "Crypter",
+      "reverseAction": "Décrypter",
       "messageLabel": "Cryptogramme"
     }
   },

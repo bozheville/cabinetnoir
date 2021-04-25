@@ -28,6 +28,10 @@ const alias = [
 ];
 
 export const morseEncoding = (input: string): string => {
+  if (!input) {
+    return '';
+  }
+
   const directMap = alias.reduce((result, current) => ({
     ...result,
     [current[0]]: current[1],
@@ -42,6 +46,10 @@ export const morseEncoding = (input: string): string => {
 };
 
 export const morseDecoding = (input: string): string => {
+  if (!input) {
+    return '';
+  }
+
   const reverseMap = alias.reduce((result, current) => ({
     ...result,
     [current[1]]: current[0],

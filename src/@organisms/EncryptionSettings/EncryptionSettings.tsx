@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Pane, Select } from 'evergreen-ui';
+import { Pane, Select,
+  IconButton,
+  SwapHorizontalIcon,
+} from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
 
 import {
@@ -9,6 +12,7 @@ import {
   Playfair,
   Vigenere,
   encryptorsList,
+  Base64,
 } from '@encryptors';
 
 interface EncryptionSettingsProps {
@@ -32,6 +36,17 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
     }
   }, [algorythm]);
 
+
+  const handleSwapMode = () => {
+    router.push(
+      `/encoder/${algorythm}/${isDecryptMode ? 'direct' : 'reverse'}`,
+      undefined,
+      {
+        shallow: true
+      }
+    );
+  };
+
   const handleChangeAlgorythm = (event) => {
     router.push(
       `/encoder/${event.target.value}/${action}`,
@@ -43,35 +58,72 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
   };
 
   const EncryptionComponent =
+    algorythm === 'base64' ? Base64 :
     algorythm === 'caesar' ? Caesar :
     algorythm === 'playfair' ? Playfair :
     algorythm === 'vigenere' ? Vigenere :
     algorythm === 'morse' ? Morse :
     null;
 
-
   return (
     <Pane
-      display="flex"
-      flexDirection="row"
-      justifyContent="space-between"
+      borderBottom="1px solid #999"
     >
-      <EncryptionComponent
-        input={input}
-        onProcessingEnd={onOutputUpdate}
-        isDecryptMode={isDecryptMode}
-      />
-      <Pane maxWidth="200px">
-        <Select
-          onChange={handleChangeAlgorythm}
-          defaultValue={algorythm}
+      <Pane
+        display="flex"
+        flexDirection="row"
+        justifyContent="space-between"
+        padding="16px"
+        alignItems="center"
+      >
+        <Pane
+          width="100%"
+          order={isDecryptMode ? 3 : 1}
+          textAlign={isDecryptMode ? 'right' : 'left'}
+
         >
-          {encryptorsList.map((item) => (
-            <option key={`anlorythm-${item}`} value={item}>
-              {t(`processing.${item}.title`)}
-            </option>
-          ))}
-        </Select>
+          {t('message')}
+        </Pane>
+        <IconButton
+          icon={SwapHorizontalIcon}
+          onClick={handleSwapMode}
+          appearance="minimal"
+          padding="9px"
+          order={2}
+        />
+        <Pane
+          display="flex"
+          flexDirection="row"
+          width="100%"
+          order={isDecryptMode ? 1 : 3}
+          justifyContent={isDecryptMode ? 'start': 'end'}
+        >
+          <Select
+            maxWidth="200px"
+            onChange={handleChangeAlgorythm}
+            defaultValue={algorythm}
+            order={isDecryptMode ? 1 : 2}
+            display="flex"
+          >
+            {encryptorsList.map((item) => (
+              <option key={`anlorythm-${item}`} value={item}>
+                {t(`processing.${item}.title`)}
+              </option>
+            ))}
+          </Select>
+        </Pane>
+      </Pane>
+      <Pane
+        display="flex"
+        flexDirection="row"
+        paddingX="16px"
+        paddingBottom="16px"
+      >
+        <EncryptionComponent
+          input={input}
+          onProcessingEnd={onOutputUpdate}
+          isDecryptMode={isDecryptMode}
+        />
       </Pane>
     </Pane>
   );

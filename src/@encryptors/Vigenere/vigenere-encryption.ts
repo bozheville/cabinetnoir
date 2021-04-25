@@ -4,7 +4,7 @@ const l2n = (letter: string): number => alphabet.indexOf(letter);
 const n2l = (number: number): string => alphabet[(number + alphabet.length) % (alphabet.length)];
 
 export const vigenereEncrypt = (input: string, key: string): string => {
-  if (!key) {
+  if (!input || !key) {
     return '';
   }
 
@@ -21,7 +21,7 @@ export const vigenereEncrypt = (input: string, key: string): string => {
 };
 
 export const vigenereDecrypt = (input: string, key: string): string => {
-  if (!key) {
+  if (!input || !key) {
     return '';
   }
 

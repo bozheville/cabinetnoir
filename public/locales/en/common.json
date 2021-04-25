@@ -3,22 +3,32 @@
   "processing": {
     "caesar": {
       "title": "Caesar cipher",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
       "messageLabel": "Cryptogram"
     },
     "base64":  {
       "title": "Base 64",
+      "directAction": "Encode",
+      "reverseAction": "Decode",
       "messageLabel": "Encoded message"
     },
     "morse":  {
       "title": "Morse code",
+      "directAction": "Encode",
+      "reverseAction": "Decode",
       "messageLabel": "Encoded message"
     },
     "vigenere":  {
       "title": "Vigènere cipher",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
       "messageLabel": "Cryptogram"
     },
     "playfair":  {
       "title": "Playfair cipher",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
       "messageLabel": "Cryptogram"
     }
   },

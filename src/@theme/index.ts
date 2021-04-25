@@ -6,6 +6,9 @@ const theme = {
   colors,
   breakpoints,
   paddings,
+  borderRadius: {
+    default: 8,
+  }
 };
 
 export default theme;

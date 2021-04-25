@@ -30,12 +30,15 @@ const getPosition = (square: Square, char: string): number[] => {
 };
 
 
-export const playfairEncrypt = (message: string, key: string): string => {
+export const playfairEncrypt = (input: string, key: string): string => {
+  if (!input || !key) {
+    return '';
+  }
   const square = getSquare(key);
 
   const bigramList = [];
   const encryptedBigramList = [];
-  const refinedMessage = message
+  const refinedMessage = input
     .toUpperCase()
     .replace(/j/ig, 'i')
     .split('')
@@ -86,13 +89,14 @@ export const playfairEncrypt = (message: string, key: string): string => {
   return encryptedBigramList.join(' ');
 }
 
-export const playfairDecrypt = (message: string, key: string): string => {
-  const square = getSquare(key);
-  if (!message) {
+export const playfairDecrypt = (input: string, key: string): string => {
+  if (!input || !key) {
     return '';
   }
 
-  const encryptedBigramList = message
+  const square = getSquare(key);
+
+  const encryptedBigramList = input
     .replace(/\s/g, '')
     .toUpperCase()
     .match(/.{2}/g);

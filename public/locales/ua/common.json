@@ -3,22 +3,32 @@
   "processing": {
     "caesar": {
       "title": "Шифр цезаря",
+      "directAction": "Зашифрувати",
+      "reverseAction": "Розшифрувати",
       "messageLabel": "Криптограма"
     },
     "base64":  {
       "title": "Base 64",
+      "directAction": "Закодувати",
+      "reverseAction": "Розкодувати",
       "messageLabel": "Закодоване повідомлення"
     },
     "morse":  {
       "title": "Код морзе",
-      "messageLabel": "EЗакодоване повідомлення"
+      "directAction": "Закодувати",
+      "reverseAction": "Розкодувати",
+      "messageLabel": "Закодоване повідомлення"
     },
     "vigenere":  {
       "title": "Шифр Віженера",
+      "directAction": "Зашифрувати",
+      "reverseAction": "Розшифрувати",
       "messageLabel": "Криптограма"
     },
     "playfair":  {
       "title": "Шифр Плейфера",
+      "directAction": "Зашифрувати",
+      "reverseAction": "Розшифрувати",
       "messageLabel": "Криптограма"
     }
   },

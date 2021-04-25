@@ -1,29 +1,41 @@
 import React from 'react';
-import { Pane } from 'evergreen-ui';
+import styled from 'styled-components';
 import { DoublePica } from '@typography';
 
 interface HeaderProps {
   title: string;
 }
 
+const StyledHeader = styled.div`
+  margin-bottom: 36px;
+  padding: 16px 24px;
+  display: flex;
+  box-shadow: 0px 0px 3px 0px #999;
+
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  ${({ theme }) => theme.breakpoints.small} {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  ${({ theme }) => theme.breakpoints.desktop} {
+
+  }
+`;
+
 const Header: React.FC<HeaderProps> = ({
   title,
   children,
 }) => {
   return (
-    <Pane
-        marginBottom="36px"
-        paddingX="24px"
-        paddingY="16px"
-        display="flex"
-        flexDirection="row"
-        justifyContent="space-between"
-        alignItems="center"
-        boxShadow="0px 0px 3px 0px #999"
-      >
-        <DoublePica>{title}</DoublePica>
-        {children}
-      </Pane>
+    <StyledHeader>
+      <DoublePica>{title}</DoublePica>
+      {children}
+    </StyledHeader>
   );
 };
 

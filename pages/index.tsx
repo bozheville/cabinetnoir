@@ -18,6 +18,11 @@ const Index: React.FC = () => {
       <Pane>
         <ul>
           <li>
+            <Link href="/encoder/base64/direct" passHref={true}>
+              base64
+            </Link>
+          </li>
+          <li>
             <Link href="/encoder/caesar/direct" passHref={true}>
               caesar
             </Link>
