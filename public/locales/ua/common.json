@@ -18,5 +18,13 @@
       "messageLabel": "Криптограма"
     }
   },
-  "message": "Повідомлення"
+  "message": "Повідомлення",
+  "footer": {
+    "credentials": "Створено Денисом Грибовим у 2021",
+    "about": "Про Cabinet Noir",
+    "suggest_a_feature": "Запропонувати фічу",
+    "report_a_bug": "Повідомити про баг",
+    "did_you_like": "Сподобалось?",
+    "buy_me_a_coffee": "Купи мені кави"
+  }
 }

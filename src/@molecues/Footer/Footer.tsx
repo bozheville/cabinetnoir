@@ -1,17 +1,116 @@
 import React from 'react';
-import { Heading, Pane } from 'evergreen-ui';
+import { Button, Heading, Pane } from 'evergreen-ui';
+import Icon  from './coffee.svg';
+import styled from 'styled-components';
+import { useTranslation } from 'next-i18next';
+
+const ButtonText = styled.span`
+  display: inline-block;
+  margin-left: 8px;
+`;
+
+const FooterWrapper = styled.div`
+  margin-top: 36px;
+  text-align: center;
+  padding: 16px;
+`;
+
+const BMCWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+
+  & > span {
+    display: inline-block;
+    padding-right: 8px;
+  }
+
+  ${({ theme }) => theme.breakpoints.small} {
+    & > span {
+      padding-bottom: 8px;
+    }
+
+    flex-direction: column;
+  }
+`;
+
+const LinksWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+
+  a {
+    display: inline-block;
+    text-decoration: underline;
+    font-size: 12px;
+
+    &:after {
+      content: "•";
+      display: inline-block;
+      padding: 0 8px;
+    }
+
+    &:last-of-type:after {
+      display: none;
+    }
+  }
+
+  ${({ theme }) => theme.breakpoints.small} {
+    flex-direction: column;
+    a {
+      display: inline-block;
+      padding-top: 8px;
+
+      &:after {
+        display: none;
+      }
+    }
+
+  }
+`;
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation('common');
   return (
-    <Pane
-      marginTop="36px"
-      textAlign="center"
-      padding="16px"
-    >
-      <Heading size={100}>
-        Created by Denys Grybov in 2021
+    <FooterWrapper>
+      <BMCWrapper>
+        <span>
+          {t('footer.did_you_like')}
+        </span>
+        <Button is="a" href="https://www.buymeacoffee.com/denysgrybov">
+          <Icon />
+          <ButtonText>
+            {t('footer.buy_me_a_coffee')}
+          </ButtonText>
+        </Button>
+      </BMCWrapper>
+      <LinksWrapper>
+        <a href="#">
+        {t(`footer.about`)}
+        </a>
+        <a
+          href="https://github.com/bozheville/cabinetnoir/issues/new"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t(`footer.suggest_a_feature`)}
+        </a>
+        <a
+          href="https://github.com/bozheville/cabinetnoir/issues/new?labels=bug&template=bug_report.md"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t(`footer.report_a_bug`)}
+        </a>
+      </LinksWrapper>
+      <Heading marginTop="16px" size={100}>
+        {t(`footer.credentials`)}
       </Heading>
-    </Pane>
+    </FooterWrapper>
   );
 };
 

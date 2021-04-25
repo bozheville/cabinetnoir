@@ -18,5 +18,13 @@
       "messageLabel": "Cryptogram"
     }
   },
-  "message": "Message"
+  "message": "Message",
+  "footer": {
+    "credentials": "Created by Denys Grybov in 2021",
+    "about": "About Cabinet Noir",
+    "suggest_a_feature": "Suggest a feature",
+    "report_a_bug": "Report a bug",
+    "did_you_like": "Did you like it?",
+    "buy_me_a_coffee": "Buy me a coffee"
+  }
 }
