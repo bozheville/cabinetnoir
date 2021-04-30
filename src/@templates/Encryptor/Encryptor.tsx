@@ -13,7 +13,7 @@ const EncryptorWrapper = styled.div`
   border-radius: 8px;
   box-shadow: 0px 2px 4px 0px #999;
   margin: 24px;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colorScheme.blank};
   overflow: hidden;
 
   ${({ theme }) => theme.breakpoints.small} {

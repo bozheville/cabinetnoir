@@ -1,51 +1,65 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link'
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Pane } from 'evergreen-ui';
+import { useTranslation } from 'next-i18next';
+import styled from 'styled-components';
+
+import { encryptorsList } from '@encryptors';
 import { Footer } from '@molecues';
-import { Canon, DoublePica } from '@typography';
+import { Canon, DoublePica, GreatPrimer } from '@typography';
+
+
+const AlgorythmLink = styled.a`
+  display: inline-block;
+  padding: 1em;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colorScheme.red_violet[50]};
+  }
+`;
+
+const AlgorythmList = styled.div`
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: repeat(4, 25% [col-start]);
+  row-gap: 16px;
+
+  ${({ theme }) => theme.breakpoints.small} {
+    grid-template-columns: repeat(2, 50% [col-start]);
+  }
+`;
 
 const Index: React.FC = () => {
+  const { t } = useTranslation('common');
+
   return (
     <>
-    <Pane textAlign="center" paddingTop="64px" width="100%" maxWidth="640px" marginY="0" marginX="auto">
-
-      <Pane>
-        <Canon>Modern handy decoder for old-fashioned ways of hide a truth</Canon>
-        <DoublePica>Here's what you can encrypt and descryot so far.</DoublePica>
+      <Pane
+        textAlign="center"
+        paddingTop="64px"
+        width="100%"
+        maxWidth="640px"
+        marginY="0"
+        marginX="auto"
+      >
+        <Pane>
+          <Canon>{t('name')}</Canon>
+          <DoublePica>{t('home.title')}</DoublePica>
+        </Pane>
+        <div>
+          <GreatPrimer>{t('home.subtitle')}</GreatPrimer>
+          <AlgorythmList>
+          {encryptorsList.map((algorythm) => (
+            <Link key={algorythm} href={`/encoder/${algorythm}/direct`} passHref={true}>
+              <AlgorythmLink>{t(`processing.${algorythm}.title`)}</AlgorythmLink>
+            </Link>
+          ))}
+          </AlgorythmList>
+        </div>
       </Pane>
-      <Pane>
-        <ul>
-          <li>
-            <Link href="/encoder/base64/direct" passHref={true}>
-              base64
-            </Link>
-          </li>
-          <li>
-            <Link href="/encoder/caesar/direct" passHref={true}>
-              caesar
-            </Link>
-          </li>
-          <li>
-            <Link href="/encoder/playfair/direct" passHref={true}>
-              playfair
-            </Link>
-          </li>
-          <li>
-            <Link href="/encoder/morse/direct" passHref={true}>
-              morse
-            </Link>
-          </li>
-          <li>
-            <Link href="/encoder/vigenere/direct" passHref={true}>
-              vigenere
-            </Link>
-          </li>
-        </ul>
-      </Pane>
-    </Pane>
-    <Footer />;
+      <Footer />;
     </>
   );
 };

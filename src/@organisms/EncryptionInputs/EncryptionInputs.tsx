@@ -4,16 +4,15 @@ import { useRouter } from 'next/router';
 import {
   DuplicateIcon,
   IconButton,
+  toaster,
 } from 'evergreen-ui';
 
 import { TextArea } from '@molecues';
 import styled from 'styled-components';
-
 interface EncryptionInputsProps {
   onChange: (value: string) => void;
   output: string;
 }
-
 
 const EncryptionInputsWrapper = styled.div`
   display: flex;
@@ -50,6 +49,7 @@ const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
   const handleCopy = () => {
     outputRef?.current?.select();
     document.execCommand('copy');
+    toaster.success('Copied to clipboard');
   };
 
   const handleInputChange = (event) => {
@@ -68,15 +68,18 @@ const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
         readOnly={true}
         ref={outputRef}
       />
-      <IconButton
-        icon={DuplicateIcon}
-        appearance="minimal"
-        position="absolute"
-        bottom="8px"
-        right="8px"
-        zIndex={10}
-        onClick={handleCopy}
-      />
+      {output && (
+        <IconButton
+          icon={DuplicateIcon}
+          appearance="minimal"
+          position="absolute"
+          bottom="8px"
+          right="8px"
+          zIndex={10}
+          onClick={handleCopy}
+        />
+      )}
+
     </EncryptionInputsWrapper>
   );
 };

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const DoublePica = styled.h1`
+const DoublePica = styled.h2`
   color: ${(props) => props.theme.colors.text};
   font-size: 26px;
   line-height: 30px;

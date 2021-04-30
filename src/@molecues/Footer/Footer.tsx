@@ -15,6 +15,16 @@ const FooterWrapper = styled.div`
   padding: 16px;
 `;
 
+const BMCButton = styled.button`
+  background-color: ${({ theme }) => theme.colors.buymeacoffeeButton};
+  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: ${({ theme }) => theme.borderRadius.small}px;
+  border: 2px solid ${({ theme }) => theme.colorScheme.black};
+`;
+
 const BMCWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -34,6 +44,7 @@ const BMCWrapper = styled.div`
 
     flex-direction: column;
   }
+
 `;
 
 const LinksWrapper = styled.div`
@@ -81,12 +92,12 @@ const Footer: React.FC = () => {
         <span>
           {t('footer.did_you_like')}
         </span>
-        <Button is="a" href="https://www.buymeacoffee.com/denysgrybov">
+        <BMCButton as="a" href="https://www.buymeacoffee.com/denysgrybov">
           <Icon />
           <ButtonText>
             {t('footer.buy_me_a_coffee')}
           </ButtonText>
-        </Button>
+        </BMCButton>
       </BMCWrapper>
       <LinksWrapper>
         <a href="#">
