@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Heading, Pane, TextInput } from 'evergreen-ui';
-import { caesarEncrypt, caesarDecrypt } from './caesar-crypt';
+import React from 'react';
+import { Checkbox, Pane } from 'evergreen-ui';
 import { CrypterProps } from '../types';
+import useCaesar from './useCaesar';
+import RotationPicker from './RotationPicker';
 
 const Caesar: React.FC<CrypterProps> = ({
   input,
@@ -9,15 +10,18 @@ const Caesar: React.FC<CrypterProps> = ({
   isDecryptMode,
   ...paneProps
 }) => {
-  const [ secretKey, setSecretKey ] = useState('1');
-
-  useEffect(() => {
-    const output = isDecryptMode
-      ? caesarDecrypt(input, parseInt(secretKey, 10))
-      : caesarEncrypt(input, parseInt(secretKey, 10));
-
-      onProcessingEnd({ output, actionType: 'encrypt'});
-  }, [input, secretKey, isDecryptMode]);
+  const {
+    secretKey,
+    keepCase,
+    keepSpaces,
+    handleKeyChange,
+    handleKeepSpacesChange,
+    handleKeepCaseChange,
+  } = useCaesar({
+    input,
+    onProcessingEnd,
+    isDecryptMode,
+  });
 
   return (
     <Pane
@@ -25,19 +29,29 @@ const Caesar: React.FC<CrypterProps> = ({
       flexDirection="row"
       justifyContent="center"
       alignItems="center"
+      width="100%"
       {...paneProps}
     >
-      <Heading size={100}>Shift</Heading>
-      <TextInput
-        type="range"
-        min="1"
-        max="25"
-        width="150px"
+      <RotationPicker
         value={secretKey}
-        marginY="0"
-        onChange={(event) => setSecretKey(event.target.value)}
+        onChange={handleKeyChange}
       />
-      <Heading size={100}>{secretKey}</Heading>
+      {!isDecryptMode && (
+        <>
+          <Checkbox
+            marginLeft="6px"
+            label="Keep spaces"
+            checked={keepSpaces}
+            onChange={handleKeepSpacesChange}
+          />
+          <Checkbox
+            marginLeft="6px"
+            label="Keep case"
+            checked={keepCase}
+            onChange={handleKeepCaseChange}
+          />
+        </>
+      )}
     </Pane>
   );
 };
