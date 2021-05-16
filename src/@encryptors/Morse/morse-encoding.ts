@@ -25,9 +25,25 @@ const alias = [
   ['X', '-..-'],
   ['Y', '-.--'],
   ['Z', '--..'],
+
+  ['1', '.----'],
+  ['2', '..---'],
+  ['3', '...--'],
+  ['4', '....-'],
+  ['5', '.....'],
+  ['6', '-....'],
+  ['7', '--...'],
+  ['8', '---..'],
+  ['9', '----.'],
+  ['0', '-----'],
+
+  [' ', '/'],
 ];
 
-export const morseEncoding = (input: string): string => {
+export const morseEncoding = (input: string, {
+  dotSymbol,
+  dashSymbol,
+}): string => {
   if (!input) {
     return '';
   }
@@ -40,12 +56,17 @@ export const morseEncoding = (input: string): string => {
   return input
     .toUpperCase()
     .split('')
-    .filter((c) => /[A-Z]/.test(c))
+    .filter((c) => alias.map(i => i[0]).includes(c))
     .map((c) => directMap[c])
-    .join(' ');
+    .join(' ')
+    .replaceAll('.', dotSymbol)
+    .replaceAll('-', dashSymbol);
 };
 
-export const morseDecoding = (input: string): string => {
+export const morseDecoding = (input: string, {
+  dotSymbols,
+  dashSymbols,
+}): string => {
   if (!input) {
     return '';
   }
@@ -56,6 +77,8 @@ export const morseDecoding = (input: string): string => {
   }), {});
 
   return input
+    .replaceAll(new RegExp(`[${dashSymbols}]`, 'g'), '-')
+    .replaceAll(new RegExp(`[${dotSymbols}]`, 'g'), '.')
     .split(' ')
     .map((c) => reverseMap[c])
     .join('');

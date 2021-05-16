@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import {
   CaesarDescription,
+  MorseDescription,
 } from '@encryptors';
 
 const EncryptorWrapper = styled.div`
@@ -15,10 +16,11 @@ const EncryptorWrapper = styled.div`
   border; 1px solid #aaa;
   border-radius: 8px;
   box-shadow: 0px 2px 4px 0px #999;
-  margin: 24px;
+  margin: 24px auto;
   background-color: #fff;
   overflow: hidden;
   padding: 16px;
+  max-width: 1016px;
 
   ${({ theme }) => theme.breakpoints.small} {
     margin: 24px 4px 4px 4px;
@@ -35,7 +37,9 @@ const EncryptionDescription: React.FC = () => {
     : null
 
   return DescriptionComponent ? (
-    <EncryptorWrapper><DescriptionComponent /></EncryptorWrapper>
+    <EncryptorWrapper>
+      <DescriptionComponent />
+    </EncryptorWrapper>
   ) : null;
 };
 

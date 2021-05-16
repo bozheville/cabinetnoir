@@ -17,7 +17,10 @@
       "messageLabel": "Message codé"
     },
     "morse":  {
+      "title": "Code Morse (ITU)",
       "short_title": "Morse",
+      "dot_symbol": "symbole de point",
+      "dash_symbol": "caractère de tiret",
       "directAction": "Encoder",
       "reverseAction": "Décoder",
       "messageLabel": "Message codé"

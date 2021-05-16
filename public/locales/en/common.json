@@ -22,7 +22,10 @@
       "messageLabel": "Encoded message"
     },
     "morse":  {
+      "title": "Morse code (ITU)",
       "short_title": "Morse",
+      "dot_symbol": "Dot symbol",
+      "dash_symbol": "Dash symbol",
       "directAction": "Encode",
       "reverseAction": "Decode",
       "messageLabel": "Encoded message"
