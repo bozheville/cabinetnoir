@@ -4,30 +4,34 @@
   "processing": {
     "caesar": {
       "title": "Шифр цезаря",
+      "short_title": "Цезар",
       "directAction": "Зашифрувати",
       "reverseAction": "Розшифрувати",
       "messageLabel": "Криптограма"
     },
     "base64":  {
       "title": "Base 64",
+      "short_title": "Base 64",
       "directAction": "Закодувати",
       "reverseAction": "Розкодувати",
       "messageLabel": "Закодоване повідомлення"
     },
     "morse":  {
-      "title": "Код морзе",
+      "short_title": "Морзе",
       "directAction": "Закодувати",
       "reverseAction": "Розкодувати",
       "messageLabel": "Закодоване повідомлення"
     },
     "vigenere":  {
       "title": "Шифр Віженера",
+      "short_title": "Віженер",
       "directAction": "Зашифрувати",
       "reverseAction": "Розшифрувати",
       "messageLabel": "Криптограма"
     },
     "playfair":  {
       "title": "Шифр Плейфера",
+      "short_title": "Плейфер",
       "directAction": "Зашифрувати",
       "reverseAction": "Розшифрувати",
       "messageLabel": "Криптограма"

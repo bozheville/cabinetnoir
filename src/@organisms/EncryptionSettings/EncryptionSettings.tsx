@@ -14,6 +14,7 @@ import {
   encryptorsList,
   Base64,
 } from '@encryptors';
+import { EcryptionSelector } from '@molecues';
 
 interface EncryptionSettingsProps {
   input: string;
@@ -70,11 +71,9 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
       borderBottom="1px solid #999"
     >
       <Pane
-        display="flex"
-        flexDirection="row"
-        justifyContent="space-between"
+        display="grid"
         padding="16px"
-        alignItems="center"
+        gridTemplateColumns="1fr 32px 1fr"
       >
         <Pane
           width="100%"
@@ -98,19 +97,7 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
           order={isDecryptMode ? 1 : 3}
           justifyContent={isDecryptMode ? 'start': 'end'}
         >
-          <Select
-            maxWidth="200px"
-            onChange={handleChangeAlgorythm}
-            defaultValue={algorythm}
-            order={isDecryptMode ? 1 : 2}
-            display="flex"
-          >
-            {encryptorsList.map((item) => (
-              <option key={`anlorythm-${item}`} value={item}>
-                {t(`processing.${item}.title`)}
-              </option>
-            ))}
-          </Select>
+          <EcryptionSelector />
         </Pane>
       </Pane>
       <Pane

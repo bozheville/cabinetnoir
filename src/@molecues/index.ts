@@ -1,3 +1,4 @@
+export { default as EcryptionSelector } from './EcryptionSelector';
 export { default as Footer } from './Footer';
 export { default as Header } from './Header';
 export { default as LanguageSelector } from './LanguageSelector';
