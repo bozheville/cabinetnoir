@@ -1,11 +1,11 @@
 import { Dialog, IconButton, ChevronDownIcon } from 'evergreen-ui';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 
 import { encryptorsList } from '@encryptors';
-import { useLocalStorage } from '@hooks';
+import { RecentlyUsedContext } from '@contexts';
 
 const SelectionButton = styled.button`
   background: none;
@@ -62,8 +62,7 @@ const EcryptionSelector: React.FC = () => {
   const router = useRouter();
   const { algorithm, action } = router.query;
   const { t } = useTranslation('common');
-
-  const [lasUsed, setLastUsed] = useLocalStorage<string[]>('lastUsedAlgorithms', []);
+  const { recentlyUsed } = useContext(RecentlyUsedContext);
 
   const handleSelect = (nextAlgorithm) => () => {
     if (nextAlgorithm === algorithm) {
@@ -72,13 +71,6 @@ const EcryptionSelector: React.FC = () => {
 
     setIsDialogVisible(false);
     router.push(`/encoder/${nextAlgorithm}/${action}`, undefined, { shallow: true });
-
-    if (!lasUsed.includes(nextAlgorithm)) {
-      setLastUsed([
-        nextAlgorithm,
-        ...lasUsed
-      ].splice(0,3));
-    }
   };
 
   return (
@@ -86,7 +78,7 @@ const EcryptionSelector: React.FC = () => {
       <SelectorWrapper>
         <AlgoListWrapper>
           <AlgoListWrapperInner>
-          {lasUsed.map((item) => (
+          {recentlyUsed.map((item) => (
             <SelectionButton
               key={`quick-select-${item}`}
               onClick={handleSelect(item)}

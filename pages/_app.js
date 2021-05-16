@@ -1,5 +1,6 @@
 import React from 'react';
 import { appWithTranslation } from 'next-i18next';
+import { RecentlyUsedContext, useRecentlyUsedContext } from '@contexts';
 
 import '../styles/globals.css';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
@@ -9,17 +10,16 @@ const GlobalCSS = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.colors.background}
   }
-  a {
-    text-decoration: underline
-  }
 `;
 
 
 const MyApp = ({ Component, pageProps }) => {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalCSS />
-      <Component {...pageProps} />
+      <RecentlyUsedContext.Provider value={useRecentlyUsedContext()}>
+        <GlobalCSS />
+        <Component {...pageProps} />
+      </RecentlyUsedContext.Provider>
     </ThemeProvider>
   );
 };

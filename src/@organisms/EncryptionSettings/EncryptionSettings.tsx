@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { Pane, Select,
   IconButton,
@@ -15,6 +15,7 @@ import {
   Base64,
 } from '@encryptors';
 import { EcryptionSelector } from '@molecues';
+import { RecentlyUsedContext } from '@contexts';
 
 interface EncryptionSettingsProps {
   input: string;
@@ -27,6 +28,7 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
 }) => {
   const { t } = useTranslation('common');
   const router = useRouter();
+  const { addRecentluUsed } = useContext(RecentlyUsedContext);
   const { algorithm, action } = router.query;
 
   const isDecryptMode = action === 'reverse';
@@ -34,6 +36,8 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
   useEffect(() => {
     if (!encryptorsList.includes(algorithm as string)) {
       router.push(`/`, undefined, { shallow: true });
+    } else {
+      addRecentluUsed(algorithm as string);
     }
   }, [algorithm]);
 
