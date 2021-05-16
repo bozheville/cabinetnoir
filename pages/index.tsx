@@ -59,7 +59,7 @@ const Index: React.FC = () => {
           </AlgorithmList>
         </div>
       </Pane>
-      <Footer />;
+      <Footer />
     </>
   );
 };
