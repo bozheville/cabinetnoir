@@ -9,6 +9,9 @@ const GlobalCSS = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.colors.background}
   }
+  a {
+    text-decoration: underline
+  }
 `;
 
 

@@ -16,13 +16,17 @@ const FooterWrapper = styled.div`
 `;
 
 const BMCButton = styled.button`
-  background-color: ${({ theme }) => theme.colors.buymeacoffeeButton};
+  background-color: ${({ theme }) => theme.colors.buymeacoffeeButton.default};
   padding: 4px 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: ${({ theme }) => theme.borderRadius.small}px;
   border: 2px solid ${({ theme }) => theme.colorScheme.black};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.buymeacoffeeButton.hover};
+  }
 `;
 
 const BMCWrapper = styled.div`
