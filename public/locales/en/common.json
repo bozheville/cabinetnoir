@@ -4,7 +4,7 @@
   "name": "Cabinet Noir",
   "home": {
     "title": "Modern handy decoder for old-fashioned ways of hiding a truth",
-    "subtitle": "Here you can encode/decore and encrypt/decrypt messages using following algorythms"
+    "subtitle": "Here you can encode/decore and encrypt/decrypt messages using following algorithms"
   },
   "processing": {
     "caesar": {

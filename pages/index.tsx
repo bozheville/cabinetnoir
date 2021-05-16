@@ -11,7 +11,7 @@ import { Footer } from '@molecues';
 import { Canon, DoublePica, GreatPrimer } from '@typography';
 
 
-const AlgorythmLink = styled.a`
+const AlgorithmLink = styled.a`
   display: inline-block;
   padding: 1em;
 
@@ -20,7 +20,7 @@ const AlgorythmLink = styled.a`
   }
 `;
 
-const AlgorythmList = styled.div`
+const AlgorithmList = styled.div`
   margin-top: 36px;
   display: grid;
   grid-template-columns: repeat(4, 25% [col-start]);
@@ -50,13 +50,13 @@ const Index: React.FC = () => {
         </Pane>
         <div>
           <GreatPrimer>{t('home.subtitle')}</GreatPrimer>
-          <AlgorythmList>
-          {encryptorsList.map((algorythm) => (
-            <Link key={algorythm} href={`/encoder/${algorythm}/direct`} passHref={true}>
-              <AlgorythmLink>{t(`processing.${algorythm}.title`)}</AlgorythmLink>
+          <AlgorithmList>
+          {encryptorsList.map((algorithm) => (
+            <Link key={algorithm} href={`/encoder/${algorithm}/direct`} passHref={true}>
+              <AlgorithmLink>{t(`processing.${algorithm}.title`)}</AlgorithmLink>
             </Link>
           ))}
-          </AlgorythmList>
+          </AlgorithmList>
         </div>
       </Pane>
       <Footer />;

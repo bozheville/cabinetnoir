@@ -27,10 +27,11 @@ const EncryptorWrapper = styled.div`
 
 const EncryptionDescription: React.FC = () => {
   const router = useRouter();
-  const { algorythm } = router.query;
+  const { algorithm } = router.query;
 
   const DescriptionComponent =
-    algorythm === 'caesar' ? CaesarDescription
+    algorithm === 'caesar' ? CaesarDescription
+    : algorithm === 'morse' ? MorseDescription
     : null
 
   return DescriptionComponent ? (

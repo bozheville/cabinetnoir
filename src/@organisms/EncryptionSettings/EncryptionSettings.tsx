@@ -26,20 +26,20 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
 }) => {
   const { t } = useTranslation('common');
   const router = useRouter();
-  const { algorythm, action } = router.query;
+  const { algorithm, action } = router.query;
 
   const isDecryptMode = action === 'reverse';
 
   useEffect(() => {
-    if (!encryptorsList.includes(algorythm as string)) {
+    if (!encryptorsList.includes(algorithm as string)) {
       router.push(`/`, undefined, { shallow: true });
     }
-  }, [algorythm]);
+  }, [algorithm]);
 
 
   const handleSwapMode = () => {
     router.push(
-      `/encoder/${algorythm}/${isDecryptMode ? 'direct' : 'reverse'}`,
+      `/encoder/${algorithm}/${isDecryptMode ? 'direct' : 'reverse'}`,
       undefined,
       {
         shallow: true
@@ -47,7 +47,7 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
     );
   };
 
-  const handleChangeAlgorythm = (event) => {
+  const handleChangeAlgorithm = (event) => {
     router.push(
       `/encoder/${event.target.value}/${action}`,
       undefined,
@@ -58,11 +58,11 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
   };
 
   const EncryptionComponent =
-    algorythm === 'base64' ? Base64 :
-    algorythm === 'caesar' ? Caesar :
-    algorythm === 'playfair' ? Playfair :
-    algorythm === 'vigenere' ? Vigenere :
-    algorythm === 'morse' ? Morse :
+    algorithm === 'base64' ? Base64 :
+    algorithm === 'caesar' ? Caesar :
+    algorithm === 'playfair' ? Playfair :
+    algorithm === 'vigenere' ? Vigenere :
+    algorithm === 'morse' ? Morse :
     null;
 
   return (

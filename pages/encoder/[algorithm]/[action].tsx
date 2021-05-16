@@ -11,15 +11,15 @@ const Home: React.FC = () => {
   const { t } = useTranslation('common');
   const router = useRouter();
 
-  const { algorythm, action } = router.query;
+  const { algorithm, action } = router.query;
 
   return (
     <>
       <Head>
-        <title>{t(`processing.${algorythm}.title`)} ~ Create Next App</title>
+        <title>{t(`processing.${algorithm}.title`)} ~ Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header title={`${t(`processing.${algorythm}.${action}Action`)} / ${t(`processing.${algorythm}.title`)}`}>
+      <Header title={`${t(`processing.${algorithm}.${action}Action`)} / ${t(`processing.${algorithm}.title`)}`}>
         <LanguageSelector />
       </Header>
       <Encryptor />
