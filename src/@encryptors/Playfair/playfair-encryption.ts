@@ -96,10 +96,15 @@ export const playfairDecrypt = (input: string, key: string): string => {
 
   const square = getSquare(key);
 
-  const encryptedBigramList = input
+  const encryptedBigram = input
     .replace(/\s/g, '')
     .toUpperCase()
-    .match(/.{2}/g);
+
+  if (encryptedBigram.length % 2) {
+    return '';
+  }
+
+  const encryptedBigramList = encryptedBigram.match(/.{2}/g);
 
   const decryptBigram = (bigram) => {
     const [a, b] = bigram;
