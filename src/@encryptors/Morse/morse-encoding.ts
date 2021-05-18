@@ -55,6 +55,7 @@ export const morseEncoding = (input: string, {
 
   return input
     .toUpperCase()
+    .replace(/\s+/, ' ')
     .split('')
     .filter((c) => alias.map(i => i[0]).includes(c))
     .map((c) => directMap[c])
@@ -79,6 +80,7 @@ export const morseDecoding = (input: string, {
   return input
     .replaceAll(new RegExp(`[${dashSymbols}]`, 'g'), '-')
     .replaceAll(new RegExp(`[${dotSymbols}]`, 'g'), '.')
+    .replaceAll(new RegExp(`\s*/\s*`, 'g'), ' / ')
     .split(' ')
     .map((c) => reverseMap[c])
     .join('');
