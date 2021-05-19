@@ -19,7 +19,7 @@ import { RecentlyUsedContext } from '@contexts';
 
 interface EncryptionSettingsProps {
   input: string;
-  onOutputUpdate: (props: {output: string, actionType: string}) => void;
+  onOutputUpdate: (props: {output: string }) => void;
 }
 
 const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({

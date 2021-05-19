@@ -21,7 +21,7 @@ const useCaesar = ({
       ? caesarDecrypt(settings)
       : caesarEncrypt(settings);
 
-      onProcessingEnd({ output, actionType: 'encrypt'});
+      onProcessingEnd({ output });
   }, [input, secretKey, isDecryptMode, keepCase, keepSpaces]);
 
   const handleKeyChange = (event) => setSecretKey(event.target.value);

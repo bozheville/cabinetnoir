@@ -16,7 +16,7 @@ const Vigenere: React.FC<CrypterProps> = ({
       ? vigenereDecrypt(input, secretKey)
       : vigenereEncrypt(input, secretKey);
 
-      onProcessingEnd({ output, actionType: 'encrypt'});
+      onProcessingEnd({ output });
   }, [input, secretKey, isDecryptMode]);
 
   return (

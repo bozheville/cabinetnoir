@@ -38,7 +38,7 @@ const Morse: React.FC<CrypterProps> = ({
       ? morseDecoding(input, {dashSymbols, dotSymbols})
       : morseEncoding(input, {dashSymbol, dotSymbol});
 
-      onProcessingEnd({ output, actionType: 'encode'});
+      onProcessingEnd({ output });
   }, [input, isDecryptMode, dashSymbol, dotSymbol]);
 
   const handleDotSymbolChnage = (event) => setDotSymbol(event.target.value);
@@ -61,7 +61,7 @@ const Morse: React.FC<CrypterProps> = ({
         </div>
       </SignSelector>
     </MorseSettingsWrapper>
-  ) : null;
+  ) : <div />;
 };
 
 Morse.displayName = 'Morse';

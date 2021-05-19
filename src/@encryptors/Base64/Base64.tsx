@@ -11,7 +11,7 @@ const Base64: React.FC<CrypterProps> = ({
       ? atob(input)
       : btoa(input);
 
-      onProcessingEnd({ output, actionType: 'encode'});
+      onProcessingEnd({ output });
   }, [input, isDecryptMode]);
 
   return <div />;

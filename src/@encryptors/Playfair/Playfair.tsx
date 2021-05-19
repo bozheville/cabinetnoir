@@ -16,7 +16,7 @@ const Playfair: React.FC<CrypterProps> = ({
       ? playfairDecrypt(input, secretKey)
       : playfairEncrypt(input, secretKey);
 
-      onProcessingEnd({ output, actionType: 'encrypt'});
+      onProcessingEnd({ output });
   }, [input, secretKey, isDecryptMode]);
 
   return (
