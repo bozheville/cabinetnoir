@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import {
   CaesarDescription,
   MorseDescription,
+  Rot13Description,
 } from '@encryptors';
 
 const EncryptorWrapper = styled.div`
@@ -34,6 +35,7 @@ const EncryptionDescription: React.FC = () => {
   const DescriptionComponent =
     algorithm === 'caesar' ? CaesarDescription
     : algorithm === 'morse' ? MorseDescription
+    : algorithm === 'rot13' ? Rot13Description
     : null
 
   return DescriptionComponent ? (

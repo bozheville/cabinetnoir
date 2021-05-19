@@ -13,6 +13,7 @@ import {
   Vigenere,
   encryptorsList,
   Base64,
+  Rot13,
 } from '@encryptors';
 import { EcryptionSelector } from '@molecues';
 import { RecentlyUsedContext } from '@contexts';
@@ -68,6 +69,7 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
     algorithm === 'playfair' ? Playfair :
     algorithm === 'vigenere' ? Vigenere :
     algorithm === 'morse' ? Morse :
+    algorithm === 'rot13' ? Rot13 :
     null;
 
   return (

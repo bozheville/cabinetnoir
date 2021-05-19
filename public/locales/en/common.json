@@ -14,6 +14,13 @@
       "reverseAction": "Decrypt",
       "messageLabel": "Cryptogram"
     },
+    "rot13": {
+      "title": "ROT13",
+      "short_title": "ROT13",
+      "directAction": "Encode",
+      "reverseAction": "Decode",
+      "messageLabel": "Encoded message"
+    },
     "base64":  {
       "title": "Base 64",
       "short_title": "Base 64",

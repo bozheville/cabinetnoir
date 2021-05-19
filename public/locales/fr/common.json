@@ -9,6 +9,13 @@
       "reverseAction": "Décrypter",
       "messageLabel": "Cryptogramme"
     },
+    "rot13":  {
+      "title": "ROT13",
+      "short_title": "ROT13",
+      "directAction": "Encoder",
+      "reverseAction": "Décoder",
+      "messageLabel": "Message codé"
+    },
     "base64":  {
       "title": "Base 64",
       "short_title": "Base 64",
