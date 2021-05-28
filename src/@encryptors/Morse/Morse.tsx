@@ -10,6 +10,7 @@ const dashSymbols = '-_~';
 
 const MorseSettingsWrapper = styled.div`
   width: 100%;
+  padding: 0 16px 16px;
 `;
 
 const SignSelector = styled.div`

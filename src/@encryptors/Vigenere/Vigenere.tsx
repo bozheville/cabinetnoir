@@ -25,6 +25,8 @@ const Vigenere: React.FC<CrypterProps> = ({
       flexDirection="row"
       justifyContent="center"
       alignItems="center"
+      paddingX="16px"
+      paddingBottom="16px"
       {...paneProps}
     >
       <Heading size={100}>Key</Heading>

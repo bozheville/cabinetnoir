@@ -30,6 +30,8 @@ const Caesar: React.FC<CrypterProps> = ({
       justifyContent="center"
       alignItems="center"
       width="100%"
+      paddingX="16px"
+      paddingBottom="16px"
       {...paneProps}
     >
       <RotationPicker

@@ -106,12 +106,7 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
           <EcryptionSelector />
         </Pane>
       </Pane>
-      <Pane
-        display="flex"
-        flexDirection="row"
-        paddingX="16px"
-        paddingBottom="16px"
-      >
+      <Pane>
         <EncryptionComponent
           input={input}
           onProcessingEnd={onOutputUpdate}
