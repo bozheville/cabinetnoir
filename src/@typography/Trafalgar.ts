@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Trafalgar = styled.h1`
+  font-family: "Roboto";
   color: ${(props) => props.theme.colors.text};
   font-size: 36px;
   line-height: 40px;

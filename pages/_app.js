@@ -7,6 +7,38 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import theme from '@theme';
 
 const GlobalCSS = createGlobalStyle`
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto/Roboto-Medium.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto/Roboto-Bold.ttf");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto/Roboto-Black.ttf");
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto-Slab";
+  src: url("/fonts/Roboto_Slab/static/RobotoSlab-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
   body {
     background-color: ${({ theme }) => theme.colors.background}
   }
