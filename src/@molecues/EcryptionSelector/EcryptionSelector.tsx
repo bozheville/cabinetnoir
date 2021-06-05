@@ -74,6 +74,8 @@ const EcryptionSelector: React.FC = () => {
     router.push(`/encoder/${nextAlgorithm}/${action}`, undefined, { shallow: true });
   };
 
+  const handleSelectionDialogClose = () => setIsDialogVisible(false);
+
   return (
     <>
       <SelectorWrapper>
@@ -99,6 +101,7 @@ const EcryptionSelector: React.FC = () => {
       <Dialog
         isShown={isDialogVisible}
         title="Select algorithm"
+        onCloseComplete={handleSelectionDialogClose}
       >
         <GreatPrimer>Encodings</GreatPrimer>
         {encodingsList.map((item) => (
