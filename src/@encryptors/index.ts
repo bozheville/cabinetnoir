@@ -1,3 +1,4 @@
+export { default as Affine, AffineDescription } from './Affine';
 export { default as Base64 } from './Base64';
 export { default as Caesar, CaesarDescription } from './Caesar';
 export { default as Morse, MorseDescription } from './Morse';
@@ -11,6 +12,7 @@ export const encodingsList = [
 ];
 
 export const encryptorsList = [
+  'affine',
   'caesar',
   'morse',
   'playfair',

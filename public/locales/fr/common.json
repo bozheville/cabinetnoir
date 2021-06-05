@@ -2,6 +2,13 @@
   "welcome": "Encryptor",
   "name": "Cabinet Noir",
   "processing": {
+    "affine": {
+      "title": "Chiffre affine",
+      "short_title": "Affine",
+      "directAction": "Crypter",
+      "reverseAction": "Décrypter",
+      "messageLabel": "Cryptogramme"
+    },
     "caesar": {
       "title": "Chiffre de César",
       "short_title": "César",

@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {
+  AffineDescription,
   CaesarDescription,
   MorseDescription,
   Rot13Description,
@@ -33,7 +34,8 @@ const EncryptionDescription: React.FC = () => {
   const { algorithm } = router.query;
 
   const DescriptionComponent =
-    algorithm === 'caesar' ? CaesarDescription
+    algorithm === 'affine' ? AffineDescription
+    : algorithm === 'caesar' ? CaesarDescription
     : algorithm === 'morse' ? MorseDescription
     : algorithm === 'rot13' ? Rot13Description
     : null

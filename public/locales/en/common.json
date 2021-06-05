@@ -7,6 +7,13 @@
     "subtitle": "Here you can encode/decore and encrypt/decrypt messages using following algorithms"
   },
   "processing": {
+    "affine": {
+      "title": "Affine cipher",
+      "short_title": "Affine",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram"
+    },
     "caesar": {
       "title": "Caesar cipher",
       "short_title": "Caesar",

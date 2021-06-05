@@ -7,6 +7,7 @@ import { Pane, Select,
 import { useTranslation } from 'next-i18next';
 
 import {
+  Affine,
   Caesar,
   Morse,
   Playfair,
@@ -65,6 +66,7 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
   };
 
   const EncryptionComponent =
+    algorithm === 'affine' ? Affine :
     algorithm === 'base64' ? Base64 :
     algorithm === 'caesar' ? Caesar :
     algorithm === 'playfair' ? Playfair :

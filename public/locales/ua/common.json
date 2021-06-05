@@ -2,6 +2,13 @@
   "welcome": "Encryptor",
   "name": "Cabinet Noir",
   "processing": {
+    "affine": {
+      "title": "Афінний шифр",
+      "short_title": "Афінний",
+      "directAction": "Зашифрувати",
+      "reverseAction": "Розшифрувати",
+      "messageLabel": "Криптограма"
+    },
     "caesar": {
       "title": "Шифр цезаря",
       "short_title": "Цезар",
