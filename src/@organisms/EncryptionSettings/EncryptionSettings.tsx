@@ -11,6 +11,7 @@ import {
   Morse,
   Playfair,
   Vigenere,
+  encodingsList,
   encryptorsList,
   Base64,
   Rot13,
@@ -35,7 +36,7 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
   const isDecryptMode = action === 'reverse';
 
   useEffect(() => {
-    if (!encryptorsList.includes(algorithm as string)) {
+    if (![...encodingsList, ...encryptorsList].includes(algorithm as string)) {
       router.push(`/`, undefined, { shallow: true });
     } else {
       addRecentluUsed(algorithm as string);

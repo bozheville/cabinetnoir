@@ -4,8 +4,9 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 
-import { encryptorsList } from '@encryptors';
+import { encodingsList, encryptorsList } from '@encryptors';
 import { RecentlyUsedContext } from '@contexts';
+import { GreatPrimer } from '@typography';
 
 const SelectionButton = styled.button`
   background: none;
@@ -99,6 +100,16 @@ const EcryptionSelector: React.FC = () => {
         isShown={isDialogVisible}
         title="Select algorithm"
       >
+        <GreatPrimer>Encodings</GreatPrimer>
+        {encodingsList.map((item) => (
+          <SelectionButton
+            key={`select-${item}`}
+            onClick={handleSelect(item)}
+          >
+            {t(`processing.${item}.title`)}
+          </SelectionButton>
+        ))}
+        <GreatPrimer>Encryptors</GreatPrimer>
         {encryptorsList.map((item) => (
           <SelectionButton
             key={`select-${item}`}

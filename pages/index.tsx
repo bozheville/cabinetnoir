@@ -6,9 +6,9 @@ import { Pane } from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
-import { encryptorsList } from '@encryptors';
+import { encodingsList, encryptorsList } from '@encryptors';
 import { Footer } from '@molecues';
-import { Canon, DoublePica, GreatPrimer } from '@typography';
+import { Canon, DoublePica, GreatPrimer, Trafalgar } from '@typography';
 
 
 const AlgorithmLink = styled.a`
@@ -51,6 +51,13 @@ const Index: React.FC = () => {
         <div>
           <GreatPrimer>{t('home.subtitle')}</GreatPrimer>
           <AlgorithmList>
+          <GreatPrimer>Encodings</GreatPrimer>
+          {encodingsList.map((algorithm) => (
+            <Link key={algorithm} href={`/encoder/${algorithm}/direct`} passHref={true}>
+              <AlgorithmLink>{t(`processing.${algorithm}.title`)}</AlgorithmLink>
+            </Link>
+          ))}
+          <GreatPrimer>Encryptoins</GreatPrimer>
           {encryptorsList.map((algorithm) => (
             <Link key={algorithm} href={`/encoder/${algorithm}/direct`} passHref={true}>
               <AlgorithmLink>{t(`processing.${algorithm}.title`)}</AlgorithmLink>

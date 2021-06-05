@@ -5,10 +5,13 @@ export { default as Playfair } from './Playfair';
 export { default as Vigenere } from './Vigenere';
 export { default as Rot13, Rot13Description } from './Rot13';
 
-export const encryptorsList = [
+export const encodingsList = [
   'base64',
-  'caesar',
   'rot13',
+];
+
+export const encryptorsList = [
+  'caesar',
   'morse',
   'playfair',
   'vigenere',
