@@ -1,11 +1,12 @@
 {
   "name": "puzzle-control-panel",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p $PORT"
+    "start": "next start -p $PORT",
+    "post-deploy": "yarn && yarn build && node pre-deploy.js && pm2 restart $PM2_ID"
   },
   "dependencies": {
     "@svgr/webpack": "5.5.0",
