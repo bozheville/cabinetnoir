@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p $PORT",
-    "post-deploy": "yarn && yarn build && node pre-deploy.js && pm2 restart $PM2_ID"
+    "post-deploy": "yarn && node pre-deploy.js && yarn build && pm2 restart $PM2_ID"
   },
   "dependencies": {
     "@svgr/webpack": "5.5.0",
