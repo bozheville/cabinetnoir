@@ -1,14 +1,19 @@
 import React from 'react';
 
-import releaseinfo from '../../../public/release-info.json';
-
 import Minion from '@typography/Minion';
 
 const ReleaseInfo: React.FC = () => {
-  const date = new Date(releaseinfo.time);
+  const timeStamp = process.env.NEXT_PUBLIC_RELEASE_DATE;
+  const version = process.env.NEXT_PUBLIC_RELEASE_VERSION;
+
+  if (!timeStamp || !version) {
+    return null;
+  }
+
+  const date = new Date(parseInt(timeStamp, 10));
   const formattedDate = `${`${date.getDate()}`.padStart(2, '0')}.${`${date.getMonth()}`.padStart(2, '0')}.${date.getFullYear()}`;
   return (
-    <Minion>v.{releaseinfo.version} // released on {formattedDate}</Minion>
+    <Minion>v.{version} // released on {formattedDate}</Minion>
   );
 };
 
