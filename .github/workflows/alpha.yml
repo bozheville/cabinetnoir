@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: build
+      run: |
+        yarn
+        yarn build
+    - name: deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd ${{ secrets.SSH_DEPLOYMENT_PATH_ALPHA }}
+          git pull
+          PM2_ID=${{ secrets.PM2_ID_ALPHA }} yarn post-deploy
