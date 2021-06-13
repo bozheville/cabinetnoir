@@ -1,8 +1,10 @@
 import React from 'react';
-import { Button, Heading, Pane } from 'evergreen-ui';
+import { Heading } from 'evergreen-ui';
 import Icon  from './coffee.svg';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
+import { ReleaseInfo } from '@atoms';
+
 
 const ButtonText = styled.span`
   display: inline-block;
@@ -125,6 +127,7 @@ const Footer: React.FC = () => {
       <Heading marginTop="16px" size={100}>
         {t(`footer.credentials`)}
       </Heading>
+      <ReleaseInfo />
     </FooterWrapper>
   );
 };

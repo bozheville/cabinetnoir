@@ -79,8 +79,6 @@ const EcryptionSelector: React.FC = () => {
   return (
     <>
       <SelectorWrapper>
-        <AlgoListWrapper>
-          <AlgoListWrapperInner>
           {recentlyUsed.map((item) => (
             <SelectionButton
               key={`quick-select-${item}`}
@@ -90,13 +88,12 @@ const EcryptionSelector: React.FC = () => {
               {t(`processing.${item}.short_title`) || t(`processing.${item}.title`)}
             </SelectionButton>
           ))}
-          </AlgoListWrapperInner>
-        </AlgoListWrapper>
-        <IconButton
-          appearance="minimal"
-          onClick={() => setIsDialogVisible(true)}
-          icon={ChevronDownIcon}
-        />
+          <IconButton
+            appearance="minimal"
+            onClick={() => setIsDialogVisible(true)}
+            icon={ChevronDownIcon}
+          />
+
       </SelectorWrapper>
       <Dialog
         isShown={isDialogVisible}

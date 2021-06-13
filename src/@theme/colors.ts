@@ -2,6 +2,7 @@
 import color from './color-scheme.json';
 
 export const background = color.white;
+export const textLight = color.gray[400];
 export const text = color.black;
 export const header = color.gray[700];
 export const buymeacoffeeButton = {
