@@ -16,6 +16,10 @@ const GreatPrimer = styled.h3`
     font-size: 20px;
     line-height: 24px;
   }
+
+  a {
+    text-decoration: underline;
+  }
 `;
 
 GreatPrimer.displayName = 'GreatPrimer';

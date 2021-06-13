@@ -16,6 +16,10 @@ const Trafalgar = styled.h1`
     font-size: 32px;
     line-height: 36px;
   }
+
+  a {
+    text-decoration: underline;
+  }
 `;
 
 Trafalgar.displayName = 'Trafalgar';

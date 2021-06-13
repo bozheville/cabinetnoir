@@ -17,6 +17,10 @@ const Canon = styled.h1`
     font-size: 52px;
     line-height: 56px;
   }
+
+  a {
+    text-decoration: underline;
+  }
 `;
 
 Canon.displayName = 'Canon';
