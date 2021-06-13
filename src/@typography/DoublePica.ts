@@ -16,6 +16,10 @@ const DoublePica = styled.h2`
     font-size: 24px;
     line-height: 28px;
   }
+
+  a {
+    text-decoration: underline;
+  }
 `;
 
 DoublePica.displayName = 'DoublePica';
