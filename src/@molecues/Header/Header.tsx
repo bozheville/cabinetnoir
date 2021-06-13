@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { DoublePica } from '@typography';
+import Link from 'next/link';
+import { ChevronRightIcon } from 'evergreen-ui';
 
 interface HeaderProps {
   title: string;
@@ -33,7 +35,13 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   return (
     <StyledHeader>
-      <DoublePica>{title}</DoublePica>
+      <DoublePica>
+        <Link href="/" passHref={true}>
+          Cabinet Noir
+        </Link>
+        <ChevronRightIcon marginX="12px" />
+        {title}
+      </DoublePica>
       {children}
     </StyledHeader>
   );
