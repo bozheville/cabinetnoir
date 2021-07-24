@@ -1992,6 +1992,11 @@ encoding@0.1.13, encoding@^0.1.11:
   dependencies:
     iconv-lite "^0.6.2"
 
+enigma@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/enigma/-/enigma-1.1.2.tgz#a84605d905b993ce44680da4755790f0d309817f"
+  integrity sha1-qEYF2QW5k85EaA2kdVeQ8NMJgX8=
+
 entities@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/entities/-/entities-2.2.0.tgz#098dc90ebb83d8dffa089d55256b351d34c4da55"

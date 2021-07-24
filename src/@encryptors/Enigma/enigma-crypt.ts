@@ -130,32 +130,28 @@ class Rotor {
   }
 }
 
-const recursivelyRotateRotors = (rotors, index = 0) => {
-  const result = rotors[index].increment();
+const recursivelyRotateRotors = (rotors, index=0) => {
+  const rotorIndex = rotors.length-1-index;
+  const result = rotors[rotorIndex].increment();
 
 
   if (result === 1) {
-    recursivelyRotateRotors(rotors, index + 1);
+    recursivelyRotateRotors(rotors, index+1);
   }
 }
 
 export const enigmaEncrypt = ({
   input,
-  key='AAZ'
+  key='AAA'
 }) => {
-  console.log('____                                                ___   _____');
-  console.log('|  _ \\    ___   _ __ ___     ___   __   __   ___    |_ _| |_   _|');
-  console.log('| |_) |  / _ \\ | \'_ ` _ \\   / _ \\  \\ \\ / /  / _ \\    | |    | |');
-  console.log('|  _ <  |  __/ | | | | | | | (_) |  \\ V /  |  __/    | |    | |');
-  console.log('|_| \\_\\  \\___| |_| |_| |_|  \\___/    \\_/    \\___|   |___|   |_|');
   //
   console.log('key', key);
   // ^^^^^^^^
 
   const rotors = [
-    new Rotor(alphabet.indexOf(key[2]), 3),
+    new Rotor(alphabet.indexOf(key[0]), 3),
     new Rotor(alphabet.indexOf(key[1]), 2),
-    new Rotor(alphabet.indexOf(key[0]), 1),
+    new Rotor(alphabet.indexOf(key[2]), 1),
   ]
 
   return input
