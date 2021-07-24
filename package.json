@@ -12,6 +12,7 @@
     "@svgr/webpack": "5.5.0",
     "@types/react": "17.0.3",
     "@types/styled-components": "5.1.9",
+    "enigma": "^1.1.2",
     "evergreen-ui": "5.1.2",
     "i18next": "20.2.1",
     "next": "10.1.2",

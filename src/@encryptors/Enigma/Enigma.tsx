@@ -8,14 +8,23 @@ const Enigma: React.FC<CrypterProps> = ({
   isDecryptMode,
   ...paneProps
 }) => {
-  useEnigma({
+  const {
+    secretKey,
+    handleKeyChange,
+  } = useEnigma({
     input,
     onProcessingEnd,
     isDecryptMode,
   });
 
   return (
-    <div />
+    <div>
+      <input
+        type="text"
+        value={secretKey}
+        onChange={handleKeyChange}
+      />
+    </div>
   );
 };
 
