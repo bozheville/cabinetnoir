@@ -14,7 +14,7 @@ const I = new Rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ', 'Q');
 const II = new Rotor('AJDKSIRUXBLHWTMCQGZNPYFVOE', 'E');
 const III = new Rotor('BDFHJLCPRTXVZNYEIWGAKMUSQO', 'V');
 const R = new Reflector('YRUHQSLDPXNGOKMIEBFZCWVJAT');
-const P = new Plugboard('AD CN ET FL GI JV KZ PU QY WX');
+const P = new Plugboard('');
 const W = new EntryWheel('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
 var enigma = new Enigma([I, II, III], R, P, W);
