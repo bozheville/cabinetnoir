@@ -40,12 +40,12 @@ const StyledTextArea = styled.textarea`
   &:focus {
     border: 0;
     outline: 0;
-    box-shadow: inset 0px 0px 2px 1px #000000;
   }
 `;
 
 const TextArea = forwardRef<HTMLTextAreaElement, React.TextareaHTMLAttributes<HTMLTextAreaElement>>((
-  props, forwardedRef
+  props,
+  forwardedRef
 ) => {
   const localref = useRef<HTMLTextAreaElement>(null);
   const ref = useCombinedRef(localref, forwardedRef);

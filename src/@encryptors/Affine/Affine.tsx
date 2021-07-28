@@ -1,10 +1,10 @@
 import React from 'react';
 import { Checkbox, Pane } from 'evergreen-ui';
 import { CrypterProps } from '../types';
-import useCaesar from './useAffine';
+import useAffine from './useAffine';
 import { NumberInput } from '@atoms';
 
-const Caesar: React.FC<CrypterProps> = ({
+const Affine: React.FC<CrypterProps> = ({
   input,
   onProcessingEnd,
   isDecryptMode,
@@ -19,7 +19,7 @@ const Caesar: React.FC<CrypterProps> = ({
     handleKeepSpacesChange,
     handleKeepCaseChange,
     handleMultiplierChange,
-  } = useCaesar({
+  } = useAffine({
     input,
     onProcessingEnd,
     isDecryptMode,
@@ -64,6 +64,6 @@ const Caesar: React.FC<CrypterProps> = ({
   );
 };
 
-Caesar.displayName = 'Caesar';
+Affine.displayName = 'Affine';
 
-export default Caesar;
+export default Affine;

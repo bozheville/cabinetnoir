@@ -9,3 +9,11 @@ export const buymeacoffeeButton = {
   default: color.yellow[500],
   hover: color.yellow[600],
 };
+
+export const backgrounds = {
+  header: color.orange[400],
+  encryptor: color.red[200],
+  description: color.orange[50],
+  footer: color.gray[200],
+  homeMenu: color.blue[200],
+};
