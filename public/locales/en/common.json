@@ -21,6 +21,13 @@
       "reverseAction": "Decrypt",
       "messageLabel": "Cryptogram"
     },
+    "enigma": {
+      "title": "Enigma machine",
+      "short_title": "Enigma",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram"
+    },
     "rot13": {
       "title": "ROT13",
       "short_title": "ROT13",

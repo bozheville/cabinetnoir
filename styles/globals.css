@@ -14,3 +14,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+#__next {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
