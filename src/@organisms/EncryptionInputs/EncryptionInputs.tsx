@@ -79,7 +79,6 @@ const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
           onClick={handleCopy}
         />
       )}
-
     </EncryptionInputsWrapper>
   );
 };

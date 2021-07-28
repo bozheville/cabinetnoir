@@ -9,7 +9,12 @@ import styled from 'styled-components';
 import { encodingsList, encryptorsList } from '@encryptors';
 import { Footer } from '@molecues';
 import { Canon, DoublePica, GreatPrimer, Trafalgar } from '@typography';
+import Section from '@atoms/Section/Section';
 
+
+const HomeMenuSection = styled(Section)`
+  flex: 1 0 auto;
+`;
 
 const AlgorithmLink = styled.a`
   display: inline-block;
@@ -36,36 +41,38 @@ const Index: React.FC = () => {
 
   return (
     <>
-      <Pane
-        textAlign="center"
-        paddingTop="64px"
-        width="100%"
-        maxWidth="640px"
-        marginY="0"
-        marginX="auto"
-      >
-        <Pane>
-          <Canon>{t('name')}</Canon>
-          <DoublePica>{t('home.title')}</DoublePica>
+      <HomeMenuSection stitch="bottom" color="homeMenu">
+        <Pane
+          textAlign="center"
+          paddingTop="64px"
+          width="100%"
+          maxWidth="640px"
+          marginY="0"
+          marginX="auto"
+        >
+          <Pane>
+            <Canon>{t('name')}</Canon>
+            <DoublePica>{t('home.title')}</DoublePica>
+          </Pane>
+          <div>
+            <GreatPrimer>{t('home.subtitle')}</GreatPrimer>
+            <AlgorithmList>
+            <GreatPrimer>Encodings</GreatPrimer>
+            {encodingsList.map((algorithm) => (
+              <Link key={algorithm} href={`/encoder/${algorithm}/direct`} passHref={true}>
+                <AlgorithmLink>{t(`processing.${algorithm}.title`)}</AlgorithmLink>
+              </Link>
+            ))}
+            <GreatPrimer>Encryptoins</GreatPrimer>
+            {encryptorsList.map((algorithm) => (
+              <Link key={algorithm} href={`/encoder/${algorithm}/direct`} passHref={true}>
+                <AlgorithmLink>{t(`processing.${algorithm}.title`)}</AlgorithmLink>
+              </Link>
+            ))}
+            </AlgorithmList>
+          </div>
         </Pane>
-        <div>
-          <GreatPrimer>{t('home.subtitle')}</GreatPrimer>
-          <AlgorithmList>
-          <GreatPrimer>Encodings</GreatPrimer>
-          {encodingsList.map((algorithm) => (
-            <Link key={algorithm} href={`/encoder/${algorithm}/direct`} passHref={true}>
-              <AlgorithmLink>{t(`processing.${algorithm}.title`)}</AlgorithmLink>
-            </Link>
-          ))}
-          <GreatPrimer>Encryptoins</GreatPrimer>
-          {encryptorsList.map((algorithm) => (
-            <Link key={algorithm} href={`/encoder/${algorithm}/direct`} passHref={true}>
-              <AlgorithmLink>{t(`processing.${algorithm}.title`)}</AlgorithmLink>
-            </Link>
-          ))}
-          </AlgorithmList>
-        </div>
-      </Pane>
+      </HomeMenuSection>
       <Footer />
     </>
   );

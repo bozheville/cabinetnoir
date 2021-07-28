@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import {Heading,  Pane, TextInput } from 'evergreen-ui';
+import {Heading,  Pane } from 'evergreen-ui';
 import { CrypterProps } from '../types';
 import { playfairEncrypt, playfairDecrypt } from './playfair-encryption';
+import TextInput from '@atoms/TextInput/TextInput';
 
 const Playfair: React.FC<CrypterProps> = ({
   input,
