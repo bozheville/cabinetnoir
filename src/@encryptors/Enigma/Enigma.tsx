@@ -1,6 +1,7 @@
 import React from 'react';
 import { CrypterProps } from '../types';
 import useEnigma from './useEnigma';
+import TextInput from '@atoms/TextInput';
 
 const Enigma: React.FC<CrypterProps> = ({
   input,
@@ -19,11 +20,15 @@ const Enigma: React.FC<CrypterProps> = ({
 
   return (
     <div>
-      <input
-        type="text"
-        value={secretKey}
-        onChange={handleKeyChange}
-      />
+      <div>
+        <span>Key</span>
+        <TextInput
+          value={secretKey}
+          onChange={handleKeyChange}
+        />
+      </div>
+      <div>Rotors: I II III</div>
+      <div>Reflector type B</div>
     </div>
   );
 };
