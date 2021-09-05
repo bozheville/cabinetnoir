@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const BodyCopy = styled.p`
-  font-family: "Roboto-Slab";
+  font-family: Roboto-Slab, Serif;
   font-weight: 400;
   color: ${(props) => props.theme.colors.text};
   font-size: 18px;

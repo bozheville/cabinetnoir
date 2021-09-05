@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Canon = styled.h1`
-  font-family: "Roboto";
+  font-family: Roboto, Sans-Serif;
   font-weight: 700;
   color: ${(props) => props.theme.colors.header};
   font-size: 44px;
