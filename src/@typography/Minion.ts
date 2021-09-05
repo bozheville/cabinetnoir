@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Minion = styled.p`
-  font-family: "Roboto";
+  font-family: Roboto, Sans-Serif;
   font-weight: 400;
   color: ${(props) => props.theme.colors.textLight};
   font-size: 13px;

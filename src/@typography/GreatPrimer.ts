@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const GreatPrimer = styled.h3`
-  font-family: "Roboto";
+  font-family: Roboto, Sans-Serif;
   color: ${(props) => props.theme.colors.text};
   font-size: 21px;
   line-height: 24px;
