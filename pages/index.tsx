@@ -2,9 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Pane } from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
+import { opacify, parseToRgb } from 'polished';
 
 import { encodingsList, encryptorsList } from '@encryptors';
 import { Footer } from '@molecues';
@@ -14,14 +14,23 @@ import Section from '@atoms/Section/Section';
 
 const HomeMenuSection = styled(Section)`
   flex: 1 0 auto;
+  padding-top: 64px;
+
+  & > div {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 640px;
+  }
 `;
 
 const AlgorithmLink = styled.a`
   display: inline-block;
   padding: 1em;
+  border-radius: 4px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colorScheme.red_violet[50]};
+    background-color: ${({ theme }) => theme.colorScheme.red_violet[200]};
   }
 `;
 
@@ -42,36 +51,27 @@ const Index: React.FC = () => {
   return (
     <>
       <HomeMenuSection stitch="bottom" color="homeMenu">
-        <Pane
-          textAlign="center"
-          paddingTop="64px"
-          width="100%"
-          maxWidth="640px"
-          marginY="0"
-          marginX="auto"
-        >
-          <Pane>
-            <Canon>{t('name')}</Canon>
-            <DoublePica>{t('home.title')}</DoublePica>
-          </Pane>
-          <div>
-            <GreatPrimer>{t('home.subtitle')}</GreatPrimer>
-            <AlgorithmList>
-            <GreatPrimer>Encodings</GreatPrimer>
-            {encodingsList.map((algorithm) => (
-              <Link key={algorithm} href={`/encoder/${algorithm}/direct`} passHref={true}>
-                <AlgorithmLink>{t(`processing.${algorithm}.title`)}</AlgorithmLink>
-              </Link>
-            ))}
-            <GreatPrimer>Encryptoins</GreatPrimer>
-            {encryptorsList.map((algorithm) => (
-              <Link key={algorithm} href={`/encoder/${algorithm}/direct`} passHref={true}>
-                <AlgorithmLink>{t(`processing.${algorithm}.title`)}</AlgorithmLink>
-              </Link>
-            ))}
-            </AlgorithmList>
-          </div>
-        </Pane>
+        <div>
+          <Canon>{t('name')}</Canon>
+          <DoublePica>{t('home.title')}</DoublePica>
+        </div>
+        <div>
+          <GreatPrimer>{t('home.subtitle')}</GreatPrimer>
+          <AlgorithmList>
+          <GreatPrimer>Encodings</GreatPrimer>
+          {encodingsList.map((algorithm) => (
+            <Link key={algorithm} href={`/encoder/${algorithm}/direct`} passHref={true}>
+              <AlgorithmLink>{t(`processing.${algorithm}.title`)}</AlgorithmLink>
+            </Link>
+          ))}
+          <GreatPrimer>Encryptoins</GreatPrimer>
+          {encryptorsList.map((algorithm) => (
+            <Link key={algorithm} href={`/encoder/${algorithm}/direct`} passHref={true}>
+              <AlgorithmLink>{t(`processing.${algorithm}.title`)}</AlgorithmLink>
+            </Link>
+          ))}
+          </AlgorithmList>
+        </div>
       </HomeMenuSection>
       <Footer />
     </>
