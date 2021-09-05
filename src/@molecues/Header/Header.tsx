@@ -39,7 +39,7 @@ const Header: React.FC<HeaderProps> = ({
         <Link href="/" passHref={true}>
           Cabinet Noir
         </Link>
-        <ChevronRightIcon marginX="12px" />
+        &gt;
         {title}
       </DoublePica>
       {children}

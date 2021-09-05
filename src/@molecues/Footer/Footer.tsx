@@ -1,9 +1,9 @@
 import React from 'react';
-import { Heading } from 'evergreen-ui';
 import Icon  from './coffee.svg';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import { ReleaseInfo } from '@atoms';
+import Minion from '@typography/Minion';
 import Section from '@atoms/Section/Section';
 
 const ButtonText = styled.span`
@@ -123,9 +123,9 @@ const Footer: React.FC = () => {
           {t(`footer.report_a_bug`)}
         </a>
       </LinksWrapper>
-      <Heading marginTop="16px" size={100}>
+      <Minion>
         {t(`footer.credentials`)}
-      </Heading>
+      </Minion>
       <ReleaseInfo />
     </FooterWrapper>
   );
