@@ -1,16 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
-
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
-import { opacify, parseToRgb } from 'polished';
+
+// import { gql } from "@apollo/client";
+// import client from '../apollo-client';
 
 import { encodingsList, encryptorsList } from '@encryptors';
 import { Footer } from '@molecues';
-import { Canon, DoublePica, GreatPrimer, Trafalgar } from '@typography';
+import { Canon, DoublePica, GreatPrimer } from '@typography';
 import Section from '@atoms/Section/Section';
-
 
 const HomeMenuSection = styled(Section)`
   flex: 1 0 auto;
@@ -80,10 +80,24 @@ const Index: React.FC = () => {
 
 Index.displayName = 'Index';
 
-export const getStaticProps = async ({ locale }) => ({
-  props: {
-    ...await serverSideTranslations(locale, ['common']),
-  },
-});
+export const getStaticProps = async ({ locale }) => {
+  // const { data } = await client.query({
+  //   query: gql`
+  //     query User {
+  //       user(id: 93561) {
+  //         id
+  //         name
+  //         email
+  //       }
+  //     }
+  //   `,
+  // });
+
+  return {
+    props: {
+      ...await serverSideTranslations(locale, ['common']),
+    },
+  };
+};
 
 export default Index;
