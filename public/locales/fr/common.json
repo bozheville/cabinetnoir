@@ -9,6 +9,13 @@
       "reverseAction": "Décrypter",
       "messageLabel": "Cryptogramme"
     },
+    "atbash": {
+      "title": "Atbash",
+      "short_title": "Atbash",
+      "directAction": "Crypter",
+      "reverseAction": "Décrypter",
+      "messageLabel": "Cryptogramme"
+    },
     "caesar": {
       "title": "Chiffre de César",
       "short_title": "César",

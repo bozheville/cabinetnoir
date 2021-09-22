@@ -1,4 +1,5 @@
 export { default as Affine, AffineDescription } from './Affine';
+export { default as Atbash, AtbashDescription } from './Atbash';
 export { default as Base64 } from './Base64';
 export { default as Caesar, CaesarDescription } from './Caesar';
 export { default as Enigma } from './Enigma';
@@ -10,13 +11,14 @@ export { default as Rot13, Rot13Description } from './Rot13';
 export const encodingsList = [
   'base64',
   'rot13',
+  'morse',
 ];
 
 export const encryptorsList = [
   'affine',
+  'atbash',
   'caesar',
   'enigma',
-  'morse',
   'playfair',
   'vigenere',
 ];

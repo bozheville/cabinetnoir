@@ -1,6 +1,7 @@
 export const rotate = (input: string, n: number): string =>
   `${input.slice(input.length - n)}${input.slice(0, input.length - n)}`;
 
+export const reverse = (input: string): string => input.split('').reverse().join('');
 
 export const isCoprimePair = (a, b) => {
   const smaller = a > b ? b : a;

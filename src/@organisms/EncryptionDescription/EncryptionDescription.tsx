@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Section from '@atoms/Section/Section';
 import {
   AffineDescription,
+  AtbashDescription,
   CaesarDescription,
   MorseDescription,
   Rot13Description,
@@ -24,6 +25,7 @@ const EncryptionDescription: React.FC = () => {
 
   const DescriptionComponent =
     algorithm === 'affine' ? AffineDescription
+    : algorithm === 'atbash' ? AtbashDescription
     : algorithm === 'caesar' ? CaesarDescription
     : algorithm === 'morse' ? MorseDescription
     : algorithm === 'rot13' ? Rot13Description
