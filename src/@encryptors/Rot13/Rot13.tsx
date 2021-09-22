@@ -1,6 +1,8 @@
-import React, {useEffect} from 'react';
-import { CrypterProps } from '../types';
-import { caesarEncrypt } from '../Caesar/caesar-crypt';
+import React, { useEffect } from 'react';
+import { getAlphabet } from '@encryptors/constants';
+import { rotate } from '@encryptors/utils';
+import { CrypterProps } from '@encryptors/types';
+import { monoalphabeticEncrypt } from '@encryptors/Monoalphabetic/monoalphabetic-crypt';
 
 const Rot13: React.FC<CrypterProps> = ({
   input,
@@ -8,14 +10,15 @@ const Rot13: React.FC<CrypterProps> = ({
   isDecryptMode,
 }) => {
   useEffect(() => {
-    const settings = {
+    const alphabet = getAlphabet({ key: 'latin' }).value;
+    const output = !input ? '' : monoalphabeticEncrypt({
       input,
-      shift: 13,
+      alphabet,
+      targetAlphabet: rotate(alphabet, 13),
       keepSpaces: true,
       keepCase: true,
-    };
+    });
 
-    const output = caesarEncrypt(settings);
     onProcessingEnd({ output });
   }, [input, isDecryptMode]);
 
