@@ -9,6 +9,13 @@
       "reverseAction": "Розшифрувати",
       "messageLabel": "Криптограма"
     },
+    "atbash": {
+      "title": "Атбаш",
+      "short_title": "Атбаш",
+      "directAction": "Зашифрувати",
+      "reverseAction": "Розшифрувати",
+      "messageLabel": "Криптограма"
+    },
     "caesar": {
       "title": "Шифр цезаря",
       "short_title": "Цезар",
