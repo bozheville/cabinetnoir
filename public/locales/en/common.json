@@ -14,9 +14,23 @@
       "reverseAction": "Decrypt",
       "messageLabel": "Cryptogram"
     },
+    "atbash": {
+      "title": "Atbash cipher",
+      "short_title": "Atbash",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram"
+    },
     "caesar": {
       "title": "Caesar cipher",
       "short_title": "Caesar",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram"
+    },
+    "enigma": {
+      "title": "Enigma machine",
+      "short_title": "Enigma",
       "directAction": "Encrypt",
       "reverseAction": "Decrypt",
       "messageLabel": "Cryptogram"
