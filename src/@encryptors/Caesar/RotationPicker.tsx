@@ -20,9 +20,10 @@ const RotationWrapper = styled.div`
   }
 `;
 
-const RotationPicker: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
+const RotationPicker: React.FC<React.InputHTMLAttributes<HTMLInputElement> & {max: number}> = ({
   value,
   onChange,
+  max = 26,
 }) => {
   return (
     <RotationWrapper>
@@ -31,7 +32,7 @@ const RotationPicker: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = ({
       <TextInput
         type="range"
         min="1"
-        max="25"
+        max={max - 1}
         width="150px"
         value={value}
         marginY="0"

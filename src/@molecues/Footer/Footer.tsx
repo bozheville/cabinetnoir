@@ -1,20 +1,18 @@
 import React from 'react';
-import { Heading } from 'evergreen-ui';
 import Icon  from './coffee.svg';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import { ReleaseInfo } from '@atoms';
-
+import Minion from '@typography/Minion';
+import Section from '@atoms/Section/Section';
 
 const ButtonText = styled.span`
   display: inline-block;
   margin-left: 8px;
 `;
 
-const FooterWrapper = styled.div`
-  margin-top: 36px;
+const FooterWrapper = styled(Section)`
   text-align: center;
-  padding: 16px;
 `;
 
 const BMCButton = styled.button`
@@ -37,6 +35,7 @@ const BMCWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 8px;
+  flex-shrink: 0;
 
   & > span {
     display: inline-block;
@@ -93,7 +92,7 @@ const LinksWrapper = styled.div`
 const Footer: React.FC = () => {
   const { t } = useTranslation('common');
   return (
-    <FooterWrapper>
+    <FooterWrapper color="footer" stitch="top">
       <BMCWrapper>
         <span>
           {t('footer.did_you_like')}
@@ -124,9 +123,9 @@ const Footer: React.FC = () => {
           {t(`footer.report_a_bug`)}
         </a>
       </LinksWrapper>
-      <Heading marginTop="16px" size={100}>
+      <Minion>
         {t(`footer.credentials`)}
-      </Heading>
+      </Minion>
       <ReleaseInfo />
     </FooterWrapper>
   );

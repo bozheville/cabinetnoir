@@ -2,31 +2,21 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components';
 
+import Section from '@atoms/Section/Section';
 import {
   AffineDescription,
+  AtbashDescription,
   CaesarDescription,
   MorseDescription,
   Rot13Description,
 } from '@encryptors';
 
-const EncryptorWrapper = styled.div`
+const EncryptorWrapper = styled(Section)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-  padding: 0;
-  border; 1px solid #aaa;
-  border-radius: 8px;
-  box-shadow: 0px 2px 4px 0px #999;
-  margin: 24px auto;
-  background-color: #fff;
   overflow: hidden;
-  padding: 16px;
-  max-width: 1016px;
-
-  ${({ theme }) => theme.breakpoints.small} {
-    margin: 24px 4px 4px 4px;
-  }
 `;
 
 const EncryptionDescription: React.FC = () => {
@@ -35,13 +25,14 @@ const EncryptionDescription: React.FC = () => {
 
   const DescriptionComponent =
     algorithm === 'affine' ? AffineDescription
+    : algorithm === 'atbash' ? AtbashDescription
     : algorithm === 'caesar' ? CaesarDescription
     : algorithm === 'morse' ? MorseDescription
     : algorithm === 'rot13' ? Rot13Description
     : null
 
   return DescriptionComponent ? (
-    <EncryptorWrapper>
+    <EncryptorWrapper stitch="both" color="description">
       <DescriptionComponent />
     </EncryptorWrapper>
   ) : null;

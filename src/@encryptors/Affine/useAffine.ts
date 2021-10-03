@@ -1,45 +1,40 @@
+import { getAlphabet } from '@encryptors/constants';
+import { useMonoalphabetic } from '@encryptors/Monoalphabetic/useMonoalphabetic';
+import { getAffineAlphabet, isCoprimePair } from '@encryptors/utils';
 import { useEffect, useState } from 'react';
-import { affineEncrypt, affineDecrypt } from './affine-crypt';
 
-const useAffine = ({
-  input,
-  onProcessingEnd,
-  isDecryptMode,
-}) => {
-  const [ secretKey, setSecretKey ] = useState('1');
-  const [ multiplier, setMultiplier ] = useState('1');
-  const [ keepSpaces, setKeepSpaces ] = useState(false);
-  const [ keepCase, setKeepCase ] = useState(false);
+const DEFAULT_ALPHABET = getAlphabet({ key: 'latin' }).value;
+
+const DEFAULT_TARGET_ALPHABET = getAffineAlphabet({
+  alphabet: DEFAULT_ALPHABET,
+  multiplier: 1,
+  shift: 1,
+});
+
+const useAffine = (props) => {
+  const [ shift, setShift ] = useState(1);
+  const [ multiplier, setMultiplier ] = useState(1);
+
+  const [alphabet, setAlphabet] = useState(DEFAULT_ALPHABET);
+  const [targetAlphabet, setTargetAlphabet] = useState(DEFAULT_TARGET_ALPHABET);
 
   useEffect(() => {
-    const settings = {
-      input,
-      multiplier: parseInt(multiplier, 10),
-      shift: parseInt(secretKey, 10),
-      keepSpaces,
-      keepCase,
+    if (isCoprimePair(multiplier, alphabet.length)) {
+      setTargetAlphabet(getAffineAlphabet({ alphabet, multiplier, shift }));
     }
-    const output = isDecryptMode
-      ? affineDecrypt(settings)
-      : affineEncrypt(settings);
+  }, [ alphabet, multiplier, shift ]);
 
-      onProcessingEnd({ output });
-  }, [input, secretKey, isDecryptMode, keepCase, keepSpaces, multiplier]);
+  const monoalphabeticProps = useMonoalphabetic({ alphabet, targetAlphabet, ...props })
 
-  const handleKeyChange = (event) => setSecretKey(event.target.value);
-  const handleKeepSpacesChange = (event) => setKeepSpaces(event.target.checked);
-  const handleKeepCaseChange = (event) => setKeepCase(event.target.checked);
-  const handleMultiplierChange = (event) => setMultiplier(event.target.value);
+  const handleKeyChange = (event) => setShift(parseInt(event.target.value));
+  const handleMultiplierChange = (event) => setMultiplier(parseInt(event.target.value));
 
   return {
-    secretKey,
-    keepCase,
-    keepSpaces,
+    secretKey: String(shift),
     multiplier,
     handleKeyChange,
-    handleKeepSpacesChange,
-    handleKeepCaseChange,
     handleMultiplierChange,
+    ...monoalphabeticProps,
   };
 };
 

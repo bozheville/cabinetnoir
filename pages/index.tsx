@@ -1,22 +1,36 @@
 import React from 'react';
 import Link from 'next/link';
-
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Pane } from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
+// import { gql } from "@apollo/client";
+// import client from '../apollo-client';
+
 import { encodingsList, encryptorsList } from '@encryptors';
 import { Footer } from '@molecues';
-import { Canon, DoublePica, GreatPrimer, Trafalgar } from '@typography';
+import { Canon, DoublePica, GreatPrimer } from '@typography';
+import Section from '@atoms/Section/Section';
 
+const HomeMenuSection = styled(Section)`
+  flex: 1 0 auto;
+  padding-top: 64px;
+
+  & > div {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 640px;
+  }
+`;
 
 const AlgorithmLink = styled.a`
   display: inline-block;
   padding: 1em;
+  border-radius: 4px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colorScheme.red_violet[50]};
+    background-color: ${({ theme }) => theme.colorScheme.red_violet[200]};
   }
 `;
 
@@ -36,18 +50,11 @@ const Index: React.FC = () => {
 
   return (
     <>
-      <Pane
-        textAlign="center"
-        paddingTop="64px"
-        width="100%"
-        maxWidth="640px"
-        marginY="0"
-        marginX="auto"
-      >
-        <Pane>
+      <HomeMenuSection stitch="bottom" color="homeMenu">
+        <div>
           <Canon>{t('name')}</Canon>
           <DoublePica>{t('home.title')}</DoublePica>
-        </Pane>
+        </div>
         <div>
           <GreatPrimer>{t('home.subtitle')}</GreatPrimer>
           <AlgorithmList>
@@ -65,7 +72,7 @@ const Index: React.FC = () => {
           ))}
           </AlgorithmList>
         </div>
-      </Pane>
+      </HomeMenuSection>
       <Footer />
     </>
   );
@@ -73,10 +80,24 @@ const Index: React.FC = () => {
 
 Index.displayName = 'Index';
 
-export const getStaticProps = async ({ locale }) => ({
-  props: {
-    ...await serverSideTranslations(locale, ['common']),
-  },
-});
+export const getStaticProps = async ({ locale }) => {
+  // const { data } = await client.query({
+  //   query: gql`
+  //     query User {
+  //       user(id: 93561) {
+  //         id
+  //         name
+  //         email
+  //       }
+  //     }
+  //   `,
+  // });
+
+  return {
+    props: {
+      ...await serverSideTranslations(locale, ['common']),
+    },
+  };
+};
 
 export default Index;

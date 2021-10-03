@@ -1,25 +1,24 @@
 import React from 'react';
-import { Checkbox, Pane } from 'evergreen-ui';
-import { CrypterProps } from '../types';
-import useAffine from './useAffine';
-import { NumberInput } from '@atoms';
+import { Checkbox, Pane, Select } from 'evergreen-ui';
 
-const Affine: React.FC<CrypterProps> = ({
+import { alphabetCollection } from '../constants';
+import { CrypterProps } from '../types';
+import { useAtbash } from './useAtbash';
+
+const Atbash: React.FC<CrypterProps> = ({
   input,
   onProcessingEnd,
   isDecryptMode,
   ...paneProps
 }) => {
   const {
-    secretKey,
     keepCase,
     keepSpaces,
-    multiplier,
-    handleKeyChange,
+    alphabetKey,
     handleKeepSpacesChange,
     handleKeepCaseChange,
-    handleMultiplierChange,
-  } = useAffine({
+    handleAphabetKeyChange,
+  } = useAtbash({
     input,
     onProcessingEnd,
     isDecryptMode,
@@ -36,14 +35,6 @@ const Affine: React.FC<CrypterProps> = ({
       paddingBottom="16px"
       {...paneProps}
     >
-      <NumberInput
-        value={multiplier}
-        onChange={handleMultiplierChange}
-      />
-      <NumberInput
-        value={secretKey}
-        onChange={handleKeyChange}
-      />
       {!isDecryptMode && (
         <>
           <Checkbox
@@ -60,10 +51,21 @@ const Affine: React.FC<CrypterProps> = ({
           />
         </>
       )}
+      <Select onChange={handleAphabetKeyChange}>
+        {alphabetCollection.map((item) => (
+          <option
+            selected={alphabetKey === item.type}
+            value={item.type}
+            key={item.type}
+          >
+            {item.value}
+          </option>
+        ))}
+      </Select>
     </Pane>
   );
 };
 
-Affine.displayName = 'Affine';
+Atbash.displayName = 'Atbash';
 
-export default Affine;
+export default Atbash;

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Checkbox, Pane } from 'evergreen-ui';
+import { Checkbox, Pane, Select } from 'evergreen-ui';
 import { CrypterProps } from '../types';
+import { alphabetCollection } from '../constants';
 import useCaesar from './useCaesar';
 import RotationPicker from './RotationPicker';
 
@@ -11,12 +12,15 @@ const Caesar: React.FC<CrypterProps> = ({
   ...paneProps
 }) => {
   const {
+    alphabetLength,
     secretKey,
     keepCase,
     keepSpaces,
+    alphabetKey,
     handleKeyChange,
     handleKeepSpacesChange,
     handleKeepCaseChange,
+    handleAphabetKey,
   } = useCaesar({
     input,
     onProcessingEnd,
@@ -37,6 +41,7 @@ const Caesar: React.FC<CrypterProps> = ({
       <RotationPicker
         value={secretKey}
         onChange={handleKeyChange}
+        max={alphabetLength}
       />
       {!isDecryptMode && (
         <>
@@ -54,6 +59,17 @@ const Caesar: React.FC<CrypterProps> = ({
           />
         </>
       )}
+      <Select onChange={handleAphabetKey}>
+        {alphabetCollection.map((item) => (
+          <option
+            selected={alphabetKey === item.type}
+            value={item.type}
+            key={item.type}
+          >
+            {item.value}
+          </option>
+        ))}
+      </Select>
     </Pane>
   );
 };

@@ -1,40 +1,54 @@
-import { useEffect, useState } from 'react';
-import { caesarEncrypt, caesarDecrypt } from './caesar-crypt';
+import { useState } from 'react';
+import { rotate } from '@encryptors/utils';
+import { getAlphabet } from '@encryptors/constants';
+import { useMonoalphabetic } from '@encryptors/Monoalphabetic/useMonoalphabetic';
+
+const DEFAULT_ROTATION = 1;
+const DEFAULT_ALPHABET_KEY = 'latin';
+const DEFAULT_ALPHABET = getAlphabet({ key: DEFAULT_ALPHABET_KEY }).value;
+const DEFAULT_TARGET_ALPHABET = rotate(DEFAULT_ALPHABET, DEFAULT_ROTATION);
 
 const useCaesar = ({
   input,
   onProcessingEnd,
   isDecryptMode,
 }) => {
-  const [ secretKey, setSecretKey ] = useState('1');
-  const [ keepSpaces, setKeepSpaces ] = useState(false);
-  const [ keepCase, setKeepCase ] = useState(false);
+  const [rotation, setRotation] = useState(DEFAULT_ROTATION);
+  const [alphabetLength, setAlphabetLength] = useState(DEFAULT_ALPHABET.length);
+  const [alphabetKey, setAlphabetKey] = useState(DEFAULT_ALPHABET_KEY);
+  const [alphabet, setAlphabet] = useState(DEFAULT_ALPHABET);
+  const [targetAlphabet, setTargetAlphabet] = useState(DEFAULT_TARGET_ALPHABET);
 
-  useEffect(() => {
-    const settings = {
-      input,
-      shift: parseInt(secretKey, 10),
-      keepSpaces,
-      keepCase,
-    }
-    const output = isDecryptMode
-      ? caesarDecrypt(settings)
-      : caesarEncrypt(settings);
+  const monoalphabeticProps = useMonoalphabetic({
+    input,
+    onProcessingEnd,
+    isDecryptMode,
+    alphabet,
+    targetAlphabet,
+  });
 
-      onProcessingEnd({ output });
-  }, [input, secretKey, isDecryptMode, keepCase, keepSpaces]);
+  const handleKeyChange = (event) => {
+    const updatedRotation = parseInt(event.target.value);
+    setRotation(updatedRotation);
+    setTargetAlphabet(rotate(alphabet, updatedRotation));
+  };
 
-  const handleKeyChange = (event) => setSecretKey(event.target.value);
-  const handleKeepSpacesChange = (event) => setKeepSpaces(event.target.checked);
-  const handleKeepCaseChange = (event) => setKeepCase(event.target.checked);
+  const handleAphabetKey = (event) => {
+    const key = event.target.value;
+    const newAlphabet = getAlphabet({ key }).value;
+    setAlphabetKey(key);
+    setAlphabet(newAlphabet);
+    setAlphabetLength(newAlphabet.length);
+    setTargetAlphabet(rotate(newAlphabet, rotation));
+  };
 
   return {
-    secretKey,
-    keepCase,
-    keepSpaces,
+    alphabetLength,
+    secretKey: String(rotation),
+    alphabetKey,
     handleKeyChange,
-    handleKeepSpacesChange,
-    handleKeepCaseChange,
+    handleAphabetKey,
+    ...monoalphabeticProps,
   };
 };
 

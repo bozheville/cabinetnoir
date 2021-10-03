@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { DoublePica } from '@typography';
 import Link from 'next/link';
 import { ChevronRightIcon } from 'evergreen-ui';
+import { DoublePica } from '@typography';
+import Section from '@atoms/Section/Section';
 
 interface HeaderProps {
   title: string;
 }
 
-const StyledHeader = styled.div`
-  margin-bottom: 36px;
+const StyledHeader = styled(Section)`
   padding: 16px 24px;
   display: flex;
   box-shadow: 0px 0px 3px 0px #999;
@@ -34,12 +34,12 @@ const Header: React.FC<HeaderProps> = ({
   children,
 }) => {
   return (
-    <StyledHeader>
+    <StyledHeader color="header" stitch="bottom">
       <DoublePica>
         <Link href="/" passHref={true}>
           Cabinet Noir
         </Link>
-        <ChevronRightIcon marginX="12px" />
+        &gt;
         {title}
       </DoublePica>
       {children}
