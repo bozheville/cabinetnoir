@@ -1,6 +1,13 @@
 {
   "welcome": "Encryptor",
   "name": "Cabinet Noir",
+  "alphabet": {
+    "latin": "Латинська",
+    "german": "Німецька",
+    "french": "Французька",
+    "russian": "Російська",
+    "ukrainian": "Українська"
+  },
   "processing": {
     "affine": {
       "title": "Афінний шифр",

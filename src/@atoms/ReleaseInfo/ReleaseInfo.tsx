@@ -11,7 +11,7 @@ const ReleaseInfo: React.FC = () => {
   }
 
   const date = new Date(parseInt(timeStamp, 10));
-  const formattedDate = `${`${date.getDate()}`.padStart(2, '0')}.${`${date.getMonth()}`.padStart(2, '0')}.${date.getFullYear()}`;
+  const formattedDate = `${`${date.getDate()}`.padStart(2, '0')}.${`${date.getMonth() + 1}`.padStart(2, '0')}.${date.getFullYear()}`;
   return (
     <Minion>v.{version} // released on {formattedDate}</Minion>
   );
