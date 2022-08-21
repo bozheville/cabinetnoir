@@ -9,7 +9,7 @@ export const alphabetCollection = [
   },
   {
     type: 'german', // TBD
-    value: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    value: 'AÄBßCDEFGHIJKLMNOÖPQRSTUÜVWXYZ',
   },
   {
     type: 'french', // TBD

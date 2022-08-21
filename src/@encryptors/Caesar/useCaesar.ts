@@ -15,7 +15,6 @@ const useCaesar = ({
 }) => {
   const [rotation, setRotation] = useState(DEFAULT_ROTATION);
   const [alphabetLength, setAlphabetLength] = useState(DEFAULT_ALPHABET.length);
-  const [alphabetKey, setAlphabetKey] = useState(DEFAULT_ALPHABET_KEY);
   const [alphabet, setAlphabet] = useState(DEFAULT_ALPHABET);
   const [targetAlphabet, setTargetAlphabet] = useState(DEFAULT_TARGET_ALPHABET);
 
@@ -33,10 +32,7 @@ const useCaesar = ({
     setTargetAlphabet(rotate(alphabet, updatedRotation));
   };
 
-  const handleAphabetKey = (event) => {
-    const key = event.target.value;
-    const newAlphabet = getAlphabet({ key }).value;
-    setAlphabetKey(key);
+  const handleAlphabetChange = (newAlphabet) => {
     setAlphabet(newAlphabet);
     setAlphabetLength(newAlphabet.length);
     setTargetAlphabet(rotate(newAlphabet, rotation));
@@ -45,9 +41,8 @@ const useCaesar = ({
   return {
     alphabetLength,
     secretKey: String(rotation),
-    alphabetKey,
     handleKeyChange,
-    handleAphabetKey,
+    handleAlphabetChange,
     ...monoalphabeticProps,
   };
 };

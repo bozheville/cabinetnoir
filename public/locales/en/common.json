@@ -6,6 +6,13 @@
     "title": "Modern handy decoder for old-fashioned ways of hiding a truth",
     "subtitle": "Here you can encode/decore and encrypt/decrypt messages using following algorithms"
   },
+  "alphabet": {
+    "latin": "Latin",
+    "german": "German",
+    "french": "French",
+    "russian": "Russian",
+    "ukrainian": "Ukrainian"
+  },
   "processing": {
     "affine": {
       "title": "Affine cipher",

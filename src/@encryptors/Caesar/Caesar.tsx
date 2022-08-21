@@ -4,6 +4,7 @@ import { CrypterProps } from '../types';
 import { alphabetCollection } from '../constants';
 import useCaesar from './useCaesar';
 import RotationPicker from './RotationPicker';
+import AlphabetSelector from '@molecues/AlphabetSelector';
 
 const Caesar: React.FC<CrypterProps> = ({
   input,
@@ -16,11 +17,10 @@ const Caesar: React.FC<CrypterProps> = ({
     secretKey,
     keepCase,
     keepSpaces,
-    alphabetKey,
     handleKeyChange,
     handleKeepSpacesChange,
     handleKeepCaseChange,
-    handleAphabetKey,
+    handleAlphabetChange,
   } = useCaesar({
     input,
     onProcessingEnd,
@@ -30,7 +30,7 @@ const Caesar: React.FC<CrypterProps> = ({
   return (
     <Pane
       display="flex"
-      flexDirection="row"
+      flexDirection="column"
       justifyContent="center"
       alignItems="center"
       width="100%"
@@ -38,38 +38,42 @@ const Caesar: React.FC<CrypterProps> = ({
       paddingBottom="16px"
       {...paneProps}
     >
-      <RotationPicker
-        value={secretKey}
-        onChange={handleKeyChange}
-        max={alphabetLength}
-      />
-      {!isDecryptMode && (
-        <>
-          <Checkbox
-            marginLeft="6px"
-            label="Keep spaces"
-            checked={keepSpaces}
-            onChange={handleKeepSpacesChange}
-          />
-          <Checkbox
-            marginLeft="6px"
-            label="Keep case"
-            checked={keepCase}
-            onChange={handleKeepCaseChange}
-          />
-        </>
-      )}
-      <Select onChange={handleAphabetKey}>
-        {alphabetCollection.map((item) => (
-          <option
-            selected={alphabetKey === item.type}
-            value={item.type}
-            key={item.type}
-          >
-            {item.value}
-          </option>
-        ))}
-      </Select>
+      <Pane
+        display="flex"
+        flexDirection="row"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <RotationPicker
+          value={secretKey}
+          onChange={handleKeyChange}
+          max={alphabetLength}
+        />
+        {!isDecryptMode && (
+          <>
+            <Checkbox
+              marginLeft="6px"
+              label="Keep spaces"
+              checked={keepSpaces}
+              onChange={handleKeepSpacesChange}
+            />
+            <Checkbox
+              marginLeft="6px"
+              label="Keep case"
+              checked={keepCase}
+              onChange={handleKeepCaseChange}
+            />
+          </>
+        )}
+      </Pane>
+      <Pane
+        display="flex"
+        flexDirection="row"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <AlphabetSelector onChange={handleAlphabetChange} />
+      </Pane>
     </Pane>
   );
 };
