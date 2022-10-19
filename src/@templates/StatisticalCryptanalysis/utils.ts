@@ -1,5 +1,9 @@
 export const alphabet = `ABCDEFGHIJKLMNOPQRSTUVWXYZ`;
 
+interface Ngram {
+  [key: string]: number;
+};
+
 export const splitByGroups = (text) => {
   const groups = [];
   let group = [];
@@ -9,7 +13,7 @@ export const splitByGroups = (text) => {
   let char = ''
   let index = 0;
 
-  const matched = {};
+  const matched: Ngram = {};
 
   for (let i = 0; i<text.length - 2; i++ ) {
     const pattern = `${text[i]}${text[i+1]}${text[i+2]}`;
@@ -166,7 +170,7 @@ export const splitByGroups = (text) => {
 const MULTIPLIER = 1000;
 
 export const generateStats = (text) => {
-  return Object.entries(text
+  const entries: Ngram = text
     .split('')
     .reduce((result, current) => ({
       ...result,
@@ -175,8 +179,9 @@ export const generateStats = (text) => {
     text.toUpperCase().match(/(.)\1+/gi).reduce((result, current) => ({
       ...result,
       [current]: (result[current] || 0) + 1,
-    }), {})
-    ))
+    }), {}));
+
+  return Object.entries(entries)
     .sort((a,b) => b[1] - a[1])
     .map((item) => `${item[0]}: ${item[1]}`);
 };
