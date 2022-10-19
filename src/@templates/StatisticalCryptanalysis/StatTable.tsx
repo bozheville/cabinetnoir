@@ -83,7 +83,7 @@ const StatTable: React.FC<StatTableProps> = ({
   const omit = Object.keys(mapping || {}).map(c => c.toUpperCase());
 
   return (
-    <table border="1">
+    <table style={{border: 1}}>
       <thead>
         <th></th>
         <th>№</th>

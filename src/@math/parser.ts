@@ -93,6 +93,10 @@ As with the BK16, the instrument used to go after the protesters was the anti-te
   .toUpperCase()
   .replace(/[^a-z ]+/igm, ' ');
 
+interface Ngram {
+  [key: string]: number;
+};
+
 const getDoubles = (text) => {
   const entries = [];
   for (let i = 0; i < text.length - 1; i++) {
@@ -113,7 +117,7 @@ const getNGrams = (text, n) => {
   return ngrams;
 };
 
-const transformNgrams = (ngrams, textLen) => {
+const transformNgrams = (ngrams: Ngram, textLen: number) => {
   const list = Object.entries(ngrams);
   return list
     .sort((a,b) => b[1] - a[1])
@@ -153,10 +157,10 @@ export const parseText = (text = exampleText) => {
   const statModifier = 1000/textLen;
 
   const words = text.split(' ');
-  const bigrams = {};
-  const trigrams = {};
-  const letters = {};
-  const doubles = {};
+  const bigrams: Ngram = {};
+  const trigrams: Ngram = {};
+  const letters: Ngram = {};
+  const doubles: Ngram = {};
 
   for (const word of words) {
     for(const letter of word.split('')) {
@@ -192,14 +196,12 @@ export const parseText = (text = exampleText) => {
         {
           value: current[0],
           frequency: current[1] * statModifier,
-          // bigrams: getLetterBigramsCount(current[0], bigramCollection)*statModifier,
           bigrams: getLetterBigramsDistinctCount(current[0], bigramCollection),
-          // trigrams: getLetterBigramsCount(current[0], trigramCollection)*statModifier,
         },
       ], [])
       .sort((a,b) => b.bigrams-a.bigrams),
-    bigrams: bigramCollection, //getTopNGrams(bigramCollection, statModifier),
-    trigrams: trigramCollection, //getTopNGrams(trigramCollection, statModifier),
-    doubles: doublesCollection, //getTopNGrams(trigramCollection, statModifier),
+    bigrams: bigramCollection,
+    trigrams: trigramCollection,
+    doubles: doublesCollection,
   }
 }
