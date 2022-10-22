@@ -94,7 +94,7 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
           textAlign={isDecryptMode ? 'right' : 'left'}
 
         >
-          {t('message')}
+          {`${t('message')}`}
         </Pane>
         <IconButton
           icon={SwapHorizontalIcon}

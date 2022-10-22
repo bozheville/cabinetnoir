@@ -52,22 +52,22 @@ const Index: React.FC = () => {
     <>
       <HomeMenuSection stitch="bottom" color="homeMenu">
         <div>
-          <Canon>{t('name')}</Canon>
-          <DoublePica>{t('home.title')}</DoublePica>
+          <Canon>{`${t('name')}`}</Canon>
+          <DoublePica>{`${t('home.title')}`}</DoublePica>
         </div>
         <div>
-          <GreatPrimer>{t('home.subtitle')}</GreatPrimer>
+          <GreatPrimer>{`${t('home.subtitle')}`}</GreatPrimer>
           <AlgorithmList>
           <GreatPrimer>Encodings</GreatPrimer>
           {encodingsList.map((algorithm) => (
             <Link key={algorithm} href={`/encoder/${algorithm}/direct`} passHref={true}>
-              <AlgorithmLink>{t(`processing.${algorithm}.title`)}</AlgorithmLink>
+              <AlgorithmLink>{`${t(`processing.${algorithm}.title`)}`}</AlgorithmLink>
             </Link>
           ))}
           <GreatPrimer>Encryptoins</GreatPrimer>
           {encryptorsList.map((algorithm) => (
             <Link key={algorithm} href={`/encoder/${algorithm}/direct`} passHref={true}>
-              <AlgorithmLink>{t(`processing.${algorithm}.title`)}</AlgorithmLink>
+              <AlgorithmLink>{`${t(`processing.${algorithm}.title`)}`}</AlgorithmLink>
             </Link>
           ))}
           </AlgorithmList>

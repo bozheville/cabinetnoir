@@ -39,7 +39,7 @@ const AlphabetSelector: React.FC<AlphabetSelectorProps> = ({
             selected={item.type === alphabetKey}
             disabled={item.type === 'custom'}
           >
-            {t(`alphabet.${item.type}`)}
+            {`${t(`alphabet.${item.type}`)}`}
           </option>
         ))}
       </Select>

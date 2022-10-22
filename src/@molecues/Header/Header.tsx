@@ -29,7 +29,7 @@ const StyledHeader = styled(Section)`
   }
 `;
 
-const Header: React.FC<HeaderProps> = ({
+const Header: React.FC<React.PropsWithChildren<HeaderProps>> = ({
   title,
   children,
 }) => {
