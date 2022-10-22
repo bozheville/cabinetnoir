@@ -49,7 +49,7 @@ const Morse: React.FC<CrypterProps> = ({
     <MorseSettingsWrapper>
       <SignSelector>
         <div>
-          <span>{t('processing.morse.dot_symbol')}</span>
+          <span>{`${t('processing.morse.dot_symbol')}`}</span>
           <Select defaultValue="•" onChange={handleDotSymbolChnage}>
             {dotSymbols.split('').map((char) => <option value={char} key={`option-${char}`}>{char}</option>)}
           </Select>
@@ -58,7 +58,7 @@ const Morse: React.FC<CrypterProps> = ({
           <Select defaultValue="-" onChange={handleDashSymbolChnage}>
             {dashSymbols.split('').map((char) => <option value={char} key={`option-${char}`}>{char}</option>)}
           </Select>
-          <span>{t('processing.morse.dash_symbol')}</span>
+          <span>{`${t('processing.morse.dash_symbol')}`}</span>
         </div>
       </SignSelector>
     </MorseSettingsWrapper>

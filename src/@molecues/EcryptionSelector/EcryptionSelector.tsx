@@ -85,7 +85,7 @@ const EcryptionSelector: React.FC = () => {
               onClick={handleSelect(item)}
               data-type={algorithm === item && 'selected'}
             >
-              {t(`processing.${item}.short_title`) || t(`processing.${item}.title`)}
+              {`${t(`processing.${item}.short_title`) || t(`processing.${item}.title`)}`}
             </SelectionButton>
           ))}
           <IconButton
@@ -106,7 +106,7 @@ const EcryptionSelector: React.FC = () => {
             key={`select-${item}`}
             onClick={handleSelect(item)}
           >
-            {t(`processing.${item}.title`)}
+            {`${t(`processing.${item}.title`)}`}
           </SelectionButton>
         ))}
         <GreatPrimer>Encryptors</GreatPrimer>
@@ -115,7 +115,7 @@ const EcryptionSelector: React.FC = () => {
             key={`select-${item}`}
             onClick={handleSelect(item)}
           >
-            {t(`processing.${item}.title`)}
+            {`${t(`processing.${item}.title`)}`}
           </SelectionButton>
         ))}
       </Dialog>

@@ -95,36 +95,36 @@ const Footer: React.FC = () => {
     <FooterWrapper color="footer" stitch="top">
       <BMCWrapper>
         <span>
-          {t('footer.did_you_like')}
+        {`${t('footer.did_you_like')}`}
         </span>
         <BMCButton as="a" href="https://www.buymeacoffee.com/denysgrybov">
           <Icon />
           <ButtonText>
-            {t('footer.buy_me_a_coffee')}
+          {`${t('footer.buy_me_a_coffee')}`}
           </ButtonText>
         </BMCButton>
       </BMCWrapper>
       <LinksWrapper>
         <a href="#">
-        {t(`footer.about`)}
+        {`${t(`footer.about`)}`}
         </a>
         <a
           href="https://github.com/bozheville/cabinetnoir/issues/new"
           target="_blank"
           rel="noopener noreferrer"
         >
-          {t(`footer.suggest_a_feature`)}
+          {`${t(`footer.suggest_a_feature`)}`}
         </a>
         <a
           href="https://github.com/bozheville/cabinetnoir/issues/new?labels=bug&template=bug_report.md"
           target="_blank"
           rel="noopener noreferrer"
         >
-          {t(`footer.report_a_bug`)}
+          {`${t(`footer.report_a_bug`)}`}
         </a>
       </LinksWrapper>
       <Minion>
-        {t(`footer.credentials`)}
+        {`${t(`footer.credentials`)}`}
       </Minion>
       <ReleaseInfo />
     </FooterWrapper>

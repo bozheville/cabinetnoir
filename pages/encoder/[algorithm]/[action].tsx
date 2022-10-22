@@ -16,8 +16,8 @@ const Home: React.FC = () => {
   return (
     <>
       <Head>
-        <title>{t(`processing.${algorithm}.title`)} &bull; {t('name')}</title>
-        <link rel="icon" href="/favicon.ico" />
+          <title>{`${t(`processing.${algorithm}.title`)} &bull; ${t('name')}`}</title>
+          <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header title={`${t(`processing.${algorithm}.${action}Action`)} / ${t(`processing.${algorithm}.title`)}`}>
         <LanguageSelector />
