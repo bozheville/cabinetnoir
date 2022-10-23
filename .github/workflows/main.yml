@@ -25,4 +25,7 @@ jobs:
         script: |
           cd ${{ secrets.SSH_DEPLOYMENT_PATH }}
           git pull
-          PM2_ID=${{ secrets.PM2_ID_PROD }} yarn post-deploy
+          yarn
+          node pre-deploy.js
+          yarn build
+          pm2 restart ${{ secrets.PM2_ID_PROD }} -s
