@@ -10,6 +10,14 @@ module.exports = {
 
     return config;
   },
+  async rewrites() {
+    return [
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemap',
+      },
+    ]
+  },
 
   future: {
     webpack5: true,
