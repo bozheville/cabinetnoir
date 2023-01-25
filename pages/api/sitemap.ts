@@ -31,13 +31,13 @@ const prepareLinksList = () => {
 };
 
 const linksToXML = (links: string[]) => {
-  let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+  let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
 
   for (const link of links) {
-    xml = xml + `\n  <sitemap><loc>${link}</loc><lastmod>${(new Date()).toISOString()}</lastmod></sitemap>`
+    xml = xml + `\n  <sitemap>\n    <loc>${link}</loc>\n    <lastmod>${(new Date()).toISOString()}</lastmod>\n  </sitemap>`
   }
 
-  xml = xml + "\n</sitemapindex>\n";
+  xml = xml + "\n</urlset>\n";
   return xml
 };
 
