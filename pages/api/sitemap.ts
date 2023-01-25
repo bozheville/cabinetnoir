@@ -31,10 +31,13 @@ const prepareLinksList = () => {
 };
 
 const linksToXML = (links: string[]) => {
+  const date = new Date(parseInt(process.env.NEXT_PUBLIC_RELEASE_DATE, 10));
+  const formattedDate = `${date.getFullYear()}-${`${date.getMonth() + 1}`.padStart(2, '0')}-${`${date.getDate()}`.padStart(2, '0')}`;
+
   let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
 
   for (const link of links) {
-    xml = xml + `\n  <url>\n    <loc>${link}</loc>\n    <lastmod>${(new Date(parseInt(process.env.NEXT_PUBLIC_RELEASE_DATE, 10))).toISOString()}</lastmod>\n  </url>`
+    xml = xml + `\n  <url>\n    <loc>${link}</loc>\n    <lastmod>${formattedDate}</lastmod>\n  </url>`
   }
 
   xml = xml + "\n</urlset>\n";
