@@ -45,26 +45,9 @@ export const monoalphabeticDecrypt = ({
   input,
   targetAlphabet,
 }: MonoalphabeticEncryptProps): string => {
-  if (!input || !targetAlphabet) {
-    throw new Error('You have to provide both: input and targetAlphabet')
-  }
-
-  if (targetAlphabet.length !== alphabet.length) {
-    throw new Error('alphabet length mismatch');
-  }
-
-  const mod = alphabet.length;
-
-  const alias = alphabet.split('').reduce((result, input, index) => ({
-    ...result,
-    [targetAlphabet[(index)%mod]]: input,
-    [targetAlphabet[(index)%mod].toLowerCase()]: input.toLowerCase(),
-  }), {});
-
-  return input
-    .replace(getDisAllowedSymbolsRegex(true, alphabet), '')
-    .replace(
-      /./g,
-      (input) => `${alias[input] || input}`
-    );
+  return monoalphabeticEncrypt({
+    alphabet: targetAlphabet,
+    input,
+    targetAlphabet: alphabet,
+  });
 };
