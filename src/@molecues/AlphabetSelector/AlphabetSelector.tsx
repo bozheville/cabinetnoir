@@ -2,16 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Select } from 'evergreen-ui';
 
-import TextInput from '@atoms/TextInput';
 import { useAlphabetSelector } from './useAlphabetSelector';
+import { AlphabetInput } from './AlphabetInput';
 
-const AlphabetSelectorWrapper = styled.div`
-
-`;
-
-const AlphabetInput = styled(TextInput)`
-  width: 350px;
-`;
+const AlphabetSelectorWrapper = styled.div``;
 
 interface AlphabetSelectorProps {
   onChange?: (value: string) => void;
