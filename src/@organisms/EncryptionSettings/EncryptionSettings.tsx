@@ -8,6 +8,7 @@ import { useTranslation } from 'next-i18next';
 
 import {
   Affine,
+  Alberti,
   Atbash,
   Caesar,
   Enigma,
@@ -69,6 +70,7 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
 
   const EncryptionComponent =
     algorithm === 'affine' ? Affine :
+    algorithm === 'alberti' ? Alberti :
     algorithm === 'atbash' ? Atbash :
     algorithm === 'base64' ? Base64 :
     algorithm === 'caesar' ? Caesar :
