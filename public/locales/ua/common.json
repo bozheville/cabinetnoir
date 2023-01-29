@@ -16,6 +16,13 @@
       "reverseAction": "Розшифрувати",
       "messageLabel": "Криптограма"
     },
+    "alberti": {
+      "title": "Шифр Альберті",
+      "short_title": "Альберті",
+      "directAction": "Зашифрувати",
+      "reverseAction": "Розшифрувати",
+      "messageLabel": "Криптограма"
+    },
     "atbash": {
       "title": "Атбаш",
       "short_title": "Атбаш",

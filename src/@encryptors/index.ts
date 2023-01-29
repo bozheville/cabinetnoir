@@ -1,4 +1,5 @@
 export { default as Affine, AffineDescription } from './Affine';
+export { Alberti, AlbertiDescription } from './Alberti';
 export { default as Atbash, AtbashDescription } from './Atbash';
 export { default as Base64 } from './Base64';
 export { default as Caesar, CaesarDescription } from './Caesar';
@@ -16,6 +17,7 @@ export const encodingsList = [
 
 export const encryptorsList = [
   'affine',
+  'alberti',
   'atbash',
   'caesar',
   'enigma',
