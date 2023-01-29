@@ -16,6 +16,13 @@
       "reverseAction": "Décrypter",
       "messageLabel": "Cryptogramme"
     },
+    "alberti": {
+      "title": "Chiffre d'Alberti",
+      "short_title": "Alberti",
+      "directAction": "Crypter",
+      "reverseAction": "Décrypter",
+      "messageLabel": "Cryptogramme"
+    },
     "atbash": {
       "title": "Atbash",
       "short_title": "Atbash",
