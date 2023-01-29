@@ -49,5 +49,7 @@ export const monoalphabeticDecrypt = ({
     alphabet: targetAlphabet,
     input,
     targetAlphabet: alphabet,
+    keepCase: true,
+    keepSpaces: true,
   });
 };
