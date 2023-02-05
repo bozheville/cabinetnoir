@@ -1,9 +1,10 @@
 import React from 'react';
-import { Checkbox, Pane, Select } from 'evergreen-ui';
+import { Pane } from 'evergreen-ui';
 import { CrypterProps } from '../types';
 import { useAlberti } from './useAlberti';
-import { AlphabetInput } from '@molecues/AlphabetSelector/AlphabetInput';
 import styled from 'styled-components';
+import RotationPicker from '@encryptors/Caesar/RotationPicker';
+
 
 const AlbertiSettings = styled.div<{size: number}>`
   margin-top: 36px;
@@ -23,14 +24,15 @@ const Alberti: React.FC<CrypterProps> = ({
   ...paneProps
 }) => {
   const {
+    t,
     staticDisc,
     dynamicDisc,
-    shift,
     iterationStep,
+    period,
     rotateLeft,
     rotateRight,
-    // handleKeepSpacesChange,
-    // handleKeepCaseChange,
+    handlePeriodChange,
+    handleIncrementChange,
   } = useAlberti({
     input,
     onProcessingEnd,
@@ -38,40 +40,54 @@ const Alberti: React.FC<CrypterProps> = ({
   });
 
   return (
-    <Pane
-      display="flex"
-      flexDirection="row"
-      justifyContent="center"
-      alignItems="center"
-      width="100%"
-      paddingX="16px"
-      paddingBottom="16px"
-      {...paneProps}
-    >
-
+    <Pane>
       <Pane
         display="flex"
-        flexDirection="column"
+        flexDirection="row"
+        justifyContent="center"
+        alignItems="center"
         width="100%"
+        paddingX="16px"
+        paddingBottom="16px"
+        {...paneProps}
       >
-        <AlbertiSettings
-        size={staticDisc.length + 2}
+        <Pane
+          display="flex"
+          flexDirection="column"
+          width="100%"
         >
-          <span />
-          {staticDisc.split('').map((char) => (
-            <span key={`static-${char}`}>{char}</span>
-          ))}
-          <span />
-        </AlbertiSettings>
-        <AlbertiSettings
+          <AlbertiSettings
           size={staticDisc.length + 2}
-        >
-          <button onClick={rotateLeft}>&lt;</button>
-          {dynamicDisc.split('').map((char) => (
-            <span key={`dynamic-${char}`}>{char}</span>
-          ))}
-          <button onClick={rotateRight}>&gt;</button>
-        </AlbertiSettings>
+          >
+            <span />
+            {staticDisc.split('').map((char) => (
+              <span key={`static-${char}`}>{char}</span>
+            ))}
+            <span />
+          </AlbertiSettings>
+          <AlbertiSettings
+            size={staticDisc.length + 2}
+          >
+            <button onClick={rotateLeft}>&lt;</button>
+            {dynamicDisc.split('').map((char) => (
+              <span key={`dynamic-${char}`}>{char}</span>
+            ))}
+            <button onClick={rotateRight}>&gt;</button>
+          </AlbertiSettings>
+        </Pane>
+
+      </Pane>
+      <Pane display="flex" flexDirection="row" justifyContent="center">
+        <RotationPicker
+          label={t('processing.alberti.settings.increment_label')}
+          value={iterationStep}
+          onChange={handleIncrementChange}
+        />
+        <RotationPicker
+          label={t('processing.alberti.settings.period_label')}
+          value={period}
+          onChange={handlePeriodChange}
+        />
       </Pane>
     </Pane>
   );
