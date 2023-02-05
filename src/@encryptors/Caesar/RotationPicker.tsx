@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes } from 'react';
-import { TextInput } from 'evergreen-ui';
+import { TextInputField } from 'evergreen-ui';
 import styled from 'styled-components';
 
 const RotationWrapper = styled.div`
@@ -20,16 +20,22 @@ const RotationWrapper = styled.div`
   }
 `;
 
-const RotationPicker: React.FC<React.InputHTMLAttributes<HTMLInputElement> & {max: number}> = ({
+interface RotationPickerProps {
+  max?: number;
+  label: string;
+}
+
+const RotationPicker: React.FC<React.InputHTMLAttributes<HTMLInputElement> & RotationPickerProps> = ({
   value,
+  label,
   onChange,
   max = 26,
 }) => {
   return (
     <RotationWrapper>
-      <span>Rotation size</span>
-      <span>{value}</span>
-      <TextInput
+      <TextInputField
+        label={label}
+        description={value}
         type="range"
         min="1"
         max={max - 1}

@@ -40,7 +40,12 @@
       "short_title": "Caesar",
       "directAction": "Encrypt",
       "reverseAction": "Decrypt",
-      "messageLabel": "Cryptogram"
+      "messageLabel": "Cryptogram",
+      "settings": {
+        "rotation_label": "Rotation size",
+        "keep_spaces": "Keep spaces",
+        "keep_case": "Keep case"
+      }
     },
     "enigma": {
       "title": "Enigma machine",

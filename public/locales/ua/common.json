@@ -35,7 +35,12 @@
       "short_title": "Цезар",
       "directAction": "Зашифрувати",
       "reverseAction": "Розшифрувати",
-      "messageLabel": "Криптограма"
+      "messageLabel": "Криптограма",
+      "settings": {
+        "rotation_label": "Зсув алфавіту",
+        "keep_spaces": "Залишити пробіли",
+        "keep_case": "Залишити регістр"
+      }
     },
     "rot13":  {
       "title": "ROT13",

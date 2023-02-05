@@ -13,6 +13,7 @@ const Caesar: React.FC<CrypterProps> = ({
   ...paneProps
 }) => {
   const {
+    t,
     alphabetLength,
     secretKey,
     keepCase,
@@ -45,6 +46,7 @@ const Caesar: React.FC<CrypterProps> = ({
         alignItems="center"
       >
         <RotationPicker
+          label={t('processing.caesar.settings.rotation_label')}
           value={secretKey}
           onChange={handleKeyChange}
           max={alphabetLength}
@@ -53,13 +55,13 @@ const Caesar: React.FC<CrypterProps> = ({
           <>
             <Checkbox
               marginLeft="6px"
-              label="Keep spaces"
+              label={t('processing.caesar.settings.keep_spaces')}
               checked={keepSpaces}
               onChange={handleKeepSpacesChange}
             />
             <Checkbox
               marginLeft="6px"
-              label="Keep case"
+              label={t('processing.caesar.settings.keep_case')}
               checked={keepCase}
               onChange={handleKeepCaseChange}
             />
