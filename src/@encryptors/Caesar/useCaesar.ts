@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { rotate } from '@encryptors/utils';
 import { getAlphabet } from '@encryptors/constants';
 import { useMonoalphabetic } from '@encryptors/Monoalphabetic/useMonoalphabetic';
+import { useTranslation } from 'next-i18next';
 
 const DEFAULT_ROTATION = 1;
 const DEFAULT_ALPHABET_KEY = 'latin';
@@ -17,6 +18,8 @@ const useCaesar = ({
   const [alphabetLength, setAlphabetLength] = useState(DEFAULT_ALPHABET.length);
   const [alphabet, setAlphabet] = useState(DEFAULT_ALPHABET);
   const [targetAlphabet, setTargetAlphabet] = useState(DEFAULT_TARGET_ALPHABET);
+
+  const { t } = useTranslation('common');
 
   const monoalphabeticProps = useMonoalphabetic({
     input,
@@ -39,6 +42,7 @@ const useCaesar = ({
   };
 
   return {
+    t,
     alphabetLength,
     secretKey: String(rotation),
     handleKeyChange,
