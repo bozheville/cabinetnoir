@@ -1,21 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useMonoalphabetic } from '@encryptors/Monoalphabetic/useMonoalphabetic';
+import { ChangeEventHandler, useEffect, useState } from 'react';
 import {
   monoalphabeticEncrypt,
-  monoalphabeticDecrypt
 } from '@encryptors/Monoalphabetic/monoalphabetic-crypt';
 import { rotate } from '@encryptors/utils';
-
-const AlbertiEncryption = ({
-  staticDisc,
-  dynamicDisc,
-  input,
-  shift,
-}) => {
-
-}
-// A|B|C|D|E|F|G|I|L|M|N|O|P|Q|R|S|T|V|X|Z|1|2|3|4|
-// m|q|i|h|f|d|b|a|c|e|g|k|l|n|p|r|t|u|z|&|x|y|s|o|
+import { useTranslation } from 'next-i18next';
 
 export const useAlberti = ({
   input,
@@ -24,56 +12,32 @@ export const useAlberti = ({
 }) => {
   const [staticDisc, setStaticDisc] = useState('ABCDEFGILMNOPQRSTVXZ1234');
   const [dynamicDisc, setDynamicDisc] = useState('mqihfdbacegklnprtuz&xyso');
-  // const [dynamicDisc, setDynamicDisc] = useState('usqomkhfdbacegilnprtxz&y');
-  const [shift, setShift] = useState(0);
   const [startindex, setStartindex] = useState('m');
-  const [iterationStep, setIterationStep] = useState(1);
+  const [iterationStep, setIterationStep] = useState(3);
+  const [period, setPeriod] = useState(2);
+
+  const { t } = useTranslation('common');
 
   useEffect(() => {
-    const roundAlphabet = rotate(dynamicDisc, dynamicDisc.indexOf(startindex));
-    let output = `${roundAlphabet[0]}`;
-    // let roundAlphabet = dynamicDisc;
-    // const trace = [];
+    let roundAlphabet = dynamicDisc;
+    let mesage = input;
+    let output = '';
 
-    output += input ? monoalphabeticEncrypt({
-      input,
-      alphabet: staticDisc,
-      targetAlphabet: roundAlphabet,
-      keepSpaces: false,
-      keepCase: false
-    }) : '';
+    while (mesage) {
+      output += monoalphabeticEncrypt({
+        input: mesage.slice(0, period),
+        alphabet: isDecryptMode ? roundAlphabet.toUpperCase() : staticDisc,
+        targetAlphabet: isDecryptMode ? staticDisc : roundAlphabet,
+        keepSpaces: isDecryptMode,
+        keepCase: isDecryptMode,
+      });
 
-      // output += `${roundAlphabet[input.length]}`;
-
-    // for (const char of input) {
-
-      // trace.push(roundAlphabet);
-      // output += monoalphabeticEncrypt({
-      //   alphabet:staticDisc,
-      //   input: char,
-      //   targetAlphabet: roundAlphabet,
-      //   keepSpaces: false,
-      //   keepCase: false
-      // });
-      // roundAlphabet = rotate(roundAlphabet, iterationStep);
-    // }
-
-    // console.table(trace);
+      mesage = mesage.slice(period);
+      roundAlphabet = rotate(roundAlphabet, iterationStep);
+    }
 
     onProcessingEnd({ output });
-
   }, [input, dynamicDisc, staticDisc, startindex]);
-
-
-
-  // const monoalphabeticProps = useMonoalphabetic({
-  //   input,
-  //   onProcessingEnd,
-  //   isDecryptMode,
-  //   alphabet: staticDisc,
-  //   targetAlphabet: dynamicDisc,
-  // });
-
 
   const rotateLeft = () => {
     const index = dynamicDisc.indexOf(startindex) + dynamicDisc.length - 1;
@@ -87,18 +51,23 @@ export const useAlberti = ({
     setDynamicDisc(rotate(dynamicDisc, index));
   };
 
+  const handlePeriodChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    setPeriod((parseInt(event.target?.value, 10)))
+  };
 
-
+  const handleIncrementChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    setIterationStep((parseInt(event.target?.value, 10)))
+  };
 
   return {
+    t,
     staticDisc,
     dynamicDisc,
-    shift,
     iterationStep,
+    period,
     rotateLeft,
     rotateRight,
-    // handleKeyChange,
-    // handleAlphabetChange,
-    // ...monoalphabeticProps,
+    handlePeriodChange,
+    handleIncrementChange,
   };
 };

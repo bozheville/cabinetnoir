@@ -21,7 +21,11 @@
       "short_title": "Альберті",
       "directAction": "Зашифрувати",
       "reverseAction": "Розшифрувати",
-      "messageLabel": "Криптограма"
+      "messageLabel": "Криптограма",
+      "settings": {
+        "increment_label": "Зсув",
+        "period_label": "Період"
+      }
     },
     "atbash": {
       "title": "Атбаш",

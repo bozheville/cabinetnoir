@@ -26,7 +26,11 @@
       "short_title": "Alberti",
       "directAction": "Encrypt",
       "reverseAction": "Decrypt",
-      "messageLabel": "Cryptogram"
+      "messageLabel": "Cryptogram",
+      "settings": {
+        "increment_label": "Shift size",
+        "period_label": "Period length"
+      }
     },
     "atbash": {
       "title": "Atbash cipher",
