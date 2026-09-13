@@ -26,19 +26,19 @@ const AlbertiDescription: React.FC = () => (
         Step-by-step example:
       </DoublePica>
       <BodyCopy>
-        1. Set initial encryption parameters: A -> q, incrementing step 3, encryption period: 2. And the message to encrypt would be SECRETNOTE
+        1. Set initial encryption parameters: A -{'>'} q, incrementing step 3, encryption period: 2. And the message to encrypt would be SECRETNOTE
       </BodyCopy>
       <BodyCopy>
-        2. S becomes t; E becomes d. The period of 2 characters is completed. Rotating the disc by three characters, so A -> f
+        2. S becomes t; E becomes d. The period of 2 characters is completed. Rotating the disc by three characters, so A -{'>'} f
       </BodyCopy>
       <BodyCopy>
-        3. C becomes b; R becomes z. The period of 2 characters is completed. Rotating the disc by three characters, so A -> a
+        3. C becomes b; R becomes z. The period of 2 characters is completed. Rotating the disc by three characters, so A -{'>'} a
       </BodyCopy>
       <BodyCopy>
-        4. E becomes k; T becomes o. The period of 2 characters is completed. Rotating the disc by three characters, so A -> g
+        4. E becomes k; T becomes o. The period of 2 characters is completed. Rotating the disc by three characters, so A -{'>'} g
       </BodyCopy>
       <BodyCopy>
-        4. N becomes x; O becomes y. The period of 2 characters is completed. Rotating the disc by three characters, so A -> n
+        4. N becomes x; O becomes y. The period of 2 characters is completed. Rotating the disc by three characters, so A -{'>'} n
       </BodyCopy>
       <BodyCopy>
         4. T becomes d; E becomes u. The encryption is done
