@@ -1,7 +1,10 @@
+const path = require('path');
 const { i18n } = require('./next-i18next.config')
+const { initOpenNextCloudflareForDev } = require('@opennextjs/cloudflare');
 
 module.exports = {
   i18n,
+  outputFileTracingRoot: path.join(__dirname),
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -10,16 +13,6 @@ module.exports = {
 
     return config;
   },
-  async rewrites() {
-    return [
-      {
-        source: '/sitemap.xml',
-        destination: '/api/sitemap',
-      },
-    ]
-  },
-
-  future: {
-    webpack5: true,
-  },
 }
+
+initOpenNextCloudflareForDev();

@@ -6,6 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Footer, Header, LanguageSelector } from '@molecues';
 import { Encryptor } from '@templates';
+import { encodingsList, encryptorsList } from '@encryptors';
 
 const Home: React.FC = () => {
   const { t } = useTranslation('common');
@@ -28,9 +29,16 @@ const Home: React.FC = () => {
   );
 };
 
-export const getStaticPaths = async () => ({
-  paths: [], //indicates that no page needs be created at build time
-  fallback: 'blocking' //indicates the type of fallback
+const algorithms = [...encodingsList, ...encryptorsList];
+const actions = ['direct', 'reverse'];
+
+export const getStaticPaths = async ({ locales }) => ({
+  paths: algorithms.flatMap((algorithm) =>
+    actions.flatMap((action) =>
+      locales.map((locale) => ({ params: { algorithm, action }, locale }))
+    )
+  ),
+  fallback: false,
 });
 
 export const getStaticProps = async ({ locale }) => ({

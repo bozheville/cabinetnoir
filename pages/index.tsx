@@ -4,9 +4,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
-// import { gql } from "@apollo/client";
-// import client from '../apollo-client';
-
 import { encodingsList, encryptorsList } from '@encryptors';
 import { Footer } from '@molecues';
 import { Canon, DoublePica, GreatPrimer } from '@typography';
@@ -81,18 +78,6 @@ const Index: React.FC = () => {
 Index.displayName = 'Index';
 
 export const getStaticProps = async ({ locale }) => {
-  // const { data } = await client.query({
-  //   query: gql`
-  //     query User {
-  //       user(id: 93561) {
-  //         id
-  //         name
-  //         email
-  //       }
-  //     }
-  //   `,
-  // });
-
   return {
     props: {
       ...await serverSideTranslations(locale, ['common']),
