@@ -17,9 +17,15 @@ export const useFrequencyPrint = () => {
 };
 
 const FrequencyPrint: React.FC<FrequencyPrintProps> = ({
-  height,
-  width,
-  stats,
+  height = 500,
+  width = 400,
+  stats = [
+    ['A', 3],
+    ['B', 13],
+    ['C', 2],
+    ['D', 16],
+    ['E', 23],
+  ],
 }) => {
   const {} = useFrequencyPrint();
 
@@ -117,18 +123,6 @@ const FrequencyPrint: React.FC<FrequencyPrintProps> = ({
     </>
   );
 };
-
-FrequencyPrint.defaultProps = {
-  height: 500,
-  width: 400,
-  stats: [
-    ['A', 3],
-    ['B', 13],
-    ['C', 2],
-    ['D', 16],
-    ['E', 23],
-  ]
-}
 
 FrequencyPrint.displayName = 'FrequencyPrint';
 
