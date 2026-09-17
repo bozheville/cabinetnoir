@@ -2,6 +2,7 @@
   "name": "puzzle-control-panel",
   "version": "0.4.0",
   "private": true,
+  "packageManager": "yarn@1.22.22",
   "scripts": {
     "dev": "next dev -p $PORT",
     "build": "node scripts/generate-sitemap.js && node pre-deploy.js && next build",
