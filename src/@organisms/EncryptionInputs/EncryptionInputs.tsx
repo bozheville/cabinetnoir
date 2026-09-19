@@ -4,11 +4,10 @@ import { useRouter } from 'next/router';
 import {
   DuplicateIcon,
   IconButton,
-  toaster,
 } from 'evergreen-ui';
 
 import { TextArea } from '@molecues';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 interface EncryptionInputsProps {
   onChange: (value: string) => void;
   output: string;
@@ -26,16 +25,37 @@ const EncryptionInputsWrapper = styled.div`
   }
 `;
 
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
+const CopiedToast = styled.div`
+  position: absolute;
+  bottom: 8px;
+  right: 48px;
+  z-index: 10;
+  padding: 6px 12px;
+  border-radius: ${({ theme }) => theme.borderRadius.default}px;
+  background-color: ${({ theme }) => theme.colorScheme.blue_green[700]};
+  color: ${({ theme }) => theme.colorScheme.white};
+  font-size: 12px;
+  pointer-events: none;
+  animation: ${fadeIn} 150ms ease-out;
+`;
+
 const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
   onChange,
   output,
 }) => {
   const [isInitialized, setIsInitialized] = useState(null);
   const [input, setInput] = useState('');
+  const [isCopied, setIsCopied] = useState(false);
   const router = useRouter();
 
   const { action } = router.query;
   const outputRef = useRef<HTMLTextAreaElement>(null);
+  const copiedTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
 
   useEffect(() => {
     if (isInitialized) {
@@ -46,10 +66,15 @@ const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
     setIsInitialized(true);
   }, [action, isInitialized]);
 
+  useEffect(() => () => clearTimeout(copiedTimeoutRef.current), []);
+
   const handleCopy = () => {
     outputRef?.current?.select();
     document.execCommand('copy');
-    toaster.success('Copied to clipboard');
+
+    clearTimeout(copiedTimeoutRef.current);
+    setIsCopied(true);
+    copiedTimeoutRef.current = setTimeout(() => setIsCopied(false), 2000);
   };
 
   const handleInputChange = (event) => {
@@ -68,6 +93,7 @@ const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
         readOnly={true}
         ref={outputRef}
       />
+      {isCopied && <CopiedToast>Copied to clipboard</CopiedToast>}
       {output && (
         <IconButton
           icon={DuplicateIcon}
