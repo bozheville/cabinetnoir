@@ -206,7 +206,9 @@ const useStatisticalCryptanalysis = () => {
 
   useEffect(() => {
     if (!plugboardValue) {
-      return null;
+      // must not return a value: React treats an effect's return value as the
+      // cleanup function and calls it, so `return null` throws on React 19.
+      return;
     }
 
     const mapping = {' ': ' '};
