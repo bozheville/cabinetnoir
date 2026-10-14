@@ -1,9 +1,10 @@
 import React from 'react';
-import { Heading, Pane, Text } from 'evergreen-ui';
+import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import strings from '../strings';
 import CipherText, { HIGHLIGHT_COLORS } from './CipherText';
+import FrequencyChart from './FrequencyChart';
 import { LockedLetter, useCracker } from './useCracker';
 
 const SliceTabs = styled(Pane)`
@@ -22,35 +23,56 @@ const SliceTab = styled(Pane)<{ $selected: boolean; $color: string }>`
   background: ${({ $color, $selected }) => ($selected ? `${$color}22` : '#00000008')};
 `;
 
-const SliceChartPlaceholder = styled(Pane)`
-  margin-top: 12px;
-  border: dotted 1px ${({ theme }) => theme.colors.textLight};
-  border-radius: 4px;
-  padding: 12px;
-`;
-
 interface StepKeyLettersProps {
   cracker: ReturnType<typeof useCracker>;
 }
 
 const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
   const {
+    input,
     analysis,
     keyLength,
     lockedLetters,
+    lockLetter,
     activeSlice,
     setActiveSlice,
+    hintConfig,
   } = cracker;
 
   if (!analysis || keyLength === null) {
     return null;
   }
 
+  const { hints } = hintConfig;
+
+  const sliceLettersFor = (slice: number): string => {
+    const letters = [];
+    for (let i = slice; i < analysis.normalized.letters.length; i += keyLength) {
+      letters.push(analysis.normalized.letters[i]);
+    }
+    return letters.join('');
+  };
+
+  const handleLock = (letter: string) => {
+    lockLetter(activeSlice, letter, 'chart');
+
+    // Jump to the next slice without a locked letter.
+    for (let offset = 1; offset <= keyLength; offset += 1) {
+      const next = (activeSlice + offset) % keyLength;
+      if (!lockedLetters[next]) {
+        setActiveSlice(next);
+        break;
+      }
+    }
+  };
+
   const colorFor = (cleanIndex: number): string => {
     const slice = cleanIndex % keyLength;
     const color = HIGHLIGHT_COLORS[slice % HIGHLIGHT_COLORS.length];
     return slice === activeSlice ? color : `${color}55`;
   };
+
+  const allLocked = Array.from({ length: keyLength }).every((_, slice) => lockedLetters[slice]);
 
   return (
     <Pane width="100%">
@@ -75,11 +97,18 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
         })}
       </SliceTabs>
 
-      <SliceChartPlaceholder>
-        <Heading size={200}>
-          {`Frequency chart for slice ${activeSlice + 1} (task 21)`}
-        </Heading>
-      </SliceChartPlaceholder>
+      <FrequencyChart
+        sliceLetters={sliceLettersFor(activeSlice)}
+        hints={hints}
+        onLock={handleLock}
+        currentLetter={lockedLetters[activeSlice]?.letter}
+      />
+
+      {allLocked && (
+        <Text size={300} display="block" marginTop="8px">
+          {strings.wizard.keyLetters.allLocked}
+        </Text>
+      )}
     </Pane>
   );
 };
