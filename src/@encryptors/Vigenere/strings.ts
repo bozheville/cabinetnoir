@@ -23,6 +23,17 @@ const strings = {
       cribs: 'Cribs',
     },
   },
+  wizard: {
+    steps: {
+      keyLength: 'Key length',
+      keyLetters: 'Key letters',
+      done: 'Done',
+    },
+    back: 'Back',
+    next: 'Next',
+    skip: 'Skip, enter key manually',
+    inputChanged: 'The text changed, analysis started over.',
+  },
 } as const;
 
 export default strings;
