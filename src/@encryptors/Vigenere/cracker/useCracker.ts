@@ -96,6 +96,7 @@ export const useCracker = (params: {
   const hasInputChanged = showInputChanged;
 
   return {
+    input,
     step,
     setStep,
     keyLength,

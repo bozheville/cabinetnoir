@@ -33,6 +33,12 @@ const strings = {
     next: 'Next',
     skip: 'Skip, enter key manually',
     inputChanged: 'The text changed, analysis started over.',
+    repeats: {
+      title: 'Repeated sequences',
+      gapsLabel: 'gaps',
+      none: 'No repeated sequences found. Use the key length cards below instead.',
+      emptyInput: 'Paste some text first.',
+    },
   },
 } as const;
 
