@@ -15,8 +15,7 @@ const StepKey: React.FC<StepKeyProps> = ({ cracker }) => {
     lockedLetters,
     setActiveSlice,
     setStep,
-    lockLetter,
-    unlockLetter,
+    setSliceLetter,
   } = cracker;
 
   if (keyLength === null) {
@@ -36,8 +35,8 @@ const StepKey: React.FC<StepKeyProps> = ({ cracker }) => {
           setActiveSlice(slice);
           setStep(2);
         }}
-        onOverride={(slice, letter) => lockLetter(slice, letter, 'manual')}
-        onClear={unlockLetter}
+        onOverride={(slice, letter) => setSliceLetter(slice, letter, 'manual')}
+        onClear={(slice) => setSliceLetter(slice, '')}
       />
       {/* Use this key button comes in task 25. */}
     </Pane>

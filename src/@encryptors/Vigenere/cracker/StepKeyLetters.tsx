@@ -35,7 +35,7 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
     analysis,
     keyLength,
     lockedLetters,
-    lockLetter,
+    setSliceLetter,
     activeSlice,
     setActiveSlice,
     hintConfig,
@@ -56,26 +56,13 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
     return letters.join('');
   };
 
-  const handleLock = (letter: string) => {
-    lockLetter(activeSlice, letter, 'chart');
-
-    // Jump to the next slice without a locked letter.
-    for (let offset = 1; offset <= keyLength; offset += 1) {
-      const next = (activeSlice + offset) % keyLength;
-      if (!lockedLetters[next]) {
-        setActiveSlice(next);
-        break;
-      }
-    }
-  };
-
   const colorFor = (cleanIndex: number): string => {
     const slice = cleanIndex % keyLength;
     const color = HIGHLIGHT_COLORS[slice % HIGHLIGHT_COLORS.length];
     return slice === activeSlice ? color : `${color}55`;
   };
 
-  const allLocked = Array.from({ length: keyLength }).every((_, slice) => lockedLetters[slice]);
+  const allLettersSet = Array.from({ length: keyLength }).every((_, slice) => lockedLetters[slice]);
 
   return (
     <Pane width="100%">
@@ -104,11 +91,11 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
         sliceLetters={sliceLettersFor(activeSlice)}
         hints={hints}
         alphabet={alphabet}
-        onLock={handleLock}
-        currentLetter={lockedLetters[activeSlice]?.letter}
+        letter={lockedLetters[activeSlice]?.letter}
+        onLetterChange={(letter) => setSliceLetter(activeSlice, letter, 'chart')}
       />
 
-      {allLocked && (
+      {allLettersSet && (
         <Text size={300} display="block" marginTop="8px">
           {strings.wizard.keyLetters.allLocked}
         </Text>
@@ -121,8 +108,8 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
         lockedLetters={lockedLetters}
         activeSlice={activeSlice}
         onJump={setActiveSlice}
-        onOverride={(slice, letter) => lockLetter(slice, letter, 'manual')}
-        onClear={cracker.unlockLetter}
+        onOverride={(slice, letter) => setSliceLetter(slice, letter, 'manual')}
+        onClear={(slice) => setSliceLetter(slice, '')}
       />
     </Pane>
   );

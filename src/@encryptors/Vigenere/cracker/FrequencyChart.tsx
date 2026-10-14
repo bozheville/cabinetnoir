@@ -64,24 +64,26 @@ interface FrequencyChartProps {
   sliceLetters: string;
   hints: HintSettings;
   alphabet?: string;
-  onLock: (letter: string) => void;
-  currentLetter?: string;
+  letter?: string;
+  onLetterChange: (letter: string) => void;
 }
 
 const FrequencyChart: React.FC<FrequencyChartProps> = ({
   sliceLetters,
   hints,
   alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-  onLock,
-  currentLetter,
+  letter,
+  onLetterChange,
 }) => {
   const counts = countLetters(sliceLetters, alphabet);
   const bestShift = findBestShift(counts, alphabet);
-  const [shift, setShift] = useState(0);
+  // The chart shift IS the key letter: rotating rewrites the key live.
+  // Start from the letter currently set for this slice, if any.
+  const [shift, setShift] = useState(letter ? Math.max(0, alphabet.indexOf(letter)) : 0);
 
-  // New slice: start unaligned so the user rotates into place themselves.
+  // New slice: start from its current key letter, if any.
   useEffect(() => {
-    setShift(0);
+    setShift(letter ? Math.max(0, alphabet.indexOf(letter)) : 0);
   }, [sliceLetters]);
 
   const total = counts.reduce((sum, count) => sum + count, 0);
@@ -90,7 +92,9 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
   const scale = Math.max(maxObserved, maxExpected);
 
   const rotate = (delta: number) => {
-    setShift((current) => ((current + delta + ALPHABET_LENGTH) % ALPHABET_LENGTH));
+    const next = ((shift + delta + ALPHABET_LENGTH) % ALPHABET_LENGTH);
+    setShift(next);
+    onLetterChange(alphabet[next]);
   };
 
   const score = scoreShift(counts, shift, alphabet);
@@ -130,9 +134,6 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
         {hints.matchScore && (
           <Text size={300}>{`Match: ${score}%`}</Text>
         )}
-        {currentLetter && (
-          <Text size={300} color="muted">{`(${strings.wizard.keyLetters.lockedPrefix} ${currentLetter})`}</Text>
-        )}
       </Pane>
 
       <BarsRow>
@@ -156,14 +157,6 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
           <LetterCell key={position}>{alphabet[position]}</LetterCell>
         ))}
       </LetterRow>
-
-      <Button
-        marginTop="8px"
-        appearance="primary"
-        onClick={() => onLock(alphabet[shift])}
-      >
-        {strings.wizard.keyLetters.lock}
-      </Button>
     </ChartArea>
   );
 };
