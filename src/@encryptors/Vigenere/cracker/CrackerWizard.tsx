@@ -67,10 +67,10 @@ const CrackerWizard: React.FC<{
     strings.wizard.steps.done,
   ];
 
-  const allLettersLocked = keyLength !== null
+  const allLettersSet = keyLength !== null
     && Array.from({ length: keyLength }).every((_, slice) => lockedLetters[slice]);
 
-  const canGoNext = step === 1 ? keyLength !== null : step === 2 ? allLettersLocked : false;
+  const canGoNext = step === 1 ? keyLength !== null : step === 2 ? allLettersSet : false;
 
   return (
     <Pane width="100%">

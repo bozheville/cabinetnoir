@@ -91,19 +91,23 @@ export const useCracker = (params: {
     }
   };
 
-  const lockLetter = (slice: number, letter: string, source: LetterSource = 'chart') => {
+  // The live key: slice index -> current key letter. Every edit (chart
+  // rotation, strip typing, crib apply) writes here and re-renders the
+  // preview and all derived views immediately.
+  const setSliceLetter = (slice: number, letter: string, source: LetterSource = 'chart') => {
+    if (!letter) {
+      setLockedLetters((current) => {
+        const next = { ...current };
+        delete next[slice];
+        return next;
+      });
+      return;
+    }
+
     setLockedLetters((current) => ({
       ...current,
       [slice]: { letter: letter.toUpperCase(), source },
     }));
-  };
-
-  const unlockLetter = (slice: number) => {
-    setLockedLetters((current) => {
-      const next = { ...current };
-      delete next[slice];
-      return next;
-    });
   };
 
   const hasInputChanged = showInputChanged;
@@ -124,8 +128,7 @@ export const useCracker = (params: {
     keyLength,
     chooseKeyLength,
     lockedLetters,
-    lockLetter,
-    unlockLetter,
+    setSliceLetter,
     activeSlice,
     setActiveSlice,
     analysis,

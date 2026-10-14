@@ -27,7 +27,7 @@ interface CribPanelProps {
 }
 
 const CribPanel: React.FC<CribPanelProps> = ({ cracker, alphabet }) => {
-  const { analysis, keyLength, lockedLetters, lockLetter } = cracker;
+  const { analysis, keyLength, lockedLetters, setSliceLetter } = cracker;
   const [crib, setCrib] = useState('');
 
   const lockedSliceLetters = useMemo(
@@ -56,7 +56,7 @@ const CribPanel: React.FC<CribPanelProps> = ({ cracker, alphabet }) => {
       const locked = lockedLetters[slice];
       // Never overwrite a conflicting locked letter; the user decides.
       if (!locked || locked.letter === letter) {
-        lockLetter(slice, letter, 'crib');
+        setSliceLetter(slice, letter, 'crib');
       }
     }
   };
