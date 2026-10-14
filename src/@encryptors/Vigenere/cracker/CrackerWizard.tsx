@@ -43,7 +43,11 @@ const StepPlaceholder = styled(Pane)`
 
 const NAV_BUTTON_WIDTH = 90;
 
-const CrackerWizard: React.FC<{ cracker: ReturnType<typeof useCracker> }> = ({ cracker }) => {
+const CrackerWizard: React.FC<{
+  cracker: ReturnType<typeof useCracker>;
+  onUseKey: (key: string) => void;
+  onSkip: () => void;
+}> = ({ cracker, onUseKey, onSkip }) => {
   const {
     step,
     setStep,
@@ -52,6 +56,7 @@ const CrackerWizard: React.FC<{ cracker: ReturnType<typeof useCracker> }> = ({ c
     analysis,
     hintConfig,
     hasInputChanged,
+    assembledKey,
   } = cracker;
   const { input: crackerInput } = cracker;
 
@@ -95,7 +100,7 @@ const CrackerWizard: React.FC<{ cracker: ReturnType<typeof useCracker> }> = ({ c
       {step === 2 && <StepKeyLetters cracker={cracker} />}
       {step === 3 && <StepKey cracker={cracker} />}
 
-      <Pane display="flex" justifyContent="space-between" marginTop="12px">
+      <Pane display="flex" justifyContent="space-between" marginTop="12px" gap="8px">
         <Button
           width={NAV_BUTTON_WIDTH}
           disabled={step === 1}
@@ -103,14 +108,28 @@ const CrackerWizard: React.FC<{ cracker: ReturnType<typeof useCracker> }> = ({ c
         >
           {strings.wizard.back}
         </Button>
-        <Button
-          width={NAV_BUTTON_WIDTH}
-          appearance="primary"
-          disabled={!canGoNext}
-          onClick={() => setStep(step + 1)}
-        >
-          {strings.wizard.next}
-        </Button>
+        {step < 3 ? (
+          <Button
+            width={NAV_BUTTON_WIDTH}
+            appearance="primary"
+            disabled={!canGoNext}
+            onClick={() => setStep(step + 1)}
+          >
+            {strings.wizard.next}
+          </Button>
+        ) : (
+          <Button
+            width={NAV_BUTTON_WIDTH}
+            appearance="primary"
+            onClick={() => onUseKey(assembledKey)}
+          >
+            {strings.wizard.useKey}
+          </Button>
+        )}
+      </Pane>
+
+      <Pane display="flex" justifyContent="center" marginTop="8px">
+        <Button onClick={onSkip}>{strings.wizard.skip}</Button>
       </Pane>
 
       {hintConfig.hints.livePreview && (

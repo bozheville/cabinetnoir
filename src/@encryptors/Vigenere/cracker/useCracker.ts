@@ -95,7 +95,15 @@ export const useCracker = (params: {
 
   const hasInputChanged = showInputChanged;
 
+  // Assembled key in slice order; empty string for slices without a letter.
+  const assembledKey = keyLength === null
+    ? ''
+    : Array.from({ length: keyLength })
+      .map((_, slice) => lockedLetters[slice]?.letter ?? '')
+      .join('');
+
   return {
+    assembledKey,
     input,
     step,
     setStep,
