@@ -3,6 +3,8 @@ export interface CribMatch {
   position: number;
   // Key letters implied by the crib: cipher letter minus crib letter.
   fragment: string;
+  // Slice -> implied key letter for the slices the crib covers.
+  sliceLetters: { slice: number; letter: string }[];
   // Slice indices where the fragment disagrees with locked letters.
   conflicts: number[];
   // Fragment forms a repeating pattern (hint: real key length may be
@@ -111,6 +113,9 @@ export const findCribMatches = (
         .sort((a, b) => a[0] - b[0])
         .map(([, letter]) => letter)
         .join(''),
+      sliceLetters: [...sliceLetters.entries()]
+        .sort((a, b) => a[0] - b[0])
+        .map(([slice, letter]) => ({ slice, letter })),
       conflicts,
       isStrong: isRepeating(fragment),
     });

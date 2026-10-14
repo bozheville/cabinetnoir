@@ -75,7 +75,13 @@ const KeyStrip: React.FC<KeyStripProps> = ({
               }
             }}
           />
-          <Text size={300}>{locked?.source === 'manual' ? strings.wizard.keyLetters.manualTag : `${slice + 1}`}</Text>
+          <Text size={300}>
+            {locked?.source === 'manual'
+              ? strings.wizard.keyLetters.manualTag
+              : locked?.source === 'crib'
+                ? strings.wizard.keyLetters.suggestedTag
+                : `${slice + 1}`}
+          </Text>
         </Cell>
       );
     })}
