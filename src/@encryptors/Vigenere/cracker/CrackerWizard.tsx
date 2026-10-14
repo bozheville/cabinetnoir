@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import strings from '../strings';
 import useCracker from './useCracker';
 import StepKeyLength from './StepKeyLength';
+import StepKeyLetters from './StepKeyLetters';
 
 const StepIndicator = styled(Pane)`
   display: flex;
@@ -88,11 +89,7 @@ const CrackerWizard: React.FC<{ cracker: ReturnType<typeof useCracker> }> = ({ c
           onSelectKeyLength={cracker.chooseKeyLength}
         />
       )}
-      {step === 2 && (
-        <StepPlaceholder>
-          <Heading size={300}>Step 2 placeholder</Heading>
-        </StepPlaceholder>
-      )}
+      {step === 2 && <StepKeyLetters cracker={cracker} />}
       {step === 3 && (
         <StepPlaceholder>
           <Heading size={300}>Step 3 placeholder</Heading>
