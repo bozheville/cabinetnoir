@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import {Checkbox, Heading, Pane, TextInput } from 'evergreen-ui';
 import { CrypterProps } from '../types';
 import { vigenereEncrypt, vigenereDecrypt } from './vigenere-encryption';
+import CrackerSettings from './cracker/CrackerSettings';
+import { DEFAULT_HINT_CONFIG, HintConfig } from './cracker/hintSettings';
 
 const Vigenere: React.FC<CrypterProps> = ({
   input,
@@ -11,6 +13,7 @@ const Vigenere: React.FC<CrypterProps> = ({
 }) => {
   const [ secretKey, setSecretKey ] = useState('');
   const [ isUnknownKey, setIsUnknownKey ] = useState(false);
+  const [ hintConfig, setHintConfig ] = useState<HintConfig>(DEFAULT_HINT_CONFIG);
 
   useEffect(() => {
     const output = isDecryptMode
@@ -47,16 +50,15 @@ const Vigenere: React.FC<CrypterProps> = ({
       {isUnknownKey && (
         <Pane
           display="flex"
-          justifyContent="center"
-          alignItems="center"
+          flexDirection="column"
           width="100%"
-          minHeight="48px"
+          padding="12px"
           marginX="16px"
           marginBottom="16px"
           border="muted"
           borderRadius="4px"
         >
-          <Heading size={100}>Cracker</Heading>
+          <CrackerSettings config={hintConfig} onChange={setHintConfig} />
         </Pane>
       )}
     </>
