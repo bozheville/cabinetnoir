@@ -20,22 +20,22 @@ const Card = styled(Pane)<{ $selected: boolean }>`
   cursor: pointer;
   padding: 10px 12px;
   border-radius: 4px;
-  border: 1px solid ${({ theme, $selected }) => ($selected ? theme.colors.blue500 : 'muted')};
+  border: 1px solid ${({ theme, $selected }) => ($selected ? theme.colorScheme.blue[500] : 'muted')};
   border-width: ${({ $selected }) => ($selected ? '2px' : '1px')};
-  background: ${({ theme, $selected }) => ($selected ? theme.colors.blue50 : 'transparent')};
+  background: ${({ theme, $selected }) => ($selected ? theme.colorScheme.blue[50] : 'transparent')};
 `;
 
 const ConfidenceBar = styled(Pane)`
   height: 4px;
   border-radius: 2px;
-  background: ${({ theme }) => theme.colors.gray300};
+  background: ${({ theme }) => theme.colorScheme.gray[300]};
   margin-top: 8px;
   overflow: hidden;
 `;
 
 const ConfidenceFill = styled(Pane)`
   height: 100%;
-  background: ${({ theme }) => theme.colors.blue500};
+  background: ${({ theme }) => theme.colorScheme.blue[500]};
 `;
 
 interface KeyLengthCardsProps {

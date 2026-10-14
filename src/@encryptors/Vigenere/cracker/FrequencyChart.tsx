@@ -42,7 +42,7 @@ const EnglishOutline = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  border: 1px dashed ${({ theme }) => theme.colors.blue500};
+  border: 1px dashed ${({ theme }) => theme.colorScheme.blue[500]};
   border-bottom: none;
   border-radius: 2px 2px 0 0;
 `;
@@ -94,9 +94,10 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
   const score = scoreShift(counts, shift);
   const isBest = shift === bestShift;
   const glow = hints.mostLikelyGlow && isBest;
+  const shortSlice = sliceLetters.length > 0 && sliceLetters.length < 20;
 
   return (
-    <ChartArea
+      <ChartArea
       tabIndex={0}
       onKeyDown={(event: React.KeyboardEvent) => {
         if (event.key === 'ArrowLeft') {
@@ -109,6 +110,11 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
         }
       }}
     >
+      {shortSlice && (
+        <Text size={300} display="block" marginBottom="4px">
+          {strings.wizard.warnings.shortSlice}
+        </Text>
+      )}
       <Pane display="flex" alignItems="center" gap="8px">
         <Button aria-label="Rotate left" onClick={() => rotate(-1)}>
           {'<'}

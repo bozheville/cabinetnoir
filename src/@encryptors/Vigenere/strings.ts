@@ -35,11 +35,15 @@ const strings = {
     useKey: 'Use this key',
     inputChanged: 'The text changed, analysis started over.',
     previewTitle: 'Live decryption preview',
+    warnings: {
+      shortText: 'Text is short — the hints may be wrong. Cribs can help.',
+      shortSlice: 'This slice has few letters, its hints may be wrong.',
+    },
     repeats: {
       title: 'Repeated sequences',
       gapsLabel: 'gaps',
       none: 'No repeated sequences found. Use the key length cards below instead.',
-      emptyInput: 'Paste some text first.',
+      emptyInput: 'Paste ciphertext first.',
     },
     keyLength: {
       otherLabel: 'Other length',

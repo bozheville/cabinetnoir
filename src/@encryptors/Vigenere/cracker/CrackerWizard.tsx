@@ -9,6 +9,7 @@ import StepKeyLetters from './StepKeyLetters';
 import StepKey from './StepKey';
 import KeyStrip from './KeyStrip';
 import DecryptPreview from './DecryptPreview';
+import ShortTextWarning from './ShortTextWarning';
 
 const StepIndicator = styled(Pane)`
   display: flex;
@@ -87,6 +88,8 @@ const CrackerWizard: React.FC<{
           {strings.wizard.inputChanged}
         </Text>
       )}
+
+      {analysis && <ShortTextWarning letters={analysis.normalized.letters} />}
 
       {step === 1 && (
         <StepKeyLength

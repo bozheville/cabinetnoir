@@ -10,7 +10,7 @@ const PreviewBox = styled(Pane)`
   margin-top: 12px;
   padding: 10px 12px;
   border-radius: 4px;
-  background: ${({ theme }) => theme.colors.gray100};
+  background: ${({ theme }) => theme.colorScheme.gray[100]};
 
   font-family: monospace;
   font-size: 12px;
