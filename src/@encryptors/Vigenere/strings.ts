@@ -44,6 +44,10 @@ const strings = {
       otherPlaceholder: '1-20',
       selected: 'Selected',
     },
+    keyLetters: {
+      sliceLabel: (index: number, total: number) => `Slice ${index + 1} of ${total}`,
+      lockedPrefix: 'locked:',
+    },
   },
 } as const;
 
