@@ -50,6 +50,9 @@ const strings = {
       keyLetter: 'Key letter',
       lock: 'Lock letter',
       allLocked: 'All letters locked. Continue to step 3.',
+      manualTag: 'manual',
+      yourKey: 'Your key',
+      keyHint: 'Type a letter to override, clear it to un-lock.',
     },
   },
 } as const;
