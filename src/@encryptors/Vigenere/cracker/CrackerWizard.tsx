@@ -8,6 +8,7 @@ import StepKeyLength from './StepKeyLength';
 import StepKeyLetters from './StepKeyLetters';
 import StepKey from './StepKey';
 import KeyStrip from './KeyStrip';
+import DecryptPreview from './DecryptPreview';
 
 const StepIndicator = styled(Pane)`
   display: flex;
@@ -111,6 +112,10 @@ const CrackerWizard: React.FC<{ cracker: ReturnType<typeof useCracker> }> = ({ c
           {strings.wizard.next}
         </Button>
       </Pane>
+
+      {hintConfig.hints.livePreview && (
+        <DecryptPreview cracker={cracker} />
+      )}
     </Pane>
   );
 };

@@ -33,6 +33,7 @@ const strings = {
     next: 'Next',
     skip: 'Skip, enter key manually',
     inputChanged: 'The text changed, analysis started over.',
+    previewTitle: 'Live decryption preview',
     repeats: {
       title: 'Repeated sequences',
       gapsLabel: 'gaps',
