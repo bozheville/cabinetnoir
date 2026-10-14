@@ -47,6 +47,9 @@ const strings = {
     keyLetters: {
       sliceLabel: (index: number, total: number) => `Slice ${index + 1} of ${total}`,
       lockedPrefix: 'locked:',
+      keyLetter: 'Key letter',
+      lock: 'Lock letter',
+      allLocked: 'All letters locked. Continue to step 3.',
     },
   },
 } as const;
