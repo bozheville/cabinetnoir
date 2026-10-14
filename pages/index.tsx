@@ -21,7 +21,7 @@ const HomeMenuSection = styled(Section)`
   }
 `;
 
-const AlgorithmLink = styled.a`
+const AlgorithmLink = styled(Link)`
   display: inline-block;
   padding: 1em;
   border-radius: 4px;
@@ -57,15 +57,15 @@ const Index: React.FC = () => {
           <AlgorithmList>
           <GreatPrimer>Encodings</GreatPrimer>
           {encodingsList.map((algorithm) => (
-            <Link key={algorithm} href={`/encoder/${algorithm}/direct`} passHref={true}>
-              <AlgorithmLink>{`${t(`processing.${algorithm}.title`)}`}</AlgorithmLink>
-            </Link>
+            <AlgorithmLink key={algorithm} href={`/encoder/${algorithm}/direct`}>
+              {`${t(`processing.${algorithm}.title`)}`}
+            </AlgorithmLink>
           ))}
           <GreatPrimer>Encryptoins</GreatPrimer>
           {encryptorsList.map((algorithm) => (
-            <Link key={algorithm} href={`/encoder/${algorithm}/direct`} passHref={true}>
-              <AlgorithmLink>{`${t(`processing.${algorithm}.title`)}`}</AlgorithmLink>
-            </Link>
+            <AlgorithmLink key={algorithm} href={`/encoder/${algorithm}/direct`}>
+              {`${t(`processing.${algorithm}.title`)}`}
+            </AlgorithmLink>
           ))}
           </AlgorithmList>
         </div>
