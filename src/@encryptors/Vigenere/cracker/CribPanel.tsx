@@ -40,7 +40,14 @@ const CribPanel: React.FC<CribPanelProps> = ({ cracker }) => {
     if (!analysis || keyLength === null || crib.trim().length === 0) {
       return [];
     }
-    return findCribMatches(analysis.normalized.letters, crib, keyLength, lockedSliceLetters);
+    const found = findCribMatches(analysis.normalized.letters, crib, keyLength, lockedSliceLetters);
+    // Surface the most trustworthy suggestions first: no conflicts with
+    // locked letters, then strong (repeating) fragments, then position.
+    return [...found].sort((a, b) => (
+      a.conflicts.length - b.conflicts.length
+      || (b.isStrong ? 1 : 0) - (a.isStrong ? 1 : 0)
+      || a.position - b.position
+    ));
   }, [analysis, keyLength, crib, lockedSliceLetters]);
 
   const apply = (match: (typeof matches)[number]) => {
