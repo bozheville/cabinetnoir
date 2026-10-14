@@ -30,24 +30,8 @@ export const HINT_KEYS: HintKey[] = [
   'cribs',
 ];
 
-// TODO(task 03): move labels to strings.ts.
-export const HINT_LABELS: Record<HintKey, string> = {
-  highlightRepeats: 'Highlight repeated sequences',
-  showGaps: 'Show gaps between repeats',
-  confidenceBars: 'Key length confidence bars',
-  englishReference: 'English reference on chart',
-  matchScore: 'Match score %',
-  mostLikelyGlow: '"Most likely" glow',
-  livePreview: 'Live decryption preview',
-  cribs: 'Cribs',
-};
-
-export const PRESET_LABELS: Record<Preset, string> = {
-  easy: 'Easy',
-  medium: 'Medium',
-  hard: 'Hard',
-  custom: 'Custom',
-};
+// Display order of the presets.
+export const PRESET_KEYS: Preset[] = ['easy', 'medium', 'hard', 'custom'];
 
 const only = (enabled: HintKey[]): HintSettings =>
   HINT_KEYS.reduce(

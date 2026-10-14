@@ -2,27 +2,27 @@ import React from 'react';
 import { Checkbox, Heading, Pane, SegmentedControl } from 'evergreen-ui';
 import {
   HINT_KEYS,
-  HINT_LABELS,
-  PRESET_LABELS,
+  PRESET_KEYS,
   HintConfig,
   Preset,
   applyPreset,
   toggleHint,
 } from './hintSettings';
+import strings from '../strings';
 
 interface CrackerSettingsProps {
   config: HintConfig;
   onChange: (config: HintConfig) => void;
 }
 
-const PRESET_OPTIONS = (Object.keys(PRESET_LABELS) as Preset[]).map((value) => ({
-  label: PRESET_LABELS[value],
+const PRESET_OPTIONS = PRESET_KEYS.map((value) => ({
+  label: strings.hints.presets[value],
   value,
 }));
 
 const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange }) => (
   <Pane width="100%">
-    <Heading size={100} marginBottom="8px">Hints</Heading>
+    <Heading size={100} marginBottom="8px">{strings.hints.title}</Heading>
     <SegmentedControl
       width="100%"
       maxWidth="360px"
@@ -40,7 +40,7 @@ const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange }) =
         <Checkbox
           key={key}
           marginY="4px"
-          label={HINT_LABELS[key]}
+          label={strings.hints.toggles[key]}
           checked={config.hints[key]}
           onChange={(event) => onChange(toggleHint(config, key, event.target.checked))}
         />
