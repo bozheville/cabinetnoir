@@ -4,6 +4,7 @@ import { CrypterProps } from '../types';
 import { vigenereEncrypt, vigenereDecrypt } from './vigenere-encryption';
 import CrackerSettings from './cracker/CrackerSettings';
 import { DEFAULT_HINT_CONFIG, HintConfig } from './cracker/hintSettings';
+import strings from './strings';
 
 const Vigenere: React.FC<CrypterProps> = ({
   input,
@@ -34,7 +35,7 @@ const Vigenere: React.FC<CrypterProps> = ({
         paddingBottom="16px"
         {...paneProps}
       >
-        <Heading size={100}>Key</Heading>
+        <Heading size={100}>{strings.keyLabel}</Heading>
         <TextInput
           width="150px"
           value={secretKey}
@@ -42,7 +43,7 @@ const Vigenere: React.FC<CrypterProps> = ({
         />
         <Checkbox
           marginLeft="6px"
-          label="Unknown key"
+          label={strings.unknownKey}
           checked={isUnknownKey}
           onChange={(event) => setIsUnknownKey(event.target.checked)}
         />
