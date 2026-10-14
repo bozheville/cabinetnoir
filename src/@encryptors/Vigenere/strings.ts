@@ -39,6 +39,11 @@ const strings = {
       none: 'No repeated sequences found. Use the key length cards below instead.',
       emptyInput: 'Paste some text first.',
     },
+    keyLength: {
+      otherLabel: 'Other length',
+      otherPlaceholder: '1-20',
+      selected: 'Selected',
+    },
   },
 } as const;
 

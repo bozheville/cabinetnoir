@@ -84,6 +84,8 @@ const CrackerWizard: React.FC<{ cracker: ReturnType<typeof useCracker> }> = ({ c
           input={crackerInput}
           analysis={analysis}
           hints={hintConfig.hints}
+          selectedKeyLength={keyLength}
+          onSelectKeyLength={cracker.chooseKeyLength}
         />
       )}
       {step === 2 && (

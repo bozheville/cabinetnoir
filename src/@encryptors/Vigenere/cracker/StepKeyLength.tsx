@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Heading, Pane, Text } from 'evergreen-ui';
+import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import { Repeat } from '../analysis/kasiski';
 import strings from '../strings';
 import CipherText, { HIGHLIGHT_COLORS } from './CipherText';
+import KeyLengthCards from './KeyLengthCards';
 import { CrackerAnalysis } from './useCracker';
 import { HintSettings } from './hintSettings';
 
@@ -32,9 +33,17 @@ interface StepKeyLengthRepeatsProps {
   input: string;
   analysis: CrackerAnalysis | null;
   hints: HintSettings;
+  selectedKeyLength: number | null;
+  onSelectKeyLength: (length: number) => void;
 }
 
-const StepKeyLength: React.FC<StepKeyLengthRepeatsProps> = ({ input, analysis, hints }) => {
+const StepKeyLength: React.FC<StepKeyLengthRepeatsProps> = ({
+  input,
+  analysis,
+  hints,
+  selectedKeyLength,
+  onSelectKeyLength,
+}) => {
   const [hoveredRepeat, setHoveredRepeat] = useState<number | null>(null);
 
   const shownRepeats: Repeat[] = analysis
@@ -95,9 +104,12 @@ const StepKeyLength: React.FC<StepKeyLengthRepeatsProps> = ({ input, analysis, h
       )}
 
       {/* Key length cards come in task 19. */}
-      <Pane marginTop="12px" border="dotted 1px muted" borderRadius="4px" padding="12px">
-        <Heading size={200}>Key length cards placeholder</Heading>
-      </Pane>
+      <KeyLengthCards
+        analysis={analysis}
+        hints={hints}
+        selected={selectedKeyLength}
+        onSelect={onSelectKeyLength}
+      />
     </Pane>
   );
 };
