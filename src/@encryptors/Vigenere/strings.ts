@@ -3,6 +3,7 @@
 
 const strings = {
   keyLabel: 'Key',
+  alphabetLabel: 'Alphabet',
   unknownKey: 'Unknown key',
   hints: {
     title: 'Hints',
