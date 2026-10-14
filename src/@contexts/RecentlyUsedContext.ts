@@ -10,11 +10,11 @@ export const useRecentlyUsedContext = () => {
   const [recentlyUsed, setRecentlyUsed] = useLocalStorage('recentlyUsed', []);
 
   const addRecentluUsed = (algorithm) => {
-    if (!recentlyUsed.includes(algorithm)) {
-      setRecentlyUsed(
-        [algorithm, ...recentlyUsed].slice(0,3)
-      );
-    }
+    setRecentlyUsed((current: string[]) => (
+      current.includes(algorithm)
+        ? current
+        : [algorithm, ...current].slice(0,3)
+    ));
   };
 
   return {

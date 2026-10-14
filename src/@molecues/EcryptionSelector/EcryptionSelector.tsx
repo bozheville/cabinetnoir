@@ -83,7 +83,7 @@ const EcryptionSelector: React.FC = () => {
             <SelectionButton
               key={`quick-select-${item}`}
               onClick={handleSelect(item)}
-              data-type={algorithm === item && 'selected'}
+              data-type={algorithm === item ? 'selected' : undefined}
             >
               {`${t(`processing.${item}.short_title`) || t(`processing.${item}.title`)}`}
             </SelectionButton>
