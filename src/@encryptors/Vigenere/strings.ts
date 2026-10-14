@@ -32,6 +32,7 @@ const strings = {
     back: 'Back',
     next: 'Next',
     skip: 'Skip, enter key manually',
+    useKey: 'Use this key',
     inputChanged: 'The text changed, analysis started over.',
     previewTitle: 'Live decryption preview',
     repeats: {

@@ -59,8 +59,16 @@ const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
 
   useEffect(() => {
     if (isInitialized) {
-      onChange(outputRef?.current?.value);
-      setInput(outputRef?.current?.value);
+      // The Vigenere cracker flags its "use this key" navigation so the
+      // original text stays in the input instead of being replaced by the
+      // stale output of the previous mode.
+      if (router.query.usedKey === '1') {
+        const { usedKey, ...restQuery } = router.query;
+        router.replace({ pathname: router.pathname, query: restQuery }, undefined, { shallow: true });
+      } else {
+        onChange(outputRef?.current?.value);
+        setInput(outputRef?.current?.value);
+      }
     }
 
     setIsInitialized(true);
