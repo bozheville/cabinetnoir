@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import strings from '../strings';
 import CipherText, { HIGHLIGHT_COLORS } from './CipherText';
 import FrequencyChart from './FrequencyChart';
+import KeyStrip from './KeyStrip';
 import { LockedLetter, useCracker } from './useCracker';
 
 const SliceTabs = styled(Pane)`
@@ -109,6 +110,15 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
           {strings.wizard.keyLetters.allLocked}
         </Text>
       )}
+
+      <KeyStrip
+        keyLength={keyLength}
+        lockedLetters={lockedLetters}
+        activeSlice={activeSlice}
+        onJump={setActiveSlice}
+        onOverride={(slice, letter) => lockLetter(slice, letter, 'manual')}
+        onClear={cracker.unlockLetter}
+      />
     </Pane>
   );
 };

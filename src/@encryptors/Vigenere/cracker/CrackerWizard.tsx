@@ -6,6 +6,8 @@ import strings from '../strings';
 import useCracker from './useCracker';
 import StepKeyLength from './StepKeyLength';
 import StepKeyLetters from './StepKeyLetters';
+import StepKey from './StepKey';
+import KeyStrip from './KeyStrip';
 
 const StepIndicator = styled(Pane)`
   display: flex;
@@ -90,11 +92,7 @@ const CrackerWizard: React.FC<{ cracker: ReturnType<typeof useCracker> }> = ({ c
         />
       )}
       {step === 2 && <StepKeyLetters cracker={cracker} />}
-      {step === 3 && (
-        <StepPlaceholder>
-          <Heading size={300}>Step 3 placeholder</Heading>
-        </StepPlaceholder>
-      )}
+      {step === 3 && <StepKey cracker={cracker} />}
 
       <Pane display="flex" justifyContent="space-between" marginTop="12px">
         <Button
