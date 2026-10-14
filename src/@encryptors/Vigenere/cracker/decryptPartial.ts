@@ -3,33 +3,28 @@ import { LockedLetter } from './useCracker';
 
 const STANDARD_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-// Decrypts letters whose slice already has a locked key letter; letters
-// from unlocked slices become '_'. Non-letters (spaces, punctuation) pass
-// through, so the preview keeps the shape of the original input.
+// The decryption preview as a flat letter stream: letters of slices with a
+// key letter show their plaintext letter, the rest become '_'. Non-letters
+// (spaces, punctuation, line breaks) are dropped, so the stream can be
+// laid out in rows of exactly keyLength letters with columns matching
+// the slices.
 export const decryptPartial = (
   input: string,
   normalized: NormalizedText,
   keyLength: number,
   lockedLetters: Record<number, LockedLetter>,
   alphabet: string = STANDARD_ALPHABET,
-): string => {
-  const result = input.split('');
-
-  normalized.originalIndices.forEach((originalIndex, cleanIndex) => {
+): string =>
+  normalized.letters.split('').map((cipherLetter, cleanIndex) => {
     const locked = lockedLetters[cleanIndex % keyLength];
     if (!locked) {
-      result[originalIndex] = '_';
-      return;
+      return '_';
     }
 
-    const cipher = alphabet.indexOf(normalized.letters[cleanIndex]);
+    const cipher = alphabet.indexOf(cipherLetter);
     const key = alphabet.indexOf(locked.letter);
     if (cipher < 0 || key < 0) {
-      result[originalIndex] = '_';
-      return;
+      return '_';
     }
-    result[originalIndex] = alphabet[(cipher - key + alphabet.length) % alphabet.length];
-  });
-
-  return result.join('');
-};
+    return alphabet[(cipher - key + alphabet.length) % alphabet.length];
+  }).join('');
