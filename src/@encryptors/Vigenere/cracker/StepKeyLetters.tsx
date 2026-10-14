@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import strings from '../strings';
 import CipherText, { HIGHLIGHT_COLORS } from './CipherText';
 import FrequencyChart from './FrequencyChart';
+import CribPanel from './CribPanel';
 import KeyStrip from './KeyStrip';
 import { LockedLetter, useCracker } from './useCracker';
 
@@ -110,6 +111,8 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
           {strings.wizard.keyLetters.allLocked}
         </Text>
       )}
+
+      {hints.cribs && <CribPanel cracker={cracker} />}
 
       <KeyStrip
         keyLength={keyLength}

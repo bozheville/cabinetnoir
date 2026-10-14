@@ -54,6 +54,15 @@ const strings = {
       manualTag: 'manual',
       yourKey: 'Your key',
       keyHint: 'Type a letter to override, clear it to un-lock.',
+      suggestedTag: 'suggested',
+    },
+    cribs: {
+      title: 'Cribs',
+      inputLabel: 'Word you think is in the message',
+      inputPlaceholder: 'e.g. ATTACK',
+      apply: 'Apply',
+      noMatches: 'The word does not fit anywhere with this key length.',
+      conflictsNote: 'conflicts with locked letters',
     },
   },
 } as const;
