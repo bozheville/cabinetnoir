@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {Checkbox, Heading, Pane, TextInput } from 'evergreen-ui';
 import { useRouter } from 'next/router';
 import { CrypterProps } from '../types';
-import { vigenereEncrypt, vigenereDecrypt } from './vigenere-encryption';
+import { vigenereEncrypt, vigenereDecrypt, DEFAULT_ALPHABET } from './vigenere-encryption';
 import CrackerSettings from './cracker/CrackerSettings';
 import CrackerWizard from './cracker/CrackerWizard';
 import useCracker from './cracker/useCracker';
@@ -17,9 +17,31 @@ const Vigenere: React.FC<CrypterProps> = ({
 }) => {
   const [ secretKey, setSecretKey ] = useState('');
   const [ isUnknownKey, setIsUnknownKey ] = useState(false);
+  const [ customAlphabet, setCustomAlphabet ] = useState(DEFAULT_ALPHABET);
   const [ hintConfig, setHintConfig ] = useState<HintConfig>(DEFAULT_HINT_CONFIG);
   const cracker = useCracker({ input, enabled: isUnknownKey, hintConfig });
   const router = useRouter();
+  // The cracker's analysis (normalize, frequencies) is latin-only.
+  const isDefaultAlphabet = customAlphabet === DEFAULT_ALPHABET;
+  const canCrack = isUnknownKey && isDefaultAlphabet;
+
+  // Uppercase, unique letters only; reject edits that leave fewer than two.
+  // "Is a letter" via case asymmetry: target is es5, so no unicode property
+  // escapes. Digits and punctuation have no case and are dropped.
+  const cleanAlphabet = (value: string): string => {
+    const letters = value
+      .toUpperCase()
+      .split('')
+      .filter((letter, index, all) =>
+        letter.toUpperCase() !== letter.toLowerCase()
+        && all.indexOf(letter) === index)
+      .join('');
+    return letters.length >= 2 ? letters : DEFAULT_ALPHABET;
+  };
+
+  const handleAlphabetChange = (event) => {
+    setCustomAlphabet(cleanAlphabet(event.target.value));
+  };
 
   const handleUseKey = (key: string) => {
     setSecretKey(key);
@@ -43,11 +65,11 @@ const Vigenere: React.FC<CrypterProps> = ({
 
   useEffect(() => {
     const output = isDecryptMode
-      ? vigenereDecrypt(input, secretKey)
-      : vigenereEncrypt(input, secretKey);
+      ? vigenereDecrypt(input, secretKey, customAlphabet)
+      : vigenereEncrypt(input, secretKey, customAlphabet);
 
       onProcessingEnd({ output });
-  }, [input, secretKey, isDecryptMode]);
+  }, [input, secretKey, isDecryptMode, customAlphabet]);
 
   return (
     <>
@@ -66,14 +88,23 @@ const Vigenere: React.FC<CrypterProps> = ({
           value={secretKey}
           onChange={(event) => setSecretKey(event.target.value)}
         />
-        <Checkbox
-          marginLeft="6px"
-          label={strings.unknownKey}
-          checked={isUnknownKey}
-          onChange={(event) => setIsUnknownKey(event.target.checked)}
+        <Heading size={100} marginLeft="12px">{strings.alphabetLabel}</Heading>
+        <TextInput
+          width="280px"
+          fontFamily="monospace"
+          value={customAlphabet}
+          onChange={handleAlphabetChange}
         />
+        {isDefaultAlphabet && (
+          <Checkbox
+            marginLeft="6px"
+            label={strings.unknownKey}
+            checked={isUnknownKey}
+            onChange={(event) => setIsUnknownKey(event.target.checked)}
+          />
+        )}
       </Pane>
-      {isUnknownKey && (
+      {canCrack && (
         <Pane
           display="flex"
           flexDirection="column"
