@@ -17,7 +17,7 @@ const MatchRow = styled(Pane)`
 `;
 
 const ConflictText = styled(Text)`
-  color: ${({ theme }) => theme.colors.red500};
+  color: ${({ theme }) => theme.colorScheme.red[500]};
   font-size: 11px;
 `;
 
