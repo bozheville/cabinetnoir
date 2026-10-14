@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {Checkbox, Heading, Pane, TextInput } from 'evergreen-ui';
 import { useRouter } from 'next/router';
 import { CrypterProps } from '../types';
-import { vigenereEncrypt, vigenereDecrypt, DEFAULT_ALPHABET } from './vigenere-encryption';
+import { vigenereEncrypt, vigenereDecrypt, DEFAULT_ALPHABET, isEnglishAlphabet } from './vigenere-encryption';
 import CrackerSettings from './cracker/CrackerSettings';
 import CrackerWizard from './cracker/CrackerWizard';
 import useCracker from './cracker/useCracker';
@@ -19,11 +19,11 @@ const Vigenere: React.FC<CrypterProps> = ({
   const [ isUnknownKey, setIsUnknownKey ] = useState(false);
   const [ customAlphabet, setCustomAlphabet ] = useState(DEFAULT_ALPHABET);
   const [ hintConfig, setHintConfig ] = useState<HintConfig>(DEFAULT_HINT_CONFIG);
-  const cracker = useCracker({ input, enabled: isUnknownKey, hintConfig });
+  const cracker = useCracker({ input, enabled: isUnknownKey, hintConfig, alphabet: customAlphabet });
   const router = useRouter();
-  // The cracker's analysis (normalize, frequencies) is latin-only.
-  const isDefaultAlphabet = customAlphabet === DEFAULT_ALPHABET;
-  const canCrack = isUnknownKey && isDefaultAlphabet;
+  // The cracker handles any reshuffling of the 26 English letters, but not
+  // foreign letters (its frequency tables are English).
+  const canCrack = isUnknownKey && isEnglishAlphabet(customAlphabet);
 
   // Uppercase, unique letters only; reject edits that leave fewer than two.
   // "Is a letter" via case asymmetry: target is es5, so no unicode property
@@ -95,7 +95,7 @@ const Vigenere: React.FC<CrypterProps> = ({
           value={customAlphabet}
           onChange={handleAlphabetChange}
         />
-        {isDefaultAlphabet && (
+        {isEnglishAlphabet(customAlphabet) && (
           <Checkbox
             marginLeft="6px"
             label={strings.unknownKey}

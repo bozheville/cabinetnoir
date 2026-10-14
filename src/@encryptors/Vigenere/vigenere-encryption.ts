@@ -1,5 +1,11 @@
 export const DEFAULT_ALPHABET = `ABCDEFGHIJKLMNOPQRSTUVWXYZ`;
 
+// The cracker's analysis is built on the 26 English letters; a reshuffled
+// alphabet still works, but foreign letters (Cyrillic etc.) do not.
+export const isEnglishAlphabet = (alphabet: string): boolean =>
+  alphabet.length === 26
+  && alphabet.split('').every((letter) => letter >= 'A' && letter <= 'Z');
+
 const l2n = (letter: string, alphabet: string): number => alphabet.indexOf(letter);
 const n2l = (number: number, alphabet: string): string =>
   alphabet[(number + alphabet.length) % (alphabet.length)];

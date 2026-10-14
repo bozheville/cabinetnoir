@@ -14,6 +14,8 @@ export interface CribMatch {
 
 const ALPHABET_LENGTH = 26;
 
+const STANDARD_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
 const toCleanLetters = (text: string): string =>
   text.toUpperCase().split('').filter((char) => /[A-Z]/.test(char)).join('');
 
@@ -24,6 +26,7 @@ export const impliedKeyFragment = (
   ciphertext: string,
   crib: string,
   position: number,
+  alphabet: string = STANDARD_ALPHABET,
 ): string | null => {
   if (!ciphertext || !crib || position < 0 || position + crib.length > ciphertext.length) {
     return null;
@@ -31,9 +34,12 @@ export const impliedKeyFragment = (
 
   const fragment: string[] = [];
   for (let i = 0; i < crib.length; i += 1) {
-    const cipher = ciphertext.charCodeAt(position + i) - 65;
-    const plain = crib.charCodeAt(i) - 65;
-    fragment.push(String.fromCharCode(((cipher - plain + ALPHABET_LENGTH) % ALPHABET_LENGTH) + 65));
+    const cipher = alphabet.indexOf(ciphertext[position + i]);
+    const plain = alphabet.indexOf(crib[i]);
+    if (cipher < 0 || plain < 0) {
+      return null;
+    }
+    fragment.push(alphabet[(cipher - plain + alphabet.length) % alphabet.length]);
   }
   return fragment.join('');
 };
@@ -63,6 +69,7 @@ export const findCribMatches = (
   crib: string,
   keyLength: number,
   lockedLetters: Record<number, string> = {},
+  alphabet: string = STANDARD_ALPHABET,
 ): CribMatch[] => {
   const cleanCipher = toCleanLetters(ciphertext);
   const cleanCrib = toCleanLetters(crib);
@@ -75,7 +82,7 @@ export const findCribMatches = (
   const matches: CribMatch[] = [];
 
   for (let position = 0; position + cleanCrib.length <= cleanCipher.length; position += 1) {
-    const fragment = impliedKeyFragment(cleanCipher, cleanCrib, position);
+    const fragment = impliedKeyFragment(cleanCipher, cleanCrib, position, alphabet);
     if (!fragment) {
       continue;
     }

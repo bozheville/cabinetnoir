@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { NormalizedText, normalize } from '../analysis/normalize';
 import { Repeat, findRepeats } from '../analysis/kasiski';
 import { KeyLengthCandidate, rankKeyLengths } from '../analysis/keyLength';
+import { DEFAULT_ALPHABET } from '../vigenere-encryption';
 import { HintConfig } from './hintSettings';
 
 export type LetterSource = 'chart' | 'manual' | 'crib';
@@ -22,8 +23,9 @@ export const useCracker = (params: {
   input: string;
   enabled: boolean;
   hintConfig: HintConfig;
+  alphabet?: string;
 }) => {
-  const { input, enabled, hintConfig } = params;
+  const { input, enabled, hintConfig, alphabet = DEFAULT_ALPHABET } = params;
 
   const [step, setStep] = useState(1);
   const [keyLength, setKeyLength] = useState<number | null>(null);
@@ -49,6 +51,17 @@ export const useCracker = (params: {
     previousInput.current = input;
     reset(hadProgress);
   }, [input]);
+
+  // A different alphabet invalidates the arithmetic behind locked letters.
+  const previousAlphabet = useRef(alphabet);
+  useEffect(() => {
+    if (previousAlphabet.current === alphabet) {
+      return;
+    }
+    const hadProgress = keyLength !== null || Object.keys(lockedLetters).length > 0;
+    previousAlphabet.current = alphabet;
+    reset(hadProgress);
+  }, [alphabet]);
 
   const analysis = useMemo<CrackerAnalysis | null>(() => {
     if (!enabled) {
@@ -103,6 +116,7 @@ export const useCracker = (params: {
       .join('');
 
   return {
+    alphabet,
     assembledKey,
     input,
     step,
