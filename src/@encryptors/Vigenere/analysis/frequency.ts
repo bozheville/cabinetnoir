@@ -7,30 +7,53 @@ export const ENGLISH_FREQUENCIES: number[] = [
 
 export const ALPHABET_LENGTH = 26;
 
-// 26 letter counts for the slice, index 0 = 'A'.
-export const countLetters = (slice: string): number[] => {
+const STANDARD_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+// 26 letter counts for the slice, indexed by position in `alphabet`.
+// Characters outside the alphabet are ignored.
+export const countLetters = (slice: string, alphabet: string = STANDARD_ALPHABET): number[] => {
   const counts = new Array<number>(ALPHABET_LENGTH).fill(0);
   for (const letter of slice) {
-    const index = letter.charCodeAt(0) - 65;
-    if (index >= 0 && index < ALPHABET_LENGTH) {
+    const index = alphabet.indexOf(letter);
+    if (index >= 0) {
       counts[index] += 1;
     }
   }
   return counts;
 };
 
-// Chi-squared between shifted slice counts and English frequencies,
-// mapped to 0-100 where 100 means a perfect English-like fit.
-export const scoreShift = (counts: number[], shift: number): number => {
+// English frequency expected for the letter at position `index` of
+// `alphabet`: frequencies attach to characters, not to positions, so a
+// reshuffled alphabet permutes the reference table accordingly.
+export const englishFrequencyAt = (index: number, alphabet: string): number => {
+  const standardIndex = STANDARD_ALPHABET.indexOf(alphabet[index]);
+  return standardIndex >= 0 ? ENGLISH_FREQUENCIES[standardIndex] : 0;
+};
+
+// Chi-squared between the slice counts rotated by `shift` and the English
+// frequencies, mapped to 0-100 where 100 means a perfect English-like fit.
+//
+// Position `index` of the display shows the observed count of the letter
+// `alphabet[(index + shift) % length]`; when `shift` equals the key letter's
+// index, that letter decrypts to `alphabet[index]`, so the reference is the
+// English frequency of `alphabet[index]`.
+export const scoreShift = (
+  counts: number[],
+  shift: number,
+  alphabet: string = STANDARD_ALPHABET,
+): number => {
   const total = counts.reduce((sum, count) => sum + count, 0);
   if (total === 0) {
     return 0;
   }
 
   let chiSquared = 0;
-  for (let letter = 0; letter < ALPHABET_LENGTH; letter += 1) {
-    const shifted = counts[(letter + shift) % ALPHABET_LENGTH];
-    const expected = (ENGLISH_FREQUENCIES[letter] / 100) * total;
+  for (let index = 0; index < ALPHABET_LENGTH; index += 1) {
+    const shifted = counts[(index + shift) % ALPHABET_LENGTH];
+    const expected = (englishFrequencyAt(index, alphabet) / 100) * total;
+    if (expected === 0) {
+      continue;
+    }
     const diff = shifted - expected;
     chiSquared += (diff * diff) / expected;
   }
@@ -41,13 +64,17 @@ export const scoreShift = (counts: number[], shift: number): number => {
   return Math.round(100 * Math.exp(-chiSquared / 250));
 };
 
-// The shift (key letter offset) under which the slice looks most English.
-export const findBestShift = (counts: number[]): number => {
+// The shift (key letter index in `alphabet`) under which the slice looks
+// most English.
+export const findBestShift = (
+  counts: number[],
+  alphabet: string = STANDARD_ALPHABET,
+): number => {
   let bestShift = 0;
   let bestScore = -1;
 
   for (let shift = 0; shift < ALPHABET_LENGTH; shift += 1) {
-    const score = scoreShift(counts, shift);
+    const score = scoreShift(counts, shift, alphabet);
     if (score > bestScore) {
       bestScore = score;
       bestShift = shift;

@@ -23,9 +23,10 @@ const ConflictText = styled(Text)`
 
 interface CribPanelProps {
   cracker: ReturnType<typeof useCracker>;
+  alphabet: string;
 }
 
-const CribPanel: React.FC<CribPanelProps> = ({ cracker }) => {
+const CribPanel: React.FC<CribPanelProps> = ({ cracker, alphabet }) => {
   const { analysis, keyLength, lockedLetters, lockLetter } = cracker;
   const [crib, setCrib] = useState('');
 
@@ -40,7 +41,7 @@ const CribPanel: React.FC<CribPanelProps> = ({ cracker }) => {
     if (!analysis || keyLength === null || crib.trim().length === 0) {
       return [];
     }
-    const found = findCribMatches(analysis.normalized.letters, crib, keyLength, lockedSliceLetters);
+    const found = findCribMatches(analysis.normalized.letters, crib, keyLength, lockedSliceLetters, alphabet);
     // Surface the most trustworthy suggestions first: no conflicts with
     // locked letters, then strong (repeating) fragments, then position.
     return [...found].sort((a, b) => (

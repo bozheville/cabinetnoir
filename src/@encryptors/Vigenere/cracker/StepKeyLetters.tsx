@@ -39,6 +39,7 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
     activeSlice,
     setActiveSlice,
     hintConfig,
+    alphabet,
   } = cracker;
 
   if (!analysis || keyLength === null) {
@@ -102,6 +103,7 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
       <FrequencyChart
         sliceLetters={sliceLettersFor(activeSlice)}
         hints={hints}
+        alphabet={alphabet}
         onLock={handleLock}
         currentLetter={lockedLetters[activeSlice]?.letter}
       />
@@ -112,7 +114,7 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
         </Text>
       )}
 
-      {hints.cribs && <CribPanel cracker={cracker} />}
+      {hints.cribs && <CribPanel cracker={cracker} alphabet={alphabet} />}
 
       <KeyStrip
         keyLength={keyLength}

@@ -25,14 +25,14 @@ const Placeholder = styled.span`
 // Renders the partial decryption: locked letters show their plaintext,
 // unlocked ones a dimmed underscore, everything in the original layout.
 const DecryptPreview: React.FC<{ cracker: ReturnType<typeof useCracker> }> = ({ cracker }) => {
-  const { input, analysis, keyLength, lockedLetters } = cracker;
+  const { input, analysis, keyLength, lockedLetters, alphabet } = cracker;
 
   const preview = useMemo(() => {
     if (!analysis || keyLength === null) {
       return null;
     }
-    return decryptPartial(input, analysis.normalized, keyLength, lockedLetters as Record<number, LockedLetter>);
-  }, [input, analysis, keyLength, lockedLetters]);
+    return decryptPartial(input, analysis.normalized, keyLength, lockedLetters as Record<number, LockedLetter>, alphabet);
+  }, [input, analysis, keyLength, lockedLetters, alphabet]);
 
   if (!preview) {
     return null;

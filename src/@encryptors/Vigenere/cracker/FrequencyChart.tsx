@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Heading, Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
-import { ALPHABET_LENGTH, ENGLISH_FREQUENCIES, countLetters, findBestShift, scoreShift } from '../analysis/frequency';
+import { ALPHABET_LENGTH, ENGLISH_FREQUENCIES, countLetters, englishFrequencyAt, findBestShift, scoreShift } from '../analysis/frequency';
 import strings from '../strings';
 import { HintSettings } from './hintSettings';
 
@@ -63,6 +63,7 @@ const LetterCell = styled(Text)`
 interface FrequencyChartProps {
   sliceLetters: string;
   hints: HintSettings;
+  alphabet?: string;
   onLock: (letter: string) => void;
   currentLetter?: string;
 }
@@ -70,11 +71,12 @@ interface FrequencyChartProps {
 const FrequencyChart: React.FC<FrequencyChartProps> = ({
   sliceLetters,
   hints,
+  alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
   onLock,
   currentLetter,
 }) => {
-  const counts = countLetters(sliceLetters);
-  const bestShift = findBestShift(counts);
+  const counts = countLetters(sliceLetters, alphabet);
+  const bestShift = findBestShift(counts, alphabet);
   const [shift, setShift] = useState(0);
 
   // New slice: start unaligned so the user rotates into place themselves.
@@ -91,7 +93,7 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
     setShift((current) => ((current + delta + ALPHABET_LENGTH) % ALPHABET_LENGTH));
   };
 
-  const score = scoreShift(counts, shift);
+  const score = scoreShift(counts, shift, alphabet);
   const isBest = shift === bestShift;
   const glow = hints.mostLikelyGlow && isBest;
   const shortSlice = sliceLetters.length > 0 && sliceLetters.length < 20;
@@ -120,7 +122,7 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
           {'<'}
         </Button>
         <Heading size={400}>
-          {`${strings.wizard.keyLetters.keyLetter}: ${String.fromCharCode(65 + shift)}`}
+          {`${strings.wizard.keyLetters.keyLetter}: ${alphabet[shift]}`}
         </Heading>
         <Button aria-label="Rotate right" onClick={() => rotate(1)}>
           {'>'}
@@ -137,7 +139,8 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
         {Array.from({ length: ALPHABET_LENGTH }).map((_, position) => {
           const observedIndex = (position + shift) % ALPHABET_LENGTH;
           const observedHeight = (counts[observedIndex] / scale) * 100;
-          const expectedHeight = (ENGLISH_FREQUENCIES[position] / 100 * total / scale) * 100;
+          const englishFrequency = alphabet[position] ? englishFrequencyAt(position, alphabet) : 0;
+          const expectedHeight = (englishFrequency / 100 * total / scale) * 100;
           return (
             <BarSlot key={position} $glow={!!glow}>
               {hints.englishReference && expectedHeight > 0 && (
@@ -150,14 +153,14 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
       </BarsRow>
       <LetterRow>
         {Array.from({ length: ALPHABET_LENGTH }).map((_, position) => (
-          <LetterCell key={position}>{String.fromCharCode(65 + position)}</LetterCell>
+          <LetterCell key={position}>{alphabet[position]}</LetterCell>
         ))}
       </LetterRow>
 
       <Button
         marginTop="8px"
         appearance="primary"
-        onClick={() => onLock(String.fromCharCode(65 + shift))}
+        onClick={() => onLock(alphabet[shift])}
       >
         {strings.wizard.keyLetters.lock}
       </Button>

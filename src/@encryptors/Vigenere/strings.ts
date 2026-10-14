@@ -34,7 +34,7 @@ const strings = {
     next: 'Next',
     skip: 'Skip, enter key manually',
     useKey: 'Use this key',
-    inputChanged: 'The text changed, analysis started over.',
+    inputChanged: 'The text or alphabet changed, analysis started over.',
     previewTitle: 'Live decryption preview',
     warnings: {
       shortText: 'Text is short — the hints may be wrong. Cribs can help.',
