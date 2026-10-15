@@ -7,6 +7,7 @@ import { Heading, Pane, Text } from 'evergreen-ui';
 
 import Section from '@atoms/Section/Section';
 import CipherTabs from '@molecues/CipherTabs';
+import MarkdownContent from '@molecues/MarkdownContent';
 
 const LearningWrapper = styled(Section)`
   display: flex;
@@ -19,7 +20,8 @@ const LearningWrapper = styled(Section)`
 
 // Learning tab layout (Learn / History / Practice). Each tab replaces the
 // encryption UI on screen and gets its own URL. Markdown content arrives
-// via getStaticProps (build time); sections are filled in by later tasks.
+// via getStaticProps (build time) and renders in the tab's topic order.
+const TOPIC_ORDER = ['how-it-works', 'guides', 'breaking-it', 'history'];
 interface LearningMaterialProps {
   learningContent?: Record<string, string>;
 }
@@ -39,6 +41,9 @@ const LearningMaterial: React.FC<LearningMaterialProps> = ({ learningContent = {
           <Text size={300}>{t('learning.placeholder')}</Text>
         </Pane>
       )}
+      {TOPIC_ORDER.filter((topic) => learningContent[topic]).map((topic) => (
+        <MarkdownContent key={topic} source={learningContent[topic]} />
+      ))}
     </LearningWrapper>
   );
 };
