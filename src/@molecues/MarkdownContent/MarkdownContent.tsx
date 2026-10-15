@@ -3,6 +3,8 @@ import { Marked } from 'marked';
 import styled from 'styled-components';
 
 import { renderPlaceholder, splitPlaceholders } from './registry';
+// Side-effect import: registers the live components for placeholders.
+import './placeholders';
 
 // Token-walking markdown renderer (decision: marked.lexer, no HTML
 // strings). Renders a fixed element set; raw HTML in the source is

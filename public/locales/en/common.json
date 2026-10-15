@@ -232,5 +232,63 @@
       "collapse": "Show less",
       "expand": "Show more"
     }
+  },
+  "glossary": {
+    "plaintext": {
+      "name": "Plaintext",
+      "definition": "The original readable message before encryption."
+    },
+    "ciphertext": {
+      "name": "Ciphertext",
+      "definition": "The scrambled message produced by encryption."
+    },
+    "cryptogram": {
+      "name": "Cryptogram",
+      "definition": "A message written in cipher; on this site it also names the input field."
+    },
+    "key": {
+      "name": "Key",
+      "definition": "The secret that controls how the text is scrambled."
+    },
+    "alphabet": {
+      "name": "Alphabet",
+      "definition": "The set of letters the cipher works with."
+    },
+    "key-length": {
+      "name": "Key length",
+      "definition": "How many letters the key has before it starts repeating."
+    },
+    "shift": {
+      "name": "Shift",
+      "definition": "How far a letter moves along the alphabet."
+    },
+    "substitution": {
+      "name": "Substitution",
+      "definition": "Replacing each letter with another one."
+    },
+    "polyalphabetic": {
+      "name": "Polyalphabetic",
+      "definition": "A cipher that uses several alphabets in turn instead of one."
+    },
+    "slice": {
+      "name": "Slice",
+      "definition": "Every Nth letter of the text (N = key length). All letters of one slice are shifted by the same key letter."
+    },
+    "frequency-analysis": {
+      "name": "Frequency analysis",
+      "definition": "Studying how often letters appear; comparing the counts with the language reveals the plaintext."
+    },
+    "index-of-coincidence": {
+      "name": "Index of coincidence",
+      "definition": "A number (about 0.067 for English) showing how likely two random letters of a text are equal."
+    },
+    "kasiski-examination": {
+      "name": "Kasiski examination",
+      "definition": "Finding the key length from the distances between repeated sequences in the ciphertext."
+    },
+    "crib": {
+      "name": "Crib",
+      "definition": "A word you guess is in the plaintext; comparing it with the ciphertext reveals key letters."
+    }
   }
 }

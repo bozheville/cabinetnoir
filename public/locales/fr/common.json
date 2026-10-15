@@ -212,5 +212,63 @@
       "collapse": "Réduire",
       "expand": "Afficher plus"
     }
+  },
+  "glossary": {
+    "plaintext": {
+      "name": "Texte clair",
+      "definition": "Le message lisible d'origine, avant le chiffrement."
+    },
+    "ciphertext": {
+      "name": "Texte chiffré",
+      "definition": "Le message brouillé produit par le chiffrement."
+    },
+    "cryptogram": {
+      "name": "Cryptogramme",
+      "definition": "Un message écrit en chiffre ; sur ce site, il désigne aussi le champ de saisie."
+    },
+    "key": {
+      "name": "Clé",
+      "definition": "Le secret qui détermine la façon dont le texte est brouillé."
+    },
+    "alphabet": {
+      "name": "Alphabet",
+      "definition": "L'ensemble des lettres avec lesquelles le chiffre travaille."
+    },
+    "key-length": {
+      "name": "Longueur de clé",
+      "definition": "Le nombre de lettres de la clé avant qu'elle ne se répète."
+    },
+    "shift": {
+      "name": "Décalage",
+      "definition": "De combien de positions une lettre avance dans l'alphabet."
+    },
+    "substitution": {
+      "name": "Substitution",
+      "definition": "Remplacer chaque lettre par une autre."
+    },
+    "polyalphabetic": {
+      "name": "Polyalphabétique",
+      "definition": "Un chiffre qui utilise plusieurs alphabets à tour de rôle au lieu d'un seul."
+    },
+    "slice": {
+      "name": "Tranche",
+      "definition": "Une lettre sur N du texte (N = longueur de clé). Toutes les lettres d'une tranche sont décalées par la même lettre de clé."
+    },
+    "frequency-analysis": {
+      "name": "Analyse fréquentielle",
+      "definition": "Étudier la fréquence des lettres ; la comparaison avec la langue révèle le texte clair."
+    },
+    "index-of-coincidence": {
+      "name": "Indice de coïncidence",
+      "definition": "Un nombre (environ 0,067 pour l'anglais) qui mesure la probabilité que deux lettres au hasard soient égales."
+    },
+    "kasiski-examination": {
+      "name": "Examen de Kasiski",
+      "definition": "Trouver la longueur de clé à partir des distances entre séquences répétées du texte chiffré."
+    },
+    "crib": {
+      "name": "Mot probable",
+      "definition": "Un mot que vous supposez présent dans le texte clair ; sa comparaison avec le texte chiffré révèle des lettres de clé."
+    }
   }
 }
