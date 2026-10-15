@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import Section from '@atoms/Section/Section';
 import { EncryptionInputs, EncryptionSettings, EncryptionDescription } from '@organisms';
+import CipherTabs from '@molecues/CipherTabs';
+import { useRouter } from 'next/router';
 
 const EncryptorSection = styled(Section)`
   flex: 1 0 auto;
@@ -34,10 +36,12 @@ const EncryptorWrapper = styled.div`
 const Encryptor: React.FC = () => {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
+  const { algorithm } = useRouter().query;
 
   return (
     <>
       <EncryptorSection stitch="both" color="encryptor">
+        <CipherTabs algorithm={algorithm as string} activeTab="tool" />
         <EncryptorWrapper>
           <EncryptionSettings
             input={input}
