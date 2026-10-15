@@ -234,7 +234,9 @@
     },
     "glossary": {
       "title": "Glossary",
-      "furtherReading": "Further reading",
+      "furtherReading": "Further reading"
+    },
+    "furtherReading": {
       "wikipedia": "Wikipedia: the cipher"
     }
   },

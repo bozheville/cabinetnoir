@@ -223,7 +223,9 @@
     },
     "glossary": {
       "title": "Глосарій",
-      "furtherReading": "Додаткові матеріали",
+      "furtherReading": "Додаткові матеріали"
+    },
+    "furtherReading": {
       "wikipedia": "Вікіпедія: шифр"
     }
   },
