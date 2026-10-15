@@ -165,6 +165,9 @@
           "kasiski-only": "{{count}} repeat gaps divisible by this length",
           "ic-only": "slices look like English (IC {{ic}})",
           "weak": "no strong evidence for this length"
+        },
+        "tooltips": {
+          "key": "The secret key. Every letter of the message is shifted by the matching key letter; the key repeats over the whole message."
         }
       }
     },
