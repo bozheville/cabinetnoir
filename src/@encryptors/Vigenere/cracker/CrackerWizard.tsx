@@ -1,8 +1,8 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { Button, Heading, Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
-import strings from '../strings';
 import useCracker from './useCracker';
 import StepKeyLength from './StepKeyLength';
 import StepKeyLetters from './StepKeyLetters';
@@ -60,11 +60,13 @@ const CrackerWizard: React.FC<{
     assembledKey,
   } = cracker;
   const { input: crackerInput } = cracker;
+  const { t } = useTranslation('common');
+
 
   const stepNames = [
-    strings.wizard.steps.keyLength,
-    strings.wizard.steps.keyLetters,
-    strings.wizard.steps.done,
+    t('processing.vigenere.cracker.wizard.steps.keyLength'),
+    t('processing.vigenere.cracker.wizard.steps.keyLetters'),
+    t('processing.vigenere.cracker.wizard.steps.done'),
   ];
 
   const allLettersSet = keyLength !== null
@@ -85,7 +87,7 @@ const CrackerWizard: React.FC<{
 
       {hasInputChanged && (
         <Text size={300} display="block" marginTop="8px">
-          {strings.wizard.inputChanged}
+          {t('processing.vigenere.cracker.wizard.inputChanged')}
         </Text>
       )}
 
@@ -109,7 +111,7 @@ const CrackerWizard: React.FC<{
           disabled={step === 1}
           onClick={() => setStep(step - 1)}
         >
-          {strings.wizard.back}
+          {t('processing.vigenere.cracker.wizard.back')}
         </Button>
         {step < 3 ? (
           <Button
@@ -118,7 +120,7 @@ const CrackerWizard: React.FC<{
             disabled={!canGoNext}
             onClick={() => setStep(step + 1)}
           >
-            {strings.wizard.next}
+            {t('processing.vigenere.cracker.wizard.next')}
           </Button>
         ) : (
           <Button
@@ -126,13 +128,13 @@ const CrackerWizard: React.FC<{
             appearance="primary"
             onClick={() => onUseKey(assembledKey)}
           >
-            {strings.wizard.useKey}
+            {t('processing.vigenere.cracker.wizard.useKey')}
           </Button>
         )}
       </Pane>
 
       <Pane display="flex" justifyContent="center" marginTop="8px">
-        <Button onClick={onSkip}>{strings.wizard.skip}</Button>
+        <Button onClick={onSkip}>{t('processing.vigenere.cracker.wizard.skip')}</Button>
       </Pane>
 
       {hintConfig.hints.livePreview && (

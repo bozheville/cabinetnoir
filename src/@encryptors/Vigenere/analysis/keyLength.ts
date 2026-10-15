@@ -1,13 +1,16 @@
 import { Repeat, gapDivisorCounts } from './kasiski';
 
-export type KeyLengthLabel = 'very likely' | 'possible' | 'unlikely';
+export type KeyLengthLabel = 'veryLikely' | 'possible' | 'unlikely';
+
+export type ReasonKind = 'kasiski-and-ic' | 'kasiski-only' | 'ic-only' | 'weak';
 
 export interface KeyLengthCandidate {
   length: number;
   // 0-100, combined from Index of Coincidence and Kasiski gap evidence.
   confidence: number;
+  // Structured label; the sentence is built in the UI from i18n.
   label: KeyLengthLabel;
-  reason: string;
+  reasonKind: ReasonKind;
   averageIC: number;
   divisorCount: number;
 }
@@ -29,15 +32,6 @@ const MULTIPLE_PENALTY = 15;
 
 const VERY_LIKELY = 60;
 const POSSIBLE = 35;
-
-// TODO(localization): reason templates move to strings.ts when the cracker
-// texts move to public/locales.
-const reasonTemplates = {
-  icOnly: (ic: number) => `slices look ${ic >= IC_ENGLISH - 0.005 ? 'very much like' : 'somewhat like'} English (IC ${ic.toFixed(3)})`,
-  kasiskiOnly: (count: number) => `${count} repeat gap${count === 1 ? '' : 's'} divisible by this length`,
-  both: (ic: number, count: number) => `${count} repeat gap${count === 1 ? '' : 's'} divisible by this length, slices look like English (IC ${ic.toFixed(3)})`,
-  weak: 'no strong evidence for this length',
-};
 
 export const indexOfCoincidence = (letters: string): number => {
   const total = letters.length;
@@ -76,14 +70,17 @@ const averageSliceIC = (letters: string, length: number): number => {
   return counted === 0 ? 0 : sum / counted;
 };
 
-const buildReason = (averageIC: number, divisorCount: number): string => {
+const buildReasonKind = (averageIC: number, divisorCount: number): ReasonKind => {
+  if (divisorCount === 0 && averageIC < (IC_RANDOM + IC_ENGLISH) / 2) {
+    return 'weak';
+  }
   if (divisorCount === 0) {
-    return reasonTemplates.icOnly(averageIC);
+    return 'ic-only';
   }
   if (averageIC < (IC_RANDOM + IC_ENGLISH) / 2) {
-    return reasonTemplates.kasiskiOnly(divisorCount);
+    return 'kasiski-only';
   }
-  return reasonTemplates.both(averageIC, divisorCount);
+  return 'kasiski-and-ic';
 };
 
 export const rankKeyLengths = (
@@ -117,8 +114,8 @@ export const rankKeyLengths = (
     candidates.push({
       length,
       confidence,
-      label: confidence >= VERY_LIKELY ? 'very likely' : confidence >= POSSIBLE ? 'possible' : 'unlikely',
-      reason: buildReason(averageIC, divisorCount),
+      label: confidence >= VERY_LIKELY ? 'veryLikely' : confidence >= POSSIBLE ? 'possible' : 'unlikely',
+      reasonKind: buildReasonKind(averageIC, divisorCount),
       averageIC,
       divisorCount,
     });

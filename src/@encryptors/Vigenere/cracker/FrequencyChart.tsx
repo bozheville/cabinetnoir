@@ -1,9 +1,9 @@
+import { useTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
 import { Button, Heading, Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import { ALPHABET_LENGTH, ENGLISH_FREQUENCIES, countLetters, englishFrequencyAt, findBestShift, scoreShift } from '../analysis/frequency';
-import strings from '../strings';
 import { HintSettings } from './hintSettings';
 
 const ChartArea = styled(Pane)`
@@ -80,6 +80,8 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
   // The chart shift IS the key letter: rotating rewrites the key live.
   // Start from the letter currently set for this slice, if any.
   const [shift, setShift] = useState(letter ? Math.max(0, alphabet.indexOf(letter)) : 0);
+  const { t } = useTranslation('common');
+
 
   // New slice: start from its current key letter, if any.
   useEffect(() => {
@@ -118,7 +120,7 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
     >
       {shortSlice && (
         <Text size={300} display="block" marginBottom="4px">
-          {strings.wizard.warnings.shortSlice}
+          {t('processing.vigenere.cracker.wizard.warnings.shortSlice')}
         </Text>
       )}
       <Pane display="flex" alignItems="center" gap="8px">
@@ -126,7 +128,7 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
           {'<'}
         </Button>
         <Heading size={400}>
-          {`${strings.wizard.keyLetters.keyLetter}: ${alphabet[shift]}`}
+          {`${t('processing.vigenere.cracker.wizard.keyLetters.keyLetter')}: ${alphabet[shift]}`}
         </Heading>
         <Button aria-label="Rotate right" onClick={() => rotate(1)}>
           {'>'}

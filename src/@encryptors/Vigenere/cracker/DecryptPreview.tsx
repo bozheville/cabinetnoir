@@ -1,8 +1,8 @@
+import { useTranslation } from 'next-i18next';
 import React, { useMemo } from 'react';
 import { Heading, Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
-import strings from '../strings';
 import { LockedLetter, useCracker } from './useCracker';
 import { decryptPartial } from './decryptPartial';
 import { HIGHLIGHT_COLORS } from './CipherText';
@@ -33,6 +33,8 @@ const ColumnCell = styled.span<{ $color?: string; $active?: boolean }>`
 // whole column.
 const DecryptPreview: React.FC<{ cracker: ReturnType<typeof useCracker> }> = ({ cracker }) => {
   const { input, analysis, keyLength, lockedLetters, alphabet, activeSlice } = cracker;
+  const { t } = useTranslation('common');
+
 
   const rows = useMemo(() => {
     if (!analysis || keyLength === null) {
@@ -62,7 +64,7 @@ const DecryptPreview: React.FC<{ cracker: ReturnType<typeof useCracker> }> = ({ 
 
   return (
     <Pane width="100%">
-      <Heading size={300}>{strings.wizard.previewTitle}</Heading>
+      <Heading size={300}>{t('processing.vigenere.cracker.wizard.previewTitle')}</Heading>
       <PreviewBox>
         {rows.map((row, rowIndex) => (
           <div key={rowIndex}>

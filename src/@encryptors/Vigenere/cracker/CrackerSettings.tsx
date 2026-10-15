@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { Checkbox, Heading, Pane } from 'evergreen-ui';
 import styled from 'styled-components';
@@ -10,7 +11,6 @@ import {
   applyPreset,
   toggleHint,
 } from './hintSettings';
-import strings from '../strings';
 
 interface CrackerSettingsProps {
   config: HintConfig;
@@ -41,9 +41,12 @@ const PresetOption = styled.button<{ $active: boolean }>`
   }
 `;
 
-const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange }) => (
+const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange }) => {
+  const { t } = useTranslation('common');
+
+  return (
   <Pane width="100%">
-    <Heading size={100} marginBottom="8px">{strings.hints.title}</Heading>
+    <Heading size={100} marginBottom="8px">{t('processing.vigenere.cracker.hints.title')}</Heading>
     <PresetPicker>
       {PRESET_KEYS.map((preset) => (
         <PresetOption
@@ -51,7 +54,7 @@ const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange }) =
           $active={config.preset === preset}
           onClick={() => onChange(applyPreset(config, preset))}
         >
-          {strings.hints.presets[preset]}
+          {t('processing.vigenere.cracker.hints.presets')[preset]}
         </PresetOption>
       ))}
     </PresetPicker>
@@ -65,14 +68,15 @@ const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange }) =
         <Checkbox
           key={key}
           marginY="4px"
-          label={strings.hints.toggles[key]}
+          label={t('processing.vigenere.cracker.hints.toggles')[key]}
           checked={config.hints[key]}
           onChange={(event) => onChange(toggleHint(config, key, event.target.checked))}
         />
       ))}
     </Pane>
   </Pane>
-);
+  );
+};
 
 CrackerSettings.displayName = 'CrackerSettings';
 
