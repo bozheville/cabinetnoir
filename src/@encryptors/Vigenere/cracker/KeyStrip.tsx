@@ -52,7 +52,7 @@ const KeyStrip: React.FC<KeyStripProps> = ({
 }) => {
   const { t } = useTranslation('common');
   return (
-  <Strip>
+  <Strip data-guide="key-strip">
     {Array.from({ length: keyLength }).map((_, slice) => {
       const locked = lockedLetters[slice];
       const color = HIGHLIGHT_COLORS[slice % HIGHLIGHT_COLORS.length];

@@ -123,7 +123,7 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
           {t('processing.vigenere.cracker.wizard.warnings.shortSlice')}
         </Text>
       )}
-      <Pane display="flex" alignItems="center" gap="8px">
+      <Pane display="flex" alignItems="center" gap="8px" data-guide="chart-arrows">
         <Button aria-label="Rotate left" onClick={() => rotate(-1)}>
           {'<'}
         </Button>

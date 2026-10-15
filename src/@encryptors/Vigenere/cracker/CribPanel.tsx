@@ -66,7 +66,7 @@ const CribPanel: React.FC<CribPanelProps> = ({ cracker, alphabet }) => {
   return (
     <Pane width="100%" marginTop="12px" padding="12px" border="muted" borderRadius="4px">
       <Heading size={300}>{t('processing.vigenere.cracker.wizard.cribs.title')}</Heading>
-      <Pane display="flex" alignItems="center" gap="8px" marginTop="8px">
+      <Pane display="flex" alignItems="center" gap="8px" marginTop="8px" data-guide="crib-input">
         <Text size={300}>{t('processing.vigenere.cracker.wizard.cribs.inputLabel')}</Text>
         <TextInput
           width="160px"

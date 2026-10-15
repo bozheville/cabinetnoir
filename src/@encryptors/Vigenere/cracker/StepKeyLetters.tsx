@@ -70,7 +70,7 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
     <Pane width="100%">
       <CipherText input={cracker.input} normalized={analysis.normalized} colorFor={colorFor} />
 
-      <SliceTabs>
+      <SliceTabs data-guide="slice-tabs">
         {Array.from({ length: keyLength }).map((_, slice) => {
           const locked: LockedLetter | undefined = lockedLetters[slice];
           return (

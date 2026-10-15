@@ -80,7 +80,7 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
 
     return (
       <>
-        <CardsGrid>
+        <CardsGrid data-guide="key-length-cards">
           {[...byLength.entries()].map(([length, gaps]) => (
             <Card key={length} $selected={selected === length} onClick={() => onSelect(length)}>
               <Heading size={400}>{length}</Heading>
@@ -95,7 +95,7 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
 
   return (
     <>
-      <CardsGrid>
+      <CardsGrid data-guide="key-length-cards">
         {cards.map((candidate) => (
           <Card
             key={candidate.length}
