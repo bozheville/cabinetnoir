@@ -8,13 +8,18 @@ import { Footer, Header, LanguageSelector } from '@molecues';
 import { Encryptor, LearningMaterial } from '@templates';
 import { encodingsList, encryptorsList } from '@encryptors';
 import { LEARNING_TABS, hasTab } from '@learning/config';
+import { MARKDOWN_TOPICS } from '@learning/content';
 
 // The second URL segment is shared by the encryption modes (direct /
 // reverse) and the learning tabs (learn / history / practice).
 const isLearningTab = (action: string | string[] | undefined): boolean =>
   typeof action === 'string' && (LEARNING_TABS as string[]).includes(action);
 
-const Home: React.FC = () => {
+interface HomeProps {
+  learningContent?: Record<string, string>;
+}
+
+const Home: React.FC<HomeProps> = ({ learningContent = {} }) => {
   const { t } = useTranslation('common');
   const router = useRouter();
 
@@ -43,7 +48,7 @@ const Home: React.FC = () => {
       >
         <LanguageSelector />
       </Header>
-      {learningTab ? <LearningMaterial /> : <Encryptor />}
+      {learningTab ? <LearningMaterial learningContent={learningContent} /> : <Encryptor />}
       <Footer />
     </>
   );
@@ -64,10 +69,24 @@ export const getStaticPaths = async ({ locales }) => ({
   fallback: false,
 });
 
-export const getStaticProps = async ({ locale }) => ({
-  props: {
-    ...await serverSideTranslations(locale, ['common']),
-  },
-});
+export const getStaticProps = async ({ locale, params }) => {
+  const { algorithm, action } = params;
+
+  let learningContent: Record<string, string> = {};
+  const topics = (MARKDOWN_TOPICS as Record<string, string[]>)[action as string];
+  if (Array.isArray(topics) && typeof algorithm === 'string') {
+    // Node-only loader: import inside getStaticProps so `fs` never reaches
+    // the client bundle.
+    const { loadTopicsForTab } = await import('@learning/loadContent');
+    learningContent = loadTopicsForTab(algorithm, locale, topics);
+  }
+
+  return {
+    props: {
+      learningContent,
+      ...await serverSideTranslations(locale, ['common']),
+    },
+  };
+};
 
 export default Home;
