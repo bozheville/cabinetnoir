@@ -1,8 +1,8 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
 
-import strings from '../strings';
 import { HIGHLIGHT_COLORS } from './CipherText';
 import { LockedLetter } from './useCracker';
 
@@ -49,7 +49,9 @@ const KeyStrip: React.FC<KeyStripProps> = ({
   onJump,
   onOverride,
   onClear,
-}) => (
+}) => {
+  const { t } = useTranslation('common');
+  return (
   <Strip>
     {Array.from({ length: keyLength }).map((_, slice) => {
       const locked = lockedLetters[slice];
@@ -77,15 +79,16 @@ const KeyStrip: React.FC<KeyStripProps> = ({
           />
           <Text size={300}>
             {locked?.source === 'manual'
-              ? strings.wizard.keyLetters.manualTag
+              ? t('processing.vigenere.cracker.wizard.keyLetters.manualTag')
               : locked?.source === 'crib'
-                ? strings.wizard.keyLetters.suggestedTag
+                ? t('processing.vigenere.cracker.wizard.keyLetters.suggestedTag')
                 : `${slice + 1}`}
           </Text>
         </Cell>
       );
     })}
   </Strip>
-);
+  );
+};
 
 export default KeyStrip;

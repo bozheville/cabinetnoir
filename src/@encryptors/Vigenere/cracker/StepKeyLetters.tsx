@@ -1,8 +1,8 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
-import strings from '../strings';
 import CipherText, { HIGHLIGHT_COLORS } from './CipherText';
 import FrequencyChart from './FrequencyChart';
 import CribPanel from './CribPanel';
@@ -41,6 +41,8 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
     hintConfig,
     alphabet,
   } = cracker;
+  const { t } = useTranslation('common');
+
 
   if (!analysis || keyLength === null) {
     return null;
@@ -79,8 +81,8 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
               onClick={() => setActiveSlice(slice)}
             >
               <Text size={300}>
-                {`${strings.wizard.keyLetters.sliceLabel(slice, keyLength)}`}
-                {locked ? ` (${strings.wizard.keyLetters.lockedPrefix} ${locked.letter})` : ''}
+                {`${t('processing.vigenere.cracker.wizard.keyLetters.sliceLabel', { index: slice + 1, total: keyLength })}`}
+                {locked ? ` (${t('processing.vigenere.cracker.wizard.keyLetters.lockedPrefix')} ${locked.letter})` : ''}
               </Text>
             </SliceTab>
           );
@@ -97,7 +99,7 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
 
       {allLettersSet && (
         <Text size={300} display="block" marginTop="8px">
-          {strings.wizard.keyLetters.allLocked}
+          {t('processing.vigenere.cracker.wizard.keyLetters.allLocked')}
         </Text>
       )}
 

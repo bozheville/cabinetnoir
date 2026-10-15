@@ -1,9 +1,9 @@
+import { useTranslation } from 'next-i18next';
 import React, { useMemo, useState } from 'react';
 import { Button, Heading, Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import { findCribMatches } from '../analysis/cribs';
-import strings from '../strings';
 import { useCracker } from './useCracker';
 
 const MAX_SHOWN_MATCHES = 8;
@@ -29,6 +29,8 @@ interface CribPanelProps {
 const CribPanel: React.FC<CribPanelProps> = ({ cracker, alphabet }) => {
   const { analysis, keyLength, lockedLetters, setSliceLetter } = cracker;
   const [crib, setCrib] = useState('');
+  const { t } = useTranslation('common');
+
 
   const lockedSliceLetters = useMemo(
     () => Object.fromEntries(
@@ -63,20 +65,20 @@ const CribPanel: React.FC<CribPanelProps> = ({ cracker, alphabet }) => {
 
   return (
     <Pane width="100%" marginTop="12px" padding="12px" border="muted" borderRadius="4px">
-      <Heading size={300}>{strings.wizard.cribs.title}</Heading>
+      <Heading size={300}>{t('processing.vigenere.cracker.wizard.cribs.title')}</Heading>
       <Pane display="flex" alignItems="center" gap="8px" marginTop="8px">
-        <Text size={300}>{strings.wizard.cribs.inputLabel}</Text>
+        <Text size={300}>{t('processing.vigenere.cracker.wizard.cribs.inputLabel')}</Text>
         <TextInput
           width="160px"
           value={crib}
-          placeholder={strings.wizard.cribs.inputPlaceholder}
+          placeholder={t('processing.vigenere.cracker.wizard.cribs.inputPlaceholder')}
           onChange={(event) => setCrib(event.target.value)}
         />
       </Pane>
 
       {crib.trim() && matches.length === 0 && (
         <Text size={300} display="block" marginTop="8px">
-          {strings.wizard.cribs.noMatches}
+          {t('processing.vigenere.cracker.wizard.cribs.noMatches')}
         </Text>
       )}
 
@@ -85,12 +87,12 @@ const CribPanel: React.FC<CribPanelProps> = ({ cracker, alphabet }) => {
           <Text size={300} fontFamily="monospace">{`at ${match.position}: ${match.fragment}`}</Text>
           {match.conflicts.length > 0 && (
             <ConflictText>
-              {`${match.conflicts.length} ${strings.wizard.cribs.conflictsNote}`}
+              {`${match.conflicts.length} ${t('processing.vigenere.cracker.wizard.cribs.conflictsNote')}`}
             </ConflictText>
           )}
           {match.isStrong && <Text size={300}>strong</Text>}
           <Button onClick={() => apply(match)}>
-            {strings.wizard.cribs.apply}
+            {t('processing.vigenere.cracker.wizard.cribs.apply')}
           </Button>
         </MatchRow>
       ))}

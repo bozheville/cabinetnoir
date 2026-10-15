@@ -1,9 +1,9 @@
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import { Repeat } from '../analysis/kasiski';
-import strings from '../strings';
 import CipherText, { HIGHLIGHT_COLORS } from './CipherText';
 import KeyLengthCards from './KeyLengthCards';
 import { CrackerAnalysis } from './useCracker';
@@ -45,6 +45,8 @@ const StepKeyLength: React.FC<StepKeyLengthRepeatsProps> = ({
   onSelectKeyLength,
 }) => {
   const [hoveredRepeat, setHoveredRepeat] = useState<number | null>(null);
+  const { t } = useTranslation('common');
+
 
   const shownRepeats: Repeat[] = analysis
     ? [...analysis.repeats]
@@ -88,19 +90,19 @@ const StepKeyLength: React.FC<StepKeyLengthRepeatsProps> = ({
                   >
                     <strong>{repeat.sequence}</strong>
                     {` at ${repeat.positions.join(', ')}`}
-                    {hints.showGaps ? `, ${strings.wizard.repeats.gapsLabel}: ${repeat.gaps.join(', ')}` : ''}
+                    {hints.showGaps ? `, ${t('processing.vigenere.cracker.wizard.repeats.gapsLabel')}: ${repeat.gaps.join(', ')}` : ''}
                   </RepeatRow>
                 );
               })}
             </RepeatsList>
           ) : (
             <Text size={300} display="block" marginTop="8px">
-              {strings.wizard.repeats.none}
+              {t('processing.vigenere.cracker.wizard.repeats.none')}
             </Text>
           )}
         </>
       ) : (
-        <Text size={300}>{strings.wizard.repeats.emptyInput}</Text>
+        <Text size={300}>{t('processing.vigenere.cracker.wizard.repeats.emptyInput')}</Text>
       )}
 
       {/* Key length cards come in task 19. */}

@@ -65,7 +65,88 @@
       "short_title": "Vigenère",
       "directAction": "Crypter",
       "reverseAction": "Décrypter",
-      "messageLabel": "Cryptogramme"
+      "messageLabel": "Cryptogramme",
+      "cracker": {
+        "keyLabel": "Clé",
+        "alphabetLabel": "Alphabet",
+        "unknownKey": "Clé inconnue",
+        "hints": {
+          "title": "Aides",
+          "presets": {
+            "easy": "Facile",
+            "medium": "Moyen",
+            "hard": "Difficile",
+            "custom": "Personnalisé"
+          },
+          "toggles": {
+            "highlightRepeats": "Surligner les séquences répétées",
+            "showGaps": "Afficher les écarts entre répétitions",
+            "confidenceBars": "Barres de confiance de la longueur de clé",
+            "englishReference": "Référence anglaise sur le graphique",
+            "matchScore": "Score de correspondance %",
+            "mostLikelyGlow": "Surbrillance du meilleur choix",
+            "livePreview": "Aperçu de déchiffrement en direct",
+            "cribs": "Mots probables"
+          }
+        },
+        "wizard": {
+          "steps": {
+            "keyLength": "Longueur de la clé",
+            "keyLetters": "Lettres de la clé",
+            "done": "Terminé"
+          },
+          "back": "Retour",
+          "next": "Suivant",
+          "skip": "Passer, saisir la clé manuellement",
+          "useKey": "Utiliser cette clé",
+          "inputChanged": "Le texte ou l'alphabet a changé, l'analyse a repris du début.",
+          "previewTitle": "Aperçu de déchiffrement en direct",
+          "warnings": {
+            "shortText": "Le texte est court — les aides peuvent être erronées. Les mots probables peuvent aider.",
+            "shortSlice": "Cette tranche contient peu de lettres, ses aides peuvent être erronées."
+          },
+          "repeats": {
+            "title": "Séquences répétées",
+            "gapsLabel": "écarts",
+            "none": "Aucune séquence répétée trouvée. Utilisez plutôt les cartes de longueur de clé ci-dessous.",
+            "emptyInput": "Collez d'abord un texte chiffré."
+          },
+          "keyLength": {
+            "otherLabel": "Autre longueur",
+            "otherPlaceholder": "1-20",
+            "selected": "Sélectionné"
+          },
+          "keyLetters": {
+            "sliceLabel": "Tranche {{index}} sur {{total}}",
+            "lockedPrefix": "choisie :",
+            "keyLetter": "Lettre de clé",
+            "allLocked": "Toutes les lettres sont choisies. Passez à l'étape 3.",
+            "manualTag": "manuelle",
+            "yourKey": "Votre clé",
+            "keyHint": "Tapez une lettre pour remplacer, effacez-la pour débloquer.",
+            "suggestedTag": "suggérée"
+          },
+          "cribs": {
+            "title": "Mots probables",
+            "inputLabel": "Mot que vous croyez présent dans le message",
+            "inputPlaceholder": "ex. ATTAQUE",
+            "apply": "Appliquer",
+            "noMatches": "Le mot ne correspond nulle part avec cette longueur de clé.",
+            "conflictsNote": "conflits avec des lettres déjà choisies"
+          }
+        },
+        "keyLengthLabels": {
+          "veryLikely": "très probable",
+          "possible": "possible",
+          "unlikely": "peu probable"
+        },
+        "reason": {
+          "kasiski-and-ic": "{{count}} écarts de répétition divisibles par cette longueur, tranches semblables à l'anglais (IC {{ic}})",
+          "kasiski-only": "{{count}} écarts de répétition divisibles par cette longueur",
+          "ic-only": "tranches semblables à l'anglais (IC {{ic}})",
+          "weak": "aucun indice solide pour cette longueur"
+        }
+      }
     },
     "playfair": {
       "title": "Chiffre de Playfair",

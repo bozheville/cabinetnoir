@@ -1,9 +1,9 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { Heading, Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import { MAX_KEY_LENGTH } from '../analysis/keyLength';
-import strings from '../strings';
 import { CrackerAnalysis } from './useCracker';
 import { HintSettings } from './hintSettings';
 
@@ -51,6 +51,7 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
   selected,
   onSelect,
 }) => {
+  const { t } = useTranslation('common');
   if (!analysis) {
     return null;
   }
@@ -83,7 +84,7 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
           {[...byLength.entries()].map(([length, gaps]) => (
             <Card key={length} $selected={selected === length} onClick={() => onSelect(length)}>
               <Heading size={400}>{length}</Heading>
-              <Text size={300} display="block">{`${strings.wizard.repeats.gapsLabel}: ${gaps.join(', ')}`}</Text>
+              <Text size={300} display="block">{`${t('processing.vigenere.cracker.wizard.repeats.gapsLabel')}: ${gaps.join(', ')}`}</Text>
             </Card>
           ))}
         </CardsGrid>
@@ -102,8 +103,15 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
             onClick={() => onSelect(candidate.length)}
           >
             <Heading size={400}>{candidate.length}</Heading>
-            <Text size={300} display="block">{candidate.label}</Text>
-            <Text size={300} display="block">{candidate.reason}</Text>
+            <Text size={300} display="block">
+              {t(`processing.vigenere.cracker.keyLengthLabels.${candidate.label}`)}
+            </Text>
+            <Text size={300} display="block">
+              {t(`processing.vigenere.cracker.reason.${candidate.reasonKind}`, {
+                count: candidate.divisorCount,
+                ic: candidate.averageIC.toFixed(3),
+              })}
+            </Text>
             <ConfidenceBar>
               <ConfidenceFill style={{ width: `${candidate.confidence}%` }} />
             </ConfidenceBar>
@@ -118,16 +126,18 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
 const OtherLengthInput: React.FC<{ selected: number | null; onSelect: (length: number) => void }> = ({
   selected,
   onSelect,
-}) => (
+}) => {
+  const { t } = useTranslation('common');
+  return (
   <Pane marginTop="12px" display="flex" alignItems="center" gap="8px">
-    <Text size={300}>{strings.wizard.keyLength.otherLabel}</Text>
+    <Text size={300}>{t('processing.vigenere.cracker.wizard.keyLength.otherLabel')}</Text>
     <TextInput
       width="80px"
       type="number"
       min={1}
       max={MAX_KEY_LENGTH}
       value={selected ?? ''}
-      placeholder={strings.wizard.keyLength.otherPlaceholder}
+      placeholder={t('processing.vigenere.cracker.wizard.keyLength.otherPlaceholder')}
       onChange={(event) => {
         const value = parseInt((event.target as HTMLInputElement).value, 10);
         if (!Number.isNaN(value) && value >= 1 && value <= MAX_KEY_LENGTH) {
@@ -136,6 +146,7 @@ const OtherLengthInput: React.FC<{ selected: number | null; onSelect: (length: n
       }}
     />
   </Pane>
-);
+  );
+};
 
 export default KeyLengthCards;

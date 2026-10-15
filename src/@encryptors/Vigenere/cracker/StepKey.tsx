@@ -1,7 +1,7 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { Heading, Pane, Text } from 'evergreen-ui';
 
-import strings from '../strings';
 import KeyStrip from './KeyStrip';
 import { useCracker } from './useCracker';
 
@@ -17,6 +17,8 @@ const StepKey: React.FC<StepKeyProps> = ({ cracker }) => {
     setStep,
     setSliceLetter,
   } = cracker;
+  const { t } = useTranslation('common');
+
 
   if (keyLength === null) {
     return null;
@@ -24,9 +26,9 @@ const StepKey: React.FC<StepKeyProps> = ({ cracker }) => {
 
   return (
     <Pane width="100%">
-      <Heading size={300} marginTop="8px">{strings.wizard.keyLetters.yourKey}</Heading>
+      <Heading size={300} marginTop="8px">{t('processing.vigenere.cracker.wizard.keyLetters.yourKey')}</Heading>
       <Text size={300} display="block" marginTop="4px">
-        {strings.wizard.keyLetters.keyHint}
+        {t('processing.vigenere.cracker.wizard.keyLetters.keyHint')}
       </Text>
       <KeyStrip
         keyLength={keyLength}

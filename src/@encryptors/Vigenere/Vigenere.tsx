@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
 import {Checkbox, Heading, Pane, TextInput } from 'evergreen-ui';
 import { useRouter } from 'next/router';
@@ -7,7 +8,6 @@ import CrackerSettings from './cracker/CrackerSettings';
 import CrackerWizard from './cracker/CrackerWizard';
 import useCracker from './cracker/useCracker';
 import { DEFAULT_HINT_CONFIG, HintConfig } from './cracker/hintSettings';
-import strings from './strings';
 
 const Vigenere: React.FC<CrypterProps> = ({
   input,
@@ -21,6 +21,8 @@ const Vigenere: React.FC<CrypterProps> = ({
   const [ hintConfig, setHintConfig ] = useState<HintConfig>(DEFAULT_HINT_CONFIG);
   const cracker = useCracker({ input, enabled: isUnknownKey, hintConfig, alphabet: customAlphabet });
   const router = useRouter();
+  const { t } = useTranslation('common');
+
   // The cracker handles any reshuffling of the 26 English letters, but not
   // foreign letters (its frequency tables are English).
   const canCrack = isUnknownKey && isEnglishAlphabet(customAlphabet);
@@ -82,13 +84,13 @@ const Vigenere: React.FC<CrypterProps> = ({
         paddingBottom="16px"
         {...paneProps}
       >
-        <Heading size={100}>{strings.keyLabel}</Heading>
+        <Heading size={100}>{t('processing.vigenere.cracker.keyLabel')}</Heading>
         <TextInput
           width="150px"
           value={secretKey}
           onChange={(event) => setSecretKey(event.target.value)}
         />
-        <Heading size={100} marginLeft="12px">{strings.alphabetLabel}</Heading>
+        <Heading size={100} marginLeft="12px">{t('processing.vigenere.cracker.alphabetLabel')}</Heading>
         <TextInput
           width="280px"
           fontFamily="monospace"
@@ -98,7 +100,7 @@ const Vigenere: React.FC<CrypterProps> = ({
         {isEnglishAlphabet(customAlphabet) && (
           <Checkbox
             marginLeft="6px"
-            label={strings.unknownKey}
+            label={t('processing.vigenere.cracker.unknownKey')}
             checked={isUnknownKey}
             onChange={(event) => setIsUnknownKey(event.target.checked)}
           />

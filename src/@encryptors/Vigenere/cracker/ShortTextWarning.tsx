@@ -1,8 +1,8 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
-import strings from '../strings';
 
 const MIN_RELIABLE_LETTERS = 100;
 
@@ -14,13 +14,14 @@ const Banner = styled(Pane)`
 `;
 
 const ShortTextWarning: React.FC<{ letters: string }> = ({ letters }) => {
+  const { t } = useTranslation('common');
   if (letters.length === 0 || letters.length >= MIN_RELIABLE_LETTERS) {
     return null;
   }
 
   return (
     <Banner>
-      <Text size={300}>{strings.wizard.warnings.shortText}</Text>
+      <Text size={300}>{t('processing.vigenere.cracker.wizard.warnings.shortText')}</Text>
     </Banner>
   );
 };
