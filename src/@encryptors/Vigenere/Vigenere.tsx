@@ -1,8 +1,9 @@
-import { useTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'next-i18next';
 import {Checkbox, Heading, Pane, TextInput } from 'evergreen-ui';
 import { useRouter } from 'next/router';
 import { CrypterProps } from '../types';
+import Tooltip from '@atoms/Tooltip';
 import { vigenereEncrypt, vigenereDecrypt, DEFAULT_ALPHABET, isEnglishAlphabet } from './vigenere-encryption';
 import CrackerSettings from './cracker/CrackerSettings';
 import CrackerWizard from './cracker/CrackerWizard';
@@ -85,11 +86,13 @@ const Vigenere: React.FC<CrypterProps> = ({
         {...paneProps}
       >
         <Heading size={100}>{t('processing.vigenere.cracker.keyLabel')}</Heading>
-        <TextInput
-          width="150px"
-          value={secretKey}
-          onChange={(event) => setSecretKey(event.target.value)}
-        />
+        <Tooltip content={t('processing.vigenere.cracker.tooltips.key')}>
+          <TextInput
+            width="150px"
+            value={secretKey}
+            onChange={(event) => setSecretKey(event.target.value)}
+          />
+        </Tooltip>
         <Heading size={100} marginLeft="12px">{t('processing.vigenere.cracker.alphabetLabel')}</Heading>
         <TextInput
           width="280px"

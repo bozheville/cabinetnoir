@@ -145,6 +145,9 @@
           "kasiski-only": "{{count}} écarts de répétition divisibles par cette longueur",
           "ic-only": "tranches semblables à l'anglais (IC {{ic}})",
           "weak": "aucun indice solide pour cette longueur"
+        },
+        "tooltips": {
+          "key": "La clé secrète. Chaque lettre du message est décalée selon la lettre de clé correspondante ; la clé se répète sur tout le message."
         }
       }
     },
