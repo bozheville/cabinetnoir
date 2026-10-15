@@ -166,7 +166,9 @@ const renderBlockTokens = (tokens: any[] = [], keyPrefix = 'b'): React.ReactNode
 
     switch (token.type) {
       case 'heading': {
-        const Tag = `h${Math.min(6, Math.max(1, token.depth))}` as keyof React.JSX.IntrinsicElements;
+        // One H1 per page (the tab title); markdown H1s render as H2.
+        const depth = token.depth === 1 ? 2 : Math.min(6, Math.max(1, token.depth));
+        const Tag = `h${depth}` as keyof React.JSX.IntrinsicElements;
         return <Tag key={key}>{renderInlineTokens(token.tokens, key)}</Tag>;
       }
       case 'paragraph':
