@@ -54,7 +54,7 @@ const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange }) =
           $active={config.preset === preset}
           onClick={() => onChange(applyPreset(config, preset))}
         >
-          {t('processing.vigenere.cracker.hints.presets')[preset]}
+          {t(`processing.vigenere.cracker.hints.presets.${preset}`)}
         </PresetOption>
       ))}
     </PresetPicker>
@@ -68,7 +68,7 @@ const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange }) =
         <Checkbox
           key={key}
           marginY="4px"
-          label={t('processing.vigenere.cracker.hints.toggles')[key]}
+          label={t(`processing.vigenere.cracker.hints.toggles.${key}`)}
           checked={config.hints[key]}
           onChange={(event) => onChange(toggleHint(config, key, event.target.checked))}
         />
