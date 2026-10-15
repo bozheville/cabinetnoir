@@ -88,7 +88,9 @@
     "tabs": {
       "learn": "Apprendre",
       "history": "Histoire",
-      "practice": "Pratique"
+      "practice": "Pratique",
+      "tool": "Outil",
+      "tabsLabel": "Sections de la page du chiffre"
     },
     "metaDescription": {
       "learn": "Découvrez le fonctionnement du chiffre, suivez des guides pas à pas et voyez comment le déchiffrer.",

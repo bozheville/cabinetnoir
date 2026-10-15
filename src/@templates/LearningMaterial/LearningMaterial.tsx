@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { Heading, Pane, Text } from 'evergreen-ui';
 
 import Section from '@atoms/Section/Section';
+import CipherTabs from '@molecues/CipherTabs';
 
 const LearningWrapper = styled(Section)`
   display: flex;
@@ -22,10 +23,12 @@ const LearningWrapper = styled(Section)`
 const LearningMaterial: React.FC = () => {
   const { t } = useTranslation('common');
   const { algorithm, action } = useRouter().query;
+  const tab = action as string;
 
   return (
     <LearningWrapper stitch="both" color="encryptor">
-      <Heading size={500}>{t(`learning.tabs.${action as string}`)}</Heading>
+      <CipherTabs algorithm={algorithm as string} activeTab={tab as any} />
+      <Heading size={500}>{t(`learning.tabs.${tab}`)}</Heading>
       <Text size={300}>{t(`processing.${algorithm as string}.title`)}</Text>
       <Pane>
         <Text size={300}>{t('learning.placeholder')}</Text>

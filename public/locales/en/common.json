@@ -108,7 +108,9 @@
     "tabs": {
       "learn": "Learn",
       "history": "History",
-      "practice": "Practice"
+      "practice": "Practice",
+      "tool": "Tool",
+      "tabsLabel": "Cipher page sections"
     },
     "metaDescription": {
       "learn": "Learn how the cipher works, follow step-by-step guides and see how it is broken.",
