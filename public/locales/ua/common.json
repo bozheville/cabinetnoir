@@ -227,6 +227,18 @@
     },
     "furtherReading": {
       "wikipedia": "Вікіпедія: шифр"
+    },
+    "example": {
+      "stepOf": "Крок {{step}} із {{total}}",
+      "nextStep": "Наступний крок",
+      "showAll": "Показати всі",
+      "restart": "Спочатку",
+      "columns": {
+        "plain": "Літера відкритого тексту",
+        "key": "Літера ключа",
+        "shift": "Зсув",
+        "result": "Результат"
+      }
     }
   },
   "glossary": {

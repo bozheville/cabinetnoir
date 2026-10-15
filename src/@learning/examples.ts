@@ -1,0 +1,76 @@
+// Worked examples for the Learn tab, embeddable in markdown via
+// {{example:<id>}}. Data-driven: the columns come from the entry, so other
+// ciphers can define their own step tables. Row values are computed from
+// the cipher implementations at module load, so examples can never drift
+// from the tool's behaviour.
+import { DEFAULT_ALPHABET, vigenereEncrypt } from '@encryptors/Vigenere/vigenere-encryption';
+
+export interface WorkedExampleColumn {
+  // Stable key of the column.
+  key: string;
+  // i18n key of the column heading.
+  labelKey: string;
+}
+
+export interface WorkedExample {
+  id: string;
+  cipher: string;
+  // Clean letters only (the worked example shows the letter stream).
+  input: string;
+  key: string;
+  alphabet: string;
+  mode: 'encrypt' | 'decrypt';
+  columns: WorkedExampleColumn[];
+  // One row per input letter; cells are plain strings.
+  rows: string[][];
+}
+
+// i18n keys for generic column headings.
+export const EXAMPLE_COLUMN_LABELS = {
+  plain: 'learning.example.columns.plain',
+  key: 'learning.example.columns.key',
+  shift: 'learning.example.columns.shift',
+  result: 'learning.example.columns.result',
+};
+
+const vigenereRows = (input: string, key: string, alphabet: string): string[][] => {
+  const shiftOf = (plain: string, keyLetter: string) =>
+    (alphabet.indexOf(keyLetter) - alphabet.indexOf(plain) + alphabet.length) % alphabet.length;
+
+  return input.split('').map((plain, index) => {
+    const keyLetter = key[index % key.length];
+    return [
+      plain,
+      keyLetter,
+      String(shiftOf(plain, keyLetter)),
+      vigenereEncrypt(plain, keyLetter, alphabet),
+    ];
+  });
+};
+
+const buildVigenereExample = (
+  id: string,
+  input: string,
+  key: string,
+  alphabet: string = DEFAULT_ALPHABET,
+): WorkedExample => ({
+  id,
+  cipher: 'vigenere',
+  input,
+  key,
+  alphabet,
+  mode: 'encrypt',
+  columns: [
+    { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+    { key: 'key', labelKey: EXAMPLE_COLUMN_LABELS.key },
+    { key: 'shift', labelKey: EXAMPLE_COLUMN_LABELS.shift },
+    { key: 'result', labelKey: EXAMPLE_COLUMN_LABELS.result },
+  ],
+  rows: vigenereRows(input, key, alphabet),
+});
+
+export const EXAMPLES: Record<string, WorkedExample> = {
+  'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
+};
+
+export const getExample = (id: string): WorkedExample | null => EXAMPLES[id] || null;
