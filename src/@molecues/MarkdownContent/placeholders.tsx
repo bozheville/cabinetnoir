@@ -4,6 +4,7 @@ import GlossaryTerm from '@molecues/GlossaryTerm';
 import WorkedExample from '@molecues/WorkedExample';
 import TryInToolButton from '@molecues/TryInToolButton';
 import ControlName from '@molecues/ControlName';
+import ChallengeLinkButton from '@molecues/ChallengeLinkButton';
 import HistoryTimeline from '@molecues/HistoryTimeline';
 import { registerPlaceholder } from './registry';
 
@@ -14,3 +15,4 @@ registerPlaceholder('example', (id) => <WorkedExample id={id} />);
 registerPlaceholder('try', (id) => <TryInToolButton exampleId={id} />);
 registerPlaceholder('control', (id) => <ControlName id={id} />);
 registerPlaceholder('timeline', (cipher) => <HistoryTimeline cipher={cipher} />);
+registerPlaceholder('challenge', (id) => <ChallengeLinkButton challengeId={id} />);
