@@ -7,6 +7,7 @@ import { Heading, Pane, Text } from 'evergreen-ui';
 
 import Section from '@atoms/Section/Section';
 import CipherTabs from '@molecues/CipherTabs';
+import AtGlanceCard from '@molecues/AtGlanceCard';
 import MarkdownContent from '@molecues/MarkdownContent';
 
 const LearningWrapper = styled(Section)`
@@ -33,6 +34,7 @@ const LearningMaterial: React.FC<LearningMaterialProps> = ({ learningContent = {
 
   return (
     <LearningWrapper stitch="both" color="encryptor">
+      <AtGlanceCard />
       <CipherTabs algorithm={algorithm as string} activeTab={tab as any} />
       <Heading size={500}>{t(`learning.tabs.${tab}`)}</Heading>
       <Text size={300}>{t(`processing.${algorithm as string}.title`)}</Text>
