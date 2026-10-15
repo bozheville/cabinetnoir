@@ -9,6 +9,10 @@
 // exactly like src/@encryptors/algorithms.js is used by
 // scripts/generate-sitemap.js. Types live in config.d.ts.
 
+// Learning tab names, sharing the second URL segment with the encryption
+// modes (direct / reverse) on /encoder/<cipher>/<action> pages.
+const LEARNING_TABS = ['learn', 'history', 'practice'];
+
 const learningConfig = {
   vigenere: {
     tabs: ['learn', 'history', 'practice'],
@@ -53,6 +57,7 @@ const hasTab = (cipher, tab) => {
 };
 
 module.exports = {
+  LEARNING_TABS,
   learningConfig,
   getLearningConfig,
   hasTab,

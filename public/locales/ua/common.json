@@ -46,21 +46,21 @@
         "keep_case": "Залишити регістр"
       }
     },
-    "rot13":  {
+    "rot13": {
       "title": "ROT13",
       "short_title": "ROT13",
       "directAction": "Закодувати",
       "reverseAction": "Розкодувати",
       "messageLabel": "Закодоване повідомлення"
     },
-    "base64":  {
+    "base64": {
       "title": "Base 64",
       "short_title": "Base 64",
       "directAction": "Закодувати",
       "reverseAction": "Розкодувати",
       "messageLabel": "Закодоване повідомлення"
     },
-    "morse":  {
+    "morse": {
       "title": "Код Морзе (ITU)",
       "short_title": "Морзе",
       "dot_symbol": "Символ крапки",
@@ -69,14 +69,14 @@
       "reverseAction": "Розкодувати",
       "messageLabel": "Закодоване повідомлення"
     },
-    "vigenere":  {
+    "vigenere": {
       "title": "Шифр Віженера",
       "short_title": "Віженер",
       "directAction": "Зашифрувати",
       "reverseAction": "Розшифрувати",
       "messageLabel": "Криптограма"
     },
-    "playfair":  {
+    "playfair": {
       "title": "Шифр Плейфера",
       "short_title": "Плейфер",
       "directAction": "Зашифрувати",
@@ -92,5 +92,18 @@
     "report_a_bug": "Повідомити про баг",
     "did_you_like": "Сподобалось?",
     "buy_me_a_coffee": "Купи мені кави"
+  },
+  "learning": {
+    "tabs": {
+      "learn": "Навчання",
+      "history": "Історія",
+      "practice": "Практика"
+    },
+    "metaDescription": {
+      "learn": "Дізнайтеся, як працює шифр, проходьте покрокові інструкції та побачте, як його зламати.",
+      "history": "Історія шифру: звідки він походить, хто ним користувався і як його зламали.",
+      "practice": "Практикуйтеся на готових завданнях — від простих до складних."
+    },
+    "placeholder": "Навчальні матеріали з'являться незабаром."
   }
 }
