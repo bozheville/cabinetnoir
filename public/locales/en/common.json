@@ -250,7 +250,8 @@
         "shift": "Shift",
         "result": "Result"
       }
-    }
+    },
+    "tryInTool": "Try it in the tool"
   },
   "glossary": {
     "plaintext": {

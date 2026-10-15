@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import Section from '@atoms/Section/Section';
@@ -6,6 +6,8 @@ import { EncryptionInputs, EncryptionSettings, EncryptionDescription } from '@or
 import CipherTabs from '@molecues/CipherTabs';
 import AtGlanceCard from '@molecues/AtGlanceCard';
 import { useRouter } from 'next/router';
+import { getExample } from '@learning/examples';
+import { PendingExampleContext, PendingExampleLoad } from '@learning/pendingExample';
 
 const EncryptorSection = styled(Section)`
   flex: 1 0 auto;
@@ -37,7 +39,38 @@ const EncryptorWrapper = styled.div`
 const Encryptor: React.FC = () => {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
-  const { algorithm } = useRouter().query;
+  const [pendingExample, setPendingExample] = useState<PendingExampleLoad | null>(null);
+  const router = useRouter();
+  const { algorithm } = router.query;
+
+  // "Try it in the tool": pick up the example id from the URL, pre-fill
+  // the tool from it and remove the parameter. Only our own content ids
+  // travel through the URL, never user text.
+  useEffect(() => {
+    if (!router.isReady || pendingExample) {
+      return;
+    }
+    const exampleId = router.query.example;
+    if (typeof exampleId !== 'string') {
+      return;
+    }
+    const example = getExample(exampleId);
+    if (!example) {
+      return;
+    }
+
+    setPendingExample({
+      cipher: example.cipher,
+      input: example.input,
+      key: example.key,
+      alphabet: example.alphabet,
+    });
+
+    const { example: _ignored, ...restQuery } = router.query;
+    router.replace({ pathname: router.pathname, query: restQuery }, undefined, { shallow: true });
+  }, [router.isReady, pendingExample]);
+
+  const pending = pendingExample && pendingExample.cipher === algorithm ? pendingExample : null;
 
   return (
     <>
@@ -45,16 +78,18 @@ const Encryptor: React.FC = () => {
         <AtGlanceCard />
         <CipherTabs algorithm={algorithm as string} activeTab="tool" />
         <EncryptorWrapper>
-          <EncryptionSettings
-            input={input}
-            onOutputUpdate={({ output }) => {
-              setOutput(output);
-            }}
-          />
-          <EncryptionInputs
-            onChange={setInput}
-            output={output}
-          />
+          <PendingExampleContext.Provider value={pending}>
+            <EncryptionSettings
+              input={input}
+              onOutputUpdate={({ output }) => {
+                setOutput(output);
+              }}
+            />
+            <EncryptionInputs
+              onChange={setInput}
+              output={output}
+            />
+          </PendingExampleContext.Provider>
         </EncryptorWrapper>
       </EncryptorSection>
       <EncryptionDescription />
