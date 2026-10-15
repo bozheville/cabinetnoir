@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import {Checkbox, Heading, Pane, TextInput } from 'evergreen-ui';
-import { useRouter } from 'next/router';
 import { CrypterProps } from '../types';
 import Tooltip from '@atoms/Tooltip';
 import { vigenereEncrypt, vigenereDecrypt, DEFAULT_ALPHABET, isEnglishAlphabet } from './vigenere-encryption';
@@ -21,13 +20,16 @@ const Vigenere: React.FC<CrypterProps> = ({
   const [ isUnknownKey, setIsUnknownKey ] = useState(false);
   const [ customAlphabet, setCustomAlphabet ] = useState(DEFAULT_ALPHABET);
   const [ hintConfig, setHintConfig ] = useState<HintConfig>(DEFAULT_HINT_CONFIG);
-  const cracker = useCracker({ input, enabled: isUnknownKey, hintConfig, alphabet: customAlphabet });
-  const router = useRouter();
   const { t } = useTranslation('common');
+
+  // An unknown key (and the cracker it enables) only exists in the decrypt
+  // mode; the raw flag is dropped when switching back to encryption.
+  const unknownKey = isDecryptMode && isUnknownKey;
+  const cracker = useCracker({ input, enabled: unknownKey, hintConfig, alphabet: customAlphabet });
 
   // The cracker handles any reshuffling of the 26 English letters, but not
   // foreign letters (its frequency tables are English).
-  const canCrack = isUnknownKey && isEnglishAlphabet(customAlphabet);
+  const canCrack = unknownKey && isEnglishAlphabet(customAlphabet);
 
   // "Try it in the tool": apply the loaded example's key and alphabet once.
   // The context is only non-null when the example targets this cipher.
@@ -52,6 +54,14 @@ const Vigenere: React.FC<CrypterProps> = ({
     }
   }, [pendingExample]);
 
+  // An unknown key only makes sense while decrypting; drop the flag when
+  // switching back to the encrypt mode.
+  useEffect(() => {
+    if (!isDecryptMode) {
+      setIsUnknownKey(false);
+    }
+  }, [isDecryptMode]);
+
   // Uppercase, unique letters only; reject edits that leave fewer than two.
   // "Is a letter" via case asymmetry: target is es5, so no unicode property
   // escapes. Digits and punctuation have no case and are dropped.
@@ -73,17 +83,6 @@ const Vigenere: React.FC<CrypterProps> = ({
   const handleUseKey = (key: string) => {
     setSecretKey(key);
     setIsUnknownKey(false);
-
-    const { algorithm, action } = router.query;
-    if (action !== 'reverse' && typeof algorithm === 'string') {
-      // usedKey marker: keeps the original text in the input (EncryptionInputs
-      // skips its swap-copy for it and cleans the marker up afterwards).
-      router.push(
-        { pathname: `/encoder/${algorithm}/reverse`, query: { usedKey: '1' } },
-        undefined,
-        { shallow: true },
-      );
-    }
   };
 
   const handleSkipCracker = () => {
@@ -126,13 +125,13 @@ const Vigenere: React.FC<CrypterProps> = ({
             onChange={handleAlphabetChange}
           />
         </Tooltip>
-        {isEnglishAlphabet(customAlphabet) && (
+        {isDecryptMode && isEnglishAlphabet(customAlphabet) && (
           <Tooltip content={t('processing.vigenere.cracker.tooltips.unknownKey')}>
             <Checkbox
               data-guide="unknown-key"
               marginLeft="6px"
               label={t('processing.vigenere.cracker.unknownKey')}
-              checked={isUnknownKey}
+              checked={unknownKey}
               onChange={(event) => setIsUnknownKey(event.target.checked)}
             />
           </Tooltip>
