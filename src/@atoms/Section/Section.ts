@@ -8,7 +8,11 @@ interface StitchProps extends React.HTMLAttributes<HTMLDivElement> {
 //background-color: #4c5057;
 //color: #F6EDD8;
 
-const Section = styled.section<StitchProps>`
+const Section = styled.section.withConfig({
+  // styled-components v6 forwards unknown props to the DOM; stitch and
+  // color are styling inputs, not DOM attributes.
+  shouldForwardProp: (prop) => !['stitch', 'color'].includes(prop),
+})<StitchProps>`
   padding: 28px 16px;
   background: url(/images/grain.png) repeat;
   background-color: ${({ color, theme }) => theme.colors.backgrounds[color || 'gray']};
