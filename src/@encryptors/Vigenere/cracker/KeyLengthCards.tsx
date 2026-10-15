@@ -1,4 +1,5 @@
 import { useTranslation } from 'next-i18next';
+import Tooltip from '@atoms/Tooltip';
 import React from 'react';
 import { Heading, Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
@@ -80,6 +81,7 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
 
     return (
       <>
+        <Tooltip content={t('processing.vigenere.cracker.tooltips.keyLengthCards')}>
         <CardsGrid data-guide="key-length-cards">
           {[...byLength.entries()].map(([length, gaps]) => (
             <Card key={length} $selected={selected === length} onClick={() => onSelect(length)}>
@@ -88,6 +90,7 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
             </Card>
           ))}
         </CardsGrid>
+        </Tooltip>
         <OtherLengthInput selected={selected} onSelect={onSelect} />
       </>
     );
@@ -95,6 +98,7 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
 
   return (
     <>
+      <Tooltip content={t('processing.vigenere.cracker.tooltips.keyLengthCards')}>
       <CardsGrid data-guide="key-length-cards">
         {cards.map((candidate) => (
           <Card
@@ -118,6 +122,7 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
           </Card>
         ))}
       </CardsGrid>
+      </Tooltip>
       <OtherLengthInput selected={selected} onSelect={onSelect} />
     </>
   );
@@ -131,6 +136,7 @@ const OtherLengthInput: React.FC<{ selected: number | null; onSelect: (length: n
   return (
   <Pane marginTop="12px" display="flex" alignItems="center" gap="8px">
     <Text size={300}>{t('processing.vigenere.cracker.wizard.keyLength.otherLabel')}</Text>
+    <Tooltip content={t('processing.vigenere.cracker.tooltips.otherLength')}>
     <TextInput
       width="80px"
       type="number"
@@ -145,6 +151,7 @@ const OtherLengthInput: React.FC<{ selected: number | null; onSelect: (length: n
         }
       }}
     />
+    </Tooltip>
   </Pane>
   );
 };

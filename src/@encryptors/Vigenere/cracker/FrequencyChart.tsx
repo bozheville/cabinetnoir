@@ -1,4 +1,5 @@
 import { useTranslation } from 'next-i18next';
+import Tooltip from '@atoms/Tooltip';
 import React, { useEffect, useState } from 'react';
 import { Button, Heading, Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
@@ -123,6 +124,7 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
           {t('processing.vigenere.cracker.wizard.warnings.shortSlice')}
         </Text>
       )}
+      <Tooltip content={t('processing.vigenere.cracker.tooltips.chartArrows')}>
       <Pane display="flex" alignItems="center" gap="8px" data-guide="chart-arrows">
         <Button aria-label="Rotate left" onClick={() => rotate(-1)}>
           {'<'}
@@ -134,9 +136,12 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
           {'>'}
         </Button>
         {hints.matchScore && (
-          <Text size={300}>{`Match: ${score}%`}</Text>
+          <Tooltip content={t('processing.vigenere.cracker.tooltips.matchScore')}>
+            <Text size={300}>{`Match: ${score}%`}</Text>
+          </Tooltip>
         )}
       </Pane>
+      </Tooltip>
 
       <BarsRow>
         {Array.from({ length: ALPHABET_LENGTH }).map((_, position) => {

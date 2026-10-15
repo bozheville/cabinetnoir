@@ -147,7 +147,31 @@
           "weak": "aucun indice solide pour cette longueur"
         },
         "tooltips": {
-          "key": "La clé secrète. Chaque lettre du message est décalée selon la lettre de clé correspondante ; la clé se répète sur tout le message."
+          "alphabet": "L'ensemble des lettres avec lesquelles le chiffre travaille. Collez les lettres de votre choix — l'outil les met en majuscules et supprime les doublons. Par défaut : l'alphabet anglais.",
+          "unknownKey": "Cochez cette case si vous ne connaissez pas la clé. Un assistant de déchiffrement s'ouvre ci-dessous : il vous aide à trouver la longueur de la clé puis chaque lettre, étape par étape.",
+          "hintPresets": "L'aide que l'assistant vous donne. Facile montre toutes les aides ; Difficile en cache la plupart pour vous entraîner.",
+          "toggle": {
+            "highlightRepeats": "Colore les groupes de lettres répétées dans le texte — les distances entre eux donnent un indice sur la longueur de la clé.",
+            "showGaps": "Affiche les distances entre séquences répétées, à côté de chaque groupe.",
+            "confidenceBars": "Affiche une barre de confiance et une raison en clair sur chaque carte de longueur de clé.",
+            "englishReference": "Dessine les fréquences des lettres anglaises par-dessus les barres de la tranche, pour les aligner à l'œil.",
+            "matchScore": "Indique à quel point l'alignement actuel correspond aux fréquences anglaises, en pourcentage.",
+            "mostLikelyGlow": "Met discrètement en évidence l'alignement qui correspond le mieux à l'anglais.",
+            "livePreview": "Déchiffre le texte en direct pendant que vous choisissez les lettres de clé : les lettres des tranches choisies apparaissent, les autres restent en underscores.",
+            "cribs": "Ouvre un panneau où vous pouvez deviner un mot du texte clair et en déduire des lettres de clé."
+          },
+          "keyLengthCards": "Longueurs de clé probables, classées par deux signaux : les distances entre séquences répétées et la ressemblance des tranches avec l'anglais. Cliquez sur une carte pour choisir.",
+          "otherLength": "Saisissez une longueur de clé manuellement si aucune carte ne convient.",
+          "sliceTabs": "Avec une longueur de clé N, le texte se découpe en N tranches ; chaque lettre d'une tranche est décalée par la même lettre de clé. Cliquez sur un onglet pour travailler sur cette tranche.",
+          "chartArrows": "Faites tourner les barres de la tranche face à la référence anglaise. Au meilleur alignement, la lettre affichée est la lettre de clé — elle est appliquée immédiatement, surveillez l'aperçu.",
+          "matchScore": "La correspondance entre l'alignement actuel et les fréquences anglaises, en pourcentage. Plus c'est haut, mieux c'est.",
+          "keyStrip": "Votre clé au fur et à mesure. Cliquez sur une case pour aller à sa tranche, tapez une lettre pour remplacer le choix du graphique, effacez pour débloquer.",
+          "cribInput": "Si vous devinez un mot présent dans le texte clair, l'assistant calcule les lettres de clé qu'il implique, à chaque position possible.",
+          "apply": "Remplit les cases de clé vides avec les lettres suggérées par cette position. Les lettres déjà choisies différemment ne sont jamais écrasées.",
+          "back": "Revient à l'étape précédente. Vos choix sont conservés.",
+          "next": "Passe à l'étape suivante une fois cette étape terminée.",
+          "skip": "Ferme l'assistant et saisit la clé manuellement.",
+          "useThisKey": "Remplit le champ clé avec la clé assemblée et déchiffre le message avec."
         }
       }
     },
@@ -282,7 +306,40 @@
         "title": "Déchiffrez un extrait de roman",
         "hint1": "La longueur de la clé est 3.",
         "hint2": "La clé est un animal domestique courant : trois lettres."
+      },
+      "vigenere-demo": {
+        "title": "Texte chiffré de démonstration"
+      },
+      "vigenere-easy-2": {
+        "title": "Le roman continue",
+        "hint1": "La longueur de la clé est 5.",
+        "hint2": "La clé est un agrume."
+      },
+      "vigenere-medium-1": {
+        "title": "Une vérité universellement reconnue",
+        "hint1": "La longueur de la clé est 6.",
+        "hint2": "La clé est encore un fruit — six lettres cette fois."
+      },
+      "vigenere-medium-2": {
+        "title": "Une nuit de minuit lasse et malsaine",
+        "hint1": "La longueur de la clé est 5.",
+        "hint2": "La clé nomme l'oiseau du poème."
+      },
+      "vigenere-hard-1": {
+        "title": "Être ou ne pas être",
+        "hint1": "La longueur de la clé est 11 — les indices de fréquence deviennent fragiles, un mot probable est plus sûr.",
+        "hint2": "La clé est un oiseau chanteur qui chante la nuit.",
+        "hint3": "Le mot TOBE apparaît au tout début — placez-le comme mot probable."
+      },
+      "vigenere-hard-2": {
+        "title": "Il y a quatre-vingt-sept ans",
+        "hint1": "La longueur de la clé est 10 — utilisez un mot probable.",
+        "hint2": "La clé est un adjectif signifiant impossible à déchiffrer.",
+        "hint3": "L'ouverture FOURSCORE fonctionne comme mot probable."
       }
+    },
+    "tooltips": {
+      "swap": "Échange les deux côtés : l'outil bascule entre chiffrer et déchiffrer. Le mode courant apparaît dans l'en-tête."
     }
   },
   "glossary": {
