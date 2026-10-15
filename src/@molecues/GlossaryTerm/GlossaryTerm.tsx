@@ -14,7 +14,7 @@ interface GlossaryTermProps {
   id: string;
 }
 
-// Inline glossary term with the definition on hover/focus. Terms are
+// Inline glossary term with the definition shown on click. Terms are
 // shared site-wide (locale JSON), so a term means the same thing on every
 // page.
 const GlossaryTerm: React.FC<GlossaryTermProps> = ({ id }) => {
@@ -30,7 +30,7 @@ const GlossaryTerm: React.FC<GlossaryTermProps> = ({ id }) => {
   }
 
   return (
-    <Tooltip content={definition}>
+    <Tooltip content={definition} trigger="children">
       <Term>{name}</Term>
     </Tooltip>
   );
