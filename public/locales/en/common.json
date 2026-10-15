@@ -231,6 +231,11 @@
       "modes": "Modes",
       "collapse": "Show less",
       "expand": "Show more"
+    },
+    "glossary": {
+      "title": "Glossary",
+      "furtherReading": "Further reading",
+      "wikipedia": "Wikipedia: the cipher"
     }
   },
   "glossary": {

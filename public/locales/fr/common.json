@@ -211,6 +211,11 @@
       "modes": "Modes",
       "collapse": "Réduire",
       "expand": "Afficher plus"
+    },
+    "glossary": {
+      "title": "Glossaire",
+      "furtherReading": "Pour aller plus loin",
+      "wikipedia": "Wikipédia : le chiffre"
     }
   },
   "glossary": {
