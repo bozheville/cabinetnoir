@@ -99,6 +99,7 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
           {`${t('message')}`}
         </Pane>
         <IconButton
+          data-guide="swap"
           icon={SwapHorizontalIcon}
           onClick={handleSwapMode}
           appearance="minimal"

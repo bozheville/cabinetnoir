@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import {
   DuplicateIcon,
   IconButton,
+  Pane,
 } from 'evergreen-ui';
 
 import { TextArea } from '@molecues';
@@ -104,15 +105,19 @@ const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
 
   return (
     <EncryptionInputsWrapper>
-      <TextArea
-        value={input}
-        onChange={handleInputChange}
-      />
-      <TextArea
-        value={output}
-        readOnly={true}
-        ref={outputRef}
-      />
+      <Pane data-guide="message-input" display="contents">
+        <TextArea
+          value={input}
+          onChange={handleInputChange}
+        />
+      </Pane>
+      <Pane data-guide="output" display="contents">
+        <TextArea
+          value={output}
+          readOnly={true}
+          ref={outputRef}
+        />
+      </Pane>
       {isCopied && <CopiedToast>Copied to clipboard</CopiedToast>}
       {output && (
         <IconButton

@@ -251,7 +251,59 @@
         "result": "Result"
       }
     },
-    "tryInTool": "Try it in the tool"
+    "tryInTool": "Try it in the tool",
+    "controls": {
+      "message-input": "the message input",
+      "output": "the output field",
+      "key": "the Key field",
+      "alphabet": "the Alphabet field",
+      "unknown-key": "the \"Unknown key\" checkbox",
+      "swap": "the swap button",
+      "hint-presets": "the difficulty presets",
+      "key-length-cards": "the key length cards",
+      "other-length": "the \"Other length\" input",
+      "slice-tabs": "the slice tabs",
+      "chart-arrows": "the chart arrows",
+      "key-strip": "the key strip",
+      "crib-input": "the crib input",
+      "use-this-key": "the \"Use this key\" button",
+      "back": "the Back button",
+      "next": "the Next button",
+      "skip": "the \"Skip\" button"
+    },
+    "timeline": {
+      "source": "Source",
+      "vigenere": {
+        "1467": "Leon Battista Alberti invents the cipher disk — the first idea of using several alphabets.",
+        "1508": "Johannes Trithemius publishes the tabula recta, a table of all letter shifts.",
+        "1553": "Giovan Battista Bellaso describes the repeating-key cipher with an easy-to-remember key phrase.",
+        "1586": "Blaise de Vigenère publishes a similar cipher; the repeating-key scheme is later misattributed to him.",
+        "1863": "Friedrich Kasiski publishes a general method for finding the key length (Charles Babbage had broken it privately a decade earlier).",
+        "1920s": "William Friedman develops the index of coincidence, making the attack statistical and rigorous."
+      }
+    },
+    "challenge": {
+      "labels": {
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard"
+      },
+      "revealHint": "Reveal a hint",
+      "answerPlaceholder": "Your plaintext answer…",
+      "check": "Check",
+      "correct": "Correct — you cracked it!",
+      "wrong": "Not quite yet.",
+      "openInTool": "Open in the tool",
+      "showAnswer": "Show answer",
+      "answerIs": "Answer"
+    },
+    "challenges": {
+      "vigenere-easy-1": {
+        "title": "Break a message from the novel",
+        "hint1": "The key length is 3.",
+        "hint2": "The key is a common pet: three letters."
+      }
+    }
   },
   "glossary": {
     "plaintext": {

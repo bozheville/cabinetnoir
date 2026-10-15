@@ -231,7 +231,59 @@
         "result": "Résultat"
       }
     },
-    "tryInTool": "Essayer dans l'outil"
+    "tryInTool": "Essayer dans l'outil",
+    "controls": {
+      "message-input": "le champ de message",
+      "output": "le champ de résultat",
+      "key": "le champ Clé",
+      "alphabet": "le champ Alphabet",
+      "unknown-key": "la case « Clé inconnue »",
+      "swap": "le bouton d'échange",
+      "hint-presets": "les préréglages de difficulté",
+      "key-length-cards": "les cartes de longueur de clé",
+      "other-length": "le champ « Autre longueur »",
+      "slice-tabs": "les onglets de tranches",
+      "chart-arrows": "les flèches du graphique",
+      "key-strip": "la bande de clé",
+      "crib-input": "le champ de mot probable",
+      "use-this-key": "le bouton « Utiliser cette clé »",
+      "back": "le bouton Retour",
+      "next": "le bouton Suivant",
+      "skip": "le bouton « Passer »"
+    },
+    "timeline": {
+      "source": "Source",
+      "vigenere": {
+        "1467": "Leon Battista Alberti invente le disque de chiffrement — la première idée d'utiliser plusieurs alphabets.",
+        "1508": "Johannes Trithemius publie la table de Trithémitre (tabula recta), une table de tous les décalages.",
+        "1553": "Giovan Battista Bellaso décrit le chiffre à clé répétée avec une phrase clé facile à retenir.",
+        "1586": "Blaise de Vigenère publie un chiffre similaire ; le schéma à clé répétée lui est plus tard attribué à tort.",
+        "1863": "Friedrich Kasiski publie une méthode générale pour trouver la longueur de clé (Charles Babbage l'avait cassée en privé une décennie plus tôt).",
+        "1920s": "William Friedman développe l'indice de coïncidence, rendant l'attaque statistique et rigoureuse."
+      }
+    },
+    "challenge": {
+      "labels": {
+        "easy": "Facile",
+        "medium": "Moyen",
+        "hard": "Difficile"
+      },
+      "revealHint": "Révéler un indice",
+      "answerPlaceholder": "Votre réponse en texte clair…",
+      "check": "Vérifier",
+      "correct": "Correct — vous avez déchiffré le message !",
+      "wrong": "Pas encore tout à fait.",
+      "openInTool": "Ouvrir dans l'outil",
+      "showAnswer": "Voir la réponse",
+      "answerIs": "Réponse"
+    },
+    "challenges": {
+      "vigenere-easy-1": {
+        "title": "Déchiffrez un extrait de roman",
+        "hint1": "La longueur de la clé est 3.",
+        "hint2": "La clé est un animal domestique courant : trois lettres."
+      }
+    }
   },
   "glossary": {
     "plaintext": {
