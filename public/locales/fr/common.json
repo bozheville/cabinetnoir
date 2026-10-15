@@ -147,6 +147,7 @@
           "weak": "aucun indice solide pour cette longueur"
         },
         "tooltips": {
+          "key": "La clé secrète. Chaque lettre du message est décalée selon la lettre de clé correspondante ; la clé se répète sur tout le message.",
           "alphabet": "L'ensemble des lettres avec lesquelles le chiffre travaille. Collez les lettres de votre choix — l'outil les met en majuscules et supprime les doublons. Par défaut : l'alphabet anglais.",
           "unknownKey": "Cochez cette case si vous ne connaissez pas la clé. Un assistant de déchiffrement s'ouvre ci-dessous : il vous aide à trouver la longueur de la clé puis chaque lettre, étape par étape.",
           "hintPresets": "L'aide que l'assistant vous donne. Facile montre toutes les aides ; Difficile en cache la plupart pour vous entraîner.",

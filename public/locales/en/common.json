@@ -167,6 +167,7 @@
           "weak": "no strong evidence for this length"
         },
         "tooltips": {
+          "key": "The secret key. Every letter of the message is shifted by the matching key letter; the key repeats over the whole message.",
           "alphabet": "The set of letters the cipher works with. Paste any letters — the tool uppercases them and drops duplicates. The default is the English alphabet.",
           "unknownKey": "Check this if you do not know the key. A guided cracker opens below: it helps you find the key length and then every key letter, step by step.",
           "hintPresets": "How much help the cracker gives you. Easy shows every hint; Hard hides most of them so you can practise.",
