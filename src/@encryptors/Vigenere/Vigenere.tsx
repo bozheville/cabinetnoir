@@ -118,20 +118,24 @@ const Vigenere: React.FC<CrypterProps> = ({
           />
         </Tooltip>
         <Heading size={100} marginLeft="12px" data-guide="alphabet">{t('processing.vigenere.cracker.alphabetLabel')}</Heading>
-        <TextInput
-          width="280px"
-          fontFamily="monospace"
-          value={customAlphabet}
-          onChange={handleAlphabetChange}
-        />
-        {isEnglishAlphabet(customAlphabet) && (
-          <Checkbox
-            data-guide="unknown-key"
-            marginLeft="6px"
-            label={t('processing.vigenere.cracker.unknownKey')}
-            checked={isUnknownKey}
-            onChange={(event) => setIsUnknownKey(event.target.checked)}
+        <Tooltip content={t('processing.vigenere.cracker.tooltips.alphabet')}>
+          <TextInput
+            width="280px"
+            fontFamily="monospace"
+            value={customAlphabet}
+            onChange={handleAlphabetChange}
           />
+        </Tooltip>
+        {isEnglishAlphabet(customAlphabet) && (
+          <Tooltip content={t('processing.vigenere.cracker.tooltips.unknownKey')}>
+            <Checkbox
+              data-guide="unknown-key"
+              marginLeft="6px"
+              label={t('processing.vigenere.cracker.unknownKey')}
+              checked={isUnknownKey}
+              onChange={(event) => setIsUnknownKey(event.target.checked)}
+            />
+          </Tooltip>
         )}
       </Pane>
       {canCrack && (

@@ -1,4 +1,5 @@
 import { useTranslation } from 'next-i18next';
+import Tooltip from '@atoms/Tooltip';
 import React from 'react';
 import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
@@ -70,6 +71,7 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
     <Pane width="100%">
       <CipherText input={cracker.input} normalized={analysis.normalized} colorFor={colorFor} />
 
+      <Tooltip content={t('processing.vigenere.cracker.tooltips.sliceTabs')}>
       <SliceTabs data-guide="slice-tabs">
         {Array.from({ length: keyLength }).map((_, slice) => {
           const locked: LockedLetter | undefined = lockedLetters[slice];
@@ -88,6 +90,7 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
           );
         })}
       </SliceTabs>
+      </Tooltip>
 
       <FrequencyChart
         sliceLetters={sliceLettersFor(activeSlice)}

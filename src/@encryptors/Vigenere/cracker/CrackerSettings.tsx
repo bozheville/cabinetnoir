@@ -1,4 +1,5 @@
 import { useTranslation } from 'next-i18next';
+import Tooltip from '@atoms/Tooltip';
 import React from 'react';
 import { Checkbox, Heading, Pane } from 'evergreen-ui';
 import styled from 'styled-components';
@@ -47,6 +48,7 @@ const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange }) =
   return (
   <Pane width="100%">
     <Heading size={100} marginBottom="8px">{t('processing.vigenere.cracker.hints.title')}</Heading>
+    <Tooltip content={t('processing.vigenere.cracker.tooltips.hintPresets')}>
     <PresetPicker data-guide="hint-presets">
       {PRESET_KEYS.map((preset) => (
         <PresetOption
@@ -58,6 +60,7 @@ const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange }) =
         </PresetOption>
       ))}
     </PresetPicker>
+    </Tooltip>
     <Pane
       display="grid"
       gridTemplateColumns="repeat(auto-fill, minmax(220px, 1fr))"
@@ -65,13 +68,14 @@ const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange }) =
       marginTop="8px"
     >
       {HINT_KEYS.map((key) => (
-        <Checkbox
-          key={key}
-          marginY="4px"
-          label={t(`processing.vigenere.cracker.hints.toggles.${key}`)}
-          checked={config.hints[key]}
-          onChange={(event) => onChange(toggleHint(config, key, event.target.checked))}
-        />
+        <Tooltip key={key} content={t(`processing.vigenere.cracker.tooltips.toggle.${key}`)}>
+          <Checkbox
+            marginY="4px"
+            label={t(`processing.vigenere.cracker.hints.toggles.${key}`)}
+            checked={config.hints[key]}
+            onChange={(event) => onChange(toggleHint(config, key, event.target.checked))}
+          />
+        </Tooltip>
       ))}
     </Pane>
   </Pane>

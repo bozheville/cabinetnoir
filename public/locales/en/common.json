@@ -167,7 +167,31 @@
           "weak": "no strong evidence for this length"
         },
         "tooltips": {
-          "key": "The secret key. Every letter of the message is shifted by the matching key letter; the key repeats over the whole message."
+          "alphabet": "The set of letters the cipher works with. Paste any letters — the tool uppercases them and drops duplicates. The default is the English alphabet.",
+          "unknownKey": "Check this if you do not know the key. A guided cracker opens below: it helps you find the key length and then every key letter, step by step.",
+          "hintPresets": "How much help the cracker gives you. Easy shows every hint; Hard hides most of them so you can practise.",
+          "toggle": {
+            "highlightRepeats": "Colours repeated letter groups in the text — the distances between them hint at the key length.",
+            "showGaps": "Shows the distances between repeated sequences, next to each group.",
+            "confidenceBars": "Shows a confidence bar and a plain-language reason on each key length card.",
+            "englishReference": "Draws the English letter frequencies over the slice bars, so you can align them by eye.",
+            "matchScore": "Shows how closely the current alignment matches English letter frequencies, in percent.",
+            "mostLikelyGlow": "Gently highlights the alignment that matches English best.",
+            "livePreview": "Decrypts the text live while you pick key letters: letters of set slices appear, the rest stay as underscores.",
+            "cribs": "Shows a panel where you can guess a word from the plaintext and get key letters from it."
+          },
+          "keyLengthCards": "Likely key lengths ranked by two signals: distances between repeated sequences, and how English-like the text slices look. Click a card to choose.",
+          "otherLength": "Enter a key length manually if none of the suggested cards fits.",
+          "sliceTabs": "With a key length of N the text splits into N slices; every letter of a slice is shifted by the same key letter. Click a tab to work on that slice.",
+          "chartArrows": "Rotate the slice bars against the English reference. At the best alignment the shown letter is the key letter — it is applied immediately, watch the preview.",
+          "matchScore": "How closely the current alignment matches English letter frequencies, in percent. Higher is better.",
+          "keyStrip": "Your key as you build it. Click a cell to jump to its slice, type a letter to override the chart choice, clear a cell to un-set it.",
+          "cribInput": "If you guess a word that appears in the plaintext, the cracker computes which key letters it implies, at every position it fits.",
+          "apply": "Fill the empty key slots with the letters this position suggests. Letters already set differently are never overwritten.",
+          "back": "Return to the previous step. Your choices are kept.",
+          "next": "Continue to the next step once this step is complete.",
+          "skip": "Close the cracker and enter the key manually.",
+          "useThisKey": "Fill the key field with the key you assembled and decrypt the message with it."
         }
       }
     },
@@ -302,7 +326,40 @@
         "title": "Break a message from the novel",
         "hint1": "The key length is 3.",
         "hint2": "The key is a common pet: three letters."
+      },
+      "vigenere-demo": {
+        "title": "Cracker demo ciphertext"
+      },
+      "vigenere-easy-2": {
+        "title": "The novel continues",
+        "hint1": "The key length is 5.",
+        "hint2": "The key is a citrus fruit."
+      },
+      "vigenere-medium-1": {
+        "title": "A truth universally acknowledged",
+        "hint1": "The key length is 6.",
+        "hint2": "The key is a fruit again — six letters this time."
+      },
+      "vigenere-medium-2": {
+        "title": "Once upon a midnight dreary",
+        "hint1": "The key length is 5.",
+        "hint2": "The key names the bird of the poem."
+      },
+      "vigenere-hard-1": {
+        "title": "To be or not to be",
+        "hint1": "The key length is 11 — frequency hints get shaky, a crib is safer.",
+        "hint2": "The key is a songbird that sings at night.",
+        "hint3": "The word TOBE appears at the very start — place it as a crib."
+      },
+      "vigenere-hard-2": {
+        "title": "Four score and seven",
+        "hint1": "The key length is 10 — use a crib.",
+        "hint2": "The key is an adjective meaning impossible to decode.",
+        "hint3": "The opening FOURSCORE works as a crib."
       }
+    },
+    "tooltips": {
+      "swap": "Swap the two sides: the tool switches between encrypting and decrypting. The current mode shows in the header."
     }
   },
   "glossary": {

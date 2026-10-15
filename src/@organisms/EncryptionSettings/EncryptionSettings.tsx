@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+import Tooltip from '@atoms/Tooltip';
 import { useRouter } from 'next/router';
 import { Pane, Select,
   IconButton,
@@ -98,14 +99,16 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
         >
           {`${t('message')}`}
         </Pane>
-        <IconButton
-          data-guide="swap"
-          icon={SwapHorizontalIcon}
-          onClick={handleSwapMode}
-          appearance="minimal"
-          padding="9px"
-          order={2}
-        />
+        <Tooltip content={t('learning.tooltips.swap')}>
+          <IconButton
+            data-guide="swap"
+            icon={SwapHorizontalIcon}
+            onClick={handleSwapMode}
+            appearance="minimal"
+            padding="9px"
+            order={2}
+          />
+        </Tooltip>
         <Pane
           display="flex"
           flexDirection="row"

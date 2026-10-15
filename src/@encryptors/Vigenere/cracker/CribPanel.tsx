@@ -1,4 +1,5 @@
 import { useTranslation } from 'next-i18next';
+import Tooltip from '@atoms/Tooltip';
 import React, { useMemo, useState } from 'react';
 import { Button, Heading, Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
@@ -67,13 +68,15 @@ const CribPanel: React.FC<CribPanelProps> = ({ cracker, alphabet }) => {
     <Pane width="100%" marginTop="12px" padding="12px" border="muted" borderRadius="4px">
       <Heading size={300}>{t('processing.vigenere.cracker.wizard.cribs.title')}</Heading>
       <Pane display="flex" alignItems="center" gap="8px" marginTop="8px" data-guide="crib-input">
+        <Tooltip content={t('processing.vigenere.cracker.tooltips.cribInput')}>
         <Text size={300}>{t('processing.vigenere.cracker.wizard.cribs.inputLabel')}</Text>
         <TextInput
           width="160px"
           value={crib}
           placeholder={t('processing.vigenere.cracker.wizard.cribs.inputPlaceholder')}
-          onChange={(event) => setCrib(event.target.value)}
-        />
+            onChange={(event) => setCrib(event.target.value)}
+          />
+        </Tooltip>
       </Pane>
 
       {crib.trim() && matches.length === 0 && (
@@ -91,9 +94,11 @@ const CribPanel: React.FC<CribPanelProps> = ({ cracker, alphabet }) => {
             </ConflictText>
           )}
           {match.isStrong && <Text size={300}>strong</Text>}
-          <Button onClick={() => apply(match)}>
-            {t('processing.vigenere.cracker.wizard.cribs.apply')}
-          </Button>
+          <Tooltip content={t('processing.vigenere.cracker.tooltips.apply')}>
+            <Button onClick={() => apply(match)}>
+              {t('processing.vigenere.cracker.wizard.cribs.apply')}
+            </Button>
+          </Tooltip>
         </MatchRow>
       ))}
     </Pane>

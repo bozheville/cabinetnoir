@@ -4,6 +4,7 @@ import { Button, Heading, Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import useCracker from './useCracker';
+import Tooltip from '@atoms/Tooltip';
 import StepKeyLength from './StepKeyLength';
 import StepKeyLetters from './StepKeyLetters';
 import StepKey from './StepKey';
@@ -106,36 +107,44 @@ const CrackerWizard: React.FC<{
       {step === 3 && <StepKey cracker={cracker} />}
 
       <Pane display="flex" justifyContent="space-between" marginTop="12px" gap="8px">
-        <Button
-          width={NAV_BUTTON_WIDTH}
-          disabled={step === 1}
-          onClick={() => setStep(step - 1)}
-        >
-          {t('processing.vigenere.cracker.wizard.back')}
-        </Button>
+        <Tooltip content={t('processing.vigenere.cracker.tooltips.back')}>
+          <Button
+            width={NAV_BUTTON_WIDTH}
+            disabled={step === 1}
+            onClick={() => setStep(step - 1)}
+          >
+            {t('processing.vigenere.cracker.wizard.back')}
+          </Button>
+        </Tooltip>
         {step < 3 ? (
-          <Button
-            width={NAV_BUTTON_WIDTH}
-            appearance="primary"
-            disabled={!canGoNext}
-            onClick={() => setStep(step + 1)}
-          >
-            {t('processing.vigenere.cracker.wizard.next')}
-          </Button>
+          <Tooltip content={t('processing.vigenere.cracker.tooltips.next')}>
+            <Button
+              width={NAV_BUTTON_WIDTH}
+              appearance="primary"
+              disabled={!canGoNext}
+              onClick={() => setStep(step + 1)}
+            >
+              {t('processing.vigenere.cracker.wizard.next')}
+            </Button>
+          </Tooltip>
         ) : (
-          <Button
-            data-guide="use-this-key"
-            width={NAV_BUTTON_WIDTH}
-            appearance="primary"
-            onClick={() => onUseKey(assembledKey)}
-          >
-            {t('processing.vigenere.cracker.wizard.useKey')}
-          </Button>
+          <Tooltip content={t('processing.vigenere.cracker.tooltips.useThisKey')}>
+            <Button
+              data-guide="use-this-key"
+              width={NAV_BUTTON_WIDTH}
+              appearance="primary"
+              onClick={() => onUseKey(assembledKey)}
+            >
+              {t('processing.vigenere.cracker.wizard.useKey')}
+            </Button>
+          </Tooltip>
         )}
       </Pane>
 
       <Pane display="flex" justifyContent="center" marginTop="8px">
-        <Button onClick={onSkip}>{t('processing.vigenere.cracker.wizard.skip')}</Button>
+        <Tooltip content={t('processing.vigenere.cracker.tooltips.skip')}>
+          <Button onClick={onSkip}>{t('processing.vigenere.cracker.wizard.skip')}</Button>
+        </Tooltip>
       </Pane>
 
       {hintConfig.hints.livePreview && (
