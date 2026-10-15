@@ -220,6 +220,11 @@
       "modes": "Режими",
       "collapse": "Згорнути",
       "expand": "Розгорнути"
+    },
+    "glossary": {
+      "title": "Глосарій",
+      "furtherReading": "Додаткові матеріали",
+      "wikipedia": "Вікіпедія: шифр"
     }
   },
   "glossary": {

@@ -9,6 +9,7 @@ import Section from '@atoms/Section/Section';
 import CipherTabs from '@molecues/CipherTabs';
 import AtGlanceCard from '@molecues/AtGlanceCard';
 import MarkdownContent from '@molecues/MarkdownContent';
+import GlossarySection from '@molecues/GlossarySection';
 
 const LearningWrapper = styled(Section)`
   display: flex;
@@ -46,6 +47,7 @@ const LearningMaterial: React.FC<LearningMaterialProps> = ({ learningContent = {
       {TOPIC_ORDER.filter((topic) => learningContent[topic]).map((topic) => (
         <MarkdownContent key={topic} source={learningContent[topic]} />
       ))}
+      {tab === 'learn' && <GlossarySection algorithm={algorithm as string} />}
     </LearningWrapper>
   );
 };
