@@ -8,6 +8,7 @@ import {
 
 import { TextArea } from '@molecues';
 import styled, { keyframes } from 'styled-components';
+import { usePendingExample } from '@learning/pendingExample';
 interface EncryptionInputsProps {
   onChange: (value: string) => void;
   output: string;
@@ -75,6 +76,17 @@ const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
   }, [action, isInitialized]);
 
   useEffect(() => () => clearTimeout(copiedTimeoutRef.current), []);
+
+  // "Try it in the tool": pre-fill the input from the loaded example. The
+  // context is only non-null when the example targets the current cipher.
+  const pendingExample = usePendingExample();
+  useEffect(() => {
+    if (!pendingExample) {
+      return;
+    }
+    setInput(pendingExample.input);
+    onChange(pendingExample.input);
+  }, [pendingExample]);
 
   const handleCopy = () => {
     outputRef?.current?.select();
