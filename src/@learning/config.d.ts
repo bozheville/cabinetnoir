@@ -36,6 +36,8 @@ export interface LearningConfigEntry {
   furtherReading: LearningFurtherReading[];
 }
 
+export declare const LEARNING_TABS: LearningTabName[];
+
 export declare const learningConfig: Record<string, LearningConfigEntry>;
 
 export declare function getLearningConfig(cipher: string): LearningConfigEntry | null;

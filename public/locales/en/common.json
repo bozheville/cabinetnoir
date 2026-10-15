@@ -1,6 +1,5 @@
 {
   "welcome": "Encryptor",
-
   "name": "Cabinet Noir",
   "home": {
     "title": "Modern handy decoder for old-fashioned ways of hiding a truth",
@@ -65,14 +64,14 @@
       "reverseAction": "Decode",
       "messageLabel": "Encoded message"
     },
-    "base64":  {
+    "base64": {
       "title": "Base 64",
       "short_title": "Base 64",
       "directAction": "Encode",
       "reverseAction": "Decode",
       "messageLabel": "Encoded message"
     },
-    "morse":  {
+    "morse": {
       "title": "Morse code (ITU)",
       "short_title": "Morse",
       "dot_symbol": "Dot symbol",
@@ -81,14 +80,14 @@
       "reverseAction": "Decode",
       "messageLabel": "Encoded message"
     },
-    "vigenere":  {
+    "vigenere": {
       "title": "Vigènere cipher",
       "short_title": "Vigènere",
       "directAction": "Encrypt",
       "reverseAction": "Decrypt",
       "messageLabel": "Cryptogram"
     },
-    "playfair":  {
+    "playfair": {
       "title": "Playfair cipher",
       "short_title": "Playfair",
       "directAction": "Encrypt",
@@ -104,5 +103,18 @@
     "report_a_bug": "Report a bug",
     "did_you_like": "Did you like it?",
     "buy_me_a_coffee": "Buy me a coffee"
+  },
+  "learning": {
+    "tabs": {
+      "learn": "Learn",
+      "history": "History",
+      "practice": "Practice"
+    },
+    "metaDescription": {
+      "learn": "Learn how the cipher works, follow step-by-step guides and see how it is broken.",
+      "history": "The history of the cipher: where it came from, who used it and how it was broken.",
+      "practice": "Practice on ready-made challenges, from easy to hard."
+    },
+    "placeholder": "Learning content is coming soon."
   }
 }
