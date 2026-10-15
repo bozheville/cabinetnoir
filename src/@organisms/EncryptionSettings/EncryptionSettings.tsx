@@ -89,7 +89,8 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
       <Pane
         display="grid"
         padding="16px"
-        gridTemplateColumns="1fr 32px 1fr"
+        gridTemplateColumns="1fr auto 1fr"
+        alignItems="center"
       >
         <Pane
           width="100%"
@@ -99,14 +100,17 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
         >
           {`${t('message')}`}
         </Pane>
-        <Tooltip content={t('learning.tooltips.swap')}>
+        {/* order lives on the Tooltip wrapper: it is the actual grid child */}
+        <Tooltip
+          content={t('learning.tooltips.swap')}
+          style={{ order: 2 }}
+        >
           <IconButton
             data-guide="swap"
             icon={SwapHorizontalIcon}
             onClick={handleSwapMode}
             appearance="minimal"
             padding="9px"
-            order={2}
           />
         </Tooltip>
         <Pane
