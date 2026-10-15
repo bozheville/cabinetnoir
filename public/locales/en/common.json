@@ -238,6 +238,18 @@
     },
     "furtherReading": {
       "wikipedia": "Wikipedia: the cipher"
+    },
+    "example": {
+      "stepOf": "Step {{step}} of {{total}}",
+      "nextStep": "Next step",
+      "showAll": "Show all",
+      "restart": "Restart",
+      "columns": {
+        "plain": "Plaintext letter",
+        "key": "Key letter",
+        "shift": "Shift",
+        "result": "Result"
+      }
     }
   },
   "glossary": {

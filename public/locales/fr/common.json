@@ -218,6 +218,18 @@
     },
     "furtherReading": {
       "wikipedia": "Wikipédia : le chiffre"
+    },
+    "example": {
+      "stepOf": "Étape {{step}} sur {{total}}",
+      "nextStep": "Étape suivante",
+      "showAll": "Tout afficher",
+      "restart": "Recommencer",
+      "columns": {
+        "plain": "Lettre du texte clair",
+        "key": "Lettre de clé",
+        "shift": "Décalage",
+        "result": "Résultat"
+      }
     }
   },
   "glossary": {
