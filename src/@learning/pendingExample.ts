@@ -1,5 +1,7 @@
 import React, { createContext, useContext } from 'react';
 
+import type { PresetName } from '@encryptors/Vigenere/cracker/hintSettings';
+
 export interface PendingExampleLoad {
   cipher: string;
   input: string;
@@ -7,6 +9,8 @@ export interface PendingExampleLoad {
   alphabet?: string;
   // Open with the cracker ("Unknown key") active.
   cracker?: boolean;
+  // Hint preset to apply when the cracker opens (challenge difficulty).
+  hintPreset?: PresetName;
 }
 
 // Carries a learning example into the Tool tab after a "try it in the
