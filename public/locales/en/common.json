@@ -117,6 +117,36 @@
       "history": "The history of the cipher: where it came from, who used it and how it was broken.",
       "practice": "Practice on ready-made challenges, from easy to hard."
     },
-    "placeholder": "Learning content is coming soon."
+    "placeholder": "Learning content is coming soon.",
+    "types": {
+      "polyalphabetic": "polyalphabetic substitution cipher",
+      "substitution": "substitution cipher",
+      "transposition": "transposition cipher",
+      "encoding": "encoding, not encryption"
+    },
+    "difficulty": {
+      "trivial": "trivial to break",
+      "easy": "easy to break by hand",
+      "hard": "hard to break by hand"
+    },
+    "modes": {
+      "encrypt": "encrypt",
+      "decrypt": "decrypt",
+      "cryptoanalysis": "cryptoanalysis"
+    },
+    "vigenere": {
+      "description": "Each letter of the message is shifted by the matching letter of a repeating key.",
+      "era": "16th century",
+      "origin": "Described by Giovan Battista Bellaso in 1553, later misattributed to Blaise de Vigenère."
+    },
+    "atGlance": {
+      "type": "Type",
+      "difficulty": "Breaking it",
+      "era": "Era",
+      "origin": "Name",
+      "modes": "Modes",
+      "collapse": "Show less",
+      "expand": "Show more"
+    }
   }
 }

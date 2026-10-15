@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Section from '@atoms/Section/Section';
 import { EncryptionInputs, EncryptionSettings, EncryptionDescription } from '@organisms';
 import CipherTabs from '@molecues/CipherTabs';
+import AtGlanceCard from '@molecues/AtGlanceCard';
 import { useRouter } from 'next/router';
 
 const EncryptorSection = styled(Section)`
@@ -41,6 +42,7 @@ const Encryptor: React.FC = () => {
   return (
     <>
       <EncryptorSection stitch="both" color="encryptor">
+        <AtGlanceCard />
         <CipherTabs algorithm={algorithm as string} activeTab="tool" />
         <EncryptorWrapper>
           <EncryptionSettings

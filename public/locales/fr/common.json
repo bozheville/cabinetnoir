@@ -97,6 +97,36 @@
       "history": "L'histoire du chiffre : son origine, ses utilisateurs et son déchiffrement.",
       "practice": "Entraînez-vous sur des défis prêts à l'emploi, du plus facile au plus difficile."
     },
-    "placeholder": "Le contenu pédagogique arrive bientôt."
+    "placeholder": "Le contenu pédagogique arrive bientôt.",
+    "types": {
+      "polyalphabetic": "chiffre de substitution polyalphabétique",
+      "substitution": "chiffre de substitution",
+      "transposition": "chiffre de transposition",
+      "encoding": "encodage, pas un chiffrement"
+    },
+    "difficulty": {
+      "trivial": "déchiffrable de façon triviale",
+      "easy": "facile à déchiffrer à la main",
+      "hard": "difficile à déchiffrer à la main"
+    },
+    "modes": {
+      "encrypt": "chiffrer",
+      "decrypt": "déchiffrer",
+      "cryptoanalysis": "cryptanalyse"
+    },
+    "vigenere": {
+      "description": "Chaque lettre du message est décalée selon la lettre correspondante d'une clé qui se répète.",
+      "era": "XVIᵉ siècle",
+      "origin": "Décrit par Giovan Battista Bellaso en 1553, puis attribué à tort à Blaise de Vigenère."
+    },
+    "atGlance": {
+      "type": "Type",
+      "difficulty": "Déchiffrement",
+      "era": "Époque",
+      "origin": "Nom",
+      "modes": "Modes",
+      "collapse": "Réduire",
+      "expand": "Afficher plus"
+    }
   }
 }
