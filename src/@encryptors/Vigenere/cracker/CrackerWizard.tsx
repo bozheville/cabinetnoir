@@ -124,6 +124,7 @@ const CrackerWizard: React.FC<{
           </Button>
         ) : (
           <Button
+            data-guide="use-this-key"
             width={NAV_BUTTON_WIDTH}
             appearance="primary"
             onClick={() => onUseKey(assembledKey)}

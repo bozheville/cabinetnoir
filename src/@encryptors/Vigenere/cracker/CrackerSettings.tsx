@@ -47,7 +47,7 @@ const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange }) =
   return (
   <Pane width="100%">
     <Heading size={100} marginBottom="8px">{t('processing.vigenere.cracker.hints.title')}</Heading>
-    <PresetPicker>
+    <PresetPicker data-guide="hint-presets">
       {PRESET_KEYS.map((preset) => (
         <PresetOption
           key={preset}
