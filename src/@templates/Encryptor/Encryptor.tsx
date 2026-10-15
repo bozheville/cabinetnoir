@@ -7,6 +7,7 @@ import CipherTabs from '@molecues/CipherTabs';
 import AtGlanceCard from '@molecues/AtGlanceCard';
 import { useRouter } from 'next/router';
 import { getExample } from '@learning/examples';
+import { getChallenge } from '@learning/challenges';
 import { PendingExampleContext, PendingExampleLoad } from '@learning/pendingExample';
 
 const EncryptorSection = styled(Section)`
@@ -43,32 +44,48 @@ const Encryptor: React.FC = () => {
   const router = useRouter();
   const { algorithm } = router.query;
 
-  // "Try it in the tool": pick up the example id from the URL, pre-fill
-  // the tool from it and remove the parameter. Only our own content ids
-  // travel through the URL, never user text.
+  // "Try it in the tool" / practice challenges: pick the content id up
+  // from the URL, pre-fill the tool from it and remove the parameter.
+  // Only our own content ids travel through the URL, never user text.
   useEffect(() => {
     if (!router.isReady || pendingExample) {
       return;
     }
     const exampleId = router.query.example;
-    if (typeof exampleId !== 'string') {
-      return;
-    }
-    const example = getExample(exampleId);
-    if (!example) {
-      return;
+    const challengeId = router.query.challenge;
+
+    if (typeof exampleId === 'string') {
+      const example = getExample(exampleId);
+      if (example) {
+        setPendingExample({
+          cipher: example.cipher,
+          input: example.input,
+          key: example.key,
+          alphabet: example.alphabet,
+        });
+        clearParam();
+        return;
+      }
     }
 
-    setPendingExample({
-      cipher: example.cipher,
-      input: example.input,
-      key: example.key,
-      alphabet: example.alphabet,
-    });
-
-    const { example: _ignored, ...restQuery } = router.query;
-    router.replace({ pathname: router.pathname, query: restQuery }, undefined, { shallow: true });
+    if (typeof challengeId === 'string') {
+      const challenge = getChallenge(challengeId);
+      if (challenge) {
+        setPendingExample({
+          cipher: challenge.cipher,
+          input: challenge.ciphertext,
+          cracker: true,
+          hintPreset: challenge.difficulty,
+        });
+        clearParam();
+      }
+    }
   }, [router.isReady, pendingExample]);
+
+  const clearParam = () => {
+    const { example: _e, challenge: _c, ...restQuery } = router.query;
+    router.replace({ pathname: router.pathname, query: restQuery }, undefined, { shallow: true });
+  };
 
   const pending = pendingExample && pendingExample.cipher === algorithm ? pendingExample : null;
 

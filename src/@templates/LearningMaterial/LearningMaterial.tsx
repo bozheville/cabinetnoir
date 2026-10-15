@@ -10,6 +10,8 @@ import CipherTabs from '@molecues/CipherTabs';
 import AtGlanceCard from '@molecues/AtGlanceCard';
 import MarkdownContent from '@molecues/MarkdownContent';
 import GlossarySection from '@molecues/GlossarySection';
+import ChallengeCard from '@molecues/ChallengeCard';
+import { getChallenges } from '@learning/challenges';
 
 const LearningWrapper = styled(Section)`
   display: flex;
@@ -48,6 +50,9 @@ const LearningMaterial: React.FC<LearningMaterialProps> = ({ learningContent = {
         <MarkdownContent key={topic} source={learningContent[topic]} />
       ))}
       {tab === 'learn' && <GlossarySection algorithm={algorithm as string} />}
+      {tab === 'practice' && getChallenges(algorithm as string).map((challenge) => (
+        <ChallengeCard key={challenge.id} challenge={challenge} />
+      ))}
     </LearningWrapper>
   );
 };

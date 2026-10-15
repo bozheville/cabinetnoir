@@ -8,7 +8,7 @@ import { vigenereEncrypt, vigenereDecrypt, DEFAULT_ALPHABET, isEnglishAlphabet }
 import CrackerSettings from './cracker/CrackerSettings';
 import CrackerWizard from './cracker/CrackerWizard';
 import useCracker from './cracker/useCracker';
-import { DEFAULT_HINT_CONFIG, HintConfig } from './cracker/hintSettings';
+import { DEFAULT_HINT_CONFIG, HintConfig, applyPreset, PresetName } from './cracker/hintSettings';
 import { usePendingExample } from '@learning/pendingExample';
 
 const Vigenere: React.FC<CrypterProps> = ({
@@ -46,6 +46,9 @@ const Vigenere: React.FC<CrypterProps> = ({
     }
     if (pendingExample.cracker) {
       setIsUnknownKey(true);
+    }
+    if (pendingExample.hintPreset) {
+      setHintConfig((current) => applyPreset(current, pendingExample.hintPreset as PresetName));
     }
   }, [pendingExample]);
 
@@ -106,7 +109,7 @@ const Vigenere: React.FC<CrypterProps> = ({
         paddingBottom="16px"
         {...paneProps}
       >
-        <Heading size={100}>{t('processing.vigenere.cracker.keyLabel')}</Heading>
+        <Heading size={100} data-guide="key">{t('processing.vigenere.cracker.keyLabel')}</Heading>
         <Tooltip content={t('processing.vigenere.cracker.tooltips.key')}>
           <TextInput
             width="150px"
@@ -114,7 +117,7 @@ const Vigenere: React.FC<CrypterProps> = ({
             onChange={(event) => setSecretKey(event.target.value)}
           />
         </Tooltip>
-        <Heading size={100} marginLeft="12px">{t('processing.vigenere.cracker.alphabetLabel')}</Heading>
+        <Heading size={100} marginLeft="12px" data-guide="alphabet">{t('processing.vigenere.cracker.alphabetLabel')}</Heading>
         <TextInput
           width="280px"
           fontFamily="monospace"
@@ -123,6 +126,7 @@ const Vigenere: React.FC<CrypterProps> = ({
         />
         {isEnglishAlphabet(customAlphabet) && (
           <Checkbox
+            data-guide="unknown-key"
             marginLeft="6px"
             label={t('processing.vigenere.cracker.unknownKey')}
             checked={isUnknownKey}
