@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { encodingsList, encryptorsList } = require('../src/@encryptors/algorithms');
+const { LEARNING_TABS, hasTab } = require('../src/@learning/config');
 
 const baseURL = 'http://cabinetnoir.eu';
 const algorithms = [...encodingsList, ...encryptorsList];
@@ -11,7 +12,11 @@ const localePrefixes = ['', '/fr', '/ua'];
 const buildLinks = () => {
   const links = [baseURL];
   for (const algorithm of algorithms) {
-    for (const action of actions) {
+    const segments = [
+      ...actions,
+      ...LEARNING_TABS.filter((tab) => hasTab(algorithm, tab)),
+    ];
+    for (const action of segments) {
       for (const localePrefix of localePrefixes) {
         links.push(`${baseURL}${localePrefix}/encoder/${algorithm}/${action}`);
       }
