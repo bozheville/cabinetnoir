@@ -9,6 +9,26 @@ module.exports = {
   compiler: {
     styledComponents: true,
   },
+  // Next 16 builds with Turbopack by default; the webpack() hook below is
+  // only used with the explicit --webpack opt-out.
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
+    resolveAlias: {
+      // evergreen-ui's toaster singleton runs ReactDOM.render at import
+      // time (removed in React 19), in every version up to 7.1.9. The
+      // app never calls the toaster, so alias it to a no-op stub. Nothing
+      // in the app imports it directly, so the stub is safe in production
+      // too (prod tree-shakes it away either way).
+      'evergreen-ui/esm/toaster': './evergreen-toaster.dev-stub.js',
+      'evergreen-ui/esm/toaster/src/index.js': './evergreen-toaster.dev-stub.js',
+      'evergreen-ui/esm/toaster/src/Toaster.js': './evergreen-toaster.dev-stub.js',
+    },
+  },
   webpack(config, { dev }) {
     config.module.rules.push({
       test: /\.svg$/,

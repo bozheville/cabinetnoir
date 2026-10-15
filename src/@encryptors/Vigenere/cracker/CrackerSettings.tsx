@@ -1,5 +1,7 @@
 import React from 'react';
-import { Checkbox, Heading, Pane, SegmentedControl } from 'evergreen-ui';
+import { Checkbox, Heading, Pane } from 'evergreen-ui';
+import styled from 'styled-components';
+
 import {
   HINT_KEYS,
   PRESET_KEYS,
@@ -15,21 +17,44 @@ interface CrackerSettingsProps {
   onChange: (config: HintConfig) => void;
 }
 
-const PRESET_OPTIONS = PRESET_KEYS.map((value) => ({
-  label: strings.hints.presets[value],
-  value,
-}));
+const PresetPicker = styled(Pane)`
+  display: inline-flex;
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.colorScheme.gray[300]};
+  overflow: hidden;
+`;
+
+const PresetOption = styled.button<{ $active: boolean }>`
+  padding: 4px 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  background: ${({ theme, $active }) => ($active ? theme.colorScheme.blue[500] : theme.colors.background)};
+  color: ${({ theme, $active }) => ($active ? theme.colorScheme.white : theme.colors.text)};
+
+  &:not(:last-child) {
+    border-right: 1px solid ${({ theme }) => theme.colorScheme.gray[300]};
+  }
+
+  &:hover {
+    background: ${({ theme, $active }) => ($active ? theme.colorScheme.blue[500] : theme.colorScheme.gray[100])};
+  }
+`;
 
 const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange }) => (
   <Pane width="100%">
     <Heading size={100} marginBottom="8px">{strings.hints.title}</Heading>
-    <SegmentedControl
-      width="100%"
-      maxWidth="360px"
-      options={PRESET_OPTIONS}
-      value={config.preset}
-      onChange={(preset) => onChange(applyPreset(config, preset as Preset))}
-    />
+    <PresetPicker>
+      {PRESET_KEYS.map((preset) => (
+        <PresetOption
+          key={preset}
+          $active={config.preset === preset}
+          onClick={() => onChange(applyPreset(config, preset))}
+        >
+          {strings.hints.presets[preset]}
+        </PresetOption>
+      ))}
+    </PresetPicker>
     <Pane
       display="grid"
       gridTemplateColumns="repeat(auto-fill, minmax(220px, 1fr))"
