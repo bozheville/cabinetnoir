@@ -18,9 +18,13 @@ const LearningWrapper = styled(Section)`
 `;
 
 // Learning tab layout (Learn / History / Practice). Each tab replaces the
-// encryption UI on screen and gets its own URL. Content is filled in by
-// later tasks; for now every tab shows a placeholder.
-const LearningMaterial: React.FC = () => {
+// encryption UI on screen and gets its own URL. Markdown content arrives
+// via getStaticProps (build time); sections are filled in by later tasks.
+interface LearningMaterialProps {
+  learningContent?: Record<string, string>;
+}
+
+const LearningMaterial: React.FC<LearningMaterialProps> = ({ learningContent = {} }) => {
   const { t } = useTranslation('common');
   const { algorithm, action } = useRouter().query;
   const tab = action as string;
@@ -30,9 +34,11 @@ const LearningMaterial: React.FC = () => {
       <CipherTabs algorithm={algorithm as string} activeTab={tab as any} />
       <Heading size={500}>{t(`learning.tabs.${tab}`)}</Heading>
       <Text size={300}>{t(`processing.${algorithm as string}.title`)}</Text>
-      <Pane>
-        <Text size={300}>{t('learning.placeholder')}</Text>
-      </Pane>
+      {Object.keys(learningContent).length === 0 && (
+        <Pane>
+          <Text size={300}>{t('learning.placeholder')}</Text>
+        </Pane>
+      )}
     </LearningWrapper>
   );
 };
