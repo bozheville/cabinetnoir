@@ -16,6 +16,7 @@ import {
   Morse,
   Playfair,
   Vigenere,
+  Adfgvx,
   encodingsList,
   encryptorsList,
   Base64,
@@ -78,6 +79,7 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
     algorithm === 'enigma' ? Enigma :
     algorithm === 'playfair' ? Playfair :
     algorithm === 'vigenere' ? Vigenere :
+    algorithm === 'adfgvx' ? Adfgvx :
     algorithm === 'morse' ? Morse :
     algorithm === 'rot13' ? Rot13 :
     null;

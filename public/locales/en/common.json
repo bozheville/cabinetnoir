@@ -205,6 +205,20 @@
       "directAction": "Encrypt",
       "reverseAction": "Decrypt",
       "messageLabel": "Cryptogram"
+    },
+    "adfgvx": {
+      "title": "ADFGVX cipher",
+      "short_title": "ADFGVX",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram",
+      "variantLabel": "Variant",
+      "variants": {
+        "adfgx": "ADFGX (1918)",
+        "adfgvx": "ADFGVX (1918)"
+      },
+      "squareKeyLabel": "Square key",
+      "transpositionKeyLabel": "Transposition key"
     }
   },
   "message": "Message",
@@ -234,7 +248,8 @@
       "polyalphabetic": "polyalphabetic substitution cipher",
       "substitution": "substitution cipher",
       "transposition": "transposition cipher",
-      "encoding": "encoding, not encryption"
+      "encoding": "encoding, not encryption",
+      "fractionation": "fractionation + transposition cipher"
     },
     "difficulty": {
       "trivial": "trivial to break",
@@ -318,7 +333,10 @@
       "shift": "the shift field",
       "alphabet-selector": "the alphabet selector",
       "dot-symbol": "the dot symbol selector",
-      "dash-symbol": "the dash symbol selector"
+      "dash-symbol": "the dash symbol selector",
+      "variant-selector": "the variant selector",
+      "square-key": "the Square key field",
+      "transposition-key": "the Transposition key field"
     },
     "timeline": {
       "source": "Source",
@@ -619,6 +637,11 @@
       },
       "enigma": {
         "key": "The rotor start positions (the Grundstellung) — three letters A–Z. On a real machine the key also carried the rotor order, the ring settings and the plugboard pairs."
+      },
+      "adfgvx": {
+        "variant": "The variant: ADFGX uses a 5×5 letter square, ADFGVX adds a 6th row with the digits 0–9.",
+        "square-key": "The keyed square: the key letters fill the square first (duplicates dropped, J folded into I), the rest of the alphabet follows. Change it and both the coordinates and the final transposition shift.",
+        "transposition-key": "The transposition key: its letters set the number and the reading order of the columns the fractionated text is shuffled through."
       }
     },
     "caesar": {
@@ -665,6 +688,11 @@
       "description": "A rotor machine: three wheels and a reflector reshuffle the alphabet with every keypress.",
       "era": "1920s — 1940s",
       "origin": "Invented by Arthur Scherbius in Germany; patented 1918, adopted by the German military from 1926."
+    },
+    "adfgvx": {
+      "description": "The German WWI field cipher that split every letter into two of six letters and then shuffled the result — until Georges Painvin broke it.",
+      "era": "1918 (World War I)",
+      "origin": "Fritz Nebel, German army signal corps"
     }
   },
   "glossary": {
