@@ -241,7 +241,9 @@
     "modes": {
       "encrypt": "encrypt",
       "decrypt": "decrypt",
-      "cryptoanalysis": "cryptoanalysis"
+      "cryptoanalysis": "cryptoanalysis",
+      "encode": "encode",
+      "decode": "decode"
     },
     "vigenere": {
       "description": "Each letter of the message is shifted by the matching letter of a repeating key.",
@@ -276,7 +278,8 @@
         "result": "Result",
         "disc": "Disc alignment",
         "formula": "a·x + b (mod 26)",
-        "index": "Index (x ↔ 25 − x)"
+        "index": "Index (x ↔ 25 − x)",
+        "symbol": "Morse symbols"
       }
     },
     "tryInTool": "Try it in the tool",
@@ -307,7 +310,9 @@
       "period": "the period slider",
       "multiplier": "the multiplier field",
       "shift": "the shift field",
-      "alphabet-selector": "the alphabet selector"
+      "alphabet-selector": "the alphabet selector",
+      "dot-symbol": "the dot symbol selector",
+      "dash-symbol": "the dash symbol selector"
     },
     "timeline": {
       "source": "Source",
@@ -338,6 +343,13 @@
       "atbash": {
         "1100": "Medieval commentators (Rashi, then Radak) discuss the Atbash passages of Jeremiah, the oldest attested substitution cipher.",
         "586bc": "The Book of Jeremiah writes Babylon as SHESHACH and the Chaldeans as LEV-KAMAI — Atbash readings confirmed by commentators."
+      },
+      "morse": {
+        "1837": "Samuel Morse and Alfred Vail develop the electric telegraph and the first version of their code.",
+        "1844": "Morse taps \"What hath God wrought\" over the Washington–Baltimore line, the first official telegraph message.",
+        "1865": "The Paris telegraph convention adopts Gerke's revision as International Morse — the code used today.",
+        "1906": "The Berlin radiotelegraph convention adopts SOS as the worldwide maritime distress signal.",
+        "1999": "The Global Maritime Distress and Safety System ends Morse's official watch at sea."
       }
     },
     "challenge": {
@@ -462,6 +474,22 @@
         "title": "Fourscore and seven",
         "hint1": "It opens a famous American speech.",
         "hint2": "No key to find: the whole secret is the fixed mirror A↔Z."
+      },
+      "morse-easy-1": {
+        "title": "The eagle has landed",
+        "hint1": "Letters are separated by single spaces, words by a slash.",
+        "hint2": "Switch the tool to decrypt mode and paste the code as it is."
+      },
+      "morse-medium-1": {
+        "title": "What hath God wrought",
+        "hint1": "The message is the first official telegraph transmission, from Washington to Baltimore in 1844.",
+        "hint2": "In the tool, a space between letters stays a space; the word gaps are slashes."
+      },
+      "morse-hard-1": {
+        "title": "Struck an iceberg",
+        "hint1": "A paraphrase of the distress traffic from a famous ship in April 1912.",
+        "hint2": "Spacing is everything: check that no space was lost when copying.",
+        "hint3": "The message begins with the distress signal itself — three dots, three dashes, three dots."
       }
     },
     "tooltips": {
@@ -483,6 +511,10 @@
       },
       "atbash": {
         "alphabet": "The alphabet selector: Atbash mirrors whatever alphabet is chosen — the only choice the cipher offers."
+      },
+      "morse": {
+        "dot": "The character that plays the short signal (the dot) in the encoded output.",
+        "dash": "The character that plays the long signal (the dash) in the encoded output."
       }
     },
     "caesar": {
@@ -504,6 +536,11 @@
       "description": "The mirror cipher: the alphabet is flipped over, so A becomes Z and B becomes Y. No key at all.",
       "era": "c. 586 BC",
       "origin": "Hebrew scribes; attested in the Book of Jeremiah."
+    },
+    "morse": {
+      "description": "An encoding, not a cipher: every letter becomes a public pattern of dots and dashes for the telegraph.",
+      "era": "19th century",
+      "origin": "Developed by Samuel Morse and Alfred Vail for the electric telegraph (1830s–1840s)."
     }
   },
   "glossary": {
@@ -574,6 +611,18 @@
     "modular-arithmetic": {
       "name": "Modular arithmetic",
       "definition": "Counting that wraps around at a fixed size: after the maximum you start again at zero, like hours on a clock."
+    },
+    "encoding": {
+      "name": "Encoding",
+      "definition": "A reversible rewrite of data for transport or storage; anyone can undo it, so it hides nothing."
+    },
+    "dot": {
+      "name": "Dot",
+      "definition": "Morse's short signal — one unit of sound, light or current."
+    },
+    "dash": {
+      "name": "Dash",
+      "definition": "Morse's long signal — three units long, with pauses of one unit between the symbols of a letter."
     }
   }
 }

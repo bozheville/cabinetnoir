@@ -11,6 +11,33 @@ export interface TimelineEvent {
 }
 
 export const TIMELINES: Record<string, TimelineEvent[]> = {
+  morse: [
+    {
+      year: '1837',
+      textKey: 'learning.timeline.morse.1837',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Morse_code',
+    },
+    {
+      year: '1844',
+      textKey: 'learning.timeline.morse.1844',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Morse_code',
+    },
+    {
+      year: '1865',
+      textKey: 'learning.timeline.morse.1865',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Morse_code',
+    },
+    {
+      year: '1906',
+      textKey: 'learning.timeline.morse.1906',
+      sourceUrl: 'https://en.wikipedia.org/wiki/SOS',
+    },
+    {
+      year: '1999',
+      textKey: 'learning.timeline.morse.1999',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Morse_code',
+    },
+  ],
   atbash: [
     {
       year: 'c. 586 BC',
