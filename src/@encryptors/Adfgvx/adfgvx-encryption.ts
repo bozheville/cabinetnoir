@@ -69,31 +69,34 @@ function columnOrder(key: string): number[] {
     .map((item) => item.index);
 }
 
-// Columnar transposition, encryption side: the fractionated text is written
-// into a row-major grid under the key and read off column by column, in
-// key-letter order. Irregular columns (the last row) keep the classic
-// behaviour: trailing columns simply come out shorter.
+// Columnar transposition, encryption side: the fractionated text is padded
+// with 'X' coordinates up to a full rectangle (rows x key length) and
+// written row-major, then read off column by column in key-letter order.
+// Padding keeps every column the same length, so the ciphertext splits
+// back into columns without knowing the key — this is what makes the
+// guided cracker's column analysis possible.
 function transpose(fractionated: string, key: string): string {
   if (!key) return fractionated;
 
   const length = fractionated.length;
   const columns = key.length;
   const rows = Math.ceil(length / columns);
-  const order = columnOrder(key);
+  const padded = fractionated.padEnd(rows * columns, 'X');
 
   let result = '';
-  for (const column of order) {
+  for (const column of columnOrder(key)) {
     for (let row = 0; row < rows; row += 1) {
-      const position = row * columns + column;
-      if (position < length) result += fractionated[position];
+      result += padded[row * columns + column];
     }
   }
   return result;
 }
 
 // Columnar transposition, decryption side: each column in key order gets
-// its slice of the ciphertext back (columns before the remainder are one
-// row longer), then the grid is read row-major.
+// an equal slice of the ciphertext (full rectangle), then the grid is read
+// row-major. Unpadded (external) ciphertext with a short last row still
+// decodes through the remainder logic. Trailing pad coordinates decode to
+// a few junk letters at the end of the plaintext.
 function untranspose(ciphertext: string, key: string): string {
   if (!key) return ciphertext;
 
