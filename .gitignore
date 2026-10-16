@@ -18,6 +18,8 @@ specs
 # misc
 .DS_Store
 *.pem
+.pre-commit-report.md
+tsconfig.tsbuildinfo
 
 # debug
 npm-debug.log*
