@@ -10,6 +10,7 @@ import {
   ALBERTI_DYNAMIC_DISC,
 } from '@encryptors/Alberti/alberti-crypt';
 import { playfairEncrypt } from '@encryptors/Playfair/playfair-encryption';
+import { adfgvxEncrypt } from '@encryptors/Adfgvx/adfgvx-encryption';
 import { morseEncoding } from '@encryptors/Morse/morse-encoding';
 import { createEnigmaMachine } from '@learning/enigma-machine';
 
@@ -229,6 +230,47 @@ const PLAYFAIR_DEMO = {
   answer: 'ATTACKATDAWN',
   listOnPractice: false,
 };
+
+// ADFGVX: both keys travel in the hints. Transposition keys stay even in
+// length and free of doubled letters so the cracker's slot-pair matching
+// has a clean target; plaintexts stay long enough for the statistics.
+const buildAdfgvxChallenge = (
+  id: string,
+  squareKey: string,
+  transpositionKey: string,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+): Challenge => ({
+  id,
+  cipher: 'adfgvx',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: adfgvxEncrypt(plaintext, squareKey, transpositionKey, 'adfgvx'),
+  difficulty,
+  keyLength: transpositionKey.length,
+  hints,
+  answer: plaintext,
+});
+
+const ADFGVX_DEMO = {
+  id: 'adfgvx-demo',
+  cipher: 'adfgvx',
+  titleKey: 'learning.challenges.adfgvx-demo.title',
+  ciphertext: adfgvxEncrypt('ATTACKATDAWN', 'NIGHT', 'GERMAN', 'adfgvx'),
+  difficulty: 'easy' as ChallengeDifficulty,
+  keyLength: 6,
+  hints: [
+    'learning.challenges.adfgvx-demo.hint1',
+  ],
+  answer: 'ATTACKATDAWN',
+  listOnPractice: false,
+};
+
+const GETTYSBURG_PLAINTEXT_ADFGVX =
+  'WEAREMETONAGREATBATTLEFIELDOFTHATWARWEHAVECOMTODEDICATEAPORTIONOFTHATFIELDASAFINALRESTINGPLACEFORTHOSEWHOHEREGAVETHEIRLIVESTHATTHATNATIONMIGHTLIVE';
+
+const DICKENS_PLAINTEXT_ADFGVX =
+  'ITWASTHEBESTOFTIMESITWASTHEWORSTOFTIMESITWASTHEAGEOFWISDOMITWASTHEAGEOFFOOLISHNESSITWASTHEEPOCHOFBELIEFITWASTHEEPOCHOFINCREDULITYITWASTHESEASONOFLIGHTITWASTHESEASONOFDARKNESS';
 
 // Enigma: the three-letter key (start positions) must travel in the
 // hints — otherwise the key would be the whole answer. The machine is
@@ -729,6 +771,42 @@ export const CHALLENGES: Record<string, Challenge> = {
     [
       'learning.challenges.enigma-medium-1.hint1',
       'learning.challenges.enigma-medium-1.hint2',
+    ],
+  ),
+  'adfgvx-easy-1': buildAdfgvxChallenge(
+    'adfgvx-easy-1',
+    'NIGHT',
+    'GERMAN',
+    GETTYSBURG_PLAINTEXT_ADFGVX,
+    'easy',
+    [
+      'learning.challenges.adfgvx-easy-1.hint1',
+      'learning.challenges.adfgvx-easy-1.hint2',
+      'learning.challenges.adfgvx-easy-1.hint3',
+    ],
+  ),
+  'adfgvx-medium-1': buildAdfgvxChallenge(
+    'adfgvx-medium-1',
+    'NIGHT',
+    'WINTER',
+    DICKENS_PLAINTEXT_ADFGVX,
+    'medium',
+    [
+      'learning.challenges.adfgvx-medium-1.hint1',
+      'learning.challenges.adfgvx-medium-1.hint2',
+      'learning.challenges.adfgvx-medium-1.hint3',
+    ],
+  ),
+  'adfgvx-hard-1': buildAdfgvxChallenge(
+    'adfgvx-hard-1',
+    'KAISER',
+    'FRANCE',
+    GETTYSBURG_PLAINTEXT_ADFGVX,
+    'hard',
+    [
+      'learning.challenges.adfgvx-hard-1.hint1',
+      'learning.challenges.adfgvx-hard-1.hint2',
+      'learning.challenges.adfgvx-hard-1.hint3',
     ],
   ),
   'enigma-hard-1': buildEnigmaChallenge(

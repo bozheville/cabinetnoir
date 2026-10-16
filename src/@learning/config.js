@@ -306,6 +306,38 @@ const learningConfig = {
       },
     ],
   },
+  adfgvx: {
+    tabs: LEARNING_TABS,
+    sections: {
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.fractionation',
+      difficulty: 'learning.difficulty.hard',
+      era: 'learning.adfgvx.era',
+      origin: 'learning.adfgvx.origin',
+      modes: ['encrypt', 'decrypt'],
+    },
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'key',
+      'alphabet',
+      'polybius-square',
+      'fractionation',
+      'transposition',
+      'frequency-analysis',
+      'crib',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/ADFGVX_cipher',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
 };
 
 const getLearningConfig = (cipher) => learningConfig[cipher] || null;
