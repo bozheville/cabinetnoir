@@ -257,7 +257,8 @@
             "yourKeys": "Vos clés reconstituées",
             "squareKey": "Clé du carré (lue ligne par ligne) :",
             "transpositionKey": "Clé de transposition :"
-          }
+          },
+          "previewTitle": "Déchiffré jusqu’ici"
         },
         "tooltips": {
           "hintPresets": "L’ampleur de l’aide : Facile montre tout, Difficile vous laisse réfléchir.",
@@ -276,7 +277,8 @@
           "back": "Revenir d’un pas. Rien ne casse.",
           "next": "Étape suivante.",
           "skip": "Fermer le décrypteur sans rien utiliser.",
-          "useThisKey": "Remplir les deux champs de clés avec les clés reconstituées."
+          "useThisKey": "Remplir les deux champs de clés avec les clés reconstituées.",
+          "symbolChart": "Les symboles du texte chiffré une fois les colonnes rangées. Cliquez sur un symbole pour lui attribuer sa lettre en clair ; le compte indique sa fréquence."
         }
       }
     }

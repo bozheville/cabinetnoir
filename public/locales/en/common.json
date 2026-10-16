@@ -270,7 +270,8 @@
             "yourKeys": "Your recovered keys",
             "squareKey": "Square key (read row by row):",
             "transpositionKey": "Transposition key:"
-          }
+          },
+          "previewTitle": "Decrypted so far"
         },
         "tooltips": {
           "hintPresets": "How much help the tool gives: Easy shows everything, Hard leaves the thinking to you.",
@@ -289,7 +290,8 @@
           "back": "Back one step. Nothing breaks.",
           "next": "Next step.",
           "skip": "Close the cracker without using anything.",
-          "useThisKey": "Fill both key fields with the recovered keys."
+          "useThisKey": "Fill both key fields with the recovered keys.",
+          "symbolChart": "The symbols of the ciphertext once the columns are arranged. Click a symbol to assign its plaintext letter; the count shows how often it appears."
         }
       }
     }
