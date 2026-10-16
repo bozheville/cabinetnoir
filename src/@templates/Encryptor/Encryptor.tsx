@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import Section from '@atoms/Section/Section';
-import { EncryptionInputs, EncryptionSettings, EncryptionDescription } from '@organisms';
+import { EncryptionInputs, EncryptionSettings } from '@organisms';
 import CipherTabs from '@molecues/CipherTabs';
 import AtGlanceCard from '@molecues/AtGlanceCard';
 import { useRouter } from 'next/router';
@@ -109,7 +109,6 @@ const Encryptor: React.FC = () => {
           </PendingExampleContext.Provider>
         </EncryptorWrapper>
       </EncryptorSection>
-      <EncryptionDescription />
     </>
   );
 };

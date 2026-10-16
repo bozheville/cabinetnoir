@@ -356,6 +356,9 @@
         "1992": "MIME introduces base64 so email can carry attachments over text-only channels.",
         "1996": "RFC 2045 fixes the exact 64-character alphabet that email still uses.",
         "2006": "RFC 4648 consolidates the base encodings, including the URL-safe variant."
+      },
+      "rot13": {
+        "1980s": "Usenet's net.jokes newsgroup adopts ROT13 to hide spoilers and punchlines; it becomes netiquette."
       }
     },
     "challenge": {
@@ -511,6 +514,22 @@
         "title": "Eliminate the impossible",
         "hint1": "It is a Sherlock Holmes quotation — decode with the tool.",
         "hint2": "Letters-only comparison: the answer ignores spacing and case."
+      },
+      "rot13-easy-1": {
+        "title": "The cake is a lie",
+        "hint1": "ROT13 is its own inverse — decoding is the very same operation.",
+        "hint2": "The shift is fixed at 13; there is no key to find."
+      },
+      "rot13-medium-1": {
+        "title": "The punchline",
+        "hint1": "A legendary joke is traditionally told with its punchline posted separately — often in ROT13.",
+        "hint2": "Paste the text into decrypt mode; the tool does the half-turn for you."
+      },
+      "rot13-hard-1": {
+        "title": "Two roads",
+        "hint1": "It is the opening image of a famous Robert Frost poem.",
+        "hint2": "Again there is no key: only the fixed 13-step rotation.",
+        "hint3": "Spacing is preserved, so word lengths are readable hints."
       }
     },
     "tooltips": {
@@ -567,6 +586,11 @@
       "description": "An encoding, not a cipher: three bytes become four characters from a fixed 64-symbol alphabet.",
       "era": "1990s",
       "origin": "Standardised for MIME email attachments (Nathaniel Borenstein, RFC 2045)."
+    },
+    "rot13": {
+      "description": "A fixed shift of 13 — its own inverse: applying it twice restores the text. Obfuscation, not encryption.",
+      "era": "1980s",
+      "origin": "Popularised on Usenet newsgroups to hide spoilers and punchlines."
     }
   },
   "glossary": {

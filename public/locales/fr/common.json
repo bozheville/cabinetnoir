@@ -336,6 +336,9 @@
         "1992": "MIME introduit base64 pour que le courriel puisse porter des pièces jointes sur des canaux purement textuels.",
         "1996": "La RFC 2045 fige l'alphabet exact de 64 caractères qu'utilise encore le courriel.",
         "2006": "La RFC 4648 consolide la famille des encodages de base, variante sûre pour URL incluse."
+      },
+      "rot13": {
+        "1980s": "Le groupe net.jokes d'Usenet adopte ROT13 pour cacher spoilers et chutes ; cela devient de la nétiquette."
       }
     },
     "challenge": {
@@ -491,6 +494,22 @@
         "title": "Éliminez l’impossible",
         "hint1": "C’est une citation de Sherlock Holmes — décodez avec l’outil.",
         "hint2": "Comparaison lettres seules : la réponse ignore espaces et majuscules."
+      },
+      "rot13-easy-1": {
+        "title": "Le gâteau est un mensonge",
+        "hint1": "ROT13 est sa propre inverse — déchiffrer est la toute même opération.",
+        "hint2": "Le décalage est fixé à 13 ; aucune clé à trouver."
+      },
+      "rot13-medium-1": {
+        "title": "La chute",
+        "hint1": "Une blague légendaire se raconte traditionnellement avec sa chute publiée à part — souvent en ROT13.",
+        "hint2": "Collez le texte en mode déchiffrement ; l'outil fait le demi-tour pour vous."
+      },
+      "rot13-hard-1": {
+        "title": "Deux chemins",
+        "hint1": "C'est l'image d'ouverture d'un célèbre poème de Robert Frost.",
+        "hint2": "Là encore, pas de clé : seulement la rotation fixe de 13 pas.",
+        "hint3": "L'espacement est préservé : les longueurs de mots sont des indices lisibles."
       }
     },
     "tooltips": {
@@ -547,6 +566,11 @@
       "description": "Un encodage, pas un chiffre : trois octets deviennent quatre caractères d'un alphabet fixe de 64 symboles.",
       "era": "Années 1990",
       "origin": "Standardisé pour les pièces jointes MIME (Nathaniel Borenstein, RFC 2045)."
+    },
+    "rot13": {
+      "description": "Un décalage fixe de 13 — sa propre inverse : l'appliquer deux fois restaure le texte. Obfuscation, pas chiffrement.",
+      "era": "Années 1980",
+      "origin": "Popularisé sur les groupes de discussion Usenet pour cacher spoilers et chutes de blagues."
     }
   },
   "glossary": {

@@ -11,6 +11,13 @@ export interface TimelineEvent {
 }
 
 export const TIMELINES: Record<string, TimelineEvent[]> = {
+  rot13: [
+    {
+      year: '1980s',
+      textKey: 'learning.timeline.rot13.1980s',
+      sourceUrl: 'https://en.wikipedia.org/wiki/ROT13',
+    },
+  ],
   base64: [
     {
       year: '1992',

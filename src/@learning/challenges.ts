@@ -193,6 +193,31 @@ const buildAtbashChallenge = (
   answer: plaintext,
 });
 
+// ROT13 decode challenges: the shift is fixed, so decoding is the
+// same operation; the challenge opens in decrypt mode anyway.
+const buildRot13Challenge = (
+  id: string,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+): Challenge => ({
+  id,
+  cipher: 'rot13',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: monoalphabeticEncrypt({
+    alphabet: LATIN_ALPHABET,
+    targetAlphabet: rotate(LATIN_ALPHABET, 13),
+    input: plaintext,
+    keepSpaces: true,
+    keepCase: true,
+  }),
+  difficulty,
+  keyLength: 0,
+  hints,
+  answer: plaintext,
+  mode: 'decrypt',
+});
+
 // Base64 decode challenges: the ciphertext is a plain encoding, the
 // challenge opens in decrypt mode.
 const buildBase64Challenge = (
@@ -542,6 +567,34 @@ export const CHALLENGES: Record<string, Challenge> = {
     [
       'learning.challenges.base64-hard-1.hint1',
       'learning.challenges.base64-hard-1.hint2',
+    ],
+  ),
+  'rot13-easy-1': buildRot13Challenge(
+    'rot13-easy-1',
+    'THECAKEISALIE',
+    'easy',
+    [
+      'learning.challenges.rot13-easy-1.hint1',
+      'learning.challenges.rot13-easy-1.hint2',
+    ],
+  ),
+  'rot13-medium-1': buildRot13Challenge(
+    'rot13-medium-1',
+    'THEARISTOCRATS',
+    'medium',
+    [
+      'learning.challenges.rot13-medium-1.hint1',
+      'learning.challenges.rot13-medium-1.hint2',
+    ],
+  ),
+  'rot13-hard-1': buildRot13Challenge(
+    'rot13-hard-1',
+    'TWOROADSDIVERGEDINAYELLOWWOOD',
+    'hard',
+    [
+      'learning.challenges.rot13-hard-1.hint1',
+      'learning.challenges.rot13-hard-1.hint2',
+      'learning.challenges.rot13-hard-1.hint3',
     ],
   ),
 };
