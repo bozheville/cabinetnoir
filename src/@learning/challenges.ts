@@ -11,6 +11,7 @@ import {
 } from '@encryptors/Alberti/alberti-crypt';
 import { playfairEncrypt } from '@encryptors/Playfair/playfair-encryption';
 import { morseEncoding } from '@encryptors/Morse/morse-encoding';
+import { createEnigmaMachine } from '@learning/enigma-machine';
 
 export type ChallengeDifficulty = 'easy' | 'medium' | 'hard';
 
@@ -228,6 +229,50 @@ const PLAYFAIR_DEMO = {
   answer: 'ATTACKATDAWN',
   listOnPractice: false,
 };
+
+// Enigma: the three-letter key (start positions) must travel in the
+// hints — otherwise the key would be the whole answer. The machine is
+// reciprocal, so a decrypted run reproduces the plaintext exactly as
+// typed into the tool (letters only).
+const buildEnigmaChallenge = (
+  id: string,
+  key: string,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+): Challenge => {
+  const machine = createEnigmaMachine();
+  machine.setPositions(key);
+  return {
+    id,
+    cipher: 'enigma',
+    titleKey: `learning.challenges.${id}.title`,
+    ciphertext: machine.string(plaintext),
+    difficulty,
+    keyLength: 3,
+    hints,
+    answer: plaintext,
+    mode: 'decrypt',
+  };
+};
+
+const ENIGMA_DEMO = (() => {
+  const machine = createEnigmaMachine();
+  machine.setPositions('QCV');
+  return {
+    id: 'enigma-demo',
+    cipher: 'enigma',
+    titleKey: 'learning.challenges.enigma-demo.title',
+    ciphertext: machine.string('ATTACKATDAWN'),
+    difficulty: 'easy' as ChallengeDifficulty,
+    keyLength: 3,
+    hints: [
+      'learning.challenges.enigma-demo.hint1',
+    ],
+    answer: 'ATTACKATDAWN',
+    listOnPractice: false,
+  };
+})();
 
 // ROT13 decode challenges: the shift is fixed, so decoding is the
 // same operation; the challenge opens in decrypt mode anyway.
@@ -663,6 +708,38 @@ export const CHALLENGES: Record<string, Challenge> = {
       'learning.challenges.playfair-hard-1.hint1',
       'learning.challenges.playfair-hard-1.hint2',
       'learning.challenges.playfair-hard-1.hint3',
+    ],
+  ),
+  'enigma-demo': ENIGMA_DEMO,
+  'enigma-easy-1': buildEnigmaChallenge(
+    'enigma-easy-1',
+    'AAA',
+    'THEWEATHERISFAIR',
+    'easy',
+    [
+      'learning.challenges.enigma-easy-1.hint1',
+      'learning.challenges.enigma-easy-1.hint2',
+    ],
+  ),
+  'enigma-medium-1': buildEnigmaChallenge(
+    'enigma-medium-1',
+    'GKD',
+    'REINFORCEMENTSATDAWN',
+    'medium',
+    [
+      'learning.challenges.enigma-medium-1.hint1',
+      'learning.challenges.enigma-medium-1.hint2',
+    ],
+  ),
+  'enigma-hard-1': buildEnigmaChallenge(
+    'enigma-hard-1',
+    'BXY',
+    'THEREISNOTHINGMOREDECEPTIVETHANANOBVIOUSFACT',
+    'hard',
+    [
+      'learning.challenges.enigma-hard-1.hint1',
+      'learning.challenges.enigma-hard-1.hint2',
+      'learning.challenges.enigma-hard-1.hint3',
     ],
   ),
 };

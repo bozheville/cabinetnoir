@@ -55,7 +55,10 @@
       "short_title": "Enigma",
       "directAction": "Encrypt",
       "reverseAction": "Decrypt",
-      "messageLabel": "Cryptogram"
+      "messageLabel": "Cryptogram",
+      "keyLabel": "Key",
+      "rotors": "Rotors: I II III",
+      "reflector": "Reflector type B"
     },
     "rot13": {
       "title": "ROT13",
@@ -281,7 +284,8 @@
         "index": "Index (x ↔ 25 − x)",
         "symbol": "Morse symbols",
         "chunk": "Chunk (3 bytes)",
-        "pair": "Plaintext pair"
+        "pair": "Plaintext pair",
+        "positions": "Rotor window (I·II·III)"
       }
     },
     "tryInTool": "Try it in the tool",
@@ -365,6 +369,14 @@
         "1854": "Charles Wheatstone invents the digraph cipher; Lord Playfair promotes it to the British establishment.",
         "1899": "British forces use the Playfair cipher for tactical messages in the Second Boer War.",
         "1914": "The First World War's large wireless traffic feeds digraph frequency analysis, and the cipher loses its edge."
+      },
+      "enigma": {
+        "1918": "Arthur Scherbius patents the Enigma in Germany; the commercial machine follows in 1923.",
+        "1926": "The German Navy adopts the Enigma; the Army follows in 1928 — the Wehrmacht's confidence grows into doctrine.",
+        "1932": "Marian Rejewski of the Polish Cipher Bureau reconstructs the Enigma wiring mathematically, using the doubled message key.",
+        "1939": "At the Pyry conference the Poles hand the British and French their Enigma methods, replicas and the bomba — weeks before the war.",
+        "1940": "The first British bombe, Victory, starts work at Bletchley Park against the daily traffic.",
+        "1942": "The U-boats move to the four-rotor M4 ('Shark'); Atlantic decrypts go dark for about ten months."
       }
     },
     "challenge": {
@@ -556,6 +568,26 @@
         "hint1": "The keyword is VICTORY.",
         "hint2": "Dickens opens A Tale of Two Cities twice — this is the second half.",
         "hint3": "Decrypt pairs with the tool; the plaintext has no doubled pairs, so no filler X appears."
+      },
+      "enigma-demo": {
+        "title": "Crib and captured key",
+        "hint1": "The captured key sheet says the start positions were QCV — and the message begins with ATTACK. Set the key, paste, and read."
+      },
+      "enigma-easy-1": {
+        "title": "Fair weather",
+        "hint1": "The key sheet for the day says: start positions AAA.",
+        "hint2": "Type the ciphertext into decrypt mode; the machine does the rest."
+      },
+      "enigma-medium-1": {
+        "title": "Reinforcements at dawn",
+        "hint1": "The three-letter key is GKD.",
+        "hint2": "A military report about the morning's movements."
+      },
+      "enigma-hard-1": {
+        "title": "The obvious fact",
+        "hint1": "The key is BXY.",
+        "hint2": "A Sherlock Holmes maxim about deception.",
+        "hint3": "Only letters travel — the answer is the plaintext without spaces."
       }
     },
     "tooltips": {
@@ -584,6 +616,9 @@
       },
       "playfair": {
         "key": "The keyword: after deduplication it seeds the 5×5 letter square — the entire key of the cipher."
+      },
+      "enigma": {
+        "key": "The rotor start positions (the Grundstellung) — three letters A–Z. On a real machine the key also carried the rotor order, the ring settings and the plugboard pairs."
       }
     },
     "caesar": {
@@ -625,6 +660,11 @@
       "description": "A digraph cipher: letter pairs move over a 5×5 square built from a keyword — the same letter encrypts differently depending on its partner.",
       "era": "19th century",
       "origin": "Invented by Charles Wheatstone in 1854 and championed by Lord Playfair."
+    },
+    "enigma": {
+      "description": "A rotor machine: three wheels and a reflector reshuffle the alphabet with every keypress.",
+      "era": "1920s — 1940s",
+      "origin": "Invented by Arthur Scherbius in Germany; patented 1918, adopted by the German military from 1926."
     }
   },
   "glossary": {
@@ -711,6 +751,18 @@
     "digraph": {
       "name": "Digraph",
       "definition": "A pair of letters treated as a single unit; Playfair encrypts digraphs, not single letters."
+    },
+    "rotor": {
+      "name": "Rotor",
+      "definition": "A wired wheel that maps letters through a fixed scrambling and rotates one step per keypress, changing the mapping as you type."
+    },
+    "plugboard": {
+      "name": "Plugboard",
+      "definition": "A panel of cable pairs swapping letters before and after the rotors; the main multiplier of Enigma's key space."
+    },
+    "reflector": {
+      "name": "Reflector",
+      "definition": "A fixed, self-inverse wiring that bounces the signal back through the rotors; it makes Enigma reciprocal but never maps a letter to itself."
     }
   }
 }
