@@ -237,6 +237,25 @@ const buildMorseExample = (id: string, input: string): WorkedExample => ({
   }),
 });
 
+// Base64: three bytes become four characters, so the example walks
+// the input in 3-byte chunks — the last one usually padded.
+const buildBase64Example = (id: string, input: string): WorkedExample => {
+  const chunks = input.match(/.{1,3}/g) ?? [];
+  return {
+    id,
+    cipher: 'base64',
+    input,
+    key: '',
+    alphabet: '',
+    mode: 'encrypt',
+    columns: [
+      { key: 'chunk', labelKey: 'learning.example.columns.chunk' },
+      { key: 'result', labelKey: EXAMPLE_COLUMN_LABELS.result },
+    ],
+    rows: chunks.map((chunk) => [chunk, btoa(chunk)]),
+  };
+};
+
 export const EXAMPLES: Record<string, WorkedExample> = {
   'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
   'caesar-basic': buildCaesarExample('caesar-basic', 'MEETATNOON', 3),
@@ -244,6 +263,7 @@ export const EXAMPLES: Record<string, WorkedExample> = {
   'affine-basic': buildAffineExample('affine-basic', 'SECRETMESSAGE', 3, 7),
   'atbash-basic': buildAtbashExample('atbash-basic', 'REVERSEME'),
   'morse-basic': buildMorseExample('morse-basic', 'SOS'),
+  'base64-basic': buildBase64Example('base64-basic', 'MEETATNOON'),
 };
 
 export const getExample = (id: string): WorkedExample | null => EXAMPLES[id] || null;

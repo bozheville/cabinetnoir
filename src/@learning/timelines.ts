@@ -11,6 +11,23 @@ export interface TimelineEvent {
 }
 
 export const TIMELINES: Record<string, TimelineEvent[]> = {
+  base64: [
+    {
+      year: '1992',
+      textKey: 'learning.timeline.base64.1992',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Base64',
+    },
+    {
+      year: '1996',
+      textKey: 'learning.timeline.base64.1996',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Base64',
+    },
+    {
+      year: '2006',
+      textKey: 'learning.timeline.base64.2006',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Base64',
+    },
+  ],
   morse: [
     {
       year: '1837',

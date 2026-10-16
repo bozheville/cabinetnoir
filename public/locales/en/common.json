@@ -279,7 +279,8 @@
         "disc": "Disc alignment",
         "formula": "a·x + b (mod 26)",
         "index": "Index (x ↔ 25 − x)",
-        "symbol": "Morse symbols"
+        "symbol": "Morse symbols",
+        "chunk": "Chunk (3 bytes)"
       }
     },
     "tryInTool": "Try it in the tool",
@@ -350,6 +351,11 @@
         "1865": "The Paris telegraph convention adopts Gerke's revision as International Morse — the code used today.",
         "1906": "The Berlin radiotelegraph convention adopts SOS as the worldwide maritime distress signal.",
         "1999": "The Global Maritime Distress and Safety System ends Morse's official watch at sea."
+      },
+      "base64": {
+        "1992": "MIME introduces base64 so email can carry attachments over text-only channels.",
+        "1996": "RFC 2045 fixes the exact 64-character alphabet that email still uses.",
+        "2006": "RFC 4648 consolidates the base encodings, including the URL-safe variant."
       }
     },
     "challenge": {
@@ -490,6 +496,21 @@
         "hint1": "A paraphrase of the distress traffic from a famous ship in April 1912.",
         "hint2": "Spacing is everything: check that no space was lost when copying.",
         "hint3": "The message begins with the distress signal itself — three dots, three dashes, three dots."
+      },
+      "base64-easy-1": {
+        "title": "Meet me at dawn",
+        "hint1": "This is an encoding, not a cipher — no key exists. Switch the tool to decrypt mode and paste.",
+        "hint2": "The alphabet is A–Z a–z 0–9 + /, with = padding the tail."
+      },
+      "base64-medium-1": {
+        "title": "All that glisters",
+        "hint1": "A line from Shakespeare — paste the string into decrypt mode.",
+        "hint2": "The single = at the end is padding: the last chunk carried two bytes."
+      },
+      "base64-hard-1": {
+        "title": "Eliminate the impossible",
+        "hint1": "It is a Sherlock Holmes quotation — decode with the tool.",
+        "hint2": "Letters-only comparison: the answer ignores spacing and case."
       }
     },
     "tooltips": {
@@ -541,6 +562,11 @@
       "description": "An encoding, not a cipher: every letter becomes a public pattern of dots and dashes for the telegraph.",
       "era": "19th century",
       "origin": "Developed by Samuel Morse and Alfred Vail for the electric telegraph (1830s–1840s)."
+    },
+    "base64": {
+      "description": "An encoding, not a cipher: three bytes become four characters from a fixed 64-symbol alphabet.",
+      "era": "1990s",
+      "origin": "Standardised for MIME email attachments (Nathaniel Borenstein, RFC 2045)."
     }
   },
   "glossary": {
