@@ -193,6 +193,25 @@ const buildAtbashChallenge = (
   answer: plaintext,
 });
 
+// Base64 decode challenges: the ciphertext is a plain encoding, the
+// challenge opens in decrypt mode.
+const buildBase64Challenge = (
+  id: string,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+): Challenge => ({
+  id,
+  cipher: 'base64',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: btoa(plaintext),
+  difficulty,
+  keyLength: 0,
+  hints,
+  answer: plaintext,
+  mode: 'decrypt',
+});
+
 // Morse decode challenges: the ciphertext column carries the dots and
 // dashes in the tool's default symbols, and the challenge opens in
 // decrypt mode.
@@ -496,6 +515,33 @@ export const CHALLENGES: Record<string, Challenge> = {
       'learning.challenges.morse-hard-1.hint1',
       'learning.challenges.morse-hard-1.hint2',
       'learning.challenges.morse-hard-1.hint3',
+    ],
+  ),
+  'base64-easy-1': buildBase64Challenge(
+    'base64-easy-1',
+    'MEETMEATDAWN',
+    'easy',
+    [
+      'learning.challenges.base64-easy-1.hint1',
+      'learning.challenges.base64-easy-1.hint2',
+    ],
+  ),
+  'base64-medium-1': buildBase64Challenge(
+    'base64-medium-1',
+    'ALLTHATGLISTERSISNOTGOLD',
+    'medium',
+    [
+      'learning.challenges.base64-medium-1.hint1',
+      'learning.challenges.base64-medium-1.hint2',
+    ],
+  ),
+  'base64-hard-1': buildBase64Challenge(
+    'base64-hard-1',
+    DOYLE_PLAINTEXT,
+    'hard',
+    [
+      'learning.challenges.base64-hard-1.hint1',
+      'learning.challenges.base64-hard-1.hint2',
     ],
   ),
 };

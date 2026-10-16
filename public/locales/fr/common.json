@@ -259,7 +259,8 @@
         "disc": "Alignement du disque",
         "formula": "a·x + b (mod 26)",
         "index": "Indice (x ↔ 25 − x)",
-        "symbol": "Symboles Morse"
+        "symbol": "Symboles Morse",
+        "chunk": "Groupe (3 octets)"
       }
     },
     "tryInTool": "Essayer dans l'outil",
@@ -330,6 +331,11 @@
         "1865": "La convention télégraphique de Paris adopte la révision de Gerke comme Morse international — le code d'aujourd'hui.",
         "1906": "La convention radiotélégraphique de Berlin adopte SOS comme signal de détresse maritime mondial.",
         "1999": "Le Système mondial de détresse et de sécurité en met fin à la veille officielle de Morse en mer."
+      },
+      "base64": {
+        "1992": "MIME introduit base64 pour que le courriel puisse porter des pièces jointes sur des canaux purement textuels.",
+        "1996": "La RFC 2045 fige l'alphabet exact de 64 caractères qu'utilise encore le courriel.",
+        "2006": "La RFC 4648 consolide la famille des encodages de base, variante sûre pour URL incluse."
       }
     },
     "challenge": {
@@ -470,6 +476,21 @@
         "hint1": "Une paraphrase du trafic de détresse d’un navire célèbre en avril 1912.",
         "hint2": "L'espacement est tout : vérifiez qu'aucune espace n'a été perdue en copiant.",
         "hint3": "Le message commence par le signal de détresse lui-même — trois points, trois traits, trois points."
+      },
+      "base64-easy-1": {
+        "title": "Rendez-vous à l’aube",
+        "hint1": "C'est un encodage, pas un chiffre — aucune clé n'existe. Passez l'outil en mode déchiffrement et collez.",
+        "hint2": "L'alphabet est A–Z a–z 0–9 + /, avec = en bourrage final."
+      },
+      "base64-medium-1": {
+        "title": "Tout ce qui brille",
+        "hint1": "Un vers de Shakespeare — collez la chaîne en mode déchiffrement.",
+        "hint2": "L'unique = final est du bourrage : le dernier groupe portait deux octets."
+      },
+      "base64-hard-1": {
+        "title": "Éliminez l’impossible",
+        "hint1": "C’est une citation de Sherlock Holmes — décodez avec l’outil.",
+        "hint2": "Comparaison lettres seules : la réponse ignore espaces et majuscules."
       }
     },
     "tooltips": {
@@ -521,6 +542,11 @@
       "description": "Un encodage, pas un chiffre : chaque lettre devient un motif public de points et de traits pour le télégraphe.",
       "era": "XIXᵉ siècle",
       "origin": "Développé par Samuel Morse et Alfred Vail pour le télégraphe électrique (années 1830–1840)."
+    },
+    "base64": {
+      "description": "Un encodage, pas un chiffre : trois octets deviennent quatre caractères d'un alphabet fixe de 64 symboles.",
+      "era": "Années 1990",
+      "origin": "Standardisé pour les pièces jointes MIME (Nathaniel Borenstein, RFC 2045)."
     }
   },
   "glossary": {

@@ -194,6 +194,30 @@ const learningConfig = {
       },
     ],
   },
+  base64: {
+    tabs: ['learn', 'history', 'practice'],
+    sections: {
+      learn: ['how-it-works', 'guides', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.encoding',
+      difficulty: 'learning.difficulty.trivial',
+      era: 'learning.base64.era',
+      origin: 'learning.base64.origin',
+      modes: ['encode', 'decode'],
+    },
+    glossary: [
+      'encoding',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Base64',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
 };
 
 const getLearningConfig = (cipher) => learningConfig[cipher] || null;
