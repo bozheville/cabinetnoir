@@ -2,7 +2,7 @@
 // Plaintexts come from public-domain sources; the ciphertexts are
 // generated from the cipher implementations so they always match the tool.
 import { vigenereEncrypt } from '@encryptors/Vigenere/vigenere-encryption';
-import { rotate } from '@encryptors/utils';
+import { rotate, getAffineAlphabet } from '@encryptors/utils';
 import { monoalphabeticEncrypt } from '@encryptors/Monoalphabetic/monoalphabetic-crypt';
 import {
   albertiEncrypt,
@@ -26,6 +26,8 @@ export interface Challenge {
   // Demos support the "Breaking it" section (opened with the cracker on)
   // but are not listed on the Practice tab.
   listOnPractice?: boolean;
+  // Tool mode the challenge should open in (decode challenges).
+  mode?: 'encrypt' | 'decrypt';
 }
 
 const DICKENS_PLAINTEXT =
@@ -116,6 +118,56 @@ const CAESAR_DEMO = {
   keyLength: 1,
   hints: [],
   answer: CAESAR_DEMO_PLAINTEXT,
+  listOnPractice: false,
+};
+
+// Affine: y = (a·x + b) mod 26 — the key is the multiplier/shift pair.
+const buildAffineChallenge = (
+  id: string,
+  multiplier: number,
+  shift: number,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+): Challenge => ({
+  id,
+  cipher: 'affine',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: monoalphabeticEncrypt({
+    alphabet: LATIN_ALPHABET,
+    targetAlphabet: getAffineAlphabet({
+      alphabet: LATIN_ALPHABET,
+      multiplier,
+      shift,
+    }),
+    input: plaintext,
+  }),
+  difficulty,
+  keyLength: 2,
+  hints,
+  answer: plaintext,
+});
+
+const AFFINE_DEMO_PLAINTEXT = 'ATTACKATDAWN';
+const AFFINE_DEMO = {
+  id: 'affine-demo',
+  cipher: 'affine',
+  titleKey: 'learning.challenges.affine-demo.title',
+  ciphertext: monoalphabeticEncrypt({
+    alphabet: LATIN_ALPHABET,
+    targetAlphabet: getAffineAlphabet({
+      alphabet: LATIN_ALPHABET,
+      multiplier: 5,
+      shift: 8,
+    }),
+    input: AFFINE_DEMO_PLAINTEXT,
+  }),
+  difficulty: 'easy' as ChallengeDifficulty,
+  keyLength: 2,
+  hints: [
+    'learning.challenges.affine-demo.hint1',
+  ],
+  answer: AFFINE_DEMO_PLAINTEXT,
   listOnPractice: false,
 };
 
@@ -312,6 +364,41 @@ export const CHALLENGES: Record<string, Challenge> = {
       'learning.challenges.alberti-hard-1.hint1',
       'learning.challenges.alberti-hard-1.hint2',
       'learning.challenges.alberti-hard-1.hint3',
+    ],
+  ),
+  'affine-demo': AFFINE_DEMO,
+  'affine-easy-1': buildAffineChallenge(
+    'affine-easy-1',
+    3,
+    7,
+    'FORTUNEFAVORSTHEBRAVE',
+    'easy',
+    [
+      'learning.challenges.affine-easy-1.hint1',
+      'learning.challenges.affine-easy-1.hint2',
+    ],
+  ),
+  'affine-medium-1': buildAffineChallenge(
+    'affine-medium-1',
+    7,
+    11,
+    'ELEMENTARYMYDEARWATSON',
+    'medium',
+    [
+      'learning.challenges.affine-medium-1.hint1',
+      'learning.challenges.affine-medium-1.hint2',
+    ],
+  ),
+  'affine-hard-1': buildAffineChallenge(
+    'affine-hard-1',
+    11,
+    5,
+    GETTYSBURG_PLAINTEXT,
+    'hard',
+    [
+      'learning.challenges.affine-hard-1.hint1',
+      'learning.challenges.affine-hard-1.hint2',
+      'learning.challenges.affine-hard-1.hint3',
     ],
   ),
 };

@@ -274,7 +274,8 @@
         "key": "Key letter",
         "shift": "Shift",
         "result": "Result",
-        "disc": "Disc alignment"
+        "disc": "Disc alignment",
+        "formula": "a·x + b (mod 26)"
       }
     },
     "tryInTool": "Try it in the tool",
@@ -302,7 +303,9 @@
       "rotate-left": "the left arrow under the discs",
       "rotate-right": "the right arrow under the discs",
       "increment": "the increment slider",
-      "period": "the period slider"
+      "period": "the period slider",
+      "multiplier": "the multiplier field",
+      "shift": "the shift field"
     },
     "timeline": {
       "source": "Source",
@@ -324,6 +327,11 @@
         "1467": "Leon Battista Alberti presents the cipher disk in De Cifris — the first idea of using several alphabets.",
         "1508": "Johannes Trithemius publishes the tabula recta, a square table of all alphabets, extending the disk idea.",
         "1553": "Giovan Battista Bellaso turns the alphabets with a repeating key phrase — the scheme later called the Vigenère cipher."
+      },
+      "affine": {
+        "850": "Al-Kindi's frequency analysis dooms every single-alphabet cipher, affine rules included.",
+        "1976": "Diffie and Hellman introduce public-key cryptography, making modular arithmetic the backbone of modern ciphers.",
+        "58bc": "Julius Caesar's shift cipher — the Affine cipher's a = 1 special case — protects his military messages."
       }
     },
     "challenge": {
@@ -413,6 +421,26 @@
         "hint1": "The period is 4.",
         "hint2": "The step is 7.",
         "hint3": "It is the opening of Julius Caesar's Gallic War — written with the 20 letters of Alberti's disc only."
+      },
+      "affine-demo": {
+        "title": "Known-plaintext demo ciphertext",
+        "hint1": "You know the message starts with ATTACK. See what A and T encrypt to, then solve the line y = a·x + b."
+      },
+      "affine-easy-1": {
+        "title": "Fortune favors the brave",
+        "hint1": "The multiplier is 3 and the shift is 7 — encrypting A gives H.",
+        "hint2": "Check yourself: S should encrypt to J."
+      },
+      "affine-medium-1": {
+        "title": "Elementary",
+        "hint1": "You recognise the opening: the plaintext starts with THE — and T encrypts to O while E encrypts to N.",
+        "hint2": "Two pairs give the line: y₁ − y₂ ≡ a·(x₁ − x₂) (mod 26). Find a, then b."
+      },
+      "affine-hard-1": {
+        "title": "Fourscore and seven",
+        "hint1": "It is the opening of a famous American speech.",
+        "hint2": "You intercept two pairs: F encrypts to I, and O encrypts to D.",
+        "hint3": "Solve a from the two pairs (you need a modular inverse), then b from either pair."
       }
     },
     "tooltips": {
@@ -427,6 +455,10 @@
         "disc": "Alberti's cipher disk: the fixed outer disc holds the plaintext alphabet, the movable inner disc holds the mixed ciphertext alphabet.",
         "increment": "The turn step: how many positions the inner disc jumps after every chunk of the period.",
         "period": "The period: how many letters are encrypted before the inner disc turns."
+      },
+      "affine": {
+        "multiplier": "The multiplier a of y = a·x + b. It must be coprime with the alphabet length, otherwise several letters collide.",
+        "shift": "The shift b of y = a·x + b — the Caesar-style add-on applied after the multiplication."
       }
     },
     "caesar": {
@@ -438,6 +470,11 @@
       "description": "The first polyalphabetic cipher: two rotating discs switch alphabets every few letters.",
       "era": "15th century",
       "origin": "Devised by Leon Battista Alberti around 1467 on his cipher disk, Formula."
+    },
+    "affine": {
+      "description": "A substitution driven by the line y = a·x + b: multiply the letter, then shift, all mod 26.",
+      "era": "Antiquity — today",
+      "origin": "A mathematical generalisation of the Caesar shift, named after the affine function ax + b."
     }
   },
   "glossary": {
@@ -504,6 +541,10 @@
     "period": {
       "name": "Period",
       "definition": "How many letters are encrypted before the disc or alphabet changes; after each period the substitution starts over."
+    },
+    "modular-arithmetic": {
+      "name": "Modular arithmetic",
+      "definition": "Counting that wraps around at a fixed size: after the maximum you start again at zero, like hours on a clock."
     }
   }
 }
