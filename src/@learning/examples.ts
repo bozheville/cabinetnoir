@@ -14,6 +14,7 @@ import {
 } from '@encryptors/Alberti/alberti-crypt';
 import { morseEncoding } from '@encryptors/Morse/morse-encoding';
 import { playfairEncrypt } from '@encryptors/Playfair/playfair-encryption';
+import { createEnigmaMachine, enigmaPass } from '@learning/enigma-machine';
 
 export interface WorkedExampleColumn {
   // Stable key of the column.
@@ -306,6 +307,37 @@ const buildPlayfairExample = (
   };
 };
 
+// Enigma: the machine steps before each letter is enciphered, so every
+// row shows the rotor window as the operator would see it at that
+// keypress — the rolling right rotor is the whole idea.
+const buildEnigmaExample = (
+  id: string,
+  input: string,
+  key: string,
+): WorkedExample => {
+  const machine = createEnigmaMachine();
+  machine.setPositions(key);
+  const rows = input.split('').map((plain) => {
+    machine.rotate();
+    return [plain, machine.getPositions(), enigmaPass(machine, plain)];
+  });
+
+  return {
+    id,
+    cipher: 'enigma',
+    input,
+    key,
+    alphabet: '',
+    mode: 'encrypt',
+    columns: [
+      { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+      { key: 'positions', labelKey: 'learning.example.columns.positions' },
+      { key: 'result', labelKey: EXAMPLE_COLUMN_LABELS.result },
+    ],
+    rows,
+  };
+};
+
 export const EXAMPLES: Record<string, WorkedExample> = {
   'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
   'caesar-basic': buildCaesarExample('caesar-basic', 'MEETATNOON', 3),
@@ -316,6 +348,7 @@ export const EXAMPLES: Record<string, WorkedExample> = {
   'base64-basic': buildBase64Example('base64-basic', 'MEETATNOON'),
   'rot13-basic': buildRot13Example('rot13-basic', 'HELLOWORLD'),
   'playfair-basic': buildPlayfairExample('playfair-basic', 'HIDETHEGOLD', 'PLAYFAIREXAMPLE'),
+  'enigma-basic': buildEnigmaExample('enigma-basic', 'AAAAA', 'AAA'),
 };
 
 export const getExample = (id: string): WorkedExample | null => EXAMPLES[id] || null;

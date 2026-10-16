@@ -274,6 +274,38 @@ const learningConfig = {
       },
     ],
   },
+  enigma: {
+    tabs: ['learn', 'history', 'practice'],
+    sections: {
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.polyalphabetic',
+      difficulty: 'learning.difficulty.hard',
+      era: 'learning.enigma.era',
+      origin: 'learning.enigma.origin',
+      modes: ['encrypt', 'decrypt'],
+    },
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'key',
+      'alphabet',
+      'polyalphabetic',
+      'rotor',
+      'plugboard',
+      'reflector',
+      'crib',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Enigma_machine',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
 };
 
 const getLearningConfig = (cipher) => learningConfig[cipher] || null;

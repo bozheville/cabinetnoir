@@ -11,6 +11,38 @@ export interface TimelineEvent {
 }
 
 export const TIMELINES: Record<string, TimelineEvent[]> = {
+  enigma: [
+    {
+      year: '1918',
+      textKey: 'learning.timeline.enigma.1918',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Enigma_machine',
+    },
+    {
+      year: '1926',
+      textKey: 'learning.timeline.enigma.1926',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Enigma_machine',
+    },
+    {
+      year: '1932',
+      textKey: 'learning.timeline.enigma.1932',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Cryptanalysis_of_the_Enigma',
+    },
+    {
+      year: '1939',
+      textKey: 'learning.timeline.enigma.1939',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Cryptanalysis_of_the_Enigma',
+    },
+    {
+      year: '1940',
+      textKey: 'learning.timeline.enigma.1940',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Bombe',
+    },
+    {
+      year: '1942',
+      textKey: 'learning.timeline.enigma.1942',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Cryptanalysis_of_the_Enigma',
+    },
+  ],
   playfair: [
     {
       year: '1854',
