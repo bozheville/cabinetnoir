@@ -141,6 +141,33 @@ const learningConfig = {
       },
     ],
   },
+  atbash: {
+    tabs: ['learn', 'history', 'practice'],
+    sections: {
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.substitution',
+      difficulty: 'learning.difficulty.trivial',
+      era: 'learning.atbash.era',
+      origin: 'learning.atbash.origin',
+      modes: ['encrypt', 'decrypt'],
+    },
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'alphabet',
+      'substitution',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Atbash',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
 };
 
 const getLearningConfig = (cipher) => learningConfig[cipher] || null;

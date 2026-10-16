@@ -275,7 +275,8 @@
         "shift": "Shift",
         "result": "Result",
         "disc": "Disc alignment",
-        "formula": "a·x + b (mod 26)"
+        "formula": "a·x + b (mod 26)",
+        "index": "Index (x ↔ 25 − x)"
       }
     },
     "tryInTool": "Try it in the tool",
@@ -305,7 +306,8 @@
       "increment": "the increment slider",
       "period": "the period slider",
       "multiplier": "the multiplier field",
-      "shift": "the shift field"
+      "shift": "the shift field",
+      "alphabet-selector": "the alphabet selector"
     },
     "timeline": {
       "source": "Source",
@@ -332,6 +334,10 @@
         "850": "Al-Kindi's frequency analysis dooms every single-alphabet cipher, affine rules included.",
         "1976": "Diffie and Hellman introduce public-key cryptography, making modular arithmetic the backbone of modern ciphers.",
         "58bc": "Julius Caesar's shift cipher — the Affine cipher's a = 1 special case — protects his military messages."
+      },
+      "atbash": {
+        "1100": "Medieval commentators (Rashi, then Radak) discuss the Atbash passages of Jeremiah, the oldest attested substitution cipher.",
+        "586bc": "The Book of Jeremiah writes Babylon as SHESHACH and the Chaldeans as LEV-KAMAI — Atbash readings confirmed by commentators."
       }
     },
     "challenge": {
@@ -441,6 +447,21 @@
         "hint1": "It is the opening of a famous American speech.",
         "hint2": "You intercept two pairs: F encrypts to I, and O encrypts to D.",
         "hint3": "Solve a from the two pairs (you need a modular inverse), then b from either pair."
+      },
+      "atbash-easy-1": {
+        "title": "Keep this secret",
+        "hint1": "There is no key: Atbash has exactly one fixed mapping. Switch to decrypt mode and paste the cryptogram.",
+        "hint2": "In Atbash, A becomes Z, B becomes Y — the alphabet read backwards."
+      },
+      "atbash-medium-1": {
+        "title": "In God we trust",
+        "hint1": "Atbash is its own inverse: encrypting and decrypting are the same operation.",
+        "hint2": "The mapping is public — no search needed, just apply the mirror."
+      },
+      "atbash-hard-1": {
+        "title": "Fourscore and seven",
+        "hint1": "It opens a famous American speech.",
+        "hint2": "No key to find: the whole secret is the fixed mirror A↔Z."
       }
     },
     "tooltips": {
@@ -459,6 +480,9 @@
       "affine": {
         "multiplier": "The multiplier a of y = a·x + b. It must be coprime with the alphabet length, otherwise several letters collide.",
         "shift": "The shift b of y = a·x + b — the Caesar-style add-on applied after the multiplication."
+      },
+      "atbash": {
+        "alphabet": "The alphabet selector: Atbash mirrors whatever alphabet is chosen — the only choice the cipher offers."
       }
     },
     "caesar": {
@@ -475,6 +499,11 @@
       "description": "A substitution driven by the line y = a·x + b: multiply the letter, then shift, all mod 26.",
       "era": "Antiquity — today",
       "origin": "A mathematical generalisation of the Caesar shift, named after the affine function ax + b."
+    },
+    "atbash": {
+      "description": "The mirror cipher: the alphabet is flipped over, so A becomes Z and B becomes Y. No key at all.",
+      "era": "c. 586 BC",
+      "origin": "Hebrew scribes; attested in the Book of Jeremiah."
     }
   },
   "glossary": {

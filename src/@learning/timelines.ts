@@ -11,6 +11,18 @@ export interface TimelineEvent {
 }
 
 export const TIMELINES: Record<string, TimelineEvent[]> = {
+  atbash: [
+    {
+      year: 'c. 586 BC',
+      textKey: 'learning.timeline.atbash.586bc',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Atbash',
+    },
+    {
+      year: 'c. 1100',
+      textKey: 'learning.timeline.atbash.1100',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Atbash',
+    },
+  ],
   affine: [
     {
       year: '58 BC',

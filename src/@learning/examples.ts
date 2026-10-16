@@ -192,11 +192,37 @@ const buildAffineExample = (
   };
 };
 
+// Atbash: the mirror mapping x ↔ 25 − x; the index column makes the
+// complement visible.
+const buildAtbashExample = (id: string, input: string): WorkedExample => {
+  const alphabet = LATIN_ALPHABET;
+  const rows = input.split('').map((plain) => {
+    const x = alphabet.indexOf(plain);
+    return [plain, `${x} ↔ ${alphabet.length - 1 - x}`, alphabet[alphabet.length - 1 - x]];
+  });
+
+  return {
+    id,
+    cipher: 'atbash',
+    input,
+    key: '',
+    alphabet,
+    mode: 'encrypt',
+    columns: [
+      { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+      { key: 'index', labelKey: 'learning.example.columns.index' },
+      { key: 'result', labelKey: EXAMPLE_COLUMN_LABELS.result },
+    ],
+    rows,
+  };
+};
+
 export const EXAMPLES: Record<string, WorkedExample> = {
   'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
   'caesar-basic': buildCaesarExample('caesar-basic', 'MEETATNOON', 3),
   'alberti-basic': buildAlbertiExample('alberti-basic', 'SECRETNOTE', 3, 2),
   'affine-basic': buildAffineExample('affine-basic', 'SECRETMESSAGE', 3, 7),
+  'atbash-basic': buildAtbashExample('atbash-basic', 'REVERSEME'),
 };
 
 export const getExample = (id: string): WorkedExample | null => EXAMPLES[id] || null;
