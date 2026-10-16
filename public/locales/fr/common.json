@@ -255,7 +255,8 @@
         "shift": "Décalage",
         "result": "Résultat",
         "disc": "Alignement du disque",
-        "formula": "a·x + b (mod 26)"
+        "formula": "a·x + b (mod 26)",
+        "index": "Indice (x ↔ 25 − x)"
       }
     },
     "tryInTool": "Essayer dans l'outil",
@@ -285,7 +286,8 @@
       "increment": "le curseur d'incrément",
       "period": "le curseur de période",
       "multiplier": "le champ du multiplicateur",
-      "shift": "le champ du décalage"
+      "shift": "le champ du décalage",
+      "alphabet-selector": "le sélecteur d'alphabet"
     },
     "timeline": {
       "source": "Source",
@@ -312,6 +314,10 @@
         "850": "L'analyse fréquentielle d'Al-Kindi condamne tout chiffre à alphabet unique, règles affines comprises.",
         "1976": "Diffie et Hellman introduisent la cryptographie à clé publique : l'arithmétique modulaire devient l'épine dorsale des chiffres modernes.",
         "58bc": "Le chiffre par décalage de Jules César — cas particulier a = 1 du chiffre affine — protège ses messages militaires."
+      },
+      "atbash": {
+        "1100": "Les commentateurs médiévaux (Rachi, puis Radak) discutent les passages Atbash de Jérémie, le plus ancien chiffre de substitution attesté.",
+        "586bc": "Le Livre de Jérémie écrit Babylone SHESHACH et les Chaldéens LEV-KAMAI — lectures Atbash confirmées par les commentateurs."
       }
     },
     "challenge": {
@@ -421,6 +427,21 @@
         "hint1": "C'est l'ouverture d'un célèbre discours américain.",
         "hint2": "Vous interceptez deux paires : F devient I et O devient D.",
         "hint3": "Déduisez a des deux paires (il faut un inverse modulaire), puis b depuis l'une des paires."
+      },
+      "atbash-easy-1": {
+        "title": "Gardez ce secret",
+        "hint1": "Il n'y a pas de clé : Atbash n'a qu'une correspondance fixe. Passez en mode déchiffrement et collez le cryptogramme.",
+        "hint2": "En Atbash, A devient Z, B devient Y — l'alphabet lu à l'envers."
+      },
+      "atbash-medium-1": {
+        "title": "En Dieu nous nous fions",
+        "hint1": "Atbash est sa propre inverse : chiffrer et déchiffrer sont la même opération.",
+        "hint2": "La correspondance est publique — aucune recherche, appliquez le miroir."
+      },
+      "atbash-hard-1": {
+        "title": "Il y a quatre-vingt-sept ans",
+        "hint1": "C'est l'ouverture d'un célèbre discours américain.",
+        "hint2": "Aucune clé à trouver : tout le secret tient au miroir fixe A↔Z."
       }
     },
     "tooltips": {
@@ -439,6 +460,9 @@
       "affine": {
         "multiplier": "Le multiplicateur a de y = a·x + b. Il doit être premier avec la longueur de l'alphabet, sinon plusieurs lettres entrent en collision.",
         "shift": "Le décalage b de y = a·x + b — l'ajout à la César appliqué après la multiplication."
+      },
+      "atbash": {
+        "alphabet": "Le sélecteur d'alphabet : Atbash met en miroir l'alphabet choisi — le seul choix offert par le chiffre."
       }
     },
     "caesar": {
@@ -455,6 +479,11 @@
       "description": "Une substitution pilotée par la droite y = a·x + b : on multiplie la lettre, puis on décale, le tout mod 26.",
       "era": "Antiquité — aujourd'hui",
       "origin": "Une généralisation mathématique du décalage de César, nommée d'après la fonction affine ax + b."
+    },
+    "atbash": {
+      "description": "Le chiffre miroir : l'alphabet est retourné, si bien que A devient Z et B devient Y. Aucune clé.",
+      "era": "c. 586 av. J.-C.",
+      "origin": "Scribes hébreux ; attesté dans le Livre de Jérémie."
     }
   },
   "glossary": {

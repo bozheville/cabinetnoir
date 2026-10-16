@@ -43,8 +43,10 @@ const ChallengeLinkButton: React.FC<ChallengeLinkButtonProps> = ({ challengeId }
     return null;
   }
 
+  const action = challenge.mode === 'decrypt' ? 'reverse' : 'direct';
+
   return (
-    <StyledLink href={`/encoder/${challenge.cipher}/direct?challenge=${challenge.id}`}>
+    <StyledLink href={`/encoder/${challenge.cipher}/${action}?challenge=${challenge.id}`}>
       {t('learning.tryInTool')}
     </StyledLink>
   );

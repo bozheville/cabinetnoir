@@ -171,6 +171,27 @@ const AFFINE_DEMO = {
   listOnPractice: false,
 };
 
+// Atbash: a fixed mirror alphabet, so the "key" is always the same.
+const buildAtbashChallenge = (
+  id: string,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+): Challenge => ({
+  id,
+  cipher: 'atbash',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: monoalphabeticEncrypt({
+    alphabet: LATIN_ALPHABET,
+    targetAlphabet: LATIN_ALPHABET.split('').reverse().join(''),
+    input: plaintext,
+  }),
+  difficulty,
+  keyLength: 0,
+  hints,
+  answer: plaintext,
+});
+
 // Alberti: the discs are fixed in the tool, so the challenge's secret is
 // the period and the turn step; the ciphertext starts from the default
 // disc alignment. Plaintexts must use only the 20 letters of Alberti's
@@ -399,6 +420,33 @@ export const CHALLENGES: Record<string, Challenge> = {
       'learning.challenges.affine-hard-1.hint1',
       'learning.challenges.affine-hard-1.hint2',
       'learning.challenges.affine-hard-1.hint3',
+    ],
+  ),
+  'atbash-easy-1': buildAtbashChallenge(
+    'atbash-easy-1',
+    'KEEPTHISSECRET',
+    'easy',
+    [
+      'learning.challenges.atbash-easy-1.hint1',
+      'learning.challenges.atbash-easy-1.hint2',
+    ],
+  ),
+  'atbash-medium-1': buildAtbashChallenge(
+    'atbash-medium-1',
+    'INGODWETRUST',
+    'medium',
+    [
+      'learning.challenges.atbash-medium-1.hint1',
+      'learning.challenges.atbash-medium-1.hint2',
+    ],
+  ),
+  'atbash-hard-1': buildAtbashChallenge(
+    'atbash-hard-1',
+    GETTYSBURG_PLAINTEXT,
+    'hard',
+    [
+      'learning.challenges.atbash-hard-1.hint1',
+      'learning.challenges.atbash-hard-1.hint2',
     ],
   ),
 };

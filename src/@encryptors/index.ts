@@ -1,6 +1,6 @@
 export { default as Affine } from './Affine';
 export { Alberti } from './Alberti';
-export { default as Atbash, AtbashDescription } from './Atbash';
+export { default as Atbash } from './Atbash';
 export { default as Base64 } from './Base64';
 export { default as Caesar } from './Caesar';
 export { default as Enigma } from './Enigma';

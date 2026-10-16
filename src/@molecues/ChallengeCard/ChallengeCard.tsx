@@ -60,7 +60,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({ challenge }) => {
     );
   };
 
-  const toolHref = `/encoder/${challenge.cipher}/direct?challenge=${challenge.id}`;
+  const toolHref = `/encoder/${challenge.cipher}/${challenge.mode === 'decrypt' ? 'reverse' : 'direct'}?challenge=${challenge.id}`;
 
   return (
     <Card>

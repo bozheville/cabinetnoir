@@ -1,9 +1,11 @@
 import React from 'react';
 import { Checkbox, Pane, Select } from 'evergreen-ui';
+import { useTranslation } from 'next-i18next';
 
 import { alphabetCollection } from '../constants';
 import { CrypterProps } from '../types';
 import { useAtbash } from './useAtbash';
+import Tooltip from '@atoms/Tooltip';
 
 const Atbash: React.FC<CrypterProps> = ({
   input,
@@ -11,6 +13,7 @@ const Atbash: React.FC<CrypterProps> = ({
   isDecryptMode,
   ...paneProps
 }) => {
+  const { t } = useTranslation('common');
   const {
     keepCase,
     keepSpaces,
@@ -51,17 +54,22 @@ const Atbash: React.FC<CrypterProps> = ({
           />
         </>
       )}
-      <Select onChange={handleAphabetKeyChange}>
-        {alphabetCollection.map((item) => (
-          <option
-            selected={alphabetKey === item.type}
-            value={item.type}
-            key={item.type}
-          >
-            {item.value}
-          </option>
-        ))}
-      </Select>
+      <Tooltip content={t('learning.tooltips.atbash.alphabet')}>
+        <Select
+          data-guide="alphabet"
+          onChange={handleAphabetKeyChange}
+        >
+          {alphabetCollection.map((item) => (
+            <option
+              selected={alphabetKey === item.type}
+              value={item.type}
+              key={item.type}
+            >
+              {t(`alphabet.${item.type}`)}
+            </option>
+          ))}
+        </Select>
+      </Tooltip>
     </Pane>
   );
 };
