@@ -2,6 +2,8 @@
 // Plaintexts come from public-domain sources; the ciphertexts are
 // generated from the cipher implementations so they always match the tool.
 import { vigenereEncrypt } from '@encryptors/Vigenere/vigenere-encryption';
+import { rotate } from '@encryptors/utils';
+import { monoalphabeticEncrypt } from '@encryptors/Monoalphabetic/monoalphabetic-crypt';
 
 export type ChallengeDifficulty = 'easy' | 'medium' | 'hard';
 
@@ -53,8 +55,33 @@ const buildChallenge = (
   answer: plaintext,
 });
 
-// A demo for the "Breaking it" section: opens the cracker on a decent
-// ciphertext without appearing among the practice challenges.
+// Caesar: the key is a rotation of the alphabet, so the ciphertext comes
+// straight from the tool's own substitution routine.
+const LATIN_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+const buildCaesarChallenge = (
+  id: string,
+  rotation: number,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+): Challenge => ({
+  id,
+  cipher: 'caesar',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: monoalphabeticEncrypt({
+    alphabet: LATIN_ALPHABET,
+    targetAlphabet: rotate(LATIN_ALPHABET, rotation),
+    input: plaintext,
+  }),
+  difficulty,
+  keyLength: 1,
+  hints,
+  answer: plaintext,
+});
+
+// A demo for the "Breaking it" section: opens the tool on a ciphertext
+// without appearing among the practice challenges.
 const VIGENERE_DEMO_PLAINTEXT =
   'THEQUICKBROWNFOXJUMPSOVERTHELAZYDOGLIESDOWNBYTHESAATNOONANDRESTSFORGET';
 const VIGENERE_DEMO = {
@@ -69,8 +96,34 @@ const VIGENERE_DEMO = {
   listOnPractice: false,
 };
 
+const CAESAR_DEMO_PLAINTEXT =
+  'NOTHINGISHIDDENWHICHSHALLNOTBEREVEALEDNEITHERWASANYTHINGKEPTSECRET';
+const CAESAR_DEMO = {
+  id: 'caesar-demo',
+  cipher: 'caesar',
+  titleKey: 'learning.challenges.caesar-demo.title',
+  ciphertext: monoalphabeticEncrypt({
+    alphabet: LATIN_ALPHABET,
+    targetAlphabet: rotate(LATIN_ALPHABET, 3),
+    input: CAESAR_DEMO_PLAINTEXT,
+  }),
+  difficulty: 'easy' as ChallengeDifficulty,
+  keyLength: 1,
+  hints: [],
+  answer: CAESAR_DEMO_PLAINTEXT,
+  listOnPractice: false,
+};
+
+const FDR_PLAINTEXT =
+  'THEONLYTHINGWEHAVETOFEARISFEARTHITSELF';
+const DOYLE_PLAINTEXT =
+  'WHENYOUHAVEELIMINATEDTHEIMPOSSIBLEWHATEVERREMAINSHOWEVERIMPROBABLEMUSTBETHETRUTH';
+const SHAKESPEARE_PLAINTEXT =
+  'FRIENDSROMANSCOUNTRYMENLENDMEYOUREARSICOMETOBURYCAESARNOTTOPRAISEHIM';
+
 export const CHALLENGES: Record<string, Challenge> = {
   'vigenere-demo': VIGENERE_DEMO,
+  'caesar-demo': CAESAR_DEMO,
   'vigenere-easy-1': buildChallenge(
     'vigenere-easy-1',
     'vigenere',
@@ -137,6 +190,36 @@ export const CHALLENGES: Record<string, Challenge> = {
       'learning.challenges.vigenere-hard-2.hint1',
       'learning.challenges.vigenere-hard-2.hint2',
       'learning.challenges.vigenere-hard-2.hint3',
+    ],
+  ),
+  'caesar-easy-1': buildCaesarChallenge(
+    'caesar-easy-1',
+    3,
+    FDR_PLAINTEXT,
+    'easy',
+    [
+      'learning.challenges.caesar-easy-1.hint1',
+      'learning.challenges.caesar-easy-1.hint2',
+    ],
+  ),
+  'caesar-medium-1': buildCaesarChallenge(
+    'caesar-medium-1',
+    11,
+    DOYLE_PLAINTEXT,
+    'medium',
+    [
+      'learning.challenges.caesar-medium-1.hint1',
+      'learning.challenges.caesar-medium-1.hint2',
+    ],
+  ),
+  'caesar-hard-1': buildCaesarChallenge(
+    'caesar-hard-1',
+    23,
+    SHAKESPEARE_PLAINTEXT,
+    'hard',
+    [
+      'learning.challenges.caesar-hard-1.hint1',
+      'learning.challenges.caesar-hard-1.hint2',
     ],
   ),
 };

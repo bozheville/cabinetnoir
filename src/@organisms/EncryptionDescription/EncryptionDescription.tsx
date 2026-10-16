@@ -7,7 +7,6 @@ import {
   AffineDescription,
   AlbertiDescription,
   AtbashDescription,
-  CaesarDescription,
   MorseDescription,
   Rot13Description,
 } from '@encryptors';
@@ -28,7 +27,6 @@ const EncryptionDescription: React.FC = () => {
     algorithm === 'affine' ? AffineDescription
     : algorithm === 'alberti' ? AlbertiDescription
     : algorithm === 'atbash' ? AtbashDescription
-    : algorithm === 'caesar' ? CaesarDescription
     : algorithm === 'morse' ? MorseDescription
     : algorithm === 'rot13' ? Rot13Description
     : null

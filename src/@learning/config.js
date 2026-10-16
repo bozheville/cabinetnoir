@@ -47,6 +47,37 @@ const learningConfig = {
       },
     ],
   },
+  caesar: {
+    tabs: ['learn', 'history', 'practice'],
+    sections: {
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.substitution',
+      difficulty: 'learning.difficulty.trivial',
+      era: 'learning.caesar.era',
+      origin: 'learning.caesar.origin',
+      modes: ['encrypt', 'decrypt'],
+    },
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'key',
+      'shift',
+      'alphabet',
+      'substitution',
+      'frequency-analysis',
+      'brute-force',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Caesar_cipher',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
 };
 
 const getLearningConfig = (cipher) => learningConfig[cipher] || null;
