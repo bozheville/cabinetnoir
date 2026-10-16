@@ -274,7 +274,9 @@
       "use-this-key": "le bouton « Utiliser cette clé »",
       "back": "le bouton Retour",
       "next": "le bouton Suivant",
-      "skip": "le bouton « Passer »"
+      "skip": "le bouton « Passer »",
+      "keep-spaces": "la case « Conserver les espaces »",
+      "keep-case": "la case « Conserver la casse »"
     },
     "timeline": {
       "source": "Source",
@@ -285,6 +287,12 @@
         "1586": "Blaise de Vigenère publie un chiffre similaire ; le schéma à clé répétée lui est plus tard attribué à tort.",
         "1863": "Friedrich Kasiski publie une méthode générale pour trouver la longueur de clé (Charles Babbage l'avait cassée en privé une décennie plus tôt).",
         "1920s": "William Friedman développe l'indice de coïncidence, rendant l'attaque statistique et rigoureuse."
+      },
+      "caesar": {
+        "121": "Suétone décrit le décalage de 3 de César et celui de 1 d'Auguste dans Vie des douze Césars.",
+        "800": "Al-Kindi rédige un traité de décryptage par fréquence des lettres, cassant tous les chiffres par substitution à alphabet unique.",
+        "1553": "Le chiffre à clé répétée de Bellaso — « beaucoup de Césars », un par lettre de clé — rend les décalages fixes obsolètes.",
+        "58bc": "Jules César utilise un décalage de 3 pour sa correspondance privée, rapporte son biographe Suétone."
       }
     },
     "challenge": {
@@ -337,10 +345,39 @@
         "hint1": "La longueur de la clé est 10 — utilisez un mot probable.",
         "hint2": "La clé est un adjectif signifiant impossible à déchiffrer.",
         "hint3": "L'ouverture FOURSCORE fonctionne comme mot probable."
+      },
+      "caesar-demo": {
+        "title": "Texte de démonstration par force brute"
+      },
+      "caesar-easy-1": {
+        "title": "La peur elle-même",
+        "hint1": "Le décalage est le classique — le chiffre utilisé par César lui-même.",
+        "hint2": "Le décalage est 3 : THE devient WKH."
+      },
+      "caesar-medium-1": {
+        "title": "Éliminez l'impossible",
+        "hint1": "Analyse fréquentielle : la lettre la plus fréquente du chiffré est le E chiffré.",
+        "hint2": "Le décalage est 11 — comptez les lettres : E devient P."
+      },
+      "caesar-hard-1": {
+        "title": "Amis, Romains, compatriotes",
+        "hint1": "Le décalage est 23 — assez petit pour être essayé à la main.",
+        "hint2": "Le chiffré cache le début d'un célèbre discours romain."
       }
     },
     "tooltips": {
-      "swap": "Échange les deux côtés : l'outil bascule entre chiffrer et déchiffrer. Le mode courant apparaît dans l'en-tête."
+      "swap": "Échange les deux côtés : l'outil bascule entre chiffrer et déchiffrer. Le mode courant apparaît dans l'en-tête.",
+      "caesar": {
+        "rotation": "Le décalage : chaque lettre du message avance de ce nombre de positions dans l'alphabet (vers l'arrière en mode déchiffrement).",
+        "keepSpaces": "Conserver les espaces : préserve la mise en page des mots au lieu de tout supprimer.",
+        "keepCase": "Conserver la casse : préserve les majuscules au lieu de tout écrire en capitales."
+      },
+      "alphabet": "L'alphabet sur lequel le chiffre travaille : choisissez un préréglage ou collez vos propres lettres ordonnées."
+    },
+    "caesar": {
+      "description": "Chaque lettre du message est décalée du même nombre fixe de positions dans l'alphabet.",
+      "era": "Iᵉʳ siècle av. J.-C.",
+      "origin": "Nommé d'après Jules César qui, dit-on, utilisait un décalage de 3 dans sa correspondance privée."
     }
   },
   "glossary": {
@@ -399,6 +436,10 @@
     "crib": {
       "name": "Mot probable",
       "definition": "Un mot que vous supposez présent dans le texte clair ; sa comparaison avec le texte chiffré révèle des lettres de clé."
+    },
+    "brute-force": {
+      "name": "Force brute",
+      "definition": "Essayer toutes les clés possibles jusqu'à ce que le message ait un sens ; possible seulement quand l'espace des clés est petit."
     }
   }
 }

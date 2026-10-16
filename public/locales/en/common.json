@@ -294,7 +294,9 @@
       "use-this-key": "the \"Use this key\" button",
       "back": "the Back button",
       "next": "the Next button",
-      "skip": "the \"Skip\" button"
+      "skip": "the \"Skip\" button",
+      "keep-spaces": "the \"Keep spaces\" checkbox",
+      "keep-case": "the \"Keep case\" checkbox"
     },
     "timeline": {
       "source": "Source",
@@ -305,6 +307,12 @@
         "1586": "Blaise de Vigenère publishes a similar cipher; the repeating-key scheme is later misattributed to him.",
         "1863": "Friedrich Kasiski publishes a general method for finding the key length (Charles Babbage had broken it privately a decade earlier).",
         "1920s": "William Friedman develops the index of coincidence, making the attack statistical and rigorous."
+      },
+      "caesar": {
+        "121": "Suetonius describes both Caesar's shift of 3 and Augustus' shift of 1 in The Lives of the Twelve Caesars.",
+        "800": "Al-Kindi writes on decrypting messages by letter frequency, breaking every single-alphabet substitution cipher.",
+        "1553": "Bellaso's repeating-key cipher — \"many Caesars\", one per key letter — makes fixed shifts obsolete.",
+        "58bc": "Julius Caesar uses a shift of 3 for private correspondence, his biographer Suetonius reports."
       }
     },
     "challenge": {
@@ -357,10 +365,39 @@
         "hint1": "The key length is 10 — use a crib.",
         "hint2": "The key is an adjective meaning impossible to decode.",
         "hint3": "The opening FOURSCORE works as a crib."
+      },
+      "caesar-demo": {
+        "title": "Brute-force demo ciphertext"
+      },
+      "caesar-easy-1": {
+        "title": "Fear itself",
+        "hint1": "The shift is the classic one — the number Caesar himself used.",
+        "hint2": "The shift is 3: THE becomes WKH."
+      },
+      "caesar-medium-1": {
+        "title": "Eliminate the impossible",
+        "hint1": "Frequency analysis: the most frequent ciphertext letter is the encrypted E.",
+        "hint2": "The shift is 11 — count the letters: E becomes P."
+      },
+      "caesar-hard-1": {
+        "title": "Friends, Romans, countrymen",
+        "hint1": "The shift is 23 — small enough to walk through by hand.",
+        "hint2": "The ciphertext hides the start of a famous Roman speech."
       }
     },
     "tooltips": {
-      "swap": "Swap the two sides: the tool switches between encrypting and decrypting. The current mode shows in the header."
+      "swap": "Swap the two sides: the tool switches between encrypting and decrypting. The current mode shows in the header.",
+      "caesar": {
+        "rotation": "The shift: every letter of the message moves this many positions forward through the alphabet (backwards in decrypt mode).",
+        "keepSpaces": "Keep spaces: preserve the word layout instead of dropping all spaces.",
+        "keepCase": "Keep case: preserve capital letters instead of writing everything in capitals."
+      },
+      "alphabet": "The alphabet the cipher works on: pick a preset or paste your own ordered letters."
+    },
+    "caesar": {
+      "description": "Every letter of the message is shifted by the same fixed number of positions in the alphabet.",
+      "era": "1st century BC",
+      "origin": "Named after Julius Caesar, who reportedly used a shift of 3 in private correspondence."
     }
   },
   "glossary": {
@@ -419,6 +456,10 @@
     "crib": {
       "name": "Crib",
       "definition": "A word you guess is in the plaintext; comparing it with the ciphertext reveals key letters."
+    },
+    "brute-force": {
+      "name": "Brute force",
+      "definition": "Trying every possible key until the message makes sense; possible only when the key space is small."
     }
   }
 }

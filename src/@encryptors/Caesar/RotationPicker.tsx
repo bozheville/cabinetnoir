@@ -23,6 +23,8 @@ const RotationWrapper = styled.div`
 interface RotationPickerProps {
   max?: number;
   label: string;
+  // data-guide anchor for tooltip wiring and the (later) interactive tour.
+  dataGuide?: string;
 }
 
 const RotationPicker: React.FC<React.InputHTMLAttributes<HTMLInputElement> & RotationPickerProps> = ({
@@ -30,9 +32,10 @@ const RotationPicker: React.FC<React.InputHTMLAttributes<HTMLInputElement> & Rot
   label,
   onChange,
   max = 26,
+  dataGuide,
 }) => {
   return (
-    <RotationWrapper>
+    <RotationWrapper data-guide={dataGuide}>
       <TextInputField
         label={label}
         description={value}

@@ -1,10 +1,11 @@
 import React from 'react';
-import { Checkbox, Pane, Select } from 'evergreen-ui';
+import { Checkbox, Pane } from 'evergreen-ui';
 import { CrypterProps } from '../types';
 import { alphabetCollection } from '../constants';
 import useCaesar from './useCaesar';
 import RotationPicker from './RotationPicker';
 import AlphabetSelector from '@molecues/AlphabetSelector';
+import Tooltip from '@atoms/Tooltip';
 
 const Caesar: React.FC<CrypterProps> = ({
   input,
@@ -45,26 +46,35 @@ const Caesar: React.FC<CrypterProps> = ({
         justifyContent="center"
         alignItems="center"
       >
-        <RotationPicker
-          label={t('processing.caesar.settings.rotation_label')}
-          value={secretKey}
-          onChange={handleKeyChange}
-          max={alphabetLength}
-        />
+        <Tooltip content={t('learning.tooltips.caesar.rotation')}>
+          <RotationPicker
+            dataGuide="key"
+            label={t('processing.caesar.settings.rotation_label')}
+            value={secretKey}
+            onChange={handleKeyChange}
+            max={alphabetLength}
+          />
+        </Tooltip>
         {!isDecryptMode && (
           <>
-            <Checkbox
-              marginLeft="6px"
-              label={t('processing.caesar.settings.keep_spaces')}
-              checked={keepSpaces}
-              onChange={handleKeepSpacesChange}
-            />
-            <Checkbox
-              marginLeft="6px"
-              label={t('processing.caesar.settings.keep_case')}
-              checked={keepCase}
-              onChange={handleKeepCaseChange}
-            />
+            <Tooltip content={t('learning.tooltips.caesar.keepSpaces')}>
+              <Checkbox
+                data-guide="keep-spaces"
+                marginLeft="6px"
+                label={t('processing.caesar.settings.keep_spaces')}
+                checked={keepSpaces}
+                onChange={handleKeepSpacesChange}
+              />
+            </Tooltip>
+            <Tooltip content={t('learning.tooltips.caesar.keepCase')}>
+              <Checkbox
+                data-guide="keep-case"
+                marginLeft="6px"
+                label={t('processing.caesar.settings.keep_case')}
+                checked={keepCase}
+                onChange={handleKeepCaseChange}
+              />
+            </Tooltip>
           </>
         )}
       </Pane>

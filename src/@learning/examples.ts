@@ -4,6 +4,8 @@
 // the cipher implementations at module load, so examples can never drift
 // from the tool's behaviour.
 import { DEFAULT_ALPHABET, vigenereEncrypt } from '@encryptors/Vigenere/vigenere-encryption';
+import { rotate } from '@encryptors/utils';
+import { monoalphabeticEncrypt } from '@encryptors/Monoalphabetic/monoalphabetic-crypt';
 
 export interface WorkedExampleColumn {
   // Stable key of the column.
@@ -48,6 +50,43 @@ const vigenereRows = (input: string, key: string, alphabet: string): string[][] 
   });
 };
 
+// Caesar: one fixed shift for the whole message. Mirrors the tool: the
+// target alphabet is the source alphabet rotated by the shift amount.
+const LATIN_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+const caesarRows = (input: string, rotation: number, alphabet: string): string[][] => {
+  const targetAlphabet = rotate(alphabet, rotation);
+  return input.split('').map((plain) => [
+    plain,
+    String(rotation),
+    monoalphabeticEncrypt({
+      alphabet,
+      targetAlphabet,
+      input: plain,
+    }),
+  ]);
+};
+
+const buildCaesarExample = (
+  id: string,
+  input: string,
+  rotation: number,
+  alphabet: string = LATIN_ALPHABET,
+): WorkedExample => ({
+  id,
+  cipher: 'caesar',
+  input,
+  key: String(rotation),
+  alphabet,
+  mode: 'encrypt',
+  columns: [
+    { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+    { key: 'shift', labelKey: EXAMPLE_COLUMN_LABELS.shift },
+    { key: 'result', labelKey: EXAMPLE_COLUMN_LABELS.result },
+  ],
+  rows: caesarRows(input, rotation, alphabet),
+});
+
 const buildVigenereExample = (
   id: string,
   input: string,
@@ -71,6 +110,7 @@ const buildVigenereExample = (
 
 export const EXAMPLES: Record<string, WorkedExample> = {
   'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
+  'caesar-basic': buildCaesarExample('caesar-basic', 'MEETATNOON', 3),
 };
 
 export const getExample = (id: string): WorkedExample | null => EXAMPLES[id] || null;

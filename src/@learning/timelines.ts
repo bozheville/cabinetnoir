@@ -11,6 +11,28 @@ export interface TimelineEvent {
 }
 
 export const TIMELINES: Record<string, TimelineEvent[]> = {
+  caesar: [
+    {
+      year: '58 BC',
+      textKey: 'learning.timeline.caesar.58bc',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Caesar_cipher',
+    },
+    {
+      year: 'c. 121',
+      textKey: 'learning.timeline.caesar.121',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Caesar_cipher',
+    },
+    {
+      year: 'c. 800',
+      textKey: 'learning.timeline.caesar.800',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Frequency_analysis',
+    },
+    {
+      year: '1553',
+      textKey: 'learning.timeline.caesar.1553',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher',
+    },
+  ],
   vigenere: [
     {
       year: '1467',
