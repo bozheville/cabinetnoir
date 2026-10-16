@@ -218,6 +218,33 @@ const learningConfig = {
       },
     ],
   },
+  rot13: {
+    tabs: ['learn', 'history', 'practice'],
+    sections: {
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.substitution',
+      difficulty: 'learning.difficulty.trivial',
+      era: 'learning.rot13.era',
+      origin: 'learning.rot13.origin',
+      modes: ['encrypt', 'decrypt'],
+    },
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'alphabet',
+      'substitution',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/ROT13',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
 };
 
 const getLearningConfig = (cipher) => learningConfig[cipher] || null;

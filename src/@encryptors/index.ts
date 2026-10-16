@@ -7,7 +7,7 @@ export { default as Enigma } from './Enigma';
 export { default as Morse } from './Morse';
 export { default as Playfair } from './Playfair';
 export { default as Vigenere } from './Vigenere';
-export { default as Rot13, Rot13Description } from './Rot13';
+export { default as Rot13 } from './Rot13';
 
 import { encodingsList, encryptorsList } from './algorithms';
 export { encodingsList, encryptorsList };

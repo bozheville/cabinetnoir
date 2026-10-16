@@ -256,6 +256,31 @@ const buildBase64Example = (id: string, input: string): WorkedExample => {
   };
 };
 
+// ROT13: a fixed half-turn of the alphabet; the shift column repeats
+// 13 to make the self-inverse symmetry visible.
+const buildRot13Example = (id: string, input: string): WorkedExample => {
+  const alphabet = LATIN_ALPHABET;
+  const targetAlphabet = rotate(alphabet, 13);
+  return {
+    id,
+    cipher: 'rot13',
+    input,
+    key: '13',
+    alphabet,
+    mode: 'encrypt',
+    columns: [
+      { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+      { key: 'shift', labelKey: EXAMPLE_COLUMN_LABELS.shift },
+      { key: 'result', labelKey: EXAMPLE_COLUMN_LABELS.result },
+    ],
+    rows: input.split('').map((plain) => [
+      plain,
+      '13',
+      targetAlphabet[alphabet.indexOf(plain)],
+    ]),
+  };
+};
+
 export const EXAMPLES: Record<string, WorkedExample> = {
   'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
   'caesar-basic': buildCaesarExample('caesar-basic', 'MEETATNOON', 3),
@@ -264,6 +289,7 @@ export const EXAMPLES: Record<string, WorkedExample> = {
   'atbash-basic': buildAtbashExample('atbash-basic', 'REVERSEME'),
   'morse-basic': buildMorseExample('morse-basic', 'SOS'),
   'base64-basic': buildBase64Example('base64-basic', 'MEETATNOON'),
+  'rot13-basic': buildRot13Example('rot13-basic', 'HELLOWORLD'),
 };
 
 export const getExample = (id: string): WorkedExample | null => EXAMPLES[id] || null;
