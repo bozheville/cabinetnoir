@@ -11,6 +11,23 @@ export interface TimelineEvent {
 }
 
 export const TIMELINES: Record<string, TimelineEvent[]> = {
+  playfair: [
+    {
+      year: '1854',
+      textKey: 'learning.timeline.playfair.1854',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Playfair_cipher',
+    },
+    {
+      year: '1899',
+      textKey: 'learning.timeline.playfair.1899',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Playfair_cipher',
+    },
+    {
+      year: '1914',
+      textKey: 'learning.timeline.playfair.1914',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Playfair_cipher',
+    },
+  ],
   rot13: [
     {
       year: '1980s',

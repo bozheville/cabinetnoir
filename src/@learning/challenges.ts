@@ -9,6 +9,7 @@ import {
   ALBERTI_STATIC_DISC,
   ALBERTI_DYNAMIC_DISC,
 } from '@encryptors/Alberti/alberti-crypt';
+import { playfairEncrypt } from '@encryptors/Playfair/playfair-encryption';
 import { morseEncoding } from '@encryptors/Morse/morse-encoding';
 
 export type ChallengeDifficulty = 'easy' | 'medium' | 'hard';
@@ -192,6 +193,41 @@ const buildAtbashChallenge = (
   hints,
   answer: plaintext,
 });
+
+// Playfair: the key is the keyword of the 5x5 square. The answer must
+// be exactly what the tool's decrypt returns — so the plaintexts are
+// even-length and free of doubled pairs (no X filler needed) and
+// avoid J (it folds into I).
+const buildPlayfairChallenge = (
+  id: string,
+  key: string,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+): Challenge => ({
+  id,
+  cipher: 'playfair',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: playfairEncrypt(plaintext, key),
+  difficulty,
+  keyLength: key.length,
+  hints,
+  answer: plaintext,
+});
+
+const PLAYFAIR_DEMO = {
+  id: 'playfair-demo',
+  cipher: 'playfair',
+  titleKey: 'learning.challenges.playfair-demo.title',
+  ciphertext: playfairEncrypt('ATTACKATDAWN', 'MONARCHY'),
+  difficulty: 'easy' as ChallengeDifficulty,
+  keyLength: 8,
+  hints: [
+    'learning.challenges.playfair-demo.hint1',
+  ],
+  answer: 'ATTACKATDAWN',
+  listOnPractice: false,
+};
 
 // ROT13 decode challenges: the shift is fixed, so decoding is the
 // same operation; the challenge opens in decrypt mode anyway.
@@ -595,6 +631,38 @@ export const CHALLENGES: Record<string, Challenge> = {
       'learning.challenges.rot13-hard-1.hint1',
       'learning.challenges.rot13-hard-1.hint2',
       'learning.challenges.rot13-hard-1.hint3',
+    ],
+  ),
+  'playfair-demo': PLAYFAIR_DEMO,
+  'playfair-easy-1': buildPlayfairChallenge(
+    'playfair-easy-1',
+    'SHADOW',
+    'SAILBOATATDAWN',
+    'easy',
+    [
+      'learning.challenges.playfair-easy-1.hint1',
+      'learning.challenges.playfair-easy-1.hint2',
+    ],
+  ),
+  'playfair-medium-1': buildPlayfairChallenge(
+    'playfair-medium-1',
+    'TREASURE',
+    'WHENTHEGAMEISAFOOT',
+    'medium',
+    [
+      'learning.challenges.playfair-medium-1.hint1',
+      'learning.challenges.playfair-medium-1.hint2',
+    ],
+  ),
+  'playfair-hard-1': buildPlayfairChallenge(
+    'playfair-hard-1',
+    'VICTORY',
+    'ITWASTHEWORSTOFTIMES',
+    'hard',
+    [
+      'learning.challenges.playfair-hard-1.hint1',
+      'learning.challenges.playfair-hard-1.hint2',
+      'learning.challenges.playfair-hard-1.hint3',
     ],
   ),
 };
