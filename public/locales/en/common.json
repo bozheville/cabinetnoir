@@ -218,7 +218,80 @@
         "adfgvx": "ADFGVX (1918)"
       },
       "squareKeyLabel": "Square key",
-      "transpositionKeyLabel": "Transposition key"
+      "transpositionKeyLabel": "Transposition key",
+      "unknownKeys": "Unknown keys",
+      "cracker": {
+        "hints": {
+          "title": "Hints",
+          "presets": {
+            "easy": "Easy",
+            "medium": "Medium",
+            "hard": "Hard",
+            "custom": "Custom"
+          },
+          "toggles": {
+            "confidenceBars": "Show pair strength bars",
+            "autoSuggest": "Suggest column arrangement",
+            "englishReference": "Show letter suggestions",
+            "livePreview": "Live plaintext preview",
+            "cribs": "Crib panel"
+          }
+        },
+        "wizard": {
+          "steps": {
+            "keyLength": "Key length",
+            "columns": "Columns",
+            "square": "Square"
+          },
+          "inputChanged": "The ciphertext changed — the analysis restarted.",
+          "back": "Back",
+          "next": "Next",
+          "skip": "Skip",
+          "useKey": "Use these keys",
+          "keyLength": {
+            "otherLabel": "Other length:",
+            "otherPlaceholder": "4–12"
+          },
+          "columns": {
+            "hint": "The ciphertext is K equal chunks, one per transposition column, read in key order. Arrange the chunks into the grid slots: click two chips to swap them. Swapping the two chips of one pair flips that pair.",
+            "splitInfo": "Split into {{columns}} columns of {{rows}} characters.",
+            "slotLabel": "Slot {{index}} ← chunk {{chunk}}",
+            "chunkLabel": "Chunk {{index}}",
+            "autoArrange": "Auto-arrange",
+            "pairQuality": "Pair {{pair}}"
+          },
+          "square": {
+            "assign": "Assign a letter to symbol {{symbol}}:",
+            "clear": "Clear",
+            "cribLabel": "Probable word (crib):",
+            "cribPlaceholder": "e.g. ATTACK",
+            "cribAt": "Match at position {{position}}",
+            "cribApply": "Apply",
+            "yourKeys": "Your recovered keys",
+            "squareKey": "Square key (read row by row):",
+            "transpositionKey": "Transposition key:"
+          }
+        },
+        "tooltips": {
+          "hintPresets": "How much help the tool gives: Easy shows everything, Hard leaves the thinking to you.",
+          "keyLengthCards": "Candidate column counts, ranked by how strongly the columns tie together. A hint, not a verdict — try another if the preview stays garbage.",
+          "otherLength": "Try any column count from 4 to 12.",
+          "autoSuggest": "Refill the arrangement with the strongest pairing the statistics find.",
+          "toggle": {
+            "confidenceBars": "Show how strongly each column pair is tied together.",
+            "autoSuggest": "Offer the statistically best column arrangement as a starting point.",
+            "englishReference": "Suggest the next most likely English letter under each symbol.",
+            "livePreview": "Show the partially decrypted message as you assign letters.",
+            "cribs": "Search for a probable word (crib) and apply its letters at once."
+          },
+          "assignLetter": "Pick the plaintext letter for this symbol, or clear it.",
+          "cribInput": "A word you expect in the message. Matches respect the letters you already assigned.",
+          "back": "Back one step. Nothing breaks.",
+          "next": "Next step.",
+          "skip": "Close the cracker without using anything.",
+          "useThisKey": "Fill both key fields with the recovered keys."
+        }
+      }
     }
   },
   "message": "Message",
@@ -336,7 +409,10 @@
       "dash-symbol": "the dash symbol selector",
       "variant-selector": "the variant selector",
       "square-key": "the Square key field",
-      "transposition-key": "the Transposition key field"
+      "transposition-key": "the Transposition key field",
+      "unknown-keys": "the \"Unknown keys\" checkbox",
+      "column-chips": "the column arrangement chips",
+      "symbol-chart": "the symbol frequency chart"
     },
     "timeline": {
       "source": "Source",
@@ -641,7 +717,8 @@
       "adfgvx": {
         "variant": "The variant: ADFGX uses a 5×5 letter square, ADFGVX adds a 6th row with the digits 0–9.",
         "square-key": "The keyed square: the key letters fill the square first (duplicates dropped, J folded into I), the rest of the alphabet follows. Change it and both the coordinates and the final transposition shift.",
-        "transposition-key": "The transposition key: its letters set the number and the reading order of the columns the fractionated text is shuffled through."
+        "transposition-key": "The transposition key: its letters set the number and the reading order of the columns the fractionated text is shuffled through.",
+        "unknown-keys": "Tick this when you do not know the keys: a guided cracker appears below and walks you from the ciphertext to both keys."
       }
     },
     "caesar": {
