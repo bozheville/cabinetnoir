@@ -280,7 +280,8 @@
         "formula": "a·x + b (mod 26)",
         "index": "Index (x ↔ 25 − x)",
         "symbol": "Morse symbols",
-        "chunk": "Chunk (3 bytes)"
+        "chunk": "Chunk (3 bytes)",
+        "pair": "Plaintext pair"
       }
     },
     "tryInTool": "Try it in the tool",
@@ -359,6 +360,11 @@
       },
       "rot13": {
         "1980s": "Usenet's net.jokes newsgroup adopts ROT13 to hide spoilers and punchlines; it becomes netiquette."
+      },
+      "playfair": {
+        "1854": "Charles Wheatstone invents the digraph cipher; Lord Playfair promotes it to the British establishment.",
+        "1899": "British forces use the Playfair cipher for tactical messages in the Second Boer War.",
+        "1914": "The First World War's large wireless traffic feeds digraph frequency analysis, and the cipher loses its edge."
       }
     },
     "challenge": {
@@ -530,6 +536,26 @@
         "hint1": "It is the opening image of a famous Robert Frost poem.",
         "hint2": "Again there is no key: only the fixed 13-step rotation.",
         "hint3": "Spacing is preserved, so word lengths are readable hints."
+      },
+      "playfair-demo": {
+        "title": "Crib demo ciphertext",
+        "hint1": "A crib to start from: the message begins with ATTACK."
+      },
+      "playfair-easy-1": {
+        "title": "Sailboat at dawn",
+        "hint1": "The keyword is SHADOW.",
+        "hint2": "The tool folds J into I and pads doubled letters and odd tails with X."
+      },
+      "playfair-medium-1": {
+        "title": "The game is afoot",
+        "hint1": "The keyword is TREASURE.",
+        "hint2": "A famous Sherlock Holmes phrase about a game."
+      },
+      "playfair-hard-1": {
+        "title": "The worst of times",
+        "hint1": "The keyword is VICTORY.",
+        "hint2": "Dickens opens A Tale of Two Cities twice — this is the second half.",
+        "hint3": "Decrypt pairs with the tool; the plaintext has no doubled pairs, so no filler X appears."
       }
     },
     "tooltips": {
@@ -555,6 +581,9 @@
       "morse": {
         "dot": "The character that plays the short signal (the dot) in the encoded output.",
         "dash": "The character that plays the long signal (the dash) in the encoded output."
+      },
+      "playfair": {
+        "key": "The keyword: after deduplication it seeds the 5×5 letter square — the entire key of the cipher."
       }
     },
     "caesar": {
@@ -591,6 +620,11 @@
       "description": "A fixed shift of 13 — its own inverse: applying it twice restores the text. Obfuscation, not encryption.",
       "era": "1980s",
       "origin": "Popularised on Usenet newsgroups to hide spoilers and punchlines."
+    },
+    "playfair": {
+      "description": "A digraph cipher: letter pairs move over a 5×5 square built from a keyword — the same letter encrypts differently depending on its partner.",
+      "era": "19th century",
+      "origin": "Invented by Charles Wheatstone in 1854 and championed by Lord Playfair."
     }
   },
   "glossary": {
@@ -673,6 +707,10 @@
     "dash": {
       "name": "Dash",
       "definition": "Morse's long signal — three units long, with pauses of one unit between the symbols of a letter."
+    },
+    "digraph": {
+      "name": "Digraph",
+      "definition": "A pair of letters treated as a single unit; Playfair encrypts digraphs, not single letters."
     }
   }
 }

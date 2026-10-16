@@ -245,6 +245,35 @@ const learningConfig = {
       },
     ],
   },
+  playfair: {
+    tabs: ['learn', 'history', 'practice'],
+    sections: {
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.substitution',
+      difficulty: 'learning.difficulty.hard',
+      era: 'learning.playfair.era',
+      origin: 'learning.playfair.origin',
+      modes: ['encrypt', 'decrypt'],
+    },
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'key',
+      'alphabet',
+      'digraph',
+      'crib',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Playfair_cipher',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
 };
 
 const getLearningConfig = (cipher) => learningConfig[cipher] || null;

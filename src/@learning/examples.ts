@@ -13,6 +13,7 @@ import {
   ALBERTI_DYNAMIC_DISC,
 } from '@encryptors/Alberti/alberti-crypt';
 import { morseEncoding } from '@encryptors/Morse/morse-encoding';
+import { playfairEncrypt } from '@encryptors/Playfair/playfair-encryption';
 
 export interface WorkedExampleColumn {
   // Stable key of the column.
@@ -281,6 +282,30 @@ const buildRot13Example = (id: string, input: string): WorkedExample => {
   };
 };
 
+// Playfair: letters travel in digraphs, so each row is a plaintext
+// pair and its resulting pair.
+const buildPlayfairExample = (
+  id: string,
+  input: string,
+  key: string,
+): WorkedExample => {
+  const results = playfairEncrypt(input, key).split(' ');
+  const pairs = input.toUpperCase().replace(/J/g, 'I').match(/.{1,2}/g) ?? [];
+  return {
+    id,
+    cipher: 'playfair',
+    input,
+    key,
+    alphabet: '',
+    mode: 'encrypt',
+    columns: [
+      { key: 'pair', labelKey: 'learning.example.columns.pair' },
+      { key: 'result', labelKey: EXAMPLE_COLUMN_LABELS.result },
+    ],
+    rows: pairs.map((pair, index) => [pair, results[index]]),
+  };
+};
+
 export const EXAMPLES: Record<string, WorkedExample> = {
   'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
   'caesar-basic': buildCaesarExample('caesar-basic', 'MEETATNOON', 3),
@@ -290,6 +315,7 @@ export const EXAMPLES: Record<string, WorkedExample> = {
   'morse-basic': buildMorseExample('morse-basic', 'SOS'),
   'base64-basic': buildBase64Example('base64-basic', 'MEETATNOON'),
   'rot13-basic': buildRot13Example('rot13-basic', 'HELLOWORLD'),
+  'playfair-basic': buildPlayfairExample('playfair-basic', 'HIDETHEGOLD', 'PLAYFAIREXAMPLE'),
 };
 
 export const getExample = (id: string): WorkedExample | null => EXAMPLES[id] || null;
