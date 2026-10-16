@@ -6,6 +6,12 @@
 import { DEFAULT_ALPHABET, vigenereEncrypt } from '@encryptors/Vigenere/vigenere-encryption';
 import { rotate } from '@encryptors/utils';
 import { monoalphabeticEncrypt } from '@encryptors/Monoalphabetic/monoalphabetic-crypt';
+import {
+  albertiEncrypt,
+  rotateDisc,
+  ALBERTI_STATIC_DISC,
+  ALBERTI_DYNAMIC_DISC,
+} from '@encryptors/Alberti/alberti-crypt';
 
 export interface WorkedExampleColumn {
   // Stable key of the column.
@@ -87,6 +93,49 @@ const buildCaesarExample = (
   rows: caesarRows(input, rotation, alphabet),
 });
 
+// Alberti: the movable disc turns after every chunk, so the disc column
+// shows the alignment (outer A over inner letter) that was in force.
+// Each chunk is encrypted exactly like the tool does — one period long.
+const buildAlbertiExample = (
+  id: string,
+  input: string,
+  iterationStep: number,
+  period: number,
+): WorkedExample => {
+  const rows: string[][] = [];
+  let roundAlphabet = ALBERTI_DYNAMIC_DISC;
+  for (let index = 0; index < input.length; index += period) {
+    const chunk = input.slice(index, index + period);
+    const cipher = albertiEncrypt({
+      input: chunk,
+      isDecryptMode: false,
+      staticDisc: ALBERTI_STATIC_DISC,
+      dynamicDisc: roundAlphabet,
+      iterationStep,
+      period: chunk.length,
+    });
+    chunk.split('').forEach((plain, position) => {
+      rows.push([plain, `A→${roundAlphabet[0]}`, cipher[position]]);
+    });
+    roundAlphabet = rotateDisc(roundAlphabet, iterationStep);
+  }
+
+  return {
+    id,
+    cipher: 'alberti',
+    input,
+    key: `${iterationStep}/${period}`,
+    alphabet: ALBERTI_STATIC_DISC,
+    mode: 'encrypt',
+    columns: [
+      { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+      { key: 'disc', labelKey: 'learning.example.columns.disc' },
+      { key: 'result', labelKey: EXAMPLE_COLUMN_LABELS.result },
+    ],
+    rows,
+  };
+};
+
 const buildVigenereExample = (
   id: string,
   input: string,
@@ -111,6 +160,7 @@ const buildVigenereExample = (
 export const EXAMPLES: Record<string, WorkedExample> = {
   'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
   'caesar-basic': buildCaesarExample('caesar-basic', 'MEETATNOON', 3),
+  'alberti-basic': buildAlbertiExample('alberti-basic', 'SECRETNOTE', 3, 2),
 };
 
 export const getExample = (id: string): WorkedExample | null => EXAMPLES[id] || null;

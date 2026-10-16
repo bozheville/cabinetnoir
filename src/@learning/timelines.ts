@@ -11,6 +11,23 @@ export interface TimelineEvent {
 }
 
 export const TIMELINES: Record<string, TimelineEvent[]> = {
+  alberti: [
+    {
+      year: '1467',
+      textKey: 'learning.timeline.alberti.1467',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Alberti_cipher',
+    },
+    {
+      year: '1508',
+      textKey: 'learning.timeline.alberti.1508',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Tabula_recta',
+    },
+    {
+      year: '1553',
+      textKey: 'learning.timeline.alberti.1553',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher',
+    },
+  ],
   caesar: [
     {
       year: '58 BC',

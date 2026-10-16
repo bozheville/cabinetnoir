@@ -273,7 +273,8 @@
         "plain": "Plaintext letter",
         "key": "Key letter",
         "shift": "Shift",
-        "result": "Result"
+        "result": "Result",
+        "disc": "Disc alignment"
       }
     },
     "tryInTool": "Try it in the tool",
@@ -296,7 +297,12 @@
       "next": "the Next button",
       "skip": "the \"Skip\" button",
       "keep-spaces": "the \"Keep spaces\" checkbox",
-      "keep-case": "the \"Keep case\" checkbox"
+      "keep-case": "the \"Keep case\" checkbox",
+      "disc": "the cipher discs",
+      "rotate-left": "the left arrow under the discs",
+      "rotate-right": "the right arrow under the discs",
+      "increment": "the increment slider",
+      "period": "the period slider"
     },
     "timeline": {
       "source": "Source",
@@ -313,6 +319,11 @@
         "800": "Al-Kindi writes on decrypting messages by letter frequency, breaking every single-alphabet substitution cipher.",
         "1553": "Bellaso's repeating-key cipher — \"many Caesars\", one per key letter — makes fixed shifts obsolete.",
         "58bc": "Julius Caesar uses a shift of 3 for private correspondence, his biographer Suetonius reports."
+      },
+      "alberti": {
+        "1467": "Leon Battista Alberti presents the cipher disk in De Cifris — the first idea of using several alphabets.",
+        "1508": "Johannes Trithemius publishes the tabula recta, a square table of all alphabets, extending the disk idea.",
+        "1553": "Giovan Battista Bellaso turns the alphabets with a repeating key phrase — the scheme later called the Vigenère cipher."
       }
     },
     "challenge": {
@@ -383,6 +394,25 @@
         "title": "Friends, Romans, countrymen",
         "hint1": "The shift is 23 — small enough to walk through by hand.",
         "hint2": "The ciphertext hides the start of a famous Roman speech."
+      },
+      "alberti-demo": {
+        "title": "Cipher-disk demo ciphertext"
+      },
+      "alberti-easy-1": {
+        "title": "I came, I saw, I conquered",
+        "hint1": "The disc turns after every 2 letters — the period is 2.",
+        "hint2": "The step is 3, and the discs start at their default alignment; reload the page if you turned them."
+      },
+      "alberti-medium-1": {
+        "title": "Per aspera ad astra",
+        "hint1": "The period is 3.",
+        "hint2": "The step is 4 — after every chunk the inner disc jumps four positions."
+      },
+      "alberti-hard-1": {
+        "title": "All Gaul",
+        "hint1": "The period is 4.",
+        "hint2": "The step is 7.",
+        "hint3": "It is the opening of Julius Caesar's Gallic War — written with the 20 letters of Alberti's disc only."
       }
     },
     "tooltips": {
@@ -392,12 +422,22 @@
         "keepSpaces": "Keep spaces: preserve the word layout instead of dropping all spaces.",
         "keepCase": "Keep case: preserve capital letters instead of writing everything in capitals."
       },
-      "alphabet": "The alphabet the cipher works on: pick a preset or paste your own ordered letters."
+      "alphabet": "The alphabet the cipher works on: pick a preset or paste your own ordered letters.",
+      "alberti": {
+        "disc": "Alberti's cipher disk: the fixed outer disc holds the plaintext alphabet, the movable inner disc holds the mixed ciphertext alphabet.",
+        "increment": "The turn step: how many positions the inner disc jumps after every chunk of the period.",
+        "period": "The period: how many letters are encrypted before the inner disc turns."
+      }
     },
     "caesar": {
       "description": "Every letter of the message is shifted by the same fixed number of positions in the alphabet.",
       "era": "1st century BC",
       "origin": "Named after Julius Caesar, who reportedly used a shift of 3 in private correspondence."
+    },
+    "alberti": {
+      "description": "The first polyalphabetic cipher: two rotating discs switch alphabets every few letters.",
+      "era": "15th century",
+      "origin": "Devised by Leon Battista Alberti around 1467 on his cipher disk, Formula."
     }
   },
   "glossary": {
@@ -460,6 +500,10 @@
     "brute-force": {
       "name": "Brute force",
       "definition": "Trying every possible key until the message makes sense; possible only when the key space is small."
+    },
+    "period": {
+      "name": "Period",
+      "definition": "How many letters are encrypted before the disc or alphabet changes; after each period the substitution starts over."
     }
   }
 }
