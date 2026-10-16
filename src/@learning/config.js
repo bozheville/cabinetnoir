@@ -110,6 +110,37 @@ const learningConfig = {
       },
     ],
   },
+  affine: {
+    tabs: ['learn', 'history', 'practice'],
+    sections: {
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.substitution',
+      difficulty: 'learning.difficulty.easy',
+      era: 'learning.affine.era',
+      origin: 'learning.affine.origin',
+      modes: ['encrypt', 'decrypt'],
+    },
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'key',
+      'alphabet',
+      'substitution',
+      'modular-arithmetic',
+      'frequency-analysis',
+      'brute-force',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Affine_cipher',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
 };
 
 const getLearningConfig = (cipher) => learningConfig[cipher] || null;

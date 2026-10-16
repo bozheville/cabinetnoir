@@ -4,7 +4,7 @@
 // the cipher implementations at module load, so examples can never drift
 // from the tool's behaviour.
 import { DEFAULT_ALPHABET, vigenereEncrypt } from '@encryptors/Vigenere/vigenere-encryption';
-import { rotate } from '@encryptors/utils';
+import { rotate, mod, getAffineAlphabet } from '@encryptors/utils';
 import { monoalphabeticEncrypt } from '@encryptors/Monoalphabetic/monoalphabetic-crypt';
 import {
   albertiEncrypt,
@@ -157,10 +157,46 @@ const buildVigenereExample = (
   rows: vigenereRows(input, key, alphabet),
 });
 
+// Affine: every letter x is mapped to (a·x + b) mod 26; the middle
+// column shows that number so the linear rule stays visible.
+const buildAffineExample = (
+  id: string,
+  input: string,
+  multiplier: number,
+  shift: number,
+): WorkedExample => {
+  const alphabet = LATIN_ALPHABET;
+  const targetAlphabet = getAffineAlphabet({ alphabet, multiplier, shift });
+  const rows = input.split('').map((plain) => {
+    const x = alphabet.indexOf(plain);
+    return [
+      plain,
+      String(mod(multiplier * x + shift, alphabet.length)),
+      targetAlphabet[x],
+    ];
+  });
+
+  return {
+    id,
+    cipher: 'affine',
+    input,
+    key: `${multiplier}/${shift}`,
+    alphabet,
+    mode: 'encrypt',
+    columns: [
+      { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+      { key: 'formula', labelKey: 'learning.example.columns.formula' },
+      { key: 'result', labelKey: EXAMPLE_COLUMN_LABELS.result },
+    ],
+    rows,
+  };
+};
+
 export const EXAMPLES: Record<string, WorkedExample> = {
   'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
   'caesar-basic': buildCaesarExample('caesar-basic', 'MEETATNOON', 3),
   'alberti-basic': buildAlbertiExample('alberti-basic', 'SECRETNOTE', 3, 2),
+  'affine-basic': buildAffineExample('affine-basic', 'SECRETMESSAGE', 3, 7),
 };
 
 export const getExample = (id: string): WorkedExample | null => EXAMPLES[id] || null;

@@ -254,7 +254,8 @@
         "key": "Lettre de clé",
         "shift": "Décalage",
         "result": "Résultat",
-        "disc": "Alignement du disque"
+        "disc": "Alignement du disque",
+        "formula": "a·x + b (mod 26)"
       }
     },
     "tryInTool": "Essayer dans l'outil",
@@ -282,7 +283,9 @@
       "rotate-left": "la flèche gauche sous les disques",
       "rotate-right": "la flèche droite sous les disques",
       "increment": "le curseur d'incrément",
-      "period": "le curseur de période"
+      "period": "le curseur de période",
+      "multiplier": "le champ du multiplicateur",
+      "shift": "le champ du décalage"
     },
     "timeline": {
       "source": "Source",
@@ -304,6 +307,11 @@
         "1467": "Leon Battista Alberti présente le disque de chiffrement dans De Cifris — la première idée d'utiliser plusieurs alphabets.",
         "1508": "Johannes Trithemius publie la tabula recta, table carrée de tous les alphabets, prolongeant l'idée du disque.",
         "1553": "Giovan Battista Bellaso fait tourner les alphabets avec une phrase-clé répétée — le schéma plus tard appelé chiffre de Vigenère."
+      },
+      "affine": {
+        "850": "L'analyse fréquentielle d'Al-Kindi condamne tout chiffre à alphabet unique, règles affines comprises.",
+        "1976": "Diffie et Hellman introduisent la cryptographie à clé publique : l'arithmétique modulaire devient l'épine dorsale des chiffres modernes.",
+        "58bc": "Le chiffre par décalage de Jules César — cas particulier a = 1 du chiffre affine — protège ses messages militaires."
       }
     },
     "challenge": {
@@ -393,6 +401,26 @@
         "hint1": "La période est 4.",
         "hint2": "Le pas est 7.",
         "hint3": "C'est l'ouverture de la Guerre des Gaules de Jules César — écrite avec les 20 lettres du disque d'Alberti seulement."
+      },
+      "affine-demo": {
+        "title": "Texte de démonstration à texte connu",
+        "hint1": "Vous savez que le message commence par ATTACK. Voyez ce que deviennent A et T, puis résolvez la droite y = a·x + b."
+      },
+      "affine-easy-1": {
+        "title": "La fortune favorise les audacieux",
+        "hint1": "Le multiplicateur est 3 et le décalage 7 — chiffrer A donne H.",
+        "hint2": "Vérifiez : S doit donner J."
+      },
+      "affine-medium-1": {
+        "title": "Élémentaire",
+        "hint1": "Vous reconnaissez le début : le texte clair commence par THE — et T devient O tandis que E devient N.",
+        "hint2": "Deux paires donnent la droite : y₁ − y₂ ≡ a·(x₁ − x₂) (mod 26). Trouvez a, puis b."
+      },
+      "affine-hard-1": {
+        "title": "Il y a quatre-vingt-sept ans",
+        "hint1": "C'est l'ouverture d'un célèbre discours américain.",
+        "hint2": "Vous interceptez deux paires : F devient I et O devient D.",
+        "hint3": "Déduisez a des deux paires (il faut un inverse modulaire), puis b depuis l'une des paires."
       }
     },
     "tooltips": {
@@ -407,6 +435,10 @@
         "disc": "Le disque de chiffrement d'Alberti : le disque extérieur fixe porte l'alphabet du texte clair, le disque intérieur mobile porte l'alphabet chiffré mélangé.",
         "increment": "Le pas de rotation : de combien de positions le disque intérieur saute après chaque période.",
         "period": "La période : combien de lettres sont chiffrées avant que le disque intérieur ne tourne."
+      },
+      "affine": {
+        "multiplier": "Le multiplicateur a de y = a·x + b. Il doit être premier avec la longueur de l'alphabet, sinon plusieurs lettres entrent en collision.",
+        "shift": "Le décalage b de y = a·x + b — l'ajout à la César appliqué après la multiplication."
       }
     },
     "caesar": {
@@ -418,6 +450,11 @@
       "description": "Le premier chiffre polyalphabétique : deux disques tournants changent d'alphabet toutes les quelques lettres.",
       "era": "XVᵉ siècle",
       "origin": "Conçu par Leon Battista Alberti vers 1467 sur son disque de chiffrement, la Formula."
+    },
+    "affine": {
+      "description": "Une substitution pilotée par la droite y = a·x + b : on multiplie la lettre, puis on décale, le tout mod 26.",
+      "era": "Antiquité — aujourd'hui",
+      "origin": "Une généralisation mathématique du décalage de César, nommée d'après la fonction affine ax + b."
     }
   },
   "glossary": {
@@ -484,6 +521,10 @@
     "period": {
       "name": "Période",
       "definition": "Combien de lettres sont chiffrées avant que le disque ou l'alphabet change ; après chaque période la substitution recommence."
+    },
+    "modular-arithmetic": {
+      "name": "Arithmétique modulaire",
+      "definition": "Compter en rebroussant chemin à une taille fixe : après le maximum, on repart de zéro, comme les heures d'une horloge."
     }
   }
 }

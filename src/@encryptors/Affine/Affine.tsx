@@ -1,8 +1,10 @@
 import React from 'react';
 import { Checkbox, Pane } from 'evergreen-ui';
+import { useTranslation } from 'next-i18next';
 import { CrypterProps } from '../types';
 import useAffine from './useAffine';
 import { NumberInput } from '@atoms';
+import Tooltip from '@atoms/Tooltip';
 
 const Affine: React.FC<CrypterProps> = ({
   input,
@@ -10,6 +12,7 @@ const Affine: React.FC<CrypterProps> = ({
   isDecryptMode,
   ...paneProps
 }) => {
+  const { t } = useTranslation('common');
   const {
     secretKey,
     keepCase,
@@ -36,14 +39,20 @@ const Affine: React.FC<CrypterProps> = ({
       paddingBottom="16px"
       {...paneProps}
     >
-      <NumberInput
-        value={multiplier}
-        onChange={handleMultiplierChange}
-      />
-      <NumberInput
-        value={secretKey}
-        onChange={handleKeyChange}
-      />
+      <Tooltip content={t('learning.tooltips.affine.multiplier')}>
+        <NumberInput
+          data-guide="multiplier"
+          value={multiplier}
+          onChange={handleMultiplierChange}
+        />
+      </Tooltip>
+      <Tooltip content={t('learning.tooltips.affine.shift')}>
+        <NumberInput
+          data-guide="shift"
+          value={secretKey}
+          onChange={handleKeyChange}
+        />
+      </Tooltip>
       {!isDecryptMode && (
         <>
           <Checkbox

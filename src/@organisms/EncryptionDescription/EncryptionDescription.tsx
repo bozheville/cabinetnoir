@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import Section from '@atoms/Section/Section';
 import {
-  AffineDescription,
   AtbashDescription,
   MorseDescription,
   Rot13Description,
@@ -23,8 +22,7 @@ const EncryptionDescription: React.FC = () => {
   const { algorithm } = router.query;
 
   const DescriptionComponent =
-    algorithm === 'affine' ? AffineDescription
-    : algorithm === 'atbash' ? AtbashDescription
+    algorithm === 'atbash' ? AtbashDescription
     : algorithm === 'morse' ? MorseDescription
     : algorithm === 'rot13' ? Rot13Description
     : null
