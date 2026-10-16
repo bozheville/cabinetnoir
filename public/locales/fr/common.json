@@ -221,7 +221,9 @@
     "modes": {
       "encrypt": "chiffrer",
       "decrypt": "déchiffrer",
-      "cryptoanalysis": "cryptanalyse"
+      "cryptoanalysis": "cryptanalyse",
+      "encode": "encoder",
+      "decode": "décoder"
     },
     "vigenere": {
       "description": "Chaque lettre du message est décalée selon la lettre correspondante d'une clé qui se répète.",
@@ -256,7 +258,8 @@
         "result": "Résultat",
         "disc": "Alignement du disque",
         "formula": "a·x + b (mod 26)",
-        "index": "Indice (x ↔ 25 − x)"
+        "index": "Indice (x ↔ 25 − x)",
+        "symbol": "Symboles Morse"
       }
     },
     "tryInTool": "Essayer dans l'outil",
@@ -287,7 +290,9 @@
       "period": "le curseur de période",
       "multiplier": "le champ du multiplicateur",
       "shift": "le champ du décalage",
-      "alphabet-selector": "le sélecteur d'alphabet"
+      "alphabet-selector": "le sélecteur d'alphabet",
+      "dot-symbol": "le sélecteur du symbole de point",
+      "dash-symbol": "le sélecteur du symbole de trait"
     },
     "timeline": {
       "source": "Source",
@@ -318,6 +323,13 @@
       "atbash": {
         "1100": "Les commentateurs médiévaux (Rachi, puis Radak) discutent les passages Atbash de Jérémie, le plus ancien chiffre de substitution attesté.",
         "586bc": "Le Livre de Jérémie écrit Babylone SHESHACH et les Chaldéens LEV-KAMAI — lectures Atbash confirmées par les commentateurs."
+      },
+      "morse": {
+        "1837": "Samuel Morse et Alfred Vail mettent au point le télégraphe électrique et la première version de leur code.",
+        "1844": "Morse tape « What hath God wrought » sur la ligne Washington–Baltimore, premier message télégraphique officiel.",
+        "1865": "La convention télégraphique de Paris adopte la révision de Gerke comme Morse international — le code d'aujourd'hui.",
+        "1906": "La convention radiotélégraphique de Berlin adopte SOS comme signal de détresse maritime mondial.",
+        "1999": "Le Système mondial de détresse et de sécurité en met fin à la veille officielle de Morse en mer."
       }
     },
     "challenge": {
@@ -442,6 +454,22 @@
         "title": "Il y a quatre-vingt-sept ans",
         "hint1": "C'est l'ouverture d'un célèbre discours américain.",
         "hint2": "Aucune clé à trouver : tout le secret tient au miroir fixe A↔Z."
+      },
+      "morse-easy-1": {
+        "title": "L'aigle est atterri",
+        "hint1": "Les lettres sont séparées par des espaces simples, les mots par une barre oblique.",
+        "hint2": "Passez l'outil en mode déchiffrement et collez le code tel quel."
+      },
+      "morse-medium-1": {
+        "title": "What hath God wrought",
+        "hint1": "Le message est la première transmission télégraphique officielle, de Washington à Baltimore en 1844.",
+        "hint2": "Dans l'outil, une espace entre lettres reste une espace ; les coupures de mots sont des barres obliques."
+      },
+      "morse-hard-1": {
+        "title": "Percuté un iceberg",
+        "hint1": "Une paraphrase du trafic de détresse d’un navire célèbre en avril 1912.",
+        "hint2": "L'espacement est tout : vérifiez qu'aucune espace n'a été perdue en copiant.",
+        "hint3": "Le message commence par le signal de détresse lui-même — trois points, trois traits, trois points."
       }
     },
     "tooltips": {
@@ -463,6 +491,10 @@
       },
       "atbash": {
         "alphabet": "Le sélecteur d'alphabet : Atbash met en miroir l'alphabet choisi — le seul choix offert par le chiffre."
+      },
+      "morse": {
+        "dot": "Le caractère qui joue le signal court (le point) dans la sortie encodée.",
+        "dash": "Le caractère qui joue le signal long (le trait) dans la sortie encodée."
       }
     },
     "caesar": {
@@ -484,6 +516,11 @@
       "description": "Le chiffre miroir : l'alphabet est retourné, si bien que A devient Z et B devient Y. Aucune clé.",
       "era": "c. 586 av. J.-C.",
       "origin": "Scribes hébreux ; attesté dans le Livre de Jérémie."
+    },
+    "morse": {
+      "description": "Un encodage, pas un chiffre : chaque lettre devient un motif public de points et de traits pour le télégraphe.",
+      "era": "XIXᵉ siècle",
+      "origin": "Développé par Samuel Morse et Alfred Vail pour le télégraphe électrique (années 1830–1840)."
     }
   },
   "glossary": {
@@ -554,6 +591,18 @@
     "modular-arithmetic": {
       "name": "Arithmétique modulaire",
       "definition": "Compter en rebroussant chemin à une taille fixe : après le maximum, on repart de zéro, comme les heures d'une horloge."
+    },
+    "encoding": {
+      "name": "Encodage",
+      "definition": "Une réécriture réversible des données pour le transport ou le stockage ; tout le monde peut l’annuler, il ne cache rien."
+    },
+    "dot": {
+      "name": "Point",
+      "definition": "Le signal court du Morse — une unité de son, de lumière ou de courant."
+    },
+    "dash": {
+      "name": "Trait",
+      "definition": "Le signal long du Morse — trois unités, avec des pauses d’une unité entre les symboles d’une lettre."
     }
   }
 }

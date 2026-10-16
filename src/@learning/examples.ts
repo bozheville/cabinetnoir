@@ -12,6 +12,7 @@ import {
   ALBERTI_STATIC_DISC,
   ALBERTI_DYNAMIC_DISC,
 } from '@encryptors/Alberti/alberti-crypt';
+import { morseEncoding } from '@encryptors/Morse/morse-encoding';
 
 export interface WorkedExampleColumn {
   // Stable key of the column.
@@ -217,12 +218,32 @@ const buildAtbashExample = (id: string, input: string): WorkedExample => {
   };
 };
 
+// Morse: an encoding, not a cipher — each letter has its own symbol
+// pattern, so the "worked example" is a lookup table in miniature.
+const buildMorseExample = (id: string, input: string): WorkedExample => ({
+  id,
+  cipher: 'morse',
+  input,
+  key: '',
+  alphabet: '',
+  mode: 'encrypt',
+  columns: [
+    { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+    { key: 'symbol', labelKey: 'learning.example.columns.symbol' },
+  ],
+  rows: input.split('').map((plain) => {
+    const encoded = morseEncoding(plain, { dotSymbol: '•', dashSymbol: '-' });
+    return [plain, encoded];
+  }),
+});
+
 export const EXAMPLES: Record<string, WorkedExample> = {
   'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
   'caesar-basic': buildCaesarExample('caesar-basic', 'MEETATNOON', 3),
   'alberti-basic': buildAlbertiExample('alberti-basic', 'SECRETNOTE', 3, 2),
   'affine-basic': buildAffineExample('affine-basic', 'SECRETMESSAGE', 3, 7),
   'atbash-basic': buildAtbashExample('atbash-basic', 'REVERSEME'),
+  'morse-basic': buildMorseExample('morse-basic', 'SOS'),
 };
 
 export const getExample = (id: string): WorkedExample | null => EXAMPLES[id] || null;

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CrypterProps } from '../types';
 import { morseDecoding, morseEncoding } from './morse-encoding';
+import Tooltip from '@atoms/Tooltip';
 
 const dotSymbols = '.*•';
 const dashSymbols = '-_~';
@@ -50,14 +51,18 @@ const Morse: React.FC<CrypterProps> = ({
       <SignSelector>
         <div>
           <span>{`${t('processing.morse.dot_symbol')}`}</span>
-          <Select defaultValue="•" onChange={handleDotSymbolChnage}>
-            {dotSymbols.split('').map((char) => <option value={char} key={`option-${char}`}>{char}</option>)}
-          </Select>
+          <Tooltip content={t('learning.tooltips.morse.dot')}>
+            <Select data-guide="dot-symbol" defaultValue="•" onChange={handleDotSymbolChnage}>
+              {dotSymbols.split('').map((char) => <option value={char} key={`option-${char}`}>{char}</option>)}
+            </Select>
+          </Tooltip>
         </div>
         <div>
-          <Select defaultValue="-" onChange={handleDashSymbolChnage}>
-            {dashSymbols.split('').map((char) => <option value={char} key={`option-${char}`}>{char}</option>)}
-          </Select>
+          <Tooltip content={t('learning.tooltips.morse.dash')}>
+            <Select data-guide="dash-symbol" defaultValue="-" onChange={handleDashSymbolChnage}>
+              {dashSymbols.split('').map((char) => <option value={char} key={`option-${char}`}>{char}</option>)}
+            </Select>
+          </Tooltip>
           <span>{`${t('processing.morse.dash_symbol')}`}</span>
         </div>
       </SignSelector>

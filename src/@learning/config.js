@@ -168,6 +168,32 @@ const learningConfig = {
       },
     ],
   },
+  morse: {
+    tabs: ['learn', 'history', 'practice'],
+    sections: {
+      learn: ['how-it-works', 'guides', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.encoding',
+      difficulty: 'learning.difficulty.trivial',
+      era: 'learning.morse.era',
+      origin: 'learning.morse.origin',
+      modes: ['encode', 'decode'],
+    },
+    glossary: [
+      'encoding',
+      'dot',
+      'dash',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Morse_code',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
 };
 
 const getLearningConfig = (cipher) => learningConfig[cipher] || null;

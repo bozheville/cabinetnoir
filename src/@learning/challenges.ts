@@ -9,6 +9,7 @@ import {
   ALBERTI_STATIC_DISC,
   ALBERTI_DYNAMIC_DISC,
 } from '@encryptors/Alberti/alberti-crypt';
+import { morseEncoding } from '@encryptors/Morse/morse-encoding';
 
 export type ChallengeDifficulty = 'easy' | 'medium' | 'hard';
 
@@ -190,6 +191,26 @@ const buildAtbashChallenge = (
   keyLength: 0,
   hints,
   answer: plaintext,
+});
+
+// Morse decode challenges: the ciphertext column carries the dots and
+// dashes in the tool's default symbols, and the challenge opens in
+// decrypt mode.
+const buildMorseChallenge = (
+  id: string,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+): Challenge => ({
+  id,
+  cipher: 'morse',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: morseEncoding(plaintext, { dotSymbol: '•', dashSymbol: '-' }),
+  difficulty,
+  keyLength: 0,
+  hints,
+  answer: plaintext,
+  mode: 'decrypt',
 });
 
 // Alberti: the discs are fixed in the tool, so the challenge's secret is
@@ -447,6 +468,34 @@ export const CHALLENGES: Record<string, Challenge> = {
     [
       'learning.challenges.atbash-hard-1.hint1',
       'learning.challenges.atbash-hard-1.hint2',
+    ],
+  ),
+  'morse-easy-1': buildMorseChallenge(
+    'morse-easy-1',
+    'THEEAGLEHASLANDED',
+    'easy',
+    [
+      'learning.challenges.morse-easy-1.hint1',
+      'learning.challenges.morse-easy-1.hint2',
+    ],
+  ),
+  'morse-medium-1': buildMorseChallenge(
+    'morse-medium-1',
+    'WHATHATHGODWROUGHT',
+    'medium',
+    [
+      'learning.challenges.morse-medium-1.hint1',
+      'learning.challenges.morse-medium-1.hint2',
+    ],
+  ),
+  'morse-hard-1': buildMorseChallenge(
+    'morse-hard-1',
+    'SOSWEHAVESTRUCKANICEBERG',
+    'hard',
+    [
+      'learning.challenges.morse-hard-1.hint1',
+      'learning.challenges.morse-hard-1.hint2',
+      'learning.challenges.morse-hard-1.hint3',
     ],
   ),
 };

@@ -24,7 +24,7 @@ export interface LearningAtGlance {
   difficulty: string;
   era: string;
   origin: string;
-  modes: Array<'encrypt' | 'decrypt' | 'cryptoanalysis'>;
+  modes: Array<'encrypt' | 'decrypt' | 'cryptoanalysis' | 'encode' | 'decode'>;
 }
 
 export interface LearningConfigEntry {
