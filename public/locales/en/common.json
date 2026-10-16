@@ -205,6 +205,93 @@
       "directAction": "Encrypt",
       "reverseAction": "Decrypt",
       "messageLabel": "Cryptogram"
+    },
+    "adfgvx": {
+      "title": "ADFGVX cipher",
+      "short_title": "ADFGVX",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram",
+      "variantLabel": "Variant",
+      "variants": {
+        "adfgx": "ADFGX (1918)",
+        "adfgvx": "ADFGVX (1918)"
+      },
+      "squareKeyLabel": "Square key",
+      "transpositionKeyLabel": "Transposition key",
+      "unknownKeys": "Unknown keys",
+      "cracker": {
+        "hints": {
+          "title": "Hints",
+          "presets": {
+            "easy": "Easy",
+            "medium": "Medium",
+            "hard": "Hard",
+            "custom": "Custom"
+          },
+          "toggles": {
+            "confidenceBars": "Show pair strength bars",
+            "autoSuggest": "Suggest column arrangement",
+            "englishReference": "Show letter suggestions",
+            "livePreview": "Live plaintext preview",
+            "cribs": "Crib panel"
+          }
+        },
+        "wizard": {
+          "steps": {
+            "keyLength": "Key length",
+            "columns": "Columns",
+            "square": "Square"
+          },
+          "inputChanged": "The ciphertext changed — the analysis restarted.",
+          "back": "Back",
+          "next": "Next",
+          "skip": "Skip",
+          "useKey": "Use these keys",
+          "keyLength": {
+            "otherLabel": "Other length:",
+            "otherPlaceholder": "4–12"
+          },
+          "columns": {
+            "hint": "The ciphertext is K equal chunks, one per transposition column, read in key order. Arrange the chunks into the grid slots: click two chips to swap them. Swapping the two chips of one pair flips that pair.",
+            "splitInfo": "Split into {{columns}} columns of {{rows}} characters.",
+            "slotLabel": "Slot {{index}} ← chunk {{chunk}}",
+            "chunkLabel": "Chunk {{index}}",
+            "autoArrange": "Auto-arrange",
+            "pairQuality": "Pair {{pair}}"
+          },
+          "square": {
+            "assign": "Assign a letter to symbol {{symbol}}:",
+            "clear": "Clear",
+            "cribLabel": "Probable word (crib):",
+            "cribPlaceholder": "e.g. ATTACK",
+            "cribAt": "Match at position {{position}}",
+            "cribApply": "Apply",
+            "yourKeys": "Your recovered keys",
+            "squareKey": "Square key (read row by row):",
+            "transpositionKey": "Transposition key:"
+          }
+        },
+        "tooltips": {
+          "hintPresets": "How much help the tool gives: Easy shows everything, Hard leaves the thinking to you.",
+          "keyLengthCards": "Candidate column counts, ranked by how strongly the columns tie together. A hint, not a verdict — try another if the preview stays garbage.",
+          "otherLength": "Try any column count from 4 to 12.",
+          "autoSuggest": "Refill the arrangement with the strongest pairing the statistics find.",
+          "toggle": {
+            "confidenceBars": "Show how strongly each column pair is tied together.",
+            "autoSuggest": "Offer the statistically best column arrangement as a starting point.",
+            "englishReference": "Suggest the next most likely English letter under each symbol.",
+            "livePreview": "Show the partially decrypted message as you assign letters.",
+            "cribs": "Search for a probable word (crib) and apply its letters at once."
+          },
+          "assignLetter": "Pick the plaintext letter for this symbol, or clear it.",
+          "cribInput": "A word you expect in the message. Matches respect the letters you already assigned.",
+          "back": "Back one step. Nothing breaks.",
+          "next": "Next step.",
+          "skip": "Close the cracker without using anything.",
+          "useThisKey": "Fill both key fields with the recovered keys."
+        }
+      }
     }
   },
   "message": "Message",
@@ -234,7 +321,8 @@
       "polyalphabetic": "polyalphabetic substitution cipher",
       "substitution": "substitution cipher",
       "transposition": "transposition cipher",
-      "encoding": "encoding, not encryption"
+      "encoding": "encoding, not encryption",
+      "fractionation": "fractionation + transposition cipher"
     },
     "difficulty": {
       "trivial": "trivial to break",
@@ -285,7 +373,9 @@
         "symbol": "Morse symbols",
         "chunk": "Chunk (3 bytes)",
         "pair": "Plaintext pair",
-        "positions": "Rotor window (I·II·III)"
+        "positions": "Rotor window (I·II·III)",
+        "coords": "Square coordinates",
+        "fractionated": "Fractionated so far"
       }
     },
     "tryInTool": "Try it in the tool",
@@ -318,7 +408,13 @@
       "shift": "the shift field",
       "alphabet-selector": "the alphabet selector",
       "dot-symbol": "the dot symbol selector",
-      "dash-symbol": "the dash symbol selector"
+      "dash-symbol": "the dash symbol selector",
+      "variant-selector": "the variant selector",
+      "square-key": "the Square key field",
+      "transposition-key": "the Transposition key field",
+      "unknown-keys": "the \"Unknown keys\" checkbox",
+      "column-chips": "the column arrangement chips",
+      "symbol-chart": "the symbol frequency chart"
     },
     "timeline": {
       "source": "Source",
@@ -377,6 +473,11 @@
         "1939": "At the Pyry conference the Poles hand the British and French their Enigma methods, replicas and the bomba — weeks before the war.",
         "1940": "The first British bombe, Victory, starts work at Bletchley Park against the daily traffic.",
         "1942": "The U-boats move to the four-rotor M4 ('Shark'); Atlantic decrypts go dark for about ten months."
+      },
+      "adfgvx": {
+        "1918-introduced": "Fritz Nebel’s fractionation-transposition cipher enters German field service as ADFGX, with a 5×5 square.",
+        "1918-painvin": "Georges Painvin breaks the ADFGX traffic from intercepted same-key message pairs after months of effort.",
+        "1918-traffic": "The square gains a sixth row for digits (ADFGVX); the broken traffic helps the French anticipate the German offensive at Amiens."
       }
     },
     "challenge": {
@@ -588,6 +689,28 @@
         "hint1": "The key is BXY.",
         "hint2": "A Sherlock Holmes maxim about deception.",
         "hint3": "Only letters travel — the answer is the plaintext without spaces."
+      },
+      "adfgvx-demo": {
+        "title": "Order of the day",
+        "hint1": "Both keys are known: square NIGHT, transposition GERMAN, ADFGVX variant. Open the cracker to see how the tool would have found them."
+      },
+      "adfgvx-easy-1": {
+        "title": "Final resting place",
+        "hint1": "The variant is ADFGVX and the square key is NIGHT.",
+        "hint2": "The transposition key is GERMAN — six distinct letters.",
+        "hint3": "Type both keys into the tool and decrypt."
+      },
+      "adfgvx-medium-1": {
+        "title": "A tale of two eras",
+        "hint1": "The transposition key is WINTER. Its length gives you the column count.",
+        "hint2": "With the columns ordered, the symbols are a plain substitution — use the frequency suggestions.",
+        "hint3": "The square key is NIGHT if you want to check yourself."
+      },
+      "adfgvx-hard-1": {
+        "title": "Dedication",
+        "hint1": "The variant is ADFGVX and the transposition key has six distinct letters.",
+        "hint2": "A crib: the message starts with the word WE.",
+        "hint3": "The square key is KAISER."
       }
     },
     "tooltips": {
@@ -619,6 +742,12 @@
       },
       "enigma": {
         "key": "The rotor start positions (the Grundstellung) — three letters A–Z. On a real machine the key also carried the rotor order, the ring settings and the plugboard pairs."
+      },
+      "adfgvx": {
+        "variant": "The variant: ADFGX uses a 5×5 letter square, ADFGVX adds a 6th row with the digits 0–9.",
+        "square-key": "The keyed square: the key letters fill the square first (duplicates dropped, J folded into I), the rest of the alphabet follows. Change it and both the coordinates and the final transposition shift.",
+        "transposition-key": "The transposition key: its letters set the number and the reading order of the columns the fractionated text is shuffled through.",
+        "unknown-keys": "Tick this when you do not know the keys: a guided cracker appears below and walks you from the ciphertext to both keys."
       }
     },
     "caesar": {
@@ -665,6 +794,11 @@
       "description": "A rotor machine: three wheels and a reflector reshuffle the alphabet with every keypress.",
       "era": "1920s — 1940s",
       "origin": "Invented by Arthur Scherbius in Germany; patented 1918, adopted by the German military from 1926."
+    },
+    "adfgvx": {
+      "description": "The German WWI field cipher that split every letter into two of six letters and then shuffled the result — until Georges Painvin broke it.",
+      "era": "1918 (World War I)",
+      "origin": "Fritz Nebel, German army signal corps"
     }
   },
   "glossary": {
@@ -763,6 +897,18 @@
     "reflector": {
       "name": "Reflector",
       "definition": "A fixed, self-inverse wiring that bounces the signal back through the rotors; it makes Enigma reciprocal but never maps a letter to itself."
+    },
+    "polybius-square": {
+      "name": "Polybius square",
+      "definition": "A grid that turns each character into two coordinates: the row and the column of its cell."
+    },
+    "fractionation": {
+      "name": "Fractionation",
+      "definition": "Splitting each plaintext letter into several smaller units (here: two coordinates) before the next cipher layer."
+    },
+    "transposition": {
+      "name": "Transposition",
+      "definition": "Changing the order of symbols without changing the symbols themselves."
     }
   }
 }

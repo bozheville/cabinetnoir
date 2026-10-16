@@ -14,6 +14,7 @@ import {
 } from '@encryptors/Alberti/alberti-crypt';
 import { morseEncoding } from '@encryptors/Morse/morse-encoding';
 import { playfairEncrypt } from '@encryptors/Playfair/playfair-encryption';
+import { adfgvxEncrypt } from '@encryptors/Adfgvx/adfgvx-encryption';
 import { createEnigmaMachine, enigmaPass } from '@learning/enigma-machine';
 
 export interface WorkedExampleColumn {
@@ -338,6 +339,40 @@ const buildEnigmaExample = (
   };
 };
 
+// ADFGVX: every letter fractionates into two square coordinates, and the
+// running fractionated text shows how the columnar transposition will
+// later shuffle it. The key carries both keys ("SQUARE TRANSPOSITION").
+const buildAdfgvxExample = (
+  id: string,
+  input: string,
+  key: string,
+): WorkedExample => {
+  const [squareKey, transpositionKey] = key.split(' ');
+  const plain = input.toUpperCase().replace(/J/g, 'I').replace(/[^A-Z0-9]/g, '');
+  const square = squareKey;
+  let fractionated = '';
+  const rows = plain.split('').map((letter) => {
+    const pair = adfgvxEncrypt(letter, square, 'A', 'adfgvx').slice(0, 2);
+    fractionated += pair;
+    return [letter, pair, fractionated];
+  });
+
+  return {
+    id,
+    cipher: 'adfgvx',
+    input,
+    key,
+    alphabet: '',
+    mode: 'encrypt',
+    columns: [
+      { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+      { key: 'coords', labelKey: 'learning.example.columns.coords' },
+      { key: 'fractionated', labelKey: 'learning.example.columns.fractionated' },
+    ],
+    rows,
+  };
+};
+
 export const EXAMPLES: Record<string, WorkedExample> = {
   'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
   'caesar-basic': buildCaesarExample('caesar-basic', 'MEETATNOON', 3),
@@ -348,6 +383,7 @@ export const EXAMPLES: Record<string, WorkedExample> = {
   'base64-basic': buildBase64Example('base64-basic', 'MEETATNOON'),
   'rot13-basic': buildRot13Example('rot13-basic', 'HELLOWORLD'),
   'playfair-basic': buildPlayfairExample('playfair-basic', 'HIDETHEGOLD', 'PLAYFAIREXAMPLE'),
+  'adfgvx-basic': buildAdfgvxExample('adfgvx-basic', 'ATTACKATDAWN', 'NIGHT GERMAN'),
   'enigma-basic': buildEnigmaExample('enigma-basic', 'AAAAA', 'AAA'),
 };
 

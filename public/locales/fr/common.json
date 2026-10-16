@@ -192,6 +192,93 @@
       "keyLabel": "Clé",
       "rotors": "Rotors : I II III",
       "reflector": "Réflecteur : type B"
+    },
+    "adfgvx": {
+      "title": "Chiffre ADFGVX",
+      "short_title": "ADFGVX",
+      "directAction": "Crypter",
+      "reverseAction": "Décrypter",
+      "messageLabel": "Cryptogramme",
+      "variantLabel": "Variante",
+      "variants": {
+        "adfgx": "ADFGX (1918)",
+        "adfgvx": "ADFGVX (1918)"
+      },
+      "squareKeyLabel": "Clé du carré",
+      "transpositionKeyLabel": "Clé de transposition",
+      "unknownKeys": "Clés inconnues",
+      "cracker": {
+        "hints": {
+          "title": "Aides",
+          "presets": {
+            "easy": "Facile",
+            "medium": "Moyen",
+            "hard": "Difficile",
+            "custom": "Personnalisé"
+          },
+          "toggles": {
+            "confidenceBars": "Barres de force des paires",
+            "autoSuggest": "Suggérer la disposition des colonnes",
+            "englishReference": "Suggestions de lettres",
+            "livePreview": "Aperçu de déchiffrement en direct",
+            "cribs": "Mots probables"
+          }
+        },
+        "wizard": {
+          "steps": {
+            "keyLength": "Longueur de la clé",
+            "columns": "Colonnes",
+            "square": "Carré"
+          },
+          "inputChanged": "Le texte chiffré a changé — l’analyse a repris du début.",
+          "back": "Retour",
+          "next": "Suivant",
+          "skip": "Passer, saisir les clés manuellement",
+          "useKey": "Utiliser ces clés",
+          "keyLength": {
+            "otherLabel": "Autre longueur :",
+            "otherPlaceholder": "4–12"
+          },
+          "columns": {
+            "hint": "Le texte chiffré se coupe en K morceaux égaux, un par colonne de transposition, lus dans l’ordre de la clé. Rangez les morceaux dans les emplacements de la grille : cliquez deux jetons pour les échanger. Échanger les deux jetons d’une paire retourne cette paire.",
+            "splitInfo": "Découpe en {{columns}} colonnes de {{rows}} caractères.",
+            "slotLabel": "Emplacement {{index}} ← morceau {{chunk}}",
+            "chunkLabel": "Morceau {{index}}",
+            "autoArrange": "Disposition auto",
+            "pairQuality": "Paire {{pair}}"
+          },
+          "square": {
+            "assign": "Attribuer une lettre au symbole {{symbol}} :",
+            "clear": "Effacer",
+            "cribLabel": "Mot probable :",
+            "cribPlaceholder": "ex. ATTAQUE",
+            "cribAt": "Correspondance à la position {{position}}",
+            "cribApply": "Appliquer",
+            "yourKeys": "Vos clés reconstituées",
+            "squareKey": "Clé du carré (lue ligne par ligne) :",
+            "transpositionKey": "Clé de transposition :"
+          }
+        },
+        "tooltips": {
+          "hintPresets": "L’ampleur de l’aide : Facile montre tout, Difficile vous laisse réfléchir.",
+          "keyLengthCards": "Nombres de colonnes candidats, classés par la force du lien entre colonnes. Un indice, pas un verdict — essayez-en un autre si l’aperçu reste illisible.",
+          "otherLength": "Essayez n’importe quel nombre de colonnes de 4 à 12.",
+          "autoSuggest": "Refaire la disposition avec le meilleur appariement trouvé par les statistiques.",
+          "toggle": {
+            "confidenceBars": "Montrer la force du lien de chaque paire de colonnes.",
+            "autoSuggest": "Proposer la disposition la plus probable comme point de départ.",
+            "englishReference": "Suggérer la prochaine lettre anglaise la plus probable sous chaque symbole.",
+            "livePreview": "Afficher le message partiellement déchiffré au fil des attributions.",
+            "cribs": "Chercher un mot probable et appliquer ses lettres d’un coup."
+          },
+          "assignLetter": "Choisir la lettre en clair de ce symbole, ou l’effacer.",
+          "cribInput": "Un mot que vous attendez dans le message. Les correspondances respectent les lettres déjà attribuées.",
+          "back": "Revenir d’un pas. Rien ne casse.",
+          "next": "Étape suivante.",
+          "skip": "Fermer le décrypteur sans rien utiliser.",
+          "useThisKey": "Remplir les deux champs de clés avec les clés reconstituées."
+        }
+      }
     }
   },
   "message": "Message",
@@ -221,7 +308,8 @@
       "polyalphabetic": "chiffre de substitution polyalphabétique",
       "substitution": "chiffre de substitution",
       "transposition": "chiffre de transposition",
-      "encoding": "encodage, pas un chiffrement"
+      "encoding": "encodage, pas un chiffrement",
+      "fractionation": "chiffre par fractionnement et transposition"
     },
     "difficulty": {
       "trivial": "déchiffrable de façon triviale",
@@ -272,7 +360,9 @@
         "symbol": "Symboles Morse",
         "chunk": "Groupe (3 octets)",
         "pair": "Paire du texte clair",
-        "positions": "Fenêtre des rotors (I·II·III)"
+        "positions": "Fenêtre des rotors (I·II·III)",
+        "coords": "Coordonnées du carré",
+        "fractionated": "Texte fractionné (cumul)"
       }
     },
     "tryInTool": "Essayer dans l'outil",
@@ -305,7 +395,13 @@
       "shift": "le champ du décalage",
       "alphabet-selector": "le sélecteur d'alphabet",
       "dot-symbol": "le sélecteur du symbole de point",
-      "dash-symbol": "le sélecteur du symbole de trait"
+      "dash-symbol": "le sélecteur du symbole de trait",
+      "variant-selector": "le sélecteur de variante",
+      "square-key": "le champ Clé du carré",
+      "transposition-key": "le champ Clé de transposition",
+      "unknown-keys": "la case « Clés inconnues »",
+      "column-chips": "les jetons d’arrangement des colonnes",
+      "symbol-chart": "le graphique de fréquence des symboles"
     },
     "timeline": {
       "source": "Source",
@@ -364,6 +460,11 @@
         "1939": "À la conférence de Pyry, les Polonais remettent aux Britanniques et aux Français leurs méthodes, des répliques et la bomba — quelques semaines avant la guerre.",
         "1940": "La première bombe britannique, Victory, entre en action à Bletchley Park contre le trafic du jour.",
         "1942": "Les U-Boote passent au M4 à quatre rotors (« Shark ») ; les déchiffrements de l'Atlantique s'éteignent une dizaine de mois."
+      },
+      "adfgvx": {
+        "1918-introduced": "Le chiffre à fractionnement et transposition de Fritz Nebel entre en service de campagne allemand sous le nom ADFGX, avec un carré 5×5.",
+        "1918-painvin": "Georges Painvin brise le trafic ADFGX grâce à des paires de messages interceptés sur la même clé, après des mois d’effort.",
+        "1918-traffic": "Le carré gagne une sixième ligne pour les chiffres (ADFGVX) ; le trafic déchiffré aide la France à anticiper l’offensive allemande sur Amiens."
       }
     },
     "challenge": {
@@ -575,6 +676,28 @@
         "hint1": "La clé est BXY.",
         "hint2": "Une maxime de Sherlock Holmes sur la tromperie.",
         "hint3": "Seules les lettres voyagent — la réponse est le texte clair sans espaces."
+      },
+      "adfgvx-demo": {
+        "title": "Ordre du jour",
+        "hint1": "Les deux clés sont connues : carré NIGHT, transposition GERMAN, variante ADFGVX. Ouvrez le décrypteur pour voir comment l’outil les aurait trouvées."
+      },
+      "adfgvx-easy-1": {
+        "title": "Dernière demeure",
+        "hint1": "La variante est ADFGVX et la clé du carré est NIGHT.",
+        "hint2": "La clé de transposition est GERMAN — six lettres distinctes.",
+        "hint3": "Tapez les deux clés dans l’outil et décryptez."
+      },
+      "adfgvx-medium-1": {
+        "title": "Conte de deux époques",
+        "hint1": "La clé de transposition est WINTER. Sa longueur donne le nombre de colonnes.",
+        "hint2": "Les colonnes en place, les symboles forment une substitution simple — servez-vous des suggestions de lettres.",
+        "hint3": "La clé du carré est NIGHT si vous voulez vous vérifier."
+      },
+      "adfgvx-hard-1": {
+        "title": "Consécration",
+        "hint1": "La variante est ADFGVX et la clé de transposition compte six lettres distinctes.",
+        "hint2": "Un mot probable : le message commence par le mot WE.",
+        "hint3": "La clé du carré est KAISER."
       }
     },
     "tooltips": {
@@ -606,6 +729,12 @@
       },
       "enigma": {
         "key": "Les positions de départ des rotors (la Grundstellung) — trois lettres A–Z. Sur la vraie machine, la clé portait aussi l'ordre des rotors, les réglages d'anneau et les paires du tableau de connexions."
+      },
+      "adfgvx": {
+        "variant": "La variante : ADFGX utilise un carré 5×5 de lettres, ADFGVX ajoute une sixième ligne avec les chiffres 0–9.",
+        "square-key": "Le carré à mot-clé : les lettres de la clé remplissent d’abord le carré (doublons retirés, J fondu dans I), le reste de l’alphabet suit. Changez-le et les coordonnées comme la transposition finale changent.",
+        "transposition-key": "La clé de transposition : ses lettres fixent le nombre et l’ordre de lecture des colonnes par lesquelles le texte fractionné est mélangé.",
+        "unknown-keys": "Cochez ceci quand vous ne connaissez pas les clés : un décrypteur guidé apparaît ci-dessous et vous mène du texte chiffré aux deux clés."
       }
     },
     "caesar": {
@@ -652,6 +781,11 @@
       "description": "Une machine à rotors : trois roues et un réflecteur remanient l'alphabet à chaque frappe.",
       "era": "Années 1920 — 1940",
       "origin": "Inventée par Arthur Scherbius en Allemagne ; brevetée en 1918, adoptée par l'armée allemande à partir de 1926."
+    },
+    "adfgvx": {
+      "description": "Le chiffre de campagne allemand de 14-18 qui coupait chaque lettre en deux des six lettres ADFGVX puis mélangeait le résultat — jusqu’à ce que Georges Painvin le brise.",
+      "era": "1918 (Première Guerre mondiale)",
+      "origin": "Fritz Nebel, transmissions de l’armée allemande"
     }
   },
   "glossary": {
@@ -750,6 +884,18 @@
     "reflector": {
       "name": "Réflecteur",
       "definition": "Un câblage fixe et auto-inverse qui renvoie le signal à travers les rotors ; il rend Enigma réciproque mais ne mappe jamais une lettre sur elle-même."
+    },
+    "polybius-square": {
+      "name": "Carré Polybe",
+      "definition": "Une grille qui transforme chaque caractère en deux coordonnées : la ligne et la colonne de sa case."
+    },
+    "fractionation": {
+      "name": "Fractionnement",
+      "definition": "Couper chaque lettre en clair en plusieurs unités plus petites (ici : deux coordonnées) avant la couche suivante du chiffre."
+    },
+    "transposition": {
+      "name": "Transposition",
+      "definition": "Changer l’ordre des symboles sans changer les symboles eux-mêmes."
     }
   }
 }
