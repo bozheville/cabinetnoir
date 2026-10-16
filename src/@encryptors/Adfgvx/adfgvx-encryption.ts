@@ -18,7 +18,7 @@ const FRACTION_CHARS: Record<AdfgvxVariant, string> = {
 
 // Square alphabet per variant. ADFGX: 25 letters, I and J share a cell
 // (I is kept, J is folded into it). ADFGVX: 26 letters + 10 digits.
-const SQUARE_ALPHABET: Record<AdfgvxVariant, string> = {
+export const SQUARE_ALPHABET: Record<AdfgvxVariant, string> = {
   adfgx: 'ABCDEFGHIKLMNOPQRSTUVWXYZ',
   adfgvx: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
 };
