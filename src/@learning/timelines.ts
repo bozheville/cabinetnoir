@@ -11,6 +11,23 @@ export interface TimelineEvent {
 }
 
 export const TIMELINES: Record<string, TimelineEvent[]> = {
+  adfgvx: [
+    {
+      year: '1918',
+      textKey: 'learning.timeline.adfgvx.1918-introduced',
+      sourceUrl: 'https://en.wikipedia.org/wiki/ADFGVX_cipher',
+    },
+    {
+      year: '1918',
+      textKey: 'learning.timeline.adfgvx.1918-painvin',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Georges_Painvin',
+    },
+    {
+      year: '1918',
+      textKey: 'learning.timeline.adfgvx.1918-traffic',
+      sourceUrl: 'https://en.wikipedia.org/wiki/ADFGVX_cipher',
+    },
+  ],
   enigma: [
     {
       year: '1918',
