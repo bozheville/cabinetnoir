@@ -253,7 +253,8 @@
         "plain": "Lettre du texte clair",
         "key": "Lettre de clé",
         "shift": "Décalage",
-        "result": "Résultat"
+        "result": "Résultat",
+        "disc": "Alignement du disque"
       }
     },
     "tryInTool": "Essayer dans l'outil",
@@ -276,7 +277,12 @@
       "next": "le bouton Suivant",
       "skip": "le bouton « Passer »",
       "keep-spaces": "la case « Conserver les espaces »",
-      "keep-case": "la case « Conserver la casse »"
+      "keep-case": "la case « Conserver la casse »",
+      "disc": "les disques de chiffrement",
+      "rotate-left": "la flèche gauche sous les disques",
+      "rotate-right": "la flèche droite sous les disques",
+      "increment": "le curseur d'incrément",
+      "period": "le curseur de période"
     },
     "timeline": {
       "source": "Source",
@@ -293,6 +299,11 @@
         "800": "Al-Kindi rédige un traité de décryptage par fréquence des lettres, cassant tous les chiffres par substitution à alphabet unique.",
         "1553": "Le chiffre à clé répétée de Bellaso — « beaucoup de Césars », un par lettre de clé — rend les décalages fixes obsolètes.",
         "58bc": "Jules César utilise un décalage de 3 pour sa correspondance privée, rapporte son biographe Suétone."
+      },
+      "alberti": {
+        "1467": "Leon Battista Alberti présente le disque de chiffrement dans De Cifris — la première idée d'utiliser plusieurs alphabets.",
+        "1508": "Johannes Trithemius publie la tabula recta, table carrée de tous les alphabets, prolongeant l'idée du disque.",
+        "1553": "Giovan Battista Bellaso fait tourner les alphabets avec une phrase-clé répétée — le schéma plus tard appelé chiffre de Vigenère."
       }
     },
     "challenge": {
@@ -363,6 +374,25 @@
         "title": "Amis, Romains, compatriotes",
         "hint1": "Le décalage est 23 — assez petit pour être essayé à la main.",
         "hint2": "Le chiffré cache le début d'un célèbre discours romain."
+      },
+      "alberti-demo": {
+        "title": "Texte de démonstration du disque"
+      },
+      "alberti-easy-1": {
+        "title": "Je suis venu, j'ai vu, j'ai vaincu",
+        "hint1": "Le disque tourne après chaque groupe de 2 lettres — la période est 2.",
+        "hint2": "Le pas est 3, et les disques sont à leur alignement par défaut ; rechargez la page si vous les avez tournés."
+      },
+      "alberti-medium-1": {
+        "title": "Per aspera ad astra",
+        "hint1": "La période est 3.",
+        "hint2": "Le pas est 4 — après chaque groupe, le disque intérieur saute de quatre positions."
+      },
+      "alberti-hard-1": {
+        "title": "Toute la Gaule",
+        "hint1": "La période est 4.",
+        "hint2": "Le pas est 7.",
+        "hint3": "C'est l'ouverture de la Guerre des Gaules de Jules César — écrite avec les 20 lettres du disque d'Alberti seulement."
       }
     },
     "tooltips": {
@@ -372,12 +402,22 @@
         "keepSpaces": "Conserver les espaces : préserve la mise en page des mots au lieu de tout supprimer.",
         "keepCase": "Conserver la casse : préserve les majuscules au lieu de tout écrire en capitales."
       },
-      "alphabet": "L'alphabet sur lequel le chiffre travaille : choisissez un préréglage ou collez vos propres lettres ordonnées."
+      "alphabet": "L'alphabet sur lequel le chiffre travaille : choisissez un préréglage ou collez vos propres lettres ordonnées.",
+      "alberti": {
+        "disc": "Le disque de chiffrement d'Alberti : le disque extérieur fixe porte l'alphabet du texte clair, le disque intérieur mobile porte l'alphabet chiffré mélangé.",
+        "increment": "Le pas de rotation : de combien de positions le disque intérieur saute après chaque période.",
+        "period": "La période : combien de lettres sont chiffrées avant que le disque intérieur ne tourne."
+      }
     },
     "caesar": {
       "description": "Chaque lettre du message est décalée du même nombre fixe de positions dans l'alphabet.",
       "era": "Iᵉʳ siècle av. J.-C.",
       "origin": "Nommé d'après Jules César qui, dit-on, utilisait un décalage de 3 dans sa correspondance privée."
+    },
+    "alberti": {
+      "description": "Le premier chiffre polyalphabétique : deux disques tournants changent d'alphabet toutes les quelques lettres.",
+      "era": "XVᵉ siècle",
+      "origin": "Conçu par Leon Battista Alberti vers 1467 sur son disque de chiffrement, la Formula."
     }
   },
   "glossary": {
@@ -440,6 +480,10 @@
     "brute-force": {
       "name": "Force brute",
       "definition": "Essayer toutes les clés possibles jusqu'à ce que le message ait un sens ; possible seulement quand l'espace des clés est petit."
+    },
+    "period": {
+      "name": "Période",
+      "definition": "Combien de lettres sont chiffrées avant que le disque ou l'alphabet change ; après chaque période la substitution recommence."
     }
   }
 }

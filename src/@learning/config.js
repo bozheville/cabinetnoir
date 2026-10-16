@@ -78,6 +78,38 @@ const learningConfig = {
       },
     ],
   },
+  alberti: {
+    tabs: ['learn', 'history', 'practice'],
+    sections: {
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.polyalphabetic',
+      difficulty: 'learning.difficulty.easy',
+      era: 'learning.alberti.era',
+      origin: 'learning.alberti.origin',
+      modes: ['encrypt', 'decrypt'],
+    },
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'key',
+      'alphabet',
+      'substitution',
+      'polyalphabetic',
+      'period',
+      'frequency-analysis',
+      'brute-force',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Alberti_cipher',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
 };
 
 const getLearningConfig = (cipher) => learningConfig[cipher] || null;

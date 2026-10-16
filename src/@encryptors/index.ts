@@ -1,5 +1,5 @@
 export { default as Affine, AffineDescription } from './Affine';
-export { Alberti, AlbertiDescription } from './Alberti';
+export { Alberti } from './Alberti';
 export { default as Atbash, AtbashDescription } from './Atbash';
 export { default as Base64 } from './Base64';
 export { default as Caesar } from './Caesar';

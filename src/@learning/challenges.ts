@@ -4,6 +4,11 @@
 import { vigenereEncrypt } from '@encryptors/Vigenere/vigenere-encryption';
 import { rotate } from '@encryptors/utils';
 import { monoalphabeticEncrypt } from '@encryptors/Monoalphabetic/monoalphabetic-crypt';
+import {
+  albertiEncrypt,
+  ALBERTI_STATIC_DISC,
+  ALBERTI_DYNAMIC_DISC,
+} from '@encryptors/Alberti/alberti-crypt';
 
 export type ChallengeDifficulty = 'easy' | 'medium' | 'hard';
 
@@ -114,12 +119,64 @@ const CAESAR_DEMO = {
   listOnPractice: false,
 };
 
+// Alberti: the discs are fixed in the tool, so the challenge's secret is
+// the period and the turn step; the ciphertext starts from the default
+// disc alignment. Plaintexts must use only the 20 letters of Alberti's
+// disc (no H, J, K, U, W, Y) — authentic Latin works perfectly.
+const buildAlbertiChallenge = (
+  id: string,
+  iterationStep: number,
+  period: number,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+): Challenge => ({
+  id,
+  cipher: 'alberti',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: albertiEncrypt({
+    input: plaintext,
+    isDecryptMode: false,
+    staticDisc: ALBERTI_STATIC_DISC,
+    dynamicDisc: ALBERTI_DYNAMIC_DISC,
+    iterationStep,
+    period,
+  }),
+  difficulty,
+  keyLength: period,
+  hints,
+  answer: plaintext,
+});
+
+const ALBERTI_DEMO_PLAINTEXT = 'FORTVNAFAVETFORTIBVS';
+const ALBERTI_DEMO = {
+  id: 'alberti-demo',
+  cipher: 'alberti',
+  titleKey: 'learning.challenges.alberti-demo.title',
+  ciphertext: albertiEncrypt({
+    input: ALBERTI_DEMO_PLAINTEXT,
+    isDecryptMode: false,
+    staticDisc: ALBERTI_STATIC_DISC,
+    dynamicDisc: ALBERTI_DYNAMIC_DISC,
+    iterationStep: 3,
+    period: 2,
+  }),
+  difficulty: 'easy' as ChallengeDifficulty,
+  keyLength: 2,
+  hints: [],
+  answer: ALBERTI_DEMO_PLAINTEXT,
+  listOnPractice: false,
+};
+
 const FDR_PLAINTEXT =
   'THEONLYTHINGWEHAVETOFEARISFEARTHITSELF';
 const DOYLE_PLAINTEXT =
   'WHENYOUHAVEELIMINATEDTHEIMPOSSIBLEWHATEVERREMAINSHOWEVERIMPROBABLEMUSTBETHETRUTH';
 const SHAKESPEARE_PLAINTEXT =
   'FRIENDSROMANSCOUNTRYMENLENDMEYOUREARSICOMETOBURYCAESARNOTTOPRAISEHIM';
+const PROVERB_PLAINTEXT = 'VENIVIDIVICI';
+const ECCLESIASTES_PLAINTEXT = 'PERASPERAADASTRA';
+const TAO_PLAINTEXT = 'GALLIAESTOMNISDIVISAINPARTESSTRES';
 
 export const CHALLENGES: Record<string, Challenge> = {
   'vigenere-demo': VIGENERE_DEMO,
@@ -220,6 +277,41 @@ export const CHALLENGES: Record<string, Challenge> = {
     [
       'learning.challenges.caesar-hard-1.hint1',
       'learning.challenges.caesar-hard-1.hint2',
+    ],
+  ),
+  'alberti-demo': ALBERTI_DEMO,
+  'alberti-easy-1': buildAlbertiChallenge(
+    'alberti-easy-1',
+    3,
+    2,
+    PROVERB_PLAINTEXT,
+    'easy',
+    [
+      'learning.challenges.alberti-easy-1.hint1',
+      'learning.challenges.alberti-easy-1.hint2',
+    ],
+  ),
+  'alberti-medium-1': buildAlbertiChallenge(
+    'alberti-medium-1',
+    4,
+    3,
+    ECCLESIASTES_PLAINTEXT,
+    'medium',
+    [
+      'learning.challenges.alberti-medium-1.hint1',
+      'learning.challenges.alberti-medium-1.hint2',
+    ],
+  ),
+  'alberti-hard-1': buildAlbertiChallenge(
+    'alberti-hard-1',
+    7,
+    4,
+    TAO_PLAINTEXT,
+    'hard',
+    [
+      'learning.challenges.alberti-hard-1.hint1',
+      'learning.challenges.alberti-hard-1.hint2',
+      'learning.challenges.alberti-hard-1.hint3',
     ],
   ),
 };
