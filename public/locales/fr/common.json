@@ -56,7 +56,8 @@
           },
           "done": {
             "summary": "Clé retrouvée : pas du disque {{step}}, période {{period}}."
-          }
+          },
+          "assumption": "Les disques sont ceux fixes de l’outil : seuls la période et le pas du disque sont inconnus. Exact pour les ciphertextes dont toutes les lettres du texte clair sont sur le disque (comme les défis) — sinon les lettres abandonnées décalent les tronçons."
         },
         "tooltips": {
           "periodCards": "Tailles de tronçons classées selon la ressemblance anglaise du meilleur pas du disque. Choisissez-en une ; le pas vient ensuite.",

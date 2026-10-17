@@ -64,7 +64,8 @@
           },
           "done": {
             "summary": "Recovered key: disc step {{step}}, period {{period}}."
-          }
+          },
+          "assumption": "The discs are the tool’s fixed ones, so the unknowns are the period and the disc step. Exact for ciphertexts whose plaintext letters all sit on the disc (like the practice challenges) — dropped letters shift the chunks otherwise."
         },
         "tooltips": {
           "periodCards": "Chunk sizes ranked by how English the best disc step for each decrypts. Pick one; the disc step comes next.",

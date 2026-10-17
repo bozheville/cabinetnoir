@@ -1,23 +1,24 @@
 // Alberti cracker math.
 //
-// The tool ships fixed discs (the movable disc starts at "m"), so the
+// Spike conclusion (ticket #96): the tool ships fixed discs, so the
 // unknowns are just the chunk `period` and the disc `iterationStep` —
-// 12 × 23 combinations. The wizard ranks them by the English-likeness
-// of the full decryption instead of brute-forcing silently.
+// a small (period, step) space, ranked by the English-likeness of the
+// decryption instead of brute-forced silently.
 //
-// The spike conclusion (ticket #96): each chunk is monoalphabetic under
-// a rotation of the known dynamic disc, so no Kasiski/IC machinery is
-// needed — direct ranked brute force over (period, step) is both honest
-// and fast, and the cards teach the parameter roles.
+// Implementation caveat discovered in the spike: a chunk is a RAW slice
+// of the input, and letters that sit on neither disc are dropped during
+// encryption, so a chunk's letter count varies and the ciphertext letter
+// at position n does not map back to a fixed raw position. Positional
+// decryption (the formula below) is therefore exact only for ciphertexts
+// whose plaintext letters all sit on the disc — the same assumption the
+// tool's own decrypt path makes. The cracker states this in its UI.
 import {
-  albertiEncrypt,
   ALBERTI_STATIC_DISC,
   ALBERTI_DYNAMIC_DISC,
 } from '@encryptors/Alberti/alberti-crypt';
 import {
-  ENGLISH_FREQUENCIES,
   STANDARD_ALPHABET,
-  chiToScore,
+  scoreDigraphs,
 } from '@encryptors/shared/analysis';
 
 export const DISC_LENGTH = ALBERTI_STATIC_DISC.length;
@@ -41,51 +42,32 @@ export const normalizeAlbertiCipherText = (input: string): string =>
     .filter((char) => ALBERTI_DYNAMIC_DISC.includes(char))
     .join('');
 
-const decryptWith = (ciphertext: string, period: number, step: number): string =>
-  albertiEncrypt({
-    input: ciphertext,
-    isDecryptMode: true,
-    staticDisc: ALBERTI_STATIC_DISC,
-    dynamicDisc: ALBERTI_DYNAMIC_DISC,
-    iterationStep: step,
-    period,
-  });
+const mod = (value: number, m: number): number => ((value % m) + m) % m;
 
-// Chi-squared English-likeness of a decryption. The static disc carries
-// 20 Latin letters only (no H/J/K/U/W/Y), so the reference uses just the
-// letters the disc can produce.
-const scoreDecryption = (plaintext: string): number => {
-  const counts = new Map<string, number>();
-  let total = 0;
-  for (const char of plaintext) {
-    if (!ALBERTI_STATIC_DISC.includes(char)) {
-      continue;
-    }
-    counts.set(char, (counts.get(char) || 0) + 1);
-    total += 1;
-  }
-  if (total === 0) {
-    return 0;
-  }
+// Positional decryption: the cipher letter at position n was encrypted
+// with the disc rotated by floor(n / period) * step.
+export const albertiDecryptLetters = (
+  ciphertext: string,
+  period: number,
+  step: number,
+): string =>
+  ciphertext
+    .split('')
+    .map((char, n) => {
+      const cipherIndex = ALBERTI_DYNAMIC_DISC.indexOf(char);
+      const rotation = Math.floor(n / period) * step;
+      return ALBERTI_STATIC_DISC[mod(cipherIndex - rotation, DISC_LENGTH)];
+    })
+    .join('');
 
-  let chiSquared = 0;
-  for (const letter of ALBERTI_STATIC_DISC) {
-    const englishIndex = STANDARD_ALPHABET.indexOf(letter);
-    const frequency = englishIndex >= 0 ? ENGLISH_FREQUENCIES[englishIndex] : 0;
-    const expected = (frequency / 100) * total;
-    if (expected === 0) {
-      continue;
-    }
-    const observed = counts.get(letter) || 0;
-    const diff = observed - expected;
-    chiSquared += (diff * diff) / expected;
-  }
-
-  return chiToScore(chiSquared);
-};
+// English-likeness of a decryption via digraph statistics — much sharper
+// than single-letter chi-squared at telling a correct (period, step) from
+// a near-miss (a wrong period keeps the letters but wrecks the pairs).
+const scoreDecryption = (plaintext: string): number =>
+  scoreDigraphs(plaintext.split('').filter((char) => STANDARD_ALPHABET.indexOf(char) >= 0).join(''));
 
 const scorePair = (ciphertext: string, period: number, step: number): number =>
-  scoreDecryption(decryptWith(ciphertext, period, step));
+  scoreDecryption(albertiDecryptLetters(ciphertext, period, step));
 
 // All disc steps ranked for a fixed period.
 export const rankSteps = (ciphertext: string, period: number): AlbertiCandidate[] => {
@@ -125,5 +107,3 @@ export const rankPeriods = (
 
   return periods.sort((a, b) => b.confidence - a.confidence || a.value - b.value);
 };
-
-export { decryptWith as albertiDecryptWith };

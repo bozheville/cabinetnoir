@@ -65,24 +65,48 @@ export const improveOnce = (
   };
 };
 
-// Repeated passes until nothing improves (bounded, so the UI stays
-// responsive); every intermediate step stays reversible by hand.
+// Repeated passes until nothing improves, then random perturbations
+// (2-cell kicks) to escape local optima — iterated local search. The
+// best square ever seen wins; every pass is cheap enough to stay
+// synchronous in the UI.
 export const autoImprove = (
   square: string[],
   ciphertext: string,
-  maxPasses: number = 30,
+  maxPasses: number = 60,
 ): { square: string[]; score: number } => {
   let current = square;
   let currentScore = scoreSquare(current, ciphertext);
+  let best = current;
+  let bestScore = currentScore;
+  let stalled = 0;
 
   for (let pass = 0; pass < maxPasses; pass += 1) {
     const result = improveOnce(current, ciphertext);
-    if (!result.improved) {
+    if (result.improved) {
+      current = result.square;
+      currentScore = result.score;
+      stalled = 0;
+      if (currentScore > bestScore) {
+        best = current;
+        bestScore = currentScore;
+      }
+      continue;
+    }
+    // Stalled: kick with a random 2-cell swap and keep climbing.
+    stalled += 1;
+    if (stalled > 4) {
       break;
     }
-    current = result.square;
-    currentScore = result.score;
+    const i = Math.floor(Math.random() * 25);
+    let j = Math.floor(Math.random() * 25);
+    if (j === i) {
+      j = (j + 1) % 25;
+    }
+    const kicked = [...current];
+    [kicked[i], kicked[j]] = [kicked[j], kicked[i]];
+    current = kicked;
+    currentScore = scoreSquare(current, ciphertext);
   }
 
-  return { square: current, score: currentScore };
+  return { square: best, score: bestScore };
 };
