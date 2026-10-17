@@ -205,7 +205,42 @@
       "short_title": "Playfair",
       "directAction": "Crypter",
       "reverseAction": "Décrypter",
-      "messageLabel": "Cryptogramme"
+      "messageLabel": "Cryptogramme",
+      "cracker": {
+        "wizard": {
+          "steps": {
+            "digraphs": "Digrammes",
+            "improve": "Améliorer le carré",
+            "done": "Terminé"
+          }
+        },
+        "start": {
+          "title": "Lancer l'attaque",
+          "keywordPlaceholder": "mot-clé connu, le cas échéant",
+          "startButton": "Partir du mot-clé",
+          "randomButton": "Partir d’un carré aléatoire"
+        },
+        "digraphs": {
+          "title": "Fréquences des digrammes",
+          "observed": "Les plus fréquents dans le message chiffré :",
+          "englishCommon": "Les plus fréquents en anglais :"
+        },
+        "improve": {
+          "score": "Score de ressemblance anglaise : {{score}}/100",
+          "improveButton": "Améliorer d’un pas",
+          "autoButton": "Améliorer en boucle",
+          "noImprovement": "Aucun échange n'améliore plus le score — le carré est à son maximum pour la montée. Essayez un échange manuel ou un nouveau départ.",
+          "swapHint": "Cliquez deux cases pour les échanger à la main — chaque échange est réversible."
+        },
+        "done": {
+          "keyLabel": "Clé retrouvée (lisez le carré ligne par ligne) :"
+        },
+        "tooltips": {
+          "startKeyword": "Un mot-clé que vous soupçonnez dans le carré. Optionnel — un départ aléatoire marche aussi.",
+          "improve": "Essaie tous les échanges de cases et garde le meilleur. Surveillez l’aperçu : arrêtez quand ça ressemble à l’anglais.",
+          "auto": "Répète les pas d'amélioration jusqu'à blocage. Plus long à défaire à la main, mais chaque pas reste visible dans l'aperçu."
+        }
+      }
     },
     "enigma": {
       "title": "Machine Enigma",

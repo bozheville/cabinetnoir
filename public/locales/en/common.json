@@ -228,7 +228,42 @@
       "short_title": "Playfair",
       "directAction": "Encrypt",
       "reverseAction": "Decrypt",
-      "messageLabel": "Cryptogram"
+      "messageLabel": "Cryptogram",
+      "cracker": {
+        "wizard": {
+          "steps": {
+            "digraphs": "Digraphs",
+            "improve": "Improve the square",
+            "done": "Done"
+          }
+        },
+        "start": {
+          "title": "Start the attack",
+          "keywordPlaceholder": "known keyword, if any",
+          "startButton": "Start from keyword",
+          "randomButton": "Start from random square"
+        },
+        "digraphs": {
+          "title": "Digraph frequencies",
+          "observed": "Most common in the ciphertext:",
+          "englishCommon": "Most common in English:"
+        },
+        "improve": {
+          "score": "English-likeness score: {{score}}/100",
+          "improveButton": "Improve one step",
+          "autoButton": "Improve repeatedly",
+          "noImprovement": "No single swap improves the score anymore — the square is as good as hill-climbing gets it. Try a manual swap or a new start.",
+          "swapHint": "Click two cells to swap them by hand — every manual swap is reversible."
+        },
+        "done": {
+          "keyLabel": "Recovered key (read the square row by row):"
+        },
+        "tooltips": {
+          "startKeyword": "A keyword you suspect is in the square. Optional — random squares work too.",
+          "improve": "Try every cell swap and keep the single best one. Watch the preview: you stop when it reads like English.",
+          "auto": "Repeat improve-steps until nothing improves. Slower to undo by hand, but every pass stays visible in the preview."
+        }
+      }
     },
     "adfgvx": {
       "title": "ADFGVX cipher",
