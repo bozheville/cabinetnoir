@@ -4,7 +4,7 @@ import React from 'react';
 import { Heading, Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
 
-import { MAX_KEY_LENGTH } from '../analysis/keyLength';
+import { MAX_KEY_LENGTH } from '@encryptors/shared/analysis';
 import { CrackerAnalysis } from './useCracker';
 import { HintSettings } from './hintSettings';
 
