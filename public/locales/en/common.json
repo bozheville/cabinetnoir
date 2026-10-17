@@ -52,6 +52,25 @@
       "settings": {
         "increment_label": "Shift size",
         "period_label": "Period length"
+      },
+      "cracker": {
+        "wizard": {
+          "steps": {
+            "period": "Period",
+            "discStep": "Disc step",
+            "done": "Done"
+          },
+          "period": {
+            "bestStep": "best step: {{step}}"
+          },
+          "done": {
+            "summary": "Recovered key: disc step {{step}}, period {{period}}."
+          }
+        },
+        "tooltips": {
+          "periodCards": "Chunk sizes ranked by how English the best disc step for each decrypts. Pick one; the disc step comes next.",
+          "stepCards": "Disc turns ranked by English-likeness for the chosen period. The live preview confirms the choice."
+        }
       }
     },
     "atbash": {
@@ -403,7 +422,8 @@
         },
         "keyLetters": {
           "keyLetter": "Key letter"
-        }
+        },
+        "match": "Match: {{score}}%"
       }
     }
   },

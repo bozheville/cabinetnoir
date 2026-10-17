@@ -83,5 +83,23 @@ export const useAlberti = ({
     rotateRight,
     handlePeriodChange,
     handleIncrementChange,
+    // "Use this key" on the Cryptoanalysis tab: apply the recovered
+    // parameters and reset the disc alignment they were found with.
+    applyRecoveredKey: ({ step: recoveredStep, period: recoveredPeriod, dynamicDisc: recoveredDisc }: {
+      step: number;
+      period: number;
+      dynamicDisc?: string;
+    }) => {
+      if (Number.isFinite(recoveredStep)) {
+        setIterationStep(recoveredStep);
+      }
+      if (Number.isFinite(recoveredPeriod)) {
+        setPeriod(recoveredPeriod);
+      }
+      if (recoveredDisc) {
+        setDynamicDisc(recoveredDisc);
+        setStartindex(recoveredDisc[0]);
+      }
+    },
   };
 };

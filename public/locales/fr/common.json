@@ -44,7 +44,26 @@
       "short_title": "Alberti",
       "directAction": "Crypter",
       "reverseAction": "Décrypter",
-      "messageLabel": "Cryptogramme"
+      "messageLabel": "Cryptogramme",
+      "cracker": {
+        "wizard": {
+          "steps": {
+            "period": "Période",
+            "discStep": "Pas du disque",
+            "done": "Terminé"
+          },
+          "period": {
+            "bestStep": "meilleur pas : {{step}}"
+          },
+          "done": {
+            "summary": "Clé retrouvée : pas du disque {{step}}, période {{period}}."
+          }
+        },
+        "tooltips": {
+          "periodCards": "Tailles de tronçons classées selon la ressemblance anglaise du meilleur pas du disque. Choisissez-en une ; le pas vient ensuite.",
+          "stepCards": "Tours du disque classés par ressemblance anglaise pour la période choisie. L'aperçu confirme le choix."
+        }
+      }
     },
     "atbash": {
       "title": "Atbash",
@@ -390,7 +409,8 @@
         },
         "keyLetters": {
           "keyLetter": "Lettre de clé"
-        }
+        },
+        "match": "Correspondance : {{score}}%"
       }
     }
   },

@@ -8,7 +8,7 @@ import { CrackerInput, CrackerSettings, CrackerWizardFrame, FrequencyChart, Shor
 import { setKeyHandoff } from '@learning/keyHandoff';
 
 import { MultiplierCandidate, affineDecryptLetters, rankMultipliers } from './analysis/rank';
-import MultiplierCards from './cracker/MultiplierCards';
+import { CandidateCards } from '@encryptors/shared/cracker';
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -116,11 +116,20 @@ const AffineCryptoanalysis: React.FC<{
           )}
         >
           {step === 1 && (
-            <MultiplierCards
-              candidates={candidates}
-              selected={multiplier}
-              onSelect={chooseMultiplier}
-            />
+            <Pane marginTop="12px">
+              <CandidateCards
+                items={candidates.map((candidate: MultiplierCandidate) => ({
+                  id: String(candidate.multiplier),
+                  label: `a = ${candidate.multiplier}`,
+                  confidence: candidate.confidence,
+                }))}
+                selectedId={multiplier !== null ? String(multiplier) : null}
+                onSelect={(id) => chooseMultiplier(parseInt(id, 10))}
+                matchLabel={t('processing.cracker.wizard.match')}
+                tooltip={t('processing.affine.cracker.tooltips.multiplierCards')}
+                dataGuide="cracker-multiplier"
+              />
+            </Pane>
           )}
           {step === 2 && multiplier !== null && (
             <Pane>
