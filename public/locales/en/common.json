@@ -18,7 +18,29 @@
       "short_title": "Affine",
       "directAction": "Encrypt",
       "reverseAction": "Decrypt",
-      "messageLabel": "Cryptogram"
+      "messageLabel": "Cryptogram",
+      "cracker": {
+        "tooltips": {
+          "multiplierCards": "All twelve valid multipliers, ranked by how English the best shift for each looks. Pick one, adjust the shift on the next step."
+        },
+        "wizard": {
+          "steps": {
+            "multiplier": "Multiplier",
+            "shift": "Shift",
+            "done": "Done"
+          },
+          "multiplier": {
+            "title": "Pick the multiplier"
+          },
+          "shift": {
+            "title": "Pick the shift",
+            "keyLetter": "Shift (b)"
+          },
+          "done": {
+            "formula": "Recovered key: y = {{multiplier}}·x + {{shift}} (mod 26)"
+          }
+        }
+      }
     },
     "alberti": {
       "title": "Alberti cipher",
@@ -29,6 +51,26 @@
       "settings": {
         "increment_label": "Shift size",
         "period_label": "Period length"
+      },
+      "cracker": {
+        "wizard": {
+          "steps": {
+            "period": "Period",
+            "discStep": "Disc step",
+            "done": "Done"
+          },
+          "period": {
+            "bestStep": "best step: {{step}}"
+          },
+          "done": {
+            "summary": "Recovered key: disc step {{step}}, period {{period}}."
+          },
+          "assumption": "The discs are the tool’s fixed ones, so the unknowns are the period and the disc step. Exact for ciphertexts whose plaintext letters all sit on the disc (like the practice challenges) — dropped letters shift the chunks otherwise."
+        },
+        "tooltips": {
+          "periodCards": "Chunk sizes ranked by how English the best disc step for each decrypts. Pick one; the disc step comes next.",
+          "stepCards": "Disc turns ranked by English-likeness for the chosen period. The live preview confirms the choice."
+        }
       }
     },
     "atbash": {
@@ -92,41 +134,11 @@
       "cracker": {
         "keyLabel": "Key",
         "alphabetLabel": "Alphabet",
-        "unknownKey": "Unknown key",
-        "hints": {
-          "title": "Hints",
-          "presets": {
-            "easy": "Easy",
-            "medium": "Medium",
-            "hard": "Hard",
-            "custom": "Custom"
-          },
-          "toggles": {
-            "highlightRepeats": "Highlight repeated sequences",
-            "showGaps": "Show gaps between repeats",
-            "confidenceBars": "Key length confidence bars",
-            "englishReference": "English reference on chart",
-            "matchScore": "Match score %",
-            "mostLikelyGlow": "\"Most likely\" glow",
-            "livePreview": "Live decryption preview",
-            "cribs": "Cribs"
-          }
-        },
         "wizard": {
           "steps": {
             "keyLength": "Key length",
             "keyLetters": "Key letters",
             "done": "Done"
-          },
-          "back": "Back",
-          "next": "Next",
-          "skip": "Skip, enter key manually",
-          "useKey": "Use this key",
-          "inputChanged": "The text or alphabet changed, analysis started over.",
-          "previewTitle": "Live decryption preview",
-          "warnings": {
-            "shortText": "Text is short — the hints may be wrong. Cribs can help.",
-            "shortSlice": "This slice has few letters, its hints may be wrong."
           },
           "repeats": {
             "title": "Repeated sequences",
@@ -142,7 +154,6 @@
           "keyLetters": {
             "sliceLabel": "Slice {{index}} of {{total}}",
             "lockedPrefix": "locked:",
-            "keyLetter": "Key letter",
             "allLocked": "All letters set. Continue to step 3.",
             "manualTag": "manual",
             "yourKey": "Your key",
@@ -173,29 +184,23 @@
           "key": "The secret key. Every letter of the message is shifted by the matching key letter; the key repeats over the whole message.",
           "alphabet": "The set of letters the cipher works with. Paste any letters — the tool uppercases them and drops duplicates. The default is the English alphabet.",
           "unknownKey": "Check this if you do not know the key. A guided cracker opens below: it helps you find the key length and then every key letter, step by step.",
-          "hintPresets": "How much help the cracker gives you. Easy shows every hint; Hard hides most of them so you can practise.",
           "toggle": {
             "highlightRepeats": "Colours repeated letter groups in the text — the distances between them hint at the key length.",
-            "showGaps": "Shows the distances between repeated sequences, next to each group.",
-            "confidenceBars": "Shows a confidence bar and a plain-language reason on each key length card.",
-            "englishReference": "Draws the English letter frequencies over the slice bars, so you can align them by eye.",
-            "matchScore": "Shows how closely the current alignment matches English letter frequencies, in percent.",
-            "mostLikelyGlow": "Gently highlights the alignment that matches English best.",
-            "livePreview": "Decrypts the text live while you pick key letters: letters of set slices appear, the rest stay as underscores.",
-            "cribs": "Shows a panel where you can guess a word from the plaintext and get key letters from it."
+            "showGaps": "Shows the distances between repeated sequences, next to each group."
           },
           "keyLengthCards": "Likely key lengths ranked by two signals: distances between repeated sequences, and how English-like the text slices look. Click a card to choose.",
           "otherLength": "Enter a key length manually if none of the suggested cards fits.",
           "sliceTabs": "With a key length of N the text splits into N slices; every letter of a slice is shifted by the same key letter. Click a tab to work on that slice.",
-          "chartArrows": "Rotate the slice bars against the English reference. At the best alignment the shown letter is the key letter — it is applied immediately, watch the preview.",
-          "matchScore": "How closely the current alignment matches English letter frequencies, in percent. Higher is better.",
           "keyStrip": "Your key as you build it. Click a cell to jump to its slice, type a letter to override the chart choice, clear a cell to un-set it.",
           "cribInput": "If you guess a word that appears in the plaintext, the cracker computes which key letters it implies, at every position it fits.",
-          "apply": "Fill the empty key slots with the letters this position suggests. Letters already set differently are never overwritten.",
-          "back": "Return to the previous step. Your choices are kept.",
-          "next": "Continue to the next step once this step is complete.",
-          "skip": "Close the cracker and enter the key manually.",
-          "useThisKey": "Fill the key field with the key you assembled and decrypt the message with it."
+          "apply": "Fill the empty key slots with the letters this position suggests. Letters already set differently are never overwritten."
+        },
+        "alphabetUnsupported": "The frequency tables behind the cracker are English — switch the alphabet back to the standard 26 letters to use it.",
+        "hints": {
+          "toggles": {
+            "highlightRepeats": "Highlight repeated sequences",
+            "showGaps": "Show gaps between repeats"
+          }
         }
       }
     },
@@ -204,7 +209,42 @@
       "short_title": "Playfair",
       "directAction": "Encrypt",
       "reverseAction": "Decrypt",
-      "messageLabel": "Cryptogram"
+      "messageLabel": "Cryptogram",
+      "cracker": {
+        "wizard": {
+          "steps": {
+            "digraphs": "Digraphs",
+            "improve": "Improve the square",
+            "done": "Done"
+          }
+        },
+        "start": {
+          "title": "Start the attack",
+          "keywordPlaceholder": "known keyword, if any",
+          "startButton": "Start from keyword",
+          "randomButton": "Start from random square"
+        },
+        "digraphs": {
+          "title": "Digraph frequencies",
+          "observed": "Most common in the ciphertext:",
+          "englishCommon": "Most common in English:"
+        },
+        "improve": {
+          "score": "English-likeness score: {{score}}/100",
+          "improveButton": "Improve one step",
+          "autoButton": "Improve repeatedly",
+          "noImprovement": "No single swap improves the score anymore — the square is as good as hill-climbing gets it. Try a manual swap or a new start.",
+          "swapHint": "Click two cells to swap them by hand — every manual swap is reversible."
+        },
+        "done": {
+          "keyLabel": "Recovered key (read the square row by row):"
+        },
+        "tooltips": {
+          "startKeyword": "A keyword you suspect is in the square. Optional — random squares work too.",
+          "improve": "Try every cell swap and keep the single best one. Watch the preview: you stop when it reads like English.",
+          "auto": "Repeat improve-steps until nothing improves. Slower to undo by hand, but every pass stays visible in the preview."
+        }
+      }
     },
     "adfgvx": {
       "title": "ADFGVX cipher",
@@ -221,32 +261,12 @@
       "transpositionKeyLabel": "Transposition key",
       "unknownKeys": "Unknown keys",
       "cracker": {
-        "hints": {
-          "title": "Hints",
-          "presets": {
-            "easy": "Easy",
-            "medium": "Medium",
-            "hard": "Hard",
-            "custom": "Custom"
-          },
-          "toggles": {
-            "confidenceBars": "Show pair strength bars",
-            "autoSuggest": "Suggest column arrangement",
-            "englishReference": "Show letter suggestions",
-            "livePreview": "Live plaintext preview",
-            "cribs": "Crib panel"
-          }
-        },
         "wizard": {
           "steps": {
             "keyLength": "Key length",
             "columns": "Columns",
             "square": "Square"
           },
-          "inputChanged": "The ciphertext changed — the analysis restarted.",
-          "back": "Back",
-          "next": "Next",
-          "skip": "Skip",
           "useKey": "Use these keys",
           "keyLength": {
             "otherLabel": "Other length:",
@@ -270,29 +290,77 @@
             "yourKeys": "Your recovered keys",
             "squareKey": "Square key (read row by row):",
             "transpositionKey": "Transposition key:"
-          },
-          "previewTitle": "Decrypted so far"
+          }
         },
         "tooltips": {
-          "hintPresets": "How much help the tool gives: Easy shows everything, Hard leaves the thinking to you.",
           "keyLengthCards": "Candidate column counts, ranked by how strongly the columns tie together. A hint, not a verdict — try another if the preview stays garbage.",
           "otherLength": "Try any column count from 4 to 12.",
           "autoSuggest": "Refill the arrangement with the strongest pairing the statistics find.",
           "toggle": {
-            "confidenceBars": "Show how strongly each column pair is tied together.",
-            "autoSuggest": "Offer the statistically best column arrangement as a starting point.",
-            "englishReference": "Suggest the next most likely English letter under each symbol.",
-            "livePreview": "Show the partially decrypted message as you assign letters.",
-            "cribs": "Search for a probable word (crib) and apply its letters at once."
+            "autoSuggest": "Offer the statistically best column arrangement as a starting point."
           },
           "assignLetter": "Pick the plaintext letter for this symbol, or clear it.",
           "cribInput": "A word you expect in the message. Matches respect the letters you already assigned.",
-          "back": "Back one step. Nothing breaks.",
-          "next": "Next step.",
-          "skip": "Close the cracker without using anything.",
-          "useThisKey": "Fill both key fields with the recovered keys.",
           "symbolChart": "The symbols of the ciphertext once the columns are arranged. Click a symbol to assign its plaintext letter; the count shows how often it appears."
+        },
+        "hints": {
+          "toggles": {
+            "autoSuggest": "Suggest column arrangement"
+          }
         }
+      }
+    },
+    "cracker": {
+      "inputLabel": "Ciphertext to break",
+      "hints": {
+        "title": "Hints",
+        "presets": {
+          "easy": "Easy",
+          "medium": "Medium",
+          "hard": "Hard",
+          "custom": "Custom"
+        },
+        "toggles": {
+          "confidenceBars": "Show confidence bars",
+          "englishReference": "Show the English reference",
+          "matchScore": "Show the match score",
+          "mostLikelyGlow": "Highlight the most likely candidate",
+          "livePreview": "Live plaintext preview",
+          "cribs": "Crib panel"
+        }
+      },
+      "tooltips": {
+        "hintPresets": "How much help the tool gives: Easy shows everything, Hard leaves the thinking to you.",
+        "chartArrows": "Rotate the chart with the buttons or the arrow keys; the rotation is the key letter.",
+        "matchScore": "How English-like the current rotation looks (chi-squared score).",
+        "back": "Back one step. Nothing breaks.",
+        "next": "Next step.",
+        "skip": "Leave the cracker without using anything.",
+        "useThisKey": "Fill the key fields with the recovered key.",
+        "toggle": {
+          "confidenceBars": "Show how strong each candidate is.",
+          "englishReference": "Show the English frequency reference next to the observed bars.",
+          "matchScore": "Show the numeric English-likeness score.",
+          "mostLikelyGlow": "Highlight the statistically best rotation.",
+          "livePreview": "Show the partially decrypted message as you work.",
+          "cribs": "Search for a probable word (crib) and apply its letters at once."
+        }
+      },
+      "wizard": {
+        "back": "Back",
+        "next": "Next",
+        "skip": "Skip analysis",
+        "useKey": "Use this key",
+        "inputChanged": "The ciphertext changed — the analysis restarted.",
+        "previewTitle": "Decrypted so far",
+        "warnings": {
+          "shortText": "Short texts crack unreliably — 100+ letters give dependable results.",
+          "shortSlice": "Fewer than 20 letters in this slice — treat the suggestion with suspicion."
+        },
+        "keyLetters": {
+          "keyLetter": "Key letter"
+        },
+        "match": "Match: {{score}}%"
       }
     }
   },
@@ -311,12 +379,14 @@
       "history": "History",
       "practice": "Practice",
       "tool": "Tool",
-      "tabsLabel": "Cipher page sections"
+      "tabsLabel": "Cipher page sections",
+      "cryptoanalysis": "Cryptoanalysis"
     },
     "metaDescription": {
       "learn": "Learn how the cipher works, follow step-by-step guides and see how it is broken.",
       "history": "The history of the cipher: where it came from, who used it and how it was broken.",
-      "practice": "Practice on ready-made challenges, from easy to hard."
+      "practice": "Practice on ready-made challenges, from easy to hard.",
+      "cryptoanalysis": "Break real ciphertexts step by step with the guided cryptoanalysis tool."
     },
     "placeholder": "Learning content is coming soon.",
     "types": {

@@ -4,7 +4,7 @@ import React, { useMemo, useState } from 'react';
 import { Button, Heading, Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
 
-import { findCribMatches } from '../analysis/cribs';
+import { findCribMatches } from '@encryptors/shared/analysis';
 import { useCracker } from './useCracker';
 
 const MAX_SHOWN_MATCHES = 8;

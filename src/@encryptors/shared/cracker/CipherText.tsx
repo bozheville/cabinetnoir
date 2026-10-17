@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { NormalizedText } from '../analysis/normalize';
 
-// Palette used across the cracker for repeats, slices and so on.
+// Palette used across the crackers for repeats, slices and so on.
 export const HIGHLIGHT_COLORS = [
   '#e5484d', // red
   '#30a46c', // green

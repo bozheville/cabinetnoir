@@ -1,4 +1,4 @@
-import { NormalizedText } from '../analysis/normalize';
+import { NormalizedText } from '@encryptors/shared/analysis';
 import { LockedLetter } from './useCracker';
 
 const STANDARD_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';

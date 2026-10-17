@@ -11,7 +11,17 @@ export interface SymbolFrequency {
 // English letter frequency order, most common first. J is missing (the
 // ADFGX square folds it into I); for ADFGVX the digits just sit at the
 // bottom of the ranking.
-export const ENGLISH_FREQUENCY_ORDER = 'ETAOINSHRDLCUMWFGYPBVKJXQZ'.split('');
+// Derived from the shared Lewand table (see @encryptors/shared/analysis),
+// so the two can never drift apart: sort the 26 letter frequencies by
+// value, then drop J.
+import { ENGLISH_FREQUENCIES } from '@encryptors/shared/analysis';
+import { STANDARD_ALPHABET } from '@encryptors/shared/analysis/frequency';
+
+export const ENGLISH_FREQUENCY_ORDER: string[] = ENGLISH_FREQUENCIES
+  .map((frequency, index) => ({ letter: STANDARD_ALPHABET[index], frequency }))
+  .sort((a, b) => b.frequency - a.frequency)
+  .map(({ letter }) => letter)
+  .filter((letter) => letter !== 'J');
 
 export const countSymbols = (symbols: string[]): SymbolFrequency[] => {
   const counts: Record<string, number> = {};

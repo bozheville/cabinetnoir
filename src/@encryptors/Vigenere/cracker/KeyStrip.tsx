@@ -3,7 +3,7 @@ import React from 'react';
 import { Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
 
-import { HIGHLIGHT_COLORS } from './CipherText';
+import { HIGHLIGHT_COLORS } from '@encryptors/shared/cracker';
 import { LockedLetter } from './useCracker';
 
 const Strip = styled(Pane)`
