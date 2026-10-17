@@ -45,21 +45,17 @@ const CrackerWizard: React.FC<{
       onBack={() => setStep(step - 1)}
       onNext={() => setStep(step + 1)}
       canGoNext={canGoNext}
-      useLabel={t('processing.vigenere.cracker.wizard.useKey')}
+      useLabel={t('processing.cracker.wizard.useKey')}
       onUse={() => onUseKey(assembledKey)}
       onSkip={onSkip}
-      i18nScope="processing.vigenere.cracker"
       message={(
         <>
           {hasInputChanged && (
             <Text size={300} display="block" marginTop="8px">
-              {t('processing.vigenere.cracker.wizard.inputChanged')}
+              {t('processing.cracker.wizard.inputChanged')}
             </Text>
           )}
-          {analysis && <ShortTextWarning
-            letters={analysis.normalized.letters}
-            warningKey="processing.vigenere.cracker.wizard.warnings.shortText"
-          />}
+          {analysis && <ShortTextWarning letters={analysis.normalized.letters} />}
         </>
       )}
     >

@@ -30,8 +30,7 @@
             "done": "Done"
           },
           "multiplier": {
-            "title": "Pick the multiplier",
-            "match": "Match: {{score}}%"
+            "title": "Pick the multiplier"
           },
           "shift": {
             "title": "Pick the shift",
@@ -134,41 +133,11 @@
       "cracker": {
         "keyLabel": "Key",
         "alphabetLabel": "Alphabet",
-        "unknownKey": "Unknown key",
-        "hints": {
-          "title": "Hints",
-          "presets": {
-            "easy": "Easy",
-            "medium": "Medium",
-            "hard": "Hard",
-            "custom": "Custom"
-          },
-          "toggles": {
-            "highlightRepeats": "Highlight repeated sequences",
-            "showGaps": "Show gaps between repeats",
-            "confidenceBars": "Key length confidence bars",
-            "englishReference": "English reference on chart",
-            "matchScore": "Match score %",
-            "mostLikelyGlow": "\"Most likely\" glow",
-            "livePreview": "Live decryption preview",
-            "cribs": "Cribs"
-          }
-        },
         "wizard": {
           "steps": {
             "keyLength": "Key length",
             "keyLetters": "Key letters",
             "done": "Done"
-          },
-          "back": "Back",
-          "next": "Next",
-          "skip": "Skip, enter key manually",
-          "useKey": "Use this key",
-          "inputChanged": "The text or alphabet changed, analysis started over.",
-          "previewTitle": "Live decryption preview",
-          "warnings": {
-            "shortText": "Text is short — the hints may be wrong. Cribs can help.",
-            "shortSlice": "This slice has few letters, its hints may be wrong."
           },
           "repeats": {
             "title": "Repeated sequences",
@@ -184,7 +153,6 @@
           "keyLetters": {
             "sliceLabel": "Slice {{index}} of {{total}}",
             "lockedPrefix": "locked:",
-            "keyLetter": "Key letter",
             "allLocked": "All letters set. Continue to step 3.",
             "manualTag": "manual",
             "yourKey": "Your key",
@@ -215,29 +183,16 @@
           "key": "The secret key. Every letter of the message is shifted by the matching key letter; the key repeats over the whole message.",
           "alphabet": "The set of letters the cipher works with. Paste any letters — the tool uppercases them and drops duplicates. The default is the English alphabet.",
           "unknownKey": "Check this if you do not know the key. A guided cracker opens below: it helps you find the key length and then every key letter, step by step.",
-          "hintPresets": "How much help the cracker gives you. Easy shows every hint; Hard hides most of them so you can practise.",
           "toggle": {
             "highlightRepeats": "Colours repeated letter groups in the text — the distances between them hint at the key length.",
-            "showGaps": "Shows the distances between repeated sequences, next to each group.",
-            "confidenceBars": "Shows a confidence bar and a plain-language reason on each key length card.",
-            "englishReference": "Draws the English letter frequencies over the slice bars, so you can align them by eye.",
-            "matchScore": "Shows how closely the current alignment matches English letter frequencies, in percent.",
-            "mostLikelyGlow": "Gently highlights the alignment that matches English best.",
-            "livePreview": "Decrypts the text live while you pick key letters: letters of set slices appear, the rest stay as underscores.",
-            "cribs": "Shows a panel where you can guess a word from the plaintext and get key letters from it."
+            "showGaps": "Shows the distances between repeated sequences, next to each group."
           },
           "keyLengthCards": "Likely key lengths ranked by two signals: distances between repeated sequences, and how English-like the text slices look. Click a card to choose.",
           "otherLength": "Enter a key length manually if none of the suggested cards fits.",
           "sliceTabs": "With a key length of N the text splits into N slices; every letter of a slice is shifted by the same key letter. Click a tab to work on that slice.",
-          "chartArrows": "Rotate the slice bars against the English reference. At the best alignment the shown letter is the key letter — it is applied immediately, watch the preview.",
-          "matchScore": "How closely the current alignment matches English letter frequencies, in percent. Higher is better.",
           "keyStrip": "Your key as you build it. Click a cell to jump to its slice, type a letter to override the chart choice, clear a cell to un-set it.",
           "cribInput": "If you guess a word that appears in the plaintext, the cracker computes which key letters it implies, at every position it fits.",
-          "apply": "Fill the empty key slots with the letters this position suggests. Letters already set differently are never overwritten.",
-          "back": "Return to the previous step. Your choices are kept.",
-          "next": "Continue to the next step once this step is complete.",
-          "skip": "Close the cracker and enter the key manually.",
-          "useThisKey": "Fill the key field with the key you assembled and decrypt the message with it."
+          "apply": "Fill the empty key slots with the letters this position suggests. Letters already set differently are never overwritten."
         },
         "alphabetUnsupported": "The frequency tables behind the cracker are English — switch the alphabet back to the standard 26 letters to use it."
       }
@@ -299,32 +254,12 @@
       "transpositionKeyLabel": "Transposition key",
       "unknownKeys": "Unknown keys",
       "cracker": {
-        "hints": {
-          "title": "Hints",
-          "presets": {
-            "easy": "Easy",
-            "medium": "Medium",
-            "hard": "Hard",
-            "custom": "Custom"
-          },
-          "toggles": {
-            "confidenceBars": "Show pair strength bars",
-            "autoSuggest": "Suggest column arrangement",
-            "englishReference": "Show letter suggestions",
-            "livePreview": "Live plaintext preview",
-            "cribs": "Crib panel"
-          }
-        },
         "wizard": {
           "steps": {
             "keyLength": "Key length",
             "columns": "Columns",
             "square": "Square"
           },
-          "inputChanged": "The ciphertext changed — the analysis restarted.",
-          "back": "Back",
-          "next": "Next",
-          "skip": "Skip",
           "useKey": "Use these keys",
           "keyLength": {
             "otherLabel": "Other length:",
@@ -348,27 +283,17 @@
             "yourKeys": "Your recovered keys",
             "squareKey": "Square key (read row by row):",
             "transpositionKey": "Transposition key:"
-          },
-          "previewTitle": "Decrypted so far"
+          }
         },
         "tooltips": {
-          "hintPresets": "How much help the tool gives: Easy shows everything, Hard leaves the thinking to you.",
           "keyLengthCards": "Candidate column counts, ranked by how strongly the columns tie together. A hint, not a verdict — try another if the preview stays garbage.",
           "otherLength": "Try any column count from 4 to 12.",
           "autoSuggest": "Refill the arrangement with the strongest pairing the statistics find.",
           "toggle": {
-            "confidenceBars": "Show how strongly each column pair is tied together.",
-            "autoSuggest": "Offer the statistically best column arrangement as a starting point.",
-            "englishReference": "Suggest the next most likely English letter under each symbol.",
-            "livePreview": "Show the partially decrypted message as you assign letters.",
-            "cribs": "Search for a probable word (crib) and apply its letters at once."
+            "autoSuggest": "Offer the statistically best column arrangement as a starting point."
           },
           "assignLetter": "Pick the plaintext letter for this symbol, or clear it.",
           "cribInput": "A word you expect in the message. Matches respect the letters you already assigned.",
-          "back": "Back one step. Nothing breaks.",
-          "next": "Next step.",
-          "skip": "Close the cracker without using anything.",
-          "useThisKey": "Fill both key fields with the recovered keys.",
           "symbolChart": "The symbols of the ciphertext once the columns are arranged. Click a symbol to assign its plaintext letter; the count shows how often it appears."
         }
       }

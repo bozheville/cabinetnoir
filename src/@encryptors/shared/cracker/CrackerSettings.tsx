@@ -16,9 +16,10 @@ interface CrackerSettingsProps {
   // Hint keys to render, in display order.
   keys: string[];
   // i18n scope of the cipher's cracker block, e.g.
-  // 'processing.vigenere.cracker' — toggles resolve from
-  // `<scope>.hints.toggles.<key>` and `<scope>.tooltips.toggle.<key>`.
-  i18nScope: string;
+  // 'processing.vigenere.cracker' — only for cipher-specific toggles;
+  // shared toggles, presets and titles resolve from
+  // processing.cracker.* first and fall back to the cipher block.
+  i18nScope?: string;
 }
 
 const PresetPicker = styled(Pane)`
@@ -47,13 +48,25 @@ const PresetOption = styled.button<{ $active: boolean }>`
 
 const PRESET_KEYS = ['easy', 'medium', 'hard', 'custom'];
 
+const SHARED_SCOPE = 'processing.cracker';
+
 const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange, keys, i18nScope }) => {
   const { t } = useTranslation('common');
+  // Shared strings first; cipher-specific toggles fall back to the
+  // cipher's cracker block.
+  const toggleLabel = (key: string) =>
+    i18nScope
+      ? t([`${SHARED_SCOPE}.hints.toggles.${key}`, `${i18nScope}.hints.toggles.${key}`])
+      : t(`${SHARED_SCOPE}.hints.toggles.${key}`);
+  const toggleTooltip = (key: string) =>
+    i18nScope
+      ? t([`${SHARED_SCOPE}.tooltips.toggle.${key}`, `${i18nScope}.tooltips.toggle.${key}`])
+      : t(`${SHARED_SCOPE}.tooltips.toggle.${key}`);
 
   return (
     <Pane width="100%">
-      <Heading size={100} marginBottom="8px">{t(`${i18nScope}.hints.title`)}</Heading>
-      <Tooltip content={t(`${i18nScope}.tooltips.hintPresets`)}>
+      <Heading size={100} marginBottom="8px">{t(`${SHARED_SCOPE}.hints.title`)}</Heading>
+      <Tooltip content={t(`${SHARED_SCOPE}.tooltips.hintPresets`)}>
         <PresetPicker data-guide="hint-presets">
           {PRESET_KEYS.map((preset) => (
             <PresetOption
@@ -61,7 +74,7 @@ const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange, key
               $active={config.preset === preset}
               onClick={() => onChange(applyPreset(config, preset as any))}
             >
-              {t(`${i18nScope}.hints.presets.${preset}`)}
+              {t(`${SHARED_SCOPE}.hints.presets.${preset}`)}
             </PresetOption>
           ))}
         </PresetPicker>
@@ -73,10 +86,10 @@ const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange, key
         marginTop="8px"
       >
         {keys.map((key) => (
-          <Tooltip key={key} content={t(`${i18nScope}.tooltips.toggle.${key}`)}>
+          <Tooltip key={key} content={toggleTooltip(key)}>
             <Checkbox
               marginY="4px"
-              label={t(`${i18nScope}.hints.toggles.${key}`)}
+              label={toggleLabel(key)}
               checked={config.hints[key]}
               onChange={(event) => onChange(toggleHint(config, key, event.target.checked))}
             />
