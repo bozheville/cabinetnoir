@@ -18,11 +18,13 @@ interface ShortTextWarningProps {
   letters: string;
   // i18n key of the warning sentence; each cipher's cracker block owns it.
   warningKey?: string;
+  // Reliability threshold; ciphers with weaker signals raise it.
+  minLetters?: number;
 }
 
-const ShortTextWarning: React.FC<ShortTextWarningProps> = ({ letters, warningKey }) => {
+const ShortTextWarning: React.FC<ShortTextWarningProps> = ({ letters, warningKey, minLetters = MIN_RELIABLE_LETTERS }) => {
   const { t } = useTranslation('common');
-  if (letters.length === 0 || letters.length >= MIN_RELIABLE_LETTERS) {
+  if (letters.length === 0 || letters.length >= minLetters) {
     return null;
   }
 

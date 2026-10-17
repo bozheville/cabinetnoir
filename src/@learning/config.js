@@ -262,7 +262,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.hard',
       era: 'learning.playfair.era',
       origin: 'learning.playfair.origin',
-      modes: ['encrypt', 'decrypt'],
+      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
     },
     glossary: [
       'plaintext',
