@@ -323,7 +323,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.hard',
       era: 'learning.adfgvx.era',
       origin: 'learning.adfgvx.origin',
-      modes: ['encrypt', 'decrypt'],
+      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
     },
     glossary: [
       'plaintext',
