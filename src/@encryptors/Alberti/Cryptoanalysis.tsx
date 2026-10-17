@@ -14,12 +14,13 @@ import { usePendingExample } from '@learning/pendingExample';
 import { setKeyHandoff } from '@learning/keyHandoff';
 
 import {
-  albertiDecryptWith,
+  albertiDecryptLetters,
   normalizeAlbertiCipherText,
   rankPeriods,
   rankSteps,
   MAX_PERIOD,
 } from './analysis/rank';
+import { ALBERTI_DYNAMIC_DISC } from './alberti-crypt';
 
 // Hint keys for the Alberti wizard; labels resolve from the shared
 // cracker locale block. Only honest toggles: the cards always show
@@ -90,11 +91,11 @@ const AlbertiCryptoanalysis: React.FC<{
       return;
     }
     // keys: ['step/period' — the tool's example-key format, and the disc
-    // alignment the tool should reset to].
+    // alignment the crack assumes (the fixed default disc)].
     setKeyHandoff({
       cipher: 'alberti',
       input,
-      keys: [`${discStep}/${period}`, discStep === 0 ? 'mqihfdbacegklnprtuz&xyso' : ''],
+      keys: [`${discStep}/${period}`, ALBERTI_DYNAMIC_DISC],
     });
     router.push('/encoder/alberti/reverse?usedKey=1');
   };
@@ -104,7 +105,7 @@ const AlbertiCryptoanalysis: React.FC<{
   };
 
   const decrypted = period !== null && discStep !== null
-    ? albertiDecryptWith(ciphertext, period, discStep)
+    ? albertiDecryptLetters(ciphertext, period, discStep)
     : '';
 
   const stepNames = [
@@ -148,6 +149,9 @@ const AlbertiCryptoanalysis: React.FC<{
         >
           {step === 1 && (
             <Pane marginTop="12px">
+              <Text size={300} display="block" marginBottom="4px">
+                {t('processing.alberti.cracker.wizard.assumption')}
+              </Text>
               <CandidateCards
                 items={periods.map((candidate) => ({
                   id: String(candidate.value),
