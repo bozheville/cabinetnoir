@@ -4,8 +4,8 @@ import React from 'react';
 import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
-import CipherText, { HIGHLIGHT_COLORS } from './CipherText';
-import FrequencyChart from './FrequencyChart';
+import { CipherText, HIGHLIGHT_COLORS } from '@encryptors/shared/cracker';
+import { FrequencyChart } from '@encryptors/shared/cracker';
 import CribPanel from './CribPanel';
 import KeyStrip from './KeyStrip';
 import { LockedLetter, useCracker } from './useCracker';

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import { LockedLetter, useCracker } from './useCracker';
 import { decryptPartial } from './decryptPartial';
-import { HIGHLIGHT_COLORS } from './CipherText';
+import { HIGHLIGHT_COLORS } from '@encryptors/shared/cracker';
 
 const PreviewBox = styled(Pane)`
   margin-top: 4px;

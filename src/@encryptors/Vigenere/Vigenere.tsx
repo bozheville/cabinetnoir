@@ -4,10 +4,10 @@ import {Checkbox, Heading, Pane, TextInput } from 'evergreen-ui';
 import { CrypterProps } from '../types';
 import Tooltip from '@atoms/Tooltip';
 import { vigenereEncrypt, vigenereDecrypt, DEFAULT_ALPHABET, isEnglishAlphabet } from './vigenere-encryption';
-import CrackerSettings from './cracker/CrackerSettings';
+import { CrackerSettings } from '@encryptors/shared/cracker';
 import CrackerWizard from './cracker/CrackerWizard';
 import useCracker from './cracker/useCracker';
-import { DEFAULT_HINT_CONFIG, HintConfig, applyPreset, PresetName } from './cracker/hintSettings';
+import { DEFAULT_HINT_CONFIG, HintConfig, HINT_KEYS, applyPreset, PresetName } from './cracker/hintSettings';
 import { usePendingExample } from '@learning/pendingExample';
 
 const Vigenere: React.FC<CrypterProps> = ({
@@ -148,7 +148,7 @@ const Vigenere: React.FC<CrypterProps> = ({
           border="muted"
           borderRadius="4px"
         >
-          <CrackerSettings config={hintConfig} onChange={setHintConfig} />
+          <CrackerSettings config={hintConfig} onChange={setHintConfig} keys={HINT_KEYS} i18nScope="processing.vigenere.cracker" />
           <CrackerWizard cracker={cracker} onUseKey={handleUseKey} onSkip={handleSkipCracker} />
         </Pane>
       )}

@@ -5,8 +5,8 @@ import { useTranslation } from 'next-i18next';
 import { CrypterProps } from '../types';
 import { useAdfgvx } from './useAdfgvx';
 import useCracker from './cracker/useCracker';
-import { DEFAULT_HINT_CONFIG, HintConfig } from './cracker/hintSettings';
-import CrackerSettings from './cracker/CrackerSettings';
+import { DEFAULT_HINT_CONFIG, HintConfig, HINT_KEYS } from './cracker/hintSettings';
+import { CrackerSettings } from '@encryptors/shared/cracker';
 import CrackerWizard from './cracker/CrackerWizard';
 import TextInput from '@atoms/TextInput/TextInput';
 import Tooltip from '@atoms/Tooltip';
@@ -138,7 +138,7 @@ const Adfgvx: React.FC<CrypterProps> = ({
           border="muted"
           borderRadius="4px"
         >
-          <CrackerSettings config={hintConfig} onChange={setHintConfig} />
+          <CrackerSettings config={hintConfig} onChange={setHintConfig} keys={HINT_KEYS} i18nScope="processing.adfgvx.cracker" />
           <CrackerWizard cracker={cracker} onUseKey={handleUseKey} onSkip={handleSkipCracker} />
         </Pane>
       )}
