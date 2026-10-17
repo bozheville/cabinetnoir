@@ -5,6 +5,9 @@ import { useAlberti } from './useAlberti';
 import styled from 'styled-components';
 import RotationPicker from '@encryptors/Caesar/RotationPicker';
 import Tooltip from '@atoms/Tooltip';
+import { useRouter } from 'next/router';
+import { getKeyHandoff } from '@learning/keyHandoff';
+import { useEffect } from 'react';
 
 
 const AlbertiSettings = styled.div<{size: number}>`
@@ -34,11 +37,29 @@ const Alberti: React.FC<CrypterProps> = ({
     rotateRight,
     handlePeriodChange,
     handleIncrementChange,
+    applyRecoveredKey,
   } = useAlberti({
     input,
     onProcessingEnd,
     isDecryptMode
   });
+
+  const router = useRouter();
+
+  // "Use this key" on the Cryptoanalysis tab: pick the recovered
+  // step/period (and the disc alignment) up from the in-memory hand-off;
+  // the URL carries only the usedKey flag.
+  useEffect(() => {
+    if (router.query.usedKey !== '1') {
+      return;
+    }
+    const handoff = getKeyHandoff();
+    if (handoff?.cipher !== 'alberti' || !handoff.keys[0]) {
+      return;
+    }
+    const [step, discPeriod] = handoff.keys[0].split('/').map((value) => parseInt(value, 10));
+    applyRecoveredKey({ step, period: discPeriod, dynamicDisc: handoff.keys[1] || undefined });
+  }, [router.query.usedKey]);
 
   return (
     <Pane>

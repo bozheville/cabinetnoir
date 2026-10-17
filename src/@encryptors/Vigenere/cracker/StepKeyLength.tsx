@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
-import { Repeat } from '../analysis/kasiski';
-import CipherText, { HIGHLIGHT_COLORS } from './CipherText';
+import { Repeat } from '@encryptors/shared/analysis';
+import { CipherText, HIGHLIGHT_COLORS } from '@encryptors/shared/cracker';
 import KeyLengthCards from './KeyLengthCards';
 import { CrackerAnalysis } from './useCracker';
 import { HintSettings } from './hintSettings';

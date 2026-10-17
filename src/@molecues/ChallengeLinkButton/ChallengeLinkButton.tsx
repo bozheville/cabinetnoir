@@ -1,9 +1,10 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import Link from 'next/link';
-import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
 import { getChallenge } from '@learning/challenges';
+import { hasCryptoanalysis } from '@learning/config';
 
 const StyledLink = styled(Link)`
   display: inline-flex;
@@ -29,8 +30,9 @@ interface ChallengeLinkButtonProps {
   challengeId: string;
 }
 
-// Opens the tool with the challenge's ciphertext, the cracker switched
-// on and the hint preset matching the challenge difficulty. The URL
+// Opens the challenge's ciphertext with the hint preset matching the
+// challenge difficulty. Ciphers with a cracker open the Cryptoanalysis
+// tab; the rest open the tool with the ciphertext pre-filled. The URL
 // carries only the challenge id.
 const ChallengeLinkButton: React.FC<ChallengeLinkButtonProps> = ({ challengeId }) => {
   const { t } = useTranslation('common');
@@ -43,7 +45,9 @@ const ChallengeLinkButton: React.FC<ChallengeLinkButtonProps> = ({ challengeId }
     return null;
   }
 
-  const action = challenge.mode === 'decrypt' ? 'reverse' : 'direct';
+  const action = hasCryptoanalysis(challenge.cipher)
+    ? 'cryptoanalysis'
+    : challenge.mode === 'decrypt' ? 'reverse' : 'direct';
 
   return (
     <StyledLink href={`/encoder/${challenge.cipher}/${action}?challenge=${challenge.id}`}>

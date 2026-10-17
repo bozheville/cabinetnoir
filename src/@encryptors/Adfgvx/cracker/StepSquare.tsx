@@ -229,7 +229,7 @@ const StepSquare: React.FC<StepSquareProps> = ({ cracker }) => {
       )}
 
       <Heading size={300} marginTop="12px">
-        {t('processing.adfgvx.cracker.wizard.previewTitle')}
+        {t('processing.cracker.wizard.previewTitle')}
       </Heading>
       <PreviewBox>{preview || '·'}</PreviewBox>
 

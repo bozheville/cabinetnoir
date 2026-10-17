@@ -5,7 +5,6 @@ import { Button, Heading, Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import { ALPHABET_LENGTH, ENGLISH_FREQUENCIES, countLetters, englishFrequencyAt, findBestShift, scoreShift } from '../analysis/frequency';
-import { HintSettings } from './hintSettings';
 
 const ChartArea = styled(Pane)`
   margin-top: 12px;
@@ -63,26 +62,37 @@ const LetterCell = styled(Text)`
 
 interface FrequencyChartProps {
   sliceLetters: string;
-  hints: HintSettings;
+  hints: Record<string, boolean>;
   alphabet?: string;
   letter?: string;
   onLetterChange: (letter: string) => void;
+  // How a display position maps to the observed letter under the current
+  // shift. The default is a plain rotation (Vigenère/Caesar-style slices);
+  // Affine passes `(position, shift) => (multiplier * position + shift) % 26`.
+  mapIndex?: (displayIndex: number, shift: number) => number;
+  // Label of the rotated parameter ("Key letter", "Shift (b)"…).
+  // Defaults to the shared cracker string.
+  keyLetterLabel?: string;
 }
 
+// Two-bar frequency chart: observed gray bars vs dashed English reference
+// outline. Rotation IS the key parameter — rotating rewrites the key
+// letter through `onLetterChange`.
 const FrequencyChart: React.FC<FrequencyChartProps> = ({
   sliceLetters,
   hints,
   alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
   letter,
   onLetterChange,
+  mapIndex = (position, shift) => (position + shift) % ALPHABET_LENGTH,
+  keyLetterLabel,
 }) => {
   const counts = countLetters(sliceLetters, alphabet);
-  const bestShift = findBestShift(counts, alphabet);
+  const bestShift = findBestShift(counts, alphabet, mapIndex);
   // The chart shift IS the key letter: rotating rewrites the key live.
   // Start from the letter currently set for this slice, if any.
   const [shift, setShift] = useState(letter ? Math.max(0, alphabet.indexOf(letter)) : 0);
   const { t } = useTranslation('common');
-
 
   // New slice: start from its current key letter, if any.
   useEffect(() => {
@@ -100,7 +110,7 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
     onLetterChange(alphabet[next]);
   };
 
-  const score = scoreShift(counts, shift, alphabet);
+  const score = scoreShift(counts, shift, alphabet, mapIndex);
   const isBest = shift === bestShift;
   const glow = hints.mostLikelyGlow && isBest;
   const shortSlice = sliceLetters.length > 0 && sliceLetters.length < 20;
@@ -121,22 +131,22 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
     >
       {shortSlice && (
         <Text size={300} display="block" marginBottom="4px">
-          {t('processing.vigenere.cracker.wizard.warnings.shortSlice')}
+          {t('processing.cracker.wizard.warnings.shortSlice')}
         </Text>
       )}
-      <Tooltip content={t('processing.vigenere.cracker.tooltips.chartArrows')}>
+      <Tooltip content={t('processing.cracker.tooltips.chartArrows')}>
       <Pane display="flex" alignItems="center" gap="8px" data-guide="chart-arrows">
         <Button aria-label="Rotate left" onClick={() => rotate(-1)}>
           {'<'}
         </Button>
         <Heading size={400}>
-          {`${t('processing.vigenere.cracker.wizard.keyLetters.keyLetter')}: ${alphabet[shift]}`}
+          {`${keyLetterLabel || t('processing.cracker.wizard.keyLetters.keyLetter')}: ${alphabet[shift]}`}
         </Heading>
         <Button aria-label="Rotate right" onClick={() => rotate(1)}>
           {'>'}
         </Button>
         {hints.matchScore && (
-          <Tooltip content={t('processing.vigenere.cracker.tooltips.matchScore')}>
+          <Tooltip content={t('processing.cracker.tooltips.matchScore')}>
             <Text size={300}>{`Match: ${score}%`}</Text>
           </Tooltip>
         )}
@@ -145,7 +155,7 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
 
       <BarsRow>
         {Array.from({ length: ALPHABET_LENGTH }).map((_, position) => {
-          const observedIndex = (position + shift) % ALPHABET_LENGTH;
+          const observedIndex = mapIndex(position, shift);
           const observedHeight = (counts[observedIndex] / scale) * 100;
           const englishFrequency = alphabet[position] ? englishFrequencyAt(position, alphabet) : 0;
           const expectedHeight = (englishFrequency / 100 * total / scale) * 100;

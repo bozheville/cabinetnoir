@@ -1,7 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 const { encodingsList, encryptorsList } = require('../src/@encryptors/algorithms');
-const { LEARNING_TABS, hasTab } = require('../src/@learning/config');
+const {
+  LEARNING_TABS,
+  CRYPTOANALYSIS_TAB,
+  hasTab,
+  hasCryptoanalysis,
+} = require('../src/@learning/config');
 
 const baseURL = 'http://cabinetnoir.eu';
 const algorithms = [...encodingsList, ...encryptorsList];
@@ -14,6 +19,8 @@ const buildLinks = () => {
   for (const algorithm of algorithms) {
     const segments = [
       ...actions,
+      // Cryptoanalysis is a first-class tab for ciphers with a cracker.
+      ...(hasCryptoanalysis(algorithm) ? [CRYPTOANALYSIS_TAB] : []),
       ...LEARNING_TABS.filter((tab) => hasTab(algorithm, tab)),
     ];
     for (const action of segments) {

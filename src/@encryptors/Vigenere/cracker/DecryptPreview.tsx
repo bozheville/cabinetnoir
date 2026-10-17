@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import { LockedLetter, useCracker } from './useCracker';
 import { decryptPartial } from './decryptPartial';
-import { HIGHLIGHT_COLORS } from './CipherText';
+import { HIGHLIGHT_COLORS } from '@encryptors/shared/cracker';
 
 const PreviewBox = styled(Pane)`
   margin-top: 4px;
@@ -64,7 +64,7 @@ const DecryptPreview: React.FC<{ cracker: ReturnType<typeof useCracker> }> = ({ 
 
   return (
     <Pane width="100%">
-      <Heading size={300}>{t('processing.vigenere.cracker.wizard.previewTitle')}</Heading>
+      <Heading size={300}>{t('processing.cracker.wizard.previewTitle')}</Heading>
       <PreviewBox>
         {rows.map((row, rowIndex) => (
           <div key={rowIndex}>
