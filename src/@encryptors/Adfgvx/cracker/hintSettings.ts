@@ -1,3 +1,7 @@
+// ADFGVX hint keys + presets; the generic mechanics live in the shared
+// cracker shell so every wizard behaves the same way.
+import { defineHints } from '@encryptors/shared/cracker/hintSettings';
+
 export type HintKey =
   | 'confidenceBars'
   | 'autoSuggest'
@@ -5,54 +9,23 @@ export type HintKey =
   | 'livePreview'
   | 'cribs';
 
-export type HintSettings = Record<HintKey, boolean>;
+export type HintSettings = Record<string, boolean>;
 
-export type PresetName = 'easy' | 'medium' | 'hard';
-export type Preset = PresetName | 'custom';
+export type { HintConfig, Preset, PresetName } from '@encryptors/shared/cracker/hintSettings';
+export { applyPreset, toggleHint } from '@encryptors/shared/cracker/hintSettings';
 
-export interface HintConfig {
-  preset: Preset;
-  hints: HintSettings;
-}
-
-// Display order of the toggles.
-export const HINT_KEYS: HintKey[] = [
-  'confidenceBars',
-  'autoSuggest',
-  'englishReference',
-  'livePreview',
-  'cribs',
-];
-
-// Display order of the presets.
-export const PRESET_KEYS: Preset[] = ['easy', 'medium', 'hard', 'custom'];
-
-const only = (enabled: HintKey[]): HintSettings =>
-  HINT_KEYS.reduce(
-    (settings, key) => ({ ...settings, [key]: enabled.includes(key) }),
-    {} as HintSettings,
-  );
-
-export const PRESETS: Record<PresetName, HintSettings> = {
-  easy: only(HINT_KEYS),
-  medium: only(HINT_KEYS.filter((key) => key !== 'autoSuggest')),
-  hard: only(['englishReference', 'livePreview']),
-};
-
-export const DEFAULT_HINT_CONFIG: HintConfig = {
-  preset: 'easy',
-  hints: PRESETS.easy,
-};
-
-// Picking a preset overwrites all toggles. Custom keeps current toggles.
-export const applyPreset = (config: HintConfig, preset: Preset): HintConfig => (
-  preset === 'custom'
-    ? { ...config, preset }
-    : { preset, hints: PRESETS[preset] }
-);
-
-// Any manual toggle switches to Custom.
-export const toggleHint = (config: HintConfig, key: HintKey, value: boolean): HintConfig => ({
-  preset: 'custom',
-  hints: { ...config.hints, [key]: value },
+const defined = defineHints({
+  keys: [
+    'confidenceBars',
+    'autoSuggest',
+    'englishReference',
+    'livePreview',
+    'cribs',
+  ],
+  mediumWithout: ['autoSuggest'],
+  hardWith: ['englishReference', 'livePreview'],
 });
+
+export const HINT_KEYS = defined.HINT_KEYS;
+export const PRESETS = defined.PRESETS;
+export const DEFAULT_HINT_CONFIG = defined.DEFAULT_HINT_CONFIG;

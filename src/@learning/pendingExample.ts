@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react';
 
-import type { PresetName } from '@encryptors/Vigenere/cracker/hintSettings';
+import type { PresetName } from '@encryptors/shared/cracker';
 
 export interface PendingExampleLoad {
   cipher: string;
