@@ -38,8 +38,12 @@ export interface LearningConfigEntry {
 
 export declare const LEARNING_TABS: LearningTabName[];
 
+export declare const CRYPTOANALYSIS_TAB: 'cryptoanalysis';
+
 export declare const learningConfig: Record<string, LearningConfigEntry>;
 
 export declare function getLearningConfig(cipher: string): LearningConfigEntry | null;
 
 export declare function hasTab(cipher: string, tab: LearningTabName): boolean;
+
+export declare function hasCryptoanalysis(cipher: string): boolean;

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
-import { getLearningConfig, LearningTabName } from '@learning/config';
+import { getLearningConfig, hasCryptoanalysis, LearningTabName, CRYPTOANALYSIS_TAB } from '@learning/config';
 
 const TabBar = styled.nav`
   display: flex;
@@ -33,12 +33,13 @@ const Tab = styled.span<{ $active: boolean }>`
 
 interface CipherTabsProps {
   algorithm: string;
-  activeTab: 'tool' | LearningTabName;
+  activeTab: 'tool' | typeof CRYPTOANALYSIS_TAB | LearningTabName;
 }
 
 // Tab bar for ciphers that have learning material. Real links (crawlable,
 // one URL per tab); tabs the cipher does not have are hidden. Ciphers
-// without a learning config render nothing at all.
+// without a learning config render nothing at all. The Cryptoanalysis
+// tab appears only for ciphers that ship a cracker.
 const CipherTabs: React.FC<CipherTabsProps> = ({ algorithm, activeTab }) => {
   const { t } = useTranslation('common');
   const config = getLearningConfig(algorithm);
@@ -47,8 +48,11 @@ const CipherTabs: React.FC<CipherTabsProps> = ({ algorithm, activeTab }) => {
     return null;
   }
 
-  const tabs: Array<{ name: 'tool' | LearningTabName; href: string }> = [
+  const tabs: Array<{ name: 'tool' | typeof CRYPTOANALYSIS_TAB | LearningTabName; href: string }> = [
     { name: 'tool', href: `/encoder/${algorithm}/direct` },
+    ...(hasCryptoanalysis(algorithm)
+      ? [{ name: CRYPTOANALYSIS_TAB, href: `/encoder/${algorithm}/${CRYPTOANALYSIS_TAB}` }]
+      : []),
     ...config.tabs.map((tab) => ({ name: tab, href: `/encoder/${algorithm}/${tab}` })),
   ];
 

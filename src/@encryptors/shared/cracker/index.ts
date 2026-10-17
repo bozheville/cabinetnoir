@@ -6,6 +6,7 @@
 // knows about a particular cipher.
 export { default as CrackerSettings } from './CrackerSettings';
 export { default as CrackerWizardFrame } from './CrackerWizardFrame';
+export { default as CrackerInput } from './CrackerInput';
 export { default as FrequencyChart } from './FrequencyChart';
 export { default as CipherText, HIGHLIGHT_COLORS } from './CipherText';
 export { default as ShortTextWarning, MIN_RELIABLE_LETTERS } from './ShortTextWarning';

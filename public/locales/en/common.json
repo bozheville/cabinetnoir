@@ -196,7 +196,8 @@
           "next": "Continue to the next step once this step is complete.",
           "skip": "Close the cracker and enter the key manually.",
           "useThisKey": "Fill the key field with the key you assembled and decrypt the message with it."
-        }
+        },
+        "alphabetUnsupported": "The frequency tables behind the cracker are English — switch the alphabet back to the standard 26 letters to use it."
       }
     },
     "playfair": {
@@ -294,6 +295,9 @@
           "symbolChart": "The symbols of the ciphertext once the columns are arranged. Click a symbol to assign its plaintext letter; the count shows how often it appears."
         }
       }
+    },
+    "cracker": {
+      "inputLabel": "Ciphertext to break"
     }
   },
   "message": "Message",
@@ -311,12 +315,14 @@
       "history": "History",
       "practice": "Practice",
       "tool": "Tool",
-      "tabsLabel": "Cipher page sections"
+      "tabsLabel": "Cipher page sections",
+      "cryptoanalysis": "Cryptoanalysis"
     },
     "metaDescription": {
       "learn": "Learn how the cipher works, follow step-by-step guides and see how it is broken.",
       "history": "The history of the cipher: where it came from, who used it and how it was broken.",
-      "practice": "Practice on ready-made challenges, from easy to hard."
+      "practice": "Practice on ready-made challenges, from easy to hard.",
+      "cryptoanalysis": "Break real ciphertexts step by step with the guided cryptoanalysis tool."
     },
     "placeholder": "Learning content is coming soon.",
     "types": {

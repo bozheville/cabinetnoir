@@ -10,6 +10,7 @@ import {
 import { TextArea } from '@molecues';
 import styled, { keyframes } from 'styled-components';
 import { usePendingExample } from '@learning/pendingExample';
+import { getKeyHandoff, clearKeyHandoff } from '@learning/keyHandoff';
 interface EncryptionInputsProps {
   onChange: (value: string) => void;
   output: string;
@@ -61,10 +62,16 @@ const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
 
   useEffect(() => {
     if (isInitialized) {
-      // The Vigenere cracker flags its "use this key" navigation so the
-      // original text stays in the input instead of being replaced by the
-      // stale output of the previous mode.
+      // The Cryptoanalysis tab's "use this key" flags its navigation so
+      // the ciphertext travels in the in-memory hand-off instead of being
+      // replaced by the stale output of the previous mode.
       if (router.query.usedKey === '1') {
+        const handoff = getKeyHandoff();
+        if (handoff) {
+          onChange(handoff.input);
+          setInput(handoff.input);
+          clearKeyHandoff();
+        }
         const { usedKey, ...restQuery } = router.query;
         router.replace({ pathname: router.pathname, query: restQuery }, undefined, { shallow: true });
       } else {
