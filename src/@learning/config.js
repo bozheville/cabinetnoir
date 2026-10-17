@@ -95,7 +95,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.easy',
       era: 'learning.alberti.era',
       origin: 'learning.alberti.origin',
-      modes: ['encrypt', 'decrypt'],
+      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
     },
     glossary: [
       'plaintext',
