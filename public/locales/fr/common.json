@@ -173,7 +173,8 @@
           "next": "Passe à l'étape suivante une fois cette étape terminée.",
           "skip": "Ferme l'assistant et saisit la clé manuellement.",
           "useThisKey": "Remplit le champ clé avec la clé assemblée et déchiffre le message avec."
-        }
+        },
+        "alphabetUnsupported": "Les tables de fréquences de l'outil sont anglaises — revenez aux 26 lettres standard pour l'utiliser."
       }
     },
     "playfair": {
@@ -281,6 +282,9 @@
           "symbolChart": "Les symboles du texte chiffré une fois les colonnes rangées. Cliquez sur un symbole pour lui attribuer sa lettre en clair ; le compte indique sa fréquence."
         }
       }
+    },
+    "cracker": {
+      "inputLabel": "Message chiffré à casser"
     }
   },
   "message": "Message",
@@ -298,12 +302,14 @@
       "history": "Histoire",
       "practice": "Pratique",
       "tool": "Outil",
-      "tabsLabel": "Sections de la page du chiffre"
+      "tabsLabel": "Sections de la page du chiffre",
+      "cryptoanalysis": "Cryptanalyse"
     },
     "metaDescription": {
       "learn": "Découvrez le fonctionnement du chiffre, suivez des guides pas à pas et voyez comment le déchiffrer.",
       "history": "L'histoire du chiffre : son origine, ses utilisateurs et son déchiffrement.",
-      "practice": "Entraînez-vous sur des défis prêts à l'emploi, du plus facile au plus difficile."
+      "practice": "Entraînez-vous sur des défis prêts à l'emploi, du plus facile au plus difficile.",
+      "cryptoanalysis": "Déchiffrez de vrais messages chiffrés étape par étape avec l'outil guidé de cryptanalyse."
     },
     "placeholder": "Le contenu pédagogique arrive bientôt.",
     "types": {

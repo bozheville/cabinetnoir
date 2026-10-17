@@ -13,6 +13,11 @@
 // modes (direct / reverse) on /encoder/<cipher>/<action> pages.
 const LEARNING_TABS = ['learn', 'history', 'practice'];
 
+// The cryptoanalysis tab: a first-class tab for ciphers with a cracker
+// wizard, not a decrypt-mode checkbox. Governed by
+// specs/learning-material-standardisation/standard.md §10.
+const CRYPTOANALYSIS_TAB = 'cryptoanalysis';
+
 const learningConfig = {
   vigenere: {
     tabs: ['learn', 'history', 'practice'],
@@ -347,9 +352,18 @@ const hasTab = (cipher, tab) => {
   return !!config && config.tabs.indexOf(tab) !== -1;
 };
 
+// The Cryptoanalysis tab exists only for ciphers that ship a cracker
+// wizard; the atGlance.modes flag is the single source of truth.
+const hasCryptoanalysis = (cipher) => {
+  const config = getLearningConfig(cipher);
+  return !!config && config.atGlance.modes.indexOf('cryptoanalysis') !== -1;
+};
+
 module.exports = {
   LEARNING_TABS,
+  CRYPTOANALYSIS_TAB,
   learningConfig,
   getLearningConfig,
   hasTab,
+  hasCryptoanalysis,
 };
