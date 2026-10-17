@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 
-import { NormalizedText, normalize } from '../analysis/normalize';
-import { Repeat, findRepeats } from '../analysis/kasiski';
-import { KeyLengthCandidate, rankKeyLengths } from '../analysis/keyLength';
+import { NormalizedText, normalize } from '@encryptors/shared/analysis';
+import { Repeat, findRepeats } from '@encryptors/shared/analysis';
+import { KeyLengthCandidate, rankKeyLengths } from '@encryptors/shared/analysis';
 import { DEFAULT_ALPHABET } from '../vigenere-encryption';
 import { HintConfig } from './hintSettings';
 

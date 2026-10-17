@@ -7,7 +7,7 @@ export const ENGLISH_FREQUENCIES: number[] = [
 
 export const ALPHABET_LENGTH = 26;
 
-const STANDARD_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+export const STANDARD_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 // 26 letter counts for the slice, indexed by position in `alphabet`.
 // Characters outside the alphabet are ignored.

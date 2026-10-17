@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { NormalizedText } from '../analysis/normalize';
+import { NormalizedText } from '@encryptors/shared/analysis';
 
 // Palette used across the cracker for repeats, slices and so on.
 export const HIGHLIGHT_COLORS = [

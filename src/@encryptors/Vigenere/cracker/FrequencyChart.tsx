@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Heading, Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
-import { ALPHABET_LENGTH, ENGLISH_FREQUENCIES, countLetters, englishFrequencyAt, findBestShift, scoreShift } from '../analysis/frequency';
+import { ALPHABET_LENGTH, ENGLISH_FREQUENCIES, countLetters, englishFrequencyAt, findBestShift, scoreShift } from '@encryptors/shared/analysis';
 import { HintSettings } from './hintSettings';
 
 const ChartArea = styled(Pane)`
