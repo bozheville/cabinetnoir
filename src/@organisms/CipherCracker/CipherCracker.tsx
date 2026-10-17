@@ -2,6 +2,7 @@ import React from 'react';
 
 import VigenereCryptoanalysis from '@encryptors/Vigenere/Cryptoanalysis';
 import AdfgvxCryptoanalysis from '@encryptors/Adfgvx/Cryptoanalysis';
+import AffineCryptoanalysis from '@encryptors/Affine/Cryptoanalysis';
 
 interface CipherCrackerProps {
   algorithm: string;
@@ -15,6 +16,7 @@ interface CipherCrackerProps {
 const CRACKERS: Record<string, React.ComponentType<{ input: string; onInputChange: (value: string) => void }>> = {
   vigenere: VigenereCryptoanalysis,
   adfgvx: AdfgvxCryptoanalysis,
+  affine: AffineCryptoanalysis,
 };
 
 const CipherCracker: React.FC<CipherCrackerProps> = ({ algorithm, input, onInputChange }) => {

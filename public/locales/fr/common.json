@@ -14,7 +14,30 @@
       "short_title": "Affine",
       "directAction": "Crypter",
       "reverseAction": "Décrypter",
-      "messageLabel": "Cryptogramme"
+      "messageLabel": "Cryptogramme",
+      "cracker": {
+        "tooltips": {
+          "multiplierCards": "Les douze multiplicateurs valides, classés selon la ressemblance anglaise de leur meilleur décalage. Choisissez-en un, puis ajustez le décalage à l'étape suivante."
+        },
+        "wizard": {
+          "steps": {
+            "multiplier": "Multiplicateur",
+            "shift": "Décalage",
+            "done": "Terminé"
+          },
+          "multiplier": {
+            "title": "Choisissez le multiplicateur",
+            "match": "Correspondance : {{score}}%"
+          },
+          "shift": {
+            "title": "Choisissez le décalage",
+            "keyLetter": "Décalage (b)"
+          },
+          "done": {
+            "formula": "Clé retrouvée : y = {{multiplier}}·x + {{shift}} (mod 26)"
+          }
+        }
+      }
     },
     "alberti": {
       "title": "Chiffre d'Alberti",
@@ -284,7 +307,56 @@
       }
     },
     "cracker": {
-      "inputLabel": "Message chiffré à casser"
+      "inputLabel": "Message chiffré à casser",
+      "hints": {
+        "title": "Indices",
+        "presets": {
+          "easy": "Facile",
+          "medium": "Moyen",
+          "hard": "Difficile",
+          "custom": "Personnalisé"
+        },
+        "toggles": {
+          "confidenceBars": "Afficher les barres de confiance",
+          "englishReference": "Afficher la référence anglaise",
+          "matchScore": "Afficher le score de correspondance",
+          "mostLikelyGlow": "Surligner le candidat le plus probable",
+          "livePreview": "Aperçu du texte en clair en direct",
+          "cribs": "Panneau des mots probables"
+        }
+      },
+      "tooltips": {
+        "hintPresets": "Le niveau d'aide de l'outil : Facile montre tout, Difficile vous laisse réfléchir.",
+        "chartArrows": "Faites pivoter le graphique avec les boutons ou les flèches ; la rotation est la lettre de clé.",
+        "matchScore": "Ressemblance avec l'anglais de la rotation actuelle (score du chi carré).",
+        "back": "Reculer d'une étape. Rien ne casse.",
+        "next": "Étape suivante.",
+        "skip": "Quitter l'outil sans rien utiliser.",
+        "useThisKey": "Remplir les champs de clé avec la clé retrouvée.",
+        "toggle": {
+          "confidenceBars": "Montre la force de chaque candidat.",
+          "englishReference": "Affiche la référence des fréquences anglaises à côté des barres observées.",
+          "matchScore": "Affiche le score numérique de ressemblance.",
+          "mostLikelyGlow": "Surligne la meilleure rotation selon les statistiques.",
+          "livePreview": "Affiche le message partiellement déchiffré pendant votre travail.",
+          "cribs": "Cherche un mot probable et applique ses lettres d'un coup."
+        }
+      },
+      "wizard": {
+        "back": "Retour",
+        "next": "Suivant",
+        "skip": "Passer l'analyse",
+        "useKey": "Utiliser cette clé",
+        "inputChanged": "Le message chiffré a changé — l'analyse a recommencé.",
+        "previewTitle": "Déchiffré jusqu'ici",
+        "warnings": {
+          "shortText": "Les textes courts se cassent peu fiablement — 100+ lettres donnent des résultats sûrs.",
+          "shortSlice": "Moins de 20 lettres dans cette tranche — méfiez-vous de la suggestion."
+        },
+        "keyLetters": {
+          "keyLetter": "Lettre de clé"
+        }
+      }
     }
   },
   "message": "Message",

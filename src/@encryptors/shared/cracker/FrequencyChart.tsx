@@ -70,8 +70,9 @@ interface FrequencyChartProps {
   // shift. The default is a plain rotation (Vigenère/Caesar-style slices);
   // Affine passes `(position, shift) => (multiplier * position + shift) % 26`.
   mapIndex?: (displayIndex: number, shift: number) => number;
-  // i18n scope of the cipher's cracker block (warnings, chart tooltips).
-  i18nScope?: string;
+  // Label of the rotated parameter ("Key letter", "Shift (b)"…).
+  // Defaults to the shared cracker string.
+  keyLetterLabel?: string;
 }
 
 // Two-bar frequency chart: observed gray bars vs dashed English reference
@@ -84,7 +85,7 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
   letter,
   onLetterChange,
   mapIndex = (position, shift) => (position + shift) % ALPHABET_LENGTH,
-  i18nScope = 'processing.vigenere.cracker',
+  keyLetterLabel,
 }) => {
   const counts = countLetters(sliceLetters, alphabet);
   const bestShift = findBestShift(counts, alphabet, mapIndex);
@@ -130,22 +131,22 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
     >
       {shortSlice && (
         <Text size={300} display="block" marginBottom="4px">
-          {t(`${i18nScope}.wizard.warnings.shortSlice`)}
+          {t('processing.cracker.wizard.warnings.shortSlice')}
         </Text>
       )}
-      <Tooltip content={t(`${i18nScope}.tooltips.chartArrows`)}>
+      <Tooltip content={t('processing.cracker.tooltips.chartArrows')}>
       <Pane display="flex" alignItems="center" gap="8px" data-guide="chart-arrows">
         <Button aria-label="Rotate left" onClick={() => rotate(-1)}>
           {'<'}
         </Button>
         <Heading size={400}>
-          {`${t(`${i18nScope}.wizard.keyLetters.keyLetter`)}: ${alphabet[shift]}`}
+          {`${keyLetterLabel || t('processing.cracker.wizard.keyLetters.keyLetter')}: ${alphabet[shift]}`}
         </Heading>
         <Button aria-label="Rotate right" onClick={() => rotate(1)}>
           {'>'}
         </Button>
         {hints.matchScore && (
-          <Tooltip content={t(`${i18nScope}.tooltips.matchScore`)}>
+          <Tooltip content={t('processing.cracker.tooltips.matchScore')}>
             <Text size={300}>{`Match: ${score}%`}</Text>
           </Tooltip>
         )}

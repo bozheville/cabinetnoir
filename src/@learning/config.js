@@ -127,7 +127,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.easy',
       era: 'learning.affine.era',
       origin: 'learning.affine.origin',
-      modes: ['encrypt', 'decrypt'],
+      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
     },
     glossary: [
       'plaintext',
