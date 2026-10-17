@@ -40,3 +40,6 @@ yarn-error.log*
 # cloudflare
 .open-next
 .wrangler
+
+# next.js regenerates this on every dev/build (dev vs build write different paths)
+next-env.d.ts
