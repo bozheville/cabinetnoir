@@ -162,8 +162,8 @@
           "alphabet": "L'ensemble des lettres avec lesquelles le chiffre travaille. Collez les lettres de votre choix — l'outil les met en majuscules et supprime les doublons. Par défaut : l'alphabet anglais.",
           "unknownKey": "Cochez cette case si vous ne connaissez pas la clé. Un assistant de déchiffrement s'ouvre ci-dessous : il vous aide à trouver la longueur de la clé puis chaque lettre, étape par étape.",
           "toggle": {
-            "highlightRepeats": "Colore les groupes de lettres répétées dans le texte — les distances entre eux donnent un indice sur la longueur de la clé.",
-            "showGaps": "Affiche les distances entre séquences répétées, à côté de chaque groupe."
+            "highlightRepeats": "Colore les groupes de lettres répétées — les distances entre eux suggèrent la longueur de la clé.",
+            "showGaps": "Affiche les distances entre les séquences répétées, à côté de chaque groupe."
           },
           "keyLengthCards": "Longueurs de clé probables, classées par deux signaux : les distances entre séquences répétées et la ressemblance des tranches avec l'anglais. Cliquez sur une carte pour choisir.",
           "otherLength": "Saisissez une longueur de clé manuellement si aucune carte ne convient.",
@@ -172,7 +172,13 @@
           "cribInput": "Si vous devinez un mot présent dans le texte clair, l'assistant calcule les lettres de clé qu'il implique, à chaque position possible.",
           "apply": "Remplit les cases de clé vides avec les lettres suggérées par cette position. Les lettres déjà choisies différemment ne sont jamais écrasées."
         },
-        "alphabetUnsupported": "Les tables de fréquences de l'outil sont anglaises — revenez aux 26 lettres standard pour l'utiliser."
+        "alphabetUnsupported": "Les tables de fréquences de l'outil sont anglaises — revenez aux 26 lettres standard pour l'utiliser.",
+        "hints": {
+          "toggles": {
+            "highlightRepeats": "Surligner les séquences répétées",
+            "showGaps": "Afficher les écarts entre les répétitions"
+          }
+        }
       }
     },
     "playfair": {
@@ -278,11 +284,16 @@
           "otherLength": "Essayez n’importe quel nombre de colonnes de 4 à 12.",
           "autoSuggest": "Refaire la disposition avec le meilleur appariement trouvé par les statistiques.",
           "toggle": {
-            "autoSuggest": "Proposer la disposition la plus probable comme point de départ."
+            "autoSuggest": "Propose la disposition des colonnes statistiquement meilleure comme point de départ."
           },
           "assignLetter": "Choisir la lettre en clair de ce symbole, ou l’effacer.",
           "cribInput": "Un mot que vous attendez dans le message. Les correspondances respectent les lettres déjà attribuées.",
           "symbolChart": "Les symboles du texte chiffré une fois les colonnes rangées. Cliquez sur un symbole pour lui attribuer sa lettre en clair ; le compte indique sa fréquence."
+        },
+        "hints": {
+          "toggles": {
+            "autoSuggest": "Suggérer la disposition des colonnes"
+          }
         }
       }
     },
