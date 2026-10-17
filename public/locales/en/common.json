@@ -195,7 +195,13 @@
           "cribInput": "If you guess a word that appears in the plaintext, the cracker computes which key letters it implies, at every position it fits.",
           "apply": "Fill the empty key slots with the letters this position suggests. Letters already set differently are never overwritten."
         },
-        "alphabetUnsupported": "The frequency tables behind the cracker are English — switch the alphabet back to the standard 26 letters to use it."
+        "alphabetUnsupported": "The frequency tables behind the cracker are English — switch the alphabet back to the standard 26 letters to use it.",
+        "hints": {
+          "toggles": {
+            "highlightRepeats": "Highlight repeated sequences",
+            "showGaps": "Show gaps between repeats"
+          }
+        }
       }
     },
     "playfair": {
@@ -296,6 +302,11 @@
           "assignLetter": "Pick the plaintext letter for this symbol, or clear it.",
           "cribInput": "A word you expect in the message. Matches respect the letters you already assigned.",
           "symbolChart": "The symbols of the ciphertext once the columns are arranged. Click a symbol to assign its plaintext letter; the count shows how often it appears."
+        },
+        "hints": {
+          "toggles": {
+            "autoSuggest": "Suggest column arrangement"
+          }
         }
       }
     },
