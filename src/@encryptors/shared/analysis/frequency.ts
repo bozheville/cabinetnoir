@@ -65,8 +65,12 @@ export const scoreShift = (
   // Map: 0 chi-squared -> 100, ~250 (typical random text of any length,
   // since chi-squared scales with sample size) -> 0. Exponential decay
   // keeps the curve smooth for both short and long slices.
-  return Math.round(100 * Math.exp(-chiSquared / 250));
+  return chiToScore(chiSquared);
 };
+
+// The 0-100 "English-likeness" mapping used by every cracker score.
+export const chiToScore = (chiSquared: number): number =>
+  Math.round(100 * Math.exp(-chiSquared / 250));
 
 // The shift under which the display looks most English.
 export const findBestShift = (

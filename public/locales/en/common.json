@@ -18,7 +18,30 @@
       "short_title": "Affine",
       "directAction": "Encrypt",
       "reverseAction": "Decrypt",
-      "messageLabel": "Cryptogram"
+      "messageLabel": "Cryptogram",
+      "cracker": {
+        "tooltips": {
+          "multiplierCards": "All twelve valid multipliers, ranked by how English the best shift for each looks. Pick one, adjust the shift on the next step."
+        },
+        "wizard": {
+          "steps": {
+            "multiplier": "Multiplier",
+            "shift": "Shift",
+            "done": "Done"
+          },
+          "multiplier": {
+            "title": "Pick the multiplier",
+            "match": "Match: {{score}}%"
+          },
+          "shift": {
+            "title": "Pick the shift",
+            "keyLetter": "Shift (b)"
+          },
+          "done": {
+            "formula": "Recovered key: y = {{multiplier}}·x + {{shift}} (mod 26)"
+          }
+        }
+      }
     },
     "alberti": {
       "title": "Alberti cipher",
@@ -297,7 +320,56 @@
       }
     },
     "cracker": {
-      "inputLabel": "Ciphertext to break"
+      "inputLabel": "Ciphertext to break",
+      "hints": {
+        "title": "Hints",
+        "presets": {
+          "easy": "Easy",
+          "medium": "Medium",
+          "hard": "Hard",
+          "custom": "Custom"
+        },
+        "toggles": {
+          "confidenceBars": "Show confidence bars",
+          "englishReference": "Show the English reference",
+          "matchScore": "Show the match score",
+          "mostLikelyGlow": "Highlight the most likely candidate",
+          "livePreview": "Live plaintext preview",
+          "cribs": "Crib panel"
+        }
+      },
+      "tooltips": {
+        "hintPresets": "How much help the tool gives: Easy shows everything, Hard leaves the thinking to you.",
+        "chartArrows": "Rotate the chart with the buttons or the arrow keys; the rotation is the key letter.",
+        "matchScore": "How English-like the current rotation looks (chi-squared score).",
+        "back": "Back one step. Nothing breaks.",
+        "next": "Next step.",
+        "skip": "Leave the cracker without using anything.",
+        "useThisKey": "Fill the key fields with the recovered key.",
+        "toggle": {
+          "confidenceBars": "Show how strong each candidate is.",
+          "englishReference": "Show the English frequency reference next to the observed bars.",
+          "matchScore": "Show the numeric English-likeness score.",
+          "mostLikelyGlow": "Highlight the statistically best rotation.",
+          "livePreview": "Show the partially decrypted message as you work.",
+          "cribs": "Search for a probable word (crib) and apply its letters at once."
+        }
+      },
+      "wizard": {
+        "back": "Back",
+        "next": "Next",
+        "skip": "Skip analysis",
+        "useKey": "Use this key",
+        "inputChanged": "The ciphertext changed — the analysis restarted.",
+        "previewTitle": "Decrypted so far",
+        "warnings": {
+          "shortText": "Short texts crack unreliably — 100+ letters give dependable results.",
+          "shortSlice": "Fewer than 20 letters in this slice — treat the suggestion with suspicion."
+        },
+        "keyLetters": {
+          "keyLetter": "Key letter"
+        }
+      }
     }
   },
   "message": "Message",
