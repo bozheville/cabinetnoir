@@ -57,7 +57,7 @@ const CipherTabs: React.FC<CipherTabsProps> = ({ algorithm, activeTab }) => {
   ];
 
   return (
-    <TabBar aria-label={t('learning.tabsLabel')}>
+    <TabBar aria-label={t('learning.tabs.tabsLabel')}>
       {tabs.map(({ name, href }) => (
         <Tab key={name} $active={activeTab === name}>
           <Link href={href}>{t(`learning.tabs.${name === 'tool' ? 'tool' : name}`)}</Link>

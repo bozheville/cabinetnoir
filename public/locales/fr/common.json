@@ -26,8 +26,7 @@
             "done": "Terminé"
           },
           "multiplier": {
-            "title": "Choisissez le multiplicateur",
-            "match": "Correspondance : {{score}}%"
+            "title": "Choisissez le multiplicateur"
           },
           "shift": {
             "title": "Choisissez le décalage",
@@ -111,41 +110,11 @@
       "cracker": {
         "keyLabel": "Clé",
         "alphabetLabel": "Alphabet",
-        "unknownKey": "Clé inconnue",
-        "hints": {
-          "title": "Aides",
-          "presets": {
-            "easy": "Facile",
-            "medium": "Moyen",
-            "hard": "Difficile",
-            "custom": "Personnalisé"
-          },
-          "toggles": {
-            "highlightRepeats": "Surligner les séquences répétées",
-            "showGaps": "Afficher les écarts entre répétitions",
-            "confidenceBars": "Barres de confiance de la longueur de clé",
-            "englishReference": "Référence anglaise sur le graphique",
-            "matchScore": "Score de correspondance %",
-            "mostLikelyGlow": "Surbrillance du meilleur choix",
-            "livePreview": "Aperçu de déchiffrement en direct",
-            "cribs": "Mots probables"
-          }
-        },
         "wizard": {
           "steps": {
             "keyLength": "Longueur de la clé",
             "keyLetters": "Lettres de la clé",
             "done": "Terminé"
-          },
-          "back": "Retour",
-          "next": "Suivant",
-          "skip": "Passer, saisir la clé manuellement",
-          "useKey": "Utiliser cette clé",
-          "inputChanged": "Le texte ou l'alphabet a changé, l'analyse a repris du début.",
-          "previewTitle": "Aperçu de déchiffrement en direct",
-          "warnings": {
-            "shortText": "Le texte est court — les aides peuvent être erronées. Les mots probables peuvent aider.",
-            "shortSlice": "Cette tranche contient peu de lettres, ses aides peuvent être erronées."
           },
           "repeats": {
             "title": "Séquences répétées",
@@ -161,7 +130,6 @@
           "keyLetters": {
             "sliceLabel": "Tranche {{index}} sur {{total}}",
             "lockedPrefix": "choisie :",
-            "keyLetter": "Lettre de clé",
             "allLocked": "Toutes les lettres sont choisies. Passez à l'étape 3.",
             "manualTag": "manuelle",
             "yourKey": "Votre clé",
@@ -192,29 +160,16 @@
           "key": "La clé secrète. Chaque lettre du message est décalée selon la lettre de clé correspondante ; la clé se répète sur tout le message.",
           "alphabet": "L'ensemble des lettres avec lesquelles le chiffre travaille. Collez les lettres de votre choix — l'outil les met en majuscules et supprime les doublons. Par défaut : l'alphabet anglais.",
           "unknownKey": "Cochez cette case si vous ne connaissez pas la clé. Un assistant de déchiffrement s'ouvre ci-dessous : il vous aide à trouver la longueur de la clé puis chaque lettre, étape par étape.",
-          "hintPresets": "L'aide que l'assistant vous donne. Facile montre toutes les aides ; Difficile en cache la plupart pour vous entraîner.",
           "toggle": {
             "highlightRepeats": "Colore les groupes de lettres répétées dans le texte — les distances entre eux donnent un indice sur la longueur de la clé.",
-            "showGaps": "Affiche les distances entre séquences répétées, à côté de chaque groupe.",
-            "confidenceBars": "Affiche une barre de confiance et une raison en clair sur chaque carte de longueur de clé.",
-            "englishReference": "Dessine les fréquences des lettres anglaises par-dessus les barres de la tranche, pour les aligner à l'œil.",
-            "matchScore": "Indique à quel point l'alignement actuel correspond aux fréquences anglaises, en pourcentage.",
-            "mostLikelyGlow": "Met discrètement en évidence l'alignement qui correspond le mieux à l'anglais.",
-            "livePreview": "Déchiffre le texte en direct pendant que vous choisissez les lettres de clé : les lettres des tranches choisies apparaissent, les autres restent en underscores.",
-            "cribs": "Ouvre un panneau où vous pouvez deviner un mot du texte clair et en déduire des lettres de clé."
+            "showGaps": "Affiche les distances entre séquences répétées, à côté de chaque groupe."
           },
           "keyLengthCards": "Longueurs de clé probables, classées par deux signaux : les distances entre séquences répétées et la ressemblance des tranches avec l'anglais. Cliquez sur une carte pour choisir.",
           "otherLength": "Saisissez une longueur de clé manuellement si aucune carte ne convient.",
           "sliceTabs": "Avec une longueur de clé N, le texte se découpe en N tranches ; chaque lettre d'une tranche est décalée par la même lettre de clé. Cliquez sur un onglet pour travailler sur cette tranche.",
-          "chartArrows": "Faites tourner les barres de la tranche face à la référence anglaise. Au meilleur alignement, la lettre affichée est la lettre de clé — elle est appliquée immédiatement, surveillez l'aperçu.",
-          "matchScore": "La correspondance entre l'alignement actuel et les fréquences anglaises, en pourcentage. Plus c'est haut, mieux c'est.",
           "keyStrip": "Votre clé au fur et à mesure. Cliquez sur une case pour aller à sa tranche, tapez une lettre pour remplacer le choix du graphique, effacez pour débloquer.",
           "cribInput": "Si vous devinez un mot présent dans le texte clair, l'assistant calcule les lettres de clé qu'il implique, à chaque position possible.",
-          "apply": "Remplit les cases de clé vides avec les lettres suggérées par cette position. Les lettres déjà choisies différemment ne sont jamais écrasées.",
-          "back": "Revient à l'étape précédente. Vos choix sont conservés.",
-          "next": "Passe à l'étape suivante une fois cette étape terminée.",
-          "skip": "Ferme l'assistant et saisit la clé manuellement.",
-          "useThisKey": "Remplit le champ clé avec la clé assemblée et déchiffre le message avec."
+          "apply": "Remplit les cases de clé vides avec les lettres suggérées par cette position. Les lettres déjà choisies différemment ne sont jamais écrasées."
         },
         "alphabetUnsupported": "Les tables de fréquences de l'outil sont anglaises — revenez aux 26 lettres standard pour l'utiliser."
       }
@@ -286,32 +241,12 @@
       "transpositionKeyLabel": "Clé de transposition",
       "unknownKeys": "Clés inconnues",
       "cracker": {
-        "hints": {
-          "title": "Aides",
-          "presets": {
-            "easy": "Facile",
-            "medium": "Moyen",
-            "hard": "Difficile",
-            "custom": "Personnalisé"
-          },
-          "toggles": {
-            "confidenceBars": "Barres de force des paires",
-            "autoSuggest": "Suggérer la disposition des colonnes",
-            "englishReference": "Suggestions de lettres",
-            "livePreview": "Aperçu de déchiffrement en direct",
-            "cribs": "Mots probables"
-          }
-        },
         "wizard": {
           "steps": {
             "keyLength": "Longueur de la clé",
             "columns": "Colonnes",
             "square": "Carré"
           },
-          "inputChanged": "Le texte chiffré a changé — l’analyse a repris du début.",
-          "back": "Retour",
-          "next": "Suivant",
-          "skip": "Passer, saisir les clés manuellement",
           "useKey": "Utiliser ces clés",
           "keyLength": {
             "otherLabel": "Autre longueur :",
@@ -335,27 +270,17 @@
             "yourKeys": "Vos clés reconstituées",
             "squareKey": "Clé du carré (lue ligne par ligne) :",
             "transpositionKey": "Clé de transposition :"
-          },
-          "previewTitle": "Déchiffré jusqu’ici"
+          }
         },
         "tooltips": {
-          "hintPresets": "L’ampleur de l’aide : Facile montre tout, Difficile vous laisse réfléchir.",
           "keyLengthCards": "Nombres de colonnes candidats, classés par la force du lien entre colonnes. Un indice, pas un verdict — essayez-en un autre si l’aperçu reste illisible.",
           "otherLength": "Essayez n’importe quel nombre de colonnes de 4 à 12.",
           "autoSuggest": "Refaire la disposition avec le meilleur appariement trouvé par les statistiques.",
           "toggle": {
-            "confidenceBars": "Montrer la force du lien de chaque paire de colonnes.",
-            "autoSuggest": "Proposer la disposition la plus probable comme point de départ.",
-            "englishReference": "Suggérer la prochaine lettre anglaise la plus probable sous chaque symbole.",
-            "livePreview": "Afficher le message partiellement déchiffré au fil des attributions.",
-            "cribs": "Chercher un mot probable et appliquer ses lettres d’un coup."
+            "autoSuggest": "Proposer la disposition la plus probable comme point de départ."
           },
           "assignLetter": "Choisir la lettre en clair de ce symbole, ou l’effacer.",
           "cribInput": "Un mot que vous attendez dans le message. Les correspondances respectent les lettres déjà attribuées.",
-          "back": "Revenir d’un pas. Rien ne casse.",
-          "next": "Étape suivante.",
-          "skip": "Fermer le décrypteur sans rien utiliser.",
-          "useThisKey": "Remplir les deux champs de clés avec les clés reconstituées.",
           "symbolChart": "Les symboles du texte chiffré une fois les colonnes rangées. Cliquez sur un symbole pour lui attribuer sa lettre en clair ; le compte indique sa fréquence."
         }
       }

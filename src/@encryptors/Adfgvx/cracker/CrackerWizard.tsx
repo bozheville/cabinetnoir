@@ -43,10 +43,9 @@ const CrackerWizard: React.FC<{
       onUse={() => onUseKey(cracker.assembledSquare, cracker.assembledTranspositionKey)}
       useDisabled={!enoughMapped}
       onSkip={onSkip}
-      i18nScope="processing.adfgvx.cracker"
       message={hasInputChanged && (
         <Text size={300} display="block" marginTop="8px">
-          {t('processing.adfgvx.cracker.wizard.inputChanged')}
+          {t('processing.cracker.wizard.inputChanged')}
         </Text>
       )}
     >

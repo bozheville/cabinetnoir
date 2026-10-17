@@ -64,7 +64,7 @@ const DecryptPreview: React.FC<{ cracker: ReturnType<typeof useCracker> }> = ({ 
 
   return (
     <Pane width="100%">
-      <Heading size={300}>{t('processing.vigenere.cracker.wizard.previewTitle')}</Heading>
+      <Heading size={300}>{t('processing.cracker.wizard.previewTitle')}</Heading>
       <PreviewBox>
         {rows.map((row, rowIndex) => (
           <div key={rowIndex}>
