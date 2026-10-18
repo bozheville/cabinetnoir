@@ -1053,5 +1053,115 @@
         "saknussemm": "Clins d'œil de la pop culture — le chiffre d'Arne Saknussemm"
       }
     }
+  },
+  "identify": {
+    "title": "Identification de chiffre",
+    "headerTitle": "Identifier",
+    "subtitle": "Collez un texte chiffré et l'outil mesure ce qu'il peut : fréquences des lettres, périodicité, structure. Il classe ensuite les familles de chiffres et les chiffres précis les plus probables, en montrant le raisonnement derrière chaque verdict.",
+    "inputPlaceholder": "Collez le texte chiffré ici…",
+    "inputLabel": "Texte chiffré à identifier",
+    "upload": "Téléverser un fichier .txt",
+    "uploadTooLarge": "Ce fichier est trop volumineux (100 Ko maximum).",
+    "uploadFailed": "Impossible de lire ce fichier.",
+    "tooShort": "Trop peu de texte à analyser — au moins 20 lettres sont nécessaires.",
+    "unreliable": "Seulement {{letters}} lettres à analyser — considérez le classement ci-dessous comme un indice, pas un verdict.",
+    "resultsHeading": "Candidats classés",
+    "tryBreaking": "Essayer de le casser",
+    "roadmapBadge": "Pas encore dans l'application",
+    "confidence": {
+      "veryLikely": "Très probable",
+      "possible": "Possible",
+      "unlikely": "Peu probable",
+      "ruledOut": "Écarté"
+    },
+    "families": {
+      "substitution": "Substitution",
+      "polyalphabetic": "Polyalphabétique",
+      "transposition": "Transposition",
+      "block": "Blocs (digrammes)"
+    },
+    "ciphers": {
+      "caesar": "Décalage de César",
+      "rot13": "ROT13",
+      "atbash": "Atbash",
+      "affine": "Affine",
+      "keyword": "Substitution par mot-clé",
+      "homophonic": "Substitution homophonique",
+      "vigenere": "Vigenère",
+      "alberti": "Disque d'Alberti",
+      "enigma": "Enigma",
+      "railFence": "Clôture à rails",
+      "columnar": "Transposition en colonnes",
+      "saknussemm": "Le parchemin d'Arne Saknussemm",
+      "playfair": "Playfair",
+      "adfgvx": "ADFGVX",
+      "nihilist": "Nihiliste"
+    },
+    "reasons": {
+      "transpositionShape": "Les fréquences des lettres correspondent exactement à l'anglais (indice de coïncidence {{ic}}) — les lettres ont été déplacées, pas remplacées.",
+      "transpositionNotEnglish": "Les lettres telles quelles sont loin de l'anglais : elles ont donc été remplacées plutôt que déplacées — une transposition est improbable.",
+      "substitutionShape": "Le profil des fréquences a la forme de l'anglais, mais les lettres ne sont pas à leur place — une substitution fixe.",
+      "substitutionNotShuffled": "Le texte se lit déjà comme de l'anglais dans l'ordre original des lettres — aucune substitution n'a été appliquée.",
+      "periodicPolyalphabetic": "Lire une lettre sur {{period}} donne des fréquences proches de l'anglais que le texte entier n'a pas — la signature d'un chiffre polyalphabétique périodique.",
+      "aperiodicPolyalphabetic": "L'indice de coïncidence ({{ic}}) est proche du hasard et il n'y a aucune structure périodique — un chiffre à clef courante ou une machine.",
+      "polyalphabeticNotPeriodic": "L'indice de coïncidence est proche de l'anglais et les tranches à chaque période se ressemblent — pas de structure polyalphabétique périodique.",
+      "blockStructure": "Texte de longueur paire avec un jeu de lettres réduit — typique des chiffres par blocs de deux lettres.",
+      "blockOddLength": "Une longueur impaire écarte tous les chiffres par blocs de deux lettres.",
+      "caesarBestShift": "Décaler chaque lettre de {{shift}} vers l'arrière rend le texte lisible en anglais.",
+      "rot13Shift": "Le meilleur décalage est exactement 13 — la signature de ROT13.",
+      "atbashMirror": "Inverser l'alphabet (A↔Z, B↔Y, …) rend le texte lisible en anglais.",
+      "affineKey": "Une clef affine de {{key}} (multiplier, puis décaler) rend le texte lisible en anglais.",
+      "keywordNoSimpleKey": "Une substitution convient, mais ni un décalage, ni un miroir, ni une clef affine — l'alphabet a probablement été reconstruit à partir d'un mot-clé.",
+      "vigenereSlices": "Chaque tranche d'une lettre sur {{period}} se déchiffre par un simple décalage — la signature de Vigenère.",
+      "albertiMixedDisc": "Les tranches résistent aux décalages simples — un alphabet mélangé, comme sur le disque d'Alberti.",
+      "enigmaAperiodic": "Fréquences des lettres proches du hasard sans structure périodique — caractéristique des machines à rotors comme Enigma. La confiance reste faible : un simple bruit y ressemble.",
+      "railFenceUndo": "Démêler un zigzag de {{rails}} rails restaure des paires de lettres anglaises.",
+      "columnarWidth": "Lire le texte en colonnes de {{width}} restaure des paires de lettres anglaises.",
+      "playfairDigraphs": "Texte de longueur paire, sans paire doublée, sans lettre J et avec au plus 25 lettres — les règles de sortie de Playfair.",
+      "playfairHasJ": "La lettre J apparaît — Playfair la remplace, ce ne peut donc pas être Playfair.",
+      "adfgvxSet": "Le texte n'utilise que les lettres {{letters}} — l'alphabet de fractionnement ADFGVX.",
+      "adfgvxNotSet": "Des lettres hors de ADFGVX apparaissent — pas une transmission fractionnée ADFGVX.",
+      "nihilistDigits": "{{pairs}} paires de chiffres dans la plage classique des sommes nihilistes (22–110).",
+      "homophonicFlat": "{{symbols}} symboles distincts — plus que ce qu'un alphabet de substitution lettre par lettre peut contenir.",
+      "knownText.saknussemm": "C'est le parchemin d'Arne Saknussemm du « Voyage au centre de la Terre » de Jules Verne — {{letters}} lettres correspondantes."
+    },
+    "metrics": {
+      "letters": {
+        "label": "Lettres",
+        "hint": "Lettres extraites du texte — chiffres, ponctuation et espaces sont retirés avant l'analyse."
+      },
+      "ic": {
+        "label": "Indice de coïncidence",
+        "hint": "La probabilité que deux lettres au hasard soient identiques. L'anglais se situe vers 0,067, le hasard vers 0,038 ; des valeurs nettement plus faibles pointent vers les chiffres polyalphabétiques."
+      },
+      "directChi": {
+        "label": "Ajustement direct",
+        "hint": "À quel point les fréquences sont anglaises telles quelles, 0–100. Un score élevé avec un faible ajustement trié signifie que les lettres ont été déplacées, pas remplacées."
+      },
+      "sortedChi": {
+        "label": "Ajustement trié",
+        "hint": "À quel point la forme des fréquences est anglaise une fois les deux côtés triés, 0–100. Reste élevé pour toute substitution monoalphabétique."
+      },
+      "caesar": {
+        "label": "Meilleur décalage",
+        "hint": "Le décalage de César qui rend le texte le plus anglais, avec son score. Un grand écart avec le second signifie un chiffre par décalage simple."
+      },
+      "period": {
+        "label": "Meilleure période",
+        "hint": "La longueur de clef répétitive la plus probable, avec l'indice de coïncidence des tranches à cette période."
+      },
+      "distinct": {
+        "label": "Lettres distinctes",
+        "hint": "Combien de lettres différentes apparaissent. Playfair n'émet jamais de J et utilise au plus 25 lettres."
+      },
+      "digitPairs": {
+        "label": "Paires de chiffres",
+        "hint": "Groupes de deux chiffres dans le texte (total et distincts) — la forme de sortie des chiffres fondés sur le carré de Polybe, comme le nihiliste."
+      },
+      "symbols": {
+        "label": "Symboles distincts",
+        "hint": "Tous les caractères distincts du texte. La substitution homophonique utilise plus de symboles que l'alphabet n'a de lettres."
+      }
+    }
   }
 }
