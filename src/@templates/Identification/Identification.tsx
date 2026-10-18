@@ -38,6 +38,13 @@ const UploadLabel = styled.label`
   }
 `;
 
+const Banner = styled(Minion)`
+  padding: 10px 14px;
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.colorScheme.orange[500]};
+  background: ${({ theme }) => theme.colorScheme.orange[100]};
+`;
+
 // .txt upload: 100 KB is far beyond any hand cipher anyone will paste;
 // larger files are refused with a message instead of being analysed.
 const MAX_UPLOAD_BYTES = 100 * 1024;
@@ -100,6 +107,12 @@ const Identification: React.FC = () => {
             </UploadLabel>
             {uploadError && <Minion>{uploadError}</Minion>}
           </UploadRow>
+          {result && result.tier === 'tooShort' && (
+            <Banner>{t('identify.tooShort')}</Banner>
+          )}
+          {result && result.tier === 'unreliable' && (
+            <Banner>{t('identify.unreliable')}</Banner>
+          )}
           {result && result.tier !== 'tooShort' && (
             <div>
               {result.families.map((family) => (
