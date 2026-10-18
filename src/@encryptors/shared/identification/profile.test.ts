@@ -141,3 +141,49 @@ describe('profileText: periodicity', () => {
     expect(plainProfile.periodIcGain).toBeLessThan(0.008);
   });
 });
+
+describe('profileText: structural flags', () => {
+  const playfairText = 'KLMNOPQRSTUVWXYZABCDEFGHIKLMNOPQRSTUVWXYZABCDEFGHIKLMNOPQRSTUVWXYZ';
+  const adfgvxText = 'FGXVADVAXDGVFXADXFGVADDXGVFAXVDGVFADXGVFAXVDXFGVADVAXDGVFXADXF';
+
+  it('flags Playfair-like digraph structure', () => {
+    const profile = profileText(playfairText);
+    expect(profile.evenLength).toBe(true);
+    expect(profile.hasDoubledDigraph).toBe(false);
+    expect(profile.hasJ).toBe(false);
+    expect(profile.distinctLetters.length).toBeLessThanOrEqual(25);
+  });
+
+  it('flags a doubled digraph and the letter J when present', () => {
+    const profile = profileText('ABABCDCDLLMJMJ');
+    expect(profile.hasDoubledDigraph).toBe(true);
+    expect(profile.hasJ).toBe(true);
+    expect(profile.evenLength).toBe(true);
+  });
+
+  it('detects the ADFGVX letter set', () => {
+    expect(profileText(adfgvxText).adfgvxSet).toBe(true);
+    expect(profileText(longEnglish).adfgvxSet).toBe(false);
+  });
+
+  it('detects Polybius-style digit pairs', () => {
+    const profile = profileText('13 25 44 31 42 53 11 15');
+    expect(profile.digitPairs).toBe(8);
+    expect(profile.polybiusLike).toBe(true);
+    expect(profile.nihilistLike).toBe(false); // 11 and 15 are below 22
+  });
+
+  it('keeps polybius and nihilist ranges apart', () => {
+    const profile = profileText('23 45 61 72 84 95 33 41');
+    expect(profile.polybiusLike).toBe(false); // 61 > 55
+    expect(profile.nihilistLike).toBe(true); // all within 22-110
+  });
+
+  it('scores a flat distribution high on uniformity', () => {
+    const flat = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.repeat(8);
+    expect(profileText(flat).uniformityScore).toBeGreaterThan(95);
+    // English is far from uniform, but not extremely so — the
+    // homophonic rule therefore also demands many distinct symbols.
+    expect(profileText(longEnglish).uniformityScore).toBeLessThan(85);
+  });
+});
