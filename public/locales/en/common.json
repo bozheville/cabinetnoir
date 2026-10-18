@@ -35,7 +35,123 @@
         "nihilist": "The Nihilist cipher — substitution meets transposition",
         "saknussemm": "Pop-culture easter eggs — the Arne Saknussemm cipher"
       }
+    },
+    "identify": {
+      "title": "Identify a cipher",
+      "subtitle": "Pasted a ciphertext you cannot name? The identification tool measures frequencies, periodicity and structure, then ranks the likely ciphers with its reasoning."
     }
+  },
+  "identify": {
+    "title": "Cipher identification",
+    "headerTitle": "Identify",
+    "subtitle": "Paste a ciphertext and the tool measures what it can: letter frequencies, periodicity, structure. It then ranks the likely cipher families and concrete ciphers, and shows the reasoning behind every verdict.",
+    "inputPlaceholder": "Paste the ciphertext here…",
+    "inputLabel": "Ciphertext to identify",
+    "upload": "Upload a .txt file",
+    "uploadTooLarge": "That file is too large (100 KB max).",
+    "uploadFailed": "Could not read that file.",
+    "tooShort": "Too little text to analyse — at least 20 letters are needed.",
+    "unreliable": "Only {{letters}} letters to work with — treat the ranking below as a hint, not a verdict.",
+    "resultsHeading": "Ranked candidates",
+    "tryBreaking": "Try breaking it",
+    "roadmapBadge": "Not in the app yet",
+    "confidence": {
+      "veryLikely": "Very likely",
+      "possible": "Possible",
+      "unlikely": "Unlikely",
+      "ruledOut": "Ruled out"
+    },
+    "families": {
+      "substitution": "Substitution",
+      "polyalphabetic": "Polyalphabetic",
+      "transposition": "Transposition",
+      "block": "Block (digraph)"
+    },
+    "ciphers": {
+      "caesar": "Caesar shift",
+      "rot13": "ROT13",
+      "atbash": "Atbash",
+      "affine": "Affine",
+      "keyword": "Keyword substitution",
+      "homophonic": "Homophonic substitution",
+      "vigenere": "Vigenère",
+      "alberti": "Alberti disc",
+      "enigma": "Enigma",
+      "railFence": "Rail fence",
+      "columnar": "Columnar transposition",
+      "saknussemm": "Arne Saknussemm's parchment",
+      "playfair": "Playfair",
+      "adfgvx": "ADFGVX",
+      "nihilist": "Nihilist"
+    },
+    "reasons": {
+      "transpositionShape": "The letter frequencies match English exactly (index of coincidence {{ic}}) — the letters were moved, not replaced.",
+      "transpositionNotEnglish": "The letters as they stand are far from English, so they were replaced rather than moved — a transposition is unlikely.",
+      "substitutionShape": "The frequency profile has the English shape, but the letters stand in the wrong places — a fixed substitution.",
+      "substitutionNotShuffled": "The text already reads as English in its original letter order — no substitution was applied.",
+      "periodicPolyalphabetic": "Reading every {{period}}-th letter gives English-like frequencies the text as a whole lacks — the signature of a periodic polyalphabetic cipher.",
+      "aperiodicPolyalphabetic": "The index of coincidence ({{ic}}) is close to random and there is no periodic structure — a running-key or machine cipher.",
+      "polyalphabeticNotPeriodic": "The index of coincidence is English-like and slices at every period look the same — no periodic polyalphabetic structure.",
+      "blockStructure": "Even-length text with a reduced letter set — typical of digraph (two-letter) block ciphers.",
+      "blockOddLength": "Odd text length rules out every digraph block cipher.",
+      "caesarBestShift": "Shifting every letter back by {{shift}} makes the text read as English.",
+      "rot13Shift": "The best shift is exactly 13 — the signature of ROT13.",
+      "atbashMirror": "Reversing the alphabet (A↔Z, B↔Y, …) makes the text read as English.",
+      "affineKey": "An affine key of {{key}} (multiply, then shift) makes the text read as English.",
+      "keywordNoSimpleKey": "A substitution fits, but no shift, mirror or affine key does — the alphabet was likely rebuilt from a keyword.",
+      "vigenereSlices": "Each slice of every {{period}}-th letter decrypts with a plain shift — the Vigenère signature.",
+      "albertiMixedDisc": "The slices resist plain shifts — a mixed-alphabet disc, as on Alberti's cipher wheel.",
+      "enigmaAperiodic": "Near-random letter frequencies with no periodic structure — characteristic of rotor machines like Enigma. Confidence stays low: ordinary noise looks similar.",
+      "railFenceUndo": "Unravelling a {{rails}}-rail zigzag restores English letter pairs.",
+      "columnarWidth": "Reading the text in columns of {{width}} restores English letter pairs.",
+      "playfairDigraphs": "Even-length text with no doubled pair, no letter J and at most 25 letters — the rules of Playfair output.",
+      "playfairHasJ": "The letter J appears — Playfair replaces it, so this cannot be Playfair.",
+      "adfgvxSet": "The text uses only the letters {{letters}} — the ADFGVX fractionation alphabet.",
+      "adfgvxNotSet": "Letters outside ADFGVX appear — not a fractionated ADFGVX transmission.",
+      "nihilistDigits": "{{pairs}} digit pairs in the classic Nihilist sum range (22–110).",
+      "homophonicFlat": "{{symbols}} distinct symbols — more than any single-letter substitution alphabet holds.",
+      "knownText.saknussemm": "This is the Arne Saknussemm parchment from Jules Verne's “Journey to the Centre of the Earth” — {{letters}} matching letters."
+    },
+    "metrics": {
+      "letters": {
+        "label": "Letters",
+        "hint": "Letters extracted from the input — digits, punctuation and spaces are stripped before analysis."
+      },
+      "ic": {
+        "label": "Index of coincidence",
+        "hint": "The chance that two random letters of the text are identical. English sits near 0.067, random letters near 0.038; noticeably lower values point to polyalphabetic ciphers."
+      },
+      "directChi": {
+        "label": "Direct fit",
+        "hint": "How English the letter frequencies are as the text stands, 0–100. High with a low sorted fit means the letters were moved, not replaced."
+      },
+      "sortedChi": {
+        "label": "Sorted fit",
+        "hint": "How English the frequency shape is once both sides are sorted, 0–100. Stays high under any monoalphabetic substitution."
+      },
+      "caesar": {
+        "label": "Best shift",
+        "hint": "The Caesar shift that makes the text most English, with its score. A wide gap to the runner-up means a plain shift cipher."
+      },
+      "period": {
+        "label": "Best period",
+        "hint": "The most likely repeating key length, with the index of coincidence of the slices at that period."
+      },
+      "distinct": {
+        "label": "Distinct letters",
+        "hint": "How many different letters appear. Playfair never emits J and uses at most 25 letters."
+      },
+      "digitPairs": {
+        "label": "Digit pairs",
+        "hint": "Two-digit groups in the input (total and distinct) — the output shape of Polybius-based ciphers such as Nihilist."
+      },
+      "symbols": {
+        "label": "Distinct symbols",
+        "hint": "All distinct characters in the input. Homophonic substitution uses more symbols than the alphabet has letters."
+      }
+    },
+    "headerEntry": "Not sure which cipher? Identify it",
+    "backEntry": "Not the right cipher? Identify it"
   },
   "alphabet": {
     "latin": "Latin",
