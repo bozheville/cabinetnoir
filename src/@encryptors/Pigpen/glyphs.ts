@@ -88,18 +88,20 @@ const TRI_DOTS = {
   bottom: { cx: 50, cy: 84 },
 };
 
+// Templar group 3: lozenges — skinny diamonds whose inner tip sits at
+// the centre, so four of them tile a clean compass-rose cross.
 const LOZ_PATHS = {
-  top: 'M 50 16 L 64 40 L 50 64 L 36 40 Z',
-  left: 'M 14 57 L 38 43 L 50 57 L 38 71 Z',
-  right: 'M 86 57 L 62 43 L 50 57 L 62 71 Z',
-  bottom: 'M 50 98 L 64 74 L 50 50 L 36 74 Z',
+  top: 'M 50 16 L 64 36.5 L 50 57 L 36 36.5 Z',
+  left: 'M 14 57 L 32 43 L 50 57 L 32 71 Z',
+  right: 'M 86 57 L 68 43 L 50 57 L 68 71 Z',
+  bottom: 'M 50 98 L 64 77.5 L 50 57 L 36 77.5 Z',
 };
 
 const LOZ_DOTS = {
-  top: { cx: 50, cy: 40 },
+  top: { cx: 50, cy: 36.5 },
   left: { cx: 32, cy: 57 },
   right: { cx: 68, cy: 57 },
-  bottom: { cx: 50, cy: 74 },
+  bottom: { cx: 50, cy: 77.5 },
 };
 
 // --- The table -----------------------------------------------------------
@@ -166,12 +168,13 @@ GRID_WALL_FALLBACKS.forEach((fallback, index) => {
   };
 });
 
-// Templar group 2: closed triangular arms.
+// Templar group 2: closed triangular arms, apexes exactly at the
+// centre so the four beams of the cross meet instead of crossing.
 const TRIANGLES = {
-  top: 'M 20 20 L 80 20 L 50 56 Z',
-  left: 'M 16 26 L 16 90 L 52 58 Z',
-  right: 'M 84 26 L 84 90 L 48 58 Z',
-  bottom: 'M 20 94 L 80 94 L 50 58 Z',
+  top: 'M 24 23 L 76 23 L 50 57 Z',
+  left: 'M 16 31 L 16 83 L 50 57 Z',
+  right: 'M 84 31 L 84 83 L 50 57 Z',
+  bottom: 'M 24 91 L 76 91 L 50 57 Z',
 };
 (['top', 'left', 'right', 'bottom'] as const).forEach((arm) => {
   geometry[`stri-${arm}`] = {
