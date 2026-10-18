@@ -27,6 +27,7 @@ const CIPHER_LADDER = [
   'morse',
   'rot13',
   'atbash',
+  'pigpen',
   'caesar',
   'affine',
   'playfair',
