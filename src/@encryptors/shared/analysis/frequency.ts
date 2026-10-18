@@ -39,7 +39,7 @@ export const englishFrequencyAt = (index: number, alphabet: string): number => {
 // `alphabet[(index + shift) % length]`, so position `index` shows the
 // letter that decrypts to `alphabet[index]` under the key letter `shift`
 // — the reference is the English frequency of `alphabet[index]`.
-export const scoreShift = (
+export const chiSquaredAt = (
   counts: number[],
   shift: number,
   alphabet: string = STANDARD_ALPHABET,
@@ -61,16 +61,30 @@ export const scoreShift = (
     const diff = shifted - expected;
     chiSquared += (diff * diff) / expected;
   }
-
-  // Map: 0 chi-squared -> 100, ~250 (typical random text of any length,
-  // since chi-squared scales with sample size) -> 0. Exponential decay
-  // keeps the curve smooth for both short and long slices.
-  return chiToScore(chiSquared);
+  return chiSquared;
 };
+
+export const scoreShift = (
+  counts: number[],
+  shift: number,
+  alphabet: string = STANDARD_ALPHABET,
+  mapIndex: (displayIndex: number, shift: number) => number =
+    (index, offset) => (index + offset) % ALPHABET_LENGTH,
+): number => chiToScore(chiSquaredAt(counts, shift, alphabet, mapIndex));
 
 // The 0-100 "English-likeness" mapping used by every cracker score.
 export const chiToScore = (chiSquared: number): number =>
   Math.round(100 * Math.exp(-chiSquared / 250));
+
+// Length-independent variant of the mapping for whole-text scoring.
+// Raw chi-squared grows linearly with the sample size, so the cracker's
+// whole-text mapping drives every score to 0 on long inputs. Dividing by
+// the letter count and rescaling (a correct English fit measures
+// ~0.3-0.6 chi-squared per letter, wrong fits 1+) keeps the 0-100 score
+// meaningful at any length. Used by the identification engine, not by
+// the cracker slices.
+export const chiToScorePerLetter = (chiSquared: number, total: number): number =>
+  total > 0 ? chiToScore((chiSquared / total) * 90) : 0;
 
 // The shift under which the display looks most English.
 export const findBestShift = (

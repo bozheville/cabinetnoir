@@ -16,8 +16,8 @@ export const IC_ENGLISH_LIKE = 0.55; // of the random->English range
 
 // Chi-squared → 0-100 score mapping shares the cracker's decay; the
 // scores below decide whether a fit "explains" the text.
-export const CHI_FIT_GOOD = 55; // direct/sorted fit score at least this
-export const CHI_FIT_BAD = 35; // fit score at most this = "bad fit"
+export const CHI_FIT_GOOD = 65; // direct/sorted fit score at least this
+export const CHI_FIT_BAD = 45; // fit score at most this = "bad fit"
 
 // Caesar: best shift must beat the runner-up by this margin (0-100).
 export const CAESAR_GAP = 10;
