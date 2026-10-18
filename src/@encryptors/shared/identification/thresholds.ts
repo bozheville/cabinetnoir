@@ -38,6 +38,7 @@ export const MIN_DIGIT_PAIRS = 4; // below: not enough evidence for a flag
 // Homophonic hint: distinct symbols well above the alphabet size, plus
 // a nearly flat letter distribution.
 export const HOMOPHONIC_SYMBOLS = 32;
+export const HOMOPHONIC_DISTINCT = 22;
 export const HOMOPHONIC_UNIFORMITY = 90;
 
 // Block-of-5 grouping: at least this many groups of exactly 5 before

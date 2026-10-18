@@ -13,6 +13,7 @@ import {
   CHI_FIT_GOOD,
   HOMOPHONIC_SYMBOLS,
   HOMOPHONIC_UNIFORMITY,
+  HOMOPHONIC_DISTINCT,
   IC_RANDOM,
   MAX_DISTINCT_PLAYFAIR,
 } from './thresholds';
@@ -137,11 +138,14 @@ export const FAMILY_RULES: Rule[] = [
       ? { letters: ADFGVX_LETTERS.join('') }
       : null)),
 
-  // Homophonic: many distinct symbols and a nearly flat distribution.
+  // Homophonic: many distinct symbols and a nearly flat distribution —
+  // either many non-alphanumeric symbols, or a letter-preserving variant
+  // (flat profile across 22+ letters).
   rule('homophonicFlat', cipher('homophonic'), 55,
-    (profile) => (profile.distinctSymbols >= HOMOPHONIC_SYMBOLS
+    (profile) => ((profile.distinctSymbols >= HOMOPHONIC_SYMBOLS
+      || profile.distinctLetters.length >= HOMOPHONIC_DISTINCT)
       && profile.uniformityScore >= HOMOPHONIC_UNIFORMITY
-      ? { symbols: profile.distinctSymbols }
+      ? { symbols: Math.max(profile.distinctSymbols, profile.distinctLetters.length) }
       : null)),
 ];
 
