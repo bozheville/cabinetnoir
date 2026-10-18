@@ -7,7 +7,8 @@ import {
   chiSquaredAt,
   chiToScorePerLetter,
 } from '@encryptors/shared/analysis/frequency';
-import { indexOfCoincidence } from '@encryptors/shared/analysis/keyLength';
+import { indexOfCoincidence, rankKeyLengths } from '@encryptors/shared/analysis/keyLength';
+import { Repeat, findRepeats } from '@encryptors/shared/analysis/kasiski';
 
 import {
   GROUP_SIZE,
@@ -75,6 +76,25 @@ export interface TextProfile {
   affineMultiplier: number;
   affineShift: number;
   affineScore: number;
+
+  // --- Periodicity (task 04) ---
+
+  // Periodic structure: candidate key lengths from the cracker library
+  // (slice IC + Kasiski gap divisors), best first.
+  periodCandidates: Array<{ length: number; confidence: number; averageIC: number; divisorCount: number }>;
+  // Convenience accessors for the rules.
+  bestPeriod: number | null;
+  bestPeriodConfidence: number;
+  bestPeriodAverageIC: number;
+
+  // Kasiski repeats (for the metrics panel).
+  repeats: Repeat[];
+
+  // The polyalphabetic signal: how much *more* English-like the slices
+  // at the best period are than the text as a whole. Near zero for plain
+  // English (every period looks the same), clearly positive for a
+  // periodic polyalphabetic cipher.
+  periodIcGain: number;
 }
 
 const icScoreOf = (ic: number): number => {
@@ -188,6 +208,17 @@ export const profileText = (input: string): TextProfile => {
   const grouped = tokens.length >= MIN_GROUPS_FOR_FLAG
     && tokens.every((token) => token.length === GROUP_SIZE);
 
+  // Periodic structure: shared cracker math (slice IC + Kasiski).
+  const repeats = findRepeats(letters);
+  const keyLengths = rankKeyLengths(letters, repeats);
+  const periodCandidates = keyLengths.slice(0, 3).map((candidate) => ({
+    length: candidate.length,
+    confidence: candidate.confidence,
+    averageIC: candidate.averageIC,
+    divisorCount: candidate.divisorCount,
+  }));
+  const best = keyLengths[0] || null;
+
   return {
     letters,
     letterCount,
@@ -211,5 +242,11 @@ export const profileText = (input: string): TextProfile => {
     affineMultiplier,
     affineShift,
     affineScore,
+    periodCandidates,
+    bestPeriod: best ? best.length : null,
+    bestPeriodConfidence: best ? best.confidence : 0,
+    bestPeriodAverageIC: best ? best.averageIC : 0,
+    repeats,
+    periodIcGain: best ? best.averageIC - ic : 0,
   };
 };
