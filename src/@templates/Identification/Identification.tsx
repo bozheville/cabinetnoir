@@ -8,6 +8,7 @@ import { identify } from '@encryptors/shared/identification/identify';
 import type { IdentificationResult } from '@encryptors/shared/identification/types';
 
 import { IdentificationSection, Wrapper, Inner } from './elements';
+import ResultsTree from './ResultsTree';
 
 const InputHeading = styled(GreatPrimer)`
   margin: 0;
@@ -114,18 +115,7 @@ const Identification: React.FC = () => {
             <Banner>{t('identify.unreliable')}</Banner>
           )}
           {result && result.tier !== 'tooShort' && (
-            <div>
-              {result.families.map((family) => (
-                <div key={family.family}>
-                  <GreatPrimer>{t(`identify.families.${family.family}`)} — {family.score}</GreatPrimer>
-                  {family.ciphers.map((cipher) => (
-                    <Minion key={cipher.id}>
-                      {t(`identify.ciphers.${cipher.id}`)}: {cipher.confidence} ({cipher.score})
-                    </Minion>
-                  ))}
-                </div>
-              ))}
-            </div>
+            <ResultsTree result={result} />
           )}
         </Inner>
       </Wrapper>
