@@ -15,7 +15,8 @@ const actions = ['direct', 'reverse'];
 const localePrefixes = ['', '/fr', '/ua'];
 
 const buildLinks = () => {
-  const links = [baseURL];
+  // The identification tool is a top-level page in every locale.
+  const links = [baseURL, ...localePrefixes.map((prefix) => `${baseURL}${prefix}/identify`)];
   for (const algorithm of algorithms) {
     const segments = [
       ...actions,

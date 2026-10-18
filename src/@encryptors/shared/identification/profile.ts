@@ -183,7 +183,7 @@ export const profileText = (input: string): TextProfile => {
   const analysisUnits = digitSequence.length > letterCount ? digitSequence.length : letterCount;
 
   // Mixed case in the raw letters (Alberti's fingerprint).
-  const rawLetters = input.match(/[a-zA-Z]/g) || [];
+  const rawLetters: string[] = input.match(/[a-zA-Z]/g) || [];
   const lowerCount = rawLetters.filter((char) => char !== char.toUpperCase()).length;
   const upperCount = rawLetters.length - lowerCount;
   const mixedCase = lowerCount >= 5 && upperCount >= 5;
