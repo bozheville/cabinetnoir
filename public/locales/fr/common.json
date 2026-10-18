@@ -969,5 +969,41 @@
       "name": "Transposition",
       "definition": "Changer l’ordre des symboles sans changer les symboles eux-mêmes."
     }
+  },
+  "home": {
+    "title": "Décodeur moderne et pratique pour les vieilles méthodes de dissimulation de la vérité",
+    "subtitle": "Apprenez la cryptographie en déchiffrant de vrais chiffrements, étape par étape.",
+    "hero": {
+      "beginner": "Débutant ? Commencez par les classiques et progressez — chaque chiffrement s'accompagne d'un apprentissage guidé et d'un outil de déchiffrement.",
+      "expert": "Vous savez déjà ? Passez directement à l'outil — tout le catalogue de chiffrements, sans traqueurs, sans comptes."
+    },
+    "startHere": {
+      "label": "Commencer ici",
+      "text": "Jamais chiffré un message ? Commencez par le chiffre de César — le premier chiffrement classique — et apprenez en déchiffrant.",
+      "cta": "Apprendre le chiffre de César"
+    },
+    "ladder": {
+      "title": "L'échelle des chiffrements",
+      "subtitle": "Grimpez du plus trivial jusqu'à Enigma. Chaque barreau : un outil et un cours guidé.",
+      "tool": "Outil",
+      "learn": "Apprendre",
+      "utilitiesNote": "Pas papier-crayon, mais pratique à l'ère du numérique : Base64"
+    },
+    "roadmap": {
+      "title": "La feuille de route",
+      "builtTitle": "Ce qui est construit",
+      "nextTitle": "Ce qui arrive",
+      "built": {
+        "ciphers": "Dix pages de chiffrements avec onglets d'apprentissage guidé — outil, apprentissage, histoire, pratique",
+        "cryptoanalysis": "Assistants de cryptanalyse guidée pour Vigenère, ADFGVX, Affine, Playfair et Alberti",
+        "challenges": "Défis pratiques avec indices adaptés à la difficulté — en trois langues"
+      },
+      "next": {
+        "substitution": "D'autres chiffrements par substitution — homophonique et par mot-clé",
+        "transposition": "Chiffrements par transposition — rail fence et columnar",
+        "nihilist": "Le chiffre nihiliste — la substitution rencontre la transposition",
+        "saknussemm": "Clins d'œil de la pop culture — le chiffre d'Arne Saknussemm"
+      }
+    }
   }
 }

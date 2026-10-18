@@ -3,7 +3,39 @@
   "name": "Cabinet Noir",
   "home": {
     "title": "Modern handy decoder for old-fashioned ways of hiding a truth",
-    "subtitle": "Here you can encode/decore and encrypt/decrypt messages using following algorithms"
+    "subtitle": "Learn cryptography by breaking real ciphers, step by step.",
+    "hero": {
+      "beginner": "New to ciphers? Start with the classics and work your way up — every cipher comes with guided learning and a breaking tool.",
+      "expert": "Already know your stuff? Jump straight to the tool — every cipher in the collection, no tracking, no accounts."
+    },
+    "startHere": {
+      "label": "Start here",
+      "text": "Never encrypted anything? Begin with the Caesar shift — the classic first cipher — and learn by breaking messages.",
+      "cta": "Learn the Caesar cipher"
+    },
+    "ladder": {
+      "title": "The cipher ladder",
+      "subtitle": "Climb from the trivial to Enigma. Every rung: a tool and a guided course.",
+      "tool": "Tool",
+      "learn": "Learn",
+      "utilitiesNote": "Not pen-and-paper, but handy in the digital world: Base64"
+    },
+    "roadmap": {
+      "title": "The roadmap",
+      "builtTitle": "What's built",
+      "nextTitle": "What's next",
+      "built": {
+        "ciphers": "Ten cipher pages with guided learning tabs — tool, learn, history, practice",
+        "cryptoanalysis": "Guided cryptoanalysis wizards for Vigenère, ADFGVX, Affine, Playfair and Alberti",
+        "challenges": "Practice challenges with difficulty-matched hint presets — in three languages"
+      },
+      "next": {
+        "substitution": "More substitution ciphers — homophonic and keyword substitution",
+        "transposition": "Transposition ciphers — rail fence and columnar",
+        "nihilist": "The Nihilist cipher — substitution meets transposition",
+        "saknussemm": "Pop-culture easter eggs — the Arne Saknussemm cipher"
+      }
+    }
   },
   "alphabet": {
     "latin": "Latin",
