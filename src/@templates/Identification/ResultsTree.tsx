@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { Minion } from '@typography';
 import { catalogueEntry } from '@encryptors/shared/identification/catalogue';
 import { setCipherHandoff } from '@learning/cipherHandoff';
+import { setKeyHandoff } from '@learning/keyHandoff';
 import type {
   CipherCandidate,
   FamilyCandidate,
@@ -56,16 +57,28 @@ const CipherEntry: React.FC<{ cipher: CipherCandidate; input: string }> = ({ cip
       return;
     }
     // Privacy: the ciphertext and the recovered parameters travel in the
-    // in-memory hand-off slot, never in the URL.
-    setCipherHandoff({
+    // in-memory hand-off slots, never in the URL.
+    if (entry.breakingTarget === 'cracker') {
+      setCipherHandoff({
+        cipher: cipher.id,
+        input,
+        params: cipher.params || {},
+        target: 'cracker',
+      });
+      router.push(`/encoder/${cipher.id}/cryptoanalysis`);
+      return;
+    }
+    // Decrypt tools reuse the existing key-handoff flow: the input
+    // pre-fills via usedKey=1, the recovered shift rides along as the
+    // cipher-defined key payload (Caesar).
+    setKeyHandoff({
       cipher: cipher.id,
       input,
-      params: cipher.params || {},
-      target: entry.breakingTarget,
+      keys: cipher.id === 'caesar' && cipher.params?.shift !== undefined
+        ? [String(cipher.params.shift)]
+        : [],
     });
-    router.push(entry.breakingTarget === 'cracker'
-      ? `/encoder/${cipher.id}/cryptoanalysis`
-      : `/encoder/${cipher.id}/reverse?usedKey=1`);
+    router.push(`/encoder/${cipher.id}/reverse?usedKey=1`);
   };
 
   const ruledOut = cipher.confidence === 'ruledOut' || cipher.confidence === 'unlikely';
