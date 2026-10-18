@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { ChevronRightIcon } from 'evergreen-ui';
 import { DoublePica } from '@typography';
 import Section from '@atoms/Section/Section';
@@ -29,10 +31,26 @@ const StyledHeader = styled(Section)`
   }
 `;
 
+const IdentifyLink = styled(Link)`
+  flex-shrink: 0;
+  margin-right: 16px;
+  font-size: 13px;
+  color: ${({ theme }) => theme.colors.text};
+  text-decoration: underline;
+  text-decoration-color: ${({ theme }) => theme.colorScheme.blue[500]};
+
+  &:hover {
+    color: ${({ theme }) => theme.colorScheme.blue[600]};
+  }
+`;
+
 const Header: React.FC<React.PropsWithChildren<HeaderProps>> = ({
   title,
   children,
 }) => {
+  const { t } = useTranslation('common');
+  const { pathname } = useRouter();
+
   return (
     <StyledHeader color="header" stitch="bottom">
       <DoublePica>
@@ -42,6 +60,11 @@ const Header: React.FC<React.PropsWithChildren<HeaderProps>> = ({
         &gt;
         {title}
       </DoublePica>
+      {!pathname.startsWith('/identify') && (
+        <IdentifyLink href="/identify">
+          {t('identify.headerEntry')}
+        </IdentifyLink>
+      )}
       {children}
     </StyledHeader>
   );

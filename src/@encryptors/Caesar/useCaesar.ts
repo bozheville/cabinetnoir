@@ -4,6 +4,7 @@ import { getAlphabet } from '@encryptors/constants';
 import { useMonoalphabetic } from '@encryptors/Monoalphabetic/useMonoalphabetic';
 import { useTranslation } from 'next-i18next';
 import { usePendingExample } from '@learning/pendingExample';
+import { getKeyHandoff } from '@learning/keyHandoff';
 
 const DEFAULT_ROTATION = 1;
 const DEFAULT_ALPHABET_KEY = 'latin';
@@ -58,6 +59,23 @@ const useCaesar = ({
     setRotation(clamped);
     setTargetAlphabet(rotate(alphabet, clamped));
   }, [pendingExample]);
+
+  // "Try breaking it" on /identify: the identified shift rides in the
+  // key hand-off (child effects run before EncryptionInputs clears the
+  // slot). Runs once on mount.
+  useEffect(() => {
+    const handoff = getKeyHandoff();
+    if (handoff?.cipher !== 'caesar' || !handoff.keys[0]) {
+      return;
+    }
+    const pendingRotation = parseInt(handoff.keys[0], 10);
+    if (Number.isNaN(pendingRotation) || pendingRotation < 1 || pendingRotation > alphabet.length - 1) {
+      return;
+    }
+    setRotation(pendingRotation);
+    setTargetAlphabet(rotate(alphabet, pendingRotation));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return {
     t,
