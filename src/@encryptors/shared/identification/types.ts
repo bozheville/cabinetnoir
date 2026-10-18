@@ -6,6 +6,8 @@
 // IDs and numeric params, so the same input always produces the same
 // result (spec: specs/cipher-identification/cipher-identification.md).
 
+import type { TextProfile } from './profile';
+
 // The four cipher families the tool distinguishes. Encodings (Base64,
 // Morse, Pigpen) are out of scope.
 export type Family = 'substitution' | 'polyalphabetic' | 'transposition' | 'block';
@@ -60,8 +62,10 @@ export interface FamilyCandidate {
 export type LengthTier = 'tooShort' | 'unreliable' | 'ok';
 
 // The full output of `identify`: families sorted best-first, each with
-// its ciphers sorted best-first.
+// its ciphers sorted best-first. `profile` carries the raw measurements
+// for the metrics panel.
 export interface IdentificationResult {
   tier: LengthTier;
   families: FamilyCandidate[];
+  profile?: TextProfile;
 }
