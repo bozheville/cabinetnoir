@@ -31,13 +31,13 @@ export const identify = (input: string): IdentificationResult => {
     return { tier: profile.tier, families: [] };
   }
 
-  const familyFires = evaluateRules(profile, FAMILY_RULES);
-  const cipherFires = evaluateRules(profile, CIPHER_RULES);
+  const fires = evaluateRules(profile, [...FAMILY_RULES, ...CIPHER_RULES]);
 
-  // Family-level weights apply to every cipher of that family.
+  // Family-level weights apply to every cipher of that family; some
+  // family-list rules target a specific cipher (ADFGVX set, homophonic
+  // fingerprint), so both lists are collected over the same fires.
   const familyWeights = new Map<string, { score: number; reasons: Reason[] }>();
   const collect = (
-    fires: Array<{ rule: Rule; params?: Record<string, number | string> }>,
     keyOf: (rule: Rule) => string,
   ): Map<string, { score: number; reasons: Reason[] }> => {
     const map = new Map<string, { score: number; reasons: Reason[] }>();
@@ -50,8 +50,8 @@ export const identify = (input: string): IdentificationResult => {
     }
     return map;
   };
-  const familySignals = collect(familyFires, (r) => (r.target.kind === 'family' ? r.target.family : ''));
-  const cipherSignals = collect(cipherFires, (r) => (r.target.kind === 'cipher' ? r.target.id : ''));
+  const familySignals = collect((r) => (r.target.kind === 'family' ? r.target.family : ''));
+  const cipherSignals = collect((r) => (r.target.kind === 'cipher' ? r.target.id : ''));
 
   // Known-ciphertext match: the easter-egg path. The candidate appears
   // only when the fingerprint matched (no statistical rule exists for
@@ -81,7 +81,7 @@ export const identify = (input: string): IdentificationResult => {
       ...(cipherSignal?.reasons || []),
     ];
     const params: Record<string, string | number> = {};
-    for (const fire of [...familyFires, ...cipherFires]) {
+    for (const fire of fires) {
       const target = fire.rule.target;
       const belongs = target.kind === 'family'
         ? target.family === entry.family

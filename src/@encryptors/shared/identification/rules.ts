@@ -13,9 +13,12 @@ import {
   CHI_FIT_GOOD,
   HOMOPHONIC_SYMBOLS,
   HOMOPHONIC_UNIFORMITY,
-  HOMOPHONIC_DISTINCT,
   IC_RANDOM,
   MAX_DISTINCT_PLAYFAIR,
+  ALBERTI_MAX_DISTINCT,
+  PERIOD_GAIN,
+  PERIOD_GAIN_LOW,
+  PERIOD_SLICE_IC,
 } from './thresholds';
 
 // The rule engine: deterministic tests over the text profile. Each rule
@@ -81,9 +84,12 @@ export const FAMILY_RULES: Rule[] = [
       : null)),
 
   // Monoalphabetic substitution: the frequency *shape* is English but
-  // the letters stand in the wrong places.
+  // the letters stand in the wrong places. Substitution preserves the
+  // IC, so the IC must sit in the English band.
   rule('substitutionShape', family('substitution'), 45,
-    (profile) => (profile.sortedChiScore >= CHI_FIT_GOOD && profile.directChiScore < CHI_FIT_GOOD
+    (profile) => (isEnglishLikeIc(profile.ic)
+      && profile.sortedChiScore >= CHI_FIT_GOOD
+      && profile.directChiScore < CHI_FIT_GOOD
       ? {}
       : null)),
 
@@ -95,23 +101,27 @@ export const FAMILY_RULES: Rule[] = [
       : null)),
 
   // Periodic polyalphabetic: the slices at the best period are much more
-  // English-like than the text as a whole.
+  // English-like than the text as a whole — and the slices really are
+  // English-like (a plain English text has English IC at every period,
+  // but no gain over its own IC).
   rule('periodicPolyalphabetic', family('polyalphabetic'), 45,
-    (profile) => (profile.periodIcGain >= 0.015 && profile.bestPeriod !== null
+    (profile) => (profile.periodIcGain >= PERIOD_GAIN
+      && profile.bestPeriodAverageIC >= PERIOD_SLICE_IC
+      && profile.bestPeriod !== null
       ? { period: profile.bestPeriod, gain: Math.round(profile.periodIcGain * 1000) / 1000 }
       : null)),
 
   // Aperiodic polyalphabetic (Enigma-style): IC near random and no
   // periodic structure. Low weight — hard to tell apart from noise.
   rule('aperiodicPolyalphabetic', family('polyalphabetic'), 15,
-    (profile) => (profile.ic < IC_RANDOM * 1.15 && profile.periodIcGain < 0.015
+    (profile) => (profile.ic < IC_RANDOM * 1.15 && profile.periodIcGain < PERIOD_GAIN
       ? { ic: Math.round(profile.ic * 1000) / 1000 }
       : null)),
 
   // Polyalphabetic excluded: plain English-like IC with no periodic
   // gain.
   rule('polyalphabeticNotPeriodic', family('polyalphabetic'), -30,
-    (profile) => (isEnglishLikeIc(profile.ic) && profile.periodIcGain < 0.015
+    (profile) => (isEnglishLikeIc(profile.ic) && profile.periodIcGain < PERIOD_GAIN
       ? {}
       : null)),
 
@@ -138,14 +148,15 @@ export const FAMILY_RULES: Rule[] = [
       ? { letters: ADFGVX_LETTERS.join('') }
       : null)),
 
-  // Homophonic: many distinct symbols and a nearly flat distribution —
-  // either many non-alphanumeric symbols, or a letter-preserving variant
-  // (flat profile across 22+ letters).
+  // Homophonic: far more distinct symbols than the 26 letters (or than
+  // the 25 Polybius cells) — the classic numeric homophonic table. When
+  // every pair fits the Nihilist sum range, the Nihilist rule claims
+  // the text instead.
   rule('homophonicFlat', cipher('homophonic'), 55,
     (profile) => ((profile.distinctSymbols >= HOMOPHONIC_SYMBOLS
-      || profile.distinctLetters.length >= HOMOPHONIC_DISTINCT)
-      && profile.uniformityScore >= HOMOPHONIC_UNIFORMITY
-      ? { symbols: Math.max(profile.distinctSymbols, profile.distinctLetters.length) }
+      || (profile.digitsOnly && profile.distinctDigitPairs >= HOMOPHONIC_SYMBOLS))
+      && !profile.nihilistLike
+      ? { symbols: Math.max(profile.distinctSymbols, profile.distinctDigitPairs) }
       : null)),
 ];
 
@@ -153,10 +164,12 @@ export const FAMILY_RULES: Rule[] = [
 
 export const CIPHER_RULES: Rule[] = [
   // Caesar: one shift clearly explains the whole text — and that shift
-  // is not zero (a zero shift means the text is already plaintext).
+  // is neither 0 (the text is already plaintext) nor 13 (that is ROT13,
+  // which claims it).
   rule('caesarBestShift', cipher('caesar'), 45,
     (profile) => (profile.caesarBestScore >= CHI_FIT_GOOD
       && profile.caesarBestShift !== 0
+      && profile.caesarBestShift !== 13
       && profile.caesarBestScore - profile.caesarRunnerUpScore >= CAESAR_GAP
       ? { shift: profile.caesarBestShift }
       : null)),
@@ -175,43 +188,64 @@ export const CIPHER_RULES: Rule[] = [
       : null)),
 
   // Affine: a non-trivial multiplier explains the text better than any
-  // plain shift.
+  // plain shift (with a margin, so noise on long texts doesn't win).
   rule('affineKey', cipher('affine'), 45,
     (profile) => (profile.affineScore >= CHI_FIT_GOOD
       && profile.affineMultiplier !== 1
-      && profile.affineScore > profile.caesarBestScore
+      && profile.affineScore > profile.caesarBestScore + CAESAR_GAP
       ? { key: `${profile.affineMultiplier}/${profile.affineShift}` }
       : null)),
 
-  // Keyword substitution: substitution-shaped, but no simple key fits.
+  // Keyword substitution: substitution-shaped, but no simple key fits
+  // decisively (a plain shift or an affine key would claim it) — and the
+  // text does not carry the full Playfair digraph structure, which is a
+  // stronger claim.
   rule('keywordNoSimpleKey', cipher('keyword'), 30,
     (profile) => (profile.sortedChiScore >= CHI_FIT_GOOD
       && profile.caesarBestScore < CHI_FIT_GOOD
-      && profile.affineScore < CHI_FIT_GOOD
+      && profile.affineScore - profile.caesarBestScore < CAESAR_GAP
       && profile.atbashScore < CHI_FIT_GOOD
+      && !(profile.evenLength
+        && !profile.hasDoubledDigraph
+        && !profile.hasJ
+        && profile.distinctLetters.length <= MAX_DISTINCT_PLAYFAIR)
       ? {}
       : null)),
 
   // Vigenère: a periodic polyalphabetic whose slices decrypt with plain
   // shifts.
   rule('vigenereSlices', cipher('vigenere'), 35,
-    (profile) => (profile.periodIcGain >= 0.015
+    (profile) => (profile.periodIcGain >= PERIOD_GAIN
       && profile.sliceShiftScore >= CHI_FIT_GOOD
       ? { period: profile.bestPeriod ?? 0 }
       : null)),
 
-  // Alberti: periodic polyalphabetic, but plain shifts fail on the
-  // slices — the disc alphabet is mixed.
-  rule('albertiMixedDisc', cipher('alberti'), 30,
-    (profile) => (profile.periodIcGain >= 0.015
-      && profile.sliceShiftScore < CHI_FIT_GOOD
-      ? { period: profile.bestPeriod ?? 0 }
-      : null)),
+  // Alberti: its mixed-alphabet disc leaves a double fingerprint — the
+  // reduced letter set (the disc is shorter than the alphabet) with a
+  // substitution-like shape but no working plain shift or affine key,
+  // or a small periodic gain whose slices resist plain shifts.
+  rule('albertiMixedDisc', cipher('alberti'), 40,
+    (profile) => {
+      const playfairLike = profile.evenLength
+        && !profile.hasDoubledDigraph
+        && !profile.hasJ;
+      if (profile.distinctLetters.length <= ALBERTI_MAX_DISTINCT
+        && profile.sortedChiScore >= CHI_FIT_GOOD
+        && profile.directChiScore < CHI_FIT_GOOD
+        && profile.sliceShiftScore < 55
+        && !playfairLike) {
+        return { evidence: 'reducedDisc' };
+      }
+      if (profile.periodIcGain >= PERIOD_GAIN_LOW && profile.sliceShiftScore < 55) {
+        return { evidence: 'periodic', period: profile.bestPeriod ?? 0 };
+      }
+      return null;
+    }),
 
   // Enigma: only rides on the aperiodic family signal; capped low by
   // its small weight, never above `possible`.
   rule('enigmaAperiodic', cipher('enigma'), 20,
-    (profile) => (profile.ic < IC_RANDOM * 1.15 && profile.periodIcGain < 0.015
+    (profile) => (profile.ic < IC_RANDOM * 1.15 && profile.periodIcGain < PERIOD_GAIN
       ? { ic: Math.round(profile.ic * 1000) / 1000 }
       : null)),
 

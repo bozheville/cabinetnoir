@@ -41,9 +41,12 @@ describe('reference ciphers (test-only)', () => {
     expect(decrypted).toBe(TEXT);
   });
 
-  it('homophonic flattens the distribution', () => {
-    const flat = 'EEEEE TTTTT AAAA OOO III NNN';
-    expect(homophonicEncrypt(flat)).toContain('Z');
+  it('homophonic emits two-digit codes with many distinct values', () => {
+    const out = homophonicEncrypt('EEEEETTTTTAAAAOOOIIINNN');
+    expect(out).toMatch(/^\d+$/);
+    const pairs = out.match(/\d{2}/g) || [];
+    expect(pairs.length).toBe(23);
+    expect(new Set(pairs).size).toBeGreaterThanOrEqual(6);
   });
 
   it('nihilist emits two-digit sums without carry', () => {

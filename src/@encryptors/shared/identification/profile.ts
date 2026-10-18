@@ -13,8 +13,9 @@ import { Repeat, findRepeats } from '@encryptors/shared/analysis/kasiski';
 import {
   GROUP_SIZE,
   HOMOPHONIC_SYMBOLS,
+  IC_BAND_MAX,
+  IC_BAND_MIN,
   IC_ENGLISH,
-  IC_ENGLISH_LIKE,
   IC_RANDOM,
   MIN_DIGIT_PAIRS,
   MIN_GROUPS_FOR_FLAG,
@@ -130,6 +131,13 @@ export interface TextProfile {
   // shifts — high score. A mixed-alphabet periodic cipher (Alberti)
   // does not — lower score.
   sliceShiftScore: number;
+
+  // The raw input mixes upper and lower case letters.
+  mixedCase: boolean;
+
+  // Distinct two-digit values in digit-only output (the homophonic
+  // fingerprint: dozens of distinct codes; Polybius has at most 25).
+  distinctDigitPairs: number;
 }
 
 const icScoreOf = (ic: number): number => {
@@ -137,8 +145,10 @@ const icScoreOf = (ic: number): number => {
   return Math.max(0, Math.min(1, (ic - IC_RANDOM) / range));
 };
 
+// English-like IC is a band, not a floor: an IC far above English means
+// a restricted alphabet (ADFGVX-style), far below a polyalphabetic mix.
 const isEnglishLikeIc = (ic: number): boolean =>
-  icScoreOf(ic) >= IC_ENGLISH_LIKE;
+  ic >= IC_BAND_MIN && ic <= IC_BAND_MAX;
 
 export { isEnglishLikeIc };
 
@@ -167,9 +177,23 @@ export const profileText = (input: string): TextProfile => {
   const letterCount = letters.length;
   const nonLetterCount = input.length - letterCount;
 
-  const tier = letterCount < MIN_LETTERS
+  // Digit-only outputs (Polybius/Nihilist) carry the analysis units in
+  // their digits, not in letters.
+  const digitSequence = (input.match(/\d/g) || []).join('');
+  const analysisUnits = digitSequence.length > letterCount ? digitSequence.length : letterCount;
+
+  // Mixed case in the raw letters (Alberti's fingerprint).
+  const rawLetters = input.match(/[a-zA-Z]/g) || [];
+  const lowerCount = rawLetters.filter((char) => char !== char.toUpperCase()).length;
+  const upperCount = rawLetters.length - lowerCount;
+  const mixedCase = lowerCount >= 5 && upperCount >= 5;
+  const distinctDigitPairs = new Set(
+    digitSequence.match(/\d{2}/g) || [],
+  ).size;
+
+  const tier = analysisUnits < MIN_LETTERS
     ? 'tooShort'
-    : letterCount < RELIABLE_LETTERS
+    : analysisUnits < RELIABLE_LETTERS
       ? 'unreliable'
       : 'ok';
 
@@ -269,7 +293,6 @@ export const profileText = (input: string): TextProfile => {
 
   // Digit structure on the raw input: digits in order, read as two-digit
   // numbers when there is an even count of them.
-  const digitSequence = (input.match(/\d/g) || []).join('');
   const digitPairs = digitSequence.length >= 2 ? Math.floor(digitSequence.length / 2) : 0;
   const pairNumbers: number[] = [];
   for (let index = 0; index + 1 < digitSequence.length; index += 2) {
@@ -349,5 +372,7 @@ export const profileText = (input: string): TextProfile => {
     nihilistLike,
     uniformityScore,
     sliceShiftScore,
+    mixedCase,
+    distinctDigitPairs,
   };
 };
