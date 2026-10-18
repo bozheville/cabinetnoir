@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { useTranslation } from 'next-i18next';
 
 import Section from '@atoms/Section/Section';
 import CipherTabs from '@molecues/CipherTabs';
@@ -39,6 +41,21 @@ const CryptoanalysisWrapper = styled.div`
   }
 `;
 
+const IdentifyHint = styled.div`
+  margin: 0 auto 8px;
+  font-size: 13px;
+
+  a {
+    color: ${({ theme }) => theme.colors.text};
+    text-decoration: underline;
+    text-decoration-color: ${({ theme }) => theme.colorScheme.blue[500]};
+
+    &:hover {
+      color: ${({ theme }) => theme.colorScheme.blue[600]};
+    }
+  }
+`;
+
 // The Cryptoanalysis tab: guided cracking as a first-class tab. The
 // template owns the ciphertext input and hands it to the cipher's
 // cracker organism; the wizard lives entirely inside.
@@ -47,6 +64,7 @@ const Cryptoanalysis: React.FC = () => {
   const [pendingExample, setPendingExample] = useState<PendingExampleLoad | null>(null);
   const router = useRouter();
   const { algorithm } = router.query;
+  const { t } = useTranslation('common');
 
   // "Try breaking it" on /identify: the ciphertext travels in the
   // in-memory hand-off slot and lands here once, then the slot clears.
@@ -114,6 +132,9 @@ const Cryptoanalysis: React.FC = () => {
     <CryptoanalysisSection stitch="both" color="encryptor">
       <AtGlanceCard />
       <CipherTabs algorithm={algorithm} activeTab="cryptoanalysis" />
+      <IdentifyHint>
+        <Link href="/identify">{t('identify.backEntry')}</Link>
+      </IdentifyHint>
       <CryptoanalysisWrapper>
         <PendingExampleContext.Provider value={pending}>
           <CipherCracker

@@ -35,6 +35,10 @@
         "nihilist": "The Nihilist cipher — substitution meets transposition",
         "saknussemm": "Pop-culture easter eggs — the Arne Saknussemm cipher"
       }
+    },
+    "identify": {
+      "title": "Identify a cipher",
+      "subtitle": "Pasted a ciphertext you cannot name? The identification tool measures frequencies, periodicity and structure, then ranks the likely ciphers with its reasoning."
     }
   },
   "identify": {
@@ -145,7 +149,9 @@
         "label": "Distinct symbols",
         "hint": "All distinct characters in the input. Homophonic substitution uses more symbols than the alphabet has letters."
       }
-    }
+    },
+    "headerEntry": "Not sure which cipher? Identify it",
+    "backEntry": "Not the right cipher? Identify it"
   },
   "alphabet": {
     "latin": "Latin",
