@@ -101,10 +101,12 @@ const Encryptor: React.FC = () => {
               onOutputUpdate={({ output }) => {
                 setOutput(output);
               }}
+              onInputChange={setInput}
             />
             <EncryptionInputs
               onChange={setInput}
               output={output}
+              input={input}
             />
           </PendingExampleContext.Provider>
         </EncryptorWrapper>

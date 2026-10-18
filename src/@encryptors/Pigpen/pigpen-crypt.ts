@@ -1,4 +1,5 @@
 import { getPigpenVariant, DEFAULT_PIGPEN_VARIANT } from './variants';
+import { getGlyphGeometry } from './glyphs';
 
 // Pigpen engine: letter <-> glyph id per variant. The ciphertext is
 // graphics, so the engine's output is a sequence of glyph ids — the
@@ -26,3 +27,17 @@ export const pigpenDecode = (glyphIds: string[], variantId: string = DEFAULT_PIG
 // Letters this variant can draw, in alphabet order — the keyboard's keys.
 export const pigpenVariantLetters = (variantId: string = DEFAULT_PIGPEN_VARIANT): string[] =>
   Object.keys(getPigpenVariant(variantId).glyphOf).sort();
+
+// The "copy as text" fallback: a compact legend of the variant's glyphs
+// in unicode approximation (A→┘ B→⊔ …). The ciphertext itself is
+// graphics; the legend is what survives a clipboard.
+export const pigpenLegend = (variantId: string = DEFAULT_PIGPEN_VARIANT): string => {
+  const { glyphOf } = getPigpenVariant(variantId);
+  return Object.keys(glyphOf)
+    .sort()
+    .map((letter) => {
+      const geometry = getGlyphGeometry(glyphOf[letter]);
+      return `${letter}→${geometry ? geometry.fallback : '?'}`;
+    })
+    .join(', ');
+};
