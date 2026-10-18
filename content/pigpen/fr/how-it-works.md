@@ -30,13 +30,25 @@ V — les deux traits de la croix qui bornent le bras du haut. O, la
 quinzième lettre, habite la grille pointée : une forme de coin comme
 A, mais avec un point à l'intérieur.
 
-## La forme est la position
+## Pourquoi ces formes
 
-Rien à mémoriser : chaque glyphe se *déduit*. Regardez un fragment de
-grille et demandez-vous quelle case il pourrait être — les murs le
-disent. Une case au centre est un carré complet, une case dans un coin
-est un L, une case au bord est ouverte d'un côté. Le point dit ensuite
-de quelle grille (ou croix) elle vient. C'est pourquoi le chiffre
+Rien à mémoriser : chaque glyphe se *déduit*. La clé ci-dessous est
+tout le secret — deux grilles, deux croix — et chaque glyphe n'est
+rien d'autre que les murs d'une case de ces figures, découpés et
+emportés seuls :
+
+{{glyphkey:pigpen}}
+
+Le point est la seule marque ajoutée, et il dit une seule chose :
+*seconde série* — la grille pointée porte J–R, la croix pointée W–Z.
+Prenons **H** : il habite la case du milieu en bas de la première
+grille, donc son glyphe est le mur de cette case — un plafond et deux
+murs latéraux, ouvert en bas.
+
+{{glyphkey:pigpen-h}}
+
+Une case au centre est un carré complet, une case dans un coin est un
+L, une case au bord est ouverte d'un côté. C'est pourquoi le chiffre
 s'apprend si facilement à la main — et, comme la page « Le déjouer »
 l'explique, pourquoi il se déjoue aussi si facilement.
 

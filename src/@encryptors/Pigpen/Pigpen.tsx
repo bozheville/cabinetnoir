@@ -7,6 +7,7 @@ import { CrypterProps } from '../types';
 import { usePigpen } from './usePigpen';
 import { PIGPEN_VARIANT_IDS, getPigpenVariant } from './variants';
 import Tooltip from '@atoms/Tooltip';
+import GlyphKeyDiagram from '@molecues/GlyphKeyDiagram';
 import GlyphLegend from '@molecues/GlyphLegend';
 import GlyphKeyboard from '@molecues/GlyphKeyboard';
 
@@ -67,8 +68,10 @@ const Pigpen: React.FC<CrypterProps> = ({
             </Select>
           </Tooltip>
         </ControlsRow>
-        {/* The letter-to-glyph key sheet sits above the text areas —
-            the mapping is the cipher's whole key, drawn openly. */}
+        {/* The key figure shows WHY the glyphs look the way they do —
+            every glyph is one pen of these shapes — and the key sheet
+            below keeps the flat letter-to-glyph mapping for clarity. */}
+        <GlyphKeyDiagram variant={variantId} />
         <GlyphLegend variant={variantId} />
         {isDecryptMode && (
           <GlyphKeyboard

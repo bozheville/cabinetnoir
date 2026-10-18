@@ -6,6 +6,7 @@ import TryInToolButton from '@molecues/TryInToolButton';
 import ControlName from '@molecues/ControlName';
 import ChallengeLinkButton from '@molecues/ChallengeLinkButton';
 import HistoryTimeline from '@molecues/HistoryTimeline';
+import GlyphKeyDiagram from '@molecues/GlyphKeyDiagram';
 import { registerPlaceholder } from './registry';
 
 // Live pieces that markdown can embed. Each entry maps a placeholder type
@@ -16,3 +17,9 @@ registerPlaceholder('try', (id) => <TryInToolButton exampleId={id} />);
 registerPlaceholder('control', (id) => <ControlName id={id} />);
 registerPlaceholder('timeline', (cipher) => <HistoryTimeline cipher={cipher} />);
 registerPlaceholder('challenge', (id) => <ChallengeLinkButton challengeId={id} />);
+// {{glyphkey:variant}} or {{glyphkey:variant-letter}} — the full key
+// figure of a pigpen variant, with an optional letter spotlighted.
+registerPlaceholder('glyphkey', (id) => {
+  const [variant, letter] = id.split('-');
+  return <GlyphKeyDiagram variant={variant} highlight={letter} />;
+});
