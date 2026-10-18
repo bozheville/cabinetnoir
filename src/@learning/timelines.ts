@@ -140,6 +140,28 @@ export const TIMELINES: Record<string, TimelineEvent[]> = {
       sourceUrl: 'https://en.wikipedia.org/wiki/Atbash',
     },
   ],
+  pigpen: [
+    {
+      year: '1531',
+      textKey: 'learning.timeline.pigpen.1531',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Pigpen_cipher',
+    },
+    {
+      year: '1730',
+      textKey: 'learning.timeline.pigpen.1730',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Pigpen_cipher',
+    },
+    {
+      year: 'early 1700s',
+      textKey: 'learning.timeline.pigpen.1700s',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Pigpen_cipher',
+    },
+    {
+      year: '1860s',
+      textKey: 'learning.timeline.pigpen.1860s',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Pigpen_cipher',
+    },
+  ],
   affine: [
     {
       year: '58 BC',

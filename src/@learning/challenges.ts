@@ -32,6 +32,9 @@ export interface Challenge {
   listOnPractice?: boolean;
   // Tool mode the challenge should open in (decode challenges).
   mode?: 'encrypt' | 'decrypt';
+  // Glyph ciphers (pigpen): the ciphertext is a letter stream that the
+  // challenge card draws as SVG glyphs of this variant.
+  glyphVariant?: string;
 }
 
 const DICKENS_PLAINTEXT =
@@ -380,6 +383,26 @@ const buildMorseChallenge = (
   mode: 'decrypt',
 });
 
+// Pigpen: the ciphertext glyphs are the letters themselves — the
+// challenge card draws them as SVG, and the tool opens in encrypt mode,
+// where the strip shows the message and the legend is the (public) key.
+const buildPigpenChallenge = (
+  id: string,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+): Challenge => ({
+  id,
+  cipher: 'pigpen',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: plaintext,
+  difficulty,
+  keyLength: 0,
+  hints,
+  answer: plaintext,
+  glyphVariant: 'masonic',
+});
+
 // Alberti: the discs are fixed in the tool, so the challenge's secret is
 // the period and the turn step; the ciphertext starts from the default
 // disc alignment. Plaintexts must use only the 20 letters of Alberti's
@@ -663,6 +686,34 @@ export const CHALLENGES: Record<string, Challenge> = {
       'learning.challenges.morse-hard-1.hint1',
       'learning.challenges.morse-hard-1.hint2',
       'learning.challenges.morse-hard-1.hint3',
+    ],
+  ),
+  'pigpen-easy-1': buildPigpenChallenge(
+    'pigpen-easy-1',
+    'THEMAPISUNDERTHEOLDAPPLETREE',
+    'easy',
+    [
+      'learning.challenges.pigpen-easy-1.hint1',
+      'learning.challenges.pigpen-easy-1.hint2',
+    ],
+  ),
+  'pigpen-medium-1': buildPigpenChallenge(
+    'pigpen-medium-1',
+    HAMLET_PLAINTEXT,
+    'medium',
+    [
+      'learning.challenges.pigpen-medium-1.hint1',
+      'learning.challenges.pigpen-medium-1.hint2',
+    ],
+  ),
+  'pigpen-hard-1': buildPigpenChallenge(
+    'pigpen-hard-1',
+    DICKENS_PLAINTEXT,
+    'hard',
+    [
+      'learning.challenges.pigpen-hard-1.hint1',
+      'learning.challenges.pigpen-hard-1.hint2',
+      'learning.challenges.pigpen-hard-1.hint3',
     ],
   ),
   'base64-easy-1': buildBase64Challenge(

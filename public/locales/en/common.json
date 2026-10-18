@@ -480,6 +480,7 @@
       "showAll": "Show all",
       "restart": "Restart",
       "columns": {
+        "glyph": "Glyph",
         "plain": "Plaintext letter",
         "key": "Key letter",
         "shift": "Shift",
@@ -531,7 +532,8 @@
       "transposition-key": "the Transposition key field",
       "unknown-keys": "the \"Unknown keys\" checkbox",
       "column-chips": "the column arrangement chips",
-      "symbol-chart": "the symbol frequency chart"
+      "symbol-chart": "the symbol frequency chart",
+      "glyph-keyboard": "the glyph keyboard"
     },
     "timeline": {
       "source": "Source",
@@ -595,6 +597,12 @@
         "1918-introduced": "Fritz Nebel’s fractionation-transposition cipher enters German field service as ADFGX, with a 5×5 square.",
         "1918-painvin": "Georges Painvin breaks the ADFGX traffic from intercepted same-key message pairs after months of effort.",
         "1918-traffic": "The square gains a sixth row for digits (ADFGVX); the broken traffic helps the French anticipate the German offensive at Amiens."
+      },
+      "pigpen": {
+        "1531": "Cornelius Agrippa describes an early Rosicrucian-style grid cipher — the 'Kabbalah of the Nine Chambers', dots carrying the alphabet.",
+        "1730": "The pirate Olivier Levasseur allegedly throws a pigpen scrap into the crowd at his execution — the unread treasure note dies with its variant.",
+        "1700s": "Freemasons adopt the cipher for lodge records and correspondence — so persistently that it becomes 'the Freemason's cipher'.",
+        "1860s": "Union prisoners in Confederate prisons use pigpen to smuggle messages during the American Civil War."
       }
     },
     "challenge": {
@@ -828,6 +836,22 @@
         "hint1": "The variant is ADFGVX and the transposition key has six distinct letters.",
         "hint2": "A crib: the message starts with the word WE.",
         "hint3": "The square key is KAISER."
+      },
+      "pigpen-easy-1": {
+        "title": "The buried map",
+        "hint1": "Count the shapes: full boxes, corners and open pens — the walls tell you which pen of the grid a letter lived in.",
+        "hint2": "Dotted pens come after plain ones: A–I are undotted, J–R dotted. The legend in the tool is the key."
+      },
+      "pigpen-medium-1": {
+        "title": "To be or not to be",
+        "hint1": "Longer text is easier: the most frequent glyph is almost surely E, T or A.",
+        "hint2": "Doubled glyphs are L, T or E — the classic doubles of English."
+      },
+      "pigpen-hard-1": {
+        "title": "A tale of two cities",
+        "hint1": "This is still a fixed substitution: identify a few high-frequency glyphs first and the rest follows.",
+        "hint2": "Look for the pattern IT…AS…TH… — opening phrases of famous novels give strong cribs.",
+        "hint3": "The variant is the classic masonic key; the legend in the tool lists every mapping."
       }
     },
     "tooltips": {

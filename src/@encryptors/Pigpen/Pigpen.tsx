@@ -63,7 +63,7 @@ const Pigpen: React.FC<CrypterProps> = ({
       <ControlsRow>
         <Tooltip content={t('learning.tooltips.pigpen.variant')}>
           <Select
-            data-guide="variant"
+            data-guide="variant-selector"
             value={variantId}
             onChange={handleVariantChange}
           >
