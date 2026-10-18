@@ -1052,6 +1052,10 @@
         "nihilist": "Le chiffre nihiliste — la substitution rencontre la transposition",
         "saknussemm": "Clins d'œil de la pop culture — le chiffre d'Arne Saknussemm"
       }
+    },
+    "identify": {
+      "title": "Identifier un chiffre",
+      "subtitle": "Un texte chiffré que vous ne savez pas nommer ? L’outil d’identification mesure fréquences, périodicité et structure, puis classe les chiffres probables avec leur raisonnement."
     }
   },
   "identify": {
@@ -1162,6 +1166,8 @@
         "label": "Symboles distincts",
         "hint": "Tous les caractères distincts du texte. La substitution homophonique utilise plus de symboles que l'alphabet n'a de lettres."
       }
-    }
+    },
+    "headerEntry": "Chiffre inconnu ? Identifiez-le",
+    "backEntry": "Ce n’est pas le bon chiffre ? Identifiez-le"
   }
 }
