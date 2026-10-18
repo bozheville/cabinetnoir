@@ -101,3 +101,43 @@ describe('profileText: substitution fits', () => {
     expect(profile.affineScore).toBeGreaterThan(65);
   });
 });
+
+describe('profileText: periodicity', () => {
+  const vigenereText = (plaintext: string, key: string): string =>
+    plaintext
+      .toUpperCase()
+      .split('')
+      .map((letter, index) => {
+        if (!/[A-Z]/.test(letter)) return letter;
+        const shift = key.charCodeAt(index % key.length) - 65;
+        return String.fromCharCode(((letter.charCodeAt(0) - 65 + shift) % 26) + 65);
+      })
+      .join('');
+
+  const base =
+    'THEQUICKBROWNFOXJUMPSOVERTHELAZYDOGANDTHENHERANINTOTHEWOODSWHERETHEHENSROOSTALLDAYLONGUNTILTHEFARMERCAMEHOMEPASTTHEOLDMILLANDDOWNTHELANE';
+  const plain = base.repeat(2);
+
+  it('finds the Vigenere period among the candidates', () => {
+    const profile = profileText(vigenereText(plain, 'LEMON'));
+    expect(profile.bestPeriod).toBe(5);
+    expect(profile.bestPeriodConfidence).toBeGreaterThan(40);
+    expect(profile.periodCandidates.map((c) => c.length)).toContain(5);
+  });
+
+  it('keeps repeats for the metrics panel', () => {
+    const profile = profileText(plain.repeat(2));
+    expect(profile.repeats.length).toBeGreaterThan(0);
+  });
+
+  it('shows a polyalphabetic IC gain for Vigenere, not for plain English', () => {
+    // Whole-text IC is dragged toward random by the polyalphabetic
+    // cipher while the slices stay English-like; plain English has no
+    // such contrast (every period looks the same).
+    const vigenere = profileText(vigenereText(plain, 'LEMON'));
+    const plainProfile = profileText(plain);
+    expect(vigenere.icScore).toBeLessThan(0.5);
+    expect(vigenere.periodIcGain).toBeGreaterThan(0.015);
+    expect(plainProfile.periodIcGain).toBeLessThan(0.008);
+  });
+});
