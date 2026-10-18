@@ -7,7 +7,7 @@ import { CrypterProps } from '../types';
 import { usePigpen } from './usePigpen';
 import { PIGPEN_VARIANT_IDS, getPigpenVariant } from './variants';
 import Tooltip from '@atoms/Tooltip';
-import GlyphRenderer from '@molecues/GlyphRenderer';
+import GlyphLegend from '@molecues/GlyphLegend';
 import GlyphKeyboard from '@molecues/GlyphKeyboard';
 
 const PigpenWrapper = styled(Pane)`
@@ -27,21 +27,12 @@ const ControlsRow = styled(Pane)`
   width: 100%;
 `;
 
-const StripWrapper = styled(Pane)`
-  width: 100%;
-  min-height: 34px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  background: ${({ theme }) => theme.colorScheme.white};
-  color: ${({ theme }) => theme.colorScheme.black};
-  overflow-x: auto;
-`;
-
 const Pigpen: React.FC<CrypterProps> = ({
   input,
   onProcessingEnd,
   isDecryptMode,
   onInputChange,
+  onVariantChange,
   ...paneProps
 }) => {
   const { t } = useTranslation('common');
@@ -56,38 +47,38 @@ const Pigpen: React.FC<CrypterProps> = ({
     onProcessingEnd,
     isDecryptMode,
     onInputChange,
+    onVariantChange,
   });
 
   return (
     <PigpenWrapper {...paneProps}>
-      <ControlsRow>
-        <Tooltip content={t('learning.tooltips.pigpen.variant')}>
-          <Select
-            data-guide="variant-selector"
-            value={variantId}
-            onChange={handleVariantChange}
-          >
-            {PIGPEN_VARIANT_IDS.map((id) => (
-              <option value={id} key={id}>
-                {t(getPigpenVariant(id).nameKey)}
-              </option>
-            ))}
-          </Select>
-        </Tooltip>
-      </ControlsRow>
-      {isDecryptMode ? (
-        <GlyphKeyboard
-          variant={variantId}
-          onKey={appendLetter}
-          onDelete={deleteLast}
-          onClear={clearInput}
-        />
-      ) : (
-        <StripWrapper>
-          <GlyphRenderer text={input} variant={variantId} size={30} />
-        </StripWrapper>
-      )}
-    </PigpenWrapper>
+        <ControlsRow>
+          <Tooltip content={t('learning.tooltips.pigpen.variant')}>
+            <Select
+              data-guide="variant-selector"
+              value={variantId}
+              onChange={handleVariantChange}
+            >
+              {PIGPEN_VARIANT_IDS.map((id) => (
+                <option value={id} key={id}>
+                  {t(getPigpenVariant(id).nameKey)}
+                </option>
+              ))}
+            </Select>
+          </Tooltip>
+        </ControlsRow>
+        {/* The letter-to-glyph key sheet sits above the text areas —
+            the mapping is the cipher's whole key, drawn openly. */}
+        <GlyphLegend variant={variantId} />
+        {isDecryptMode && (
+          <GlyphKeyboard
+            variant={variantId}
+            onKey={appendLetter}
+            onDelete={deleteLast}
+            onClear={clearInput}
+          />
+        )}
+      </PigpenWrapper>
   );
 };
 

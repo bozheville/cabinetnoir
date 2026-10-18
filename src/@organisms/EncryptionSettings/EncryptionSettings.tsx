@@ -31,12 +31,16 @@ interface EncryptionSettingsProps {
   onOutputUpdate: (props: {output: string }) => void;
   // Panes that edit the input themselves (pigpen's glyph keyboard).
   onInputChange?: (value: string) => void;
+  // Panes with their own key variants (pigpen) report them upward so
+  // the output side can render accordingly.
+  onVariantChange?: (variant: string) => void;
 }
 
 const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
   input,
   onOutputUpdate,
   onInputChange,
+  onVariantChange,
 }) => {
   const { t } = useTranslation('common');
   const router = useRouter();
@@ -136,6 +140,7 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
           onProcessingEnd={onOutputUpdate}
           isDecryptMode={isDecryptMode}
           onInputChange={onInputChange}
+          onVariantChange={onVariantChange}
         />
       </Pane>
     </Pane>
