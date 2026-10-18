@@ -113,7 +113,9 @@ const Identification: React.FC = () => {
             <Banner>{t('identify.tooShort')}</Banner>
           )}
           {result && result.tier === 'unreliable' && (
-            <Banner>{t('identify.unreliable')}</Banner>
+            <Banner>
+              {t('identify.unreliable', { letters: result.profile?.letterCount ?? '' })}
+            </Banner>
           )}
           {result && result.tier !== 'tooShort' && (
             <>
