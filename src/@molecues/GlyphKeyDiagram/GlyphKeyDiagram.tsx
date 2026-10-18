@@ -65,9 +65,13 @@ const FIGURES: Record<string, Figure[]> = {
 };
 
 // Where the letter label sits inside its pen/arm, in figure-local
-// 0..100 coordinates — placed clear of the dot's true position.
+// 0..100 coordinates — placed clear of the dot's true position. The
+// plain cross has no dots, so its bottom letter centres in the wide
+// mouth of the V; on the dotted cross the dot claims that spot, so
+// the letter tucks between the centre and the dot instead.
 const ARM_LABELS: Record<string, Record<string, { x: number; y: number }>> = {
-  arm: { top: { x: 50, y: 46 }, left: { x: 38, y: 61 }, right: { x: 62, y: 61 }, bottom: { x: 41, y: 79 } },
+  plain: { top: { x: 50, y: 46 }, left: { x: 38, y: 61 }, right: { x: 62, y: 61 }, bottom: { x: 50, y: 86 } },
+  dotted: { top: { x: 50, y: 47 }, left: { x: 38, y: 61 }, right: { x: 62, y: 61 }, bottom: { x: 50, y: 70 } },
 };
 
 // Margin labels for outside-letter figures. Coordinates are relative
@@ -104,9 +108,10 @@ const labelFor = (glyphId: string, figure: Figure): { x: number; y: number; size
     const base = OUTSIDE_LABELS[arm ? arm[1] : 'top'];
     return { ...base, size: 13 };
   }
-  const plainArm = glyphId.match(/^(arm|tri|stri|loz)-(top|left|right|bottom)(-dot)?$/);
+  const plainArm = glyphId.match(/^arm-(top|left|right|bottom)(-dot)?$/);
   if (plainArm) {
-    return { ...ARM_LABELS[plainArm[1]][plainArm[2]], size: 11 };
+    const labels = plainArm[2] ? ARM_LABELS.dotted : ARM_LABELS.plain;
+    return { ...labels[plainArm[1]], size: 11 };
   }
   return { x: 50, y: 57, size: 11 };
 };
