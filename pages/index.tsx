@@ -30,12 +30,12 @@ const Index: React.FC = () => {
     <>
       <Hero />
       <StartHereCard />
-      <LadderSection color="description">
+      <LadderSection stitch="both" color="description">
         <div>
           <CipherLadder />
         </div>
       </LadderSection>
-      <RoadmapSection stitch="top" color="footer">
+      <RoadmapSection stitch="both" color="footer">
         <div>
           <Roadmap />
         </div>

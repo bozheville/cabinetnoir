@@ -67,7 +67,7 @@ const StartHereCard: React.FC = () => {
   const { t } = useTranslation('common');
 
   return (
-    <Section stitch="top" color="description">
+    <Section stitch="both" color="description">
       <Card>
         <Pane>
           <PinnedLabel>{`★ ${t('home.startHere.label')}`}</PinnedLabel>
