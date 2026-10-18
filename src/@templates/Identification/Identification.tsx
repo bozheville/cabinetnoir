@@ -117,7 +117,7 @@ const Identification: React.FC = () => {
           )}
           {result && result.tier !== 'tooShort' && (
             <>
-              <ResultsTree result={result} />
+              <ResultsTree result={result} input={input} />
               {result.profile && <MetricsPanel profile={result.profile} />}
             </>
           )}
