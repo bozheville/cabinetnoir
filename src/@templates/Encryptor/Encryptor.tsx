@@ -40,6 +40,9 @@ const EncryptorWrapper = styled.div`
 const Encryptor: React.FC = () => {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
+  // Pigpen's variant selection lives in its pane; the mirror here lets
+  // the output side render the glyph strip for the chosen variant.
+  const [pigpenVariant, setPigpenVariant] = useState<string | null>(null);
   const [pendingExample, setPendingExample] = useState<PendingExampleLoad | null>(null);
   const router = useRouter();
   const { algorithm } = router.query;
@@ -101,10 +104,14 @@ const Encryptor: React.FC = () => {
               onOutputUpdate={({ output }) => {
                 setOutput(output);
               }}
+              onInputChange={setInput}
+              onVariantChange={setPigpenVariant}
             />
             <EncryptionInputs
               onChange={setInput}
               output={output}
+              input={input}
+              glyphVariant={pigpenVariant}
             />
           </PendingExampleContext.Provider>
         </EncryptorWrapper>

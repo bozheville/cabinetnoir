@@ -27,6 +27,7 @@ const CIPHER_LADDER = [
   'morse',
   'rot13',
   'atbash',
+  'pigpen',
   'caesar',
   'affine',
   'playfair',
@@ -189,6 +190,33 @@ const learningConfig = {
     furtherReading: [
       {
         url: 'https://en.wikipedia.org/wiki/Atbash',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
+  pigpen: {
+    tabs: ['learn', 'history', 'practice'],
+    sections: {
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.substitution',
+      difficulty: 'learning.difficulty.trivial',
+      era: 'learning.pigpen.era',
+      origin: 'learning.pigpen.origin',
+      modes: ['encrypt', 'decrypt'],
+    },
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'substitution',
+      'frequency-analysis',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Pigpen_cipher',
         labelKey: 'learning.furtherReading.wikipedia',
       },
     ],

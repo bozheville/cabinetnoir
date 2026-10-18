@@ -5,6 +5,7 @@ import { Button, Heading, Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import { Challenge } from '@learning/challenges';
+import GlyphRenderer from '@molecues/GlyphRenderer';
 
 const Card = styled(Pane)`
   width: 100%;
@@ -23,6 +24,15 @@ const Ciphertext = styled(Pane)`
   margin: 8px 0;
   background: ${({ theme }) => theme.colorScheme.gray[100]};
   border-radius: 4px;
+`;
+
+const GlyphCiphertext = styled(GlyphRenderer)`
+  display: block;
+  padding: 8px;
+  margin: 8px 0;
+  background: ${({ theme }) => theme.colorScheme.gray[100]};
+  border-radius: 4px;
+  color: ${({ theme }) => theme.colorScheme.black};
 `;
 
 const DifficultyBadge = styled(Text)<{ $difficulty: string }>`
@@ -70,7 +80,11 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({ challenge }) => {
           {t(`learning.challenge.labels.${challenge.difficulty}`)}
         </DifficultyBadge>
       </Pane>
-      <Ciphertext>{challenge.ciphertext}</Ciphertext>
+      {challenge.glyphVariant ? (
+        <GlyphCiphertext text={challenge.ciphertext} variant={challenge.glyphVariant} size={26} />
+      ) : (
+        <Ciphertext>{challenge.ciphertext}</Ciphertext>
+      )}
 
       <Pane display="flex" flexDirection="column" gap="4px" marginTop="4px">
         {challenge.hints.slice(0, revealedHints).map((hint) => (
