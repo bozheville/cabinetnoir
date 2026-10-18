@@ -1,75 +1,45 @@
 import React from 'react';
-import Link from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
+
+import { CipherLadder, Footer, Hero, Roadmap, StartHereCard } from '@molecues';
+import Section from '@atoms/Section/Section';
 import styled from 'styled-components';
 
-import { encodingsList, encryptorsList } from '@encryptors';
-import { Footer } from '@molecues';
-import { Canon, DoublePica, GreatPrimer } from '@typography';
-import Section from '@atoms/Section/Section';
-
-const HomeMenuSection = styled(Section)`
+const LadderSection = styled(Section)`
   flex: 1 0 auto;
-  padding-top: 64px;
 
   & > div {
-    text-align: center;
     margin: 0 auto;
     width: 100%;
-    max-width: 640px;
+    max-width: 720px;
   }
 `;
 
-const AlgorithmLink = styled(Link)`
-  display: inline-block;
-  padding: 1em;
-  border-radius: 4px;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colorScheme.red_violet[200]};
+const RoadmapSection = styled(Section)`
+  & > div {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 720px;
   }
 `;
 
-const AlgorithmList = styled.div`
-  margin-top: 36px;
-  display: grid;
-  grid-template-columns: repeat(4, 25% [col-start]);
-  row-gap: 16px;
-
-  ${({ theme }) => theme.breakpoints.small} {
-    grid-template-columns: repeat(2, 50% [col-start]);
-  }
-`;
-
+// Landing page (#73): hero, pinned "Start here", the cipher ladder
+// (#74) and the roadmap (#75).
 const Index: React.FC = () => {
-  const { t } = useTranslation('common');
-
   return (
     <>
-      <HomeMenuSection stitch="bottom" color="homeMenu">
+      <Hero />
+      <StartHereCard />
+      <LadderSection color="description">
         <div>
-          <Canon>{`${t('name')}`}</Canon>
-          <DoublePica>{`${t('home.title')}`}</DoublePica>
+          <CipherLadder />
         </div>
+      </LadderSection>
+      <RoadmapSection stitch="top" color="footer">
         <div>
-          <GreatPrimer>{`${t('home.subtitle')}`}</GreatPrimer>
-          <AlgorithmList>
-          <GreatPrimer>Encodings</GreatPrimer>
-          {encodingsList.map((algorithm) => (
-            <AlgorithmLink key={algorithm} href={`/encoder/${algorithm}/direct`}>
-              {`${t(`processing.${algorithm}.title`)}`}
-            </AlgorithmLink>
-          ))}
-          <GreatPrimer>Encryptoins</GreatPrimer>
-          {encryptorsList.map((algorithm) => (
-            <AlgorithmLink key={algorithm} href={`/encoder/${algorithm}/direct`}>
-              {`${t(`processing.${algorithm}.title`)}`}
-            </AlgorithmLink>
-          ))}
-          </AlgorithmList>
+          <Roadmap />
         </div>
-      </HomeMenuSection>
+      </RoadmapSection>
       <Footer />
     </>
   );
