@@ -121,10 +121,15 @@ export interface TextProfile {
   polybiusLike: boolean;
   nihilistLike: boolean;
 
-  // Uniformity of the letter distribution: a high score means nearly
-  // flat frequencies — the homophonic fingerprint (with many distinct
+  // Flatness score for the homophonic fingerprint (with many distinct
   // symbols).
   uniformityScore: number;
+
+  // Average best-shift chi² score of the slices at the best period. A
+  // plain periodic cipher (Vigenère) decrypts slice-by-slice with plain
+  // shifts — high score. A mixed-alphabet periodic cipher (Alberti)
+  // does not — lower score.
+  sliceShiftScore: number;
 }
 
 const icScoreOf = (ic: number): number => {
@@ -283,6 +288,29 @@ export const profileText = (input: string): TextProfile => {
   }, 0);
   const uniformityScore = chiToScorePerLetter(uniformChi, letterCount);
 
+  // Slices at the best period: how well plain shifts alone decrypt them
+  // (the Vigenère-vs-Alberti discriminator).
+  let sliceShiftScore = 0;
+  if (best && best.length >= 2 && letterCount / best.length >= 4) {
+    const period = best.length;
+    const sliceScores: number[] = [];
+    for (let offset = 0; offset < period; offset += 1) {
+      const sliceCounts = new Array<number>(ALPHABET_LENGTH).fill(0);
+      for (let index = offset; index < letterCount; index += period) {
+        sliceCounts[STANDARD_ALPHABET.indexOf(letters[index])] += 1;
+      }
+      const sliceTotal = sliceCounts.reduce((sum, count) => sum + count, 0);
+      if (sliceTotal < 4) {
+        continue;
+      }
+      sliceScores.push(Math.max(...Array.from({ length: ALPHABET_LENGTH }, (_, shift) =>
+        chiToScorePerLetter(chiSquaredAt(sliceCounts, shift), sliceTotal))));
+    }
+    if (sliceScores.length > 0) {
+      sliceShiftScore = Math.round(sliceScores.reduce((sum, score) => sum + score, 0) / sliceScores.length);
+    }
+  }
+
   return {
     letters,
     letterCount,
@@ -320,5 +348,6 @@ export const profileText = (input: string): TextProfile => {
     polybiusLike,
     nihilistLike,
     uniformityScore,
+    sliceShiftScore,
   };
 };
