@@ -9,6 +9,7 @@ import type { IdentificationResult } from '@encryptors/shared/identification/typ
 
 import { IdentificationSection, Wrapper, Inner } from './elements';
 import ResultsTree from './ResultsTree';
+import MetricsPanel from './MetricsPanel';
 
 const InputHeading = styled(GreatPrimer)`
   margin: 0;
@@ -115,7 +116,10 @@ const Identification: React.FC = () => {
             <Banner>{t('identify.unreliable')}</Banner>
           )}
           {result && result.tier !== 'tooShort' && (
-            <ResultsTree result={result} />
+            <>
+              <ResultsTree result={result} />
+              {result.profile && <MetricsPanel profile={result.profile} />}
+            </>
           )}
         </Inner>
       </Wrapper>
