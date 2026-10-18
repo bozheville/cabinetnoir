@@ -77,7 +77,7 @@ const OUTSIDE_LABELS: Record<string, { x: number; y: number }> = {
   top: { x: 50, y: -6 },
   left: { x: -7, y: 61 },
   right: { x: 107, y: 61 },
-  bottom: { x: 50, y: 104 },
+  bottom: { x: 50, y: 110 },
 };
 
 const labelFor = (glyphId: string, figure: Figure): { x: number; y: number; size: number } => {
