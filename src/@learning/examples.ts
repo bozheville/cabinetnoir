@@ -35,6 +35,10 @@ export interface WorkedExample {
   columns: WorkedExampleColumn[];
   // One row per input letter; cells are plain strings.
   rows: string[][];
+  // Glyph ciphers (pigpen): render the listed columns' cells as SVG
+  // glyphs of this variant instead of plain text.
+  glyphVariant?: string;
+  glyphColumns?: string[];
 }
 
 // i18n keys for generic column headings.
@@ -240,6 +244,24 @@ const buildMorseExample = (id: string, input: string): WorkedExample => ({
   }),
 });
 
+// Pigpen: the ciphertext is graphics — the result column renders as SVG
+// glyphs (see WorkedExample's glyph columns).
+const buildPigpenExample = (id: string, input: string): WorkedExample => ({
+  id,
+  cipher: 'pigpen',
+  input,
+  key: '',
+  alphabet: '',
+  mode: 'encrypt',
+  glyphVariant: 'masonic',
+  glyphColumns: ['glyph'],
+  columns: [
+    { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+    { key: 'glyph', labelKey: 'learning.example.columns.glyph' },
+  ],
+  rows: input.split('').map((plain) => [plain, plain]),
+});
+
 // Base64: three bytes become four characters, so the example walks
 // the input in 3-byte chunks — the last one usually padded.
 const buildBase64Example = (id: string, input: string): WorkedExample => {
@@ -380,6 +402,7 @@ export const EXAMPLES: Record<string, WorkedExample> = {
   'affine-basic': buildAffineExample('affine-basic', 'SECRETMESSAGE', 3, 7),
   'atbash-basic': buildAtbashExample('atbash-basic', 'REVERSEME'),
   'morse-basic': buildMorseExample('morse-basic', 'SOS'),
+  'pigpen-basic': buildPigpenExample('pigpen-basic', 'SOS'),
   'base64-basic': buildBase64Example('base64-basic', 'MEETATNOON'),
   'rot13-basic': buildRot13Example('rot13-basic', 'HELLOWORLD'),
   'playfair-basic': buildPlayfairExample('playfair-basic', 'HIDETHEGOLD', 'PLAYFAIREXAMPLE'),
