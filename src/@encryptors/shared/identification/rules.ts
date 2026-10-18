@@ -1,8 +1,14 @@
 import type { Family } from './types';
 import type { TextProfile } from './profile';
 import { isEnglishLikeIc } from './profile';
+import { scoreDigraphs } from '@encryptors/shared/analysis/digraphs';
+import {
+  railFenceCandidateScores,
+  columnarCandidateScores,
+} from './roadmapCiphers';
 import {
   ADFGVX_LETTERS,
+  CAESAR_GAP,
   CHI_FIT_BAD,
   CHI_FIT_GOOD,
   HOMOPHONIC_SYMBOLS,
@@ -133,5 +139,123 @@ export const FAMILY_RULES: Rule[] = [
     (profile) => (profile.distinctSymbols >= HOMOPHONIC_SYMBOLS
       && profile.uniformityScore >= HOMOPHONIC_UNIFORMITY
       ? { symbols: profile.distinctSymbols }
+      : null)),
+];
+
+// --- Cipher-level rules ---
+
+export const CIPHER_RULES: Rule[] = [
+  // Caesar: one shift clearly explains the whole text.
+  rule('caesarBestShift', cipher('caesar'), 45,
+    (profile) => (profile.caesarBestScore >= CHI_FIT_GOOD
+      && profile.caesarBestScore - profile.caesarRunnerUpScore >= CAESAR_GAP
+      ? { shift: profile.caesarBestShift }
+      : null)),
+
+  // ROT13: the Caesar winner sits exactly at 13.
+  rule('rot13Shift', cipher('rot13'), 40,
+    (profile) => (profile.caesarBestScore >= CHI_FIT_GOOD && profile.caesarBestShift === 13
+      ? {}
+      : null)),
+
+  // Atbash: the reversed alphabet explains the text at least as well as
+  // the best shift.
+  rule('atbashMirror', cipher('atbash'), 45,
+    (profile) => (profile.atbashScore >= CHI_FIT_GOOD && profile.atbashScore >= profile.caesarBestScore
+      ? {}
+      : null)),
+
+  // Affine: a non-trivial multiplier explains the text better than any
+  // plain shift.
+  rule('affineKey', cipher('affine'), 45,
+    (profile) => (profile.affineScore >= CHI_FIT_GOOD
+      && profile.affineMultiplier !== 1
+      && profile.affineScore > profile.caesarBestScore
+      ? { key: `${profile.affineMultiplier}/${profile.affineShift}` }
+      : null)),
+
+  // Keyword substitution: substitution-shaped, but no simple key fits.
+  rule('keywordNoSimpleKey', cipher('keyword'), 30,
+    (profile) => (profile.sortedChiScore >= CHI_FIT_GOOD
+      && profile.caesarBestScore < CHI_FIT_GOOD
+      && profile.affineScore < CHI_FIT_GOOD
+      && profile.atbashScore < CHI_FIT_GOOD
+      ? {}
+      : null)),
+
+  // Vigenère: a periodic polyalphabetic whose slices decrypt with plain
+  // shifts.
+  rule('vigenereSlices', cipher('vigenere'), 35,
+    (profile) => (profile.periodIcGain >= 0.015
+      && profile.sliceShiftScore >= CHI_FIT_GOOD
+      ? { period: profile.bestPeriod ?? 0 }
+      : null)),
+
+  // Alberti: periodic polyalphabetic, but plain shifts fail on the
+  // slices — the disc alphabet is mixed.
+  rule('albertiMixedDisc', cipher('alberti'), 30,
+    (profile) => (profile.periodIcGain >= 0.015
+      && profile.sliceShiftScore < CHI_FIT_GOOD
+      ? { period: profile.bestPeriod ?? 0 }
+      : null)),
+
+  // Enigma: only rides on the aperiodic family signal; capped low by
+  // its small weight, never above `possible`.
+  rule('enigmaAperiodic', cipher('enigma'), 20,
+    (profile) => (profile.ic < IC_RANDOM * 1.15 && profile.periodIcGain < 0.015
+      ? { ic: Math.round(profile.ic * 1000) / 1000 }
+      : null)),
+
+  // Rail fence: undoing a small zigzag makes the digraphs English.
+  rule('railFenceUndo', cipher('railFence'), 30,
+    (profile) => {
+      if (!isEnglishLikeIc(profile.ic) || profile.directChiScore < CHI_FIT_GOOD) {
+        return null;
+      }
+      const best = railFenceCandidateScores(profile.letters, scoreDigraphs)[0];
+      const asIs = scoreDigraphs(profile.letters);
+      return best && best.score > asIs + 10
+        ? { rails: best.rails }
+        : null;
+    }),
+
+  // Columnar: some column width reads like English fragments.
+  rule('columnarWidth', cipher('columnar'), 30,
+    (profile) => {
+      if (!isEnglishLikeIc(profile.ic) || profile.directChiScore < CHI_FIT_GOOD) {
+        return null;
+      }
+      const best = columnarCandidateScores(profile.letters, scoreDigraphs)[0];
+      const asIs = scoreDigraphs(profile.letters);
+      return best && best.score > asIs + 10
+        ? { width: best.width }
+        : null;
+    }),
+
+  // Playfair: even-length digraph text, no J, no doubled pair, at most
+  // 25 distinct letters, and not plain English.
+  rule('playfairDigraphs', cipher('playfair'), 40,
+    (profile) => (profile.evenLength
+      && !profile.hasDoubledDigraph
+      && !profile.hasJ
+      && profile.distinctLetters.length <= MAX_DISTINCT_PLAYFAIR
+      && profile.directChiScore < CHI_FIT_GOOD
+      ? {}
+      : null)),
+
+  // Playfair excluded: the letter J cannot appear in its output.
+  rule('playfairHasJ', cipher('playfair'), -40,
+    (profile) => (profile.hasJ ? {} : null)),
+
+  // ADFGVX excluded: any letter outside the fractionation set.
+  rule('adfgvxNotSet', cipher('adfgvx'), -35,
+    (profile) => (!profile.adfgvxSet
+      ? {}
+      : null)),
+
+  // Nihilist: digit output in the mixed sum range.
+  rule('nihilistDigits', cipher('nihilist'), 45,
+    (profile) => (profile.nihilistLike
+      ? { pairs: profile.digitPairs }
       : null)),
 ];

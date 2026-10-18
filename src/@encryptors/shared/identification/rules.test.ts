@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { FAMILY_RULES, evaluateRules } from './rules';
+import { CIPHER_RULES, FAMILY_RULES, evaluateRules } from './rules';
 import { profileText } from './profile';
 
 const longEnglish =
@@ -17,7 +17,7 @@ const vigenereText = (text: string, key: string): string =>
   });
 
 const firedFor = (input: string) => {
-  const fires = evaluateRules(profileText(input), FAMILY_RULES);
+  const fires = evaluateRules(profileText(input), [...FAMILY_RULES, ...CIPHER_RULES]);
   return Object.fromEntries(fires.map((fire) => [fire.rule.id, fire.params]));
 };
 
@@ -54,5 +54,43 @@ describe('family rules', () => {
 
   it('is deterministic', () => {
     expect(firedFor(longEnglish)).toEqual(firedFor(longEnglish));
+  });
+});
+
+describe('cipher rules', () => {
+  it('names Caesar with its shift', () => {
+    const fires = firedFor(shiftText(longEnglish, 7));
+    expect(fires.caesarBestShift).toMatchObject({ shift: 7 });
+    expect(fires.rot13Shift).toBeUndefined();
+  });
+
+  it('names ROT13 at shift 13', () => {
+    const fires = firedFor(shiftText(longEnglish, 13));
+    expect(fires.caesarBestShift).toMatchObject({ shift: 13 });
+    expect(fires.rot13Shift).toBeDefined();
+  });
+
+  it('names Atbash on mirrored text', () => {
+    const atbashAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reverse().join('');
+    const atbash = (text: string): string =>
+      text.toUpperCase().replace(/[A-Z]/g, (letter) => atbashAlphabet[letter.charCodeAt(0) - 65]);
+    const fires = firedFor(atbash(longEnglish));
+    expect(fires.atbashMirror).toBeDefined();
+    expect(fires.caesarBestShift).toBeUndefined();
+  });
+
+  it('names Vigenere via plain-shift slices', () => {
+    const fires = firedFor(vigenereText(longEnglish, 'LEMON'));
+    expect(fires.vigenereSlices).toMatchObject({ period: 5 });
+  });
+
+  it('rules Playfair out when the letter J appears', () => {
+    const fires = firedFor(longEnglish);
+    expect(fires.playfairHasJ).toBeDefined();
+  });
+
+  it('keeps Nihilist for digit sums in range', () => {
+    const fires = firedFor('23 45 61 72 84 95 33 41 52 63');
+    expect(fires.nihilistDigits).toMatchObject({ pairs: 10 });
   });
 });
