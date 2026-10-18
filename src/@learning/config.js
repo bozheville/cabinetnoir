@@ -18,6 +18,26 @@ const LEARNING_TABS = ['learn', 'history', 'practice'];
 // specs/learning-material-standardisation/standard.md §10.
 const CRYPTOANALYSIS_TAB = 'cryptoanalysis';
 
+// Home-page cipher ladder (#74): every cipher in one difficulty-ordered
+// list, trivial → hardest. Base64 is excluded on purpose — it is a
+// digital-era utility, not pen-and-paper cryptography; it stays
+// reachable through the ladder's footnote link. The Start-here card
+// points at the classic first cipher.
+const CIPHER_LADDER = [
+  'morse',
+  'rot13',
+  'atbash',
+  'caesar',
+  'affine',
+  'playfair',
+  'vigenere',
+  'adfgvx',
+  'alberti',
+  'enigma',
+];
+
+const START_HERE_CIPHER = 'caesar';
+
 const learningConfig = {
   vigenere: {
     tabs: ['learn', 'history', 'practice'],
@@ -362,6 +382,8 @@ const hasCryptoanalysis = (cipher) => {
 module.exports = {
   LEARNING_TABS,
   CRYPTOANALYSIS_TAB,
+  CIPHER_LADDER,
+  START_HERE_CIPHER,
   learningConfig,
   getLearningConfig,
   hasTab,

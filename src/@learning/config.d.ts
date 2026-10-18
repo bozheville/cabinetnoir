@@ -40,6 +40,13 @@ export declare const LEARNING_TABS: LearningTabName[];
 
 export declare const CRYPTOANALYSIS_TAB: 'cryptoanalysis';
 
+// Home-page cipher ladder: difficulty-ordered cipher ids (trivial →
+// hardest), Base64 excluded on purpose.
+export declare const CIPHER_LADDER: string[];
+
+// The cipher the pinned "Start here" card points at.
+export declare const START_HERE_CIPHER: string;
+
 export declare const learningConfig: Record<string, LearningConfigEntry>;
 
 export declare function getLearningConfig(cipher: string): LearningConfigEntry | null;
