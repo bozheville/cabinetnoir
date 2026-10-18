@@ -114,10 +114,13 @@ export const FAMILY_RULES: Rule[] = [
       ? {}
       : null)),
 
-  // Block/polygraphic: the structural fingerprints (shared by the
-  // concrete ciphers; the cipher rules do the precise matching).
+  // Block/polygraphic: the structural fingerprints, only when the text
+  // does not already read as English (a plain even-length English text
+  // is not a block cipher).
   rule('blockStructure', family('block'), 20,
-    (profile) => (profile.evenLength && profile.distinctLetters.length <= MAX_DISTINCT_PLAYFAIR
+    (profile) => (profile.evenLength
+      && profile.distinctLetters.length <= MAX_DISTINCT_PLAYFAIR
+      && profile.directChiScore < CHI_FIT_GOOD
       ? {}
       : null)),
 
@@ -145,9 +148,11 @@ export const FAMILY_RULES: Rule[] = [
 // --- Cipher-level rules ---
 
 export const CIPHER_RULES: Rule[] = [
-  // Caesar: one shift clearly explains the whole text.
+  // Caesar: one shift clearly explains the whole text — and that shift
+  // is not zero (a zero shift means the text is already plaintext).
   rule('caesarBestShift', cipher('caesar'), 45,
     (profile) => (profile.caesarBestScore >= CHI_FIT_GOOD
+      && profile.caesarBestShift !== 0
       && profile.caesarBestScore - profile.caesarRunnerUpScore >= CAESAR_GAP
       ? { shift: profile.caesarBestShift }
       : null)),
