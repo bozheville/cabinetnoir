@@ -18,7 +18,7 @@ const Glyph = styled.svg`
 
 interface GlyphRendererProps {
   // Plaintext letters; non-letters are skipped, spaces become gaps.
-  text: string;
+  text?: string;
   // Variant id from the pigpen registry.
   variant: string;
   // Pixel size of one glyph.
@@ -29,7 +29,7 @@ interface GlyphRendererProps {
 // Pure presentational: used by the tool's output strip, the keyboard
 // keys, the worked example and the challenge cards.
 const GlyphRenderer: React.FC<GlyphRendererProps> = ({
-  text,
+  text = '',
   variant,
   size = 28,
 }) => {

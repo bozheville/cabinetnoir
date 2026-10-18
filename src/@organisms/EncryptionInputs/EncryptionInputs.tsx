@@ -110,8 +110,13 @@ const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
         const { usedKey, ...restQuery } = router.query;
         router.replace({ pathname: router.pathname, query: restQuery }, undefined, { shallow: true });
       } else {
-        onChange(outputRef?.current?.value);
-        setInput(outputRef?.current?.value);
+        // Modes swap seeds the input from the previous output — except
+        // when the output side is not a textarea (pigpen's glyph strip):
+        // there the current input already is the letter sequence both
+        // modes understand, so it simply carries over.
+        const carried = outputRef?.current?.value ?? input ?? '';
+        onChange(carried);
+        setInput(carried);
       }
     }
 
