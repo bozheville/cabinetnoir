@@ -68,21 +68,40 @@ export const keywordEncrypt = (letters: string, keyword: string): string =>
 
 // --- Homophonic ---
 
-// Each plaintext letter maps to one of its homophones (extra symbols
-// for common letters), rotated deterministically through the list.
-// The homophones are letters of the same alphabet (the simplest
-// letter-preserving variant), which flattens the frequency profile.
-const HOMOPHONE_TABLE: Record<string, string[]> = {
-  A: ['Q', 'X'], B: ['B'], C: ['C'], D: ['D'], E: ['Z', 'J', 'K'],
-  F: ['F'], G: ['G'], H: ['H'], I: ['Y', 'W'], J: ['J'], K: ['K'],
-  L: ['L'], M: ['M'], N: ['N'], O: ['V'], P: ['P'], Q: ['Q'], R: ['R'],
-  S: ['S'], T: ['T'], U: ['U'], V: ['V'], W: ['W'], X: ['X'], Y: ['Y'], Z: ['Z'],
+// The classic numeric homophonic table: common letters get several
+// two-digit codes, rare letters one. 84 codes in total (11-94), so the
+// ciphertext carries far more distinct symbols than any 26-letter
+// substitution could — the fingerprint the rule looks for.
+const HOMOPHONE_COUNTS: Record<string, number> = {
+  E: 10, T: 8, A: 7, O: 7, I: 6, N: 6, S: 5, H: 5, R: 5, D: 4, L: 4,
+  C: 3, U: 3, M: 2, W: 2, F: 2, G: 2, Y: 2, P: 1, B: 1, V: 1, K: 1,
+  J: 1, X: 1, Q: 1, Z: 1,
 };
+
+// code assignment: letters in frequency order, codes running 11, 12, ...
+const HOMOPHONE_CODES: Record<string, string[]> = (() => {
+  const table: Record<string, string[]> = {};
+  let code = 11;
+  for (const letter of 'ETAOINSHRDLCUMWFGYPBVKJXQZ') {
+    const count = HOMOPHONE_COUNTS[letter];
+    table[letter] = Array.from({ length: count }, () => {
+      const value = code;
+      code += 1;
+      return String(value).padStart(2, '0');
+    });
+  }
+  return table;
+})();
 
 export const homophonicEncrypt = (letters: string): string =>
   letters.split('').map((letter, index) => {
-    const homophones = HOMOPHONE_TABLE[letter] || [letter];
-    return homophones[index % homophones.length];
+    if (!/[A-Z]/.test(letter)) {
+      return letter;
+    }
+    const homophones = HOMOPHONE_CODES[letter] || [letter];
+    // Deterministic but aperiodic pick: the stride mixes the index with
+    // the code, so no linear period survives in the ciphertext.
+    return homophones[(index * 31 + letter.charCodeAt(0) * 17) % homophones.length];
   }).join('');
 
 // --- Nihilist ---

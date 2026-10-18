@@ -10,6 +10,19 @@ export const RELIABLE_LETTERS = 100; // below: results + "unreliable" banner
 export const IC_RANDOM = 0.0385;
 export const IC_ENGLISH = 0.0667;
 
+// Periodic polyalphabetic: the slice-vs-whole IC gain and the absolute
+// slice quality the periodic rule demands. Two bars: the family rule
+// (strong, needs a clear gain) and the Alberti-specific rule (catches
+// the mixed-disc case where the gain is smaller).
+export const PERIOD_GAIN = 0.012;
+export const PERIOD_GAIN_LOW = 0.010;
+export const PERIOD_SLICE_IC = 0.055;
+
+// English-like IC is a band, not a floor: an IC far ABOVE English means
+// a restricted alphabet (ADFGVX-style), not plain English.
+export const IC_BAND_MIN = 0.048;
+export const IC_BAND_MAX = 0.085;
+
 // A profile counts as "English-like IC" from this share of the way from
 // random to English.
 export const IC_ENGLISH_LIKE = 0.55; // of the random->English range
@@ -33,13 +46,15 @@ export const POLYBIUS_MIN = 11;
 export const POLYBIUS_MAX = 55;
 export const NIHILIST_MIN = 22;
 export const NIHILIST_MAX = 110;
+// Alberti disc: shorter than the alphabet, so its ciphertext uses fewer
+// distinct letters.
+export const ALBERTI_MAX_DISTINCT = 23;
 export const MIN_DIGIT_PAIRS = 4; // below: not enough evidence for a flag
 
 // Homophonic hint: distinct symbols well above the alphabet size, plus
 // a nearly flat letter distribution.
 export const HOMOPHONIC_SYMBOLS = 32;
-export const HOMOPHONIC_DISTINCT = 22;
-export const HOMOPHONIC_UNIFORMITY = 90;
+export const HOMOPHONIC_UNIFORMITY = 75;
 
 // Block-of-5 grouping: at least this many groups of exactly 5 before
 // the "grouped" flag fires.

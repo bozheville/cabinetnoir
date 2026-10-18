@@ -64,10 +64,10 @@ describe('cipher rules', () => {
     expect(fires.rot13Shift).toBeUndefined();
   });
 
-  it('names ROT13 at shift 13', () => {
+  it('names ROT13 at shift 13 (the Caesar rule deliberately skips 13)', () => {
     const fires = firedFor(shiftText(longEnglish, 13));
-    expect(fires.caesarBestShift).toMatchObject({ shift: 13 });
     expect(fires.rot13Shift).toBeDefined();
+    expect(fires.caesarBestShift).toBeUndefined();
   });
 
   it('names Atbash on mirrored text', () => {
