@@ -394,6 +394,19 @@
         },
         "match": "Match: {{score}}%"
       }
+    },
+    "pigpen": {
+      "title": "Pigpen cipher",
+      "short_title": "Pigpen",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Glyph message",
+      "deleteKey": "Delete",
+      "variants": {
+        "masonic": "Masonic (classic)",
+        "rosicrucian": "Rosicrucian",
+        "templar": "Templar"
+      }
     }
   },
   "message": "Message",
@@ -467,6 +480,7 @@
       "showAll": "Show all",
       "restart": "Restart",
       "columns": {
+        "glyph": "Glyph",
         "plain": "Plaintext letter",
         "key": "Key letter",
         "shift": "Shift",
@@ -518,7 +532,8 @@
       "transposition-key": "the Transposition key field",
       "unknown-keys": "the \"Unknown keys\" checkbox",
       "column-chips": "the column arrangement chips",
-      "symbol-chart": "the symbol frequency chart"
+      "symbol-chart": "the symbol frequency chart",
+      "glyph-keyboard": "the glyph keyboard"
     },
     "timeline": {
       "source": "Source",
@@ -582,6 +597,12 @@
         "1918-introduced": "Fritz Nebel’s fractionation-transposition cipher enters German field service as ADFGX, with a 5×5 square.",
         "1918-painvin": "Georges Painvin breaks the ADFGX traffic from intercepted same-key message pairs after months of effort.",
         "1918-traffic": "The square gains a sixth row for digits (ADFGVX); the broken traffic helps the French anticipate the German offensive at Amiens."
+      },
+      "pigpen": {
+        "1531": "Cornelius Agrippa describes an early Rosicrucian-style grid cipher — the 'Kabbalah of the Nine Chambers', dots carrying the alphabet.",
+        "1730": "The pirate Olivier Levasseur allegedly throws a pigpen scrap into the crowd at his execution — the unread treasure note dies with its variant.",
+        "1700s": "Freemasons adopt the cipher for lodge records and correspondence — so persistently that it becomes 'the Freemason's cipher'.",
+        "1860s": "Union prisoners in Confederate prisons use pigpen to smuggle messages during the American Civil War."
       }
     },
     "challenge": {
@@ -815,43 +836,30 @@
         "hint1": "The variant is ADFGVX and the transposition key has six distinct letters.",
         "hint2": "A crib: the message starts with the word WE.",
         "hint3": "The square key is KAISER."
+      },
+      "pigpen-easy-1": {
+        "title": "The buried map",
+        "hint1": "Count the shapes: full boxes, corners and open pens — the walls tell you which pen of the grid a letter lived in.",
+        "hint2": "Dotted pens come after plain ones: A–I are undotted, J–R dotted. The legend in the tool is the key."
+      },
+      "pigpen-medium-1": {
+        "title": "To be or not to be",
+        "hint1": "Longer text is easier: the most frequent glyph is almost surely E, T or A.",
+        "hint2": "Doubled glyphs are L, T or E — the classic doubles of English."
+      },
+      "pigpen-hard-1": {
+        "title": "A tale of two cities",
+        "hint1": "This is still a fixed substitution: identify a few high-frequency glyphs first and the rest follows.",
+        "hint2": "Look for the pattern IT…AS…TH… — opening phrases of famous novels give strong cribs.",
+        "hint3": "The variant is the classic masonic key; the legend in the tool lists every mapping."
       }
     },
     "tooltips": {
-      "swap": "Swap the two sides: the tool switches between encrypting and decrypting. The current mode shows in the header.",
-      "caesar": {
-        "rotation": "The shift: every letter of the message moves this many positions forward through the alphabet (backwards in decrypt mode).",
-        "keepSpaces": "Keep spaces: preserve the word layout instead of dropping all spaces.",
-        "keepCase": "Keep case: preserve capital letters instead of writing everything in capitals."
-      },
-      "alphabet": "The alphabet the cipher works on: pick a preset or paste your own ordered letters.",
-      "alberti": {
-        "disc": "Alberti's cipher disk: the fixed outer disc holds the plaintext alphabet, the movable inner disc holds the mixed ciphertext alphabet.",
-        "increment": "The turn step: how many positions the inner disc jumps after every chunk of the period.",
-        "period": "The period: how many letters are encrypted before the inner disc turns."
-      },
-      "affine": {
-        "multiplier": "The multiplier a of y = a·x + b. It must be coprime with the alphabet length, otherwise several letters collide.",
-        "shift": "The shift b of y = a·x + b — the Caesar-style add-on applied after the multiplication."
-      },
-      "atbash": {
-        "alphabet": "The alphabet selector: Atbash mirrors whatever alphabet is chosen — the only choice the cipher offers."
-      },
-      "morse": {
-        "dot": "The character that plays the short signal (the dot) in the encoded output.",
-        "dash": "The character that plays the long signal (the dash) in the encoded output."
-      },
-      "playfair": {
-        "key": "The keyword: after deduplication it seeds the 5×5 letter square — the entire key of the cipher."
-      },
-      "enigma": {
-        "key": "The rotor start positions (the Grundstellung) — three letters A–Z. On a real machine the key also carried the rotor order, the ring settings and the plugboard pairs."
-      },
-      "adfgvx": {
-        "variant": "The variant: ADFGX uses a 5×5 letter square, ADFGVX adds a 6th row with the digits 0–9.",
-        "square-key": "The keyed square: the key letters fill the square first (duplicates dropped, J folded into I), the rest of the alphabet follows. Change it and both the coordinates and the final transposition shift.",
-        "transposition-key": "The transposition key: its letters set the number and the reading order of the columns the fractionated text is shuffled through.",
-        "unknown-keys": "Tick this when you do not know the keys: a guided cracker appears below and walks you from the ciphertext to both keys."
+      "pigpen": {
+        "variant": "The symbol set: the same cipher drawn with different grids and marks — the reader must know the variant.",
+        "key": "Add this glyph to the message.",
+        "delete": "Remove the last glyph.",
+        "clear": "Clear the message."
       }
     },
     "caesar": {
@@ -903,6 +911,11 @@
       "description": "The German WWI field cipher that split every letter into two of six letters and then shuffled the result — until Georges Painvin broke it.",
       "era": "1918 (World War I)",
       "origin": "Fritz Nebel, German army signal corps"
+    },
+    "pigpen": {
+      "description": "A symbol substitution: every letter becomes a fragment of a grid — the famous Freemason's cipher.",
+      "era": "18th century (variants since antiquity)",
+      "origin": "Popularly the Freemasons, who used it for records and rites; earlier variants are older still."
     }
   },
   "glossary": {

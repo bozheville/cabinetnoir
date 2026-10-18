@@ -4,6 +4,7 @@ import { Button, Pane, Table, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import { getExample } from '@learning/examples';
+import GlyphRenderer from '@molecues/GlyphRenderer';
 
 const Container = styled(Pane)`
   margin: 12px 0;
@@ -53,7 +54,14 @@ const WorkedExample: React.FC<WorkedExampleProps> = ({ id }) => {
           {shownRows.map((row, rowIndex) => (
             <Table.Row key={rowIndex}>
               {row.map((cell, cellIndex) => (
-                <Table.TextCell key={cellIndex}>{cell}</Table.TextCell>
+                <Table.TextCell key={cellIndex}>
+                  {example.glyphVariant &&
+                  example.glyphColumns?.includes(example.columns[cellIndex]?.key) ? (
+                    <GlyphRenderer text={cell} variant={example.glyphVariant} size={24} />
+                  ) : (
+                    cell
+                  )}
+                </Table.TextCell>
               ))}
             </Table.Row>
           ))}
