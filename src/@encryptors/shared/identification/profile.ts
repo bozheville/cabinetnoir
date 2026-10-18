@@ -16,9 +16,15 @@ import {
   IC_ENGLISH,
   IC_ENGLISH_LIKE,
   IC_RANDOM,
+  MIN_DIGIT_PAIRS,
   MIN_GROUPS_FOR_FLAG,
   MIN_LETTERS,
+  NIHILIST_MAX,
+  NIHILIST_MIN,
+  POLYBIUS_MAX,
+  POLYBIUS_MIN,
   RELIABLE_LETTERS,
+  ADFGVX_LETTERS,
 } from './thresholds';
 
 // The text profile: every measurement the identification rules need,
@@ -95,6 +101,30 @@ export interface TextProfile {
   // English (every period looks the same), clearly positive for a
   // periodic polyalphabetic cipher.
   periodIcGain: number;
+
+  // --- Structural flags (task 05) ---
+
+  // Digraph structure (Playfair and friends).
+  evenLength: boolean;
+  // A doubled letter sitting inside one digraph — impossible in
+  // Playfair output (an X or Q is inserted between doubles).
+  hasDoubledDigraph: boolean;
+  // Playfair never emits J.
+  hasJ: boolean;
+
+  // ADFGVX(/ADFGX) fractionation: every letter from the ADFGVX set.
+  adfgvxSet: boolean;
+
+  // Digit structure (Polybius / Nihilist outputs): two-digit groups and
+  // whether they all fit the classic ranges.
+  digitPairs: number;
+  polybiusLike: boolean;
+  nihilistLike: boolean;
+
+  // Uniformity of the letter distribution: a high score means nearly
+  // flat frequencies — the homophonic fingerprint (with many distinct
+  // symbols).
+  uniformityScore: number;
 }
 
 const icScoreOf = (ic: number): number => {
@@ -219,6 +249,40 @@ export const profileText = (input: string): TextProfile => {
   }));
   const best = keyLengths[0] || null;
 
+  // Structural flags.
+  const evenLength = letterCount > 0 && letterCount % 2 === 0;
+  let hasDoubledDigraph = false;
+  for (let index = 0; index + 1 < letterCount; index += 2) {
+    if (letters[index] === letters[index + 1]) {
+      hasDoubledDigraph = true;
+      break;
+    }
+  }
+  const hasJ = letters.includes('J');
+  const adfgvxSet = letterCount > 0
+    && letters.split('').every((letter) => ADFGVX_LETTERS.includes(letter));
+
+  // Digit structure on the raw input: digits in order, read as two-digit
+  // numbers when there is an even count of them.
+  const digitSequence = (input.match(/\d/g) || []).join('');
+  const digitPairs = digitSequence.length >= 2 ? Math.floor(digitSequence.length / 2) : 0;
+  const pairNumbers: number[] = [];
+  for (let index = 0; index + 1 < digitSequence.length; index += 2) {
+    pairNumbers.push(Number(digitSequence.slice(index, index + 2)));
+  }
+  const allInRange = (min: number, max: number): boolean =>
+    digitPairs >= MIN_DIGIT_PAIRS
+    && pairNumbers.every((value) => value >= min && value <= max);
+  const polybiusLike = allInRange(POLYBIUS_MIN, POLYBIUS_MAX);
+  const nihilistLike = allInRange(NIHILIST_MIN, NIHILIST_MAX);
+
+  // Uniformity vs a flat distribution: the homophonic fingerprint.
+  const uniformChi = counts.reduce((sum, count) => {
+    const expected = letterCount / ALPHABET_LENGTH;
+    return expected > 0 ? sum + ((count - expected) ** 2) / expected : sum;
+  }, 0);
+  const uniformityScore = chiToScorePerLetter(uniformChi, letterCount);
+
   return {
     letters,
     letterCount,
@@ -248,5 +312,13 @@ export const profileText = (input: string): TextProfile => {
     bestPeriodAverageIC: best ? best.averageIC : 0,
     repeats,
     periodIcGain: best ? best.averageIC - ic : 0,
+    evenLength,
+    hasDoubledDigraph,
+    hasJ,
+    adfgvxSet,
+    digitPairs,
+    polybiusLike,
+    nihilistLike,
+    uniformityScore,
   };
 };
