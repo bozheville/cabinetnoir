@@ -159,3 +159,19 @@ export const CardReasons = styled.ul`
   flex-direction: column;
   gap: 2px;
 `;
+
+export const BreakButton = styled.button`
+  align-self: flex-start;
+  padding: 6px 14px;
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.colorScheme.blue[500]};
+  background: ${({ theme }) => theme.colorScheme.blue[500]};
+  color: ${({ theme }) => theme.colorScheme.white};
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    background: ${({ theme }) => theme.colorScheme.blue[600]};
+  }
+`;

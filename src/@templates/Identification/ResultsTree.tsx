@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import styled from 'styled-components';
 
 import { Minion } from '@typography';
+import { catalogueEntry } from '@encryptors/shared/identification/catalogue';
+import { setCipherHandoff } from '@learning/cipherHandoff';
 import type {
   CipherCandidate,
   FamilyCandidate,
@@ -10,6 +14,7 @@ import type {
 
 import {
   Badge,
+  BreakButton,
   CardHead,
   CardName,
   CardReasons,
@@ -41,10 +46,32 @@ const Score: React.FC<{ score: number }> = ({ score }) => (
   </ScoreBar>
 );
 
-const CipherEntry: React.FC<{ cipher: CipherCandidate }> = ({ cipher }) => {
+const CipherEntry: React.FC<{ cipher: CipherCandidate; input: string }> = ({ cipher, input }) => {
   const { t } = useTranslation('common');
+  const router = useRouter();
+  const entry = catalogueEntry(cipher.id);
+
+  const tryBreaking = (): void => {
+    if (!entry?.breakingTarget) {
+      return;
+    }
+    // Privacy: the ciphertext and the recovered parameters travel in the
+    // in-memory hand-off slot, never in the URL.
+    setCipherHandoff({
+      cipher: cipher.id,
+      input,
+      params: cipher.params || {},
+      target: entry.breakingTarget,
+    });
+    router.push(entry.breakingTarget === 'cracker'
+      ? `/encoder/${cipher.id}/cryptoanalysis`
+      : `/encoder/${cipher.id}/reverse?usedKey=1`);
+  };
+
+  const ruledOut = cipher.confidence === 'ruledOut' || cipher.confidence === 'unlikely';
+
   return (
-    <CipherCard $dimmed={cipher.confidence === 'ruledOut' || cipher.confidence === 'unlikely'}>
+    <CipherCard $dimmed={ruledOut}>
       <CardHead>
         <CardName>{t(`identify.ciphers.${cipher.id}`)}</CardName>
         <ConfidenceBadge confidence={cipher.confidence} />
@@ -56,11 +83,14 @@ const CipherEntry: React.FC<{ cipher: CipherCandidate }> = ({ cipher }) => {
           <ReasonLine key={reason.id} id={reason.id} params={reason.params} />
         ))}
       </CardReasons>
+      {cipher.inApp && !ruledOut && (
+        <BreakButton onClick={tryBreaking}>{t('identify.tryBreaking')}</BreakButton>
+      )}
     </CipherCard>
   );
 };
 
-const FamilyEntry: React.FC<{ family: FamilyCandidate }> = ({ family }) => {
+const FamilyEntry: React.FC<{ family: FamilyCandidate; input: string }> = ({ family, input }) => {
   const { t } = useTranslation('common');
   const ruledOut = family.confidence === 'ruledOut';
   const [open, setOpen] = useState(!ruledOut);
@@ -89,7 +119,7 @@ const FamilyEntry: React.FC<{ family: FamilyCandidate }> = ({ family }) => {
           )}
           <CipherGrid>
             {family.ciphers.map((cipher) => (
-              <CipherEntry key={cipher.id} cipher={cipher} />
+              <CipherEntry key={cipher.id} cipher={cipher} input={input} />
             ))}
           </CipherGrid>
         </FamilyBody>
@@ -101,14 +131,14 @@ const FamilyEntry: React.FC<{ family: FamilyCandidate }> = ({ family }) => {
 // The ranked tree: families best first, each with its ciphers best
 // first. `ruledOut` families stay visible but collapsed — the "why not"
 // is educational too.
-const ResultsTree: React.FC<{ result: IdentificationResult }> = ({ result }) => {
+const ResultsTree: React.FC<{ result: IdentificationResult; input: string }> = ({ result, input }) => {
   const { t } = useTranslation('common');
 
   return (
     <div>
       <Minion>{t('identify.resultsHeading')}</Minion>
       {result.families.map((family) => (
-        <FamilyEntry key={family.family} family={family} />
+        <FamilyEntry key={family.family} family={family} input={input} />
       ))}
     </div>
   );
