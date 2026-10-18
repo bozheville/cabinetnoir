@@ -394,6 +394,19 @@
         },
         "match": "Match: {{score}}%"
       }
+    },
+    "pigpen": {
+      "title": "Pigpen cipher",
+      "short_title": "Pigpen",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Glyph message",
+      "deleteKey": "Delete",
+      "variants": {
+        "masonic": "Masonic (classic)",
+        "rosicrucian": "Rosicrucian",
+        "templar": "Templar"
+      }
     }
   },
   "message": "Message",
@@ -818,40 +831,11 @@
       }
     },
     "tooltips": {
-      "swap": "Swap the two sides: the tool switches between encrypting and decrypting. The current mode shows in the header.",
-      "caesar": {
-        "rotation": "The shift: every letter of the message moves this many positions forward through the alphabet (backwards in decrypt mode).",
-        "keepSpaces": "Keep spaces: preserve the word layout instead of dropping all spaces.",
-        "keepCase": "Keep case: preserve capital letters instead of writing everything in capitals."
-      },
-      "alphabet": "The alphabet the cipher works on: pick a preset or paste your own ordered letters.",
-      "alberti": {
-        "disc": "Alberti's cipher disk: the fixed outer disc holds the plaintext alphabet, the movable inner disc holds the mixed ciphertext alphabet.",
-        "increment": "The turn step: how many positions the inner disc jumps after every chunk of the period.",
-        "period": "The period: how many letters are encrypted before the inner disc turns."
-      },
-      "affine": {
-        "multiplier": "The multiplier a of y = a·x + b. It must be coprime with the alphabet length, otherwise several letters collide.",
-        "shift": "The shift b of y = a·x + b — the Caesar-style add-on applied after the multiplication."
-      },
-      "atbash": {
-        "alphabet": "The alphabet selector: Atbash mirrors whatever alphabet is chosen — the only choice the cipher offers."
-      },
-      "morse": {
-        "dot": "The character that plays the short signal (the dot) in the encoded output.",
-        "dash": "The character that plays the long signal (the dash) in the encoded output."
-      },
-      "playfair": {
-        "key": "The keyword: after deduplication it seeds the 5×5 letter square — the entire key of the cipher."
-      },
-      "enigma": {
-        "key": "The rotor start positions (the Grundstellung) — three letters A–Z. On a real machine the key also carried the rotor order, the ring settings and the plugboard pairs."
-      },
-      "adfgvx": {
-        "variant": "The variant: ADFGX uses a 5×5 letter square, ADFGVX adds a 6th row with the digits 0–9.",
-        "square-key": "The keyed square: the key letters fill the square first (duplicates dropped, J folded into I), the rest of the alphabet follows. Change it and both the coordinates and the final transposition shift.",
-        "transposition-key": "The transposition key: its letters set the number and the reading order of the columns the fractionated text is shuffled through.",
-        "unknown-keys": "Tick this when you do not know the keys: a guided cracker appears below and walks you from the ciphertext to both keys."
+      "pigpen": {
+        "variant": "The symbol set: the same cipher drawn with different grids and marks — the reader must know the variant.",
+        "key": "Add this glyph to the message.",
+        "delete": "Remove the last glyph.",
+        "clear": "Clear the message."
       }
     },
     "caesar": {
@@ -903,6 +887,11 @@
       "description": "The German WWI field cipher that split every letter into two of six letters and then shuffled the result — until Georges Painvin broke it.",
       "era": "1918 (World War I)",
       "origin": "Fritz Nebel, German army signal corps"
+    },
+    "pigpen": {
+      "description": "A symbol substitution: every letter becomes a fragment of a grid — the famous Freemason's cipher.",
+      "era": "18th century (variants since antiquity)",
+      "origin": "Popularly the Freemasons, who used it for records and rites; earlier variants are older still."
     }
   },
   "glossary": {

@@ -47,9 +47,19 @@ const CopiedToast = styled.div`
   animation: ${fadeIn} 150ms ease-out;
 `;
 
+interface EncryptionInputsProps {
+  onChange: (value: string) => void;
+  output: string;
+  // The lifted input value: panes that edit the input themselves
+  // (pigpen's glyph keyboard) change it outside this component, so the
+  // textarea follows the lifted value when it drifts from the local one.
+  input?: string;
+}
+
 const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
   onChange,
   output,
+  input: liftedInput,
 }) => {
   const [isInitialized, setIsInitialized] = useState(null);
   const [input, setInput] = useState('');
@@ -84,6 +94,14 @@ const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
   }, [action, isInitialized]);
 
   useEffect(() => () => clearTimeout(copiedTimeoutRef.current), []);
+
+  // Follow the lifted input when it was changed outside this component
+  // (glyph keyboard clicks).
+  useEffect(() => {
+    if (liftedInput !== undefined && liftedInput !== input) {
+      setInput(liftedInput);
+    }
+  }, [liftedInput]);
 
   // "Try it in the tool": pre-fill the input from the loaded example. The
   // context is only non-null when the example targets the current cipher.
