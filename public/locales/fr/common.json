@@ -349,6 +349,19 @@
         },
         "match": "Correspondance : {{score}}%"
       }
+    },
+    "pigpen": {
+      "title": "Chiffre Pigpen",
+      "short_title": "Pigpen",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
+      "messageLabel": "Message en glyphes",
+      "deleteKey": "Effacer",
+      "variants": {
+        "masonic": "Maçonnique (classique)",
+        "rosicrucian": "Rosicrucien",
+        "templar": "Templier"
+      }
     }
   },
   "message": "Message",
@@ -422,6 +435,7 @@
       "showAll": "Tout afficher",
       "restart": "Recommencer",
       "columns": {
+        "glyph": "Glyphe",
         "plain": "Lettre du texte clair",
         "key": "Lettre de clé",
         "shift": "Décalage",
@@ -473,7 +487,8 @@
       "transposition-key": "le champ Clé de transposition",
       "unknown-keys": "la case « Clés inconnues »",
       "column-chips": "les jetons d’arrangement des colonnes",
-      "symbol-chart": "le graphique de fréquence des symboles"
+      "symbol-chart": "le graphique de fréquence des symboles",
+      "glyph-keyboard": "le clavier de glyphes"
     },
     "timeline": {
       "source": "Source",
@@ -537,6 +552,12 @@
         "1918-introduced": "Le chiffre à fractionnement et transposition de Fritz Nebel entre en service de campagne allemand sous le nom ADFGX, avec un carré 5×5.",
         "1918-painvin": "Georges Painvin brise le trafic ADFGX grâce à des paires de messages interceptés sur la même clé, après des mois d’effort.",
         "1918-traffic": "Le carré gagne une sixième ligne pour les chiffres (ADFGVX) ; le trafic déchiffré aide la France à anticiper l’offensive allemande sur Amiens."
+      },
+      "pigpen": {
+        "1531": "Cornelius Agrippa décrit un chiffre à grille de type rosicrucien — la « Kabbale des Neuf Chambres », où les positions du point portent l'alphabet.",
+        "1730": "Le pirate Olivier Levasseur aurait jeté un scrap en pigpen à la foule lors de son exécution — la note du trésor meurt avec sa variante.",
+        "1700s": "Les francs-maçons adoptent le chiffre pour les registres des loges et la correspondance — si assidûment qu'il devient « le chiffre des francs-maçons ».",
+        "1860s": "Des prisonniers unionistes dans les prisons confédérées emploient le pigpen pour faire passer des messages pendant la guerre de Sécession."
       }
     },
     "challenge": {
@@ -770,6 +791,22 @@
         "hint1": "La variante est ADFGVX et la clé de transposition compte six lettres distinctes.",
         "hint2": "Un mot probable : le message commence par le mot WE.",
         "hint3": "La clé du carré est KAISER."
+      },
+      "pigpen-easy-1": {
+        "title": "La carte enterrée",
+        "hint1": "Comptez les formes : carrés complets, coins et cases ouvertes — les murs disent dans quelle case de la grille vivait la lettre.",
+        "hint2": "Les cases pointées viennent après les non pointées : A–I sans point, J–R avec point. La légende dans l'outil est la clé."
+      },
+      "pigpen-medium-1": {
+        "title": "Être ou ne pas être",
+        "hint1": "Un texte long aide : le glyphe le plus fréquent est presque sûrement E, T ou A.",
+        "hint2": "Les glyphes doublés sont L, T ou E — les doubles classiques de l'anglais."
+      },
+      "pigpen-hard-1": {
+        "title": "Deux villes pour un conte",
+        "hint1": "Cela reste une substitution fixe : identifiez quelques glyphes à haute fréquence, le reste suit.",
+        "hint2": "Cherchez le motif IT…AS…TH… — les incipit de romans célèbres donnent de solides cribs.",
+        "hint3": "La variante est la clé maçonnique classique ; la légende dans l'outil liste chaque correspondance."
       }
     },
     "tooltips": {
@@ -807,6 +844,12 @@
         "square-key": "Le carré à mot-clé : les lettres de la clé remplissent d’abord le carré (doublons retirés, J fondu dans I), le reste de l’alphabet suit. Changez-le et les coordonnées comme la transposition finale changent.",
         "transposition-key": "La clé de transposition : ses lettres fixent le nombre et l’ordre de lecture des colonnes par lesquelles le texte fractionné est mélangé.",
         "unknown-keys": "Cochez ceci quand vous ne connaissez pas les clés : un décrypteur guidé apparaît ci-dessous et vous mène du texte chiffré aux deux clés."
+      },
+      "pigpen": {
+        "variant": "Le jeu de symboles : le même chiffre dessiné avec des grilles et des marques différentes — le lecteur doit connaître la variante.",
+        "key": "Ajouter ce glyphe au message.",
+        "delete": "Retirer le dernier glyphe.",
+        "clear": "Vider le message."
       }
     },
     "caesar": {
@@ -858,6 +901,11 @@
       "description": "Le chiffre de campagne allemand de 14-18 qui coupait chaque lettre en deux des six lettres ADFGVX puis mélangeait le résultat — jusqu’à ce que Georges Painvin le brise.",
       "era": "1918 (Première Guerre mondiale)",
       "origin": "Fritz Nebel, transmissions de l’armée allemande"
+    },
+    "pigpen": {
+      "description": "Une substitution par symboles : chaque lettre devient un fragment de grille — le célèbre chiffre des francs-maçons.",
+      "era": "XVIIIe siècle (variantes depuis l'Antiquité)",
+      "origin": "Populairement les francs-maçons, qui l'employaient pour registres et rites ; les variantes antérieures sont plus vieilles encore."
     }
   },
   "glossary": {
