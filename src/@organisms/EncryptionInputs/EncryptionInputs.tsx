@@ -18,9 +18,27 @@ interface EncryptionInputsProps {
   output: string;
 }
 
-const EncryptionInputsWrapper = styled.div`
+const EncryptionInputsWrapper = styled.div<{ $evenColumns?: boolean }>`
   display: flex;
   flex-direction: row;
+  /* Pigpen's result side is a div (the glyph strip), whose flex basis
+     differs from the textarea's intrinsic one — zero both bases so the
+     two sides split evenly like they do for every textarea cipher.
+     In the stacked small-screen layout flex-basis would mean height,
+     so there it goes back to auto. */
+  ${({ $evenColumns }) => $evenColumns && `
+    textarea {
+      flex-basis: 0;
+      min-width: 0;
+    }
+  `}
+  ${({ theme, $evenColumns }) => $evenColumns && `
+    ${theme.breakpoints.small} {
+      textarea {
+        flex-basis: auto;
+      }
+    }
+  `}
   ${({theme}) => theme.breakpoints.small} {
     flex-direction: column;
 
@@ -53,7 +71,8 @@ const CopiedToast = styled.div`
 // the live glyph strip in place of the result textarea, styled like it
 // (the tool's layout follows the translate pattern: left in, right out).
 const GlyphOutput = styled.div`
-  flex-grow: 1;
+  flex: 1 1 0;
+  min-width: 0;
   padding: 16px;
   max-height: 350px;
   overflow-y: auto;
@@ -61,7 +80,10 @@ const GlyphOutput = styled.div`
   color: ${({ theme }) => theme.colors.text};
   border-bottom-right-radius: ${({ theme }) => theme.borderRadius.default}px;
 
+  /* Stacked layout: flex-basis would mean height here — back to auto
+     so the strip sizes to its content like the textareas do. */
   ${({ theme }) => theme.breakpoints.small} {
+    flex-basis: auto;
     border-bottom-left-radius: ${({ theme }) => theme.borderRadius.default}px;
   }
 `;
@@ -165,7 +187,7 @@ const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
   }
 
   return (
-    <EncryptionInputsWrapper>
+    <EncryptionInputsWrapper $evenColumns={isPigpenEncrypt}>
       <Pane data-guide="message-input" display="contents">
         <TextArea
           value={input}
