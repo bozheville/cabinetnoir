@@ -89,10 +89,10 @@ const TRI_DOTS = {
 };
 
 const LOZ_PATHS = {
-  top: 'M 50 16 L 84 40 L 50 64 L 16 40 Z',
-  left: 'M 14 57 L 32 30 L 50 57 L 32 84 Z',
-  right: 'M 86 57 L 68 30 L 50 57 L 68 84 Z',
-  bottom: 'M 50 98 L 82 74 L 50 50 L 18 74 Z',
+  top: 'M 50 16 L 64 40 L 50 64 L 36 40 Z',
+  left: 'M 14 57 L 38 43 L 50 57 L 38 71 Z',
+  right: 'M 86 57 L 62 43 L 50 57 L 62 71 Z',
+  bottom: 'M 50 98 L 64 74 L 50 50 L 36 74 Z',
 };
 
 const LOZ_DOTS = {
