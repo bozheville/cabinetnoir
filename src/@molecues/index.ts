@@ -3,6 +3,7 @@ export { default as CipherLadder } from './CipherLadder';
 export { default as EcryptionSelector } from './EcryptionSelector';
 export { default as Footer } from './Footer';
 export { default as GlyphKeyboard } from './GlyphKeyboard';
+export { default as GlyphKeyDiagram } from './GlyphKeyDiagram';
 export { default as GlyphLegend } from './GlyphLegend';
 export { default as GlyphRenderer } from './GlyphRenderer';
 export { default as Header } from './Header';

@@ -29,14 +29,24 @@ strokes of the cross that bound the top arm. O, the fifteenth letter,
 lives in the dotted grid: the same kind of corner shape as A, but with
 a dot inside.
 
-## The shape is the position
+## Why the shapes look like this
 
-Nothing is memorised: every glyph is *derived*. Look at a grid
-fragment and ask which pen of the grid it could be — the walls tell
-you. A pen in the middle is a full box, a pen in a corner is an
-L-shape, a pen on an edge is open on one side. The dot then says which
-of the two grids (or crosses) it came from. This is why the cipher is
-so easy to learn by hand — and, as the breaking-it page explains, why
-it is so easy to break.
+Nothing is memorised: every glyph is *derived*. The key below is the
+whole secret — two grids, two crosses — and every glyph is simply the
+walls of one pen of these figures, cut out and carried alone:
+
+{{glyphkey:pigpen}}
+
+The dot is the only added mark, and it says one thing: *second set* —
+the dotted grid holds J–R, the dotted cross holds W–Z. Take **H**: it
+lives in the bottom-middle pen of the first grid, so its glyph is that
+pen's walls — a ceiling and two side walls, open at the bottom.
+
+{{glyphkey:pigpen-h}}
+
+A pen in the middle is a full box, a pen in a corner is an L-shape, a
+pen on an edge is open on one side. This is why the cipher is so easy
+to learn by hand — and, as the breaking-it page explains, why it is so
+easy to break.
 
 {{try:pigpen-basic}}
