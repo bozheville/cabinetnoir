@@ -8,8 +8,15 @@ export const usePigpen = ({
   onProcessingEnd,
   isDecryptMode,
   onInputChange,
+  onVariantChange,
 }) => {
   const [variantId, setVariantId] = useState(DEFAULT_PIGPEN_VARIANT);
+
+  // Report the selection upward: the output side renders the glyph
+  // strip for the chosen variant.
+  useEffect(() => {
+    onVariantChange?.(variantId);
+  }, [variantId, onVariantChange]);
 
   useEffect(() => {
     // The ciphertext is graphics, so the string output channel carries
