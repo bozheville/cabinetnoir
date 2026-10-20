@@ -225,6 +225,26 @@ const learningConfig = {
       },
     ],
   },
+  // Columnar ships its cracker first (m1-10); the learning tabs arrive
+  // with the English content task — until then the cipher has routes and
+  // a Cryptoanalysis tab but no learn/history/practice pages.
+  columnar: {
+    tabs: [],
+    sections: {
+      learn: [],
+      history: [],
+      practice: [],
+    },
+    atGlance: {
+      type: 'learning.types.transposition',
+      difficulty: 'learning.difficulty.easy',
+      era: 'learning.columnar.era',
+      origin: 'learning.columnar.origin',
+      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+    },
+    glossary: [],
+    furtherReading: [],
+  },
   pigpen: {
     tabs: ['learn', 'history', 'practice'],
     sections: {

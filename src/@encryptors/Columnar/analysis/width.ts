@@ -91,6 +91,23 @@ export const bestChainScore = (matrix: number[][]): number => {
   return sum / (width - 1);
 };
 
+// The source column that reads best immediately after `source` — the
+// easy hint's "best partner" outline. null when the matrix is trivial.
+export const bestPartnerOf = (matrix: number[][], source: number): number | null => {
+  if (matrix.length < 2 || source >= matrix.length) {
+    return null;
+  }
+  let best = -1;
+  let bestScore = -Infinity;
+  for (let candidate = 0; candidate < matrix.length; candidate += 1) {
+    if (candidate !== source && matrix[source][candidate] > bestScore) {
+      bestScore = matrix[source][candidate];
+      best = candidate;
+    }
+  }
+  return best === -1 ? null : best;
+};
+
 // Ranked width candidates: complete-grid divisors of the ciphertext
 // length only, scored by the adjacency chain, tie-broken by the identify
 // width scan. The user picks from these cards — the ranking is a hint.

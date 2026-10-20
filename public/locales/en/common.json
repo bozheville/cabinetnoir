@@ -321,6 +321,41 @@
         "incomplete_row": "Leave the last row incomplete",
         "keep_spaces": "Keep spaces",
         "gridHint": "The text written row-wise; the badges give the column reading order."
+      },
+      "cracker": {
+        "wizard": {
+          "steps": {
+            "width": "Column count",
+            "order": "Order the columns",
+            "done": "Done"
+          },
+          "width": {
+            "hint": "The ciphertext was cut into columns and stacked. Its length must divide evenly by the column count — pick a candidate; the match score says how English-like the best column arrangement looks.",
+            "card": "{{width}} columns × {{rows}} rows"
+          },
+          "order": {
+            "hint": "Drag the column strips (or select one and use ‹ ›) until the rows read like English. The badges score each neighbouring pair; a wrong order still shows all the right letters.",
+            "reset": "Reset order",
+            "selected": "Column {{position}} selected",
+            "badge": "Pair score: columns {{first}} → {{second}}",
+            "bestPartner": "The outlined column ({{position}}) reads best after the selected one — try moving it next."
+          },
+          "done": {
+            "hint": "This is the recovered plaintext (padding letters may trail at the end). Use this result to decrypt with the same column order in the Tool tab.",
+            "order": "Column order (first read → last): {{order}}"
+          }
+        },
+        "hints": {
+          "toggles": {
+            "badges": "Pair-score badges",
+            "bestPartner": "Best-partner outline"
+          }
+        },
+        "tooltips": {
+          "badges": "How English-like two neighbouring columns look together. High numbers in green — low ones mean the pair is probably wrong.",
+          "bestPartner": "Outlines the column that scores best after the selected one. A hint only — the move is yours.",
+          "livePreview": "The plaintext the current column order produces, updating as you drag."
+        }
       }
     },
     "enigma": {
@@ -1183,6 +1218,10 @@
       "description": "A substitution whose cipher alphabet is spelled out by a keyword: its letters first, then the rest in order.",
       "era": "16th century — today",
       "origin": "A classic keyed alphabet, described in early cryptologic manuals; popular with hobbyists ever since."
+    },
+    "columnar": {
+      "era": "First World War",
+      "origin": "Field ciphers; made famous by ADFGVX and the SOE"
     },
     "morse": {
       "description": "An encoding, not a cipher: every letter becomes a public pattern of dots and dashes for the telegraph.",
