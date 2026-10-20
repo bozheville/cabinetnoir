@@ -12,6 +12,7 @@ import {
   Alberti,
   Atbash,
   Caesar,
+  Keyword,
   Enigma,
   Morse,
   Pigpen,
@@ -84,6 +85,7 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
     algorithm === 'atbash' ? Atbash :
     algorithm === 'base64' ? Base64 :
     algorithm === 'caesar' ? Caesar :
+  algorithm === 'keyword' ? Keyword :
     algorithm === 'enigma' ? Enigma :
     algorithm === 'playfair' ? Playfair :
     algorithm === 'vigenere' ? Vigenere :
