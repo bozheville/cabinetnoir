@@ -479,6 +479,61 @@ const buildColumnarExample = (
   };
 };
 
+// Rail fence: one row per plaintext letter — which rail of the fence it
+// sits on and which ciphertext position it lands at. Same teaching
+// pattern as the columnar example: the letters never change, only the
+// place does, and the offset variant moves the whole zigzag start.
+const buildRailFenceExample = (
+  id: string,
+  input: string,
+  rails: number,
+  offset: number,
+): WorkedExample => {
+  const letters = input.toUpperCase().replace(/[^A-Z]/g, '');
+  // The zigzag pattern, identical to the shared engine's walk.
+  const pattern: number[] = [];
+  let row = Math.min(offset, rails - 1);
+  let direction = row === rails - 1 ? -1 : 1;
+  for (let index = 0; index < letters.length; index += 1) {
+    pattern.push(row);
+    row += direction;
+    if (row === rails - 1 || row === 0) {
+      direction = -direction;
+    }
+  }
+  // Ciphertext positions: rails read top to bottom, letters in order.
+  const railCounts = new Array(rails).fill(0) as number[];
+  pattern.forEach((rail) => { railCounts[rail] += 1; });
+  const railStarts: number[] = [];
+  let cursor = 1;
+  for (let rail = 0; rail < rails; rail += 1) {
+    railStarts.push(cursor);
+    cursor += railCounts[rail];
+  }
+  const railCursors = new Array(rails).fill(0) as number[];
+  const rows = letters.split('').map((plain, index) => {
+    const rail = pattern[index];
+    const position = railStarts[rail] + railCursors[rail];
+    railCursors[rail] += 1;
+    return [plain, String(rail + 1), String(position)];
+  });
+
+  return {
+    id,
+    cipher: 'railFence',
+    input: letters,
+    key: `${rails}/${offset}`,
+    alphabet: LATIN_ALPHABET,
+    mode: 'encrypt',
+    columns: [
+      { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+      { key: 'rail', labelKey: 'learning.example.columns.rail' },
+      { key: 'position', labelKey: 'learning.example.columns.position' },
+    ],
+    rows,
+  };
+};
+
 const EXAMPLES: Record<string, WorkedExample> = {
   'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
   'caesar-basic': buildCaesarExample('caesar-basic', 'MEETATNOON', 3),
@@ -487,6 +542,7 @@ const EXAMPLES: Record<string, WorkedExample> = {
   'atbash-basic': buildAtbashExample('atbash-basic', 'REVERSEME'),
   'keyword-basic': buildKeywordExample('keyword-basic', 'ATTACKATDAWN', 'KRYPTOS'),
   'columnar-basic': buildColumnarExample('columnar-basic', 'ATTACKATDAWN', 'SUN'),
+  'railFence-basic': buildRailFenceExample('railFence-basic', 'ATTACKATDAWN', 3, 0),
   'morse-basic': buildMorseExample('morse-basic', 'SOS'),
   'pigpen-basic': buildPigpenExample('pigpen-basic', 'SOS'),
   'base64-basic': buildBase64Example('base64-basic', 'MEETATNOON'),

@@ -256,14 +256,14 @@ const learningConfig = {
       },
     ],
   },
-  // Rail fence ships its cracker first (m1-14); the learning tabs arrive
-  // with the English content task — same two-step rollout as columnar.
+  // Rail fence: full learning material (English content task). The
+  // cracker shipped first with empty tabs; this flips them on.
   railFence: {
-    tabs: [],
+    tabs: ['learn', 'history', 'practice'],
     sections: {
-      learn: [],
-      history: [],
-      practice: [],
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
     },
     atGlance: {
       type: 'learning.types.transposition',
@@ -272,8 +272,20 @@ const learningConfig = {
       origin: 'learning.railFence.origin',
       modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
     },
-    glossary: [],
-    furtherReading: [],
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'key',
+      'transposition',
+      'rail-fence',
+      'zigzag',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Rail_fence_cipher',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
   },
   pigpen: {
     tabs: ['learn', 'history', 'practice'],

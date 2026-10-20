@@ -28,6 +28,18 @@ export const TIMELINES: Record<string, TimelineEvent[]> = {
       sourceUrl: 'https://en.wikipedia.org/wiki/Babington_Plot',
     },
   ],
+  railFence: [
+    {
+      year: 'c. 400 BC',
+      textKey: 'learning.timeline.railFence.scytale',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Scytale',
+    },
+    {
+      year: '1861',
+      textKey: 'learning.timeline.railFence.civilWar',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Rail_fence_cipher',
+    },
+  ],
   columnar: [
     {
       year: '1914',

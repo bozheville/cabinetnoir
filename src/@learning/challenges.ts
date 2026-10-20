@@ -13,6 +13,7 @@ import { playfairEncrypt } from '@encryptors/Playfair/playfair-encryption';
 import { adfgvxEncrypt } from '@encryptors/Adfgvx/adfgvx-encryption';
 import { morseEncoding } from '@encryptors/Morse/morse-encoding';
 import { columnarEncryptText } from '@encryptors/Columnar/columnar-crypt';
+import { railFenceEncrypt } from '@encryptors/shared/transposition';
 import { keywordEncrypt } from '@encryptors/Keyword/keyword-crypt';
 import { createEnigmaMachine } from '@learning/enigma-machine';
 
@@ -236,6 +237,28 @@ const buildColumnarChallenge = (
   ciphertext: columnarEncryptText(plaintext, keyword),
   difficulty,
   keyLength: keyword.replace(/[^A-Z]/gi, '').length,
+  hints,
+  answer: plaintext,
+  mode: 'decrypt',
+});
+
+// Rail fence: the key is "rails/offset" — two small numbers, which is
+// why the cipher is an on-ramp and not a fortress. The slider cracker
+// finds the setting in seconds; the challenge proves it.
+const buildRailFenceChallenge = (
+  id: string,
+  rails: number,
+  offset: number,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+): Challenge => ({
+  id,
+  cipher: 'railFence',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: railFenceEncrypt(plaintext.replace(/[^A-Za-z]/g, ''), rails, { offset }),
+  difficulty,
+  keyLength: rails,
   hints,
   answer: plaintext,
   mode: 'decrypt',
@@ -1014,6 +1037,47 @@ export const CHALLENGES: Record<string, Challenge> = {
     [
       'learning.challenges.columnar-hard-1.hint1',
       'learning.challenges.columnar-hard-1.hint2',
+    ],
+  ),
+  'railFence-demo': buildRailFenceChallenge(
+    'railFence-demo',
+    3,
+    0,
+    'THE PLAN IS SIMPLE WE RIDE AT DAWN AND CROSS THE RIVER BEFORE SUNRISE',
+    'easy',
+    ['learning.challenges.railFence-demo.hint1'],
+  ),
+  'railFence-easy-1': buildRailFenceChallenge(
+    'railFence-easy-1',
+    3,
+    0,
+    KEYWORD_EASY_PLAINTEXT,
+    'easy',
+    [
+      'learning.challenges.railFence-easy-1.hint1',
+      'learning.challenges.railFence-easy-1.hint2',
+    ],
+  ),
+  'railFence-medium-1': buildRailFenceChallenge(
+    'railFence-medium-1',
+    5,
+    1,
+    KEYWORD_MEDIUM_PLAINTEXT,
+    'medium',
+    [
+      'learning.challenges.railFence-medium-1.hint1',
+      'learning.challenges.railFence-medium-1.hint2',
+    ],
+  ),
+  'railFence-hard-1': buildRailFenceChallenge(
+    'railFence-hard-1',
+    7,
+    2,
+    KEYWORD_HARD_PLAINTEXT,
+    'hard',
+    [
+      'learning.challenges.railFence-hard-1.hint1',
+      'learning.challenges.railFence-hard-1.hint2',
     ],
   ),
 };
