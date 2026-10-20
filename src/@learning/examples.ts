@@ -14,6 +14,10 @@ import {
 } from '@encryptors/Alberti/alberti-crypt';
 import { morseEncoding } from '@encryptors/Morse/morse-encoding';
 import { keywordAlphabet } from '@encryptors/Keyword/keyword-crypt';
+import {
+  columnOrder,
+  normalizeTranspositionKey,
+} from '@encryptors/shared/transposition';
 import { playfairEncrypt } from '@encryptors/Playfair/playfair-encryption';
 import { adfgvxEncrypt } from '@encryptors/Adfgvx/adfgvx-encryption';
 import { createEnigmaMachine, enigmaPass } from '@learning/enigma-machine';
@@ -429,13 +433,60 @@ const buildAdfgvxExample = (
   };
 };
 
-export const EXAMPLES: Record<string, WorkedExample> = {
+export // Columnar transposition: one row per plaintext letter. The letter is
+// written into a column of the grid; reading the columns in keyword
+// order moves it to a new position in the ciphertext. Transposition
+// never changes a letter — only its place — which is exactly what the
+// two number columns make visible.
+const buildColumnarExample = (
+  id: string,
+  input: string,
+  keyword: string,
+): WorkedExample => {
+  const letters = input.toUpperCase().replace(/[^A-Z]/g, '');
+  const normalized = normalizeTranspositionKey(keyword);
+  const order = columnOrder(normalized);
+  const width = order.length;
+  const rowsCount = Math.ceil(letters.length / width);
+  // positionOf[sourceColumn] = 1-based reading position of that column.
+  const positionOf: number[] = [];
+  order.forEach((sourceColumn, readPosition) => {
+    positionOf[sourceColumn] = readPosition + 1;
+  });
+
+  const rows = letters.split('').map((plain, index) => {
+    const row = Math.floor(index / width);
+    const column = index % width;
+    // Ciphertext position: the letter's column is read at
+    // `positionOf[column]`, and it sits at height `row` within it.
+    const cipherPosition = (positionOf[column] - 1) * rowsCount + row + 1;
+    return [plain, String(column + 1), String(cipherPosition)];
+  });
+
+  return {
+    id,
+    cipher: 'columnar',
+    input: letters,
+    key: normalized,
+    alphabet: LATIN_ALPHABET,
+    mode: 'encrypt',
+    columns: [
+      { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+      { key: 'column', labelKey: 'learning.example.columns.column' },
+      { key: 'position', labelKey: 'learning.example.columns.position' },
+    ],
+    rows,
+  };
+};
+
+const EXAMPLES: Record<string, WorkedExample> = {
   'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
   'caesar-basic': buildCaesarExample('caesar-basic', 'MEETATNOON', 3),
   'alberti-basic': buildAlbertiExample('alberti-basic', 'SECRETNOTE', 3, 2),
   'affine-basic': buildAffineExample('affine-basic', 'SECRETMESSAGE', 3, 7),
   'atbash-basic': buildAtbashExample('atbash-basic', 'REVERSEME'),
   'keyword-basic': buildKeywordExample('keyword-basic', 'ATTACKATDAWN', 'KRYPTOS'),
+  'columnar-basic': buildColumnarExample('columnar-basic', 'ATTACKATDAWN', 'SUN'),
   'morse-basic': buildMorseExample('morse-basic', 'SOS'),
   'pigpen-basic': buildPigpenExample('pigpen-basic', 'SOS'),
   'base64-basic': buildBase64Example('base64-basic', 'MEETATNOON'),

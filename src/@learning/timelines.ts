@@ -28,6 +28,23 @@ export const TIMELINES: Record<string, TimelineEvent[]> = {
       sourceUrl: 'https://en.wikipedia.org/wiki/Babington_Plot',
     },
   ],
+  columnar: [
+    {
+      year: '1914',
+      textKey: 'learning.timeline.columnar.wwi',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Transposition_cipher',
+    },
+    {
+      year: '1918',
+      textKey: 'learning.timeline.columnar.1918',
+      sourceUrl: 'https://en.wikipedia.org/wiki/ADFGVX_cipher',
+    },
+    {
+      year: '1942',
+      textKey: 'learning.timeline.columnar.1942',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Leo_Marks',
+    },
+  ],
   adfgvx: [
     {
       year: '1918',

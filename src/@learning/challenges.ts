@@ -12,6 +12,7 @@ import {
 import { playfairEncrypt } from '@encryptors/Playfair/playfair-encryption';
 import { adfgvxEncrypt } from '@encryptors/Adfgvx/adfgvx-encryption';
 import { morseEncoding } from '@encryptors/Morse/morse-encoding';
+import { columnarEncryptText } from '@encryptors/Columnar/columnar-crypt';
 import { keywordEncrypt } from '@encryptors/Keyword/keyword-crypt';
 import { createEnigmaMachine } from '@learning/enigma-machine';
 
@@ -215,6 +216,29 @@ const buildKeywordChallenge = (
   keyLength: keyword.replace(/[^A-Z]/gi, '').length,
   hints,
   answer: plaintext,
+});
+
+// Columnar transposition: the engine strips spaces (the classic hand
+// cipher works on letters only), so the ciphertext is a clean letter
+// stream and the cracker's grid has no word shapes to lean on until the
+// columns sit right. The "key" is the keyword; its length is the column
+// count and the first thing to recover.
+const buildColumnarChallenge = (
+  id: string,
+  keyword: string,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+): Challenge => ({
+  id,
+  cipher: 'columnar',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: columnarEncryptText(plaintext, keyword),
+  difficulty,
+  keyLength: keyword.replace(/[^A-Z]/gi, '').length,
+  hints,
+  answer: plaintext,
+  mode: 'decrypt',
 });
 
 // Atbash: a fixed mirror alphabet, so the "key" is always the same.
@@ -953,6 +977,43 @@ export const CHALLENGES: Record<string, Challenge> = {
     [
       'learning.challenges.keyword-hard-1.hint1',
       'learning.challenges.keyword-hard-1.hint2',
+    ],
+  ),
+  'columnar-demo': buildColumnarChallenge(
+    'columnar-demo',
+    'STAR',
+    'THE MESSENGER LEFT AT DAWN AND TOOK THE OLD ROAD NORTH PAST THE MILL',
+    'easy',
+    ['learning.challenges.columnar-demo.hint1'],
+  ),
+  'columnar-easy-1': buildColumnarChallenge(
+    'columnar-easy-1',
+    'EAST',
+    KEYWORD_EASY_PLAINTEXT,
+    'easy',
+    [
+      'learning.challenges.columnar-easy-1.hint1',
+      'learning.challenges.columnar-easy-1.hint2',
+    ],
+  ),
+  'columnar-medium-1': buildColumnarChallenge(
+    'columnar-medium-1',
+    'CIPHER',
+    KEYWORD_MEDIUM_PLAINTEXT,
+    'medium',
+    [
+      'learning.challenges.columnar-medium-1.hint1',
+      'learning.challenges.columnar-medium-1.hint2',
+    ],
+  ),
+  'columnar-hard-1': buildColumnarChallenge(
+    'columnar-hard-1',
+    'LANTERN',
+    KEYWORD_HARD_PLAINTEXT,
+    'hard',
+    [
+      'learning.challenges.columnar-hard-1.hint1',
+      'learning.challenges.columnar-hard-1.hint2',
     ],
   ),
 };

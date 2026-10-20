@@ -592,6 +592,8 @@
         "pair": "Paire du texte clair",
         "positions": "Fenêtre des rotors (I·II·III)",
         "source": "Du mot-clé ?",
+        "column": "Colonne de la grille",
+        "position": "Position dans le chiffre",
         "coords": "Coordonnées du carré",
         "fractionated": "Texte fractionné (cumul)"
       }
@@ -660,6 +662,11 @@
         "800": "Al-Kindi écrit, à Bagdad, sur le déchiffrement des messages par la fréquence des lettres — le verdict sans appel contre tout chiffre à substitution fixe, alphabets à mot-clé compris.",
         "1563": "Le De Furtivis Literarum Notis de Giambattista della Porta fait entrer les alphabets à mot-clé dans les manuels : les lettres du mot-clé d'abord, le reste ensuite.",
         "1586": "La correspondance de Babington — une substitution fixe en son cœur — est lue par l'analyse fréquentielle de Thomas Phelippes ; Marie, reine d'Écosse, est exécutée sur cette preuve."
+      },
+      "columnar": {
+        "wwi": "La transposition colonnaire — souvent doublée — est un chiffre de campagne standard de plusieurs armées de la Première Guerre mondiale.",
+        "1918": "ADFGVX enchaîne la fractionation et une transposition colonnaire clé ; Painvin doit d'abord retrouver l'ordre des colonnes.",
+        "1942": "Les agents du SOE derrière les lignes ennemies utilisent la double transposition clé par des poèmes mémorisés — les vers de Leo Marks."
       },
       "caesar": {
         "121": "Suétone décrit le décalage de 3 de César et celui de 1 d'Auguste dans Vie des douze Césars.",
@@ -848,20 +855,39 @@
         "title": "Texte de démonstration du décrypteur",
         "hint1": "Les espaces survivent au chiffrement — les formes des mots sont vos amies. Le mot qui revient est probablement THE."
       },
+      "columnar-demo": {
+        "title": "Échauffement : la route du nord",
+        "hint1": "Le chiffre contient 56 lettres — ses diviseurs incluent 4. Quatre colonnes conviennent ; commencez là."
+      },
       "keyword-easy-1": {
         "title": "Le meilleur des mondes possibles",
         "hint1": "Le mot-clé compte six lettres, toutes différentes.",
         "hint2": "Le symbole le plus fréquent est presque sûrement le E chiffré — attribuez-le d'abord et regardez le texte s'éveiller."
+      },
+      "columnar-easy-1": {
+        "title": "Quatre colonnes de Dickens",
+        "hint1": "La vraie largeur divise la longueur complétée — et 4 est un bon candidat. Classez, choisissez, puis glissez.",
+        "hint2": "Deux colonnes voisines forment de vrais digrammes (TH, HE, IN) côte à côte — surveillez les badges verts."
       },
       "keyword-medium-1": {
         "title": "Une vérité universellement reconnue",
         "hint1": "Le mot-clé compte sept lettres, sans répétition.",
         "hint2": "Les premiers mots sont célèbres — IT et IS se débloquent dès que T et I sont placés."
       },
+      "columnar-medium-1": {
+        "title": "Six colonnes d'Austen",
+        "hint1": "Six colonnes. Trouvez la paire avec le meilleur score — ce sont de vraies voisines dans la grille.",
+        "hint2": "Construisez la chaîne à partir de la meilleure paire : chaque colonne a exactement un voisin de chaque côté."
+      },
       "keyword-hard-1": {
         "title": "Il y a quatre-vingt-sept ans",
         "hint1": "Le mot-clé compte huit lettres.",
         "hint2": "FOUR SCORE ouvre le message — les formes des mots font l'essentiel du travail dès que F, O, U, R sont placées."
+      },
+      "columnar-hard-1": {
+        "title": "Sept colonnes de Gettysburg",
+        "hint1": "Sept colonnes. Le contour du meilleur voisin (préréglage Facile) disparaît à ce niveau — fiez-vous aux badges.",
+        "hint2": "Les débuts célèbres sont des mots probable : glissez FOURSCORE mentalement contre les paires candidates."
       },
       "morse-easy-1": {
         "title": "L'aigle est atterri",
@@ -1227,6 +1253,14 @@
     "transposition": {
       "name": "Transposition",
       "definition": "Changer l’ordre des symboles sans changer les symboles eux-mêmes."
+    },
+    "column-order": {
+      "name": "Ordre des colonnes",
+      "definition": "L'ordre dans lequel les colonnes d'une grille de transposition sont lues — fixé par le mot-clé : ses lettres triées alphabétiquement disent quelle colonne vient en premier."
+    },
+    "anagramming": {
+      "name": "Anagrammage",
+      "definition": "Reconstituer un texte transposé en glissant des fragments de colonnes côte à côte jusqu'à ce que les lignes se lisent dans la langue — l'attaque manuelle classique contre la transposition."
     }
   },
   "home": {
