@@ -546,6 +546,76 @@
         "rosicrucian": "Rosicrucien",
         "templar": "Templier"
       }
+    },
+    "polybius": {
+      "title": "Chiffre carré de Polybe",
+      "short_title": "Polybe",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
+      "messageLabel": "Cryptogramme",
+      "squareKeyLabel": "Clé du carré",
+      "settings": {
+        "keyword_placeholder": "Mot-clé (facultatif)",
+        "spaced": "Paires espacées",
+        "squareHint": "Le carré — la case surlignée (avec sa ligne et sa colonne) est la dernière lettre du résultat."
+      }
+    },
+    "nihilist": {
+      "title": "Chiffre nihiliste",
+      "short_title": "Nihiliste",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
+      "messageLabel": "Cryptogramme",
+      "squareKeyLabel": "Clé du carré",
+      "keyLabel": "Mot-clé",
+      "settings": {
+        "square_placeholder": "Mot-clé du carré (facultatif)",
+        "key_placeholder": "Mot-clé",
+        "spaced": "Nombres espacés",
+        "squareHint": "Le carré d’où viennent les coordonnées."
+      },
+      "cracker": {
+        "hints": {
+          "toggles": {
+            "greyImpossible": "Griser les nombres de clé impossibles",
+            "suggestions": "Suggérer les lettres par fréquence"
+          }
+        },
+        "tooltips": {
+          "toggle": {
+            "greyImpossible": "Mode facile seulement : les nombres de clé qui ne peuvent correspondre à aucune valeur de la colonne sont grisés avant l’essai.",
+            "suggestions": "Sous chaque case non assignée, montrer la prochaine lettre inutilisée dans l’ordre de fréquence de l’anglais."
+          }
+        },
+        "wizard": {
+          "steps": {
+            "length": "Longueur de clé",
+            "key": "Nombres de clé",
+            "square": "Carré",
+            "done": "Terminé"
+          },
+          "length": {
+            "hint": "Le flux compte {{count}} nombres. Une clé répétitive laisse des empreintes périodiques — choisissez la période que les cartes classent en tête.",
+            "tooShort": "Trop peu de nombres pour une analyse de période — collez un cryptogramme plus long."
+          },
+          "key": {
+            "hint": "Un nombre de clé par colonne. Essayez un nombre et observez la colonne : les valeurs dont la soustraction reste dans le carré passent au vert, les autres au rouge.",
+            "column": "Colonne {{current}} sur {{total}}",
+            "feedback": "Vert : la soustraction retombe dans le carré. Rouge : dehors — mauvais nombre de clé."
+          },
+          "square": {
+            "hint": "Le flux épuré est une substitution de Polybe simple : assignez les lettres par fréquence, les paires vont de 11 à 55.",
+            "squareLabel": "Le carré tel que vous l’avez"
+          },
+          "done": {
+            "hint": "Tout ce que vous avez épinglé, en un seul endroit.",
+            "square": "Carré reconstitué",
+            "keyLabel": "Clé additive",
+            "keyword": "Le carré épelle un mot-clé : {{keyword}}",
+            "incomplete": "Toutes les cases ne sont pas décidées — assignez les paires restantes à l’étape 3."
+          }
+        }
+      }
     }
   },
   "message": "Message",
@@ -583,7 +653,8 @@
     "difficulty": {
       "trivial": "déchiffrable de façon triviale",
       "easy": "facile à déchiffrer à la main",
-      "hard": "difficile à déchiffrer à la main"
+      "hard": "difficile à déchiffrer à la main",
+      "medium": "moyennement difficile à casser à la main"
     },
     "modes": {
       "encrypt": "chiffrer",
@@ -636,7 +707,10 @@
         "column": "Colonne de la grille",
         "position": "Position dans le chiffre",
         "coords": "Coordonnées du carré",
-        "fractionated": "Texte fractionné (cumul)"
+        "fractionated": "Texte fractionné (cumul)",
+        "plainNumber": "Nombre du texte clair",
+        "keyNumber": "Nombre de la clé",
+        "sum": "Somme (sans retenue)"
       }
     },
     "tryInTool": "Essayer dans l'outil",
@@ -774,6 +848,16 @@
         "1730": "Le pirate Olivier Levasseur aurait jeté un scrap en pigpen à la foule lors de son exécution — la note du trésor meurt avec sa variante.",
         "1700s": "Les francs-maçons adoptent le chiffre pour les registres des loges et la correspondance — si assidûment qu'il devient « le chiffre des francs-maçons ».",
         "1860s": "Des prisonniers unionistes dans les prisons confédérées emploient le pigpen pour faire passer des messages pendant la guerre de Sécession."
+      },
+      "polybius": {
+        "torches": "Polybe décrit le carré de signalisation aux torches : cinq torches à gauche, cinq à droite épellent toute lettre.",
+        "nihilist": "Les nihilistes russes ajoutent une clé numérique périodique au carré — le chiffre nihiliste.",
+        "tapCode": "Des prisonniers de guerre ressuscitent le carré en code tap cinq par cinq — des coordonnées qu’on frappe contre un mur."
+      },
+      "nihilist": {
+        "1880s": "Des prisonniers nihilistes russes ajoutent une clé numérique au carré de Polybe pour faire passer des lettres devant la censure.",
+        "tapCode": "Les camps de prisonniers ressuscitent le carré en code tap — les coordonnées, frappées contre un mur.",
+        "vic": "Le chiffre VIC soviétique descend de l’addition nihiliste — le dernier grand chiffre au crayon et papier."
       }
     },
     "challenge": {
@@ -1080,6 +1164,42 @@
         "hint1": "Cela reste une substitution fixe : identifiez quelques glyphes à haute fréquence, le reste suit.",
         "hint2": "Cherchez le motif IT…AS…TH… — les incipit de romans célèbres donnent de solides cribs.",
         "hint3": "La variante est la clé maçonnique classique ; la légende dans l'outil liste chaque correspondance."
+      },
+      "polybius-easy-1": {
+        "title": "Des chiffres dans la nuit",
+        "hint1": "Chaque paire est une ligne et une colonne du carré simple — 11 est A.",
+        "hint2": "Le message est court ; décodez paire par paire."
+      },
+      "polybius-medium-1": {
+        "title": "Une vérité, en coordonnées",
+        "hint1": "Le carré simple, I et J partageant une case.",
+        "hint2": "La phrase d'ouverture la plus célèbre d'Austen."
+      },
+      "polybius-hard-1": {
+        "title": "Le carré spartiate",
+        "hint1": "Le carré est clé — SPARTAN remplit d’abord la grille, le reste de l’alphabet suit.",
+        "hint2": "Déchiffrez avec le carré clé ; la réponse est un texte américain bien connu.",
+        "hint3": "La première paire du texte clair est 44 — trouvez la lettre qui s’y trouve dans le carré SPARTAN."
+      },
+      "nihilist-demo": {
+        "title": "La transmission nihiliste",
+        "hint1": "La clé se répète — trouvez d’abord sa longueur, puis épinglez chaque nombre de clé avec la règle du 1–5."
+      },
+      "nihilist-easy-1": {
+        "title": "Sept lettres de Sibérie",
+        "hint1": "Longueur de clé 7 ; le carré est simple.",
+        "hint2": "Dans chaque colonne, seuls quelques nombres de clé gardent tous les chiffres entre 1 et 5."
+      },
+      "nihilist-medium-1": {
+        "title": "Courrier révolutionnaire",
+        "hint1": "Longueur de clé 10 — le rythme des sommes le trahit.",
+        "hint2": "Épinglez les colonnes une à une ; un mauvais nombre fait passer des valeurs au rouge."
+      },
+      "nihilist-hard-1": {
+        "title": "Le carré clé",
+        "hint1": "Clé du carré et clé additive inconnues — retrouvez d’abord les nombres de clé, puis le carré.",
+        "hint2": "Longueur de clé 8 ; une fois la clé épinglée, les paires se déchiffrent comme toute substitution.",
+        "hint3": "La paire la plus fréquente est presque sûrement E — commencez là."
       }
     },
     "tooltips": {
@@ -1142,6 +1262,15 @@
         "key": "Ajouter ce glyphe au message.",
         "delete": "Retirer le dernier glyphe.",
         "clear": "Vider le message."
+      },
+      "polybius": {
+        "squareKey": "Mot-clé facultatif pour le carré clé : les lettres du mot-clé remplissent d'abord la grille, le reste suit. Vide = carré simple.",
+        "spaced": "Écrire les paires de chiffres avec des espaces (l’aspect classique) ou en un flux continu."
+      },
+      "nihilist": {
+        "squareKey": "Mot-clé facultatif pour le carré clé. Vide = carré simple.",
+        "key": "Le mot-clé additif : ses nombres de coordonnées se répètent sur tout le texte.",
+        "spaced": "Écrire les sommes avec des espaces (l’aspect classique) ou en un flux continu."
       }
     },
     "caesar": {
@@ -1211,6 +1340,14 @@
       "description": "Une substitution par symboles : chaque lettre devient un fragment de grille — le célèbre chiffre des francs-maçons.",
       "era": "XVIIIe siècle (variantes depuis l'Antiquité)",
       "origin": "Populairement les francs-maçons, qui l'employaient pour registres et rites ; les variantes antérieures sont plus vieilles encore."
+    },
+    "polybius": {
+      "era": "Grèce antique, IIe siècle av. J.-C.",
+      "origin": "Le système de signalisation aux torches de Polybe, plus tard la base du code tap et de la fractionnement"
+    },
+    "nihilist": {
+      "era": "Russie, années 1880",
+      "origin": "Des nihilistes russes faisant passer des nombres devant la censure ; un ancêtre du chiffre VIC"
     }
   },
   "glossary": {
@@ -1345,7 +1482,8 @@
     "anagramming": {
       "name": "Anagrammage",
       "definition": "Reconstituer un texte transposé en glissant des fragments de colonnes côte à côte jusqu'à ce que les lignes se lisent dans la langue — l'attaque manuelle classique contre la transposition."
-    }
+    },
+    "additive-key": "Clé additive — un mot-clé converti en nombres qui se répètent sur le texte et s’ajoutent chiffre par chiffre, sans retenue."
   },
   "home": {
     "title": "Décodeur moderne et pratique pour les vieilles méthodes de dissimulation de la vérité",
@@ -1427,7 +1565,8 @@
       "saknussemm": "Le parchemin d'Arne Saknussemm",
       "playfair": "Playfair",
       "adfgvx": "ADFGVX",
-      "nihilist": "Nihiliste"
+      "nihilist": "Nihiliste",
+      "polybius": "Carré de Polybe"
     },
     "reasons": {
       "transpositionShape": "Les fréquences des lettres correspondent exactement à l'anglais (indice de coïncidence {{ic}}) — les lettres ont été déplacées, pas remplacées.",
@@ -1455,7 +1594,8 @@
       "adfgvxNotSet": "Des lettres hors de ADFGVX apparaissent — pas une transmission fractionnée ADFGVX.",
       "nihilistDigits": "{{pairs}} paires de chiffres dans la plage classique des sommes nihilistes (22–110).",
       "homophonicFlat": "{{symbols}} symboles distincts — plus que ce qu'un alphabet de substitution lettre par lettre peut contenir.",
-      "knownText.saknussemm": "C'est le parchemin d'Arne Saknussemm du « Voyage au centre de la Terre » de Jules Verne — {{letters}} lettres correspondantes."
+      "knownText.saknussemm": "C'est le parchemin d'Arne Saknussemm du « Voyage au centre de la Terre » de Jules Verne — {{letters}} lettres correspondantes.",
+      "polybiusDigits": "Toutes les {{pairs}} paires tiennent dans la plage du carré de Polybe (11–55)."
     },
     "metrics": {
       "letters": {

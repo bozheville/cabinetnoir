@@ -29,12 +29,14 @@ const CIPHER_LADDER = [
   'atbash',
   'pigpen',
   'caesar',
+  'polybius',
   'railFence',
   'affine',
   'keyword',
   'columnar',
   'playfair',
   'vigenere',
+  'nihilist',
   'adfgvx',
   'alberti',
   'enigma',
@@ -286,6 +288,71 @@ const learningConfig = {
     furtherReading: [
       {
         url: 'https://en.wikipedia.org/wiki/Rail_fence_cipher',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
+  // Polybius square: coordinates instead of letters — a substitution in
+  // disguise, so no cracker of its own (standard §10 exemption).
+  polybius: {
+    tabs: ['learn', 'history', 'practice'],
+    sections: {
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.substitution',
+      difficulty: 'learning.difficulty.trivial',
+      era: 'learning.polybius.era',
+      origin: 'learning.polybius.origin',
+      modes: ['encrypt', 'decrypt'],
+    },
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'key',
+      'alphabet',
+      'polybius-square',
+      'substitution',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Polybius_square',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
+  // Nihilist: Polybius square + a periodic additive key — "Vigenère on
+  // numbers". Full learning material (English content task).
+  nihilist: {
+    tabs: ['learn', 'history', 'practice'],
+    sections: {
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.polyalphabetic',
+      difficulty: 'learning.difficulty.medium',
+      era: 'learning.nihilist.era',
+      origin: 'learning.nihilist.origin',
+      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+    },
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'key',
+      'polybius-square',
+      'additive-key',
+      'key-length',
+      'frequency-analysis',
+      'index-of-coincidence',
+      'kasiski-examination',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Nihilist_cipher',
         labelKey: 'learning.furtherReading.wikipedia',
       },
     ],

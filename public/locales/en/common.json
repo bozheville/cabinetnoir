@@ -81,7 +81,8 @@
       "saknussemm": "Arne Saknussemm's parchment",
       "playfair": "Playfair",
       "adfgvx": "ADFGVX",
-      "nihilist": "Nihilist"
+      "nihilist": "Nihilist",
+      "polybius": "Polybius square"
     },
     "reasons": {
       "transpositionShape": "The letter frequencies match English exactly (index of coincidence {{ic}}) — the letters were moved, not replaced.",
@@ -109,7 +110,8 @@
       "adfgvxNotSet": "Letters outside ADFGVX appear — not a fractionated ADFGVX transmission.",
       "nihilistDigits": "{{pairs}} digit pairs in the classic Nihilist sum range (22–110).",
       "homophonicFlat": "{{symbols}} distinct symbols — more than any single-letter substitution alphabet holds.",
-      "knownText.saknussemm": "This is the Arne Saknussemm parchment from Jules Verne's “Journey to the Centre of the Earth” — {{letters}} matching letters."
+      "knownText.saknussemm": "This is the Arne Saknussemm parchment from Jules Verne's “Journey to the Centre of the Earth” — {{letters}} matching letters.",
+      "polybiusDigits": "All {{pairs}} pairs sit inside the Polybius square range (11–55)."
     },
     "metrics": {
       "letters": {
@@ -697,6 +699,76 @@
         "rosicrucian": "Rosicrucian",
         "templar": "Templar"
       }
+    },
+    "polybius": {
+      "title": "Polybius square cipher",
+      "short_title": "Polybius",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram",
+      "squareKeyLabel": "Square key",
+      "settings": {
+        "keyword_placeholder": "Keyword (optional)",
+        "spaced": "Space-separated pairs",
+        "squareHint": "The square — the highlighted cell (with its row and column) is the latest letter of the output."
+      }
+    },
+    "nihilist": {
+      "title": "Nihilist cipher",
+      "short_title": "Nihilist",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram",
+      "squareKeyLabel": "Square key",
+      "keyLabel": "Key word",
+      "settings": {
+        "square_placeholder": "Square keyword (optional)",
+        "key_placeholder": "Key word",
+        "spaced": "Space-separated numbers",
+        "squareHint": "The square the coordinates come from."
+      },
+      "cracker": {
+        "hints": {
+          "toggles": {
+            "greyImpossible": "Grey out impossible key numbers",
+            "suggestions": "Suggest letters by frequency"
+          }
+        },
+        "tooltips": {
+          "toggle": {
+            "greyImpossible": "Easy mode only: key numbers that cannot fit any value in this column are greyed out before you try.",
+            "suggestions": "Under each unassigned cell, show the next unused letter in English frequency order as a gentle suggestion."
+          }
+        },
+        "wizard": {
+          "steps": {
+            "length": "Key length",
+            "key": "Key numbers",
+            "square": "Square",
+            "done": "Done"
+          },
+          "length": {
+            "hint": "The stream has {{count}} numbers. A repeating key leaves periodic fingerprints — pick the period the cards rank highest.",
+            "tooShort": "Too few numbers for a period analysis — paste a longer cryptogram."
+          },
+          "key": {
+            "hint": "One key number per column. Try a number and watch the column: values whose subtraction stays inside the square turn green, the rest turn red.",
+            "column": "Column {{current}} of {{total}}",
+            "feedback": "Green: the subtraction lands inside the square. Red: outside — wrong key number."
+          },
+          "square": {
+            "hint": "The stripped stream is a plain Polybius substitution: assign letters by frequency, pairs run 11–55.",
+            "squareLabel": "The square as you have it"
+          },
+          "done": {
+            "hint": "Everything you pinned, in one place.",
+            "square": "Recovered square",
+            "keyLabel": "Additive key",
+            "keyword": "The square spells a keyword: {{keyword}}",
+            "incomplete": "Not every cell is decided yet — assign the remaining pairs in step 3."
+          }
+        }
+      }
     }
   },
   "message": "Message",
@@ -734,7 +806,8 @@
     "difficulty": {
       "trivial": "trivial to break",
       "easy": "easy to break by hand",
-      "hard": "hard to break by hand"
+      "hard": "hard to break by hand",
+      "medium": "medium to break by hand"
     },
     "modes": {
       "encrypt": "encrypt",
@@ -787,7 +860,10 @@
         "column": "Grid column",
         "position": "Position in ciphertext",
         "coords": "Square coordinates",
-        "fractionated": "Fractionated so far"
+        "fractionated": "Fractionated so far",
+        "plainNumber": "Plaintext number",
+        "keyNumber": "Key number",
+        "sum": "Sum (no carry)"
       }
     },
     "tryInTool": "Try it in the tool",
@@ -925,6 +1001,16 @@
         "1730": "The pirate Olivier Levasseur allegedly throws a pigpen scrap into the crowd at his execution — the unread treasure note dies with its variant.",
         "1700s": "Freemasons adopt the cipher for lodge records and correspondence — so persistently that it becomes 'the Freemason's cipher'.",
         "1860s": "Union prisoners in Confederate prisons use pigpen to smuggle messages during the American Civil War."
+      },
+      "polybius": {
+        "torches": "Polybius describes the torch-signalling square: five torches left, five right spell any letter.",
+        "nihilist": "Russian Nihilists add a periodic numeric key to the square — the Nihilist cipher.",
+        "tapCode": "Prisoners of war revive the square as five-by-five tap code — coordinates you can knock on a wall."
+      },
+      "nihilist": {
+        "1880s": "Russian Nihilist prisoners add a numeric key to the Polybius square to smuggle letters past the censors.",
+        "tapCode": "Prison camps revive the square as tap code — the coordinates, knocked on a wall.",
+        "vic": "The Soviet VIC cipher descends from the Nihilist addition — the last great pencil-and-paper cipher."
       }
     },
     "challenge": {
@@ -1231,6 +1317,42 @@
         "hint1": "This is still a fixed substitution: identify a few high-frequency glyphs first and the rest follows.",
         "hint2": "Look for the pattern IT…AS…TH… — opening phrases of famous novels give strong cribs.",
         "hint3": "The variant is the classic masonic key; the legend in the tool lists every mapping."
+      },
+      "polybius-easy-1": {
+        "title": "Numbers in the night",
+        "hint1": "Every pair is a row and a column of the plain square — 11 is A.",
+        "hint2": "The message is short and punchy; decode pair by pair."
+      },
+      "polybius-medium-1": {
+        "title": "A truth, in coordinates",
+        "hint1": "The plain square, I and J sharing a cell.",
+        "hint2": "Austen's most famous opening."
+      },
+      "polybius-hard-1": {
+        "title": "The Spartan square",
+        "hint1": "The square is keyed — SPARTAN fills the grid first, the rest of the alphabet follows.",
+        "hint2": "Decode with the keyed square; the answer is a familiar American text.",
+        "hint3": "The first pair of the plaintext is 44 — find which letter sits there in the SPARTAN square."
+      },
+      "nihilist-demo": {
+        "title": "The Nihilist transmission",
+        "hint1": "The key repeats — first find its length, then pin each key number with the 1–5 rule."
+      },
+      "nihilist-easy-1": {
+        "title": "Seven letters from Siberia",
+        "hint1": "Key length 7; the square is plain.",
+        "hint2": "For each column, only a few key numbers keep every digit in 1–5."
+      },
+      "nihilist-medium-1": {
+        "title": "Revolutionary post",
+        "hint1": "Key length 10 — the sums' rhythm gives it away.",
+        "hint2": "Pin the columns one at a time; wrong numbers turn values red."
+      },
+      "nihilist-hard-1": {
+        "title": "The keyed square",
+        "hint1": "Square key and additive key both unknown — recover the key numbers first, then the square.",
+        "hint2": "Key length 8; after the key is pinned, the pairs decode like any substitution.",
+        "hint3": "The most frequent pair is almost certainly E — start there."
       }
     },
     "tooltips": {
@@ -1289,6 +1411,15 @@
         "square-key": "The keyed square: the key's letters fill the square first (duplicates removed, J folded into I), the rest of the alphabet follows. Change it and both the coordinates and the final transposition change.",
         "transposition-key": "The transposition key: its letters fix the number and reading order of the columns that shuffle the fractionated text.",
         "unknown-keys": "Check this when you don't know the keys: a guided cracker opens below and walks you from the ciphertext to both keys."
+      },
+      "polybius": {
+        "squareKey": "Optional keyword for the keyed square: the keyword's letters fill the grid first, the rest follow. Empty = the plain square.",
+        "spaced": "Write the digit pairs with spaces (the classic look) or as one continuous stream."
+      },
+      "nihilist": {
+        "squareKey": "Optional keyword for the keyed square. Empty = the plain square.",
+        "key": "The additive key word: its coordinate numbers repeat over the whole text.",
+        "spaced": "Write the sums with spaces (the classic look) or as one continuous stream."
       }
     },
     "caesar": {
@@ -1358,6 +1489,14 @@
       "description": "A symbol substitution: every letter becomes a fragment of a grid — the famous Freemason's cipher.",
       "era": "18th century (variants since antiquity)",
       "origin": "Popularly the Freemasons, who used it for records and rites; earlier variants are older still."
+    },
+    "polybius": {
+      "era": "Classical Greece, 2nd century BC",
+      "origin": "Polybius' torch-signalling scheme, later the basis of tap code and fractionation"
+    },
+    "nihilist": {
+      "era": "Russia, 1880s",
+      "origin": "Russian Nihilist prisoners smuggling numbers past the censors; a forerunner of the VIC cipher"
     }
   },
   "glossary": {
@@ -1492,6 +1631,7 @@
     "anagramming": {
       "name": "Anagramming",
       "definition": "Rebuilding a transposed text by sliding column fragments side by side until rows read like the language — the classic hand attack on transposition ciphers."
-    }
+    },
+    "additive-key": "Additive key — a keyword converted to numbers that repeat over the text and are added digit by digit, without carry."
   }
 }

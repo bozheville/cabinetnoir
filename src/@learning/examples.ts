@@ -20,6 +20,14 @@ import {
 } from '@encryptors/shared/transposition';
 import { playfairEncrypt } from '@encryptors/Playfair/playfair-encryption';
 import { adfgvxEncrypt } from '@encryptors/Adfgvx/adfgvx-encryption';
+import {
+  buildSquare,
+  toCoordinates,
+} from '@encryptors/shared/polybius';
+import {
+  nihilistKeyNumbers,
+  noCarryAdd,
+} from '@encryptors/Nihilist/nihilist-crypt';
 import { createEnigmaMachine, enigmaPass } from '@learning/enigma-machine';
 
 export interface WorkedExampleColumn {
@@ -534,6 +542,80 @@ const buildRailFenceExample = (
   };
 };
 
+// Polybius square: every plaintext letter becomes its coordinate pair,
+// and the running pair stream shows the ciphertext taking shape — a
+// substitution wearing a grid.
+const buildPolybiusExample = (
+  id: string,
+  input: string,
+  keyword: string,
+): WorkedExample => {
+  const square = buildSquare(keyword, { size: 5 });
+  const letters = input.toUpperCase().replace(/J/g, 'I').replace(/[^A-Z]/g, '');
+  let stream = '';
+  const rows = letters.split('').map((letter) => {
+    const pair = toCoordinates(letter, square);
+    stream += stream ? ` ${pair}` : pair;
+    return [letter, pair, stream];
+  });
+
+  return {
+    id,
+    cipher: 'polybius',
+    input: letters,
+    key: keyword,
+    alphabet: square,
+    mode: 'encrypt',
+    columns: [
+      { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+      { key: 'coords', labelKey: 'learning.example.columns.coords' },
+      { key: 'fractionated', labelKey: 'learning.example.columns.fractionated' },
+    ],
+    rows,
+  };
+};
+
+// Nihilist: each row shows the addition the cipher is named for — the
+// plaintext's coordinate number plus the repeating key's number, added
+// digit by digit without carry.
+const buildNihilistExample = (
+  id: string,
+  input: string,
+  squareKey: string,
+  key: string,
+): WorkedExample => {
+  const square = buildSquare(squareKey, { size: 5 });
+  const letters = input.toUpperCase().replace(/J/g, 'I').replace(/[^A-Z]/g, '');
+  const keyNumbers = nihilistKeyNumbers(key, squareKey);
+  const rows = letters.split('').map((letter, index) => {
+    const plainPair = toCoordinates(letter, square);
+    const plain = Number(plainPair);
+    const keyNumber = keyNumbers[index % keyNumbers.length];
+    return [
+      letter,
+      plainPair,
+      String(keyNumber),
+      String(noCarryAdd(plain, keyNumber)),
+    ];
+  });
+
+  return {
+    id,
+    cipher: 'nihilist',
+    input: letters,
+    key: `${squareKey} ${key}`.trim(),
+    alphabet: square,
+    mode: 'encrypt',
+    columns: [
+      { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+      { key: 'plainNumber', labelKey: 'learning.example.columns.plainNumber' },
+      { key: 'keyNumber', labelKey: 'learning.example.columns.keyNumber' },
+      { key: 'sum', labelKey: 'learning.example.columns.sum' },
+    ],
+    rows,
+  };
+};
+
 const EXAMPLES: Record<string, WorkedExample> = {
   'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
   'caesar-basic': buildCaesarExample('caesar-basic', 'MEETATNOON', 3),
@@ -549,6 +631,9 @@ const EXAMPLES: Record<string, WorkedExample> = {
   'rot13-basic': buildRot13Example('rot13-basic', 'HELLOWORLD'),
   'playfair-basic': buildPlayfairExample('playfair-basic', 'HIDETHEGOLD', 'PLAYFAIREXAMPLE'),
   'adfgvx-basic': buildAdfgvxExample('adfgvx-basic', 'ATTACKATDAWN', 'NIGHT GERMAN'),
+  'polybius-basic': buildPolybiusExample('polybius-basic', 'ATTACKATDAWN', ''),
+  'polybius-keyed': buildPolybiusExample('polybius-keyed', 'ATTACKATDAWN', 'SPARTAN'),
+  'nihilist-basic': buildNihilistExample('nihilist-basic', 'ATTACKATDAWN', '', 'RUSSIA'),
   'enigma-basic': buildEnigmaExample('enigma-basic', 'AAAAA', 'AAA'),
 };
 

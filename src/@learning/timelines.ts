@@ -264,6 +264,40 @@ export const TIMELINES: Record<string, TimelineEvent[]> = {
       sourceUrl: 'https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher',
     },
   ],
+  polybius: [
+    {
+      year: 'c. 150 BC',
+      textKey: 'learning.timeline.polybius.torches',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Polybius_square',
+    },
+    {
+      year: '1880s',
+      textKey: 'learning.timeline.polybius.nihilist',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Nihilist_cipher',
+    },
+    {
+      year: '1940s',
+      textKey: 'learning.timeline.polybius.tapCode',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Tap_code',
+    },
+  ],
+  nihilist: [
+    {
+      year: '1880s',
+      textKey: 'learning.timeline.nihilist.1880s',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Nihilist_cipher',
+    },
+    {
+      year: '1940s',
+      textKey: 'learning.timeline.nihilist.tapCode',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Tap_code',
+    },
+    {
+      year: '1950s',
+      textKey: 'learning.timeline.nihilist.vic',
+      sourceUrl: 'https://en.wikipedia.org/wiki/VIC_cipher',
+    },
+  ],
   vigenere: [
     {
       year: '1467',
