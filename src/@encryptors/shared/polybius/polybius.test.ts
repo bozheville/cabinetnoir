@@ -4,6 +4,7 @@ import {
   buildSquare,
   squareAlphabet,
   squareLabels,
+  squareCoordinates,
   foldForSquare,
   toCoordinates,
   fromCoordinates,
@@ -43,6 +44,25 @@ describe('buildSquare', () => {
 
 describe('coordinates', () => {
   const SQUARE = buildSquare('SECRET', { size: 5 });
+
+  it('lists every coordinate pair in reading order', () => {
+    const pairs = squareCoordinates(5);
+    expect(pairs).toHaveLength(25);
+    expect(pairs[0]).toBe('11');
+    expect(pairs[1]).toBe('12');
+    expect(pairs[5]).toBe('21');
+    expect(pairs[24]).toBe('55');
+    // Round-trip: the plain square fills in coordinate order.
+    const square = buildSquare('', { size: 5 });
+    expect(pairs.map((pair) => fromCoordinates(pair, square)).join(''))
+      .toBe(squareAlphabet(5));
+  });
+
+  it('gives 36 pairs for a 6x6 square', () => {
+    const pairs = squareCoordinates(6);
+    expect(pairs).toHaveLength(36);
+    expect(pairs[35]).toBe('66');
+  });
 
   it('round-trips letters through digit coordinates', () => {
     const alphabet = 'ABCDEFGHIKLMNOPQRSTUVWXYZ';

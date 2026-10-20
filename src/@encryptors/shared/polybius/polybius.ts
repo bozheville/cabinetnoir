@@ -113,6 +113,13 @@ export const fromCoordinates = (
   return square[row * size + column] ?? '';
 };
 
+// Every coordinate pair of a square, reading order — '11' through '55'
+// for a 5×5 square. Square-rebuilding UIs lay their cells out in this
+// order so the assignment board IS the square.
+export const squareCoordinates = (size: SquareSize): string[] =>
+  Array.from({ length: size * size }, (_, index) =>
+    `${Math.floor(index / size) + 1}${(index % size) + 1}`);
+
 // The square cell index (0-based) of a coordinate pair, or -1.
 export const coordinatesToIndex = (
   coordinates: string,

@@ -15,7 +15,7 @@ import {
   useAssignmentHistory,
 } from '@encryptors/shared/cracker';
 import PolybiusSquare from '@encryptors/shared/polybius/PolybiusSquare';
-import { fromCoordinates } from '@encryptors/shared/polybius';
+import { fromCoordinates, squareCoordinates } from '@encryptors/shared/polybius';
 import { keywordFromAlphabet } from '@encryptors/Keyword/keyword-crypt';
 import {
   parseNihilistNumbers,
@@ -31,6 +31,9 @@ import { HintConfig } from './hintSettings';
 // The 25 possible key numbers: two digits, each 1–5.
 const KEY_NUMBERS = [1, 2, 3, 4, 5].flatMap((row) =>
   [1, 2, 3, 4, 5].map((column) => row * 10 + column));
+
+// The board's cells laid out as the square itself: 11–55 in reading order.
+const SQUARE_COORDINATES = squareCoordinates(5);
 
 const StepText = styled(Text)`
   display: block;
@@ -174,7 +177,10 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
   }, [coordinates]);
 
   const conflicts = findConflicts(mapping);
-  const unassigned = symbols.filter((symbol) => !mapping[symbol]);
+  // Every cell of the square is assignable — including pairs the
+  // ciphertext never produces, which a short text can lack but the
+  // square still needs for the hand-off.
+  const unassigned = SQUARE_COORDINATES.filter((symbol) => !mapping[symbol]);
   const complete = allPinned
     && symbols.length > 0
     && unassigned.length === 0
@@ -415,6 +421,7 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
             mapping={mapping}
             onAssign={assign}
             alphabet={STANDARD_ALPHABET}
+            order={SQUARE_COORDINATES}
             highlighted={unassigned.slice(0, 3)}
             showSuggestions={hints.suggestions}
           />
