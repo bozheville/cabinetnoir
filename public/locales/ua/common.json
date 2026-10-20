@@ -206,6 +206,19 @@
         }
       }
     },
+    "railFence": {
+      "title": "Rail fence",
+      "short_title": "Rail fence",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram",
+      "settings": {
+        "railsLabel": "{{count}} rails",
+        "offsetLabel": "Start at rail {{value}}",
+        "keep_spaces": "Keep spaces",
+        "zigzagHint": "The letters ride the fence; the rails are read top to bottom."
+      }
+    },
     "rot13": {
       "title": "ROT13",
       "short_title": "ROT13",
@@ -624,10 +637,13 @@
       "rotate-right": "праву стрілку під дисками",
       "increment": "повзунок кроку",
       "keyword-input": "поле ключового слова",
+      "rails-picker": "the rails picker",
+      "offset-picker": "the offset picker",
       "columnar-keyword": "the columnar keyword field",
       "double-toggle": "the \"Double transposition\" checkbox",
       "second-keyword-input": "the second keyword field",
       "grid-toggle": "the \"Leave the last row incomplete\" checkbox",
+      "zigzag-fence": "the zigzag fence",
       "transposition-grid": "the transposition grid",
       "continuation-toggle": "перемикач «Продовжити після ключового слова»",
       "free-alphabet-toggle": "перемикач «Вільний алфавіт»",
@@ -1047,6 +1063,11 @@
         "secondKeyword": "A second keyword transposes the already-transposed text — the classic double transposition.",
         "double": "Double transposition: encrypt with the first keyword, then transposition the result again with the second.",
         "irregular": "Leave the last row incomplete: no padding letter is added, so the last row stays short (the classic hand cipher).",
+        "keepSpaces": "Keep spaces: spaces ride the zigzag like letters instead of being stripped."
+      },
+      "railFence": {
+        "rails": "How many rails the fence has — the zigzag bounces between the top and bottom rail.",
+        "offset": "Which rail the first letter starts on. Offset 0 is the classic fence; any other start hides the usual tell that the first letter sits on top.",
         "keepSpaces": "Keep spaces: spaces ride the zigzag like letters instead of being stripped."
       },
       "morse": {

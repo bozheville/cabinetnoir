@@ -5,6 +5,7 @@ export { default as Base64 } from './Base64';
 export { default as Caesar } from './Caesar';
 export { default as Keyword } from './Keyword';
 export { default as Columnar } from './Columnar';
+export { default as RailFence } from './RailFence';
 export { default as Enigma } from './Enigma';
 export { default as Morse } from './Morse';
 export { default as Pigpen } from './Pigpen';

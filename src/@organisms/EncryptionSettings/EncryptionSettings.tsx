@@ -14,6 +14,7 @@ import {
   Caesar,
   Keyword,
   Columnar,
+  RailFence,
   Enigma,
   Morse,
   Pigpen,
@@ -88,6 +89,7 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
     algorithm === 'caesar' ? Caesar :
   algorithm === 'keyword' ? Keyword :
   algorithm === 'columnar' ? Columnar :
+  algorithm === 'railFence' ? RailFence :
     algorithm === 'enigma' ? Enigma :
     algorithm === 'playfair' ? Playfair :
     algorithm === 'vigenere' ? Vigenere :
