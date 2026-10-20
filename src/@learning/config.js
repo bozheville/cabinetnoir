@@ -225,15 +225,14 @@ const learningConfig = {
       },
     ],
   },
-  // Columnar ships its cracker first (m1-10); the learning tabs arrive
-  // with the English content task — until then the cipher has routes and
-  // a Cryptoanalysis tab but no learn/history/practice pages.
+  // Columnar: full learning material (English content task). The cracker
+  // shipped first with empty tabs; this flips them on.
   columnar: {
-    tabs: [],
+    tabs: ['learn', 'history', 'practice'],
     sections: {
-      learn: [],
-      history: [],
-      practice: [],
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
     },
     atGlance: {
       type: 'learning.types.transposition',
@@ -242,8 +241,20 @@ const learningConfig = {
       origin: 'learning.columnar.origin',
       modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
     },
-    glossary: [],
-    furtherReading: [],
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'key',
+      'transposition',
+      'column-order',
+      'anagramming',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Transposition_cipher',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
   },
   pigpen: {
     tabs: ['learn', 'history', 'practice'],

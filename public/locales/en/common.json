@@ -744,6 +744,8 @@
         "pair": "Plaintext pair",
         "positions": "Rotor window (I·II·III)",
         "source": "In keyword?",
+        "column": "Grid column",
+        "position": "Position in ciphertext",
         "coords": "Square coordinates",
         "fractionated": "Fractionated so far"
       }
@@ -812,6 +814,11 @@
         "800": "Al-Kindi writes on decrypting messages by letter frequency in Baghdad — the standing verdict on every fixed substitution cipher, keyword alphabets included.",
         "1563": "Giambattista della Porta's De Furtivis Literarum Notis puts keyed alphabets into the cipher manuals: the keyword's letters first, the remainder after.",
         "1586": "The Babington correspondence — a fixed substitution at its core — is read by Thomas Phelippes' frequency analysis; Mary, Queen of Scots is executed on the evidence."
+      },
+      "columnar": {
+        "wwi": "Columnar transposition — usually doubled — is a standard field cipher of several First World War armies.",
+        "1918": "ADFGVX chains fractionation with a keyed columnar transposition; Painvin has to undo the column order first.",
+        "1942": "SOE agents behind enemy lines use double transposition keyed by memorised poems — Leo Marks' verse keys."
       },
       "caesar": {
         "121": "Suetonius describes both Caesar's shift of 3 and Augustus' shift of 1 in The Lives of the Twelve Caesars.",
@@ -1000,20 +1007,39 @@
         "title": "Cracker demo ciphertext",
         "hint1": "The spaces survive encryption — word shapes are your friend. The word that keeps appearing is probably THE."
       },
+      "columnar-demo": {
+        "title": "Warm-up: the road north",
+        "hint1": "The ciphertext is 56 letters — its divisors include 4. Four columns fit the grid; start there."
+      },
       "keyword-easy-1": {
         "title": "The best of times",
         "hint1": "The keyword has six letters, all different.",
         "hint2": "The most frequent symbol is almost surely the encrypted E — assign it first and watch the text wake up."
+      },
+      "columnar-easy-1": {
+        "title": "Four columns of Dickens",
+        "hint1": "The true width divides the padded length evenly — and 4 is a strong candidate. Rank, pick, then drag.",
+        "hint2": "Two neighbouring columns form real digraphs (TH, HE, IN) when zipped row by row — watch the green badges."
       },
       "keyword-medium-1": {
         "title": "A truth universally acknowledged",
         "hint1": "The keyword has seven letters, no repeats.",
         "hint2": "The opening words are famous — IT and IS are one-letter-away once T and I are placed."
       },
+      "columnar-medium-1": {
+        "title": "Six columns of Austen",
+        "hint1": "Six columns. Find the pair with the highest badge score — they are true neighbours in the grid.",
+        "hint2": "Build the chain from the best pair outward: every column has exactly one neighbour on each side."
+      },
       "keyword-hard-1": {
         "title": "Four score and seven",
         "hint1": "The keyword has eight letters.",
         "hint2": "FOUR SCORE opens the message — the word shapes do most of the work once F, O, U, R are placed."
+      },
+      "columnar-hard-1": {
+        "title": "Seven columns from Gettysburg",
+        "hint1": "Seven columns. The best-partner outline (Easy preset) is gone at this difficulty — rely on the badges.",
+        "hint2": "Famous opening lines are cribs: slide FOURSCORE against candidate column pairs in your head."
       },
       "morse-easy-1": {
         "title": "The eagle has landed",
@@ -1375,6 +1401,14 @@
     "transposition": {
       "name": "Transposition",
       "definition": "Changing the order of symbols without changing the symbols themselves."
+    },
+    "column-order": {
+      "name": "Column order",
+      "definition": "The order in which the columns of a transposition grid are read out — fixed by the keyword: its letters sorted alphabetically say which column comes first."
+    },
+    "anagramming": {
+      "name": "Anagramming",
+      "definition": "Rebuilding a transposed text by sliding column fragments side by side until rows read like the language — the classic hand attack on transposition ciphers."
     }
   }
 }

@@ -22,7 +22,10 @@ undo the shuffle, then solve what is left.
 ## Attack 1 — reassembling the columns
 
 Undoing the {{term:transposition}} means learning which chunks of the
-ciphertext were neighbouring columns of the grid. The tell-tale sign:
+ciphertext were neighbouring columns of the grid — the same
+{{term:anagramming}} the plain Columnar cracker teaches with digraph
+scores, though here the zipped pairs are fractionated coordinates, not
+letters, so the tell-tale sign changes. When two chunks really were
 when two chunks really were neighbours, zipping them together pairs
 every row-coordinate with the matching column-coordinate of the *same*
 plaintext letter — the resulting two-letter "symbols" are real
