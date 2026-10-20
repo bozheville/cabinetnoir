@@ -8,6 +8,7 @@ export {
   toCoordinates,
   fromCoordinates,
   coordinatesToIndex,
+  squareCoordinates,
 } from './polybius';
 export type { PolybiusSquareOptions, SquareSize, SquareMerge } from './polybius';
 export { default as PolybiusSquare } from './PolybiusSquare';
