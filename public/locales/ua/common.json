@@ -89,69 +89,70 @@
       }
     },
     "keyword": {
-      "title": "Keyword substitution",
-      "short_title": "Keyword",
-      "directAction": "Encrypt",
-      "reverseAction": "Decrypt",
-      "messageLabel": "Cryptogram",
+      "title": "Шифр за ключовим словом",
+      "short_title": "Ключове слово",
+      "directAction": "Зашифрувати",
+      "reverseAction": "Розшифрувати",
+      "messageLabel": "Криптограма",
       "settings": {
-        "keyword_placeholder": "Keyword, e.g. KRYPTOS",
-        "free_alphabet": "Free alphabet",
-        "freeAlphabet_placeholder": "All 26 letters, any order",
-        "continue_from_last": "Continue after the keyword",
-        "keep_spaces": "Keep spaces",
-        "keep_case": "Keep case",
-        "alphabetHint": "Top row: plain alphabet. Bottom row: the cipher alphabet it maps to.",
+        "keyword_placeholder": "Ключове слово, напр. KRYPTOS",
+        "free_alphabet": "Вільний алфавіт",
+        "freeAlphabet_placeholder": "Усі 26 літер у довільному порядку",
+        "continue_from_last": "Продовжити після ключового слова",
+        "keep_spaces": "Зберігати пробіли",
+        "keep_case": "Зберігати регістр",
+        "alphabetHint": "Верхній рядок: відкритий алфавіт. Нижній рядок: відповідний шифровальний алфавіт.",
         "freeAlphabetError": {
-          "empty": "Type an alphabet first — all 26 letters, in any order.",
-          "length": "An alphabet needs exactly 26 letters — this one has a different count (spaces and punctuation are ignored).",
-          "duplicates": "Every letter may appear only once — this alphabet repeats a letter."
+          "empty": "Спочатку введіть алфавіт — усі 26 літер у довільному порядку.",
+          "length": "Алфавіт містить рівно 26 літер — тут їх інша кількість (пробіли та розділові знаки ігноруються).",
+          "duplicates": "Кожна літера може траплятися лише один раз — цей алфавіт повторює літеру."
         }
       },
       "cracker": {
         "wizard": {
           "steps": {
-            "count": "Count the letters",
-            "obvious": "Assign the obvious ones",
-            "words": "Find the words",
-            "gaps": "Fill the gaps",
-            "done": "Done"
+            "count": "Порахувати літери",
+            "obvious": "Призначити очевидні",
+            "words": "Знайти слова",
+            "gaps": "Заповнити прогалини",
+            "done": "Готово"
           },
           "count": {
-            "summary": "{{letters}} letters, {{distinct}} distinct symbols, sorted by frequency.",
-            "hint": "Compare the bars with English: the tallest cells should be E, T, A, O… Reading the shape first makes every later guess cheaper."
+            "summary": "{{letters}} літер, {{distinct}} різних символів, упорядковано за частотою.",
+            "hint": "Порівняйте стовпчики з англійською: найвищі клітинки мають бути E, T, A, O… Спершу прочитати форму — і кожна наступна здогадка дешевша."
           },
           "obvious": {
-            "hint": "Click a glowing cell, then pick the plaintext letter you think it stands for. The suggestion under a cell is only a hint — the decision is yours. The partial text below updates after every click."
+            "hint": "Клацніть підсвічену клітинку та оберіть літеру відкритого тексту, яку вона означає, на вашу думку. Підказка під клітинкою — лише підказка; рішення ваше. Частковий текст нижче оновлюється після кожного клацання."
           },
           "words": {
-            "hint": "With a few letters placed, whole words become readable. A candidate in green fits the letters you already assigned — click it to place it.",
-            "none": "No word patterns fit yet — go back and assign a few more letters, or continue to the gaps.",
-            "apply": "Place this word: assigns a letter to every symbol of the cipher word.",
-            "doubles": "Doubled letters in the ciphertext ({{doubles}}) — in English usually LL, TT, SS, EE or OO.",
-            "oneLetter": "One-letter words ({{words}}) — in English only A and I."
+            "hint": "Коли кілька літер на місці, цілі слова стають читабельними. Кандидат, який узгоджується з уже призначеними літерами, вартий клацання — він розставить слово ціликом.",
+            "none": "Поки жоден словесний шаблон не пасує — поверніться та призначте ще кілька літер, або переходьте до прогалин.",
+            "apply": "Розставити це слово: призначає літеру кожному символу шифрованого слова.",
+            "doubles": "Подвоєні літери в шифротексті ({{doubles}}) — в англійській це зазвичай LL, TT, SS, EE або OO.",
+            "oneLetter": "Однолітерні слова ({{words}}) — в англійській лише A та I."
           },
           "gaps": {
-            "hint": "Fill the remaining cells. Watch the partial text: where a guess reads wrong, undo it and try the runner-up."
+            "hint": "Заповніть решту клітинок. Слідкуйте за частковим текстом: де здогадка читається погано, скасуйте її й спробуйте наступну кандидатку."
           },
           "done": {
-            "alphabet": "Recovered cipher alphabet (plain A → Z on top, cipher letter below):",
-            "keyword": "The keyword was probably: {{keyword}}",
-            "noKeyword": "The alphabet is not keyword-shaped — a mixed alphabet was used.",
-            "incomplete": "Assign every symbol of the ciphertext to unlock \"Use this key\"."
+            "alphabet": "Відновлений шифровальний алфавіт (згори A → Z відкритого тексту, знизу — шифрова літера):",
+            "keyword": "Ключовим словом було, імовірно: {{keyword}}",
+            "noKeyword": "Алфавіт не має форми ключового слова — використано перемішаний алфавіт.",
+            "incomplete": "Призначте кожен символ шифротексту, щоб увімкнути «Використати цей ключ».",
+            "fillNote": "Plain letters that never appear in the text keep their default fill — they cannot be recovered from this text."
           }
         },
         "hints": {
           "toggles": {
-            "suggestions": "Frequency suggestions",
-            "patterns": "Word patterns",
-            "doubles": "Doubles and one-letter words"
+            "suggestions": "Частотні підказки",
+            "patterns": "Шаблони слів",
+            "doubles": "Подвоєння та однолітерні слова"
           }
         },
         "tooltips": {
-          "suggestions": "Ranks each unassigned symbol over the English frequency order. A hint only — nothing is assigned without your click.",
-          "patterns": "Cipher words whose shape matches a common English word (THE, AND…), consistent with your assignments. Clicking a candidate places the word.",
-          "doubles": "Doubled letters and one-letter words are strong clues in English."
+          "suggestions": "Ранжує кожен непризначений символ за частотним порядком англійської. Лише підказка — нічого не призначається без вашого клацання.",
+          "patterns": "Шифровані слова, чиє обриси збігаються з поширеним англійським словом (THE, AND…), узгоджено з вашими призначеннями. Клацання розставляє слово.",
+          "doubles": "Подвоєні літери та однолітерні слова — сильні підказки в англійській."
         }
       }
     },
@@ -394,8 +395,8 @@
       },
       "tooltips": {
         "hintPresets": "Рівень допомоги інструменту: «Легко» показує все, «Важко» залишає роздуми вам.",
-        "undo": "Take the last assignment back — nothing breaks.",
-        "redo": "Re-apply the assignment you just undid.",
+        "undo": "Повертає останнє призначення — нічого не ламається.",
+        "redo": "Знову застосовує призначення, яке ви щойно скасували.",
         "chartArrows": "Обертайте діаграму кнопками чи стрілками; обертання — це літера ключа.",
         "matchScore": "Схожість поточного обертання на англійську (оцінка хі-квадрат).",
         "back": "Крок назад. Нічого не ламається.",
@@ -428,16 +429,16 @@
         "match": "Збіг: {{score}}%"
       },
       "assignment": {
-        "undo": "Undo",
-        "redo": "Redo",
-        "clearAll": "Clear all"
+        "undo": "Скасувати",
+        "redo": "Повторити",
+        "clearAll": "Очистити все"
       }
     },
     "assignment": {
-      "clickCell": "Click a cell, then pick the plaintext letter you think it stands for.",
-      "suggestion": "probably {{suggestion}}?",
-      "clear": "Clear",
-      "conflict": "{{letter}} is assigned to more than one symbol — a substitution maps each cipher symbol to exactly one letter."
+      "clickCell": "Клацніть клітинку, а потім оберіть літеру відкритого тексту, яку вона означає, на вашу думку.",
+      "suggestion": "можливо, {{suggestion}}?",
+      "clear": "Очистити",
+      "conflict": "{{letter}} призначено більш ніж одному символу — підстановка ставить у відповідність кожному символу рівно одну літеру."
     },
     "pigpen": {
       "title": "Шифр «Свинюшка»",
@@ -536,6 +537,7 @@
         "chunk": "Шматок (3 байти)",
         "pair": "Пара відкритого тексту",
         "positions": "Віконце роторів (I·II·III)",
+        "source": "З ключового слова?",
         "coords": "Координати квадрата",
         "fractionated": "Дроблений текст (наростаюче)"
       }
@@ -565,12 +567,12 @@
       "rotate-left": "ліву стрілку під дисками",
       "rotate-right": "праву стрілку під дисками",
       "increment": "повзунок кроку",
-      "keyword-input": "the keyword field",
-      "continuation-toggle": "the \"Continue after the keyword\" checkbox",
-      "free-alphabet-toggle": "the \"Free alphabet\" checkbox",
-      "free-alphabet-input": "the free alphabet field",
-      "free-alphabet-error": "the free alphabet warning",
-      "alphabet-strip": "the alphabet strip",
+      "keyword-input": "поле ключового слова",
+      "continuation-toggle": "перемикач «Продовжити після ключового слова»",
+      "free-alphabet-toggle": "перемикач «Вільний алфавіт»",
+      "free-alphabet-input": "поле вільного алфавіту",
+      "free-alphabet-error": "попередження про вільний алфавіт",
+      "alphabet-strip": "стрічка алфавіту",
       "period": "повзунок періоду",
       "multiplier": "поле множника",
       "shift": "поле зсуву",
@@ -594,6 +596,11 @@
         "1586": "Блез де Віженер публікує схожий шифр; схему з ключем, що повторюється, пізніше помилково приписують йому.",
         "1863": "Фрідріх Касіскі публікує загальний метод визначення довжини ключа (Чарльз Беббідж зламав його на десятиліття раніше, не опублікувавши).",
         "1920s": "Вільям Фрідман розробляє індекс збігу, роблячи атаку статистично строгою."
+      },
+      "keyword": {
+        "800": "Аль-Кінді в Багдаді описує злам шифрів за частотою літер — вирок кожній фіксованій підстановці, зокрема алфавітам за ключовим словом.",
+        "1563": "De Furtivis Literarum Notis Джамбаттісти делла Порти вводить алфавіти за ключовим словом до посібників: спочатку літери слова, потім решта.",
+        "1586": "Листування Бабінгтона — з фіксованою підстановкою в серцевині — прочитав частотним аналізом Томас Феліппес; на цьому доказі страчено Марію, королеву шотландську."
       },
       "caesar": {
         "121": "Светоній описує зсув 3 Цезаря і зсув 1 Августа у «Житті дванадцяти цезарів».",
@@ -778,6 +785,25 @@
         "hint1": "Це початок відомої американської промови.",
         "hint2": "Ключа шукати ніде: вся таємниця — нерухоме дзеркало A↔Z."
       },
+      "keyword-demo": {
+        "title": "Демонстраційний текст зломника",
+        "hint1": "Пробіли переживають шифрування — обриси слів вам товариш. Слово, що повторюється, ймовірно, THE."
+      },
+      "keyword-easy-1": {
+        "title": "Краще з часів",
+        "hint1": "Ключове слово має шість літер, усі різні.",
+        "hint2": "Найчастіший символ — майже напевно зашифрована E. Призначте її першою й дивіться, як текст прокидається."
+      },
+      "keyword-medium-1": {
+        "title": "Істина, визнана всіма",
+        "hint1": "Ключове слово має сім літер, без повторів.",
+        "hint2": "Перші слова славнозвісні — IT і IS розкриваються, щойно поставлено T та I."
+      },
+      "keyword-hard-1": {
+        "title": "Чотири бали й сім років тому",
+        "hint1": "Ключове слово має вісім літер.",
+        "hint2": "FOUR SCORE відкриває повідомлення — обриси слів роблять більшість роботи, щойно поставлено F, O, U, R."
+      },
       "morse-easy-1": {
         "title": "Орел приземлився",
         "hint1": "Літери розділені одинарними пробілами, слова — скісними рисками.",
@@ -925,11 +951,11 @@
         "alphabet": "Селектор алфавіту: Атбаш дзеркалить обраний алфавіт — єдиний вибір, який шифр пропонує."
       },
       "keyword": {
-        "keyword": "The keyword builds the cipher alphabet: its letters first (duplicates dropped), then the remaining letters in order.",
-        "continueFromLast": "Instead of continuing from A after the keyword, keep counting from the keyword's last letter.",
-        "freeAlphabet": "Skip the keyword and type any arrangement of all 26 letters — every letter exactly once.",
-        "keepSpaces": "Keep spaces: preserves the layout of words instead of removing them all.",
-        "keepCase": "Keep case: preserves capitals instead of writing everything in capitals."
+        "keyword": "Ключове слово будує шифровальний алфавіт: спочатку його літери (без повторів), потім решта літер за порядком.",
+        "continueFromLast": "Замість того, щоб після ключового слова починати з A, продовжуйте рахувати від його останньої літери.",
+        "freeAlphabet": "Без ключового слова: введіть усі 26 літер у будь-якому порядку — кожну рівно один раз.",
+        "keepSpaces": "Зберігати пробіли: зберігає розташування слів замість того, щоб прибрати всі пробіли.",
+        "keepCase": "Зберігати регістр: зберігає великі літери замість того, щоб усе писати прописними."
       },
       "morse": {
         "dot": "Символ, що грає короткий сигнал (крапку) у закодованому виводі.",
@@ -975,9 +1001,9 @@
       "origin": "Єврейські писарі; засвідчений у Книзі пророка Єремії."
     },
     "keyword": {
-      "description": "A substitution whose cipher alphabet is spelled out by a keyword: its letters first, then the rest in order.",
-      "era": "16th century — today",
-      "origin": "A classic keyed alphabet, described in early cryptologic manuals; popular with hobbyists ever since."
+      "description": "Підстановка, чий шифровальний алфавіт сам себе промовляє: спочатку літери ключового слова, потім решта за порядком.",
+      "era": "XVI століття — сьогодні",
+      "origin": "Класичний алфавіт за ключовим словом, описаний у ранніх посібниках криптології; відтоді улюбленець аматорів."
     },
     "morse": {
       "description": "Кодування, а не шифр: кожна літера стає публічним шаблоном крапок і тире для телеграфа.",
@@ -1047,6 +1073,14 @@
     "substitution": {
       "name": "Підстановка",
       "definition": "Заміна кожної літери іншою."
+    },
+    "cipher-alphabet": {
+      "name": "Шифровальний алфавіт",
+      "definition": "Перепорядкований алфавіт, на який підстановка проєктує відкритий алфавіт — тут записаний ключовим словом."
+    },
+    "pattern-word": {
+      "name": "Слово-шаблон",
+      "definition": "Слово, розпізнане за формою повторюваних літер: THE має шаблон ABC, THAT — ABCA; форма переживає будь-яку підстановку."
     },
     "polyalphabetic": {
       "name": "Поліалфавітний",
