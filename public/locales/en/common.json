@@ -784,6 +784,7 @@
         "pair": "Plaintext pair",
         "positions": "Rotor window (I·II·III)",
         "source": "In keyword?",
+        "rail": "Rail",
         "column": "Grid column",
         "position": "Position in ciphertext",
         "coords": "Square coordinates",
@@ -915,6 +916,10 @@
         "1918-introduced": "Fritz Nebel’s fractionation-transposition cipher enters German field service as ADFGX, with a 5×5 square.",
         "1918-painvin": "Georges Painvin breaks the ADFGX traffic from intercepted same-key message pairs after months of effort.",
         "1918-traffic": "The square gains a sixth row for digits (ADFGVX); the broken traffic helps the French anticipate the German offensive at Amiens."
+      },
+      "railFence": {
+        "scytale": "Sparta's scytale: a ribbon wound around a staff — the first recorded transposition, and the fence's ancestor.",
+        "civilWar": "Rail fence zigzags and route ciphers carry field messages on both sides of the American Civil War."
       },
       "pigpen": {
         "1531": "Cornelius Agrippa describes an early Rosicrucian-style grid cipher — the 'Kabbalah of the Nine Chambers', dots carrying the alphabet.",
@@ -1054,6 +1059,10 @@
         "title": "Warm-up: the road north",
         "hint1": "The ciphertext is 56 letters — its divisors include 4. Four columns fit the grid; start there."
       },
+      "railFence-demo": {
+        "title": "Warm-up: the river crossing",
+        "hint1": "Three rails, no offset — the first letters of the ciphertext are literally the top rail. Read them and continue."
+      },
       "keyword-easy-1": {
         "title": "The best of times",
         "hint1": "The keyword has six letters, all different.",
@@ -1064,10 +1073,20 @@
         "hint1": "The true width divides the padded length evenly — and 4 is a strong candidate. Rank, pick, then drag.",
         "hint2": "Two neighbouring columns form real digraphs (TH, HE, IN) when zipped row by row — watch the green badges."
       },
+      "railFence-easy-1": {
+        "title": "Three rails of Dickens",
+        "hint1": "Three rails, classic start. Slide and watch the fence — the words appear when the zigzag is right.",
+        "hint2": "The meter jumps sharply at the correct setting; a near-miss still looks like noise."
+      },
       "keyword-medium-1": {
         "title": "A truth universally acknowledged",
         "hint1": "The keyword has seven letters, no repeats.",
         "hint2": "The opening words are famous — IT and IS are one-letter-away once T and I are placed."
+      },
+      "railFence-medium-1": {
+        "title": "Five rails, offset start",
+        "hint1": "Five rails — and the offset is not 0, so the first ciphertext letter is not the first plaintext letter.",
+        "hint2": "Fix the rail count first, then sweep the offset; the meter peaks only when both are right."
       },
       "columnar-medium-1": {
         "title": "Six columns of Austen",
@@ -1078,6 +1097,11 @@
         "title": "Four score and seven",
         "hint1": "The keyword has eight letters.",
         "hint2": "FOUR SCORE opens the message — the word shapes do most of the work once F, O, U, R are placed."
+      },
+      "railFence-hard-1": {
+        "title": "Seven rails from Gettysburg",
+        "hint1": "Seven rails, offset start. At this height the top and bottom rails hold only a few letters — trust the middle.",
+        "hint2": "Famous opening lines are cribs: FOURSCORE must appear near the start of the right setting."
       },
       "columnar-hard-1": {
         "title": "Seven columns from Gettysburg",
@@ -1453,6 +1477,14 @@
     "transposition": {
       "name": "Transposition",
       "definition": "Changing the order of symbols without changing the symbols themselves."
+    },
+    "zigzag": {
+      "name": "Zigzag",
+      "definition": "The diagonal bounce between the top and bottom rail that gives the rail fence its shape — and its name."
+    },
+    "rail-fence": {
+      "name": "Rail fence",
+      "definition": "A transposition where the letters ride a zigzag across a number of rails, and the rails are read off one after another."
     },
     "column-order": {
       "name": "Column order",

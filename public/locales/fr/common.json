@@ -632,6 +632,7 @@
         "pair": "Paire du texte clair",
         "positions": "Fenêtre des rotors (I·II·III)",
         "source": "Du mot-clé ?",
+        "rail": "Rampe",
         "column": "Colonne de la grille",
         "position": "Position dans le chiffre",
         "coords": "Coordonnées du carré",
@@ -763,6 +764,10 @@
         "1918-introduced": "Le chiffre à fractionnement et transposition de Fritz Nebel entre en service de campagne allemand sous le nom ADFGX, avec un carré 5×5.",
         "1918-painvin": "Georges Painvin brise le trafic ADFGX grâce à des paires de messages interceptés sur la même clé, après des mois d’effort.",
         "1918-traffic": "Le carré gagne une sixième ligne pour les chiffres (ADFGVX) ; le trafic déchiffré aide la France à anticiper l’offensive allemande sur Amiens."
+      },
+      "railFence": {
+        "scytale": "La scytale de Sparte : un ruban enroulé autour d'un bâton — la première transposition connue, l'ancêtre de la rampe.",
+        "civilWar": "Les zigzags « rail fence » et les chiffres d'itinéraire portent les messages de campagne des deux camps de la guerre de Sécession."
       },
       "pigpen": {
         "1531": "Cornelius Agrippa décrit un chiffre à grille de type rosicrucien — la « Kabbale des Neuf Chambres », où les positions du point portent l'alphabet.",
@@ -902,6 +907,10 @@
         "title": "Échauffement : la route du nord",
         "hint1": "Le chiffre contient 56 lettres — ses diviseurs incluent 4. Quatre colonnes conviennent ; commencez là."
       },
+      "railFence-demo": {
+        "title": "Échauffement : le passage de la rivière",
+        "hint1": "Trois rampes, sans décalage — les premières lettres du chiffre sont littéralement la rampe du haut. Lisez-les et continuez."
+      },
       "keyword-easy-1": {
         "title": "Le meilleur des mondes possibles",
         "hint1": "Le mot-clé compte six lettres, toutes différentes.",
@@ -912,10 +921,20 @@
         "hint1": "La vraie largeur divise la longueur complétée — et 4 est un bon candidat. Classez, choisissez, puis glissez.",
         "hint2": "Deux colonnes voisines forment de vrais digrammes (TH, HE, IN) côte à côte — surveillez les badges verts."
       },
+      "railFence-easy-1": {
+        "title": "Trois rampes de Dickens",
+        "hint1": "Trois rampes, départ classique. Glissez et regardez la clôture — les mots apparaissent quand le zigzag est bon.",
+        "hint2": "Le compteur saute nettement au bon réglage ; un réglage presque bon ressemble encore à du bruit."
+      },
       "keyword-medium-1": {
         "title": "Une vérité universellement reconnue",
         "hint1": "Le mot-clé compte sept lettres, sans répétition.",
         "hint2": "Les premiers mots sont célèbres — IT et IS se débloquent dès que T et I sont placés."
+      },
+      "railFence-medium-1": {
+        "title": "Cinq rampes, départ décalé",
+        "hint1": "Cinq rampes — et le décalage n'est pas 0, donc la première lettre du chiffre n'est pas la première lettre du texte clair.",
+        "hint2": "Fixez d'abord le nombre de rampes, puis balaiez le décalage ; le compteur ne culmine que quand les deux sont bons."
       },
       "columnar-medium-1": {
         "title": "Six colonnes d'Austen",
@@ -926,6 +945,11 @@
         "title": "Il y a quatre-vingt-sept ans",
         "hint1": "Le mot-clé compte huit lettres.",
         "hint2": "FOUR SCORE ouvre le message — les formes des mots font l'essentiel du travail dès que F, O, U, R sont placées."
+      },
+      "railFence-hard-1": {
+        "title": "Sept rampes de Gettysburg",
+        "hint1": "Sept rampes, départ décalé. À cette hauteur, les rampes du haut et du bas ne portent que quelques lettres — fiez-vous au milieu.",
+        "hint2": "Les débuts célèbres sont des mots probables : FOURSCORE doit apparaître au début du bon réglage."
       },
       "columnar-hard-1": {
         "title": "Sept colonnes de Gettysburg",
@@ -1305,6 +1329,14 @@
     "transposition": {
       "name": "Transposition",
       "definition": "Changer l’ordre des symboles sans changer les symboles eux-mêmes."
+    },
+    "zigzag": {
+      "name": "Zigzag",
+      "definition": "La diagonale qui rebondit entre la rampe du haut et celle du bas et donne au rail fence sa forme — et son nom."
+    },
+    "rail-fence": {
+      "name": "Rail fence",
+      "definition": "Une transposition où les lettres parcourent un zigzag sur un nombre de rampes, et où les rampes sont lues l'une après l'autre."
     },
     "column-order": {
       "name": "Ordre des colonnes",
