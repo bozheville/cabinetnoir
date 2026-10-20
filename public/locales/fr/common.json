@@ -98,6 +98,52 @@
           "length": "An alphabet needs exactly 26 letters — this one has a different count (spaces and punctuation are ignored).",
           "duplicates": "Every letter may appear only once — this alphabet repeats a letter."
         }
+      },
+      "cracker": {
+        "wizard": {
+          "steps": {
+            "count": "Count the letters",
+            "obvious": "Assign the obvious ones",
+            "words": "Find the words",
+            "gaps": "Fill the gaps",
+            "done": "Done"
+          },
+          "count": {
+            "summary": "{{letters}} letters, {{distinct}} distinct symbols, sorted by frequency.",
+            "hint": "Compare the bars with English: the tallest cells should be E, T, A, O… Reading the shape first makes every later guess cheaper."
+          },
+          "obvious": {
+            "hint": "Click a glowing cell, then pick the plaintext letter you think it stands for. The suggestion under a cell is only a hint — the decision is yours. The partial text below updates after every click."
+          },
+          "words": {
+            "hint": "With a few letters placed, whole words become readable. A candidate in green fits the letters you already assigned — click it to place it.",
+            "none": "No word patterns fit yet — go back and assign a few more letters, or continue to the gaps.",
+            "apply": "Place this word: assigns a letter to every symbol of the cipher word.",
+            "doubles": "Doubled letters in the ciphertext ({{doubles}}) — in English usually LL, TT, SS, EE or OO.",
+            "oneLetter": "One-letter words ({{words}}) — in English only A and I."
+          },
+          "gaps": {
+            "hint": "Fill the remaining cells. Watch the partial text: where a guess reads wrong, undo it and try the runner-up."
+          },
+          "done": {
+            "alphabet": "Recovered cipher alphabet (plain A → Z on top, cipher letter below):",
+            "keyword": "The keyword was probably: {{keyword}}",
+            "noKeyword": "The alphabet is not keyword-shaped — a mixed alphabet was used.",
+            "incomplete": "Assign every symbol of the ciphertext to unlock \"Use this key\"."
+          }
+        },
+        "hints": {
+          "toggles": {
+            "suggestions": "Frequency suggestions",
+            "patterns": "Word patterns",
+            "doubles": "Doubles and one-letter words"
+          }
+        },
+        "tooltips": {
+          "suggestions": "Ranks each unassigned symbol over the English frequency order. A hint only — nothing is assigned without your click.",
+          "patterns": "Cipher words whose shape matches a common English word (THE, AND…), consistent with your assignments. Clicking a candidate places the word.",
+          "doubles": "Doubled letters and one-letter words are strong clues in English."
+        }
       }
     },
     "rot13": {
@@ -339,6 +385,8 @@
       },
       "tooltips": {
         "hintPresets": "Le niveau d'aide de l'outil : Facile montre tout, Difficile vous laisse réfléchir.",
+        "undo": "Take the last assignment back — nothing breaks.",
+        "redo": "Re-apply the assignment you just undid.",
         "chartArrows": "Faites pivoter le graphique avec les boutons ou les flèches ; la rotation est la lettre de clé.",
         "matchScore": "Ressemblance avec l'anglais de la rotation actuelle (score du chi carré).",
         "back": "Reculer d'une étape. Rien ne casse.",
@@ -369,6 +417,11 @@
           "keyLetter": "Lettre de clé"
         },
         "match": "Correspondance : {{score}}%"
+      },
+      "assignment": {
+        "undo": "Undo",
+        "redo": "Redo",
+        "clearAll": "Clear all"
       }
     },
     "assignment": {
@@ -911,6 +964,11 @@
       "description": "Le chiffre miroir : l'alphabet est retourné, si bien que A devient Z et B devient Y. Aucune clé.",
       "era": "c. 586 av. J.-C.",
       "origin": "Scribes hébreux ; attesté dans le Livre de Jérémie."
+    },
+    "keyword": {
+      "description": "A substitution whose cipher alphabet is spelled out by a keyword: its letters first, then the rest in order.",
+      "era": "16th century — today",
+      "origin": "A classic keyed alphabet, described in early cryptologic manuals; popular with hobbyists ever since."
     },
     "morse": {
       "description": "Un encodage, pas un chiffre : chaque lettre devient un motif public de points et de traits pour le télégraphe.",

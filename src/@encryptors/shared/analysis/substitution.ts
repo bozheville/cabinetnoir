@@ -163,3 +163,16 @@ export const findOneLetterWords = (
   words: Array<{ word: string; position: number }>,
 ): Array<{ position: number; word: string }> =>
   words.filter(({ word }) => word.length === 1);
+
+// Words of the raw input (letter runs, uppercase), with their start
+// offsets — the input of the pattern-word hints.
+export const extractWords = (input: string): Array<{ word: string; position: number }> => {
+  const words: Array<{ word: string; position: number }> = [];
+  const regex = /[A-Za-z]{1,}/g;
+  let match = regex.exec(input);
+  while (match) {
+    words.push({ word: match[0].toUpperCase(), position: match.index });
+    match = regex.exec(input);
+  }
+  return words;
+};

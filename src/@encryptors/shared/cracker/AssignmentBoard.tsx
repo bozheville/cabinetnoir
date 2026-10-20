@@ -35,6 +35,9 @@ interface AssignmentBoardProps {
   highlighted?: string[];
   // Optional heading above the board.
   title?: string;
+  // Read-only: counts and suggestions only, no letter picking (the
+  // "look at the counts" step).
+  readOnly?: boolean;
 }
 
 const Cell = styled.button<{ $selected: boolean; $highlighted: boolean }>`
@@ -100,6 +103,13 @@ const LetterButton = styled(Button)<{ $used: boolean }>`
   opacity: ${({ $used }) => ($used ? 0.4 : 1)};
 `;
 
+const PartialSegment = styled.span<{ $muted: boolean }>`
+  font-family: monospace;
+  color: ${({ theme, $muted }) => ($muted ? theme.colors.textLight : 'inherit')};
+  white-space: pre-wrap;
+  word-break: break-all;
+`;
+
 // The partial plaintext: assigned letters shown, unassigned cipher
 // symbols shown muted so spacing and punctuation stay readable.
 const PartialText: React.FC<{
@@ -132,15 +142,7 @@ const PartialText: React.FC<{
   return (
     <Pane background="tint1" borderRadius={6} padding={12} maxHeight={200} overflow="auto">
       {segments.map(({ text, muted }, index) => (
-        <Text
-          key={index}
-          fontFamily="monospace"
-          color={muted ? 'muted' : 'dark'}
-          whiteSpace="pre-wrap"
-          wordBreak="break-all"
-        >
-          {text}
-        </Text>
+        <PartialSegment key={index} $muted={muted}>{text}</PartialSegment>
       ))}
     </Pane>
   );
@@ -156,6 +158,7 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
   showSuggestions = false,
   highlighted = [],
   title,
+  readOnly = false,
 }) => {
   const { t } = useTranslation('common');
   const [selected, setSelected] = useState<string | null>(null);
@@ -183,7 +186,7 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
               data-guide="assignment-cell"
               $selected={symbol === selected}
               $highlighted={highlighted.includes(symbol)}
-              onClick={() => setSelected(symbol)}
+              onClick={() => !readOnly && setSelected(symbol)}
               title={t('processing.cracker.assignment.clickCell')}
             >
               <SymbolText size={400}>{symbol}</SymbolText>
@@ -203,29 +206,31 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
           );
         })}
       </Pane>
-      <LetterPicker>
-        {alphabet.split('').map((letter) => (
+      {!readOnly && (
+        <LetterPicker>
+          {alphabet.split('').map((letter) => (
+            <LetterButton
+              key={letter}
+              type="button"
+              data-guide="assignment-letter"
+              $used={usedLetters.has(letter)}
+              disabled={!selected}
+              onClick={() => selected && onAssign(selected, letter)}
+            >
+              {letter}
+            </LetterButton>
+          ))}
           <LetterButton
-            key={letter}
             type="button"
-            data-guide="assignment-letter"
-            $used={usedLetters.has(letter)}
-            disabled={!selected}
-            onClick={() => selected && onAssign(selected, letter)}
+            data-guide="assignment-clear"
+            $used={false}
+            disabled={!selected || !mapping[selected]}
+            onClick={() => selected && onAssign(selected, null)}
           >
-            {letter}
+            {t('processing.cracker.assignment.clear')}
           </LetterButton>
-        ))}
-        <LetterButton
-          type="button"
-          data-guide="assignment-clear"
-          $used={false}
-          disabled={!selected || !mapping[selected]}
-          onClick={() => selected && onAssign(selected, null)}
-        >
-          {t('processing.cracker.assignment.clear')}
-        </LetterButton>
-      </LetterPicker>
+        </LetterPicker>
+      )}
       {conflicts.length > 0 && (
         <Text size={300} color="red500">
           {t('processing.cracker.assignment.conflict', { letter: conflicts[0].letter })}

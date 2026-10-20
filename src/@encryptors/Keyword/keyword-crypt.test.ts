@@ -4,6 +4,7 @@ import {
   keywordAlphabet,
   keywordEncrypt,
   keywordDecrypt,
+  keywordFromAlphabet,
   validateFreeAlphabet,
 } from './keyword-crypt';
 
@@ -73,6 +74,24 @@ describe('keywordEncrypt / keywordDecrypt', () => {
 
   it('throws without a key', () => {
     expect(() => keywordEncrypt({ input: 'A' })).toThrow('keyword or a targetAlphabet');
+  });
+});
+
+describe('keywordFromAlphabet', () => {
+  it('recovers KRYPTOS from a keyword-built alphabet', () => {
+    expect(keywordFromAlphabet(keywordAlphabet('KRYPTOS'))).toBe('KRYPTOS');
+    expect(keywordFromAlphabet(keywordAlphabet('KRYPTOS', { continueFromLast: true })))
+      .toBe('KRYPTOS');
+  });
+
+  it('does not mistake a Caesar rotation for a keyword', () => {
+    const rotated = 'DEFGHIJKLMNOPQRSTUVWXYZABC';
+    expect(keywordFromAlphabet(rotated)).toBe(null);
+  });
+
+  it('returns null for a mixed alphabet', () => {
+    expect(keywordFromAlphabet('QWERTYUIOPASDFGHJKLZXCVBNM')).toBe(null);
+    expect(keywordFromAlphabet('short')).toBe(null);
   });
 });
 

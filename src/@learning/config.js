@@ -194,6 +194,37 @@ const learningConfig = {
       },
     ],
   },
+  keyword: {
+    // tabs land with the learning-content task (m1-05); the tool and the
+    // cracker ship first.
+    tabs: [],
+    sections: {
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.substitution',
+      difficulty: 'learning.difficulty.easy',
+      era: 'learning.keyword.era',
+      origin: 'learning.keyword.origin',
+      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+    },
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'key',
+      'alphabet',
+      'substitution',
+      'frequency-analysis',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Substitution_cipher',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
   pigpen: {
     tabs: ['learn', 'history', 'practice'],
     sections: {
