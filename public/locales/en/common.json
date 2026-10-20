@@ -1650,6 +1650,10 @@
     "additive-key": {
       "name": "Additive key",
       "definition": "Additive key — a keyword converted to numbers that repeat over the text and are added digit by digit, without carry."
+    },
+    "anagrammage": {
+      "name": "Anagramming",
+      "definition": "Sliding suspected column fragments side by side and reading the seams — the classic attack on transposition ciphers: each trial arrangement is judged by how English the letter pairs at the joins look."
     }
   }
 }
