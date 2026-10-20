@@ -8,6 +8,7 @@ import AlbertiCryptoanalysis from '@encryptors/Alberti/Cryptoanalysis';
 import KeywordCryptoanalysis from '@encryptors/Keyword/Cryptoanalysis';
 import ColumnarCryptoanalysis from '@encryptors/Columnar/Cryptoanalysis';
 import RailFenceCryptoanalysis from '@encryptors/RailFence/Cryptoanalysis';
+import NihilistCryptoanalysis from '@encryptors/Nihilist/Cryptoanalysis';
 
 interface CipherCrackerProps {
   algorithm: string;
@@ -27,6 +28,7 @@ const CRACKERS: Record<string, React.ComponentType<{ input: string; onInputChang
   keyword: KeywordCryptoanalysis,
   columnar: ColumnarCryptoanalysis,
   railFence: RailFenceCryptoanalysis,
+  nihilist: NihilistCryptoanalysis,
 };
 
 const CipherCracker: React.FC<CipherCrackerProps> = ({ algorithm, input, onInputChange }) => {

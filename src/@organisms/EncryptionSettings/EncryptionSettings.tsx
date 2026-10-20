@@ -12,6 +12,7 @@ import {
   Alberti,
   Atbash,
   Caesar,
+  Polybius,
   Keyword,
   Columnar,
   RailFence,
@@ -20,6 +21,7 @@ import {
   Pigpen,
   Playfair,
   Vigenere,
+  Nihilist,
   Adfgvx,
   encodingsList,
   encryptorsList,
@@ -87,12 +89,14 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
     algorithm === 'atbash' ? Atbash :
     algorithm === 'base64' ? Base64 :
     algorithm === 'caesar' ? Caesar :
+  algorithm === 'polybius' ? Polybius :
   algorithm === 'keyword' ? Keyword :
   algorithm === 'columnar' ? Columnar :
   algorithm === 'railFence' ? RailFence :
     algorithm === 'enigma' ? Enigma :
     algorithm === 'playfair' ? Playfair :
     algorithm === 'vigenere' ? Vigenere :
+    algorithm === 'nihilist' ? Nihilist :
     algorithm === 'adfgvx' ? Adfgvx :
     algorithm === 'morse' ? Morse :
     algorithm === 'rot13' ? Rot13 :

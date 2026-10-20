@@ -15,6 +15,11 @@ import { morseEncoding } from '@encryptors/Morse/morse-encoding';
 import { columnarEncryptText } from '@encryptors/Columnar/columnar-crypt';
 import { railFenceEncrypt } from '@encryptors/shared/transposition';
 import { keywordEncrypt } from '@encryptors/Keyword/keyword-crypt';
+import {
+  nihilistEncrypt,
+  nihilistKeyNumbers,
+} from '@encryptors/Nihilist/nihilist-crypt';
+import { polybiusEncrypt } from '@encryptors/Polybius/polybius-crypt';
 import { createEnigmaMachine } from '@learning/enigma-machine';
 
 export type ChallengeDifficulty = 'easy' | 'medium' | 'hard';
@@ -548,6 +553,51 @@ const PROVERB_PLAINTEXT = 'VENIVIDIVICI';
 const ECCLESIASTES_PLAINTEXT = 'PERASPERAADASTRA';
 const TAO_PLAINTEXT = 'GALLIAESTOMNISDIVISAINPARTESSTRES';
 
+// Polybius decode challenges: the tool opens in decrypt mode; the
+// "key" is the square keyword (empty for the plain square). The keyed
+// challenge carries its keyword in the hints.
+const buildPolybiusChallenge = (
+  id: string,
+  keyword: string,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+): Challenge => ({
+  id,
+  cipher: 'polybius',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: polybiusEncrypt({ input: plaintext, keyword }),
+  difficulty,
+  keyLength: keyword.replace(/[^A-Z]/gi, '').length,
+  hints,
+  answer: plaintext,
+  mode: 'decrypt',
+});
+
+// Nihilist: both keys travel in the hints — square key first, then the
+// additive key (an empty square key is a leading space). The demo
+// supports the "Breaking it" section and opens the cracker.
+const buildNihilistChallenge = (
+  id: string,
+  squareKey: string,
+  key: string,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+  listOnPractice?: boolean,
+): Challenge => ({
+  id,
+  cipher: 'nihilist',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: nihilistEncrypt({ input: plaintext, squareKey, key }),
+  difficulty,
+  keyLength: nihilistKeyNumbers(key, squareKey).length,
+  hints,
+  answer: plaintext,
+  mode: 'decrypt',
+  listOnPractice,
+});
+
 export const CHALLENGES: Record<string, Challenge> = {
   'vigenere-demo': VIGENERE_DEMO,
   'caesar-demo': CAESAR_DEMO,
@@ -1078,6 +1128,80 @@ export const CHALLENGES: Record<string, Challenge> = {
     [
       'learning.challenges.railFence-hard-1.hint1',
       'learning.challenges.railFence-hard-1.hint2',
+    ],
+  ),
+  'polybius-easy-1': buildPolybiusChallenge(
+    'polybius-easy-1',
+    '',
+    'SOS WE HAVE STRUCK AN ICEBERG',
+    'easy',
+    [
+      'learning.challenges.polybius-easy-1.hint1',
+      'learning.challenges.polybius-easy-1.hint2',
+    ],
+  ),
+  'polybius-medium-1': buildPolybiusChallenge(
+    'polybius-medium-1',
+    '',
+    KEYWORD_MEDIUM_PLAINTEXT,
+    'medium',
+    [
+      'learning.challenges.polybius-medium-1.hint1',
+      'learning.challenges.polybius-medium-1.hint2',
+    ],
+  ),
+  'polybius-hard-1': buildPolybiusChallenge(
+    'polybius-hard-1',
+    'SPARTAN',
+    KEYWORD_HARD_PLAINTEXT,
+    'hard',
+    [
+      'learning.challenges.polybius-hard-1.hint1',
+      'learning.challenges.polybius-hard-1.hint2',
+      'learning.challenges.polybius-hard-1.hint3',
+    ],
+  ),
+  'nihilist-demo': buildNihilistChallenge(
+    'nihilist-demo',
+    '',
+    'RUSSIA',
+    'THE AGENT REPORTS AT DAWN BY WAY OF THE OLD MILL ROAD',
+    'easy',
+    ['learning.challenges.nihilist-demo.hint1'],
+    false,
+  ),
+  'nihilist-easy-1': buildNihilistChallenge(
+    'nihilist-easy-1',
+    '',
+    'SIBERIA',
+    KEYWORD_EASY_PLAINTEXT,
+    'easy',
+    [
+      'learning.challenges.nihilist-easy-1.hint1',
+      'learning.challenges.nihilist-easy-1.hint2',
+    ],
+  ),
+  'nihilist-medium-1': buildNihilistChallenge(
+    'nihilist-medium-1',
+    '',
+    'REVOLUTION',
+    KEYWORD_MEDIUM_PLAINTEXT,
+    'medium',
+    [
+      'learning.challenges.nihilist-medium-1.hint1',
+      'learning.challenges.nihilist-medium-1.hint2',
+    ],
+  ),
+  'nihilist-hard-1': buildNihilistChallenge(
+    'nihilist-hard-1',
+    'MOSCOW',
+    'NIHILIST',
+    KEYWORD_HARD_PLAINTEXT,
+    'hard',
+    [
+      'learning.challenges.nihilist-hard-1.hint1',
+      'learning.challenges.nihilist-hard-1.hint2',
+      'learning.challenges.nihilist-hard-1.hint3',
     ],
   ),
 };
