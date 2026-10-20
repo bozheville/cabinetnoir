@@ -156,6 +156,21 @@
         }
       }
     },
+    "columnar": {
+      "title": "Columnar transposition",
+      "short_title": "Columnar",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram",
+      "settings": {
+        "keyword_placeholder": "Keyword, e.g. ZEBRAS",
+        "second_keyword_placeholder": "Second keyword",
+        "double_transposition": "Double transposition",
+        "incomplete_row": "Leave the last row incomplete",
+        "keep_spaces": "Keep spaces",
+        "gridHint": "The text written row-wise; the badges give the column reading order."
+      }
+    },
     "rot13": {
       "title": "ROT13",
       "short_title": "ROT13",
@@ -440,6 +455,10 @@
       "clear": "Очистити",
       "conflict": "{{letter}} призначено більш ніж одному символу — підстановка ставить у відповідність кожному символу рівно одну літеру."
     },
+    "grid": {
+      "moveLeft": "Move this column one step left",
+      "moveRight": "Move this column one step right"
+    },
     "pigpen": {
       "title": "Шифр «Свинюшка»",
       "short_title": "Свинюшка",
@@ -568,6 +587,11 @@
       "rotate-right": "праву стрілку під дисками",
       "increment": "повзунок кроку",
       "keyword-input": "поле ключового слова",
+      "columnar-keyword": "the columnar keyword field",
+      "double-toggle": "the \"Double transposition\" checkbox",
+      "second-keyword-input": "the second keyword field",
+      "grid-toggle": "the \"Leave the last row incomplete\" checkbox",
+      "transposition-grid": "the transposition grid",
       "continuation-toggle": "перемикач «Продовжити після ключового слова»",
       "free-alphabet-toggle": "перемикач «Вільний алфавіт»",
       "free-alphabet-input": "поле вільного алфавіту",
@@ -956,6 +980,13 @@
         "freeAlphabet": "Без ключового слова: введіть усі 26 літер у будь-якому порядку — кожну рівно один раз.",
         "keepSpaces": "Зберігати пробіли: зберігає розташування слів замість того, щоб прибрати всі пробіли.",
         "keepCase": "Зберігати регістр: зберігає великі літери замість того, щоб усе писати прописними."
+      },
+      "columnar": {
+        "keyword": "The keyword fixes the column order: its letters sorted alphabetically say which column is read first, second, third…",
+        "secondKeyword": "A second keyword transposes the already-transposed text — the classic double transposition.",
+        "double": "Double transposition: encrypt with the first keyword, then transposition the result again with the second.",
+        "irregular": "Leave the last row incomplete: no padding letter is added, so the last row stays short (the classic hand cipher).",
+        "keepSpaces": "Keep spaces: spaces ride the zigzag like letters instead of being stripped."
       },
       "morse": {
         "dot": "Символ, що грає короткий сигнал (крапку) у закодованому виводі.",

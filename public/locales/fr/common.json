@@ -156,6 +156,21 @@
         }
       }
     },
+    "columnar": {
+      "title": "Columnar transposition",
+      "short_title": "Columnar",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram",
+      "settings": {
+        "keyword_placeholder": "Keyword, e.g. ZEBRAS",
+        "second_keyword_placeholder": "Second keyword",
+        "double_transposition": "Double transposition",
+        "incomplete_row": "Leave the last row incomplete",
+        "keep_spaces": "Keep spaces",
+        "gridHint": "The text written row-wise; the badges give the column reading order."
+      }
+    },
     "rot13": {
       "title": "ROT13",
       "short_title": "ROT13",
@@ -440,6 +455,10 @@
       "clear": "Effacer",
       "conflict": "{{letter}} est attribuée à plusieurs symboles — une substitution fait correspondre à chaque symbole exactement une lettre."
     },
+    "grid": {
+      "moveLeft": "Move this column one step left",
+      "moveRight": "Move this column one step right"
+    },
     "pigpen": {
       "title": "Chiffre Pigpen",
       "short_title": "Pigpen",
@@ -568,6 +587,11 @@
       "rotate-right": "la flèche droite sous les disques",
       "increment": "le curseur d'incrément",
       "keyword-input": "le champ du mot-clé",
+      "columnar-keyword": "the columnar keyword field",
+      "double-toggle": "the \"Double transposition\" checkbox",
+      "second-keyword-input": "the second keyword field",
+      "grid-toggle": "the \"Leave the last row incomplete\" checkbox",
+      "transposition-grid": "the transposition grid",
       "continuation-toggle": "la case « Continuer après le mot-clé »",
       "free-alphabet-toggle": "la case « Alphabet libre »",
       "free-alphabet-input": "le champ de l'alphabet libre",
@@ -956,6 +980,13 @@
         "freeAlphabet": "Omettez le mot-clé et tapez les 26 lettres dans un ordre quelconque — chaque lettre exactement une fois.",
         "keepSpaces": "Conserver les espaces : préserve la mise en page des mots au lieu de tout supprimer.",
         "keepCase": "Conserver la casse : préserve les majuscules au lieu de tout écrire en capitales."
+      },
+      "columnar": {
+        "keyword": "The keyword fixes the column order: its letters sorted alphabetically say which column is read first, second, third…",
+        "secondKeyword": "A second keyword transposes the already-transposed text — the classic double transposition.",
+        "double": "Double transposition: encrypt with the first keyword, then transposition the result again with the second.",
+        "irregular": "Leave the last row incomplete: no padding letter is added, so the last row stays short (the classic hand cipher).",
+        "keepSpaces": "Keep spaces: spaces ride the zigzag like letters instead of being stripped."
       },
       "morse": {
         "dot": "Le caractère qui joue le signal court (le point) dans la sortie encodée.",
