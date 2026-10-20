@@ -195,9 +195,7 @@ const learningConfig = {
     ],
   },
   keyword: {
-    // tabs land with the learning-content task (m1-05); the tool and the
-    // cracker ship first.
-    tabs: [],
+    tabs: ['learn', 'history', 'practice'],
     sections: {
       learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
       history: ['history'],
@@ -216,6 +214,8 @@ const learningConfig = {
       'key',
       'alphabet',
       'substitution',
+      'cipher-alphabet',
+      'pattern-word',
       'frequency-analysis',
     ],
     furtherReading: [

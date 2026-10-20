@@ -11,6 +11,23 @@ export interface TimelineEvent {
 }
 
 export const TIMELINES: Record<string, TimelineEvent[]> = {
+  keyword: [
+    {
+      year: 'c. 800',
+      textKey: 'learning.timeline.keyword.800',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Al-Kindi',
+    },
+    {
+      year: '1563',
+      textKey: 'learning.timeline.keyword.1563',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Giambattista_della_Porta',
+    },
+    {
+      year: '1586',
+      textKey: 'learning.timeline.keyword.1586',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Babington_Plot',
+    },
+  ],
   adfgvx: [
     {
       year: '1918',

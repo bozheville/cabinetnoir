@@ -13,6 +13,7 @@ import {
   ALBERTI_DYNAMIC_DISC,
 } from '@encryptors/Alberti/alberti-crypt';
 import { morseEncoding } from '@encryptors/Morse/morse-encoding';
+import { keywordAlphabet } from '@encryptors/Keyword/keyword-crypt';
 import { playfairEncrypt } from '@encryptors/Playfair/playfair-encryption';
 import { adfgvxEncrypt } from '@encryptors/Adfgvx/adfgvx-encryption';
 import { createEnigmaMachine, enigmaPass } from '@learning/enigma-machine';
@@ -194,6 +195,39 @@ const buildAffineExample = (
     columns: [
       { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
       { key: 'formula', labelKey: 'learning.example.columns.formula' },
+      { key: 'result', labelKey: EXAMPLE_COLUMN_LABELS.result },
+    ],
+    rows,
+  };
+};
+
+// Keyword substitution: the cipher alphabet spells the keyword first;
+// the "source" column shows which letters came from the keyword and
+// which are the plain remainder.
+const buildKeywordExample = (
+  id: string,
+  input: string,
+  keyword: string,
+): WorkedExample => {
+  const alphabet = LATIN_ALPHABET;
+  const targetAlphabet = keywordAlphabet(keyword);
+  const keywordLetters = new Set(targetAlphabet.slice(0, keyword.replace(/[^A-Z]/gi, '').length).split(''));
+  const rows = input.split('').map((plain) => [
+    plain,
+    keywordLetters.has(targetAlphabet[alphabet.indexOf(plain)]) ? 'K' : '·',
+    targetAlphabet[alphabet.indexOf(plain)],
+  ]);
+
+  return {
+    id,
+    cipher: 'keyword',
+    input,
+    key: keyword,
+    alphabet,
+    mode: 'encrypt',
+    columns: [
+      { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+      { key: 'source', labelKey: 'learning.example.columns.source' },
       { key: 'result', labelKey: EXAMPLE_COLUMN_LABELS.result },
     ],
     rows,
@@ -401,6 +435,7 @@ export const EXAMPLES: Record<string, WorkedExample> = {
   'alberti-basic': buildAlbertiExample('alberti-basic', 'SECRETNOTE', 3, 2),
   'affine-basic': buildAffineExample('affine-basic', 'SECRETMESSAGE', 3, 7),
   'atbash-basic': buildAtbashExample('atbash-basic', 'REVERSEME'),
+  'keyword-basic': buildKeywordExample('keyword-basic', 'ATTACKATDAWN', 'KRYPTOS'),
   'morse-basic': buildMorseExample('morse-basic', 'SOS'),
   'pigpen-basic': buildPigpenExample('pigpen-basic', 'SOS'),
   'base64-basic': buildBase64Example('base64-basic', 'MEETATNOON'),
