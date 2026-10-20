@@ -63,6 +63,10 @@
           "periodCards": "Tailles de tronçons classées selon la ressemblance anglaise du meilleur pas du disque. Choisissez-en une ; le pas vient ensuite.",
           "stepCards": "Tours du disque classés par ressemblance anglaise pour la période choisie. L'aperçu confirme le choix."
         }
+      },
+      "settings": {
+        "increment_label": "Taille du pas",
+        "period_label": "Longueur de la période"
       }
     },
     "atbash": {
@@ -77,72 +81,78 @@
       "short_title": "César",
       "directAction": "Crypter",
       "reverseAction": "Décrypter",
-      "messageLabel": "Cryptogramme"
+      "messageLabel": "Cryptogramme",
+      "settings": {
+        "rotation_label": "Décalage",
+        "keep_spaces": "Conserver les espaces",
+        "keep_case": "Conserver la casse"
+      }
     },
     "keyword": {
-      "title": "Keyword substitution",
-      "short_title": "Keyword",
-      "directAction": "Encrypt",
-      "reverseAction": "Decrypt",
-      "messageLabel": "Cryptogram",
+      "title": "Chiffre par mot-clé",
+      "short_title": "Mot-clé",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
+      "messageLabel": "Cryptogramme",
       "settings": {
-        "keyword_placeholder": "Keyword, e.g. KRYPTOS",
-        "free_alphabet": "Free alphabet",
-        "freeAlphabet_placeholder": "All 26 letters, any order",
-        "continue_from_last": "Continue after the keyword",
-        "keep_spaces": "Keep spaces",
-        "keep_case": "Keep case",
-        "alphabetHint": "Top row: plain alphabet. Bottom row: the cipher alphabet it maps to.",
+        "keyword_placeholder": "Mot-clé, p. ex. KRYPTOS",
+        "free_alphabet": "Alphabet libre",
+        "freeAlphabet_placeholder": "Les 26 lettres, dans n'importe quel ordre",
+        "continue_from_last": "Continuer après le mot-clé",
+        "keep_spaces": "Conserver les espaces",
+        "keep_case": "Conserver la casse",
+        "alphabetHint": "Rangée du haut : l'alphabet clair. Rangée du bas : l'alphabet chiffré correspondant.",
         "freeAlphabetError": {
-          "empty": "Type an alphabet first — all 26 letters, in any order.",
-          "length": "An alphabet needs exactly 26 letters — this one has a different count (spaces and punctuation are ignored).",
-          "duplicates": "Every letter may appear only once — this alphabet repeats a letter."
+          "empty": "Tapez d'abord un alphabet — les 26 lettres, dans n'importe quel ordre.",
+          "length": "Un alphabet compte exactement 26 lettres — celui-ci en a un autre nombre (espaces et ponctuation ignorés).",
+          "duplicates": "Chaque lettre ne peut figurer qu'une fois — cet alphabet répète une lettre."
         }
       },
       "cracker": {
         "wizard": {
           "steps": {
-            "count": "Count the letters",
-            "obvious": "Assign the obvious ones",
-            "words": "Find the words",
-            "gaps": "Fill the gaps",
-            "done": "Done"
+            "count": "Compter les lettres",
+            "obvious": "Attribuer les évidentes",
+            "words": "Trouver les mots",
+            "gaps": "Combler les vides",
+            "done": "Terminé"
           },
           "count": {
-            "summary": "{{letters}} letters, {{distinct}} distinct symbols, sorted by frequency.",
-            "hint": "Compare the bars with English: the tallest cells should be E, T, A, O… Reading the shape first makes every later guess cheaper."
+            "summary": "{{letters}} lettres, {{distinct}} symboles distincts, triés par fréquence.",
+            "hint": "Comparez les barres avec l'anglais : les cellules les plus hautes devraient être E, T, A, O… Lire la forme d'abord rend chaque hypothèse suivante moins coûteuse."
           },
           "obvious": {
-            "hint": "Click a glowing cell, then pick the plaintext letter you think it stands for. The suggestion under a cell is only a hint — the decision is yours. The partial text below updates after every click."
+            "hint": "Cliquez une cellule illuminée, puis choisissez la lettre du texte clair qu'elle représente à votre avis. La suggestion sous une cellule n'est qu'un indice — la décision vous appartient. Le texte partiel ci-dessous se met à jour après chaque clic."
           },
           "words": {
-            "hint": "With a few letters placed, whole words become readable. A candidate in green fits the letters you already assigned — click it to place it.",
-            "none": "No word patterns fit yet — go back and assign a few more letters, or continue to the gaps.",
-            "apply": "Place this word: assigns a letter to every symbol of the cipher word.",
-            "doubles": "Doubled letters in the ciphertext ({{doubles}}) — in English usually LL, TT, SS, EE or OO.",
-            "oneLetter": "One-letter words ({{words}}) — in English only A and I."
+            "hint": "Avec quelques lettres placées, des mots entiers deviennent lisibles. Un candidat en accord avec les lettres déjà attribuées mérite un clic pour placer le mot entier.",
+            "none": "Aucun motif de mot ne convient encore — revenez attribuer quelques lettres, ou passez aux vides.",
+            "apply": "Placer ce mot : attribue une lettre à chaque symbole du mot chiffré.",
+            "doubles": "Lettres doublées dans le texte chiffré ({{doubles}}) — en anglais, le plus souvent LL, TT, SS, EE ou OO.",
+            "oneLetter": "Mots d'une seule lettre ({{words}}) — en anglais, seulement A et I."
           },
           "gaps": {
-            "hint": "Fill the remaining cells. Watch the partial text: where a guess reads wrong, undo it and try the runner-up."
+            "hint": "Remplissez les cellules restantes. Gardez l'œil sur le texte partiel : là où une hypothèse se lit mal, annulez-la et essayez la candidate suivante."
           },
           "done": {
-            "alphabet": "Recovered cipher alphabet (plain A → Z on top, cipher letter below):",
-            "keyword": "The keyword was probably: {{keyword}}",
-            "noKeyword": "The alphabet is not keyword-shaped — a mixed alphabet was used.",
-            "incomplete": "Assign every symbol of the ciphertext to unlock \"Use this key\"."
+            "alphabet": "Aliment chiffré reconstitué (A → Z du texte clair en haut, lettre chiffrée en bas) :",
+            "keyword": "Le mot-clé était probablement : {{keyword}}",
+            "noKeyword": "L'alphabet n'a pas la forme d'un mot-clé — un alphabet mélangé a été utilisé.",
+            "incomplete": "Attribuez chaque symbole du texte chiffré pour débloquer « Utiliser cette clé ».",
+            "fillNote": "Plain letters that never appear in the text keep their default fill — they cannot be recovered from this text."
           }
         },
         "hints": {
           "toggles": {
-            "suggestions": "Frequency suggestions",
-            "patterns": "Word patterns",
-            "doubles": "Doubles and one-letter words"
+            "suggestions": "Suggestions de fréquence",
+            "patterns": "Motifs de mots",
+            "doubles": "Doublons et mots d'une lettre"
           }
         },
         "tooltips": {
-          "suggestions": "Ranks each unassigned symbol over the English frequency order. A hint only — nothing is assigned without your click.",
-          "patterns": "Cipher words whose shape matches a common English word (THE, AND…), consistent with your assignments. Clicking a candidate places the word.",
-          "doubles": "Doubled letters and one-letter words are strong clues in English."
+          "suggestions": "Classe chaque symbole non attribué selon l'ordre des fréquences de l'anglais. Un simple indice — rien n'est attribué sans votre clic.",
+          "patterns": "Mots chiffrés dont la forme correspond à un mot anglais courant (THE, AND…), en accord avec vos attributions. Un clic place le mot.",
+          "doubles": "Les lettres doublées et les mots d'une lettre sont des indices de poids en anglais."
         }
       }
     },
@@ -385,8 +395,8 @@
       },
       "tooltips": {
         "hintPresets": "Le niveau d'aide de l'outil : Facile montre tout, Difficile vous laisse réfléchir.",
-        "undo": "Take the last assignment back — nothing breaks.",
-        "redo": "Re-apply the assignment you just undid.",
+        "undo": "Reprend la dernière attribution — rien ne casse.",
+        "redo": "Réapplique l'attribution que vous venez d'annuler.",
         "chartArrows": "Faites pivoter le graphique avec les boutons ou les flèches ; la rotation est la lettre de clé.",
         "matchScore": "Ressemblance avec l'anglais de la rotation actuelle (score du chi carré).",
         "back": "Reculer d'une étape. Rien ne casse.",
@@ -419,16 +429,16 @@
         "match": "Correspondance : {{score}}%"
       },
       "assignment": {
-        "undo": "Undo",
-        "redo": "Redo",
-        "clearAll": "Clear all"
+        "undo": "Annuler",
+        "redo": "Rétablir",
+        "clearAll": "Tout effacer"
       }
     },
     "assignment": {
-      "clickCell": "Click a cell, then pick the plaintext letter you think it stands for.",
-      "suggestion": "probably {{suggestion}}?",
-      "clear": "Clear",
-      "conflict": "{{letter}} is assigned to more than one symbol — a substitution maps each cipher symbol to exactly one letter."
+      "clickCell": "Cliquez une cellule, puis choisissez la lettre du texte clair qu'elle représente à votre avis.",
+      "suggestion": "peut-être {{suggestion}} ?",
+      "clear": "Effacer",
+      "conflict": "{{letter}} est attribuée à plusieurs symboles — une substitution fait correspondre à chaque symbole exactement une lettre."
     },
     "pigpen": {
       "title": "Chiffre Pigpen",
@@ -527,6 +537,7 @@
         "chunk": "Groupe (3 octets)",
         "pair": "Paire du texte clair",
         "positions": "Fenêtre des rotors (I·II·III)",
+        "source": "Du mot-clé ?",
         "coords": "Coordonnées du carré",
         "fractionated": "Texte fractionné (cumul)"
       }
@@ -556,12 +567,12 @@
       "rotate-left": "la flèche gauche sous les disques",
       "rotate-right": "la flèche droite sous les disques",
       "increment": "le curseur d'incrément",
-      "keyword-input": "the keyword field",
-      "continuation-toggle": "the \"Continue after the keyword\" checkbox",
-      "free-alphabet-toggle": "the \"Free alphabet\" checkbox",
-      "free-alphabet-input": "the free alphabet field",
-      "free-alphabet-error": "the free alphabet warning",
-      "alphabet-strip": "the alphabet strip",
+      "keyword-input": "le champ du mot-clé",
+      "continuation-toggle": "la case « Continuer après le mot-clé »",
+      "free-alphabet-toggle": "la case « Alphabet libre »",
+      "free-alphabet-input": "le champ de l'alphabet libre",
+      "free-alphabet-error": "l'avertissement de l'alphabet libre",
+      "alphabet-strip": "la bande d'alphabet",
       "period": "le curseur de période",
       "multiplier": "le champ du multiplicateur",
       "shift": "le champ du décalage",
@@ -585,6 +596,11 @@
         "1586": "Blaise de Vigenère publie un chiffre similaire ; le schéma à clé répétée lui est plus tard attribué à tort.",
         "1863": "Friedrich Kasiski publie une méthode générale pour trouver la longueur de clé (Charles Babbage l'avait cassée en privé une décennie plus tôt).",
         "1920s": "William Friedman développe l'indice de coïncidence, rendant l'attaque statistique et rigoureuse."
+      },
+      "keyword": {
+        "800": "Al-Kindi écrit, à Bagdad, sur le déchiffrement des messages par la fréquence des lettres — le verdict sans appel contre tout chiffre à substitution fixe, alphabets à mot-clé compris.",
+        "1563": "Le De Furtivis Literarum Notis de Giambattista della Porta fait entrer les alphabets à mot-clé dans les manuels : les lettres du mot-clé d'abord, le reste ensuite.",
+        "1586": "La correspondance de Babington — une substitution fixe en son cœur — est lue par l'analyse fréquentielle de Thomas Phelippes ; Marie, reine d'Écosse, est exécutée sur cette preuve."
       },
       "caesar": {
         "121": "Suétone décrit le décalage de 3 de César et celui de 1 d'Auguste dans Vie des douze Césars.",
@@ -769,6 +785,25 @@
         "hint1": "C'est l'ouverture d'un célèbre discours américain.",
         "hint2": "Aucune clé à trouver : tout le secret tient au miroir fixe A↔Z."
       },
+      "keyword-demo": {
+        "title": "Texte de démonstration du décrypteur",
+        "hint1": "Les espaces survivent au chiffrement — les formes des mots sont vos amies. Le mot qui revient est probablement THE."
+      },
+      "keyword-easy-1": {
+        "title": "Le meilleur des mondes possibles",
+        "hint1": "Le mot-clé compte six lettres, toutes différentes.",
+        "hint2": "Le symbole le plus fréquent est presque sûrement le E chiffré — attribuez-le d'abord et regardez le texte s'éveiller."
+      },
+      "keyword-medium-1": {
+        "title": "Une vérité universellement reconnue",
+        "hint1": "Le mot-clé compte sept lettres, sans répétition.",
+        "hint2": "Les premiers mots sont célèbres — IT et IS se débloquent dès que T et I sont placés."
+      },
+      "keyword-hard-1": {
+        "title": "Il y a quatre-vingt-sept ans",
+        "hint1": "Le mot-clé compte huit lettres.",
+        "hint2": "FOUR SCORE ouvre le message — les formes des mots font l'essentiel du travail dès que F, O, U, R sont placées."
+      },
       "morse-easy-1": {
         "title": "L'aigle est atterri",
         "hint1": "Les lettres sont séparées par des espaces simples, les mots par une barre oblique.",
@@ -916,11 +951,11 @@
         "alphabet": "Le sélecteur d'alphabet : Atbash met en miroir l'alphabet choisi — le seul choix offert par le chiffre."
       },
       "keyword": {
-        "keyword": "The keyword builds the cipher alphabet: its letters first (duplicates dropped), then the remaining letters in order.",
-        "continueFromLast": "Instead of continuing from A after the keyword, keep counting from the keyword's last letter.",
-        "freeAlphabet": "Skip the keyword and type any arrangement of all 26 letters — every letter exactly once.",
-        "keepSpaces": "Keep spaces: preserves the layout of words instead of removing them all.",
-        "keepCase": "Keep case: preserves capitals instead of writing everything in capitals."
+        "keyword": "Le mot-clé construit l'alphabet chiffré : ses lettres d'abord (doublons supprimés), puis les lettres restantes dans l'ordre.",
+        "continueFromLast": "Au lieu de reprendre à A après le mot-clé, continuez à compter depuis la dernière lettre du mot-clé.",
+        "freeAlphabet": "Omettez le mot-clé et tapez les 26 lettres dans un ordre quelconque — chaque lettre exactement une fois.",
+        "keepSpaces": "Conserver les espaces : préserve la mise en page des mots au lieu de tout supprimer.",
+        "keepCase": "Conserver la casse : préserve les majuscules au lieu de tout écrire en capitales."
       },
       "morse": {
         "dot": "Le caractère qui joue le signal court (le point) dans la sortie encodée.",
@@ -966,9 +1001,9 @@
       "origin": "Scribes hébreux ; attesté dans le Livre de Jérémie."
     },
     "keyword": {
-      "description": "A substitution whose cipher alphabet is spelled out by a keyword: its letters first, then the rest in order.",
-      "era": "16th century — today",
-      "origin": "A classic keyed alphabet, described in early cryptologic manuals; popular with hobbyists ever since."
+      "description": "Une substitution dont l'alphabet chiffré s'épelle tout seul : les lettres du mot-clé d'abord, puis le reste dans l'ordre.",
+      "era": "XVIe siècle — aujourd'hui",
+      "origin": "Un alphabet à mot-clé classique, décrit dans les premiers manuels de cryptologie ; populaire chez les amateurs depuis."
     },
     "morse": {
       "description": "Un encodage, pas un chiffre : chaque lettre devient un motif public de points et de traits pour le télégraphe.",
@@ -1038,6 +1073,14 @@
     "substitution": {
       "name": "Substitution",
       "definition": "Remplacer chaque lettre par une autre."
+    },
+    "cipher-alphabet": {
+      "name": "Aliment chiffré",
+      "definition": "L'alphabet réordonné sur lequel une substitution projette l'alphabet clair — ici, épelé par le mot-clé."
+    },
+    "pattern-word": {
+      "name": "Mot à motif",
+      "definition": "Un mot reconnu à la forme de ses lettres répétées : THE a le motif ABC, THAT ABCA — la forme survit à toute substitution."
     },
     "polyalphabetic": {
       "name": "Polyalphabétique",

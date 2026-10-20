@@ -290,7 +290,8 @@
             "alphabet": "Recovered cipher alphabet (plain A → Z on top, cipher letter below):",
             "keyword": "The keyword was probably: {{keyword}}",
             "noKeyword": "The alphabet is not keyword-shaped — a mixed alphabet was used.",
-            "incomplete": "Assign every symbol of the ciphertext to unlock \"Use this key\"."
+            "incomplete": "Assign every symbol of the ciphertext to unlock \"Use this key\".",
+            "fillNote": "Plain letters that never appear in the text keep their default fill — they cannot be recovered from this text."
           }
         },
         "hints": {
@@ -688,6 +689,7 @@
         "chunk": "Chunk (3 bytes)",
         "pair": "Plaintext pair",
         "positions": "Rotor window (I·II·III)",
+        "source": "In keyword?",
         "coords": "Square coordinates",
         "fractionated": "Fractionated so far"
       }
@@ -746,6 +748,11 @@
         "1586": "Blaise de Vigenère publishes a similar cipher; the repeating-key scheme is later misattributed to him.",
         "1863": "Friedrich Kasiski publishes a general method for finding the key length (Charles Babbage had broken it privately a decade earlier).",
         "1920s": "William Friedman develops the index of coincidence, making the attack statistical and rigorous."
+      },
+      "keyword": {
+        "800": "Al-Kindi writes on decrypting messages by letter frequency in Baghdad — the standing verdict on every fixed substitution cipher, keyword alphabets included.",
+        "1563": "Giambattista della Porta's De Furtivis Literarum Notis puts keyed alphabets into the cipher manuals: the keyword's letters first, the remainder after.",
+        "1586": "The Babington correspondence — a fixed substitution at its core — is read by Thomas Phelippes' frequency analysis; Mary, Queen of Scots is executed on the evidence."
       },
       "caesar": {
         "121": "Suetonius describes both Caesar's shift of 3 and Augustus' shift of 1 in The Lives of the Twelve Caesars.",
@@ -930,6 +937,25 @@
         "hint1": "It opens a famous American speech.",
         "hint2": "No key to find: the whole secret is the fixed mirror A↔Z."
       },
+      "keyword-demo": {
+        "title": "Cracker demo ciphertext",
+        "hint1": "The spaces survive encryption — word shapes are your friend. The word that keeps appearing is probably THE."
+      },
+      "keyword-easy-1": {
+        "title": "The best of times",
+        "hint1": "The keyword has six letters, all different.",
+        "hint2": "The most frequent symbol is almost surely the encrypted E — assign it first and watch the text wake up."
+      },
+      "keyword-medium-1": {
+        "title": "A truth universally acknowledged",
+        "hint1": "The keyword has seven letters, no repeats.",
+        "hint2": "The opening words are famous — IT and IS are one-letter-away once T and I are placed."
+      },
+      "keyword-hard-1": {
+        "title": "Four score and seven",
+        "hint1": "The keyword has eight letters.",
+        "hint2": "FOUR SCORE opens the message — the word shapes do most of the work once F, O, U, R are placed."
+      },
       "morse-easy-1": {
         "title": "The eagle has landed",
         "hint1": "Letters are separated by single spaces, words by a slash.",
@@ -1063,12 +1089,43 @@
         "delete": "Remove the last glyph.",
         "clear": "Clear the message."
       },
+      "swap": "Swaps the two sides: the tool flips between encrypting and decrypting. The current mode shows in the header.",
+      "alphabet": "The alphabet the cipher works with: pick a preset or paste your own ordered letters.",
+      "caesar": {
+        "rotation": "The shift: every letter of the message advances by this many positions in the alphabet (backwards in decrypt mode).",
+        "keepSpaces": "Keep spaces: preserves the layout of words instead of removing them all.",
+        "keepCase": "Keep case: preserves capitals instead of writing everything in capitals."
+      },
+      "affine": {
+        "multiplier": "The multiplier a of y = a·x + b. It must be coprime with the alphabet length, or several letters collide.",
+        "shift": "The shift b of y = a·x + b — the Caesar-like addition applied after the multiplication."
+      },
+      "alberti": {
+        "disc": "Alberti's cipher disc: the fixed outer ring carries the plaintext alphabet, the movable inner ring the mixed cipher alphabet.",
+        "increment": "The rotation step: how many positions the inner disc jumps after each period.",
+        "period": "The period: how many letters are encrypted before the inner disc turns."
+      },
       "keyword": {
         "keyword": "The keyword builds the cipher alphabet: its letters first (duplicates dropped), then the remaining letters in order.",
         "continueFromLast": "Instead of continuing from A after the keyword, keep counting from the keyword's last letter.",
         "freeAlphabet": "Skip the keyword and type any arrangement of all 26 letters — every letter exactly once.",
         "keepSpaces": "Keep spaces: preserves the layout of words instead of removing them all.",
         "keepCase": "Keep case: preserves capitals instead of writing everything in capitals."
+      },
+      "atbash": {
+        "alphabet": "The alphabet selector: Atbash mirrors the chosen alphabet — the only choice the cipher offers."
+      },
+      "morse": {
+        "dot": "The character playing the short signal (the dot) in the encoded output.",
+        "dash": "The character playing the long signal (the dash) in the encoded output."
+      },
+      "playfair.key": "The keyword: once deduplicated it seeds the 5×5 letter square — the cipher's entire key.",
+      "enigma.key": "The rotors' start positions (the Grundstellung) — three letters A–Z. On the real machine, the key also carried the rotor order, the ring settings and the plugboard pairs.",
+      "adfgvx": {
+        "variant": "The variant: ADFGX uses a 5×5 letter square, ADFGVX adds a sixth row with the digits 0–9.",
+        "square-key": "The keyed square: the key's letters fill the square first (duplicates removed, J folded into I), the rest of the alphabet follows. Change it and both the coordinates and the final transposition change.",
+        "transposition-key": "The transposition key: its letters fix the number and reading order of the columns that shuffle the fractionated text.",
+        "unknown-keys": "Check this when you don't know the keys: a guided cracker opens below and walks you from the ciphertext to both keys."
       }
     },
     "caesar": {
@@ -1164,6 +1221,14 @@
     "substitution": {
       "name": "Substitution",
       "definition": "Replacing each letter with another one."
+    },
+    "cipher-alphabet": {
+      "name": "Cipher alphabet",
+      "definition": "The reordered alphabet a substitution maps the plain alphabet onto — in this cipher, spelled out by the keyword."
+    },
+    "pattern-word": {
+      "name": "Pattern word",
+      "definition": "A word recognised by the shape of its repeated letters: THE has the pattern ABC, THAT ABCA — the shape survives any substitution."
     },
     "polyalphabetic": {
       "name": "Polyalphabetic",
