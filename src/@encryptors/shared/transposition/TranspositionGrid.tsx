@@ -27,6 +27,8 @@ interface TranspositionGridProps {
   highlight?: boolean;
   // When provided: draggable strips + keyboard ‹ › move buttons.
   onReorder?: (order: number[]) => void;
+  // Source column to outline (the easy hint's best partner).
+  highlightSource?: number | null;
   dataGuide?: string;
 }
 
@@ -40,7 +42,7 @@ const Grid = styled(Pane)`
   padding-bottom: 4px;
 `;
 
-const Strip = styled.div<{ $draggable: boolean; $selected: boolean; $dragging: boolean }>`
+const Strip = styled.div<{ $draggable: boolean; $selected: boolean; $dragging: boolean; $hinted: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,6 +50,7 @@ const Strip = styled.div<{ $draggable: boolean; $selected: boolean; $dragging: b
   border-radius: 4px;
   border: 1px solid
     ${({ theme, $selected }) => ($selected ? theme.colorScheme.blue[500] : theme.colorScheme.gray[300])};
+  outline: ${({ $hinted }) => ($hinted ? '2px solid #f5a623' : 'none')};
   background: ${({ theme, $dragging }) => ($dragging ? theme.colorScheme.gray[100] : 'transparent')};
   cursor: ${({ $draggable }) => ($draggable ? 'grab' : 'default')};
   user-select: none;
@@ -97,6 +100,7 @@ const TranspositionGrid: React.FC<TranspositionGridProps> = ({
   padChar = 'X',
   highlight = false,
   onReorder,
+  highlightSource = null,
   dataGuide,
 }) => {
   const { t } = useTranslation('common');
@@ -147,6 +151,7 @@ const TranspositionGrid: React.FC<TranspositionGridProps> = ({
           $draggable={Boolean(onReorder)}
           $selected={selected === position}
           $dragging={dragging === position || dropTarget === position}
+          $hinted={highlightSource === sourceColumn}
           draggable={Boolean(onReorder)}
           onDragStart={() => setDragging(position)}
           onDragOver={(event) => {
