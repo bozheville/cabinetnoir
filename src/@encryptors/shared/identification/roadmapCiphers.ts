@@ -1,9 +1,9 @@
 // Minimal rail fence and columnar transposition helpers for
-// identification. These two ciphers are roadmap items (no engine in the
-// app yet), but their rules need to *try undoing* the transposition and
-// score the result — so the decryption side lives here, next to the
-// identification rules. The test-only reference encryptors (task 10)
-// reuse them for round-trip sanity.
+// identification. The columnar width scan now lives in the shared
+// analysis library (@encryptors/shared/analysis/columnar) so the
+// identification rules and the Columnar cracker share one
+// implementation; this module re-exports it for the rule engine.
+export { columnarCandidateScores } from '@encryptors/shared/analysis';
 
 // Rail fence: the classic zigzag. `rails` rails, reading the fence row
 // by row (no offset variants in v1).
@@ -43,46 +43,6 @@ export const railFenceDecrypt = (letters: string, rails: number): string => {
     rowCursors[r] += 1;
   }
   return output.join('');
-};
-
-// Columnar transposition without the key: read the ciphertext into
-// `width` columns row by row, then take the columns in turn as
-// candidate plaintext fragments. A correct width gives rows (or columns)
-// that read like English fragments; scored with digraph statistics.
-export const columnarCandidateScores = (
-  letters: string,
-  scoreText: (text: string) => number,
-  maxWidth: number = 12,
-): Array<{ width: number; score: number }> => {
-  const scores: Array<{ width: number; score: number }> = [];
-  for (let width = 2; width <= maxWidth; width += 1) {
-    if (letters.length < width * 2) {
-      break;
-    }
-    // Plaintext was written in rows of `width`; the ciphertext hides the
-    // column order, but reading the ciphertext back into rows of `width`
-    // keeps *some* rows close to plaintext fragments when the column
-    // order is a permutation of consecutive columns. Score every column
-    // read top-to-bottom as a sequence.
-    const rows = Math.ceil(letters.length / width);
-    let sum = 0;
-    let counted = 0;
-    for (let column = 0; column < width; column += 1) {
-      const sequence: string[] = [];
-      for (let row = 0; row < rows; row += 1) {
-        const index = row * width + column;
-        if (index < letters.length) {
-          sequence.push(letters[index]);
-        }
-      }
-      if (sequence.length >= 4) {
-        sum += scoreText(sequence.join(''));
-        counted += 1;
-      }
-    }
-    scores.push({ width, score: counted > 0 ? Math.round(sum / counted) : 0 });
-  }
-  return scores.sort((a, b) => b.score - a.score || a.width - b.width);
 };
 
 // Rail fence: undo rails 2..10 and score the plaintext candidate.
