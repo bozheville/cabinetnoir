@@ -16,10 +16,10 @@ import { playfairEncrypt } from '@encryptors/Playfair/playfair-encryption';
 import { adfgvxEncrypt } from '@encryptors/Adfgvx/adfgvx-encryption';
 import { albertiEncrypt, ALBERTI_STATIC_DISC, ALBERTI_DYNAMIC_DISC } from '@encryptors/Alberti/alberti-crypt';
 import EnigmaPkg from 'enigma';
+import { railFenceEncrypt } from '@encryptors/shared/transposition';
+import { columnarEncrypt } from '@encryptors/shared/transposition';
+import { keywordEncrypt } from '@encryptors/Keyword/keyword-crypt';
 import {
-  railFenceEncrypt,
-  columnarEncrypt,
-  keywordEncrypt,
   homophonicEncrypt,
   nihilistEncrypt,
 } from './__fixtures__/reference';
@@ -70,7 +70,7 @@ const ENCRYPTORS: Record<string, (text: string) => string> = {
   rot13: (text) => monoalphabeticEncrypt({ input: text, alphabet: STANDARD_ALPHABET, targetAlphabet: caesarAlphabet(13) }),
   atbash: (text) => monoalphabeticEncrypt({ input: text, alphabet: STANDARD_ALPHABET, targetAlphabet: atbashAlphabet }),
   affine: (text) => monoalphabeticEncrypt({ input: text, alphabet: STANDARD_ALPHABET, targetAlphabet: affineAlphabet(5, 8) }),
-  keyword: (text) => keywordEncrypt(text, 'KRYPTOS'),
+  keyword: (text) => keywordEncrypt({ input: text, keyword: 'KRYPTOS', keepSpaces: false }),
   homophonic: (text) => homophonicEncrypt(text),
   vigenere: (text) => vigenereEncrypt(text, 'LEMON'),
   alberti: (text) => albertiEncrypt({

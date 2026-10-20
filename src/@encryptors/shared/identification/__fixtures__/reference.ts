@@ -1,70 +1,10 @@
-// Reference implementations of the roadmap ciphers, for the accuracy
-// fixture corpus ONLY (task 11). These are not app engines — the app
-// has no tool for these ciphers yet — so they live next to the tests
-// and are never imported from UI code.
+// Reference implementations of the still-roadmap ciphers, for the
+// accuracy fixture corpus ONLY. Keyword, columnar and rail fence shipped
+// real engines (m1-01/m1-07/m1-13) — the corpus encrypts with those now;
+// homophonic and Nihilist remain roadmap items (M2), so their
+// test-only implementations live here. Never imported from UI code.
 //
 // Deterministic: same text + same key → same output, always.
-
-// --- Rail fence ---
-
-export const railFenceEncrypt = (letters: string, rails: number): string => {
-  if (rails < 2 || letters.length < rails) {
-    return letters;
-  }
-  const rows: string[][] = Array.from({ length: rails }, () => []);
-  let row = 0;
-  let direction = 1;
-  for (const letter of letters) {
-    rows[row].push(letter);
-    if (rails > 2) {
-      if (row === 0) {
-        direction = 1;
-      } else if (row === rails - 1) {
-        direction = -1;
-      }
-      row += direction;
-    } else {
-      row = row === 0 ? 1 : 0;
-    }
-  }
-  return rows.flat().join('');
-};
-
-// --- Columnar transposition ---
-
-// Key = column permutation, e.g. [2,0,1]: column 2 first, then 0, 1.
-export const columnarEncrypt = (letters: string, key: number[]): string => {
-  const width = key.length;
-  if (width < 2 || letters.length < width * 2) {
-    return letters;
-  }
-  const rows = Math.ceil(letters.length / width);
-  const padded = letters.padEnd(rows * width, 'X');
-  const output: string[] = [];
-  for (const column of key) {
-    for (let row = 0; row < rows; row += 1) {
-      output.push(padded[row * width + column]);
-    }
-  }
-  return output.join('');
-};
-
-// --- Keyword substitution ---
-
-// Keyword + remaining letters, e.g. key KRYPTOS → KRYPTOSABCDFGH...
-export const keywordAlphabet = (keyword: string): string => {
-  const seen = keyword.toUpperCase().replace(/[^A-Z]/g, '');
-  const rest = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    .split('')
-    .filter((letter) => !seen.includes(letter));
-  return (seen + rest.join('')).slice(0, 26);
-};
-
-export const keywordEncrypt = (letters: string, keyword: string): string =>
-  letters
-    .split('')
-    .map((letter) => keywordAlphabet(keyword)[letter.charCodeAt(0) - 65])
-    .join('');
 
 // --- Homophonic ---
 
