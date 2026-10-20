@@ -14,6 +14,11 @@ import {
   columnarDecrypt,
   normalizeTranspositionKey,
 } from '@encryptors/shared/transposition';
+import {
+  buildSquare as buildPolybiusSquare,
+  toCoordinates,
+  fromCoordinates,
+} from '@encryptors/shared/polybius';
 
 export type AdfgvxVariant = 'adfgx' | 'adfgvx';
 
@@ -36,21 +41,17 @@ const isAdfgvxChar = (char: string, variant: AdfgvxVariant): boolean =>
 // Builds the keyed square: the key letters (deduplicated, J folded into I)
 // come first, the rest of the alphabet follows. An empty key gives the
 // plain square, so the engine stays predictable even with no key.
+// Delegates to the shared Polybius core; the variant picks the size and
+// the J→I folding happens here (a 6x6 square holds J, but the classic
+// ADFGVX key sheets fold it away — kept for byte-identical output).
 export function buildSquare(key: string, variant: AdfgvxVariant): string {
-  const alphabet = SQUARE_ALPHABET[variant];
-  const square: string[] = [];
   const keyClean = key
     .toUpperCase()
     .replace(/J/g, 'I')
     .replace(/[^A-Z0-9]/g, '');
-
-  for (const char of keyClean) {
-    if (alphabet.includes(char) && !square.includes(char)) square.push(char);
-  }
-  for (const char of alphabet) {
-    if (!square.includes(char)) square.push(char);
-  }
-  return square.join('');
+  return buildPolybiusSquare(keyClean, {
+    size: variant === 'adfgx' ? 5 : 6,
+  });
 }
 
 // Plaintext cleaning: uppercase, strip separators. ADFGX only takes
@@ -72,28 +73,25 @@ function cleanPlaintext(text: string, variant: AdfgvxVariant): string {
 // external ciphertexts with a short last row (trailing pad coordinates
 // decode to a few junk letters at the end of the plaintext).
 
-// Fractionate: every plaintext letter becomes its square coordinates.
+// Fractionate: every plaintext letter becomes its square coordinates
+// (shared Polybius core, ADFGVX letters as the labels).
 function fractionate(plaintext: string, square: string, variant: AdfgvxVariant): string {
-  const size = FRACTION_CHARS[variant].length;
   let fractionated = '';
   for (const char of plaintext) {
-    const index = square.indexOf(char);
-    if (index === -1) continue;
-    fractionated += FRACTION_CHARS[variant][Math.floor(index / size)];
-    fractionated += FRACTION_CHARS[variant][index % size];
+    fractionated += toCoordinates(char, square, FRACTION_CHARS[variant]);
   }
   return fractionated;
 }
 
 // Map coordinate pairs back to letters via the square.
 function unfractionate(fractionated: string, square: string, variant: AdfgvxVariant): string {
-  const size = FRACTION_CHARS[variant].length;
   let plaintext = '';
   for (let i = 0; i + 1 < fractionated.length; i += 2) {
-    const row = FRACTION_CHARS[variant].indexOf(fractionated[i]);
-    const column = FRACTION_CHARS[variant].indexOf(fractionated[i + 1]);
-    if (row === -1 || column === -1) continue;
-    plaintext += square[row * size + column];
+    plaintext += fromCoordinates(
+      fractionated.slice(i, i + 2),
+      square,
+      FRACTION_CHARS[variant],
+    );
   }
   return plaintext;
 }
