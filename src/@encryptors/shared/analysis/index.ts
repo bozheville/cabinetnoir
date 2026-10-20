@@ -10,3 +10,4 @@ export * from './kasiski';
 export * from './keyLength';
 export * from './cribs';
 export * from './digraphs';
+export * from './substitution';

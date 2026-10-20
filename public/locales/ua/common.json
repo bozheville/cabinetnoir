@@ -380,6 +380,12 @@
         "match": "Збіг: {{score}}%"
       }
     },
+    "assignment": {
+      "clickCell": "Click a cell, then pick the plaintext letter you think it stands for.",
+      "suggestion": "probably {{suggestion}}?",
+      "clear": "Clear",
+      "conflict": "{{letter}} is assigned to more than one symbol — a substitution maps each cipher symbol to exactly one letter."
+    },
     "pigpen": {
       "title": "Шифр «Свинюшка»",
       "short_title": "Свинюшка",
