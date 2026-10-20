@@ -8,6 +8,13 @@
 // Pure string in / string out, shared by the tool, the cracker, the worked
 // examples and the challenges, so all of them stay consistent.
 
+import {
+  columnOrder,
+  columnarEncrypt,
+  columnarDecrypt,
+  normalizeTranspositionKey,
+} from '@encryptors/shared/transposition';
+
 export type AdfgvxVariant = 'adfgx' | 'adfgvx';
 
 // Column headers of the Polybius square, per variant.
@@ -54,69 +61,16 @@ function cleanPlaintext(text: string, variant: AdfgvxVariant): string {
   return cleaned.replace(allowed, '');
 }
 
-// Transposition key: letters only, uppercase. Duplicates are allowed and
-// resolved left-to-right (standard columnar convention).
-function normalizeTranspositionKey(key: string): string {
-  return key.toUpperCase().replace(/[^A-Z]/g, '');
-}
-
-// Sorted column order: by key letter, ties broken left-to-right.
-function columnOrder(key: string): number[] {
-  return key
-    .split('')
-    .map((letter, index) => ({ letter, index }))
-    .sort((a, b) => (a.letter === b.letter ? a.index - b.index : a.letter < b.letter ? -1 : 1))
-    .map((item) => item.index);
-}
-
-// Columnar transposition, encryption side: the fractionated text is padded
+// Columnar transposition lives in the shared transposition core
+// (@encryptors/shared/transposition): the fractionated text is padded
 // with 'X' coordinates up to a full rectangle (rows x key length) and
-// written row-major, then read off column by column in key-letter order.
-// Padding keeps every column the same length, so the ciphertext splits
-// back into columns without knowing the key — this is what makes the
-// guided cracker's column analysis possible.
-function transpose(fractionated: string, key: string): string {
-  if (!key) return fractionated;
-
-  const length = fractionated.length;
-  const columns = key.length;
-  const rows = Math.ceil(length / columns);
-  const padded = fractionated.padEnd(rows * columns, 'X');
-
-  let result = '';
-  for (const column of columnOrder(key)) {
-    for (let row = 0; row < rows; row += 1) {
-      result += padded[row * columns + column];
-    }
-  }
-  return result;
-}
-
-// Columnar transposition, decryption side: each column in key order gets
-// an equal slice of the ciphertext (full rectangle), then the grid is read
-// row-major. Unpadded (external) ciphertext with a short last row still
-// decodes through the remainder logic. Trailing pad coordinates decode to
-// a few junk letters at the end of the plaintext.
-function untranspose(ciphertext: string, key: string): string {
-  if (!key) return ciphertext;
-
-  const length = ciphertext.length;
-  const columns = key.length;
-  const rows = Math.ceil(length / columns);
-  const remainder = length % columns;
-  const order = columnOrder(key);
-
-  const grid: (string | null)[] = new Array(rows * columns).fill(null);
-  let cursor = 0;
-  for (const column of order) {
-    const columnLength = remainder === 0 || column < remainder ? rows : rows - 1;
-    for (let row = 0; row < columnLength; row += 1) {
-      grid[row * columns + column] = ciphertext[cursor];
-      cursor += 1;
-    }
-  }
-  return grid.map((cell) => cell ?? '').join('');
-}
+// read off column by column in key-letter order. Padding keeps every
+// column the same length, so the ciphertext splits back into columns
+// without knowing the key — this is what makes the guided cracker's
+// column analysis possible. Decryption runs the remainder-aware
+// irregular decode, which handles both the padded rectangle and
+// external ciphertexts with a short last row (trailing pad coordinates
+// decode to a few junk letters at the end of the plaintext).
 
 // Fractionate: every plaintext letter becomes its square coordinates.
 function fractionate(plaintext: string, square: string, variant: AdfgvxVariant): string {
@@ -153,7 +107,10 @@ export function adfgvxEncrypt(
   const square = buildSquare(squareKey, variant);
   const plaintext = cleanPlaintext(text, variant);
   const fractionated = fractionate(plaintext, square, variant);
-  return transpose(fractionated, normalizeTranspositionKey(transpositionKey));
+  return columnarEncrypt(
+    fractionated,
+    columnOrder(normalizeTranspositionKey(transpositionKey)),
+  );
 }
 
 export function adfgvxDecrypt(
@@ -167,6 +124,10 @@ export function adfgvxDecrypt(
   // Ciphertext tolerance: anything that is not a fractionation letter is
   // ignored, so pasted ciphertext with stray characters still decodes.
   const ciphertext = text.toUpperCase().replace(new RegExp(`[^${fractionChars}]`, 'g'), '');
-  const fractionated = untranspose(ciphertext, normalizeTranspositionKey(transpositionKey));
+  const fractionated = columnarDecrypt(
+    ciphertext,
+    columnOrder(normalizeTranspositionKey(transpositionKey)),
+    { irregular: true },
+  );
   return unfractionate(fractionated, square, variant);
 }
