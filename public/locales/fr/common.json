@@ -1497,6 +1497,10 @@
     "additive-key": {
       "name": "Clé additive",
       "definition": "Clé additive — un mot-clé converti en nombres qui se répètent sur le texte et s’ajoutent chiffre par chiffre, sans retenue."
+    },
+    "anagrammage": {
+      "name": "Anagrammage",
+      "definition": "Faire glisser côte à côte des fragments de colonnes suspectés et lire les coutures — l'attaque classique des transpositions : chaque disposition d'essai est jugée à la façon dont les paires de lettres aux jointures sonnent anglais."
     }
   },
   "home": {
