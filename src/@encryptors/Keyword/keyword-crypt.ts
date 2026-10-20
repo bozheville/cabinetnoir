@@ -142,3 +142,52 @@ export const keywordDecrypt = (props: KeywordEncryptProps): string => {
     input: props.input,
   });
 };
+
+// Cracker bonus (shown only after the user finished the mapping): if the
+// recovered cipher alphabet is keyword-shaped, guess the keyword.
+// A prefix of length k is a keyword when the remaining letters follow in
+// order — either A→Z or continuing from the prefix's last letter — and
+// the prefix itself is not just a plain run of the alphabet (which would
+// make every rotation cipher "keyword-shaped" too).
+export const keywordFromAlphabet = (cipherAlphabet: string): string | null => {
+  const letters = cipherAlphabet.toUpperCase().replace(/[^A-Z]/g, '');
+  if (letters.length !== 26 || new Set(letters).size !== 26) {
+    return null;
+  }
+  const isOrderedRun = (prefix: string, rest: string, continueFromLast: boolean): boolean => {
+    if (continueFromLast) {
+      const lastPosition = STANDARD_ALPHABET.indexOf(prefix[prefix.length - 1]);
+      const ordered = STANDARD_ALPHABET.split('')
+        .filter((letter) => !prefix.includes(letter))
+        .sort((a, b) => {
+          const positionOf = (letter: string) => {
+            const raw = STANDARD_ALPHABET.indexOf(letter);
+            return raw <= lastPosition ? raw + 26 : raw;
+          };
+          return positionOf(a) - positionOf(b);
+        })
+        .join('');
+      return rest === ordered;
+    }
+    return rest === STANDARD_ALPHABET.split('').filter(
+      (letter) => !prefix.includes(letter),
+    ).join('');
+  };
+  const isPlainRun = (prefix: string): boolean => {
+    const positions = prefix.split('').map((letter) => STANDARD_ALPHABET.indexOf(letter));
+    return positions.every((position, index) => (
+      index === 0 || position === (positions[index - 1] + 1) % 26
+    ));
+  };
+  for (let k = 2; k <= 12; k += 1) {
+    const prefix = letters.slice(0, k);
+    const rest = letters.slice(k);
+    if (isPlainRun(prefix)) {
+      continue;
+    }
+    if (isOrderedRun(prefix, rest, false) || isOrderedRun(prefix, rest, true)) {
+      return prefix;
+    }
+  }
+  return null;
+};

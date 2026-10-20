@@ -8,6 +8,7 @@ import {
   findPatternMatches,
   findDoubles,
   findOneLetterWords,
+  extractWords,
 } from './substitution';
 
 describe('countSymbols', () => {
@@ -109,5 +110,17 @@ describe('findOneLetterWords', () => {
       { word: 'Y', position: 0 },
       { word: 'NOT', position: 1 },
     ])).toEqual([{ word: 'Y', position: 0 }]);
+  });
+});
+
+describe('extractWords', () => {
+  it('splits raw text into uppercase letter runs', () => {
+    expect(extractWords('Meet me, at DAWN!'))
+      .toEqual([
+        { word: 'MEET', position: 0 },
+        { word: 'ME', position: 5 },
+        { word: 'AT', position: 9 },
+        { word: 'DAWN', position: 12 },
+      ]);
   });
 });
