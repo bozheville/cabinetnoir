@@ -411,7 +411,7 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
             {t('processing.nihilist.cracker.wizard.square.hint')}
           </StepText>
           <AssignmentBoard
-            symbols={symbols}
+            symbols={coordinates}
             mapping={mapping}
             onAssign={assign}
             alphabet={STANDARD_ALPHABET}
