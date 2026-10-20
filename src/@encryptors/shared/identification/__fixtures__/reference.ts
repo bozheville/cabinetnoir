@@ -1,8 +1,9 @@
 // Reference implementations of the still-roadmap ciphers, for the
 // accuracy fixture corpus ONLY. Keyword, columnar and rail fence shipped
-// real engines (m1-01/m1-07/m1-13) — the corpus encrypts with those now;
-// homophonic and Nihilist remain roadmap items (M2), so their
-// test-only implementations live here. Never imported from UI code.
+// real engines (m1-01/m1-07/m1-13); Polybius and Nihilist followed in M2
+// (m2-01..m2-12) — the corpus encrypts with those now. Homophonic
+// remains a roadmap item, so its test-only implementation lives here.
+// Never imported from UI code.
 //
 // Deterministic: same text + same key → same output, always.
 

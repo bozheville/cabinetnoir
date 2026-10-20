@@ -24,6 +24,7 @@ export const CATALOGUE: CatalogueEntry[] = [
   { id: 'affine', family: 'substitution', inApp: true, breakingTarget: 'cracker' },
   { id: 'keyword', family: 'substitution', inApp: true, breakingTarget: 'cracker' },
   { id: 'homophonic', family: 'substitution', inApp: false, breakingTarget: null },
+  { id: 'polybius', family: 'substitution', inApp: true, breakingTarget: 'tool' },
 
   // Polyalphabetic.
   { id: 'vigenere', family: 'polyalphabetic', inApp: true, breakingTarget: 'cracker' },
@@ -40,7 +41,7 @@ export const CATALOGUE: CatalogueEntry[] = [
   // Block (classical polygraphic).
   { id: 'playfair', family: 'block', inApp: true, breakingTarget: 'cracker' },
   { id: 'adfgvx', family: 'block', inApp: true, breakingTarget: 'cracker' },
-  { id: 'nihilist', family: 'block', inApp: false, breakingTarget: null },
+  { id: 'nihilist', family: 'block', inApp: true, breakingTarget: 'cracker' },
 ];
 
 // Fixed tie-break order: catalogue position.
