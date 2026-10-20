@@ -217,6 +217,33 @@
         "offsetLabel": "Start at rail {{value}}",
         "keep_spaces": "Keep spaces",
         "zigzagHint": "The letters ride the fence; the rails are read top to bottom."
+      },
+      "cracker": {
+        "wizard": {
+          "steps": {
+            "try": "Try the rail counts",
+            "done": "Done"
+          },
+          "try": {
+            "hint": "Slide the rail count (and the offset) — the fence re-draws and the plaintext candidate updates. When the rows read like English, you have it; the meter only measures how English-like each setting looks.",
+            "railsLabel": "Rails: {{value}}",
+            "offsetLabel": "Offset: {{value}}",
+            "meterLabel": "English-likeness",
+            "best": "the meter peaks at {{rails}} rails, offset {{offset}}"
+          },
+          "done": {
+            "hint": "This is the recovered plaintext. Use this result to decrypt with the same setting in the Tool tab.",
+            "setting": "Setting: {{rails}} rails, offset {{offset}}"
+          }
+        },
+        "hints": {
+          "toggles": {
+            "bestMark": "Best-setting mark"
+          }
+        },
+        "tooltips": {
+          "bestMark": "Marks where the meter peaks over every rail count and offset. A hint only — the slider stays yours."
+        }
       }
     },
     "rot13": {
@@ -1121,6 +1148,10 @@
     "columnar": {
       "era": "Перша світова війна",
       "origin": "Польові шифри; славу принесли ADFGVX та SOE"
+    },
+    "railFence": {
+      "era": "Громадянська війна в США",
+      "origin": "Зигзаг-шифри; скітала як давній попередник"
     },
     "morse": {
       "description": "Кодування, а не шифр: кожна літера стає публічним шаблоном крапок і тире для телеграфа.",
