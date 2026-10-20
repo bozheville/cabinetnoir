@@ -308,6 +308,21 @@
         }
       }
     },
+    "columnar": {
+      "title": "Columnar transposition",
+      "short_title": "Columnar",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram",
+      "settings": {
+        "keyword_placeholder": "Keyword, e.g. ZEBRAS",
+        "second_keyword_placeholder": "Second keyword",
+        "double_transposition": "Double transposition",
+        "incomplete_row": "Leave the last row incomplete",
+        "keep_spaces": "Keep spaces",
+        "gridHint": "The text written row-wise; the badges give the column reading order."
+      }
+    },
     "enigma": {
       "title": "Enigma machine",
       "short_title": "Enigma",
@@ -592,6 +607,10 @@
       "clear": "Clear",
       "conflict": "{{letter}} is assigned to more than one symbol — a substitution maps each cipher symbol to exactly one letter."
     },
+    "grid": {
+      "moveLeft": "Move this column one step left",
+      "moveRight": "Move this column one step right"
+    },
     "pigpen": {
       "title": "Pigpen cipher",
       "short_title": "Pigpen",
@@ -720,6 +739,11 @@
       "rotate-right": "the right arrow under the discs",
       "increment": "the increment slider",
       "keyword-input": "the keyword field",
+      "columnar-keyword": "the columnar keyword field",
+      "double-toggle": "the \"Double transposition\" checkbox",
+      "second-keyword-input": "the second keyword field",
+      "grid-toggle": "the \"Leave the last row incomplete\" checkbox",
+      "transposition-grid": "the transposition grid",
       "continuation-toggle": "the \"Continue after the keyword\" checkbox",
       "free-alphabet-toggle": "the \"Free alphabet\" checkbox",
       "free-alphabet-input": "the free alphabet field",
@@ -1111,6 +1135,13 @@
         "freeAlphabet": "Skip the keyword and type any arrangement of all 26 letters — every letter exactly once.",
         "keepSpaces": "Keep spaces: preserves the layout of words instead of removing them all.",
         "keepCase": "Keep case: preserves capitals instead of writing everything in capitals."
+      },
+      "columnar": {
+        "keyword": "The keyword fixes the column order: its letters sorted alphabetically say which column is read first, second, third…",
+        "secondKeyword": "A second keyword transposes the already-transposed text — the classic double transposition.",
+        "double": "Double transposition: encrypt with the first keyword, then transposition the result again with the second.",
+        "irregular": "Leave the last row incomplete: no padding letter is added, so the last row stays short (the classic hand cipher).",
+        "keepSpaces": "Keep spaces: spaces ride the zigzag like letters instead of being stripped."
       },
       "atbash": {
         "alphabet": "The alphabet selector: Atbash mirrors the chosen alphabet — the only choice the cipher offers."
