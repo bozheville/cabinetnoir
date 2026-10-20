@@ -5,6 +5,7 @@ import { Button, Heading, Pane, Select, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import Tooltip from '@atoms/Tooltip';
+import PolybiusSquare from '@encryptors/shared/polybius/PolybiusSquare';
 import { useCracker } from './useCracker';
 import { ENGLISH_FREQUENCY_ORDER } from '../analysis/frequency';
 
@@ -71,25 +72,6 @@ const PreviewBox = styled(Pane)`
   overflow-y: auto;
 `;
 
-const SquareGrid = styled(Pane)`
-  display: inline-grid;
-  gap: 2px;
-  margin-top: 8px;
-  font-family: monospace;
-  font-size: 12px;
-`;
-
-const SquareCell = styled(Pane)`
-  width: 26px;
-  height: 26px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid ${({ theme }) => theme.colorScheme.gray[300]};
-  border-radius: 2px;
-  background: ${({ theme }) => theme.colors.background};
-`;
-
 interface StepSquareProps {
   cracker: ReturnType<typeof useCracker>;
 }
@@ -134,8 +116,6 @@ const StepSquare: React.FC<StepSquareProps> = ({ cracker }) => {
     suggestionBySymbol[symbol] = ENGLISH_FREQUENCY_ORDER[suggestionRank % ENGLISH_FREQUENCY_ORDER.length];
     suggestionRank += 1;
   }
-
-  const size = variant === 'adfgx' ? 5 : 6;
 
   return (
     <Pane width="100%">
@@ -239,11 +219,10 @@ const StepSquare: React.FC<StepSquareProps> = ({ cracker }) => {
       <Pane display="flex" gap="16px" marginTop="8px" alignItems="flex-start" flexWrap="wrap">
         <Pane>
           <Text size={300} display="block">{t('processing.adfgvx.cracker.wizard.square.squareKey')}</Text>
-          <SquareGrid gridTemplateColumns={`repeat(${size}, 26px)`}>
-            {assembledSquare.split('').map((cell, index) => (
-              <SquareCell key={index}>{cell}</SquareCell>
-            ))}
-          </SquareGrid>
+          <PolybiusSquare
+            square={assembledSquare}
+            labels={variant === 'adfgx' ? 'ADFGX' : 'ADFGVX'}
+          />
         </Pane>
         <Pane>
           <Text size={300} display="block">{t('processing.adfgvx.cracker.wizard.square.transpositionKey')}</Text>
