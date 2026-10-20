@@ -40,7 +40,6 @@ const Roadmap: React.FC = () => {
   ];
   const next = [
     'home.roadmap.next.substitution',
-    'home.roadmap.next.transposition',
     'home.roadmap.next.nihilist',
     'home.roadmap.next.saknussemm',
   ];

@@ -22,7 +22,7 @@ export const CATALOGUE: CatalogueEntry[] = [
   { id: 'rot13', family: 'substitution', inApp: true, breakingTarget: 'tool' },
   { id: 'atbash', family: 'substitution', inApp: true, breakingTarget: 'tool' },
   { id: 'affine', family: 'substitution', inApp: true, breakingTarget: 'cracker' },
-  { id: 'keyword', family: 'substitution', inApp: false, breakingTarget: null },
+  { id: 'keyword', family: 'substitution', inApp: true, breakingTarget: 'cracker' },
   { id: 'homophonic', family: 'substitution', inApp: false, breakingTarget: null },
 
   // Polyalphabetic.
@@ -31,8 +31,8 @@ export const CATALOGUE: CatalogueEntry[] = [
   { id: 'enigma', family: 'polyalphabetic', inApp: true, breakingTarget: 'tool' },
 
   // Transposition.
-  { id: 'railFence', family: 'transposition', inApp: false, breakingTarget: null },
-  { id: 'columnar', family: 'transposition', inApp: false, breakingTarget: null },
+  { id: 'railFence', family: 'transposition', inApp: true, breakingTarget: 'cracker' },
+  { id: 'columnar', family: 'transposition', inApp: true, breakingTarget: 'cracker' },
   // Easter egg: recognised only by known-ciphertext match (task 08),
   // never by statistics.
   { id: 'saknussemm', family: 'transposition', inApp: false, breakingTarget: null },

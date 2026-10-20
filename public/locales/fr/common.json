@@ -157,92 +157,92 @@
       }
     },
     "columnar": {
-      "title": "Columnar transposition",
+      "title": "Transposition colonnaire",
       "short_title": "Columnar",
-      "directAction": "Encrypt",
-      "reverseAction": "Decrypt",
-      "messageLabel": "Cryptogram",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
+      "messageLabel": "Cryptogramme",
       "settings": {
-        "keyword_placeholder": "Keyword, e.g. ZEBRAS",
-        "second_keyword_placeholder": "Second keyword",
+        "keyword_placeholder": "Mot-clé, p. ex. ZEBRAS",
+        "second_keyword_placeholder": "Second mot-clé",
         "double_transposition": "Double transposition",
-        "incomplete_row": "Leave the last row incomplete",
-        "keep_spaces": "Keep spaces",
-        "gridHint": "The text written row-wise; the badges give the column reading order."
+        "incomplete_row": "Laisser la dernière ligne incomplète",
+        "keep_spaces": "Garder les espaces",
+        "gridHint": "Le texte écrit ligne par ligne ; les badges donnent l'ordre de lecture des colonnes."
       },
       "cracker": {
         "wizard": {
           "steps": {
-            "width": "Column count",
-            "order": "Order the columns",
-            "done": "Done"
+            "width": "Nombre de colonnes",
+            "order": "Ordonner les colonnes",
+            "done": "Terminé"
           },
           "width": {
-            "hint": "The ciphertext was cut into columns and stacked. Its length must divide evenly by the column count — pick a candidate; the match score says how English-like the best column arrangement looks.",
-            "card": "{{width}} columns × {{rows}} rows"
+            "hint": "Le chiffre a été découpé en colonnes et empilé. Sa longueur doit se diviser exactement par le nombre de colonnes — choisissez un candidat ; le score d'affinité dit à quel point la meilleure disposition des colonnes paraît anglaise.",
+            "card": "{{width}} colonnes × {{rows}} lignes"
           },
           "order": {
-            "hint": "Drag the column strips (or select one and use ‹ ›) until the rows read like English. The badges score each neighbouring pair; a wrong order still shows all the right letters.",
-            "reset": "Reset order",
-            "selected": "Column {{position}} selected",
-            "badge": "Pair score: columns {{first}} → {{second}}",
-            "bestPartner": "The outlined column ({{position}}) reads best after the selected one — try moving it next."
+            "hint": "Faites glisser les colonnes (ou sélectionnez-en une et utilisez ‹ ›) jusqu'à ce que les lignes se lisent comme un texte anglais. Les badges notent chaque paire voisine ; un mauvais ordre montre quand même toutes les bonnes lettres.",
+            "reset": "Réinitialiser l'ordre",
+            "selected": "Colonne {{position}} sélectionnée",
+            "badge": "Score de paire : colonnes {{first}} → {{second}}",
+            "bestPartner": "La colonne surlignée ({{position}}) se lit le mieux après la sélectionnée — essayez de la placer juste après."
           },
           "done": {
-            "hint": "This is the recovered plaintext (padding letters may trail at the end). Use this result to decrypt with the same column order in the Tool tab.",
-            "order": "Column order (first read → last): {{order}}"
+            "hint": "Voici le texte clair retrouvé (des lettres de complètement peuvent traîner à la fin). « Utiliser cette clé » pour déchiffrer avec le même ordre des colonnes dans l'onglet Outil.",
+            "order": "Ordre des colonnes (première lue → dernière) : {{order}}"
           }
         },
         "hints": {
           "toggles": {
-            "badges": "Pair-score badges",
-            "bestPartner": "Best-partner outline"
+            "badges": "Badges de score de paire",
+            "bestPartner": "Contour du meilleur voisin"
           }
         },
         "tooltips": {
-          "badges": "How English-like two neighbouring columns look together. High numbers in green — low ones mean the pair is probably wrong.",
-          "bestPartner": "Outlines the column that scores best after the selected one. A hint only — the move is yours.",
-          "livePreview": "The plaintext the current column order produces, updating as you drag."
+          "badges": "À quel point deux colonnes voisines paraissent anglaises ensemble. Nombres élevés en vert — un score bas signale une paire probablement fausse.",
+          "bestPartner": "Entoure la colonne qui se lit le mieux après la sélectionnée. Un indice seulement — le déplacement est à vous.",
+          "livePreview": "Le texte clair que produit l'ordre actuel des colonnes, mis à jour à chaque glissement."
         }
       }
     },
     "railFence": {
       "title": "Rail fence",
       "short_title": "Rail fence",
-      "directAction": "Encrypt",
-      "reverseAction": "Decrypt",
-      "messageLabel": "Cryptogram",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
+      "messageLabel": "Cryptogramme",
       "settings": {
-        "railsLabel": "{{count}} rails",
-        "offsetLabel": "Start at rail {{value}}",
-        "keep_spaces": "Keep spaces",
-        "zigzagHint": "The letters ride the fence; the rails are read top to bottom."
+        "railsLabel": "{{count}} rampes",
+        "offsetLabel": "Démarrer à la rampe {{value}}",
+        "keep_spaces": "Garder les espaces",
+        "zigzagHint": "Les lettres parcourent la clôture ; les rampes se lisent de haut en bas."
       },
       "cracker": {
         "wizard": {
           "steps": {
-            "try": "Try the rail counts",
-            "done": "Done"
+            "try": "Essayer les nombres de rampes",
+            "done": "Terminé"
           },
           "try": {
-            "hint": "Slide the rail count (and the offset) — the fence re-draws and the plaintext candidate updates. When the rows read like English, you have it; the meter only measures how English-like each setting looks.",
-            "railsLabel": "Rails: {{value}}",
-            "offsetLabel": "Offset: {{value}}",
-            "meterLabel": "English-likeness",
-            "best": "the meter peaks at {{rails}} rails, offset {{offset}}"
+            "hint": "Glissez le nombre de rampes (et le décalage) — la clôture se redessine et le texte clair candidat se met à jour. Quand les lignes se lisent en anglais, c'est gagné ; le compteur ne fait que mesurer à quel point chaque réglage paraît anglais.",
+            "railsLabel": "Rampes : {{value}}",
+            "offsetLabel": "Décalage : {{value}}",
+            "meterLabel": "Ressemblance à l'anglais",
+            "best": "le compteur culmine à {{rails}} rampes, décalage {{offset}}"
           },
           "done": {
-            "hint": "This is the recovered plaintext. Use this result to decrypt with the same setting in the Tool tab.",
-            "setting": "Setting: {{rails}} rails, offset {{offset}}"
+            "hint": "Voici le texte clair retrouvé. « Utiliser ce résultat » pour déchiffrer avec le même réglage dans l'onglet Outil.",
+            "setting": "Réglage : {{rails}} rampes, décalage {{offset}}"
           }
         },
         "hints": {
           "toggles": {
-            "bestMark": "Best-setting mark"
+            "bestMark": "Marque du meilleur réglage"
           }
         },
         "tooltips": {
-          "bestMark": "Marks where the meter peaks over every rail count and offset. A hint only — the slider stays yours."
+          "bestMark": "Marque où le compteur culmine, tous nombres de rampes et décalages confondus. Un indice seulement — le curseur reste à vous."
         }
       }
     },
@@ -466,6 +466,10 @@
     },
     "cracker": {
       "inputLabel": "Message chiffré à casser",
+      "grid": {
+        "moveLeft": "Déplacer cette colonne d'un pas vers la gauche",
+        "moveRight": "Déplacer cette colonne d'un pas vers la droite"
+      },
       "hints": {
         "title": "Indices",
         "presets": {
@@ -529,10 +533,6 @@
       "suggestion": "peut-être {{suggestion}} ?",
       "clear": "Effacer",
       "conflict": "{{letter}} est attribuée à plusieurs symboles — une substitution fait correspondre à chaque symbole exactement une lettre."
-    },
-    "grid": {
-      "moveLeft": "Move this column one step left",
-      "moveRight": "Move this column one step right"
     },
     "pigpen": {
       "title": "Chiffre Pigpen",
@@ -665,14 +665,14 @@
       "rotate-right": "la flèche droite sous les disques",
       "increment": "le curseur d'incrément",
       "keyword-input": "le champ du mot-clé",
-      "rails-picker": "the rails picker",
-      "offset-picker": "the offset picker",
-      "columnar-keyword": "the columnar keyword field",
-      "double-toggle": "the \"Double transposition\" checkbox",
-      "second-keyword-input": "the second keyword field",
-      "grid-toggle": "the \"Leave the last row incomplete\" checkbox",
-      "zigzag-fence": "the zigzag fence",
-      "transposition-grid": "the transposition grid",
+      "rails-picker": "le sélecteur de rampes",
+      "offset-picker": "le sélecteur de décalage",
+      "columnar-keyword": "le champ du mot-clé columnar",
+      "double-toggle": "la case « Double transposition »",
+      "second-keyword-input": "le champ du second mot-clé",
+      "grid-toggle": "la case « Laisser la dernière ligne incomplète »",
+      "zigzag-fence": "la clôture en zigzag",
+      "transposition-grid": "la grille de transposition",
       "continuation-toggle": "la case « Continuer après le mot-clé »",
       "free-alphabet-toggle": "la case « Alphabet libre »",
       "free-alphabet-input": "le champ de l'alphabet libre",
@@ -1110,16 +1110,16 @@
         "keepCase": "Conserver la casse : préserve les majuscules au lieu de tout écrire en capitales."
       },
       "columnar": {
-        "keyword": "The keyword fixes the column order: its letters sorted alphabetically say which column is read first, second, third…",
-        "secondKeyword": "A second keyword transposes the already-transposed text — the classic double transposition.",
-        "double": "Double transposition: encrypt with the first keyword, then transposition the result again with the second.",
-        "irregular": "Leave the last row incomplete: no padding letter is added, so the last row stays short (the classic hand cipher).",
-        "keepSpaces": "Keep spaces: spaces ride the zigzag like letters instead of being stripped."
+        "keyword": "Le mot-clé fixe l'ordre des colonnes : ses lettres triées alphabétiquement disent quelle colonne est lue en premier, en deuxième, en troisième…",
+        "secondKeyword": "Un second mot-clé transpose le texte déjà transposé — la double transposition classique.",
+        "double": "Double transposition : chiffrer avec le premier mot-clé, puis transposer le résultat avec le second.",
+        "irregular": "Laisser la dernière ligne incomplète : aucune lettre de complément n'est ajoutée, la dernière ligne reste courte (le chiffre manuel classique).",
+        "keepSpaces": "Garder les espaces : les espaces parcourent le zigzag comme des lettres au lieu d'être retirés."
       },
       "railFence": {
-        "rails": "How many rails the fence has — the zigzag bounces between the top and bottom rail.",
-        "offset": "Which rail the first letter starts on. Offset 0 is the classic fence; any other start hides the usual tell that the first letter sits on top.",
-        "keepSpaces": "Keep spaces: spaces ride the zigzag like letters instead of being stripped."
+        "rails": "Combien de rampes compte la clôture — le zigzag rebondit entre la rampe du haut et celle du bas.",
+        "offset": "Sur quelle rampe commence la première lettre. Le décalage 0 est la clôture classique ; tout autre départ cache l'indice habituel de la première lettre tout en haut.",
+        "keepSpaces": "Garder les espaces : les espaces parcourent le zigzag comme des lettres au lieu d'être retirés."
       },
       "morse": {
         "dot": "Le caractère qui joue le signal court (le point) dans la sortie encodée.",
@@ -1371,13 +1371,12 @@
       "builtTitle": "Ce qui est construit",
       "nextTitle": "Ce qui arrive",
       "built": {
-        "ciphers": "Dix pages de chiffrements avec onglets d'apprentissage guidé — outil, apprentissage, histoire, pratique",
-        "cryptoanalysis": "Assistants de cryptanalyse guidée pour Vigenère, ADFGVX, Affine, Playfair et Alberti",
+        "ciphers": "Quatorze pages de chiffrements avec onglets d’apprentissage guidé — outil, apprentissage, histoire, pratique",
+        "cryptoanalysis": "Assistants de cryptanalyse guidée pour Vigenère, ADFGVX, Affine, Playfair, Alberti, Keyword, Columnar et Rail fence",
         "challenges": "Défis pratiques avec indices adaptés à la difficulté — en trois langues"
       },
       "next": {
-        "substitution": "D'autres chiffrements par substitution — homophonique et par mot-clé",
-        "transposition": "Chiffrements par transposition — rail fence et columnar",
+        "substitution": "Le chiffre par substitution homophonique — des nombres à la place des lettres fréquentes",
         "nihilist": "Le chiffre nihiliste — la substitution rencontre la transposition",
         "saknussemm": "Clins d'œil de la pop culture — le chiffre d'Arne Saknussemm"
       }

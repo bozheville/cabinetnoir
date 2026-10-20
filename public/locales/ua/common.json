@@ -157,92 +157,92 @@
       }
     },
     "columnar": {
-      "title": "Columnar transposition",
+      "title": "Стовпцева перестановка",
       "short_title": "Columnar",
-      "directAction": "Encrypt",
-      "reverseAction": "Decrypt",
-      "messageLabel": "Cryptogram",
+      "directAction": "Зашифрувати",
+      "reverseAction": "Розшифрувати",
+      "messageLabel": "Криптограма",
       "settings": {
-        "keyword_placeholder": "Keyword, e.g. ZEBRAS",
-        "second_keyword_placeholder": "Second keyword",
-        "double_transposition": "Double transposition",
-        "incomplete_row": "Leave the last row incomplete",
-        "keep_spaces": "Keep spaces",
-        "gridHint": "The text written row-wise; the badges give the column reading order."
+        "keyword_placeholder": "Ключове слово, напр. ZEBRAS",
+        "second_keyword_placeholder": "Друге ключове слово",
+        "double_transposition": "Подвійна перестановка",
+        "incomplete_row": "Залишити останній рядок неповним",
+        "keep_spaces": "Зберігати пробіли",
+        "gridHint": "Текст, записаний рядок за рядком; позначки показують порядок читання стовпців."
       },
       "cracker": {
         "wizard": {
           "steps": {
-            "width": "Column count",
-            "order": "Order the columns",
-            "done": "Done"
+            "width": "Кількість стовпців",
+            "order": "Упорядкуйте стовпці",
+            "done": "Готово"
           },
           "width": {
-            "hint": "The ciphertext was cut into columns and stacked. Its length must divide evenly by the column count — pick a candidate; the match score says how English-like the best column arrangement looks.",
-            "card": "{{width}} columns × {{rows}} rows"
+            "hint": "Шифротекст розрізали на стовпці та склали. Його довжина мусить ділитися без остачі на кількість стовпців — виберіть кандидата; бал спорідненості показує, наскільки англійською виглядає найкраще розташування стовпців.",
+            "card": "{{width}} стовпців × {{rows}} рядків"
           },
           "order": {
-            "hint": "Drag the column strips (or select one and use ‹ ›) until the rows read like English. The badges score each neighbouring pair; a wrong order still shows all the right letters.",
-            "reset": "Reset order",
-            "selected": "Column {{position}} selected",
-            "badge": "Pair score: columns {{first}} → {{second}}",
-            "bestPartner": "The outlined column ({{position}}) reads best after the selected one — try moving it next."
+            "hint": "Перетягуйте смуги стовпців (або виберіть одну та користуйтеся ‹ ›), доки рядки не почнуть читатися англійською. Позначки оцінюють кожну сусідню пару; неправильний порядок усе одно показує всі правильні літери.",
+            "reset": "Скинути порядок",
+            "selected": "Вибрано стовпець {{position}}",
+            "badge": "Бал пари: стовпці {{first}} → {{second}}",
+            "bestPartner": "Окреслений стовпець ({{position}}) найкраще читається після вибраного — спробуйте пересунути його наступним."
           },
           "done": {
-            "hint": "This is the recovered plaintext (padding letters may trail at the end). Use this result to decrypt with the same column order in the Tool tab.",
-            "order": "Column order (first read → last): {{order}}"
+            "hint": "Це відновлений відкритий текст (наприкінці можуть бути літери-доповнення). «Використати цей ключ» — розшифрувати з тим самим порядком стовпців на вкладці «Інструмент».",
+            "order": "Порядок стовпців (перший → останній): {{order}}"
           }
         },
         "hints": {
           "toggles": {
-            "badges": "Pair-score badges",
-            "bestPartner": "Best-partner outline"
+            "badges": "Позначки балів пар",
+            "bestPartner": "Окреслення найкращого сусіда"
           }
         },
         "tooltips": {
-          "badges": "How English-like two neighbouring columns look together. High numbers in green — low ones mean the pair is probably wrong.",
-          "bestPartner": "Outlines the column that scores best after the selected one. A hint only — the move is yours.",
-          "livePreview": "The plaintext the current column order produces, updating as you drag."
+          "badges": "Наскільки англійською виглядають два сусідні стовпці разом. Високі числа — зелені; низький бал означає, що пара ймовірно неправильна.",
+          "bestPartner": "Окреслює стовпець, який найкраще читається після вибраного. Лише підказка — пересування за вами.",
+          "livePreview": "Відкритий текст, який дає поточний порядок стовпців, оновлюється під час перетягування."
         }
       }
     },
     "railFence": {
       "title": "Rail fence",
       "short_title": "Rail fence",
-      "directAction": "Encrypt",
-      "reverseAction": "Decrypt",
-      "messageLabel": "Cryptogram",
+      "directAction": "Зашифрувати",
+      "reverseAction": "Розшифрувати",
+      "messageLabel": "Криптограма",
       "settings": {
-        "railsLabel": "{{count}} rails",
-        "offsetLabel": "Start at rail {{value}}",
-        "keep_spaces": "Keep spaces",
-        "zigzagHint": "The letters ride the fence; the rails are read top to bottom."
+        "railsLabel": "{{count}} рейок",
+        "offsetLabel": "Почати з рейки {{value}}",
+        "keep_spaces": "Зберігати пробіли",
+        "zigzagHint": "Літери рухаються парканом; рейки зчитують згори вниз."
       },
       "cracker": {
         "wizard": {
           "steps": {
-            "try": "Try the rail counts",
-            "done": "Done"
+            "try": "Спробуйте кількості рейок",
+            "done": "Готово"
           },
           "try": {
-            "hint": "Slide the rail count (and the offset) — the fence re-draws and the plaintext candidate updates. When the rows read like English, you have it; the meter only measures how English-like each setting looks.",
-            "railsLabel": "Rails: {{value}}",
-            "offsetLabel": "Offset: {{value}}",
-            "meterLabel": "English-likeness",
-            "best": "the meter peaks at {{rails}} rails, offset {{offset}}"
+            "hint": "Рухайте повзунок кількості рейок (і зсуву) — паркан перемальовується, кандидат відкритого тексту оновлюється. Коли рядки читаються англійською — перемога; лічильник лише вимірює англійськість кожного налаштування.",
+            "railsLabel": "Рейки: {{value}}",
+            "offsetLabel": "Зсув: {{value}}",
+            "meterLabel": "Англійськість",
+            "best": "лічильник сягає піку на {{rails}} рейках, зсув {{offset}}"
           },
           "done": {
-            "hint": "This is the recovered plaintext. Use this result to decrypt with the same setting in the Tool tab.",
-            "setting": "Setting: {{rails}} rails, offset {{offset}}"
+            "hint": "Це відновлений відкритий текст. «Використати цей результат» — розшифрувати з тим самим налаштуванням на вкладці «Інструмент».",
+            "setting": "Налаштування: {{rails}} рейок, зсув {{offset}}"
           }
         },
         "hints": {
           "toggles": {
-            "bestMark": "Best-setting mark"
+            "bestMark": "Позначка найкращого налаштування"
           }
         },
         "tooltips": {
-          "bestMark": "Marks where the meter peaks over every rail count and offset. A hint only — the slider stays yours."
+          "bestMark": "Позначає, де лічильник сягає піку серед усіх кількостей рейок і зсувів. Лише підказка — повзунок залишається вашим."
         }
       }
     },
@@ -466,6 +466,10 @@
     },
     "cracker": {
       "inputLabel": "Шифротекст для зламу",
+      "grid": {
+        "moveLeft": "Пересунути цей стовпець на крок ліворуч",
+        "moveRight": "Пересунути цей стовпець на крок праворуч"
+      },
       "hints": {
         "title": "Підказки",
         "presets": {
@@ -529,10 +533,6 @@
       "suggestion": "можливо, {{suggestion}}?",
       "clear": "Очистити",
       "conflict": "{{letter}} призначено більш ніж одному символу — підстановка ставить у відповідність кожному символу рівно одну літеру."
-    },
-    "grid": {
-      "moveLeft": "Move this column one step left",
-      "moveRight": "Move this column one step right"
     },
     "pigpen": {
       "title": "Шифр «Свинюшка»",
@@ -665,14 +665,14 @@
       "rotate-right": "праву стрілку під дисками",
       "increment": "повзунок кроку",
       "keyword-input": "поле ключового слова",
-      "rails-picker": "the rails picker",
-      "offset-picker": "the offset picker",
-      "columnar-keyword": "the columnar keyword field",
-      "double-toggle": "the \"Double transposition\" checkbox",
-      "second-keyword-input": "the second keyword field",
-      "grid-toggle": "the \"Leave the last row incomplete\" checkbox",
-      "zigzag-fence": "the zigzag fence",
-      "transposition-grid": "the transposition grid",
+      "rails-picker": "вибірник рейок",
+      "offset-picker": "вибірник зсуву",
+      "columnar-keyword": "поле ключового слова columnar",
+      "double-toggle": "перемикач «Подвійна перестановка»",
+      "second-keyword-input": "поле другого ключового слова",
+      "grid-toggle": "перемикач «Залишити останній рядок неповним»",
+      "zigzag-fence": "зигзаг-паркан",
+      "transposition-grid": "сітка перестановки",
       "continuation-toggle": "перемикач «Продовжити після ключового слова»",
       "free-alphabet-toggle": "перемикач «Вільний алфавіт»",
       "free-alphabet-input": "поле вільного алфавіту",
@@ -1110,16 +1110,16 @@
         "keepCase": "Зберігати регістр: зберігає великі літери замість того, щоб усе писати прописними."
       },
       "columnar": {
-        "keyword": "The keyword fixes the column order: its letters sorted alphabetically say which column is read first, second, third…",
-        "secondKeyword": "A second keyword transposes the already-transposed text — the classic double transposition.",
-        "double": "Double transposition: encrypt with the first keyword, then transposition the result again with the second.",
-        "irregular": "Leave the last row incomplete: no padding letter is added, so the last row stays short (the classic hand cipher).",
-        "keepSpaces": "Keep spaces: spaces ride the zigzag like letters instead of being stripped."
+        "keyword": "Ключове слово задає порядок стовпців: його літери за алфавітом підказують, який стовпець читають першим, другим, третім…",
+        "secondKeyword": "Друге ключове слово переставляє вже переставлений текст — класична подвійна перестановка.",
+        "double": "Подвійна перестановка: зашифрувати першим ключовим словом, потім переставити результат другим.",
+        "irregular": "Залишити останній рядок неповним: літеру-доповнення не додають, останній рядок лишається коротким (класичний ручний шифр).",
+        "keepSpaces": "Зберігати пробіли: пробіли рухаються зигзагом як літери, замість того щоб вилучатися."
       },
       "railFence": {
-        "rails": "How many rails the fence has — the zigzag bounces between the top and bottom rail.",
-        "offset": "Which rail the first letter starts on. Offset 0 is the classic fence; any other start hides the usual tell that the first letter sits on top.",
-        "keepSpaces": "Keep spaces: spaces ride the zigzag like letters instead of being stripped."
+        "rails": "Скільки рейок має паркан — зигзаг стрибає між верхньою та нижньою рейками.",
+        "offset": "З якої рейки починається перша літера. Зсув 0 — класичний паркан; будь-який інший старт приховує звичну ознаку першої літери на вершині.",
+        "keepSpaces": "Зберігати пробіли: пробіли рухаються зигзагом як літери, замість того щоб вилучатися."
       },
       "morse": {
         "dot": "Символ, що грає короткий сигнал (крапку) у закодованому виводі.",
@@ -1371,13 +1371,12 @@
       "builtTitle": "Що вже зроблено",
       "nextTitle": "Що попереду",
       "built": {
-        "ciphers": "Десять сторінок шифрів з навчальними вкладками — інструмент, навчання, історія, практика",
-        "cryptoanalysis": "Майстри керованого криптоаналізу для Vigenère, ADFGVX, Affine, Playfair та Alberti",
+        "ciphers": "Чотирнадцять сторінок шифрів з навчальними вкладками — інструмент, навчання, історія, практика",
+        "cryptoanalysis": "Майстри керованого криптоаналізу для Vigenère, ADFGVX, Affine, Playfair, Alberti, Keyword, Columnar та Rail fence",
         "challenges": "Практичні завдання з підказками за рівнем складності — трьома мовами"
       },
       "next": {
-        "substitution": "Більше шифрів підстановки — гомофонний та ключовий",
-        "transposition": "Шифри перестановки — залізнична огорожа та стовпчиковий",
+        "substitution": "Гомофонний шифр підстановки — числа замість частих літер",
         "nihilist": "Шифр нігілістів — підстановка зустрічається з перестановкою",
         "saknussemm": "Пасхалки з поп-культури — шифр Арне Сакнусема"
       }

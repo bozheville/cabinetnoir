@@ -25,13 +25,12 @@
       "builtTitle": "What's built",
       "nextTitle": "What's next",
       "built": {
-        "ciphers": "Ten cipher pages with guided learning tabs — tool, learn, history, practice",
-        "cryptoanalysis": "Guided cryptoanalysis wizards for Vigenère, ADFGVX, Affine, Playfair and Alberti",
+        "ciphers": "Fourteen cipher pages with guided learning tabs — tool, learn, history, practice",
+        "cryptoanalysis": "Guided cryptoanalysis wizards for Vigenère, ADFGVX, Affine, Playfair, Alberti, Keyword, Columnar and Rail fence",
         "challenges": "Practice challenges with difficulty-matched hint presets — in three languages"
       },
       "next": {
-        "substitution": "More substitution ciphers — homophonic and keyword substitution",
-        "transposition": "Transposition ciphers — rail fence and columnar",
+        "substitution": "The homophonic substitution cipher — numbers replacing the frequent letters",
         "nihilist": "The Nihilist cipher — substitution meets transposition",
         "saknussemm": "Pop-culture easter eggs — the Arne Saknussemm cipher"
       }
@@ -618,6 +617,10 @@
     },
     "cracker": {
       "inputLabel": "Ciphertext to break",
+      "grid": {
+        "moveLeft": "Move this column one step left",
+        "moveRight": "Move this column one step right"
+      },
       "hints": {
         "title": "Hints",
         "presets": {
@@ -681,10 +684,6 @@
       "suggestion": "probably {{suggestion}}?",
       "clear": "Clear",
       "conflict": "{{letter}} is assigned to more than one symbol — a substitution maps each cipher symbol to exactly one letter."
-    },
-    "grid": {
-      "moveLeft": "Move this column one step left",
-      "moveRight": "Move this column one step right"
     },
     "pigpen": {
       "title": "Pigpen cipher",
