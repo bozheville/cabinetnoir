@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import {
   countSymbols,
   extractWords,
+  findConflicts,
   findDoubles,
   findOneLetterWords,
   findPatternMatches,
@@ -102,20 +103,29 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
     }
     return result;
   }, [mapping]);
-  const recoveredAlphabet = useMemo(
-    () => ALPHABET.split('').map((letter) => inverse[letter] || '·').join(''),
-    [inverse],
-  );
+  const recoveredAlphabet = useMemo(() => {
+    // Plain letters the ciphertext never reaches cannot be recovered;
+    // fill them with the unused cipher letters in alphabetical order so
+    // the hand-off alphabet stays a valid permutation (the fill is shown
+    // and noted on the Done step).
+    const boundSymbols = new Set(Object.keys(mapping));
+    const freeSymbols = ALPHABET.split('').filter((letter) => !boundSymbols.has(letter));
+    return ALPHABET.split('')
+      .map((letter) => inverse[letter] || freeSymbols.shift() || '·')
+      .join('');
+  }, [inverse, mapping]);
   const complete = distinct > 0
     && unassigned.length === 0
-    && Object.keys(inverse).length === 26;
-  const keywordGuess = complete ? keywordFromAlphabet(recoveredAlphabet) : null;
+    && findConflicts(mapping).length === 0;
+  const all26 = Object.keys(inverse).length === 26;
+  const keywordGuess = all26 ? keywordFromAlphabet(recoveredAlphabet) : null;
 
   const patternMatches = hints.patterns && step === 3
     ? findPatternMatches(words, mapping)
     : [];
   const doubles = hints.doubles && step === 3 ? findDoubles(symbols) : [];
   const oneLetterWords = hints.doubles && step === 3 ? findOneLetterWords(words) : [];
+  const conflicts = findConflicts(mapping);
 
   const applyWord = (word: string, candidate: string) => {
     const next: SymbolMapping = { ...mapping };
@@ -297,6 +307,11 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
           {!complete && (
             <Text size={300} color="amber500">
               {t('processing.keyword.cracker.wizard.done.incomplete')}
+            </Text>
+          )}
+          {complete && !all26 && (
+            <Text size={300}>
+              {t('processing.keyword.cracker.wizard.done.fillNote')}
             </Text>
           )}
         </Pane>

@@ -12,6 +12,7 @@ import {
 import { playfairEncrypt } from '@encryptors/Playfair/playfair-encryption';
 import { adfgvxEncrypt } from '@encryptors/Adfgvx/adfgvx-encryption';
 import { morseEncoding } from '@encryptors/Morse/morse-encoding';
+import { keywordEncrypt } from '@encryptors/Keyword/keyword-crypt';
 import { createEnigmaMachine } from '@learning/enigma-machine';
 
 export type ChallengeDifficulty = 'easy' | 'medium' | 'hard';
@@ -177,6 +178,44 @@ const AFFINE_DEMO = {
   answer: AFFINE_DEMO_PLAINTEXT,
   listOnPractice: false,
 };
+
+// Keyword substitution: spaces are kept so the cracker's word-pattern
+// step has words to bite on; the "key" is the keyword itself.
+const KEYWORD_KEEP_SPACES = true;
+const KEYWORD_DEMO_PLAINTEXT =
+  'THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG WHILE PACKING MY BOX '
+  + 'WITH FIVE DOZEN LIQUOR JUGS FOR THE JOURNEY SOUTH';
+const KEYWORD_EASY_PLAINTEXT =
+  'IT WAS THE BEST OF TIMES IT WAS THE WORST OF TIMES IT WAS THE AGE '
+  + 'OF WISDOM IT WAS THE AGE OF FOOLISHNESS IT WAS THE SEASON OF LIGHT';
+const KEYWORD_MEDIUM_PLAINTEXT =
+  'IT IS A TRUTH UNIVERSALLY ACKNOWLEDGED THAT A SINGLE MAN IN '
+  + 'POSSESSION OF A GOOD FORTUNE MUST BE IN WANT OF A WIFE';
+const KEYWORD_HARD_PLAINTEXT =
+  'FOUR SCORE AND SEVEN YEARS AGO OUR FATHERS BROUGHT FORTH ON THIS '
+  + 'CONTINENT A NEW NATION CONCEIVED IN LIBERTY AND DEDICATED TO THE '
+  + 'PROPOSITION THAT ALL MEN ARE CREATED EQUAL';
+
+const buildKeywordChallenge = (
+  id: string,
+  keyword: string,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+): Challenge => ({
+  id,
+  cipher: 'keyword',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: keywordEncrypt({
+    input: plaintext,
+    keyword,
+    keepSpaces: KEYWORD_KEEP_SPACES,
+  }),
+  difficulty,
+  keyLength: keyword.replace(/[^A-Z]/gi, '').length,
+  hints,
+  answer: plaintext,
+});
 
 // Atbash: a fixed mirror alphabet, so the "key" is always the same.
 const buildAtbashChallenge = (
@@ -869,6 +908,51 @@ export const CHALLENGES: Record<string, Challenge> = {
       'learning.challenges.enigma-hard-1.hint1',
       'learning.challenges.enigma-hard-1.hint2',
       'learning.challenges.enigma-hard-1.hint3',
+    ],
+  ),
+  'keyword-demo': {
+    id: 'keyword-demo',
+    cipher: 'keyword',
+    titleKey: 'learning.challenges.keyword-demo.title',
+    ciphertext: keywordEncrypt({
+      input: KEYWORD_DEMO_PLAINTEXT,
+      keyword: 'KRYPTOS',
+      keepSpaces: KEYWORD_KEEP_SPACES,
+    }),
+    difficulty: 'easy' as ChallengeDifficulty,
+    keyLength: 7,
+    hints: ['learning.challenges.keyword-demo.hint1'],
+    answer: KEYWORD_DEMO_PLAINTEXT,
+    listOnPractice: false,
+  },
+  'keyword-easy-1': buildKeywordChallenge(
+    'keyword-easy-1',
+    'GARDEN',
+    KEYWORD_EASY_PLAINTEXT,
+    'easy',
+    [
+      'learning.challenges.keyword-easy-1.hint1',
+      'learning.challenges.keyword-easy-1.hint2',
+    ],
+  ),
+  'keyword-medium-1': buildKeywordChallenge(
+    'keyword-medium-1',
+    'HARBOUR',
+    KEYWORD_MEDIUM_PLAINTEXT,
+    'medium',
+    [
+      'learning.challenges.keyword-medium-1.hint1',
+      'learning.challenges.keyword-medium-1.hint2',
+    ],
+  ),
+  'keyword-hard-1': buildKeywordChallenge(
+    'keyword-hard-1',
+    'MOUNTAIN',
+    KEYWORD_HARD_PLAINTEXT,
+    'hard',
+    [
+      'learning.challenges.keyword-hard-1.hint1',
+      'learning.challenges.keyword-hard-1.hint2',
     ],
   ),
 };
