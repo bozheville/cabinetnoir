@@ -525,7 +525,14 @@
       "assignment": {
         "undo": "Annuler",
         "redo": "Rétablir",
-        "clearAll": "Tout effacer"
+        "clearAll": "Tout effacer",
+        "clickCell": "Cliquez une case, puis choisissez sa lettre",
+        "suggestion": "Essayez {{suggestion}}",
+        "clear": "Effacer",
+        "conflict": "{{letter}} est déjà attribuée à un autre symbole — l'un des deux doit changer."
+      },
+      "candidate": {
+        "matchScore": "Correspondance : {{score}} %"
       }
     },
     "assignment": {
@@ -1300,11 +1307,13 @@
     },
     "columnar": {
       "era": "Première Guerre mondiale",
-      "origin": "Chiffres de campagne ; rendu célèbre par ADFGVX et le SOE"
+      "origin": "Chiffres de campagne ; rendu célèbre par ADFGVX et le SOE",
+      "description": "Les lettres gardent leur identité mais sont brassées par la lecture d'une grille colonne par colonne, dans l'ordre du mot-clé."
     },
     "railFence": {
       "era": "Guerre de Sécession",
-      "origin": "Chiffres en zigzag ; la scytale comme ancêtre antique"
+      "origin": "Chiffres en zigzag ; la scytale comme ancêtre antique",
+      "description": "Les lettres parcourent une clôture en zigzag diagonal et sont lues rail par rail."
     },
     "morse": {
       "description": "Un encodage, pas un chiffre : chaque lettre devient un motif public de points et de traits pour le télégraphe.",
@@ -1343,11 +1352,13 @@
     },
     "polybius": {
       "era": "Grèce antique, IIe siècle av. J.-C.",
-      "origin": "Le système de signalisation aux torches de Polybe, plus tard la base du code tap et du fractionnement"
+      "origin": "Le système de signalisation aux torches de Polybe, plus tard la base du code tap et du fractionnement",
+      "description": "Chaque lettre du message devient les numéros de ligne et de colonne de sa case dans une grille 5×5."
     },
     "nihilist": {
       "era": "Russie, années 1880",
-      "origin": "Des nihilistes russes faisant passer des nombres devant la censure ; un ancêtre du chiffre VIC"
+      "origin": "Des nihilistes russes faisant passer des nombres devant la censure ; un ancêtre du chiffre VIC",
+      "description": "Des coordonnées de Polybe plus une clé numérique répétitive, ajoutées chiffre par chiffre sans retenue — un Vigenère sur les nombres."
     }
   },
   "glossary": {
@@ -1483,7 +1494,10 @@
       "name": "Anagrammage",
       "definition": "Reconstituer un texte transposé en glissant des fragments de colonnes côte à côte jusqu'à ce que les lignes se lisent dans la langue — l'attaque manuelle classique contre la transposition."
     },
-    "additive-key": "Clé additive — un mot-clé converti en nombres qui se répètent sur le texte et s’ajoutent chiffre par chiffre, sans retenue."
+    "additive-key": {
+      "name": "Clé additive",
+      "definition": "Clé additive — un mot-clé converti en nombres qui se répètent sur le texte et s’ajoutent chiffre par chiffre, sans retenue."
+    }
   },
   "home": {
     "title": "Décodeur moderne et pratique pour les vieilles méthodes de dissimulation de la vérité",
@@ -1595,7 +1609,7 @@
       "nihilistDigits": "{{pairs}} paires de chiffres dans la plage classique des sommes nihilistes (22–110).",
       "homophonicFlat": "{{symbols}} symboles distincts — plus que ce qu'un alphabet de substitution lettre par lettre peut contenir.",
       "knownText.saknussemm": "C'est le parchemin d'Arne Saknussemm du « Voyage au centre de la Terre » de Jules Verne — {{letters}} lettres correspondantes.",
-      "polybiusDigits": "Toutes les {{pairs}} paires tiennent dans la plage du carré de Polybe (11–55)."
+      "polybiusPairs": "Toutes les {{pairs}} paires tiennent dans la plage du carré de Polybe (11–55)."
     },
     "metrics": {
       "letters": {

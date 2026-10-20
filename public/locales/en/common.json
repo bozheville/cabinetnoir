@@ -111,7 +111,7 @@
       "nihilistDigits": "{{pairs}} digit pairs in the classic Nihilist sum range (22–110).",
       "homophonicFlat": "{{symbols}} distinct symbols — more than any single-letter substitution alphabet holds.",
       "knownText.saknussemm": "This is the Arne Saknussemm parchment from Jules Verne's “Journey to the Centre of the Earth” — {{letters}} matching letters.",
-      "polybiusDigits": "All {{pairs}} pairs sit inside the Polybius square range (11–55)."
+      "polybiusPairs": "All {{pairs}} pairs sit inside the Polybius square range (11–55)."
     },
     "metrics": {
       "letters": {
@@ -678,7 +678,14 @@
       "assignment": {
         "undo": "Undo",
         "redo": "Redo",
-        "clearAll": "Clear all"
+        "clearAll": "Clear all",
+        "clickCell": "Click a cell, then pick its letter",
+        "suggestion": "Try {{suggestion}}",
+        "clear": "Clear",
+        "conflict": "{{letter}} is already assigned to another symbol — one of the two must change."
+      },
+      "candidate": {
+        "matchScore": "Match: {{score}}%"
       }
     },
     "assignment": {
@@ -1404,8 +1411,6 @@
         "dot": "The character playing the short signal (the dot) in the encoded output.",
         "dash": "The character playing the long signal (the dash) in the encoded output."
       },
-      "playfair.key": "The keyword: once deduplicated it seeds the 5×5 letter square — the cipher's entire key.",
-      "enigma.key": "The rotors' start positions (the Grundstellung) — three letters A–Z. On the real machine, the key also carried the rotor order, the ring settings and the plugboard pairs.",
       "adfgvx": {
         "variant": "The variant: ADFGX uses a 5×5 letter square, ADFGVX adds a sixth row with the digits 0–9.",
         "square-key": "The keyed square: the key's letters fill the square first (duplicates removed, J folded into I), the rest of the alphabet follows. Change it and both the coordinates and the final transposition change.",
@@ -1420,6 +1425,12 @@
         "squareKey": "Optional keyword for the keyed square. Empty = the plain square.",
         "key": "The additive key word: its coordinate numbers repeat over the whole text.",
         "spaced": "Write the sums with spaces (the classic look) or as one continuous stream."
+      },
+      "playfair": {
+        "key": "The keyword: once deduplicated it seeds the 5×5 letter square — the cipher's entire key."
+      },
+      "enigma": {
+        "key": "The rotors' start positions (the Grundstellung) — three letters A–Z. On the real machine, the key also carried the rotor order, the ring settings and the plugboard pairs."
       }
     },
     "caesar": {
@@ -1449,11 +1460,13 @@
     },
     "columnar": {
       "era": "First World War",
-      "origin": "Field ciphers; made famous by ADFGVX and the SOE"
+      "origin": "Field ciphers; made famous by ADFGVX and the SOE",
+      "description": "The letters keep their identity but are shuffled by reading a grid column by column, in keyword order."
     },
     "railFence": {
       "era": "American Civil War",
-      "origin": "Fence-line ciphers; the scytale as the ancient forerunner"
+      "origin": "Fence-line ciphers; the scytale as the ancient forerunner",
+      "description": "The letters ride a diagonal zigzag fence and are read off rail by rail."
     },
     "morse": {
       "description": "An encoding, not a cipher: every letter becomes a public pattern of dots and dashes for the telegraph.",
@@ -1492,11 +1505,13 @@
     },
     "polybius": {
       "era": "Classical Greece, 2nd century BC",
-      "origin": "Polybius' torch-signalling scheme, later the basis of tap code and fractionation"
+      "origin": "Polybius' torch-signalling scheme, later the basis of tap code and fractionation",
+      "description": "Every letter of the message becomes the row and column numbers of its cell in a 5×5 grid."
     },
     "nihilist": {
       "era": "Russia, 1880s",
-      "origin": "Russian Nihilist prisoners smuggling numbers past the censors; a forerunner of the VIC cipher"
+      "origin": "Russian Nihilist prisoners smuggling numbers past the censors; a forerunner of the VIC cipher",
+      "description": "Polybius coordinates plus a repeating numeric key, added digit by digit without carry — Vigenère on numbers."
     }
   },
   "glossary": {
@@ -1632,6 +1647,9 @@
       "name": "Anagramming",
       "definition": "Rebuilding a transposed text by sliding column fragments side by side until rows read like the language — the classic hand attack on transposition ciphers."
     },
-    "additive-key": "Additive key — a keyword converted to numbers that repeat over the text and are added digit by digit, without carry."
+    "additive-key": {
+      "name": "Additive key",
+      "definition": "Additive key — a keyword converted to numbers that repeat over the text and are added digit by digit, without carry."
+    }
   }
 }
