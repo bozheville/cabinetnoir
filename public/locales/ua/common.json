@@ -139,7 +139,7 @@
             "keyword": "Ключовим словом було, імовірно: {{keyword}}",
             "noKeyword": "Алфавіт не має форми ключового слова — використано перемішаний алфавіт.",
             "incomplete": "Призначте кожен символ шифротексту, щоб увімкнути «Використати цей ключ».",
-            "fillNote": "Plain letters that never appear in the text keep their default fill — they cannot be recovered from this text."
+            "fillNote": "Літери відкритого тексту, яких немає в цьому тексті, лишають стандартне заповнення — з цього тексту їх не відновити."
           }
         },
         "hints": {

@@ -139,7 +139,7 @@
             "keyword": "Le mot-clé était probablement : {{keyword}}",
             "noKeyword": "L'alphabet n'a pas la forme d'un mot-clé — un alphabet mélangé a été utilisé.",
             "incomplete": "Attribuez chaque symbole du texte chiffré pour débloquer « Utiliser cette clé ».",
-            "fillNote": "Plain letters that never appear in the text keep their default fill — they cannot be recovered from this text."
+            "fillNote": "Les lettres claires qui n'apparaissent jamais dans le texte gardent leur remplissage par défaut — impossible de les retrouver à partir de ce texte."
           }
         },
         "hints": {
@@ -1343,7 +1343,7 @@
     },
     "polybius": {
       "era": "Grèce antique, IIe siècle av. J.-C.",
-      "origin": "Le système de signalisation aux torches de Polybe, plus tard la base du code tap et de la fractionnement"
+      "origin": "Le système de signalisation aux torches de Polybe, plus tard la base du code tap et du fractionnement"
     },
     "nihilist": {
       "era": "Russie, années 1880",

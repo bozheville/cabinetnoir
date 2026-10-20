@@ -6,7 +6,7 @@
    et chiffrez `ATTACK AT DAWN`. La sortie est un flux de nombres.
 2. Regardez la table d'addition sous le texte : chaque cellule montre
    `clair + clé = somme` d'une lettre. Suivez la colonne de la clé —
-   elle se répète tous les six chiffres, la longueur de RUSSIA.
+   elle se répète toutes les six lettres, la longueur de RUSSIA.
 3. Passez en mode déchiffrer et recollez les nombres. La soustraction
    défait l'addition chiffre par chiffre ; jamais d'emprunt.
 
