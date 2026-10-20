@@ -240,6 +240,27 @@
         "keep_case": "Keep case"
       }
     },
+    "keyword": {
+      "title": "Keyword substitution",
+      "short_title": "Keyword",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram",
+      "settings": {
+        "keyword_placeholder": "Keyword, e.g. KRYPTOS",
+        "free_alphabet": "Free alphabet",
+        "freeAlphabet_placeholder": "All 26 letters, any order",
+        "continue_from_last": "Continue after the keyword",
+        "keep_spaces": "Keep spaces",
+        "keep_case": "Keep case",
+        "alphabetHint": "Top row: plain alphabet. Bottom row: the cipher alphabet it maps to.",
+        "freeAlphabetError": {
+          "empty": "Type an alphabet first — all 26 letters, in any order.",
+          "length": "An alphabet needs exactly 26 letters — this one has a different count (spaces and punctuation are ignored).",
+          "duplicates": "Every letter may appear only once — this alphabet repeats a letter."
+        }
+      }
+    },
     "enigma": {
       "title": "Enigma machine",
       "short_title": "Enigma",
@@ -637,6 +658,12 @@
       "rotate-left": "the left arrow under the discs",
       "rotate-right": "the right arrow under the discs",
       "increment": "the increment slider",
+      "keyword-input": "the keyword field",
+      "continuation-toggle": "the \"Continue after the keyword\" checkbox",
+      "free-alphabet-toggle": "the \"Free alphabet\" checkbox",
+      "free-alphabet-input": "the free alphabet field",
+      "free-alphabet-error": "the free alphabet warning",
+      "alphabet-strip": "the alphabet strip",
       "period": "the period slider",
       "multiplier": "the multiplier field",
       "shift": "the shift field",
@@ -976,6 +1003,13 @@
         "key": "Add this glyph to the message.",
         "delete": "Remove the last glyph.",
         "clear": "Clear the message."
+      },
+      "keyword": {
+        "keyword": "The keyword builds the cipher alphabet: its letters first (duplicates dropped), then the remaining letters in order.",
+        "continueFromLast": "Instead of continuing from A after the keyword, keep counting from the keyword's last letter.",
+        "freeAlphabet": "Skip the keyword and type any arrangement of all 26 letters — every letter exactly once.",
+        "keepSpaces": "Keep spaces: preserves the layout of words instead of removing them all.",
+        "keepCase": "Keep case: preserves capitals instead of writing everything in capitals."
       }
     },
     "caesar": {

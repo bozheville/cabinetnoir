@@ -79,6 +79,27 @@
       "reverseAction": "Décrypter",
       "messageLabel": "Cryptogramme"
     },
+    "keyword": {
+      "title": "Keyword substitution",
+      "short_title": "Keyword",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram",
+      "settings": {
+        "keyword_placeholder": "Keyword, e.g. KRYPTOS",
+        "free_alphabet": "Free alphabet",
+        "freeAlphabet_placeholder": "All 26 letters, any order",
+        "continue_from_last": "Continue after the keyword",
+        "keep_spaces": "Keep spaces",
+        "keep_case": "Keep case",
+        "alphabetHint": "Top row: plain alphabet. Bottom row: the cipher alphabet it maps to.",
+        "freeAlphabetError": {
+          "empty": "Type an alphabet first — all 26 letters, in any order.",
+          "length": "An alphabet needs exactly 26 letters — this one has a different count (spaces and punctuation are ignored).",
+          "duplicates": "Every letter may appear only once — this alphabet repeats a letter."
+        }
+      }
+    },
     "rot13": {
       "title": "ROT13",
       "short_title": "ROT13",
@@ -476,6 +497,12 @@
       "rotate-left": "la flèche gauche sous les disques",
       "rotate-right": "la flèche droite sous les disques",
       "increment": "le curseur d'incrément",
+      "keyword-input": "the keyword field",
+      "continuation-toggle": "the \"Continue after the keyword\" checkbox",
+      "free-alphabet-toggle": "the \"Free alphabet\" checkbox",
+      "free-alphabet-input": "the free alphabet field",
+      "free-alphabet-error": "the free alphabet warning",
+      "alphabet-strip": "the alphabet strip",
       "period": "le curseur de période",
       "multiplier": "le champ du multiplicateur",
       "shift": "le champ du décalage",
@@ -828,6 +855,13 @@
       },
       "atbash": {
         "alphabet": "Le sélecteur d'alphabet : Atbash met en miroir l'alphabet choisi — le seul choix offert par le chiffre."
+      },
+      "keyword": {
+        "keyword": "The keyword builds the cipher alphabet: its letters first (duplicates dropped), then the remaining letters in order.",
+        "continueFromLast": "Instead of continuing from A after the keyword, keep counting from the keyword's last letter.",
+        "freeAlphabet": "Skip the keyword and type any arrangement of all 26 letters — every letter exactly once.",
+        "keepSpaces": "Keep spaces: preserves the layout of words instead of removing them all.",
+        "keepCase": "Keep case: preserves capitals instead of writing everything in capitals."
       },
       "morse": {
         "dot": "Le caractère qui joue le signal court (le point) dans la sortie encodée.",
