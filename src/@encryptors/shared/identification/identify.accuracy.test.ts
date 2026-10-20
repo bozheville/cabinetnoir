@@ -19,10 +19,9 @@ import EnigmaPkg from 'enigma';
 import { railFenceEncrypt } from '@encryptors/shared/transposition';
 import { columnarEncrypt } from '@encryptors/shared/transposition';
 import { keywordEncrypt } from '@encryptors/Keyword/keyword-crypt';
-import {
-  homophonicEncrypt,
-  nihilistEncrypt,
-} from './__fixtures__/reference';
+import { homophonicEncrypt } from './__fixtures__/reference';
+import { nihilistEncrypt } from '@encryptors/Nihilist/nihilist-crypt';
+import { polybiusEncrypt } from '@encryptors/Polybius/polybius-crypt';
 
 const SOURCE =
   'It was the best of times, it was the worst of times, it was the age of '
@@ -86,7 +85,8 @@ const ENCRYPTORS: Record<string, (text: string) => string> = {
   columnar: (text) => columnarEncrypt(text, [3, 1, 4, 0, 2]),
   playfair: (text) => playfairEncrypt(text, 'MONARCHY'),
   adfgvx: (text) => adfgvxEncrypt(text, 'SECRET', 'CARGO'),
-  nihilist: (text) => nihilistEncrypt(text, 'RUSSIA'),
+  nihilist: (text) => nihilistEncrypt({ input: text, key: 'RUSSIA' }),
+  polybius: (text) => polybiusEncrypt({ input: text, keyword: '' }),
 };
 
 const LENGTHS = [50, 100, 200, 500];

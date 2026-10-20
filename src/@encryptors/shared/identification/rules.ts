@@ -301,4 +301,11 @@ export const CIPHER_RULES: Rule[] = [
     (profile) => (profile.nihilistLike
       ? { pairs: profile.digitPairs }
       : null)),
+
+  // Polybius: digit pairs confined to the 11–55 square range — but only
+  // when the Nihilist rule does not claim the wider sum range first.
+  rule('polybiusPairs', cipher('polybius'), 40,
+    (profile) => ((profile.polybiusLike && !profile.nihilistLike)
+      ? { pairs: profile.digitPairs }
+      : null)),
 ];
