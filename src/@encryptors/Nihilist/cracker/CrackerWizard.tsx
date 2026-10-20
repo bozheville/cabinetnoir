@@ -181,6 +181,19 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
   // ciphertext never produces, which a short text can lack but the
   // square still needs for the hand-off.
   const unassigned = SQUARE_COORDINATES.filter((symbol) => !mapping[symbol]);
+  // The step highlights the three unassigned cells with the strongest
+  // frequency evidence — the same signal the bars carry — not merely
+  // the first ones in reading order.
+  const highlighted = useMemo(() => {
+    const counts = new Map<string, number>();
+    coordinates.forEach((pair) => {
+      counts.set(pair, (counts.get(pair) || 0) + 1);
+    });
+    return unassigned
+      .slice()
+      .sort((a, b) => (counts.get(b) || 0) - (counts.get(a) || 0))
+      .slice(0, 3);
+  }, [unassigned, coordinates]);
   const complete = allPinned
     && symbols.length > 0
     && unassigned.length === 0
@@ -422,7 +435,7 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
             onAssign={assign}
             alphabet={STANDARD_ALPHABET}
             order={SQUARE_COORDINATES}
-            highlighted={unassigned.slice(0, 3)}
+            highlighted={highlighted}
             showSuggestions={hints.suggestions}
           />
           {Object.keys(mapping).length > 0 && (
