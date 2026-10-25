@@ -1663,7 +1663,9 @@
       "playfairHasJ": "La lettre J apparaît — Playfair la remplace, ce ne peut donc pas être Playfair.",
       "adfgvxSet": "Le texte n'utilise que les lettres {{letters}} — l'alphabet de fractionnement ADFGVX.",
       "adfgvxNotSet": "Des lettres hors de ADFGVX apparaissent — pas une transmission fractionnée ADFGVX.",
-      "nihilistDigits": "{{pairs}} paires de chiffres dans la plage classique des sommes nihilistes (22–110).",
+      "nihilistDigits": "{{pairs}} nombres dans la plage classique des sommes nihilistes (22–110), sommes à trois chiffres incluses.",
+      "nihilistDigitsDominant": "Que des chiffres, et {{ratio}} % des nombres tiennent dans la plage des sommes nihilistes (22–110).",
+      "nihilistBlockShape": "Texte composé uniquement de nombres — la forme écrite classique d'un chiffre par blocs comme le Nihiliste.",
       "homophonicFlat": "{{symbols}} symboles distincts — plus que ce qu'un alphabet de substitution lettre par lettre peut contenir.",
       "knownText.saknussemm": "C'est le parchemin d'Arne Saknussemm du « Voyage au centre de la Terre » de Jules Verne — {{letters}} lettres correspondantes.",
       "polybiusPairs": "Toutes les {{pairs}} paires tiennent dans la plage du carré de Polybe (11–55)."

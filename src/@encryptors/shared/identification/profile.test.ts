@@ -174,9 +174,28 @@ describe('profileText: structural flags', () => {
   });
 
   it('keeps polybius and nihilist ranges apart', () => {
-    const profile = profileText('23 45 61 72 84 95 33 41');
-    expect(profile.polybiusLike).toBe(false); // 61 > 55
-    expect(profile.nihilistLike).toBe(true); // all within 22-110
+    const profile = profileText('23 45 63 72 84 95 33 43');
+    expect(profile.polybiusLike).toBe(false); // 63+ are above 55
+    expect(profile.nihilistLike).toBe(true); // all legal no-carry sums
+  });
+
+  it('rejects numbers that cannot be no-carry sums', () => {
+    // 61 = column sums 6 and 1 — a coordinate sum of 1 is impossible.
+    const profile = profileText('23 45 61 72 84 95 33 43');
+    expect(profile.nihilistLike).toBe(false);
+    expect(profile.nihilistInRangeRatio).toBeCloseTo(7 / 8);
+  });
+
+  it('parses three-digit sums in separated and dense presentations', () => {
+    const spaced = profileText('34 56 110 47 28 65');
+    expect(spaced.nihilistLike).toBe(true);
+    expect(spaced.digitPairs).toBe(6);
+
+    // The old fixed two-digit chunking read this as 34,56,11,04,7 — out
+    // of range, flag dead. Backtracking segmentation keeps it alive.
+    const dense = profileText('3456110472865');
+    expect(dense.nihilistLike).toBe(true);
+    expect(dense.digitPairs).toBe(6);
   });
 
   it('scores a flat distribution high on uniformity', () => {

@@ -108,7 +108,9 @@
       "playfairHasJ": "The letter J appears — Playfair replaces it, so this cannot be Playfair.",
       "adfgvxSet": "The text uses only the letters {{letters}} — the ADFGVX fractionation alphabet.",
       "adfgvxNotSet": "Letters outside ADFGVX appear — not a fractionated ADFGVX transmission.",
-      "nihilistDigits": "{{pairs}} digit pairs in the classic Nihilist sum range (22–110).",
+      "nihilistDigits": "{{pairs}} numbers in the classic Nihilist sum range (22–110), three-digit sums included.",
+      "nihilistDigitsDominant": "Digits only, and {{ratio}}% of the numbers fit the Nihilist sum range (22–110).",
+      "nihilistBlockShape": "Number-only output — the classic written form of a block cipher like Nihilist.",
       "homophonicFlat": "{{symbols}} distinct symbols — more than any single-letter substitution alphabet holds.",
       "knownText.saknussemm": "This is the Arne Saknussemm parchment from Jules Verne's “Journey to the Centre of the Earth” — {{letters}} matching letters.",
       "polybiusPairs": "All {{pairs}} pairs sit inside the Polybius square range (11–55)."

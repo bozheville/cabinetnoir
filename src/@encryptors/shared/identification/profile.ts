@@ -1,4 +1,5 @@
 import { normalize } from '@encryptors/shared/analysis/normalize';
+import { isNihilistSum, parseNihilistNumbers } from '@encryptors/Nihilist/nihilist-crypt';
 import {
   ALPHABET_LENGTH,
   ENGLISH_FREQUENCIES,
@@ -20,8 +21,6 @@ import {
   MIN_DIGIT_PAIRS,
   MIN_GROUPS_FOR_FLAG,
   MIN_LETTERS,
-  NIHILIST_MAX,
-  NIHILIST_MIN,
   POLYBIUS_MAX,
   POLYBIUS_MIN,
   RELIABLE_LETTERS,
@@ -116,11 +115,14 @@ export interface TextProfile {
   // ADFGVX(/ADFGX) fractionation: every letter from the ADFGVX set.
   adfgvxSet: boolean;
 
-  // Digit structure (Polybius / Nihilist outputs): two-digit groups and
-  // whether they all fit the classic ranges.
+  // Digit structure (Polybius / Nihilist outputs): the parsed numbers
+  // and how they fit the classic ranges. `nihilistLike` is the strict
+  // flag (every number is a legal no-carry sum), `nihilistInRangeRatio`
+  // the graded version for near-misses.
   digitPairs: number;
   polybiusLike: boolean;
   nihilistLike: boolean;
+  nihilistInRangeRatio: number;
 
   // Flatness score for the homophonic fingerprint (with many distinct
   // symbols).
@@ -291,18 +293,32 @@ export const profileText = (input: string): TextProfile => {
   const adfgvxSet = letterCount > 0
     && letters.split('').every((letter) => ADFGVX_LETTERS.includes(letter));
 
-  // Digit structure on the raw input: digits in order, read as two-digit
-  // numbers when there is an even count of them.
-  const digitPairs = digitSequence.length >= 2 ? Math.floor(digitSequence.length / 2) : 0;
-  const pairNumbers: number[] = [];
-  for (let index = 0; index + 1 < digitSequence.length; index += 2) {
-    pairNumbers.push(Number(digitSequence.slice(index, index + 2)));
+  // Digit structure: parse the raw input into its numbers first, then
+  // measure them. Separated presentations ("34 56 110 47") keep the
+  // numbers as written; a dense stream is segmented with the Nihilist
+  // tool's own parser (backtracking, so a three-digit 100–110 sum does
+  // not shift every following pair), falling back to fixed two-digit
+  // chunks when no legal segmentation exists (plain Polybius streams).
+  const digitGroups = input.split(/[^0-9]+/).filter(Boolean);
+  let digitNumbers: number[] = [];
+  if (digitGroups.length > 1) {
+    digitNumbers = digitGroups.map(Number);
+  } else if (digitGroups.length === 1) {
+    digitNumbers = parseNihilistNumbers(digitGroups[0]);
+    if (digitNumbers.length === 0) {
+      const digits = digitGroups[0];
+      for (let index = 0; index + 1 < digits.length; index += 2) {
+        digitNumbers.push(Number(digits.slice(index, index + 2)));
+      }
+    }
   }
-  const allInRange = (min: number, max: number): boolean =>
-    digitPairs >= MIN_DIGIT_PAIRS
-    && pairNumbers.every((value) => value >= min && value <= max);
-  const polybiusLike = allInRange(POLYBIUS_MIN, POLYBIUS_MAX);
-  const nihilistLike = allInRange(NIHILIST_MIN, NIHILIST_MAX);
+  const digitPairs = digitNumbers.length;
+  const hasEnoughPairs = digitPairs >= MIN_DIGIT_PAIRS;
+  const nihilistSumCount = digitNumbers.filter(isNihilistSum).length;
+  const nihilistInRangeRatio = digitPairs > 0 ? nihilistSumCount / digitPairs : 0;
+  const polybiusLike = hasEnoughPairs
+    && digitNumbers.every((value) => value >= POLYBIUS_MIN && value <= POLYBIUS_MAX);
+  const nihilistLike = hasEnoughPairs && nihilistInRangeRatio === 1;
 
   // Uniformity vs a flat distribution: the homophonic fingerprint.
   const uniformChi = counts.reduce((sum, count) => {
@@ -370,6 +386,7 @@ export const profileText = (input: string): TextProfile => {
     digitPairs,
     polybiusLike,
     nihilistLike,
+    nihilistInRangeRatio,
     uniformityScore,
     sliceShiftScore,
     mixedCase,

@@ -46,6 +46,9 @@ export const POLYBIUS_MIN = 11;
 export const POLYBIUS_MAX = 55;
 export const NIHILIST_MIN = 22;
 export const NIHILIST_MAX = 110;
+// Share of parsed digit numbers that must be valid Nihilist sums for the
+// "dominant" support rule (the strict flag demands every single one).
+export const NIHILIST_IN_RANGE_RATIO = 0.8;
 // Alberti disc: shorter than the alphabet, so its ciphertext uses fewer
 // distinct letters.
 export const ALBERTI_MAX_DISTINCT = 23;
