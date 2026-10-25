@@ -10,10 +10,10 @@ NOT committed — cache a copy and pass its path:
 
 Outputs (byte-identical when the corpus is unchanged):
 
-- src/@encryptors/shared/analysis/trigram-data.ts
-  the full 17,576-entry trigram table, log10-frequency quantized to
-  one byte per trigram, base64-packed, plus the calibration constants
-  the scorer needs.
+- src/@encryptors/shared/analysis/ngram-data.ts
+  the full English trigram table (17,576 entries) AND the full bigram
+  table (676 entries), log10-frequency quantized to one byte each,
+  base64-packed, plus the calibration constants the scorers need.
 - src/@encryptors/shared/analysis/english-stats.ts
   CRIB_WORDS: the top 200 alphabetic words, the corpus-derived half of
   the Keyword cracker's pattern-word list.
@@ -31,13 +31,16 @@ import math
 import sys
 from collections import Counter
 
-TARGET_TRIGRAM_DATA = 'src/@encryptors/shared/analysis/trigram-data.ts'
+TARGET_TRIGRAM_DATA = 'src/@encryptors/shared/analysis/ngram-data.ts'
 TARGET_ENGLISH_STATS = 'src/@encryptors/shared/analysis/english-stats.ts'
 
 # Quantization: seen trigrams map to log10(percent) on [-4.5, -0.5],
 # byte 1..255; byte 0 marks "never seen" and decodes to the floor.
 FLOOR_LOG = -4.5
 TOP_LOG = -0.5
+# Bigrams run an order of magnitude hotter (TH ~ 3.5%); their scale
+# tops out half a decade higher so the common pairs stay discriminable.
+BIGRAM_TOP_LOG = 0.5
 BYTE_MAX = 255
 CRIB_WORD_COUNT = 200
 
@@ -68,9 +71,11 @@ COMMON_SYLLABLES = [
 ]
 
 
-def offset(trigram):
-    return ((ord(trigram[0]) - 65) * 26 + (ord(trigram[1]) - 65)) * 26 \
-        + (ord(trigram[2]) - 65)
+def offset(ngram):
+    result = 0
+    for char in ngram:
+        result = result * 26 + (ord(char) - 65)
+    return result
 
 
 def load_words(path):
@@ -85,34 +90,44 @@ def load_words(path):
     return words
 
 
-def build_trigrams(path):
-    counts = Counter()
-    total = 0
+def build_ngrams(path):
+    trigram_counts = Counter()
+    bigram_counts = Counter()
+    trigram_total = 0
+    bigram_total = 0
     with open(path, encoding='utf-8') as handle:
         for line in handle:
             word, _, count = line.rstrip('\n').partition('\t')
             word = word.upper()
-            if not word.isalpha() or len(word) < 3:
+            if not word.isalpha() or len(word) < 2:
                 continue
             weight = int(count)
-            for index in range(len(word) - 2):
-                counts[word[index:index + 3]] += weight
-                total += weight
-    scores = bytearray(26 ** 3)
-    for trigram, count in counts.items():
-        logpct = math.log10(count / total * 100)
-        clamped = max(FLOOR_LOG, min(TOP_LOG, logpct))
-        byte = round((clamped - FLOOR_LOG) / (TOP_LOG - FLOOR_LOG) * BYTE_MAX)
-        scores[offset(trigram)] = max(1, byte)
-    # Calibration: the expected log-score of a trigram drawn from this
-    # corpus — the "average English" anchor the scorer normalizes with.
-    english_average = 0.0
-    for trigram, count in counts.items():
-        logpct = math.log10(count / total * 100)
-        clamped = max(FLOOR_LOG, min(TOP_LOG, logpct))
-        english_average += clamped * count
-    english_average = round(english_average / total, 4)
-    return bytes(scores), english_average, len(counts)
+            for index in range(len(word) - 1):
+                bigram_counts[word[index:index + 2]] += weight
+                bigram_total += weight
+            if len(word) >= 3:
+                for index in range(len(word) - 2):
+                    trigram_counts[word[index:index + 3]] += weight
+                    trigram_total += weight
+
+    def quantize(counts, total, top_log):
+        scores = bytearray(26 ** len(next(iter(counts))))
+        for ngram, count in counts.items():
+            logpct = math.log10(count / total * 100)
+            clamped = max(FLOOR_LOG, min(top_log, logpct))
+            byte = round((clamped - FLOOR_LOG) / (top_log - FLOOR_LOG) * BYTE_MAX)
+            scores[offset(ngram)] = max(1, byte)
+        average = 0.0
+        for ngram, count in counts.items():
+            logpct = math.log10(count / total * 100)
+            clamped = max(FLOOR_LOG, min(top_log, logpct))
+            average += clamped * count
+        return bytes(scores), round(average / total, 4)
+
+    trigram_scores, trigram_average = quantize(trigram_counts, trigram_total, TOP_LOG)
+    bigram_scores, bigram_average = quantize(bigram_counts, bigram_total, BIGRAM_TOP_LOG)
+    return (trigram_scores, trigram_average, len(trigram_counts),
+            bigram_scores, bigram_average, len(bigram_counts))
 
 
 def wrap(base64_text, width=100):
@@ -122,19 +137,22 @@ def wrap(base64_text, width=100):
                      for index, line in enumerate(lines))
 
 
-def write_trigram_data(scores, english_average, distinct):
-    data = base64.b64encode(scores).decode('ascii')
+def write_ngram_data(trigram_scores, trigram_average, trigram_distinct,
+                     bigram_scores, bigram_average, bigram_distinct):
+    trigram_b64 = base64.b64encode(trigram_scores).decode('ascii')
+    bigram_b64 = base64.b64encode(bigram_scores).decode('ascii')
     content = f"""// GENERATED by scripts/generate-english-stats.py — do not edit by
 // hand; regenerate with the script instead.
 //
-// The full English trigram table: 17,576 log10-frequency scores, one
-// byte each, derived from Peter Norvig's count_1w.txt word list
-// (Google Books corpus, https://norvig.com/mayzner.html). Byte 0
-// marks a trigram the corpus never produced; the score it decodes to
-// is TRIGRAM_FLOOR_LOG.
+// The full English n-gram tables: 17,576 trigram scores and 676
+// bigram scores, one byte each, derived from Peter Norvig's
+// count_1w.txt word list (Google Books corpus,
+// https://norvig.com/mayzner.html). Byte 0 marks an n-gram the corpus
+// never produced; the score it decodes to is the floor.
 //
-// {distinct} distinct trigrams observed. The bytes are base64-packed;
-// at module load they decode once into a Uint8Array.
+// {trigram_distinct} distinct trigrams, {bigram_distinct} distinct
+// bigrams observed. The bytes are base64-packed; at module load they
+// decode once into Uint8Arrays.
 //
 // Upgrade path (documented, not built): if trigram feedback proves too
 // weak, the same generator can emit quadgrams — a trimmed top-20k
@@ -143,25 +161,34 @@ def write_trigram_data(scores, english_average, distinct):
 // lazy-fetched from public/ on first cracker open, never bundled.
 
 export const TRIGRAM_COUNT = 26 ** 3;
+export const BIGRAM_COUNT = 26 ** 2;
 export const TRIGRAM_FLOOR_LOG = {FLOOR_LOG};
 export const TRIGRAM_TOP_LOG = {TOP_LOG};
-// The expected log-score of an average English trigram — the anchor
-// scoreTrigrams normalizes against.
-export const TRIGRAM_ENGLISH_AVERAGE = {english_average};
+export const BIGRAM_TOP_LOG = {BIGRAM_TOP_LOG};
+// The expected log-scores of average English n-grams — the anchors
+// the scorers normalize against.
+export const TRIGRAM_ENGLISH_AVERAGE = {trigram_average};
+export const BIGRAM_ENGLISH_AVERAGE = {bigram_average};
 
-const DATA = (
-{wrap(data)}
+const TRIGRAM_DATA = (
+{wrap(trigram_b64)}
 );
 
+const BIGRAM_DATA = (
+{wrap(bigram_b64)}
+);
 
-export const TRIGRAM_SCORES: Uint8Array = (() => {{
-  const binary = atob(DATA);
+const decode = (base64: string): Uint8Array => {{
+  const binary = atob(base64);
   const scores = new Uint8Array(binary.length);
   for (let index = 0; index < binary.length; index += 1) {{
     scores[index] = binary.charCodeAt(index);
   }}
   return scores;
-}})();
+}};
+
+export const TRIGRAM_SCORES: Uint8Array = decode(TRIGRAM_DATA);
+export const BIGRAM_SCORES: Uint8Array = decode(BIGRAM_DATA);
 """
     with open(TARGET_TRIGRAM_DATA, 'w', encoding='utf-8') as handle:
         handle.write(content)
@@ -207,12 +234,14 @@ export const COMMON_SYLLABLES: CommonSyllable[] =
 def main():
     if len(sys.argv) != 2:
         sys.exit('usage: generate-english-stats.py <count_1w.txt>')
-    scores, english_average, distinct = build_trigrams(sys.argv[1])
-    write_trigram_data(scores, english_average, distinct)
+    (trigram_scores, trigram_average, trigram_distinct,
+     bigram_scores, bigram_average, bigram_distinct) = build_ngrams(sys.argv[1])
+    write_ngram_data(trigram_scores, trigram_average, trigram_distinct,
+                     bigram_scores, bigram_average, bigram_distinct)
     crib_words = [word for word, _ in load_words(sys.argv[1])]
     write_english_stats(crib_words)
-    print(f'trigram table: {distinct} distinct trigrams, '
-          f'english average log-score {english_average}')
+    print(f'ngram tables: {trigram_distinct} trigrams, {bigram_distinct} '
+          f'bigrams; averages {trigram_average} / {bigram_average}')
     print(f'english-stats.ts: {len(crib_words)} crib words, '
           f'{len(COMMON_SYLLABLES)} syllables')
 

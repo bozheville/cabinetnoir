@@ -10,7 +10,7 @@ export * from './kasiski';
 export * from './keyLength';
 export * from './cribs';
 export * from './digraphs';
-export * from './trigrams';
+export * from './ngrams';
 export * from './english-stats';
 export * from './columnar';
 export * from './substitution';

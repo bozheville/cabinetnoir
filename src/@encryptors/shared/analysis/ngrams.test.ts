@@ -1,28 +1,39 @@
 import { describe, expect, it } from 'vitest';
 
 import { CRIB_WORDS, COMMON_SYLLABLES } from './english-stats';
-import { TRIGRAM_SCORES } from './trigram-data';
-import { scoreTrigrams, trigramScore } from './trigrams';
+import { BIGRAM_SCORES, TRIGRAM_SCORES } from './ngram-data';
+import { bigramScore, scoreTrigrams, trigramScore } from './ngrams';
 
 const ENGLISH_SAMPLE = 'ATTACKATDAWNANDMEETMEATTHEBRIDGETONIGHTANDTELLNOONE';
 const SCRAMBLED_SAMPLE = 'QQZJWKLXVBNMPPQZJWKLXVBNMQQZJWKLXVBNMPP';
 
-const offset = (trigram: string): number =>
-  ((trigram.charCodeAt(0) - 65) * 26
-    + trigram.charCodeAt(1) - 65) * 26
-  + trigram.charCodeAt(2) - 65;
+const offset = (ngram: string): number =>
+  [...ngram].reduce((total, char) => total * 26 + char.charCodeAt(0) - 65, 0);
 
-describe('trigram data', () => {
-  it('holds exactly 26^3 quantized scores', () => {
+describe('ngram data', () => {
+  it('holds exactly 26^n quantized scores', () => {
     expect(TRIGRAM_SCORES).toHaveLength(26 ** 3);
+    expect(BIGRAM_SCORES).toHaveLength(26 ** 2);
     expect(TRIGRAM_SCORES.every((byte) => byte >= 0 && byte <= 255)).toBe(true);
+    expect(BIGRAM_SCORES.every((byte) => byte >= 0 && byte <= 255)).toBe(true);
   });
 
-  it('knows the common trigrams and floors the impossible ones', () => {
+  it('knows the common ngrams and floors the impossible ones', () => {
     // THE is by far the most common English trigram; ZQX never happens.
     expect(TRIGRAM_SCORES[offset('THE')]).toBeGreaterThan(200);
     expect(TRIGRAM_SCORES[offset('ZQX')]).toBe(0);
     expect(trigramScore('ZQX')).toBeLessThan(trigramScore('THE'));
+    // TH and HE top the bigrams; JQ never happens. (TH sits near the
+    // top of the scale, not on it — within-word TH is ~2.4% of bigrams
+    // while the scale tops out at 3.16%. No bigram is byte 0: every
+    // one of the 676 pairs occurs somewhere in a 4.5-billion-word
+    // corpus — QJ just almost never does.)
+    expect(BIGRAM_SCORES[offset('TH')]).toBeGreaterThan(230);
+    expect(bigramScore('HE')).toBeGreaterThan(bigramScore('QJ'));
+    expect(BIGRAM_SCORES[offset('QJ')]).toBeLessThan(20);
+    // ET was missing from the old curated digraph list — the corpus
+    // table must know it.
+    expect(bigramScore('ET')).toBeGreaterThan(bigramScore('ZQ'));
   });
 });
 

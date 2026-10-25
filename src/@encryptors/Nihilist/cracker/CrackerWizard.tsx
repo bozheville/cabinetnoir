@@ -7,6 +7,7 @@ import {
   findConflicts,
   scoreTrigrams,
   STANDARD_ALPHABET,
+  suggestByContext,
 } from '@encryptors/shared/analysis';
 import {
   AssignmentBoard,
@@ -290,6 +291,14 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
     [partialPlaintext],
   );
 
+  // Contextual suggestions for step 3: candidate letters scored by
+  // digram/trigram fit with the letters the user already placed around
+  // each occurrence — frequency ranking is the prior until then.
+  const contextualSuggestions = useMemo(
+    () => suggestByContext(coordinates, mapping, STANDARD_ALPHABET),
+    [coordinates, mapping],
+  );
+
   // --- Step 2 helpers ---
   const currentColumn = useMemo(
     () => columnNumbers(numbers, length, column),
@@ -477,6 +486,7 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
             order={SQUARE_COORDINATES}
             highlighted={highlighted}
             showSuggestions={hints.suggestions}
+            suggestions={contextualSuggestions}
           />
           {Object.keys(mapping).length > 0 && (
             <Pane display="flex" gap={16} alignItems="flex-start" flexWrap="wrap">
