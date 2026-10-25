@@ -765,7 +765,8 @@
           },
           "square": {
             "hint": "The stripped stream is a plain Polybius substitution: assign letters by frequency, pairs run 11–55.",
-            "squareLabel": "The square as you have it"
+            "squareLabel": "The square as you have it",
+            "englishness": "English-likeness of your draft: {{score}}%"
           },
           "done": {
             "hint": "Everything you pinned, in one place.",

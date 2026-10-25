@@ -612,7 +612,8 @@
           },
           "square": {
             "hint": "Le flux épuré est une substitution de Polybe simple : assignez les lettres par fréquence, les paires vont de 11 à 55.",
-            "squareLabel": "Le carré tel que vous l’avez"
+            "squareLabel": "Le carré tel que vous l’avez",
+            "englishness": "Caractère anglais de votre brouillon : {{score}} %"
           },
           "done": {
             "hint": "Tout ce que vous avez épinglé, en un seul endroit.",

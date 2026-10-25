@@ -1,7 +1,7 @@
 import type { Family } from './types';
 import type { TextProfile } from './profile';
 import { isEnglishLikeIc } from './profile';
-import { scoreDigraphs } from '@encryptors/shared/analysis/digraphs';
+import { scoreTrigrams } from '@encryptors/shared/analysis/trigrams';
 import {
   railFenceCandidateScores,
   columnarCandidateScores,
@@ -255,8 +255,8 @@ export const CIPHER_RULES: Rule[] = [
       if (!isEnglishLikeIc(profile.ic) || profile.directChiScore < CHI_FIT_GOOD) {
         return null;
       }
-      const best = railFenceCandidateScores(profile.letters, scoreDigraphs)[0];
-      const asIs = scoreDigraphs(profile.letters);
+      const best = railFenceCandidateScores(profile.letters, scoreTrigrams)[0];
+      const asIs = scoreTrigrams(profile.letters);
       return best && best.score > asIs + 10
         ? { rails: best.rails }
         : null;
@@ -268,8 +268,8 @@ export const CIPHER_RULES: Rule[] = [
       if (!isEnglishLikeIc(profile.ic) || profile.directChiScore < CHI_FIT_GOOD) {
         return null;
       }
-      const best = columnarCandidateScores(profile.letters, scoreDigraphs)[0];
-      const asIs = scoreDigraphs(profile.letters);
+      const best = columnarCandidateScores(profile.letters, scoreTrigrams)[0];
+      const asIs = scoreTrigrams(profile.letters);
       return best && best.score > asIs + 10
         ? { width: best.width }
         : null;

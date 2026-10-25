@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import {
   findConflicts,
+  scoreTrigrams,
   STANDARD_ALPHABET,
 } from '@encryptors/shared/analysis';
 import {
@@ -87,6 +88,38 @@ const PreviewBox = styled(Pane)`
   max-height: 140px;
   overflow-y: auto;
 `;
+
+// The step-3 feedback meter: how English the draft looks under the
+// current partial square, 0-100 from the trigram scorer. Feedback only
+// — the meter never assigns or solves anything.
+const MeterTrack = styled(Pane)`
+  height: 6px;
+  border-radius: 3px;
+  background: ${({ theme }) => theme.colorScheme.gray[200]};
+  margin-top: 4px;
+`;
+
+const MeterFill = styled(Pane)<{ $ratio: number }>`
+  width: ${({ $ratio }) => Math.round($ratio * 100)}%;
+  height: 6px;
+  border-radius: 3px;
+  background: ${({ theme }) => theme.colorScheme.blue[500]};
+  transition: width 0.15s ease-out;
+`;
+
+const EnglishnessMeter: React.FC<{ score: number }> = ({ score }) => {
+  const { t } = useTranslation('common');
+  return (
+    <Pane marginTop={8} data-guide="englishness-meter">
+      <Text size={200}>
+        {t('processing.nihilist.cracker.wizard.square.englishness', { score })}
+      </Text>
+      <MeterTrack>
+        <MeterFill $ratio={Math.max(0, Math.min(1, score / 100))} />
+      </MeterTrack>
+    </Pane>
+  );
+};
 
 interface CrackerWizardProps {
   input: string;
@@ -248,6 +281,13 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
       .map((pair) => mapping[pair] || '·')
       .join(''),
     [coordinates, mapping],
+  );
+
+  // Feedback for step 3: how English the draft reads. The unassigned
+  // dots are skipped — only decided letters count.
+  const englishScore = useMemo(
+    () => scoreTrigrams(partialPlaintext.replace(/[^A-Z]/g, '')),
+    [partialPlaintext],
   );
 
   // --- Step 2 helpers ---
@@ -451,6 +491,7 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
                   {t('processing.cracker.wizard.previewTitle')}
                 </Text>
                 <PreviewBox data-guide="plaintext-preview">{partialPlaintext || '·'}</PreviewBox>
+                <EnglishnessMeter score={englishScore} />
               </Pane>
             </Pane>
           )}
