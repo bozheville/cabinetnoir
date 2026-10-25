@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon  from './coffee.svg';
+import Link from 'next/link';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 import { ReleaseInfo } from '@atoms';
@@ -122,6 +123,9 @@ const Footer: React.FC = () => {
         >
           {`${t(`footer.report_a_bug`)}`}
         </a>
+        <Link href="/sitemap">
+          {`${t(`footer.sitemap`)}`}
+        </Link>
       </LinksWrapper>
       <Minion>
         {`${t(`footer.credentials`)}`}

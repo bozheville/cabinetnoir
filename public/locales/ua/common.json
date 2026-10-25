@@ -669,7 +669,23 @@
     "suggest_a_feature": "Запропонувати фічу",
     "report_a_bug": "Повідомити про баг",
     "did_you_like": "Сподобалось?",
-    "buy_me_a_coffee": "Купи мені кави"
+    "buy_me_a_coffee": "Купи мені кави",
+    "sitemap": "Карта сайту"
+  },
+  "sitemap": {
+    "title": "Карта сайту",
+    "headerTitle": "Карта сайту",
+    "subtitle": "Усі сторінки Cabinet Noir, згруповані: статичні сторінки, кодування та шифри. Машинозна версія знаходиться за адресою /sitemap.xml.",
+    "pages": {
+      "home": "Головна",
+      "identify": "Розпізнавання шифру",
+      "sitemap": "Карта сайту"
+    },
+    "groups": {
+      "pages": "Сторінки",
+      "encodings": "Кодування",
+      "encryptors": "Шифри"
+    }
   },
   "learning": {
     "tabs": {

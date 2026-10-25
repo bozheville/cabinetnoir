@@ -822,7 +822,23 @@
     "suggest_a_feature": "Suggest a feature",
     "report_a_bug": "Report a bug",
     "did_you_like": "Did you like it?",
-    "buy_me_a_coffee": "Buy me a coffee"
+    "buy_me_a_coffee": "Buy me a coffee",
+    "sitemap": "Sitemap"
+  },
+  "sitemap": {
+    "title": "Sitemap",
+    "headerTitle": "Sitemap",
+    "subtitle": "Every page on Cabinet Noir, grouped: static pages, encodings and encryptors. The machine-readable version lives at /sitemap.xml.",
+    "pages": {
+      "home": "Home",
+      "identify": "Cipher identification",
+      "sitemap": "Sitemap"
+    },
+    "groups": {
+      "pages": "Pages",
+      "encodings": "Encodings",
+      "encryptors": "Encryptors"
+    }
   },
   "learning": {
     "tabs": {
