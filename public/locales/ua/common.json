@@ -536,7 +536,9 @@
       },
       "combinations": {
         "title": "Повторювані комбінації",
-        "hint": "трапляється {{count}} разів — може бути {{candidates}}"
+        "hint": "трапляється {{count}} разів — може бути {{candidates}}",
+        "tripletsTitle": "Повторювані трійки",
+        "doublesTitle": "Подвоєні символи"
       }
     },
     "assignment": {

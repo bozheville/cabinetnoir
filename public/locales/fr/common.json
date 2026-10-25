@@ -536,7 +536,9 @@
       },
       "combinations": {
         "title": "Combinaisons récurrentes",
-        "hint": "vu {{count}} fois — pourrait être {{candidates}}"
+        "hint": "vu {{count}} fois — pourrait être {{candidates}}",
+        "tripletsTitle": "Triplés récurrents",
+        "doublesTitle": "Symboles doublés"
       }
     },
     "assignment": {

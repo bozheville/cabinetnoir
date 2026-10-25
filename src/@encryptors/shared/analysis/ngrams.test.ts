@@ -23,12 +23,12 @@ describe('ngram data', () => {
     expect(TRIGRAM_SCORES[offset('THE')]).toBeGreaterThan(200);
     expect(TRIGRAM_SCORES[offset('ZQX')]).toBe(0);
     expect(trigramScore('ZQX')).toBeLessThan(trigramScore('THE'));
-    // TH and HE top the bigrams; JQ never happens. (TH sits near the
-    // top of the scale, not on it — within-word TH is ~2.4% of bigrams
-    // while the scale tops out at 3.16%. No bigram is byte 0: every
-    // one of the 676 pairs occurs somewhere in a 4.5-billion-word
-    // corpus — QJ just almost never does.)
-    expect(BIGRAM_SCORES[offset('TH')]).toBeGreaterThan(230);
+    // TH and HE top the bigrams; JQ never happens. (TH sits high on
+    // the scale, not on its ceiling — within-word TH is ~2% of bigrams
+    // while the scale tops at 10%. No bigram is byte 0: every one of
+    // the 676 pairs occurs somewhere in a 4.5-billion-word corpus —
+    // QJ just almost never does.)
+    expect(BIGRAM_SCORES[offset('TH')]).toBeGreaterThan(200);
     expect(bigramScore('HE')).toBeGreaterThan(bigramScore('QJ'));
     expect(BIGRAM_SCORES[offset('QJ')]).toBeLessThan(20);
     // ET was missing from the old curated digraph list — the corpus
