@@ -90,7 +90,30 @@ describe('cipher rules', () => {
   });
 
   it('keeps Nihilist for digit sums in range', () => {
-    const fires = firedFor('23 45 61 72 84 95 33 41 52 63');
+    const fires = firedFor('23 45 64 72 84 95 33 43 52 63');
     expect(fires.nihilistDigits).toMatchObject({ pairs: 10 });
+    expect(fires.nihilistDigitsDominant).toMatchObject({ ratio: 100 });
+    expect(fires.nihilistBlockShape).toBeDefined();
+  });
+
+  it('supports a Nihilist near-miss without the strict flag', () => {
+    // One number (61) cannot be a no-carry sum: the strict rule stays
+    // silent, the graded rules still fire.
+    const fires = firedFor('23 45 61 72 84 95 33 43 52 63');
+    expect(fires.nihilistDigits).toBeUndefined();
+    expect(fires.nihilistDigitsDominant).toMatchObject({ ratio: 90 });
+    expect(fires.nihilistBlockShape).toBeDefined();
+  });
+
+  it('keeps a dense stream with a three-digit sum Nihilist', () => {
+    const fires = firedFor('34561104728');
+    expect(fires.nihilistDigits).toMatchObject({ pairs: 5 });
+  });
+
+  it('does not fire Nihilist rules on random digits', () => {
+    const fires = firedFor('1812141619');
+    expect(fires.nihilistDigits).toBeUndefined();
+    expect(fires.nihilistDigitsDominant).toBeUndefined();
+    expect(fires.nihilistBlockShape).toBeUndefined();
   });
 });

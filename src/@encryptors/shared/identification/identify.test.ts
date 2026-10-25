@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { identify } from './identify';
+import { nihilistEncrypt } from '@encryptors/Nihilist/nihilist-crypt';
 
 const longEnglish =
   'THEQUICKBROWNFOXJUMPSOVERTHELAZYDOGANDTHENHERANINTOTHEWOODSWHERETHEHENSROOSTALLDAYLONGUNTILTHEFARMERCAMEHOMEPASTTHEOLDMILLANDDOWNTHELANE'.repeat(2);
@@ -46,6 +47,17 @@ describe('identify()', () => {
     expect(found?.candidate.confidence).toBe('veryLikely');
     expect(found?.candidate.params).toMatchObject({ period: 5 });
     expect(result.families[0].family).toBe('polyalphabetic');
+  });
+
+  it('identifies a real Nihilist ciphertext as very likely, spaced or dense', () => {
+    const input = 'ATTACKATDAWN'.repeat(4);
+    for (const ciphertext of [
+      nihilistEncrypt({ input, key: 'RUSSIA', spaced: true }),
+      nihilistEncrypt({ input, key: 'RUSSIA', spaced: false }),
+    ]) {
+      const found = findCandidate(identify(ciphertext), 'nihilist');
+      expect(found?.candidate.confidence).toBe('veryLikely');
+    }
   });
 
   it('keeps plain English away from substitution', () => {

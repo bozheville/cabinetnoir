@@ -16,6 +16,8 @@ import {
   IC_RANDOM,
   MAX_DISTINCT_PLAYFAIR,
   ALBERTI_MAX_DISTINCT,
+  MIN_DIGIT_PAIRS,
+  NIHILIST_IN_RANGE_RATIO,
   PERIOD_GAIN,
   PERIOD_GAIN_LOW,
   PERIOD_SLICE_IC,
@@ -296,10 +298,28 @@ export const CIPHER_RULES: Rule[] = [
       ? {}
       : null)),
 
-  // Nihilist: digit output in the mixed sum range.
+  // Nihilist: every parsed number is a legal no-carry sum (the Nihilist
+  // tool's own validity check, so three-digit 100–110 sums count).
   rule('nihilistDigits', cipher('nihilist'), 45,
     (profile) => (profile.nihilistLike
       ? { pairs: profile.digitPairs }
+      : null)),
+
+  // Nihilist support: digits-only text where most numbers are legal
+  // sums — keeps a near-miss (one stray number) from dropping to zero.
+  rule('nihilistDigitsDominant', cipher('nihilist'), 15,
+    (profile) => (profile.digitsOnly
+      && profile.digitPairs >= MIN_DIGIT_PAIRS
+      && profile.nihilistInRangeRatio >= NIHILIST_IN_RANGE_RATIO
+      ? { ratio: Math.round(profile.nihilistInRangeRatio * 100) }
+      : null)),
+
+  // Nihilist block shape: digit-only output carries no letter-level
+  // block signal (blockStructure never fires on numbers), so the digit
+  // structure itself fills the block-family slot.
+  rule('nihilistBlockShape', cipher('nihilist'), 20,
+    (profile) => (profile.digitsOnly && profile.nihilistInRangeRatio >= NIHILIST_IN_RANGE_RATIO
+      ? {}
       : null)),
 
   // Polybius: digit pairs confined to the 11–55 square range — but only
