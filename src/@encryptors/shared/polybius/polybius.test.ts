@@ -109,3 +109,42 @@ describe('squareLabels', () => {
     expect(squareLabels(6)).toBe('123456');
   });
 });
+
+describe('custom alphabets', () => {
+  it('builds a square from any alphabet passed in', () => {
+    // A Greek 24-letter alphabet on a 5x5 square: the last cell stays
+    // unused, the square string is one letter short.
+    const greek = 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ';
+    expect(buildSquare('', { size: 5, alphabet: greek }))
+      .toBe(greek);
+    expect(buildSquare('ΚΡΥΠΤΟ', { size: 5, alphabet: greek }).startsWith('ΚΡΥΠΤ')).toBe(true);
+  });
+
+  it('applies the merge to a custom alphabet', () => {
+    // A preset merge folds only when the alphabet overflows the grid.
+    expect(squareAlphabet(5, 'IJ', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'))
+      .toBe('ABCDEFGHIKLMNOPQRSTUVWXYZ');
+    // An explicit rule always folds, even when everything fits.
+    expect(squareAlphabet(5, { fold: 'Θ', into: 'Φ' }, 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ'))
+      .toBe('ΑΒΓΔΕΖΗΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ');
+  });
+
+  it('folds key letters the custom alphabet has no cell for', () => {
+    const rule = { fold: 'Θ', into: 'Φ' };
+    expect(buildSquare('ΘΦ', { size: 5, alphabet: 'ΑΒΓΔΕΖΗΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ', merge: rule }))
+      .toBe(buildSquare('ΦΦ', { size: 5, alphabet: 'ΑΒΓΔΕΖΗΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ', merge: rule }));
+  });
+
+  it('keeps J on a 6x6 square (it has a cell there)', () => {
+    expect(buildSquare('J', { size: 6 })[0]).toBe('J');
+  });
+
+  it('round-trips a custom alphabet through coordinates', () => {
+    const square = buildSquare('', { size: 5, alphabet: 'ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ' });
+    for (const letter of square) {
+      const pair = toCoordinates(letter, square);
+      expect(pair).toMatch(/^[1-5][1-5]$/);
+      expect(fromCoordinates(pair, square)).toBe(letter);
+    }
+  });
+});

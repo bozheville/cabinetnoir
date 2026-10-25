@@ -5,7 +5,7 @@ import {
   nihilistEncrypt,
   nihilistKeyNumbers,
 } from './nihilist-crypt';
-import { buildSquare } from '@encryptors/shared/polybius';
+import { buildSquare, foldForSquare } from '@encryptors/shared/polybius';
 
 // The Nihilist tool's state: the square keyword, the additive key word,
 // the spaced output toggle, and (from the cracker hand-off) a full
@@ -44,7 +44,13 @@ export const useNihilist = ({ input, onProcessingEnd, isDecryptMode }) => {
     const plainNumbers = nihilistEncrypt({
       input, squareKey, key, spaced: true,
     }).split(' ').filter(Boolean);
-    const letters = input.toUpperCase().replace(/J/g, 'I').replace(/[^A-Z]/g, '').split('');
+    const letters = input
+      .toUpperCase()
+      .split('')
+      .map((char) => foldForSquare(char))
+      .join('')
+      .replace(/[^A-Z]/g, '')
+      .split('');
     const keyNumbers = nihilistKeyNumbers(key, squareKey);
     if (keyNumbers.length === 0) {
       return [];

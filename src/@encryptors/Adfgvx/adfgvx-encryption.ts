@@ -16,6 +16,7 @@ import {
 } from '@encryptors/shared/transposition';
 import {
   buildSquare as buildPolybiusSquare,
+  squareAlphabet,
   toCoordinates,
   fromCoordinates,
 } from '@encryptors/shared/polybius';
@@ -28,11 +29,12 @@ const FRACTION_CHARS: Record<AdfgvxVariant, string> = {
   adfgvx: 'ADFGVX',
 };
 
-// Square alphabet per variant. ADFGX: 25 letters, I and J share a cell
-// (I is kept, J is folded into it). ADFGVX: 26 letters + 10 digits.
+// Square alphabet per variant, from the shared square core. ADFGX: 25
+// letters, I and J share a cell (I is kept, J is folded into it).
+// ADFGVX: 26 letters + 10 digits.
 export const SQUARE_ALPHABET: Record<AdfgvxVariant, string> = {
-  adfgx: 'ABCDEFGHIKLMNOPQRSTUVWXYZ',
-  adfgvx: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+  adfgx: squareAlphabet(5, 'IJ'),
+  adfgvx: squareAlphabet(6),
 };
 
 const isAdfgvxChar = (char: string, variant: AdfgvxVariant): boolean =>

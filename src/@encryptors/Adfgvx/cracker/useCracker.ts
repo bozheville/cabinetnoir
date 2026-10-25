@@ -10,7 +10,7 @@ import {
 import { splitColumns } from '../analysis/columns';
 import { rankKeyLengths } from '../analysis/keyLength';
 import { countSymbols, SymbolFrequency, SymbolMapping } from '../analysis/frequency';
-import { findCribMatches } from '../analysis/cribs';
+import { findCribMatches } from '@encryptors/shared/polybius/cribs';
 import { edgeScore } from '../analysis/arrangement';
 import { assembleSquare, deriveTranspositionKey } from '../analysis/assemble';
 import { HintConfig } from './hintSettings';

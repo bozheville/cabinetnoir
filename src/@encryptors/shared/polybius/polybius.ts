@@ -8,15 +8,37 @@
 
 export type SquareSize = 5 | 6;
 
-// How the 25th cell is shared on a 5x5 square: I/J merged (the classic
-// English square, I kept) or C/K merged (the classical Greek-friendly
-// variant, C kept). Ignored on a 6x6 square, which has room for all 26
-// letters (plus the digits).
-export type SquareMerge = 'IJ' | 'CK';
+// How two letters share one cell on a square that has no room for both:
+// either a named preset or an explicit rule. 'IJ' merges J into I (the
+// classic English 5x5 square, I kept); 'CK' merges K into C (the
+// classical Greek-friendly variant, C kept). Ignored when the square's
+// alphabet has a cell for every letter (6x6 Latin, custom alphabets
+// shorter than the grid).
+export interface SquareMergeRule {
+  // The letter that disappears (J on an IJ square).
+  fold: string;
+  // The letter that keeps the cell (I on an IJ square).
+  into: string;
+}
+
+export type SquareMerge = 'IJ' | 'CK' | SquareMergeRule;
+
+// Resolves a merge spec into its fold/into pair.
+export const mergeFolds = (merge: SquareMerge): SquareMergeRule =>
+  merge === 'IJ'
+    ? { fold: 'J', into: 'I' }
+    : merge === 'CK'
+      ? { fold: 'K', into: 'C' }
+      : merge;
 
 export interface PolybiusSquareOptions {
   size?: SquareSize;
   merge?: SquareMerge;
+  // The letters the square holds, as a plain string read in cell order.
+  // Absent → the Latin defaults (25 letters for 5x5, letters + digits
+  // for 6x6). Any alphabet fits: a Greek 24-letter string on a 5x5
+  // square leaves its last cell unused.
+  alphabet?: string;
 }
 
 // Row/column labels. 5x5 squares default to digits 1–5; a 6x6 square
@@ -26,50 +48,61 @@ export const squareLabels = (size: SquareSize): string =>
 
 // The alphabet a square of this size holds. 5x5: 25 letters with the
 // merge applied (IJ → J folded into I; CK → K folded into C). 6x6: all
-// 26 letters plus the 10 digits.
-export const squareAlphabet = (size: SquareSize, merge: SquareMerge = 'IJ'): string => {
-  if (size === 6) {
-    return 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+// 26 letters plus the 10 digits. A custom alphabet replaces the Latin
+// default wholesale. A preset merge only kicks in when the alphabet
+// cannot fit the grid (26 letters on a 25-cell square) — on a square
+// with room for every letter (6x6 Latin, a shorter custom alphabet)
+// nothing folds. An explicit merge rule always folds.
+export const squareAlphabet = (
+  size: SquareSize,
+  merge: SquareMerge = 'IJ',
+  alphabet?: string,
+): string => {
+  const base = alphabet
+    ?? (size === 6
+      ? 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+      : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+  const { fold } = mergeFolds(merge);
+  const cannotFit = base.length > size * size;
+  if (!fold || (typeof merge === 'string' && !cannotFit)) {
+    return base;
   }
-  const full = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  if (merge === 'CK') {
-    // K shares C's cell: the K is dropped, C is kept.
-    return full.replace('K', '');
-  }
-  // IJ: the J is dropped, I is kept.
-  return full.replace('J', '');
+  // The fold letter drops: its partner keeps the shared cell.
+  return base.split('').filter((char) => char !== fold).join('');
 };
 
-// The letter a square cell stands for when reading it back (J and K
-// come back as their merged partners).
+// The letter a square cell stands for when reading it back — the fold
+// letter comes back as its merged partner (J reads as I on an IJ square).
 export const foldForSquare = (letter: string, merge: SquareMerge = 'IJ'): string => {
-  if (merge === 'CK') {
-    return letter === 'K' ? 'C' : letter;
-  }
-  return letter === 'J' ? 'I' : letter;
+  const { fold, into } = mergeFolds(merge);
+  return letter === fold ? into : letter;
 };
 
-// Builds the keyed square: the key letters (deduplicated, merge applied)
-// come first, the rest of the alphabet follows. An empty key gives the
-// plain square, so every consumer stays predictable even with no key.
+// Builds the keyed square: the key letters (deduplicated) come first,
+// the rest of the alphabet follows. An empty key gives the plain square,
+// so every consumer stays predictable even with no key. Key letters the
+// alphabet has no cell for fold into their merged partner (J → I on the
+// classic 5x5 Latin square; on a 6x6 square J has a cell, so it stays).
 export const buildSquare = (
   key: string,
-  { size = 5, merge = 'IJ' }: PolybiusSquareOptions = {},
+  { size = 5, merge = 'IJ', alphabet }: PolybiusSquareOptions = {},
 ): string => {
-  const alphabet = squareAlphabet(size, merge);
-  const folded = size === 5
-    ? key.toUpperCase().split('').map((char) => foldForSquare(char, merge)).join('')
-    : key.toUpperCase();
+  const alphabetString = squareAlphabet(size, merge, alphabet);
+  const folded = key
+    .toUpperCase()
+    .split('')
+    .map((char) => (alphabetString.includes(char) ? char : foldForSquare(char, merge)))
+    .join('');
   const keyClean = folded.replace(
-    new RegExp(`[^${alphabet.replace(/[\\^\]]/g, '')}]`, 'g'),
+    new RegExp(`[^${alphabetString.replace(/[\\^\]\-]/g, '\\$&')}]`, 'g'),
     '',
   );
 
   const square: string[] = [];
   for (const char of keyClean) {
-    if (alphabet.includes(char) && !square.includes(char)) square.push(char);
+    if (alphabetString.includes(char) && !square.includes(char)) square.push(char);
   }
-  for (const char of alphabet) {
+  for (const char of alphabetString) {
     if (!square.includes(char)) square.push(char);
   }
   return square.join('');

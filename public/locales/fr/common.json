@@ -539,6 +539,16 @@
         "hint": "vu {{count}} fois — pourrait être {{candidates}}",
         "tripletsTitle": "Triplés récurrents",
         "doublesTitle": "Symboles doublés"
+      },
+      "squareDecipher": {
+        "squareLabel": "Le carré en l'état",
+        "chartTooltip": "Les symboles du texte chiffré, du plus fréquent au moins fréquent. Cliquez sur un symbole pour le sélectionner ; le compte indique sa fréquence.",
+        "cribLabel": "Mot probable (crible) :",
+        "cribTooltip": "Un mot attendu dans le message. Les correspondances respectent les lettres déjà attribuées.",
+        "cribPlaceholder": "ex. ATTAQUE",
+        "cribAt": "Correspondance à la position {{position}}",
+        "cribApply": "Appliquer",
+        "englishness": "Ressemblance à l'anglais de votre brouillon : {{score}} %"
       }
     },
     "assignment": {
@@ -571,6 +581,26 @@
         "keyword_placeholder": "Mot-clé (facultatif)",
         "spaced": "Paires espacées",
         "squareHint": "Le carré — la case surlignée (avec sa ligne et sa colonne) est la dernière lettre du résultat."
+      },
+      "cracker": {
+        "hints": {
+          "toggles": {
+            "suggestions": "Afficher les suggestions de lettres"
+          }
+        },
+        "tooltips": {
+          "toggle": {
+            "suggestions": "Propose une lettre candidate pour chaque case non attribuée — un indice, jamais une attribution."
+          }
+        },
+        "wizard": {
+          "steps": {
+            "square": "Carré"
+          },
+          "square": {
+            "hint": "Chaque paire de chiffres désigne une case du carré inconnu : attribuez les lettres par fréquence, les paires vont de 11 à 55."
+          }
+        }
       }
     },
     "nihilist": {

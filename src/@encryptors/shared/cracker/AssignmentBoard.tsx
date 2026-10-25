@@ -10,6 +10,7 @@ import {
   SymbolMapping,
 } from '../analysis/substitution';
 import { NormalizedText } from '../analysis/normalize';
+import { cellHighlight } from './highlight';
 
 // The letter assignment board: the shared IKEA-effect UI for breaking
 // any monoalphabetic substitution. One cell per cipher symbol (count,
@@ -39,6 +40,11 @@ interface AssignmentBoardProps {
   suggestions?: SymbolMapping;
   // Symbols the current step asks the user to look at (amber outline).
   highlighted?: string[];
+  // Notifies the parent which cell got selected (or null on deselect),
+  // so a wrapper can sync other views — e.g. the preview's occurrence
+  // highlights — with the board's selection. Selection state itself
+  // stays internal.
+  onSelect?: (symbol: string | null) => void;
   // Fixed cell order (e.g. square coordinates '11'…'55'): the board
   // renders every listed symbol in this order as a grid, including
   // zero-count ones, instead of frequency-sorted. columns defaults to
@@ -52,7 +58,7 @@ interface AssignmentBoardProps {
   readOnly?: boolean;
 }
 
-const Cell = styled.button<{ $selected: boolean; $highlighted: boolean }>`
+const Cell = styled.button<{ $selected: boolean; $assigned: boolean; $highlighted: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,13 +66,10 @@ const Cell = styled.button<{ $selected: boolean; $highlighted: boolean }>`
   min-width: 52px;
   padding: 4px 6px;
   border-radius: 6px;
-  border: 1px solid ${({ theme, $selected }) => (
-    $selected ? theme.colorScheme.blue_green[500] : theme.colorScheme.gray[300]
-  )};
+  border: 1px solid ${({ theme }) => theme.colorScheme.gray[300]};
+  background: ${({ theme }) => theme.colorScheme.gray[50]};
+  ${({ $selected, $assigned }) => cellHighlight($selected ? 'strong' : $assigned ? 'filled' : 'none')}
   outline: ${({ $highlighted }) => ($highlighted ? '2px solid #f5a623' : 'none')};
-  background: ${({ theme, $selected }) => (
-    $selected ? theme.colorScheme.blue_green[100] : theme.colorScheme.gray[50]
-  )};
   cursor: pointer;
 `;
 
@@ -203,6 +206,7 @@ const BoardCell: React.FC<{
       type="button"
       data-guide="assignment-cell"
       $selected={selected}
+      $assigned={Boolean(assigned)}
       $highlighted={highlighted}
       onClick={() => !readOnly && onSelect(symbol)}
       title={t('processing.cracker.assignment.clickCell')}
@@ -234,6 +238,7 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
   showSuggestions = false,
   suggestions,
   highlighted = [],
+  onSelect,
   order,
   columns,
   title,
@@ -241,6 +246,14 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
 }) => {
   const { t } = useTranslation('common');
   const [selected, setSelected] = useState<string | null>(null);
+
+  // Clicking a cell selects it; clicking it again deselects. The parent
+  // hears the same decision so its views stay in sync.
+  const handleCellSelect = (symbol: string) => {
+    const next = symbol === selected ? null : symbol;
+    setSelected(next);
+    onSelect?.(next);
+  };
 
   const frequencies = countSymbols(symbols);
   const maxCount = frequencies[0]?.count || 1;
@@ -280,7 +293,7 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
               selected={symbol === selected}
               readOnly={readOnly}
               showSuggestions={showSuggestions}
-              onSelect={setSelected}
+              onSelect={handleCellSelect}
             />
           ))}
         </CellGrid>
@@ -299,7 +312,7 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
               selected={symbol === selected}
               readOnly={readOnly}
               showSuggestions={showSuggestions}
-              onSelect={setSelected}
+              onSelect={handleCellSelect}
             />
           ))}
         </Pane>

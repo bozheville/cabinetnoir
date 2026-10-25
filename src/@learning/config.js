@@ -293,7 +293,9 @@ const learningConfig = {
     ],
   },
   // Polybius square: coordinates instead of letters — a substitution in
-  // disguise, so no cracker of its own (standard §10 exemption).
+  // disguise. The cryptoanalysis tab shares the guided square-deciphing
+  // step with Nihilist and ADFGVX: an unknown-keyword square is rebuilt
+  // from the coordinate stream, then handed back to the tool.
   polybius: {
     tabs: ['learn', 'history', 'practice'],
     sections: {
@@ -306,7 +308,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.trivial',
       era: 'learning.polybius.era',
       origin: 'learning.polybius.origin',
-      modes: ['encrypt', 'decrypt'],
+      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
     },
     glossary: [
       'plaintext',
