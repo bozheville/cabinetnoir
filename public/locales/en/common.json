@@ -686,6 +686,10 @@
       },
       "candidate": {
         "matchScore": "Match: {{score}}%"
+      },
+      "combinations": {
+        "title": "Recurring combinations",
+        "hint": "seen {{count}} times — could be {{candidates}}"
       }
     },
     "assignment": {

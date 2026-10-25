@@ -284,3 +284,99 @@ export const extractWords = (input: string): Array<{ word: string; position: num
   }
   return words;
 };
+
+// --- Symbol digraphs: the letter-combination layer of the hints ---
+// A monoalphabetic substitution hides letter combinations the same way
+// it hides letters: adjacent symbol pairs map to plaintext digraphs.
+// These helpers count the pairs and attach corpus-ranked candidate
+// digraphs to the frequent ones — the same trick as the per-cell
+// suggestions, one level up. Hints only; the user places every letter.
+
+export interface SymbolDigraph {
+  first: string;
+  second: string;
+  count: number;
+}
+
+// Adjacent symbol pairs of the stream, most frequent first.
+export const countSymbolDigraphs = (stream: string[]): SymbolDigraph[] => {
+  const counts = new Map<string, number>();
+  for (let index = 0; index + 1 < stream.length; index += 1) {
+    const key = `${stream[index]}\u0000${stream[index + 1]}`;
+    counts.set(key, (counts.get(key) || 0) + 1);
+  }
+  return [...counts.entries()]
+    .map(([key, count]) => {
+      const [first, second] = key.split('\u0000');
+      return { first, second, count };
+    })
+    .sort((a, b) => b.count - a.count);
+};
+
+export interface DigraphSuggestion {
+  first: string;
+  second: string;
+  count: number;
+  // Candidate plaintext digraphs, corpus-ranked, consistent with the
+  // letters the user already placed.
+  candidates: string[];
+}
+
+const DIGRAPH_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+// For every frequent symbol pair still undecided (at least one side
+// unassigned), the top plaintext digraphs it could be: corpus bigram
+// scoring, filtered so each candidate agrees with the letters already
+// assigned and reuses no letter owned by another symbol. Pairs whose
+// both sides are decided are skipped — those are the user's answers.
+export const suggestSymbolDigraphs = (
+  stream: string[],
+  mapping: SymbolMapping,
+  pairLimit: number = 6,
+  candidatesPerPair: number = 3,
+): DigraphSuggestion[] => {
+  const used = new Set(Object.values(mapping));
+  const suggestions: DigraphSuggestion[] = [];
+  for (const { first, second, count } of countSymbolDigraphs(stream)) {
+    if (count < 2 || suggestions.length >= pairLimit) {
+      break;
+    }
+    const fixedFirst = mapping[first];
+    const fixedSecond = mapping[second];
+    if (fixedFirst && fixedSecond) {
+      continue;
+    }
+    // The same symbol twice must decode to the same letter twice —
+    // only doubled digraphs (LL, EE...) are possible there.
+    const doubledPair = first === second;
+    const scored: Array<{ digraph: string; score: number }> = [];
+    for (const a of DIGRAPH_ALPHABET) {
+      if (fixedFirst && a !== fixedFirst) {
+        continue;
+      }
+      if (!fixedFirst && used.has(a)) {
+        continue;
+      }
+      for (const b of DIGRAPH_ALPHABET) {
+        if (fixedSecond && b !== fixedSecond) {
+          continue;
+        }
+        if (!fixedSecond && used.has(b)) {
+          continue;
+        }
+        if (doubledPair && a !== b) {
+          continue;
+        }
+        scored.push({ digraph: `${a}${b}`, score: bigramScore(`${a}${b}`) });
+      }
+    }
+    scored.sort((x, y) => y.score - x.score);
+    suggestions.push({
+      first,
+      second,
+      count,
+      candidates: scored.slice(0, candidatesPerPair).map(({ digraph }) => digraph),
+    });
+  }
+  return suggestions;
+};

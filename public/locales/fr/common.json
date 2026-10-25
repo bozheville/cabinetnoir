@@ -533,6 +533,10 @@
       },
       "candidate": {
         "matchScore": "Correspondance : {{score}} %"
+      },
+      "combinations": {
+        "title": "Combinaisons récurrentes",
+        "hint": "vu {{count}} fois — pourrait être {{candidates}}"
       }
     },
     "assignment": {

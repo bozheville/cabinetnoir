@@ -533,6 +533,10 @@
       },
       "candidate": {
         "matchScore": "Збіг: {{score}}%"
+      },
+      "combinations": {
+        "title": "Повторювані комбінації",
+        "hint": "трапляється {{count}} разів — може бути {{candidates}}"
       }
     },
     "assignment": {
