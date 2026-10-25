@@ -5,6 +5,8 @@ import {
   countSymbols,
   suggestByFrequency,
   suggestByContext,
+  countSymbolDigraphs,
+  suggestSymbolDigraphs,
   findConflicts,
   wordPattern,
   findPatternMatches,
@@ -150,6 +152,45 @@ describe('suggestByContext on a real square', () => {
     // Digram-only evidence at this stage (HE, ET, TE): E or A both
     // read well — the trigram cases above are the decisive ones.
     expect(['E', 'A']).toContain(got[toCoordinates('E', square)]);
+  });
+});
+
+describe('symbol digraphs', () => {
+  it('counts adjacent symbol pairs, most frequent first', () => {
+    const stream = ['A', 'B', 'A', 'B', 'A', 'C'];
+    expect(countSymbolDigraphs(stream)).toEqual([
+      { first: 'A', second: 'B', count: 2 },
+      { first: 'B', second: 'A', count: 2 },
+      { first: 'A', second: 'C', count: 1 },
+    ]);
+  });
+
+  it('attaches corpus-ranked candidate digraphs to frequent pairs', () => {
+    // Nothing placed: the classic digraphs lead the ranking. (Within
+    // word-internal bigrams IN outranks TH — every -ing feeds it.)
+    const stream = ['X', 'Y', 'X', 'Y', 'Z', 'Z', 'Z', 'Z'];
+    const items = suggestSymbolDigraphs(stream, {});
+    const xy = items.find((item) => item.first === 'X' && item.second === 'Y');
+    expect(xy).toMatchObject({ first: 'X', second: 'Y', count: 2 });
+    expect(xy?.candidates).toContain('TH');
+    expect(xy?.candidates).toContain('IN');
+    // The doubled pair suggests doubled letters only.
+    const doubled = items.find((item) => item.first === 'Z');
+    expect(doubled?.candidates.every((d) => d[0] === d[1])).toBe(true);
+  });
+
+  it('respects letters the user already placed', () => {
+    // X is placed as T: candidate digraphs for X→Y must start with T,
+    // and no candidate may reuse a letter owned by another symbol.
+    const stream = ['X', 'Y', 'X', 'Y'];
+    const items = suggestSymbolDigraphs(stream, { X: 'T', Q: 'H' });
+    expect(items[0].candidates.every((d) => d[0] === 'T' && d[1] !== 'H')).toBe(true);
+  });
+
+  it('skips pairs whose both sides are decided', () => {
+    const stream = ['X', 'Y', 'X', 'Y', 'Z', 'W', 'Z', 'W'];
+    const items = suggestSymbolDigraphs(stream, { X: 'T', Y: 'H' });
+    expect(items.every((item) => !(item.first === 'X' && item.second === 'Y'))).toBe(true);
   });
 });
 

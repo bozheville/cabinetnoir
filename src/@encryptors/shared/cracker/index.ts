@@ -12,6 +12,8 @@ export { default as FrequencyChart } from './FrequencyChart';
 export { default as CipherText, HIGHLIGHT_COLORS } from './CipherText';
 export { default as ShortTextWarning, MIN_RELIABLE_LETTERS } from './ShortTextWarning';
 export { default as AssignmentBoard } from './AssignmentBoard';
+export { default as PartialStream } from './PartialStream';
+export { default as CombinationStrip } from './CombinationStrip';
 export { useAssignmentHistory } from './useAssignmentHistory';
 export { defineHints, applyPreset, toggleHint } from './hintSettings';
 export type {

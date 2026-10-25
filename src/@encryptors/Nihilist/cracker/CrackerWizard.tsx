@@ -8,11 +8,14 @@ import {
   scoreTrigrams,
   STANDARD_ALPHABET,
   suggestByContext,
+  suggestSymbolDigraphs,
 } from '@encryptors/shared/analysis';
 import {
   AssignmentBoard,
   CandidateCards,
+  CombinationStrip,
   CrackerWizardFrame,
+  PartialStream,
   ShortTextWarning,
   useAssignmentHistory,
 } from '@encryptors/shared/cracker';
@@ -291,6 +294,13 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
     [partialPlaintext],
   );
 
+  // The letter-combination hints: frequent coordinate pairs with the
+  // plaintext digraphs they could be, consistent with what's placed.
+  const combinationHints = useMemo(
+    () => suggestSymbolDigraphs(coordinates, mapping),
+    [coordinates, mapping],
+  );
+
   // Contextual suggestions for step 3: candidate letters scored by
   // digram/trigram fit with the letters the user already placed around
   // each occurrence — frequency ranking is the prior until then.
@@ -488,6 +498,9 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
             showSuggestions={hints.suggestions}
             suggestions={contextualSuggestions}
           />
+          {hints.suggestions && (
+            <CombinationStrip items={combinationHints} />
+          )}
           {Object.keys(mapping).length > 0 && (
             <Pane display="flex" gap={16} alignItems="flex-start" flexWrap="wrap">
               <Pane>
@@ -500,7 +513,9 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
                 <Text size={300} display="block" marginBottom={4}>
                   {t('processing.cracker.wizard.previewTitle')}
                 </Text>
-                <PreviewBox data-guide="plaintext-preview">{partialPlaintext || '·'}</PreviewBox>
+                <PreviewBox data-guide="plaintext-preview">
+                  <PartialStream symbols={coordinates} mapping={mapping} />
+                </PreviewBox>
                 <EnglishnessMeter score={englishScore} />
               </Pane>
             </Pane>
