@@ -31,6 +31,12 @@ interface AssignmentBoardProps {
   normalized?: NormalizedText;
   // Show the frequency suggestion ("probably E?") under unassigned cells.
   showSuggestions?: boolean;
+  // External suggestions (symbol → plain letter): when provided, the
+  // board displays these instead of its own frequency ranking — for
+  // crackers whose context knows better than raw frequency (e.g. the
+  // Nihilist square, scored against the letters already assigned).
+  // Still gated by showSuggestions.
+  suggestions?: SymbolMapping;
   // Symbols the current step asks the user to look at (amber outline).
   highlighted?: string[];
   // Fixed cell order (e.g. square coordinates '11'…'55'): the board
@@ -226,6 +232,7 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
   input,
   normalized,
   showSuggestions = false,
+  suggestions,
   highlighted = [],
   order,
   columns,
@@ -237,9 +244,12 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
 
   const frequencies = countSymbols(symbols);
   const maxCount = frequencies[0]?.count || 1;
-  const suggestions = showSuggestions
-    ? suggestByFrequency(frequencies, mapping)
-    : {};
+  // External suggestions win when a cracker supplies them; the plain
+  // frequency ranking is the default.
+  const shownSuggestions = suggestions
+    ?? (showSuggestions ? suggestByFrequency(frequencies, mapping) : {});
+  const suggestionsFor = (symbol: string): string | undefined =>
+    shownSuggestions[symbol];
   const conflicts = findConflicts(mapping);
   const conflictSymbols = new Set(conflicts.flatMap(({ symbols: group }) => group));
   const usedLetters = new Set(Object.values(mapping));
@@ -264,7 +274,7 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
               count={count}
               maxCount={maxCount}
               assigned={mapping[symbol]}
-              suggestion={suggestions[symbol]}
+              suggestion={suggestionsFor(symbol)}
               conflict={conflictSymbols.has(symbol)}
               highlighted={highlighted.includes(symbol)}
               selected={symbol === selected}
@@ -283,7 +293,7 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
               count={count}
               maxCount={maxCount}
               assigned={mapping[symbol]}
-              suggestion={suggestions[symbol]}
+              suggestion={suggestionsFor(symbol)}
               conflict={conflictSymbols.has(symbol)}
               highlighted={highlighted.includes(symbol)}
               selected={symbol === selected}

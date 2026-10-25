@@ -2,6 +2,13 @@
 // assignment: the user maps cipher symbols to plain letters, these
 // helpers only measure and suggest. Nothing here assigns anything on its
 // own (the IKEA-effect rule). No React, no i18n.
+import { STANDARD_ALPHABET } from './frequency';
+import {
+  BIGRAM_ENGLISH_AVERAGE,
+  TRIGRAM_ENGLISH_AVERAGE,
+  TRIGRAM_FLOOR_LOG,
+} from './ngram-data';
+import { bigramScore, trigramScore } from './ngrams';
 import { CRIB_WORDS } from './english-stats';
 
 export interface SymbolFrequency {
@@ -70,6 +77,102 @@ export const suggestByFrequency = (
     suggestions[symbol] = ENGLISH_FREQUENCY_ORDER[rank];
     used.add(ENGLISH_FREQUENCY_ORDER[rank]);
     rank += 1;
+  }
+  return suggestions;
+};
+
+// Contextual suggestions: same contract as suggestByFrequency, but each
+// candidate plain letter is ranked by how well it reads next to the
+// letters the user already assigned around every occurrence of the
+// symbol — digram fit when one neighbour is known, trigram fit when
+// both are. The plain frequency ranking is the prior (and the whole
+// signal until the first assignment lands). Hints only — nothing is
+// ever assigned automatically.
+export const suggestByContext = (
+  stream: string[],
+  mapping: SymbolMapping,
+  alphabet: string = STANDARD_ALPHABET,
+): Record<string, string> => {
+  const used = new Set(Object.values(mapping));
+  const candidates = alphabet
+    .split('')
+    .filter((letter) => !used.has(letter))
+    .sort((a, b) => ENGLISH_FREQUENCY_ORDER.indexOf(a)
+      - ENGLISH_FREQUENCY_ORDER.indexOf(b));
+
+  // The evidence around one symbol's occurrences: letters the user
+  // already placed to its left and right, if any.
+  const contextsOf = (symbol: string): Array<[string | null, string | null]> => {
+    const contexts: Array<[string | null, string | null]> = [];
+    for (let index = 0; index < stream.length; index += 1) {
+      if (stream[index] !== symbol) {
+        continue;
+      }
+      contexts.push([
+        mapping[stream[index - 1]] || null,
+        mapping[stream[index + 1]] || null,
+      ]);
+    }
+    return contexts;
+  };
+
+  // Evidence on a shared 0-1 scale so digrams and trigrams average.
+  // Both scorers run on the full corpus tables — the hand-curated
+  // digraph list has gaps (ET is missing from it) that would floor
+  // strong evidence to zero.
+  const normDigraph = (bigram: string): number =>
+    (bigramScore(bigram) - TRIGRAM_FLOOR_LOG)
+    / (BIGRAM_ENGLISH_AVERAGE - TRIGRAM_FLOOR_LOG);
+  const normTrigram = (trigram: string): number =>
+    (trigramScore(trigram) - TRIGRAM_FLOOR_LOG)
+    / (TRIGRAM_ENGLISH_AVERAGE - TRIGRAM_FLOOR_LOG);
+
+  // Symbols with no evidence yet keep the distinct-letter frequency
+  // ranking (E, then T, then A…) rather than all suggesting E.
+  const frequencyFallback = suggestByFrequency(countSymbols(stream), mapping);
+
+  const suggestions: Record<string, string> = {};
+  for (const symbol of new Set(stream)) {
+    if (mapping[symbol]) {
+      continue;
+    }
+    const contexts = contextsOf(symbol);
+    if (!contexts.some(([previous, next]) => previous || next)) {
+      if (frequencyFallback[symbol]) {
+        suggestions[symbol] = frequencyFallback[symbol];
+      }
+      continue;
+    }
+    let best = candidates[0];
+    let bestScore = -Infinity;
+    for (let rank = 0; rank < candidates.length; rank += 1) {
+      const letter = candidates[rank];
+      let evidenceSum = 0;
+      let evidenceCount = 0;
+      for (const [previous, next] of contexts) {
+        if (previous && next) {
+          evidenceSum += normTrigram(previous + letter + next);
+        } else if (previous) {
+          evidenceSum += normDigraph(previous + letter);
+        } else if (next) {
+          evidenceSum += normDigraph(letter + next);
+        } else {
+          continue;
+        }
+        evidenceCount += 1;
+      }
+      // The frequency prior: small enough that one piece of evidence
+      // outweighs it, big enough to break evidence ties toward the
+      // common letters — and to rank everything when nothing is known.
+      const score = evidenceCount > 0
+        ? evidenceSum / evidenceCount + (candidates.length - rank) * 0.002
+        : (candidates.length - rank) * 0.002;
+      if (score > bestScore) {
+        bestScore = score;
+        best = letter;
+      }
+    }
+    suggestions[symbol] = best;
   }
   return suggestions;
 };

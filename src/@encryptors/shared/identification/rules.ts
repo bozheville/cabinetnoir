@@ -1,7 +1,7 @@
 import type { Family } from './types';
 import type { TextProfile } from './profile';
 import { isEnglishLikeIc } from './profile';
-import { scoreTrigrams } from '@encryptors/shared/analysis/trigrams';
+import { scoreTrigrams } from '@encryptors/shared/analysis/ngrams';
 import {
   railFenceCandidateScores,
   columnarCandidateScores,

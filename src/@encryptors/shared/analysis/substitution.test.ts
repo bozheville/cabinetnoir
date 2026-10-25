@@ -1,8 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
+import { buildSquare, toCoordinates } from '@encryptors/shared/polybius';
 import {
   countSymbols,
   suggestByFrequency,
+  suggestByContext,
   findConflicts,
   wordPattern,
   findPatternMatches,
@@ -93,6 +95,61 @@ describe('findPatternMatches', () => {
   it('keeps only words with at least one candidate', () => {
     // QQQ pattern AAA matches no common word.
     expect(findPatternMatches(words('QQQ'), {})).toEqual([]);
+  });
+});
+
+describe('suggestByContext', () => {
+  it('falls back to the frequency ranking before any assignment', () => {
+    const stream = ['A', 'A', 'A', 'B', 'B', 'C'];
+    expect(suggestByContext(stream, {})).toEqual({ A: 'E', B: 'T', C: 'A' });
+  });
+
+  it('suggests from trigram evidence between known letters', () => {
+    // T?E across one occurrence: the middle symbol reads as H.
+    const stream = ['T', 'X', 'E'];
+    const mapping = { T: 'T', E: 'E' };
+    expect(suggestByContext(stream, mapping)).toEqual({ X: 'H' });
+  });
+
+  it('suggests from digram evidence beside one known letter', () => {
+    // ?HE: the leading symbol reads as T.
+    const stream = ['X', 'H', 'E'];
+    const mapping = { H: 'H', E: 'E' };
+    expect(suggestByContext(stream, mapping)).toEqual({ X: 'T' });
+  });
+
+  it('never suggests a letter already used elsewhere', () => {
+    const stream = ['T', 'X', 'Z'];
+    // E is already spent on another symbol.
+    const mapping = { T: 'T', Z: 'E' };
+    const suggestions = suggestByContext(stream, mapping);
+    expect(suggestions.X).toBeTruthy();
+    expect(suggestions.X).not.toBe('E');
+  });
+
+  it('skips symbols the user already assigned and reads context', () => {
+    // Q placed before the unknown symbol: QU is how Q always reads.
+    const stream = ['A', 'B'];
+    expect(suggestByContext(stream, { A: 'Q' })).toEqual({ B: 'U' });
+  });
+});
+
+describe('suggestByContext on a real square', () => {
+  // A full keyed-square stream: the suggestions must hold up against
+  // corpus statistics, not just toy fixtures.
+  it('suggests a defensible letter for the E cell mid-crack', () => {
+    const square = buildSquare('SECRET', { size: 5 });
+    const pairs = 'MEETMEATTHEBRIDGETONIGHTANDTELLNOONE'
+      .split('')
+      .map((letter) => toCoordinates(letter, square));
+    const mapping: Record<string, string> = {
+      [toCoordinates('T', square)]: 'T',
+      [toCoordinates('H', square)]: 'H',
+    };
+    const got = suggestByContext(pairs, mapping, 'ABCDEFGHIKLMNOPQRSTUVWXYZ');
+    // Digram-only evidence at this stage (HE, ET, TE): E or A both
+    // read well — the trigram cases above are the decisive ones.
+    expect(['E', 'A']).toContain(got[toCoordinates('E', square)]);
   });
 });
 

@@ -17,7 +17,8 @@ export const ENGLISH_DIGRAPHS: Record<string, number> = {
 };
 
 // Score for digraphs missing from the table (0.01% of text).
-const FLOOR = Math.log10(0.01);
+export const DIGRAPH_FLOOR_LOG = Math.log10(0.01);
+const FLOOR = DIGRAPH_FLOOR_LOG;
 
 export const digraphScore = (digraph: string): number => {
   const frequency = ENGLISH_DIGRAPHS[digraph];
