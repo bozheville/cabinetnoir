@@ -2,6 +2,7 @@
 // assignment: the user maps cipher symbols to plain letters, these
 // helpers only measure and suggest. Nothing here assigns anything on its
 // own (the IKEA-effect rule). No React, no i18n.
+import { CRIB_WORDS } from './english-stats';
 
 export interface SymbolFrequency {
   symbol: string;
@@ -19,10 +20,13 @@ export const ENGLISH_FREQUENCY_ORDER: string[] = [
 // The classic doubles of English, for the "doubled letters" hint.
 export const COMMON_DOUBLES = ['LL', 'TT', 'SS', 'EE', 'OO', 'FF', 'RR', 'MM', 'NN', 'PP', 'DD', 'CC', 'GG'];
 
-// Common short English words for pattern matching. Patterns (not the
+// Common English words for pattern matching. Patterns (not the
 // words themselves) do the work: the candidate list stays small and the
 // UI presents matches as "could be THE" — the user still decides.
-export const PATTERN_WORDS = [
+// The hand-picked core keeps the classic function words; the corpus
+// half (top Google Books words) widens coverage — generated via
+// scripts/generate-english-stats.py, see english-stats.ts.
+const HAND_PICKED_WORDS = [
   'THE', 'AND', 'THAT', 'HAVE', 'FOR', 'NOT', 'WITH', 'YOU', 'THIS',
   'ARE', 'FROM', 'WOULD', 'COULD', 'SHOULD', 'THERE', 'THEIR', 'WHICH',
   'ABOUT', 'WHEN', 'WHAT', 'YOUR', 'WILL', 'CAN', 'THESE', 'OTHER',
@@ -33,6 +37,7 @@ export const PATTERN_WORDS = [
   'DO', 'GO', 'IF', 'IN', 'IS', 'IT', 'ME', 'MY', 'NO', 'OF', 'ON',
   'OR', 'SO', 'TO', 'UP', 'US', 'WE',
 ];
+export const PATTERN_WORDS = [...new Set([...HAND_PICKED_WORDS, ...CRIB_WORDS])];
 
 export const countSymbols = (symbols: string[]): SymbolFrequency[] => {
   const counts: Record<string, number> = {};

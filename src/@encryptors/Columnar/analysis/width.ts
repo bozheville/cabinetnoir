@@ -15,6 +15,7 @@
 import {
   columnarCandidateScores,
   scoreDigraphs,
+  scoreTrigrams,
 } from '@encryptors/shared/analysis';
 
 export interface WidthCandidate {
@@ -115,7 +116,7 @@ export const rankWidths = (
   ciphertext: string,
   maxWidth: number = 12,
 ): WidthCandidate[] => {
-  const scan = columnarCandidateScores(ciphertext, scoreDigraphs, maxWidth);
+  const scan = columnarCandidateScores(ciphertext, scoreTrigrams, maxWidth);
   const scanScoreOf = (width: number): number =>
     scan.find((entry) => entry.width === width)?.score ?? 0;
 

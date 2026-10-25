@@ -4,7 +4,7 @@
 // and keeps it only if the digraph score improves — the user watches the
 // preview turn readable instead of an opaque auto-solve.
 import { playfairDecrypt } from '../playfair-encryption';
-import { scoreDigraphs } from '../analysis/digraphs';
+import { scoreTrigrams } from '@encryptors/shared/analysis';
 
 const ALPHABET_25 = 'ABCDEFGHIKLMNOPQRSTUVWXYZ';
 
@@ -33,7 +33,7 @@ export const randomSquare = (): string[] => {
 // Digits-only score of the current square against the ciphertext.
 export const scoreSquare = (square: string[], ciphertext: string): number => {
   const plaintext = playfairDecrypt(ciphertext, squareToKey(square));
-  return scoreDigraphs(plaintext.replace(/[^A-Z]/g, ''));
+  return scoreTrigrams(plaintext.replace(/[^A-Z]/g, ''));
 };
 
 // One best-improvement pass: try all 300 swaps, apply the single best
