@@ -67,6 +67,18 @@ export const polybiusDecrypt = ({
   return plaintext;
 };
 
+// Ciphertext tolerance mirrors polybiusDecrypt: the digits are read as
+// consecutive pairs; any other character (spaces, punctuation) is
+// ignored, so both the spaced and the continuous format parse.
+export const parsePolybiusPairs = (input: string): string[] => {
+  const digits = input.replace(/\D/g, '');
+  const pairs: string[] = [];
+  for (let index = 0; index + 1 < digits.length; index += 2) {
+    pairs.push(digits.slice(index, index + 2));
+  }
+  return pairs;
+};
+
 // The letter currently under the tool's highlight: the last encodable
 // plaintext letter (encrypt) or the letter of the last complete digit
 // pair (decrypt) — so the square's highlight follows the output.

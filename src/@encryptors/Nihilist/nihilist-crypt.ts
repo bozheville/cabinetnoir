@@ -10,7 +10,12 @@
 // Pure string in / string out, shared by the tool, the cracker, the
 // worked examples and the challenges.
 
-import { buildSquare, fromCoordinates, toCoordinates } from '@encryptors/shared/polybius';
+import {
+  buildSquare,
+  foldForSquare,
+  fromCoordinates,
+  toCoordinates,
+} from '@encryptors/shared/polybius';
 
 export interface NihilistCryptProps {
   input: string;
@@ -23,9 +28,15 @@ export interface NihilistCryptProps {
   spaced?: boolean;
 }
 
-// Plaintext and key cleaning: uppercase, J folded into I, letters only.
+// Plaintext and key cleaning: uppercase, J folded into I (the shared
+// square fold — the 5x5 Latin square has no J cell), letters only.
 const cleanLetters = (text: string): string =>
-  text.toUpperCase().replace(/J/g, 'I').replace(/[^A-Z]/g, '');
+  text
+    .toUpperCase()
+    .split('')
+    .map((char) => foldForSquare(char))
+    .join('')
+    .replace(/[^A-Z]/g, '');
 
 // Digit-by-digit addition without carry: 53 + 41 = 94, and 55 + 55 = 110
 // (a sum of 10 overflows into the next decimal place — the famous "10"

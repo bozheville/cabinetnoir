@@ -13,16 +13,19 @@ import {
   suggestSymbolTrigraphs,
 } from '@encryptors/shared/analysis';
 import {
-  AssignmentBoard,
   CandidateCards,
-  CombinationStrip,
   CrackerWizardFrame,
-  PartialStream,
   ShortTextWarning,
   useAssignmentHistory,
 } from '@encryptors/shared/cracker';
 import PolybiusSquare from '@encryptors/shared/polybius/PolybiusSquare';
-import { fromCoordinates, squareCoordinates } from '@encryptors/shared/polybius';
+import {
+  assembleSquareFromMapping,
+  expandSquare,
+  fromCoordinates,
+  squareCoordinates,
+} from '@encryptors/shared/polybius';
+import SquareDecipherStep from '@encryptors/shared/polybius/SquareDecipherStep';
 import { keywordFromAlphabet } from '@encryptors/Keyword/keyword-crypt';
 import {
   parseNihilistNumbers,
@@ -81,51 +84,6 @@ const ValueRow = styled(Text)<{ $ok: boolean }>`
   font-size: 13px;
   color: ${({ $ok, theme }) => ($ok ? theme.colorScheme.blue_green[600] : theme.colorScheme.red[600])};
 `;
-
-const PreviewBox = styled(Pane)`
-  padding: 10px 12px;
-  border-radius: 4px;
-  background: ${({ theme }) => theme.colorScheme.gray[100]};
-  font-family: monospace;
-  font-size: 13px;
-  line-height: 1.5;
-  white-space: pre-wrap;
-  word-break: break-word;
-  max-height: 140px;
-  overflow-y: auto;
-`;
-
-// The step-3 feedback meter: how English the draft looks under the
-// current partial square, 0-100 from the trigram scorer. Feedback only
-// — the meter never assigns or solves anything.
-const MeterTrack = styled(Pane)`
-  height: 6px;
-  border-radius: 3px;
-  background: ${({ theme }) => theme.colorScheme.gray[200]};
-  margin-top: 4px;
-`;
-
-const MeterFill = styled(Pane)<{ $ratio: number }>`
-  width: ${({ $ratio }) => Math.round($ratio * 100)}%;
-  height: 6px;
-  border-radius: 3px;
-  background: ${({ theme }) => theme.colorScheme.blue[500]};
-  transition: width 0.15s ease-out;
-`;
-
-const EnglishnessMeter: React.FC<{ score: number }> = ({ score }) => {
-  const { t } = useTranslation('common');
-  return (
-    <Pane marginTop={8} data-guide="englishness-meter">
-      <Text size={200}>
-        {t('processing.nihilist.cracker.wizard.square.englishness', { score })}
-      </Text>
-      <MeterTrack>
-        <MeterFill $ratio={Math.max(0, Math.min(1, score / 100))} />
-      </MeterTrack>
-    </Pane>
-  );
-};
 
 interface CrackerWizardProps {
   input: string;
@@ -220,19 +178,6 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
   // ciphertext never produces, which a short text can lack but the
   // square still needs for the hand-off.
   const unassigned = SQUARE_COORDINATES.filter((symbol) => !mapping[symbol]);
-  // The step highlights the three unassigned cells with the strongest
-  // frequency evidence — the same signal the bars carry — not merely
-  // the first ones in reading order.
-  const highlighted = useMemo(() => {
-    const counts = new Map<string, number>();
-    coordinates.forEach((pair) => {
-      counts.set(pair, (counts.get(pair) || 0) + 1);
-    });
-    return unassigned
-      .slice()
-      .sort((a, b) => (counts.get(b) || 0) - (counts.get(a) || 0))
-      .slice(0, 3);
-  }, [unassigned, coordinates]);
   const complete = allPinned
     && symbols.length > 0
     && unassigned.length === 0
@@ -242,33 +187,19 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
   // hand-off stays disabled until every one of the 25 cells is decided
   // — a text can lack a rare letter's pair, and a half-known square
   // would decode wrongly in the tool.
-  const recoveredSquare = useMemo(() => {
-    const cells = new Array(25).fill('·');
-    for (const [pair, letter] of Object.entries(mapping)) {
-      const row = Number(pair[0]);
-      const column = Number(pair[1]);
-      if (row >= 1 && row <= 5 && column >= 1 && column <= 5) {
-        cells[(row - 1) * 5 + (column - 1)] = letter;
-      }
-    }
-    return cells.join('');
-  }, [mapping]);
-
+  const recoveredSquare = useMemo(
+    () => assembleSquareFromMapping(mapping, { size: 5, fill: 'dots' }),
+    [mapping],
+  );
   const squareComplete = !recoveredSquare.includes('·');
   // The additive key word, read back through the recovered square.
   // Keyword bonus: re-expand the 25-letter square into a 26-letter
   // alphabet (J rides in right after I) and let the keyword engine
   // recognise the pattern — same trick the Keyword cracker uses.
-  const keywordGuess = useMemo(() => {
-    if (!squareComplete) {
-      return null;
-    }
-    const i = recoveredSquare.indexOf('I');
-    const alphabet26 = i === -1
-      ? recoveredSquare
-      : `${recoveredSquare.slice(0, i + 1)}J${recoveredSquare.slice(i + 1)}`;
-    return keywordFromAlphabet(alphabet26);
-  }, [recoveredSquare, squareComplete]);
+  const keywordGuess = useMemo(
+    () => (squareComplete ? keywordFromAlphabet(expandSquare(recoveredSquare)) : null),
+    [recoveredSquare, squareComplete],
+  );
 
   // The additive key word, read back through the recovered square.
   const recoveredKey = useMemo(() => {
@@ -311,14 +242,6 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
     () => suggestDoubledSymbols(coordinates, mapping),
     [coordinates, mapping],
   );
-  // The hovered hint row's symbol sequence: lights its occurrences up
-  // in the preview. Cleared whenever the hints disappear.
-  const [highlightSequence, setHighlightSequence] = useState<string[] | null>(null);
-  useEffect(() => {
-    if (!hints.suggestions) {
-      setHighlightSequence(null);
-    }
-  }, [hints.suggestions]);
 
   // Contextual suggestions for step 3: candidate letters scored by
   // digram/trigram fit with the letters the user already placed around
@@ -397,20 +320,6 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
         </>
       )}
     >
-      {step === 3 && (
-        <Pane display="flex" gap={8} marginBottom={8}>
-          <Button size="small" disabled={!history.canUndo} onClick={history.undo}>
-            {t('processing.cracker.assignment.undo')}
-          </Button>
-          <Button size="small" disabled={!history.canRedo} onClick={history.redo}>
-            {t('processing.cracker.assignment.redo')}
-          </Button>
-          <Button size="small" onClick={history.clear}>
-            {t('processing.cracker.assignment.clearAll')}
-          </Button>
-        </Pane>
-      )}
-
       {step === 1 && (
         <Pane marginTop={12}>
           <StepText size={300}>
@@ -503,52 +412,28 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
       )}
 
       {step === 3 && (
-        <Pane marginTop={12} display="flex" flexDirection="column" gap={10}>
-          <StepText size={300}>
+        <>
+          <StepText size={300} marginTop={12}>
             {t('processing.nihilist.cracker.wizard.square.hint')}
           </StepText>
-          <AssignmentBoard
+          <SquareDecipherStep
             symbols={coordinates}
             mapping={mapping}
             onAssign={assign}
+            size={5}
             alphabet={STANDARD_ALPHABET}
-            order={SQUARE_COORDINATES}
-            highlighted={highlighted}
+            history={history}
             showSuggestions={hints.suggestions}
             suggestions={contextualSuggestions}
+            combinationHints={hints.suggestions ? {
+              digraphs: combinationHints,
+              trigraphs: trigraphHints,
+              doubles: doubleHints,
+            } : null}
+            fill="dots"
+            englishness={englishScore}
           />
-          {hints.suggestions && (
-            <CombinationStrip
-              digraphs={combinationHints}
-              trigraphs={trigraphHints}
-              doubles={doubleHints}
-              onHoverRow={setHighlightSequence}
-            />
-          )}
-          {Object.keys(mapping).length > 0 && (
-            <Pane display="flex" gap={16} alignItems="flex-start" flexWrap="wrap">
-              <Pane>
-                <Text size={300} display="block" marginBottom={4}>
-                  {t('processing.nihilist.cracker.wizard.square.squareLabel')}
-                </Text>
-                <PolybiusSquare square={recoveredSquare || '·························'} />
-              </Pane>
-              <Pane flex={1} minWidth={240}>
-                <Text size={300} display="block" marginBottom={4}>
-                  {t('processing.cracker.wizard.previewTitle')}
-                </Text>
-                <PreviewBox data-guide="plaintext-preview">
-                  <PartialStream
-                    symbols={coordinates}
-                    mapping={mapping}
-                    highlightSequence={highlightSequence ?? undefined}
-                  />
-                </PreviewBox>
-                <EnglishnessMeter score={englishScore} />
-              </Pane>
-            </Pane>
-          )}
-        </Pane>
+        </>
       )}
 
       {step === 4 && (

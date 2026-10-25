@@ -692,6 +692,16 @@
         "hint": "seen {{count}} times — could be {{candidates}}",
         "tripletsTitle": "Recurring triplets",
         "doublesTitle": "Doubled symbols"
+      },
+      "squareDecipher": {
+        "squareLabel": "The square as you have it",
+        "chartTooltip": "The symbols of the ciphertext, most frequent first. Click a symbol to select it; the count shows how often it appears.",
+        "cribLabel": "Probable word (crib):",
+        "cribTooltip": "A word you expect in the message. Matches respect the letters you already assigned.",
+        "cribPlaceholder": "e.g. ATTACK",
+        "cribAt": "Match at position {{position}}",
+        "cribApply": "Apply",
+        "englishness": "English-likeness of your draft: {{score}}%"
       }
     },
     "assignment": {
@@ -724,6 +734,26 @@
         "keyword_placeholder": "Keyword (optional)",
         "spaced": "Space-separated pairs",
         "squareHint": "The square — the highlighted cell (with its row and column) is the latest letter of the output."
+      },
+      "cracker": {
+        "hints": {
+          "toggles": {
+            "suggestions": "Show letter suggestions"
+          }
+        },
+        "tooltips": {
+          "toggle": {
+            "suggestions": "Suggest a candidate letter for each unassigned cell — a hint, never an assignment."
+          }
+        },
+        "wizard": {
+          "steps": {
+            "square": "Square"
+          },
+          "square": {
+            "hint": "Each pair of digits names a cell of the unknown square: assign letters by frequency, pairs run 11–55."
+          }
+        }
       }
     },
     "nihilist": {

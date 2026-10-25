@@ -1,7 +1,9 @@
-// Cribs for the substitution stage: a guessed plaintext fragment, checked
-// against the symbol stream under the current partial mapping.
+// Cribs for the square-decipher step: a guessed plaintext fragment,
+// checked against the symbol stream under the current partial mapping.
+// Symbol-agnostic — coordinate pairs for Polybius-based ciphers, any
+// substitution symbols otherwise.
 
-import { SymbolMapping } from './frequency';
+import { SymbolMapping } from '../analysis/substitution';
 
 export interface CribMatch {
   // Index of the first symbol of the match.
