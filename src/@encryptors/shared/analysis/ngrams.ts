@@ -41,8 +41,8 @@ export const trigramScore = (trigram: string): number => {
   return (byte / 255) * (TRIGRAM_TOP_LOG - FLOOR_LOG) + FLOOR_LOG;
 };
 
-// Same for a bigram. Bigrams run hotter than trigrams (TH tops 3% of
-// text), so their scale tops out half a decade higher.
+// Same for a bigram — both n-gram families share the quantization
+// scale, anchored in ngram-data.ts.
 export const bigramScore = (bigram: string): number => {
   const byte = BIGRAM_SCORES[offsetOf(bigram.toUpperCase())];
   if (byte === 0) {

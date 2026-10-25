@@ -34,13 +34,15 @@ from collections import Counter
 TARGET_TRIGRAM_DATA = 'src/@encryptors/shared/analysis/ngram-data.ts'
 TARGET_ENGLISH_STATS = 'src/@encryptors/shared/analysis/english-stats.ts'
 
-# Quantization: seen trigrams map to log10(percent) on [-4.5, -0.5],
+# Quantization: seen n-grams map to log10(percent) on [-4.5, 1.0],
 # byte 1..255; byte 0 marks "never seen" and decodes to the floor.
+# The top sits above the head of the distribution (THE is ~4.6% of
+# word-internal trigrams, log10 0.66) so the commonest n-grams stay
+# discriminable from each other — an early version clamped at -0.5 and
+# THE tied ALL, losing the ranking.
 FLOOR_LOG = -4.5
-TOP_LOG = -0.5
-# Bigrams run an order of magnitude hotter (TH ~ 3.5%); their scale
-# tops out half a decade higher so the common pairs stay discriminable.
-BIGRAM_TOP_LOG = 0.5
+TOP_LOG = 1.0
+BIGRAM_TOP_LOG = 1.0
 BYTE_MAX = 255
 CRIB_WORD_COUNT = 200
 

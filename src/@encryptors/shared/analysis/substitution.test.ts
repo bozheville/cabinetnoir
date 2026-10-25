@@ -7,6 +7,9 @@ import {
   suggestByContext,
   countSymbolDigraphs,
   suggestSymbolDigraphs,
+  countSymbolTrigraphs,
+  suggestSymbolTrigraphs,
+  suggestDoubledSymbols,
   findConflicts,
   wordPattern,
   findPatternMatches,
@@ -191,6 +194,66 @@ describe('symbol digraphs', () => {
     const stream = ['X', 'Y', 'X', 'Y', 'Z', 'W', 'Z', 'W'];
     const items = suggestSymbolDigraphs(stream, { X: 'T', Y: 'H' });
     expect(items.every((item) => !(item.first === 'X' && item.second === 'Y'))).toBe(true);
+  });
+});
+
+describe('symbol trigraphs', () => {
+  it('counts adjacent symbol triples, most frequent first', () => {
+    const stream = ['A', 'B', 'C', 'A', 'B', 'C', 'X', 'Y'];
+    const triples = countSymbolTrigraphs(stream);
+    expect(triples[0]).toEqual({ first: 'A', second: 'B', third: 'C', count: 2 });
+    expect(triples).toHaveLength(5);
+  });
+
+  it('anchors frequent triples to THE-class trigraphs', () => {
+    // Nothing placed: THE tops the within-word corpus ranking.
+    const stream = ['X', 'Y', 'Z', 'X', 'Y', 'Z', 'W', 'V', 'U', 'W', 'V', 'U'];
+    const items = suggestSymbolTrigraphs(stream, {});
+    const xyz = items.find((item) =>
+      item.first === 'X' && item.second === 'Y' && item.third === 'Z');
+    expect(xyz?.candidates[0]).toBe('THE');
+  });
+
+  it('forces the same letter when a symbol repeats inside the triple', () => {
+    // A B A twice: first and third positions are the same symbol, so
+    // every candidate trigraph must read c1-c2-c1.
+    const stream = ['A', 'B', 'A', 'A', 'B', 'A'];
+    const items = suggestSymbolTrigraphs(stream, {});
+    expect(items[0].candidates.every((trigraph) =>
+      trigraph[0] === trigraph[2])).toBe(true);
+  });
+
+  it('fixes assigned letters into their positions', () => {
+    const stream = ['X', 'Y', 'Z', 'X', 'Y', 'Z', 'X', 'Y', 'Z'];
+    const items = suggestSymbolTrigraphs(stream, { X: 'T' });
+    expect(items[0].candidates.every((trigraph) => trigraph[0] === 'T')).toBe(true);
+  });
+
+  it('skips triples that are fully decided', () => {
+    const stream = ['X', 'Y', 'Z', 'X', 'Y', 'Z', 'W', 'V', 'U', 'W', 'V', 'U'];
+    const items = suggestSymbolTrigraphs(stream, { X: 'T', Y: 'H', Z: 'E' });
+    expect(items.every((item) =>
+      !(item.first === 'X' && item.second === 'Y' && item.third === 'Z'))).toBe(true);
+  });
+});
+
+describe('doubled symbols', () => {
+  it('suggests doubled digraphs for frequent doubles', () => {
+    // LOOK-style: a symbol following itself must be a doubled letter.
+    const stream = ['A', 'A', 'B', 'C', 'A', 'A', 'B', 'C'];
+    const items = suggestDoubledSymbols(stream, {});
+    expect(items[0]).toMatchObject({ symbol: 'A', count: 2 });
+    expect(items[0].candidates.every((d) => d[0] === d[1])).toBe(true);
+    // The ranking comes from the corpus, and no letter owned by
+    // another symbol may appear.
+    const filtered = suggestDoubledSymbols(stream, { Q: 'L' });
+    expect(filtered[0].candidates.every((d) => d[0] !== 'L')).toBe(true);
+  });
+
+  it('drops doubles the user already decided', () => {
+    const stream = ['A', 'A', 'B', 'B', 'A', 'A', 'B', 'B'];
+    const items = suggestDoubledSymbols(stream, { A: 'L' });
+    expect(items.every((item) => item.symbol !== 'A')).toBe(true);
   });
 });
 

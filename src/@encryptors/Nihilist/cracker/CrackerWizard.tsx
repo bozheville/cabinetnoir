@@ -8,7 +8,9 @@ import {
   scoreTrigrams,
   STANDARD_ALPHABET,
   suggestByContext,
+  suggestDoubledSymbols,
   suggestSymbolDigraphs,
+  suggestSymbolTrigraphs,
 } from '@encryptors/shared/analysis';
 import {
   AssignmentBoard,
@@ -294,12 +296,29 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
     [partialPlaintext],
   );
 
-  // The letter-combination hints: frequent coordinate pairs with the
-  // plaintext digraphs they could be, consistent with what's placed.
+  // The letter-combination hints: frequent coordinate pairs and
+  // triples with the plaintext digraphs/trigraphs they could be, plus
+  // the doubled-symbol tell — consistent with what's placed.
   const combinationHints = useMemo(
     () => suggestSymbolDigraphs(coordinates, mapping),
     [coordinates, mapping],
   );
+  const trigraphHints = useMemo(
+    () => suggestSymbolTrigraphs(coordinates, mapping),
+    [coordinates, mapping],
+  );
+  const doubleHints = useMemo(
+    () => suggestDoubledSymbols(coordinates, mapping),
+    [coordinates, mapping],
+  );
+  // The hovered hint row's symbol sequence: lights its occurrences up
+  // in the preview. Cleared whenever the hints disappear.
+  const [highlightSequence, setHighlightSequence] = useState<string[] | null>(null);
+  useEffect(() => {
+    if (!hints.suggestions) {
+      setHighlightSequence(null);
+    }
+  }, [hints.suggestions]);
 
   // Contextual suggestions for step 3: candidate letters scored by
   // digram/trigram fit with the letters the user already placed around
@@ -499,7 +518,12 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
             suggestions={contextualSuggestions}
           />
           {hints.suggestions && (
-            <CombinationStrip items={combinationHints} />
+            <CombinationStrip
+              digraphs={combinationHints}
+              trigraphs={trigraphHints}
+              doubles={doubleHints}
+              onHoverRow={setHighlightSequence}
+            />
           )}
           {Object.keys(mapping).length > 0 && (
             <Pane display="flex" gap={16} alignItems="flex-start" flexWrap="wrap">
@@ -514,7 +538,11 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
                   {t('processing.cracker.wizard.previewTitle')}
                 </Text>
                 <PreviewBox data-guide="plaintext-preview">
-                  <PartialStream symbols={coordinates} mapping={mapping} />
+                  <PartialStream
+                    symbols={coordinates}
+                    mapping={mapping}
+                    highlightSequence={highlightSequence ?? undefined}
+                  />
                 </PreviewBox>
                 <EnglishnessMeter score={englishScore} />
               </Pane>

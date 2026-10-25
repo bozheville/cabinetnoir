@@ -3,19 +3,29 @@ import { Heading, Text } from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
-import { DigraphSuggestion } from '../analysis/substitution';
+import {
+  DigraphSuggestion,
+  DoubleSuggestion,
+  TrigraphSuggestion,
+} from '../analysis/substitution';
 
-// The letter-combination hints: the frequent symbol pairs of the
-// stream, each with the corpus-ranked plaintext digraphs it could be
-// — "34 + 15 seen 12 times — could be TH, IN, TI". The next level up
-// from the per-cell "Try X" hints: monoalphabetic ciphers hide
-// combinations exactly the way they hide letters, and the strip makes
-// that evidence visible instead of burying it in the suggestion math.
-// Pure hints — the user places every letter.
+// The letter-combination hints, one level per section: recurring
+// symbol pairs (digraph layer), recurring triples (THE-class anchors,
+// trigraph layer) and doubled symbols (the classic mono-cipher tell).
+// Each row shows the corpus-ranked plaintext candidates consistent
+// with the letters the user already placed. Hovering a row asks the
+// preview to highlight that symbol sequence's occurrences. Pure
+// hints — the user places every letter.
 
 const Strip = styled.div`
   padding: 10px 12px;
   border-radius: 4px;
+`;
+
+const SectionTitle = styled(Heading)`
+  &:not(:first-child) {
+    margin-top: 10px;
+  }
 `;
 
 const Row = styled(Text)`
@@ -23,6 +33,7 @@ const Row = styled(Text)`
   font-family: monospace;
   font-size: 13px;
   line-height: 1.8;
+  cursor: default;
 `;
 
 const PairText = styled(Text)`
@@ -32,27 +43,77 @@ const PairText = styled(Text)`
 `;
 
 interface CombinationStripProps {
-  items: DigraphSuggestion[];
+  digraphs: DigraphSuggestion[];
+  trigraphs: TrigraphSuggestion[];
+  doubles: DoubleSuggestion[];
+  // Hover feedback: the symbol sequence of the hovered row, or null
+  // on leave. Lets the preview light up where the hint occurs.
+  onHoverRow?: (symbols: string[] | null) => void;
 }
 
-const CombinationStrip: React.FC<CombinationStripProps> = ({ items }) => {
+const CombinationStrip: React.FC<CombinationStripProps> = ({
+  digraphs,
+  trigraphs,
+  doubles,
+  onHoverRow,
+}) => {
   const { t } = useTranslation('common');
-  if (items.length === 0) {
+  const hint = (count: number, candidates: string[]) =>
+    t('processing.cracker.combinations.hint', {
+      count,
+      candidates: candidates.join(', '),
+    });
+
+  const hoverProps = (symbols: string[]) => onHoverRow
+    ? {
+      onMouseEnter: () => onHoverRow(symbols),
+      onMouseLeave: () => onHoverRow(null),
+    }
+    : {};
+
+  const hasDigraphs = digraphs.length > 0;
+  const hasTrigraphs = trigraphs.length > 0;
+  const hasDoubles = doubles.length > 0;
+  if (!hasDigraphs && !hasTrigraphs && !hasDoubles) {
     return null;
   }
+
   return (
     <Strip data-guide="combination-strip">
-      <Heading size={200} marginBottom={4}>
-        {t('processing.cracker.combinations.title')}
-      </Heading>
-      {items.map(({ first, second, count, candidates }) => (
-        <Row key={`${first}+${second}`}>
+      {hasDigraphs && (
+        <SectionTitle size={200} marginBottom={4}>
+          {t('processing.cracker.combinations.title')}
+        </SectionTitle>
+      )}
+      {digraphs.map(({ first, second, count, candidates }) => (
+        <Row key={`d-${first}-${second}`} {...hoverProps([first, second])}>
           <PairText>{first} + {second}</PairText>
           {' '}
-          {t('processing.cracker.combinations.hint', {
-            count,
-            candidates: candidates.join(', '),
-          })}
+          {hint(count, candidates)}
+        </Row>
+      ))}
+      {hasTrigraphs && (
+        <SectionTitle size={200} marginBottom={4}>
+          {t('processing.cracker.combinations.tripletsTitle')}
+        </SectionTitle>
+      )}
+      {trigraphs.map(({ first, second, third, count, candidates }) => (
+        <Row key={`t-${first}-${second}-${third}`} {...hoverProps([first, second, third])}>
+          <PairText>{first} + {second} + {third}</PairText>
+          {' '}
+          {hint(count, candidates)}
+        </Row>
+      ))}
+      {hasDoubles && (
+        <SectionTitle size={200} marginBottom={4}>
+          {t('processing.cracker.combinations.doublesTitle')}
+        </SectionTitle>
+      )}
+      {doubles.map(({ symbol, count, candidates }) => (
+        <Row key={`x-${symbol}`} {...hoverProps([symbol, symbol])}>
+          <PairText>{symbol} + {symbol}</PairText>
+          {' '}
+          {hint(count, candidates)}
         </Row>
       ))}
     </Strip>

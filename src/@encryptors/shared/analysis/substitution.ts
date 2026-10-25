@@ -380,3 +380,151 @@ export const suggestSymbolDigraphs = (
   }
   return suggestions;
 };
+
+// --- Symbol trigraphs: THE-shaped anchors, made visible ---
+// The trigram layer of the hints: a frequent symbol triple maps to a
+// plaintext trigraph, and THE/THA/ING-class anchors crack a square
+// faster than any single letter. Same consistency rules as the
+// digraphs, one position deeper.
+
+export interface SymbolTrigraph {
+  first: string;
+  second: string;
+  third: string;
+  count: number;
+}
+
+// Adjacent symbol triples of the stream, most frequent first.
+export const countSymbolTrigraphs = (stream: string[]): SymbolTrigraph[] => {
+  const counts = new Map<string, number>();
+  for (let index = 0; index + 2 < stream.length; index += 1) {
+    const key = `${stream[index]}\u0000${stream[index + 1]}\u0000${stream[index + 2]}`;
+    counts.set(key, (counts.get(key) || 0) + 1);
+  }
+  return [...counts.entries()]
+    .map(([key, count]) => {
+      const [first, second, third] = key.split('\u0000');
+      return { first, second, third, count };
+    })
+    .sort((a, b) => b.count - a.count);
+};
+
+export interface TrigraphSuggestion {
+  first: string;
+  second: string;
+  third: string;
+  count: number;
+  candidates: string[];
+}
+
+// For every frequent undecided symbol triple, the top plaintext
+// trigraphs it could be: corpus trigram scoring under the mapping's
+// constraints — assigned symbols fix their letter, the same symbol in
+// several positions forces the same letter, and no candidate may
+// reuse a letter owned by another symbol.
+export const suggestSymbolTrigraphs = (
+  stream: string[],
+  mapping: SymbolMapping,
+  tripleLimit: number = 4,
+  candidatesPerTriple: number = 3,
+): TrigraphSuggestion[] => {
+  const used = new Set(Object.values(mapping));
+  const suggestions: TrigraphSuggestion[] = [];
+  for (const { first, second, third, count } of countSymbolTrigraphs(stream)) {
+    if (count < 2 || suggestions.length >= tripleLimit) {
+      break;
+    }
+    const fixed = [mapping[first], mapping[second], mapping[third]];
+    if (fixed.every(Boolean)) {
+      continue;
+    }
+    const symbols = [first, second, third];
+    const scored: Array<{ trigraph: string; score: number }> = [];
+    for (const a of DIGRAPH_ALPHABET) {
+      if (fixed[0] ? a !== fixed[0] : used.has(a)) {
+        continue;
+      }
+      for (const b of DIGRAPH_ALPHABET) {
+        if (symbols[1] === symbols[0] && b !== a) {
+          continue;
+        }
+        if (fixed[1] ? b !== fixed[1] : used.has(b)) {
+          continue;
+        }
+        for (const c of DIGRAPH_ALPHABET) {
+          if ((symbols[2] === symbols[0] && c !== a)
+            || (symbols[2] === symbols[1] && c !== b)) {
+            continue;
+          }
+          if (fixed[2] ? c !== fixed[2] : used.has(c)) {
+            continue;
+          }
+          scored.push({ trigraph: `${a}${b}${c}`, score: trigramScore(`${a}${b}${c}`) });
+        }
+      }
+    }
+    scored.sort((x, y) => y.score - x.score);
+    suggestions.push({
+      first,
+      second,
+      third,
+      count,
+      candidates: scored.slice(0, candidatesPerTriple).map(({ trigraph }) => trigraph),
+    });
+  }
+  return suggestions;
+};
+
+// --- Doubled symbols: the classic mono-cipher tell ---
+// A symbol that follows itself must be a doubled letter (LOOK, LETTER),
+// and English doubles are few — the strongest single hint a
+// monoalphabetic stream offers, so it gets its own guaranteed rows.
+
+export interface DoubleSuggestion {
+  symbol: string;
+  count: number;
+  candidates: string[];
+}
+
+// Top doubled symbols with the doubled digraphs they could be —
+// corpus-ranked, consistent with the placed letters. Already-assigned
+// symbols are decided, so they drop out.
+export const suggestDoubledSymbols = (
+  stream: string[],
+  mapping: SymbolMapping,
+  limit: number = 3,
+  candidatesPerSymbol: number = 3,
+): DoubleSuggestion[] => {
+  const used = new Set(Object.values(mapping));
+  const counts = new Map<string, number>();
+  for (let index = 0; index + 1 < stream.length; index += 1) {
+    if (stream[index] === stream[index + 1]) {
+      const symbol = stream[index];
+      counts.set(symbol, (counts.get(symbol) || 0) + 1);
+    }
+  }
+  const suggestions: DoubleSuggestion[] = [];
+  for (const [symbol, count] of [...counts.entries()].sort((a, b) => b[1] - a[1])) {
+    if (mapping[symbol]) {
+      continue;
+    }
+    const scored: Array<{ digraph: string; score: number }> = [];
+    for (const letter of DIGRAPH_ALPHABET) {
+      if (used.has(letter)) {
+        continue;
+      }
+      const digraph = `${letter}${letter}`;
+      scored.push({ digraph, score: bigramScore(digraph) });
+    }
+    scored.sort((x, y) => y.score - x.score);
+    suggestions.push({
+      symbol,
+      count,
+      candidates: scored.slice(0, candidatesPerSymbol).map(({ digraph }) => digraph),
+    });
+    if (suggestions.length >= limit) {
+      break;
+    }
+  }
+  return suggestions;
+};

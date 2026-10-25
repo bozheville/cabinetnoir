@@ -689,7 +689,9 @@
       },
       "combinations": {
         "title": "Recurring combinations",
-        "hint": "seen {{count}} times — could be {{candidates}}"
+        "hint": "seen {{count}} times — could be {{candidates}}",
+        "tripletsTitle": "Recurring triplets",
+        "doublesTitle": "Doubled symbols"
       }
     },
     "assignment": {
