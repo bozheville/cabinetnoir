@@ -1,37 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { encodingsList, encryptorsList } = require('../src/@encryptors/algorithms');
-const {
-  LEARNING_TABS,
-  CRYPTOANALYSIS_TAB,
-  hasTab,
-  hasCryptoanalysis,
-} = require('../src/@learning/config');
-
-const baseURL = 'http://cabinetnoir.eu';
-const algorithms = [...encodingsList, ...encryptorsList];
-const actions = ['direct', 'reverse'];
-// 'en' is the defaultLocale, which Next.js serves without a path prefix.
-const localePrefixes = ['', '/fr', '/ua'];
-
-const buildLinks = () => {
-  // The identification tool is a top-level page in every locale.
-  const links = [baseURL, ...localePrefixes.map((prefix) => `${baseURL}${prefix}/identify`)];
-  for (const algorithm of algorithms) {
-    const segments = [
-      ...actions,
-      // Cryptoanalysis is a first-class tab for ciphers with a cracker.
-      ...(hasCryptoanalysis(algorithm) ? [CRYPTOANALYSIS_TAB] : []),
-      ...LEARNING_TABS.filter((tab) => hasTab(algorithm, tab)),
-    ];
-    for (const action of segments) {
-      for (const localePrefix of localePrefixes) {
-        links.push(`${baseURL}${localePrefix}/encoder/${algorithm}/${action}`);
-      }
-    }
-  }
-  return links;
-};
+const { buildSitemapUrls } = require('../src/@lib/sitemap-data');
 
 const linksToXML = (links) => {
   const date = new Date();
@@ -43,4 +12,4 @@ const linksToXML = (links) => {
   return xml + '\n</urlset>\n';
 };
 
-fs.writeFileSync(path.join(__dirname, '../public/sitemap.xml'), linksToXML(buildLinks()));
+fs.writeFileSync(path.join(__dirname, '../public/sitemap.xml'), linksToXML(buildSitemapUrls()));

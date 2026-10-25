@@ -669,7 +669,23 @@
     "suggest_a_feature": "Suggérer une fonctionnalité",
     "report_a_bug": "Signaler un bug",
     "did_you_like": "As-tu aimé?",
-    "buy_me_a_coffee": "Achetez-moi un café"
+    "buy_me_a_coffee": "Achetez-moi un café",
+    "sitemap": "Plan du site"
+  },
+  "sitemap": {
+    "title": "Plan du site",
+    "headerTitle": "Plan du site",
+    "subtitle": "Toutes les pages de Cabinet Noir, groupées : pages statiques, encodages et chiffres. La version lisible par les machines se trouve à /sitemap.xml.",
+    "pages": {
+      "home": "Accueil",
+      "identify": "Identification de chiffre",
+      "sitemap": "Plan du site"
+    },
+    "groups": {
+      "pages": "Pages",
+      "encodings": "Encodages",
+      "encryptors": "Chiffres"
+    }
   },
   "learning": {
     "tabs": {
