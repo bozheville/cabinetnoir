@@ -65,6 +65,7 @@ const Cryptoanalysis: React.FC = () => {
   const router = useRouter();
   const { algorithm } = router.query;
   const { t } = useTranslation('common');
+  const shouldShowIdentifyerLink = false;
 
   // "Try breaking it" on /identify: the ciphertext travels in the
   // in-memory hand-off slot and lands here once, then the slot clears.
@@ -132,9 +133,11 @@ const Cryptoanalysis: React.FC = () => {
     <CryptoanalysisSection stitch="both" color="encryptor">
       <AtGlanceCard />
       <CipherTabs algorithm={algorithm} activeTab="cryptoanalysis" />
-      <IdentifyHint>
-        <Link href="/identify">{t('identify.backEntry')}</Link>
-      </IdentifyHint>
+      {shouldShowIdentifyerLink && (
+        <IdentifyHint>
+          <Link href="/identify">{t('identify.backEntry')}</Link>
+        </IdentifyHint>
+      )}
       <CryptoanalysisWrapper>
         <PendingExampleContext.Provider value={pending}>
           <CipherCracker
