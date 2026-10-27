@@ -3,7 +3,7 @@ import React from 'react';
 import { Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
 
-import { HIGHLIGHT_COLORS } from '@encryptors/shared/cracker';
+import { HIGHLIGHT_COLORS, useCrackerKey } from '@encryptors/shared/cracker';
 import { LockedLetter } from './useCracker';
 
 const Strip = styled(Pane)`
@@ -51,6 +51,7 @@ const KeyStrip: React.FC<KeyStripProps> = ({
   onClear,
 }) => {
   const { t } = useTranslation('common');
+  const base = useCrackerKey('wizard.keyLetters.');
   return (
   <Strip data-guide="key-strip">
     {Array.from({ length: keyLength }).map((_, slice) => {
@@ -79,9 +80,9 @@ const KeyStrip: React.FC<KeyStripProps> = ({
           />
           <Text size={300}>
             {locked?.source === 'manual'
-              ? t('processing.vigenere.cracker.wizard.keyLetters.manualTag')
+              ? t(`${base}manualTag`)
               : locked?.source === 'crib'
-                ? t('processing.vigenere.cracker.wizard.keyLetters.suggestedTag')
+                ? t(`${base}suggestedTag`)
                 : `${slice + 1}`}
           </Text>
         </Cell>

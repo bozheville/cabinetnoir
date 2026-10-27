@@ -4,6 +4,14 @@
 // the cipher implementations at module load, so examples can never drift
 // from the tool's behaviour.
 import { DEFAULT_ALPHABET, vigenereEncrypt } from '@encryptors/Vigenere/vigenere-encryption';
+import {
+  DEFAULT_ALPHABET as BEAUFORT_ALPHABET,
+  beaufortEncrypt,
+} from '@encryptors/Beaufort/beaufort-crypt';
+import {
+  autokeyEncrypt,
+  autokeyKeystream,
+} from '@encryptors/Autokey/autokey-crypt';
 import { rotate, mod, getAffineAlphabet } from '@encryptors/utils';
 import { monoalphabeticEncrypt } from '@encryptors/Monoalphabetic/monoalphabetic-crypt';
 import {
@@ -178,6 +186,63 @@ const buildVigenereExample = (
   ],
   rows: vigenereRows(input, key, alphabet),
 });
+
+// Beaufort: C = K − P — the middle column shows the subtraction the
+// tabula row performs, mirrored against Vigenère's addition.
+const buildBeaufortExample = (
+  id: string,
+  input: string,
+  key: string,
+  alphabet: string = BEAUFORT_ALPHABET,
+): WorkedExample => ({
+  id,
+  cipher: 'beaufort',
+  input,
+  key,
+  alphabet,
+  mode: 'encrypt',
+  columns: [
+    { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+    { key: 'key', labelKey: EXAMPLE_COLUMN_LABELS.key },
+    { key: 'formula', labelKey: 'learning.example.columns.formula' },
+    { key: 'result', labelKey: EXAMPLE_COLUMN_LABELS.result },
+  ],
+  rows: input.split('').map((plain, index) => {
+    const keyLetter = key[index % key.length];
+    const difference = (alphabet.indexOf(keyLetter) - alphabet.indexOf(plain) + alphabet.length)
+      % alphabet.length;
+    return [plain, keyLetter, String(difference), beaufortEncrypt(plain, keyLetter, alphabet)];
+  }),
+});
+
+// Autokey: the keystream is the primer followed by the plaintext itself —
+// the middle column shows it growing, which is the whole idea.
+const buildAutokeyExample = (
+  id: string,
+  input: string,
+  primer: string,
+  alphabet: string = BEAUFORT_ALPHABET,
+): WorkedExample => {
+  const stream = autokeyKeystream(input, primer, alphabet);
+  return {
+    id,
+    cipher: 'autokey',
+    input,
+    key: primer,
+    alphabet,
+    mode: 'encrypt',
+    columns: [
+      { key: 'plain', labelKey: EXAMPLE_COLUMN_LABELS.plain },
+      { key: 'keystream', labelKey: 'learning.example.columns.keystream' },
+      { key: 'result', labelKey: EXAMPLE_COLUMN_LABELS.result },
+    ],
+    rows: input.split('').map((plain, index) => [
+      plain,
+      stream[index],
+      autokeyEncrypt(plain, stream[index], alphabet),
+    ]),
+  };
+};
 
 // Affine: every letter x is mapped to (a·x + b) mod 26; the middle
 // column shows that number so the linear rule stays visible.
@@ -647,6 +712,8 @@ const buildSaknussemmExample = (
 
 const EXAMPLES: Record<string, WorkedExample> = {
   'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
+  'beaufort-basic': buildBeaufortExample('beaufort-basic', 'ATTACKATDAWN', 'LEMON'),
+  'autokey-basic': buildAutokeyExample('autokey-basic', 'ATTACKATDAWN', 'QUEENLY'),
   'caesar-basic': buildCaesarExample('caesar-basic', 'MEETATNOON', 3),
   'alberti-basic': buildAlbertiExample('alberti-basic', 'SECRETNOTE', 3, 2),
   'affine-basic': buildAffineExample('affine-basic', 'SECRETMESSAGE', 3, 7),

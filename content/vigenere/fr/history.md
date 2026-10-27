@@ -20,7 +20,9 @@ facile à retenir et nota qu'il fallait changer souvent de clé. En
 1586, le diplomate français Blaise de Vigenère publie sa propre
 variante, plus forte, à auto-clé. L'histoire s'est trompée
 d'attribution : le chiffre à clé répétée porte le nom de Vigenère, et
-le nom est resté.
+le nom est resté. (Le chiffre que Vigenère a réellement décrit est
+aussi sur ce site — le chiffre autokey, un cran plus bas dans
+l'échelle.)
 
 ## « Le chiffre indéchiffrable »
 

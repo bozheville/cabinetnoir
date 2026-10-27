@@ -3,7 +3,12 @@ import React from 'react';
 import { Pane, Text } from 'evergreen-ui';
 
 import useCracker from './useCracker';
-import { CrackerWizardFrame, ShortTextWarning } from '@encryptors/shared/cracker';
+import {
+  CrackerScopeProvider,
+  CrackerWizardFrame,
+  ShortTextWarning,
+  useCrackerKey,
+} from '@encryptors/shared/cracker';
 import StepKeyLength from './StepKeyLength';
 import StepKeyLetters from './StepKeyLetters';
 import StepKey from './StepKey';
@@ -13,7 +18,9 @@ const CrackerWizard: React.FC<{
   cracker: ReturnType<typeof useCracker>;
   onUseKey: (key: string) => void;
   onSkip: () => void;
-}> = ({ cracker, onUseKey, onSkip }) => {
+  // Locale subtree of the cipher reusing this wizard ('vigenere' default).
+  scope?: string;
+}> = ({ cracker, onUseKey, onSkip, scope = 'vigenere' }) => {
   const {
     step,
     setStep,
@@ -26,11 +33,12 @@ const CrackerWizard: React.FC<{
   } = cracker;
   const { input: crackerInput } = cracker;
   const { t } = useTranslation('common');
+  const base = useCrackerKey('');
 
   const stepNames = [
-    t('processing.vigenere.cracker.wizard.steps.keyLength'),
-    t('processing.vigenere.cracker.wizard.steps.keyLetters'),
-    t('processing.vigenere.cracker.wizard.steps.done'),
+    t(`${base}wizard.steps.keyLength`),
+    t(`${base}wizard.steps.keyLetters`),
+    t(`${base}wizard.steps.done`),
   ];
 
   const allLettersSet = keyLength !== null
@@ -39,6 +47,7 @@ const CrackerWizard: React.FC<{
   const canGoNext = step === 1 ? keyLength !== null : step === 2 ? allLettersSet : false;
 
   return (
+    <CrackerScopeProvider scope={scope}>
     <CrackerWizardFrame
       steps={stepNames}
       step={step}
@@ -75,6 +84,7 @@ const CrackerWizard: React.FC<{
         <DecryptPreview cracker={cracker} />
       )}
     </CrackerWizardFrame>
+    </CrackerScopeProvider>
   );
 };
 

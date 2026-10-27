@@ -28,6 +28,8 @@ export const CATALOGUE: CatalogueEntry[] = [
 
   // Polyalphabetic.
   { id: 'vigenere', family: 'polyalphabetic', inApp: true, breakingTarget: 'cracker' },
+  { id: 'beaufort', family: 'polyalphabetic', inApp: true, breakingTarget: 'cracker' },
+  { id: 'autokey', family: 'polyalphabetic', inApp: true, breakingTarget: 'cracker' },
   { id: 'alberti', family: 'polyalphabetic', inApp: true, breakingTarget: 'cracker' },
   { id: 'enigma', family: 'polyalphabetic', inApp: true, breakingTarget: 'tool' },
 

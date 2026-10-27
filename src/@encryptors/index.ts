@@ -12,6 +12,8 @@ export { default as Morse } from './Morse';
 export { default as Pigpen } from './Pigpen';
 export { default as Playfair } from './Playfair';
 export { default as Vigenere } from './Vigenere';
+export { default as Beaufort } from './Beaufort';
+export { default as Autokey } from './Autokey';
 export { default as Nihilist } from './Nihilist';
 export { default as Adfgvx } from './Adfgvx';
 export { default as Rot13 } from './Rot13';

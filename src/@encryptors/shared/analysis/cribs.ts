@@ -1,3 +1,5 @@
+import { SliceTransform, VIGENERE_TRANSFORM } from './sliceTransform';
+
 export interface CribMatch {
   // Start index of the crib in the clean ciphertext.
   position: number;
@@ -19,14 +21,16 @@ const STANDARD_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const toCleanLetters = (text: string): string =>
   text.toUpperCase().split('').filter((char) => /[A-Z]/.test(char)).join('');
 
-// Key fragment implied by placing the crib at `position`:
-// fragment[i] = cipher[position + i] - crib[i] (mod 26).
+// Key fragment implied by placing the crib at `position`, via the
+// slice transform's key arithmetic (Vigenère: cipher − crib; Beaufort:
+// cipher + crib; variant: crib − cipher).
 // Returns null when the crib does not fit at that position.
 export const impliedKeyFragment = (
   ciphertext: string,
   crib: string,
   position: number,
   alphabet: string = STANDARD_ALPHABET,
+  transform: SliceTransform = VIGENERE_TRANSFORM,
 ): string | null => {
   if (!ciphertext || !crib || position < 0 || position + crib.length > ciphertext.length) {
     return null;
@@ -39,7 +43,7 @@ export const impliedKeyFragment = (
     if (cipher < 0 || plain < 0) {
       return null;
     }
-    fragment.push(alphabet[(cipher - plain + alphabet.length) % alphabet.length]);
+    fragment.push(alphabet[transform.keyIndex(cipher, plain)]);
   }
   return fragment.join('');
 };
@@ -70,6 +74,7 @@ export const findCribMatches = (
   keyLength: number,
   lockedLetters: Record<number, string> = {},
   alphabet: string = STANDARD_ALPHABET,
+  transform: SliceTransform = VIGENERE_TRANSFORM,
 ): CribMatch[] => {
   const cleanCipher = toCleanLetters(ciphertext);
   const cleanCrib = toCleanLetters(crib);
@@ -82,7 +87,7 @@ export const findCribMatches = (
   const matches: CribMatch[] = [];
 
   for (let position = 0; position + cleanCrib.length <= cleanCipher.length; position += 1) {
-    const fragment = impliedKeyFragment(cleanCipher, cleanCrib, position, alphabet);
+    const fragment = impliedKeyFragment(cleanCipher, cleanCrib, position, alphabet, transform);
     if (!fragment) {
       continue;
     }

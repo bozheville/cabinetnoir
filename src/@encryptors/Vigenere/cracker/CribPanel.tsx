@@ -5,6 +5,7 @@ import { Button, Heading, Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import { findCribMatches } from '@encryptors/shared/analysis';
+import { useCrackerKey } from '@encryptors/shared/cracker';
 import { useCracker } from './useCracker';
 
 const MAX_SHOWN_MATCHES = 8;
@@ -28,9 +29,11 @@ interface CribPanelProps {
 }
 
 const CribPanel: React.FC<CribPanelProps> = ({ cracker, alphabet }) => {
-  const { analysis, keyLength, lockedLetters, setSliceLetter } = cracker;
+  const { analysis, keyLength, lockedLetters, setSliceLetter, transform } = cracker;
   const [crib, setCrib] = useState('');
   const { t } = useTranslation('common');
+  const base = useCrackerKey('wizard.cribs.');
+  const tooltip = useCrackerKey('tooltips.');
 
 
   const lockedSliceLetters = useMemo(
@@ -44,7 +47,14 @@ const CribPanel: React.FC<CribPanelProps> = ({ cracker, alphabet }) => {
     if (!analysis || keyLength === null || crib.trim().length === 0) {
       return [];
     }
-    const found = findCribMatches(analysis.normalized.letters, crib, keyLength, lockedSliceLetters, alphabet);
+    const found = findCribMatches(
+      analysis.normalized.letters,
+      crib,
+      keyLength,
+      lockedSliceLetters,
+      alphabet,
+      transform,
+    );
     // Surface the most trustworthy suggestions first: no conflicts with
     // locked letters, then strong (repeating) fragments, then position.
     return [...found].sort((a, b) => (
@@ -52,7 +62,7 @@ const CribPanel: React.FC<CribPanelProps> = ({ cracker, alphabet }) => {
       || (b.isStrong ? 1 : 0) - (a.isStrong ? 1 : 0)
       || a.position - b.position
     ));
-  }, [analysis, keyLength, crib, lockedSliceLetters]);
+  }, [analysis, keyLength, crib, lockedSliceLetters, alphabet, transform]);
 
   const apply = (match: (typeof matches)[number]) => {
     for (const { slice, letter } of match.sliceLetters) {
@@ -66,14 +76,14 @@ const CribPanel: React.FC<CribPanelProps> = ({ cracker, alphabet }) => {
 
   return (
     <Pane width="100%" marginTop="12px" padding="12px" border="muted" borderRadius="4px">
-      <Heading size={300}>{t('processing.vigenere.cracker.wizard.cribs.title')}</Heading>
+      <Heading size={300}>{t(`${base}title`)}</Heading>
       <Pane display="flex" alignItems="center" gap="8px" marginTop="8px" data-guide="crib-input">
-        <Tooltip content={t('processing.vigenere.cracker.tooltips.cribInput')}>
-        <Text size={300}>{t('processing.vigenere.cracker.wizard.cribs.inputLabel')}</Text>
+        <Tooltip content={t(`${tooltip}cribInput`)}>
+        <Text size={300}>{t(`${base}inputLabel`)}</Text>
         <TextInput
           width="160px"
           value={crib}
-          placeholder={t('processing.vigenere.cracker.wizard.cribs.inputPlaceholder')}
+          placeholder={t(`${base}inputPlaceholder`)}
             onChange={(event) => setCrib(event.target.value)}
           />
         </Tooltip>
@@ -81,7 +91,7 @@ const CribPanel: React.FC<CribPanelProps> = ({ cracker, alphabet }) => {
 
       {crib.trim() && matches.length === 0 && (
         <Text size={300} display="block" marginTop="8px">
-          {t('processing.vigenere.cracker.wizard.cribs.noMatches')}
+          {t(`${base}noMatches`)}
         </Text>
       )}
 
@@ -90,13 +100,13 @@ const CribPanel: React.FC<CribPanelProps> = ({ cracker, alphabet }) => {
           <Text size={300} fontFamily="monospace">{`at ${match.position}: ${match.fragment}`}</Text>
           {match.conflicts.length > 0 && (
             <ConflictText>
-              {`${match.conflicts.length} ${t('processing.vigenere.cracker.wizard.cribs.conflictsNote')}`}
+              {`${match.conflicts.length} ${t(`${base}conflictsNote`)}`}
             </ConflictText>
           )}
           {match.isStrong && <Text size={300}>strong</Text>}
-          <Tooltip content={t('processing.vigenere.cracker.tooltips.apply')}>
+          <Tooltip content={t(`${tooltip}apply`)}>
             <Button onClick={() => apply(match)}>
-              {t('processing.vigenere.cracker.wizard.cribs.apply')}
+              {t(`${base}apply`)}
             </Button>
           </Tooltip>
         </MatchRow>

@@ -1,6 +1,8 @@
 import React from 'react';
 
+import AutokeyCryptoanalysis from '@encryptors/Autokey/Cryptoanalysis';
 import VigenereCryptoanalysis from '@encryptors/Vigenere/Cryptoanalysis';
+import BeaufortCryptoanalysis from '@encryptors/Beaufort/Cryptoanalysis';
 import AdfgvxCryptoanalysis from '@encryptors/Adfgvx/Cryptoanalysis';
 import AffineCryptoanalysis from '@encryptors/Affine/Cryptoanalysis';
 import PlayfairCryptoanalysis from '@encryptors/Playfair/Cryptoanalysis';
@@ -22,6 +24,8 @@ interface CipherCrackerProps {
 // the route; the standard doc's cipher matrix is the source of truth).
 const CRACKERS: Record<string, React.ComponentType<{ input: string; onInputChange: (value: string) => void }>> = {
   vigenere: VigenereCryptoanalysis,
+  beaufort: BeaufortCryptoanalysis,
+  autokey: AutokeyCryptoanalysis,
   adfgvx: AdfgvxCryptoanalysis,
   affine: AffineCryptoanalysis,
   playfair: PlayfairCryptoanalysis,

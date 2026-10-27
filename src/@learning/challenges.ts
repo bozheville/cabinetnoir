@@ -2,6 +2,8 @@
 // Plaintexts come from public-domain sources; the ciphertexts are
 // generated from the cipher implementations so they always match the tool.
 import { vigenereEncrypt } from '@encryptors/Vigenere/vigenere-encryption';
+import { beaufortEncrypt } from '@encryptors/Beaufort/beaufort-crypt';
+import { autokeyEncrypt } from '@encryptors/Autokey/autokey-crypt';
 import { rotate, getAffineAlphabet } from '@encryptors/utils';
 import { monoalphabeticEncrypt } from '@encryptors/Monoalphabetic/monoalphabetic-crypt';
 import {
@@ -45,6 +47,8 @@ export interface Challenge {
   listOnPractice?: boolean;
   // Tool mode the challenge should open in (decode challenges).
   mode?: 'encrypt' | 'decrypt';
+  // A probable word the hints point the cracker at (autokey crib-drag).
+  crib?: string;
   // Glyph ciphers (pigpen): the ciphertext is a letter stream that the
   // challenge card draws as SVG glyphs of this variant.
   glyphVariant?: string;
@@ -272,6 +276,48 @@ const buildRailFenceChallenge = (
   hints,
   answer: plaintext,
   mode: 'decrypt',
+});
+
+// Beaufort: same periodic key as Vigenère, subtraction the other way
+// round — the cracker is the same wizard with reflected slices.
+const buildBeaufortChallenge = (
+  id: string,
+  key: string,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+): Challenge => ({
+  id,
+  cipher: 'beaufort',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: beaufortEncrypt(plaintext, key),
+  difficulty,
+  keyLength: key.replace(/[^A-Z]/gi, '').length,
+  hints,
+  answer: plaintext,
+  mode: 'decrypt',
+});
+
+// Autokey: the primer is the whole key; the plaintext itself extends it.
+// The crib hint names a probable word for the crib-drag wizard.
+const buildAutokeyChallenge = (
+  id: string,
+  primer: string,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+  crib: string,
+): Challenge => ({
+  id,
+  cipher: 'autokey',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: autokeyEncrypt(plaintext, primer),
+  difficulty,
+  keyLength: primer.replace(/[^A-Z]/gi, '').length,
+  hints,
+  answer: plaintext,
+  mode: 'decrypt',
+  crib,
 });
 
 // Atbash: a fixed mirror alphabet, so the "key" is always the same.
@@ -1227,6 +1273,86 @@ export const CHALLENGES: Record<string, Challenge> = {
       'learning.challenges.nihilist-hard-1.hint2',
       'learning.challenges.nihilist-hard-1.hint3',
     ],
+  ),
+  'beaufort-demo': buildBeaufortChallenge(
+    'beaufort-demo',
+    'SEA',
+    DICKENS_PLAINTEXT,
+    'easy',
+    ['learning.challenges.beaufort-demo.hint1'],
+  ),
+  'beaufort-easy-1': buildBeaufortChallenge(
+    'beaufort-easy-1',
+    'OCEAN',
+    POE_PLAINTEXT,
+    'easy',
+    [
+      'learning.challenges.beaufort-easy-1.hint1',
+      'learning.challenges.beaufort-easy-1.hint2',
+    ],
+  ),
+  'beaufort-medium-1': buildBeaufortChallenge(
+    'beaufort-medium-1',
+    'HARBOR',
+    AUSTEN_PLAINTEXT,
+    'medium',
+    [
+      'learning.challenges.beaufort-medium-1.hint1',
+      'learning.challenges.beaufort-medium-1.hint2',
+    ],
+  ),
+  'beaufort-hard-1': buildBeaufortChallenge(
+    'beaufort-hard-1',
+    'ADMIRAL',
+    HAMLET_PLAINTEXT,
+    'hard',
+    [
+      'learning.challenges.beaufort-hard-1.hint1',
+      'learning.challenges.beaufort-hard-1.hint2',
+      'learning.challenges.beaufort-hard-1.hint3',
+    ],
+  ),
+  'autokey-demo': buildAutokeyChallenge(
+    'autokey-demo',
+    'BLUE',
+    DICKENS_PLAINTEXT,
+    'easy',
+    ['learning.challenges.autokey-demo.hint1'],
+    'THE',
+  ),
+  'autokey-easy-1': buildAutokeyChallenge(
+    'autokey-easy-1',
+    'FORT',
+    POE_PLAINTEXT,
+    'easy',
+    [
+      'learning.challenges.autokey-easy-1.hint1',
+      'learning.challenges.autokey-easy-1.hint2',
+    ],
+    'THE',
+  ),
+  'autokey-medium-1': buildAutokeyChallenge(
+    'autokey-medium-1',
+    'BELLASO',
+    AUSTEN_PLAINTEXT,
+    'medium',
+    [
+      'learning.challenges.autokey-medium-1.hint1',
+      'learning.challenges.autokey-medium-1.hint2',
+    ],
+    'AND',
+  ),
+  'autokey-hard-1': buildAutokeyChallenge(
+    'autokey-hard-1',
+    'VIGENERE',
+    HAMLET_PLAINTEXT,
+    'hard',
+    [
+      'learning.challenges.autokey-hard-1.hint1',
+      'learning.challenges.autokey-hard-1.hint2',
+      'learning.challenges.autokey-hard-1.hint3',
+    ],
+    'THE',
   ),
   'saknussemm-parchment': buildSaknussemmChallenge(
     'saknussemm-parchment',

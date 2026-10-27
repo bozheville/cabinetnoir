@@ -672,6 +672,151 @@
         "clustersPerLineLabel": "{{count}} groupes par ligne",
         "parchmentButton": "Charger le parchemin"
       }
+    },
+    "beaufort": {
+      "title": "Chiffre de Beaufort",
+      "short_title": "Beaufort",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
+      "messageLabel": "Cryptogramme",
+      "cracker": {
+        "keyLabel": "Clé",
+        "alphabetLabel": "Alphabet",
+        "wizard": {
+          "steps": {
+            "keyLength": "Longueur de clé",
+            "keyLetters": "Lettres de la clé",
+            "done": "Terminé"
+          },
+          "repeats": {
+            "title": "Séquences répétées",
+            "gapsLabel": "écarts",
+            "none": "Aucune séquence répétée trouvée. Utilisez plutôt les cartes de longueur de clé ci-dessous.",
+            "emptyInput": "Collez d'abord un texte chiffré."
+          },
+          "keyLength": {
+            "otherLabel": "Autre longueur",
+            "otherPlaceholder": "1-20",
+            "selected": "Sélectionnée"
+          },
+          "keyLetters": {
+            "sliceLabel": "Tranche {{index}} sur {{total}}",
+            "lockedPrefix": "verrouillée :",
+            "allLocked": "Toutes les lettres sont fixées. Passez à l'étape 3.",
+            "manualTag": "manuel",
+            "yourKey": "Votre clé",
+            "keyHint": "Tapez une lettre pour remplacer, effacez-la pour déverrouiller.",
+            "suggestedTag": "suggérée"
+          },
+          "cribs": {
+            "title": "Mot probable",
+            "inputLabel": "Mot que vous pensez présent dans le message",
+            "inputPlaceholder": "p. ex. ATTAQUE",
+            "apply": "Appliquer",
+            "noMatches": "Le mot ne convient nulle part avec cette longueur de clé.",
+            "conflictsNote": "en conflit avec les lettres verrouillées"
+          }
+        },
+        "keyLengthLabels": {
+          "veryLikely": "très probable",
+          "possible": "possible",
+          "unlikely": "peu probable"
+        },
+        "reason": {
+          "kasiski-and-ic": "{{count}} écarts de répétition divisibles par cette longueur, tranches semblables à l'anglais (IC {{ic}})",
+          "kasiski-only": "{{count}} écarts de répétition divisibles par cette longueur",
+          "ic-only": "tranches semblables à l'anglais (IC {{ic}})",
+          "weak": "peu d'indices pour cette longueur"
+        },
+        "tooltips": {
+          "key": "La clé secrète. Chaque lettre du texte clair est soustraite de la lettre de clé correspondante ; la clé se répète sur tout le message.",
+          "alphabet": "L'ensemble des lettres que le chiffre utilise. Collez n'importe quelles lettres — l'outil les met en majuscules et supprime les doublons. Par défaut : l'alphabet anglais.",
+          "keyLengthCards": "Longueurs de clé probables, classées par deux signaux : les distances entre séquences répétées et la ressemblance des tranches avec l'anglais. Cliquez sur une carte pour choisir.",
+          "otherLength": "Saisissez une longueur de clé manuellement si aucune carte ne convient.",
+          "sliceTabs": "Avec une clé de N lettres, le texte se découpe en N tranches ; chaque lettre d'une tranche est soustraite à la même lettre de clé. Cliquez sur un onglet pour travailler cette tranche.",
+          "keyStrip": "Votre clé au fur et à mesure. Cliquez sur une case pour aller à sa tranche, tapez une lettre pour remplacer le choix du graphique, effacez pour libérer.",
+          "cribInput": "Si vous devinez un mot du texte clair, l'outil calcule les lettres de clé qu'il implique, à chaque position possible.",
+          "apply": "Remplit les cases de clé vides avec les lettres que cette position suggère. Les lettres déjà fixées autrement ne sont jamais écrasées."
+        },
+        "alphabetUnsupported": "Les tables de fréquences de l'outil sont anglaises — remettez l'alphabet aux 26 lettres standard pour l'utiliser."
+      },
+      "tool": {
+        "variantLabel": "Variante",
+        "variant": {
+          "beaufort": "Beaufort",
+          "variantBeaufort": "Beaufort variante"
+        },
+        "tabula": {
+          "beaufort": "C = K − P : chaque ligne lit l'alphabet à rebours depuis sa lettre de clé.",
+          "variant": "C = P − K : chaque ligne lit l'alphabet décalé en arrière de sa lettre de clé."
+        },
+        "reciprocal": "Le Beaufort classique est réciproque — chiffrer deux fois avec la même clé rend le texte clair."
+      },
+      "tooltips": {
+        "key": "La clé secrète. Chaque lettre du texte clair est soustraite de la lettre de clé correspondante ; la clé se répète sur tout le message.",
+        "variant": "Le Beaufort classique calcule chiffre = clé − texte clair et est auto-réciproque. La variante calcule chiffre = texte clair − clé — statistiquement identique à Vigenère.",
+        "alphabet": "L'ensemble des lettres que le chiffre utilise. Collez n'importe quelles lettres — l'outil les met en majuscules et supprime les doublons. Par défaut : l'alphabet anglais."
+      }
+    },
+    "autokey": {
+      "title": "Chiffre autokey",
+      "short_title": "Autokey",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
+      "messageLabel": "Cryptogramme",
+      "tool": {
+        "primerLabel": "Amorce",
+        "streamCaption": "Le flux de clé : votre amorce (en surbrillance), puis le message lui-même qui nourrit la clé."
+      },
+      "tooltips": {
+        "primer": "L'amorce : le seul secret. Une fois épuisée, le flux de clé continue avec le texte clair lui-même — voilà pourquoi la rangée ci-dessous grandit avec votre texte."
+      },
+      "cracker": {
+        "wizard": {
+          "steps": {
+            "word": "Deviner un mot",
+            "drag": "Le faire glisser",
+            "unroll": "Dérouler la clé",
+            "done": "Terminé"
+          },
+          "word": {
+            "title": "Devinez un mot probable",
+            "hint": "Dans l'autokey, la clé est le texte clair lui-même : un seul mot deviné déroule tout le message. Choisissez un mot probablement présent dans le texte.",
+            "suggested": "Du défi",
+            "primerLength": "Longueur de l'amorce",
+            "primerHint": "longueur de l'amorce secrète (2-12)"
+          },
+          "drag": {
+            "title": "Faites glisser le mot le long du texte chiffré",
+            "hint": "Chaque position implique un fragment de clé (chiffre − devin). Dans l'autokey, ce fragment est du texte clair datant d'une longueur d'amorce plus tôt — les positions lisibles sont les bonnes. Cliquez sur une ligne pour placer le mot.",
+            "likely": "ressemble à l'anglais"
+          },
+          "unroll": {
+            "title": "Déroulez la clé",
+            "hint": "Le texte clair connu se propage seul, dans les deux sens. Les lettres en surbrillance sont votre mot probable ; l'amorce apparaît au début. Les lettres d'amorce vides restent à saisir.",
+            "fillMissing": "Tapez les lettres d'amorce manquantes :"
+          },
+          "done": {
+            "title": "Votre amorce"
+          }
+        },
+        "tooltips": {
+          "back": "Revenir d'une étape.",
+          "next": "Passer à l'étape suivante.",
+          "useThisKey": "Envoyer l'amorce retrouvée à l'outil."
+        },
+        "wizardNav": {
+          "back": "Retour",
+          "next": "Suivant",
+          "skip": "Passer"
+        },
+        "hints": {
+          "toggles": {
+            "offsetScores": "Afficher la ressemblance à l'anglais de chaque fragment impliqué",
+            "bestOffsetGlow": "Marquer la position la plus anglaise"
+          }
+        }
+      }
     }
   },
   "message": "Message",
@@ -783,7 +928,8 @@
         "plainNumber": "Nombre du texte clair",
         "keyNumber": "Nombre de la clé",
         "sum": "Somme (sans retenue)",
-        "cluster": "Groupe"
+        "cluster": "Groupe",
+        "keystream": "Flux de clé"
       }
     },
     "tryInTool": "Essayer dans l'outil",
@@ -840,7 +986,13 @@
       "glyph-keyboard": "le clavier de glyphes",
       "cluster-width-picker": "le sélecteur de lettres par groupe",
       "clusters-per-line-picker": "le sélecteur de groupes par ligne",
-      "load-parchment": "le bouton « Charger le parchemin »"
+      "load-parchment": "le bouton « Charger le parchemin »",
+      "variant-select": "Choisissez entre le Beaufort classique et la variante.",
+      "keystream": "La rangée de flux de clé : l'amorce suivie du message lui-même.",
+      "primer-length": "Réglez la longueur d'amorce supposée.",
+      "offset-list": "Le mot probable glissé le long du texte chiffré ; cliquez sur une position pour le placer.",
+      "unroll-worksheet": "Le texte clair déroulé depuis le placement du mot probable.",
+      "primer-fill": "Tapez les lettres d'amorce que le mot probable n'a pas atteintes."
     },
     "timeline": {
       "source": "Source",
@@ -939,6 +1091,16 @@
         "1530s": "Dans la chronologie du roman, l'alchimiste Arne Saknussemm descend dans le volcan islandais Snæfellsjökull et grave son message sur un parchemin runique.",
         "1864": "Jules Verne publie « Voyage au centre de la Terre » — les runes du parchemin mènent toute l’intrigue.",
         "1871": "La première traduction anglaise imprime la dictée brouillée « mm.rnlls esruel seecJde… » — le texte que ce site reproduit."
+      },
+      "beaufort": {
+        "1553": "Giovan Battista Bellaso publie la famille de chiffres à phrase-clé à laquelle appartiennent les variantes de Beaufort.",
+        "1857": "Le chiffre est publié à titre posthume sous le nom de sir Francis Beaufort, l'hydrographe de la Royal Navy célèbre pour son échelle des vents.",
+        "1930s": "L'arithmétique du Beaufort variante (C = P − K) travaille au cœur de la machine de campagne américaine M-209."
+      },
+      "autokey": {
+        "1553": "Giovan Battista Bellaso propose le plus ancien autokey connu : le message lui-même poursuit la clé.",
+        "1586": "Blaise de Vigenère publie sa construction autokey dans son Traicté des chiffres — le chiffre qui porte son nom est le plus simple, le plus faible.",
+        "1863": "Kasiski publie l'attaque par périodicité ; l'absence de période de l'autokey le défend — mais le glissement de mot probable le brise quand même."
       }
     },
     "challenge": {
@@ -1287,6 +1449,46 @@
         "hint1": "Le message est en latin — et il se lit à rebours. Renversez d’abord tout le flot de lettres.",
         "hint2": "La forme du parchemin : groupes de 7 lettres, 3 groupes par ligne — 21 colonnes en tout.",
         "hint3": "Réglez la forme sur 7×3 dans l’outil et lisez les lignes en travers : la descente dans le Sneffels, et la signature de Saknussemm."
+      },
+      "beaufort-demo": {
+        "title": "Beaufort, échauffement",
+        "hint1": "L'outil Beaufort est celui de Vigenère avec la courbe du graphique en miroir — mêmes étapes, mêmes cartes de longueur."
+      },
+      "beaufort-easy-1": {
+        "title": "Poe, clé en mer",
+        "hint1": "Longueur de clé 5. Repérez les courbes de fréquence en miroir dans les graphiques de tranches.",
+        "hint2": "Le mot probable « MIDNIGHT » convient quelque part."
+      },
+      "beaufort-medium-1": {
+        "title": "Austen sous un feu de port",
+        "hint1": "Longueur de clé 6. Les tranches s'ajustent mieux aux décalages inverses qu'aux décalages directs — c'est le signe de Beaufort.",
+        "hint2": "Les premiers mots sont célèbres."
+      },
+      "beaufort-hard-1": {
+        "title": "Hamlet, dépêche d'amiral",
+        "hint1": "Longueur de clé 7, sans barres de confiance. Essayez d'abord 5 et 6 — les imposteurs paraîtront crédibles.",
+        "hint2": "Un graphique inversé qui s'aligne mal reste faux ; fiez-vous au score, pas à la forme.",
+        "hint3": "Le mot probable « OUTRAGEOUS » convient."
+      },
+      "autokey-demo": {
+        "title": "Autokey, échauffement",
+        "hint1": "Faites glisser « THE » le long du texte : la position dont le fragment se lit comme de l'anglais est la bonne. Puis déroulez."
+      },
+      "autokey-easy-1": {
+        "title": "Poe, qui se nourrit de lui-même",
+        "hint1": "Longueur d'amorce 4. Faites glisser « THE » — les fragments lisibles sont les bonnes positions.",
+        "hint2": "Une lettre d'amorce reste cachée ; tapez-la d'après ce qui ressemble à l'anglais."
+      },
+      "autokey-medium-1": {
+        "title": "Austen, le vrai Vigenère",
+        "hint1": "Longueur d'amorce 7. Faites glisser « AND » — un mot court laisse davantage de lettres d'amorce à saisir.",
+        "hint2": "Le déroulé remplit tout sauf les classes que le mot n'a jamais touchées."
+      },
+      "autokey-hard-1": {
+        "title": "Hamlet, aucune période à trouver",
+        "hint1": "Longueur d'amorce 8, mode difficile : ni scores ni marqueur. Jugez les fragments à l'œil.",
+        "hint2": "Les mauvaises positions ressemblent à du bruit ; la bonne se lit comme la pièce.",
+        "hint3": "Le mot probable « OUTRAGEOUS » convient."
       }
     },
     "tooltips": {
@@ -1449,6 +1651,16 @@
       "description": "Le parchemin runique du « Voyage au centre de la Terre » de Jules Verne — un renversement suivi d’une transposition, lettres seules.",
       "era": "1864 (l’action au XVIᵉ siècle)",
       "origin": "Arne Saknussemm, l’alchimiste islandais de fiction qui grava le message"
+    },
+    "beaufort": {
+      "era": "Famille de la Renaissance, nom du XIXe siècle",
+      "origin": "Royal Navy, nommé d'après sir Francis Beaufort",
+      "description": "Le jumeau miroir de Vigenère — même clé répétée, soustraction inversée, auto-réciproque."
+    },
+    "autokey": {
+      "era": "Renaissance — le vrai Vigenère de 1586",
+      "origin": "Giovan Battista Bellaso, 1553",
+      "description": "Le vrai chiffre de Vigenère : la clé commence par une courte amorce, puis le texte clair lui-même nourrit le flux de clé."
     }
   },
   "glossary": {
@@ -1591,6 +1803,26 @@
     "anagrammage": {
       "name": "Anagrammage",
       "definition": "Faire glisser côte à côte des fragments de colonnes suspectés et lire les coutures — l'attaque classique des transpositions : chaque disposition d'essai est jugée à la façon dont les paires de lettres aux jointures sonnent anglais."
+    },
+    "tabula-recta": {
+      "name": "Table de Trithème",
+      "definition": "La table carrée des 26 alphabets décalés des chiffres de la famille Vigenère : une ligne par lettre de clé, lue « ligne = lettre de clé, colonne = lettre du texte clair »."
+    },
+    "reciprocal": {
+      "name": "Réciproque",
+      "definition": "Un chiffre dont l'opération de chiffrement est son propre déchiffrement : l'appliquer deux fois avec la même clé rend le texte clair (Beaufort, Atbash, ROT13)."
+    },
+    "cryptanalysis": {
+      "name": "Cryptanalyse",
+      "definition": "L'art de briser les chiffres sans la clé — lire les statistiques d'une langue à travers le déguisement d'un chiffre."
+    },
+    "primer": {
+      "name": "Amorce",
+      "definition": "La courte clé de départ d'un chiffre autokey : le seul secret, après quoi le flux de clé continue avec le texte clair lui-même."
+    },
+    "keystream": {
+      "name": "Flux de clé",
+      "definition": "La suite de lettres de clé qu'un chiffre consomme, une par lettre du texte clair. Dans l'autokey, le flux est l'amorce suivie du texte clair."
     }
   },
   "home": {
@@ -1618,14 +1850,13 @@
       "builtTitle": "Ce qui est construit",
       "nextTitle": "Ce qui arrive",
       "built": {
-        "ciphers": "Quatorze pages de chiffrements avec onglets d’apprentissage guidé — outil, apprentissage, histoire, pratique",
-        "cryptoanalysis": "Assistants de cryptanalyse guidée pour Vigenère, ADFGVX, Affine, Playfair, Alberti, Keyword, Columnar et Rail fence",
+        "ciphers": "Seize pages de chiffres avec onglets d'apprentissage guidés — outil, apprendre, histoire, pratique",
+        "cryptoanalysis": "Assistants de cryptanalyse guidée pour Vigenère, Beaufort, Autokey, ADFGVX, Affine, Playfair, Alberti, Keyword, Columnar et Rail fence",
         "challenges": "Défis pratiques avec indices adaptés à la difficulté — en trois langues",
         "saknussemm": "L’œuf de Pâques Arne Saknussemm — le parchemin runique du « Voyage au centre de la Terre »"
       },
       "next": {
-        "substitution": "Le chiffre par substitution homophonique — des nombres à la place des lettres fréquentes",
-        "nihilist": "Le chiffre nihiliste — la substitution rencontre la transposition"
+        "substitution": "Le chiffre par substitution homophonique — des nombres à la place des lettres fréquentes"
       }
     },
     "identify": {
@@ -1675,7 +1906,9 @@
       "playfair": "Playfair",
       "adfgvx": "ADFGVX",
       "nihilist": "Nihiliste",
-      "polybius": "Carré de Polybe"
+      "polybius": "Carré de Polybe",
+      "beaufort": "Beaufort",
+      "autokey": "Autokey"
     },
     "reasons": {
       "transpositionShape": "Les fréquences des lettres correspondent exactement à l'anglais (indice de coïncidence {{ic}}) — les lettres ont été déplacées, pas remplacées.",
@@ -1706,7 +1939,9 @@
       "nihilistBlockShape": "Texte composé uniquement de nombres — la forme écrite classique d'un chiffre par blocs comme le Nihiliste.",
       "homophonicFlat": "{{symbols}} symboles distincts — plus que ce qu'un alphabet de substitution lettre par lettre peut contenir.",
       "knownText.saknussemm": "C'est le parchemin d'Arne Saknussemm du « Voyage au centre de la Terre » de Jules Verne — {{letters}} lettres correspondantes.",
-      "polybiusPairs": "Toutes les {{pairs}} paires tiennent dans la plage du carré de Polybe (11–55)."
+      "polybiusPairs": "Toutes les {{pairs}} paires tiennent dans la plage du carré de Polybe (11–55).",
+      "beaufortSlices": "Les tranches périodiques s'ajustent aux décalages inverses (Beaufort), pas aux directs",
+      "autokeyAperiodic": "Aucune période, mais des suites de lettres ressemblent à l'anglais simple (autokey ou clé courante)"
     },
     "metrics": {
       "letters": {

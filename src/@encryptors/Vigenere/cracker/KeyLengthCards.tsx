@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { MAX_KEY_LENGTH } from '@encryptors/shared/analysis';
 import { CrackerAnalysis } from './useCracker';
 import { HintSettings } from './hintSettings';
+import { useCrackerKey } from '@encryptors/shared/cracker';
 
 const MAX_CARDS = 6;
 
@@ -53,6 +54,8 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
   onSelect,
 }) => {
   const { t } = useTranslation('common');
+  const base = useCrackerKey('');
+  const tooltip = useCrackerKey('tooltips.');
   if (!analysis) {
     return null;
   }
@@ -81,12 +84,12 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
 
     return (
       <>
-        <Tooltip content={t('processing.vigenere.cracker.tooltips.keyLengthCards')}>
+        <Tooltip content={t(`${tooltip}keyLengthCards`)}>
         <CardsGrid data-guide="key-length-cards">
           {[...byLength.entries()].map(([length, gaps]) => (
             <Card key={length} $selected={selected === length} onClick={() => onSelect(length)}>
               <Heading size={400}>{length}</Heading>
-              <Text size={300} display="block">{`${t('processing.vigenere.cracker.wizard.repeats.gapsLabel')}: ${gaps.join(', ')}`}</Text>
+              <Text size={300} display="block">{`${t(`${base}repeats.gapsLabel`)}: ${gaps.join(', ')}`}</Text>
             </Card>
           ))}
         </CardsGrid>
@@ -98,7 +101,7 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
 
   return (
     <>
-      <Tooltip content={t('processing.vigenere.cracker.tooltips.keyLengthCards')}>
+      <Tooltip content={t(`${tooltip}keyLengthCards`)}>
       <CardsGrid data-guide="key-length-cards">
         {cards.map((candidate) => (
           <Card
@@ -108,10 +111,10 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
           >
             <Heading size={400}>{candidate.length}</Heading>
             <Text size={300} display="block">
-              {t(`processing.vigenere.cracker.keyLengthLabels.${candidate.label}`)}
+              {t(`${base}keyLengthLabels.${candidate.label}`)}
             </Text>
             <Text size={300} display="block">
-              {t(`processing.vigenere.cracker.reason.${candidate.reasonKind}`, {
+              {t(`${base}reason.${candidate.reasonKind}`, {
                 count: candidate.divisorCount,
                 ic: candidate.averageIC.toFixed(3),
               })}
@@ -133,17 +136,19 @@ const OtherLengthInput: React.FC<{ selected: number | null; onSelect: (length: n
   onSelect,
 }) => {
   const { t } = useTranslation('common');
+  const base = useCrackerKey('wizard.keyLength.');
+  const tooltip = useCrackerKey('tooltips.');
   return (
   <Pane marginTop="12px" display="flex" alignItems="center" gap="8px">
-    <Text size={300}>{t('processing.vigenere.cracker.wizard.keyLength.otherLabel')}</Text>
-    <Tooltip content={t('processing.vigenere.cracker.tooltips.otherLength')}>
+    <Text size={300}>{t(`${base}otherLabel`)}</Text>
+    <Tooltip content={t(`${tooltip}otherLength`)}>
     <TextInput
       width="80px"
       type="number"
       min={1}
       max={MAX_KEY_LENGTH}
       value={selected ?? ''}
-      placeholder={t('processing.vigenere.cracker.wizard.keyLength.otherPlaceholder')}
+      placeholder={t(`${base}otherPlaceholder`)}
       onChange={(event) => {
         const value = parseInt((event.target as HTMLInputElement).value, 10);
         if (!Number.isNaN(value) && value >= 1 && value <= MAX_KEY_LENGTH) {
