@@ -14,6 +14,7 @@ import {
 } from '@encryptors/Alberti/alberti-crypt';
 import { morseEncoding } from '@encryptors/Morse/morse-encoding';
 import { keywordAlphabet } from '@encryptors/Keyword/keyword-crypt';
+import { saknussemmEncrypt } from '@encryptors/Saknussemm/saknussemm-crypt';
 import {
   columnOrder,
   normalizeTranspositionKey,
@@ -616,6 +617,34 @@ const buildNihilistExample = (
   };
 };
 
+// Saknussemm: the example walks the reversed stream through the grid
+// one cluster at a time — each row adds one column's letters, in print
+// order. The key carries the shape ("width/perLine") for the tool.
+const buildSaknussemmExample = (
+  id: string,
+  input: string,
+  clusterWidth: number,
+  clustersPerLine: number,
+): WorkedExample => {
+  const shape = { clusterWidth, clustersPerLine };
+  const clusters = saknussemmEncrypt(input, shape)
+    .split('\n')
+    .flatMap((line) => line.split(' '));
+  return {
+    id,
+    cipher: 'saknussemm',
+    input,
+    key: `${clusterWidth}/${clustersPerLine}`,
+    alphabet: '',
+    mode: 'encrypt',
+    columns: [
+      { key: 'cluster', labelKey: 'learning.example.columns.cluster' },
+      { key: 'result', labelKey: EXAMPLE_COLUMN_LABELS.result },
+    ],
+    rows: clusters.map((cluster, index) => [String(index + 1), cluster]),
+  };
+};
+
 const EXAMPLES: Record<string, WorkedExample> = {
   'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
   'caesar-basic': buildCaesarExample('caesar-basic', 'MEETATNOON', 3),
@@ -635,6 +664,7 @@ const EXAMPLES: Record<string, WorkedExample> = {
   'polybius-keyed': buildPolybiusExample('polybius-keyed', 'ATTACKATDAWN', 'SPARTAN'),
   'nihilist-basic': buildNihilistExample('nihilist-basic', 'ATTACKATDAWN', '', 'RUSSIA'),
   'enigma-basic': buildEnigmaExample('enigma-basic', 'AAAAA', 'AAA'),
+  'saknussemm-basic': buildSaknussemmExample('saknussemm-basic', 'SNEFFELS', 3, 2),
 };
 
 export const getExample = (id: string): WorkedExample | null => EXAMPLES[id] || null;

@@ -97,6 +97,8 @@ const CipherLadder: React.FC = () => {
       </Grid>
       <UtilitiesNote>
         <Link href="/encoder/base64/direct">{t('home.ladder.utilitiesNote')}</Link>
+        {' · '}
+        <Link href="/encoder/saknussemm/history">{t('home.ladder.easterEggNote')}</Link>
       </UtilitiesNote>
     </>
   );

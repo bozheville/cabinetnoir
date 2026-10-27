@@ -18,7 +18,8 @@
       "subtitle": "Climb from the trivial to Enigma. Every rung: a tool and a guided course.",
       "tool": "Tool",
       "learn": "Learn",
-      "utilitiesNote": "Not pen-and-paper, but handy in the digital world: Base64"
+      "utilitiesNote": "Not pen-and-paper, but handy in the digital world: Base64",
+      "easterEggNote": "Off the ladder, a hidden page: Arne Saknussemm’s runic parchment"
     },
     "roadmap": {
       "title": "The roadmap",
@@ -27,12 +28,12 @@
       "built": {
         "ciphers": "Fourteen cipher pages with guided learning tabs — tool, learn, history, practice",
         "cryptoanalysis": "Guided cryptoanalysis wizards for Vigenère, ADFGVX, Affine, Playfair, Alberti, Keyword, Columnar and Rail fence",
-        "challenges": "Practice challenges with difficulty-matched hint presets — in three languages"
+        "challenges": "Practice challenges with difficulty-matched hint presets — in three languages",
+        "saknussemm": "The Arne Saknussemm easter egg — the runic parchment from “Journey to the Centre of the Earth”"
       },
       "next": {
         "substitution": "The homophonic substitution cipher — numbers replacing the frequent letters",
-        "nihilist": "The Nihilist cipher — substitution meets transposition",
-        "saknussemm": "Pop-culture easter eggs — the Arne Saknussemm cipher"
+        "nihilist": "The Nihilist cipher — substitution meets transposition"
       }
     },
     "identify": {
@@ -815,6 +816,18 @@
           }
         }
       }
+    },
+    "saknussemm": {
+      "title": "Saknussemm cipher",
+      "short_title": "Saknussemm",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram",
+      "settings": {
+        "clusterWidthLabel": "{{count}} letters per cluster",
+        "clustersPerLineLabel": "{{count}} clusters per line",
+        "parchmentButton": "Load the parchment"
+      }
     }
   },
   "message": "Message",
@@ -925,7 +938,8 @@
         "fractionated": "Fractionated so far",
         "plainNumber": "Plaintext number",
         "keyNumber": "Key number",
-        "sum": "Sum (no carry)"
+        "sum": "Sum (no carry)",
+        "cluster": "Cluster"
       }
     },
     "tryInTool": "Try it in the tool",
@@ -979,7 +993,10 @@
       "unknown-keys": "the \"Unknown keys\" checkbox",
       "column-chips": "the column arrangement chips",
       "symbol-chart": "the symbol frequency chart",
-      "glyph-keyboard": "the glyph keyboard"
+      "glyph-keyboard": "the glyph keyboard",
+      "cluster-width-picker": "the letters-per-cluster picker",
+      "clusters-per-line-picker": "the clusters-per-line picker",
+      "load-parchment": "the “Load the parchment” button"
     },
     "timeline": {
       "source": "Source",
@@ -1073,6 +1090,11 @@
         "1880s": "Russian Nihilist prisoners add a numeric key to the Polybius square to smuggle letters past the censors.",
         "tapCode": "Prison camps revive the square as tap code — the coordinates, knocked on a wall.",
         "vic": "The Soviet VIC cipher descends from the Nihilist addition — the last great pencil-and-paper cipher."
+      },
+      "saknussemm": {
+        "1530s": "In the novel's chronology, the alchemist Arne Saknussemm descends into the Icelandic volcano Snæfellsjökull and carves his message on a runic parchment.",
+        "1864": "Jules Verne publishes \"Voyage au centre de la Terre\" — the parchment's cryptic runes drive the whole plot.",
+        "1871": "The first English translation prints the scrambled dictation \"mm.rnlls esruel seecJde…\" — the wording this site reproduces."
       }
     },
     "challenge": {
@@ -1415,6 +1437,12 @@
         "hint1": "Square key and additive key both unknown — recover the key numbers first, then the square.",
         "hint2": "Key length 8; after the key is pinned, the pairs decode like any substitution.",
         "hint3": "The most frequent pair is almost certainly E — start there."
+      },
+      "saknussemm-parchment": {
+        "title": "Decode the parchment",
+        "hint1": "The message is Latin — and it reads backwards. Reverse the whole letter stream first.",
+        "hint2": "The parchment’s shape: clusters of 7 letters, 3 clusters per line — 21 columns in all.",
+        "hint3": "Set the shape to 7×3 in the tool and read the rows across: the descent into Sneffels, and Saknussemm’s signature."
       }
     },
     "tooltips": {
@@ -1486,6 +1514,11 @@
       },
       "enigma": {
         "key": "The rotors' start positions (the Grundstellung) — three letters A–Z. On the real machine, the key also carried the rotor order, the ring settings and the plugboard pairs."
+      },
+      "saknussemm": {
+        "clusterWidth": "How many letters each column-cluster holds — also the height of the layout grid. The parchment uses 7.",
+        "clustersPerLine": "How many clusters are printed on each line of the cryptogram. The parchment prints 3.",
+        "parchment": "Fill the input with the novel's own parchment — the Latin message in encrypt mode, Saknussemm's scrambled dictation in decrypt mode."
       }
     },
     "caesar": {
@@ -1567,6 +1600,11 @@
       "era": "Russia, 1880s",
       "origin": "Russian Nihilist prisoners smuggling numbers past the censors; a forerunner of the VIC cipher",
       "description": "Polybius coordinates plus a repeating numeric key, added digit by digit without carry — Vigenère on numbers."
+    },
+    "saknussemm": {
+      "description": "The runic parchment from Jules Verne’s “Journey to the Centre of the Earth” — a reversal plus a route transposition, letters only.",
+      "era": "1864 (set in the 16th century)",
+      "origin": "Arne Saknussemm, the fictional Icelandic alchemist who carved the message"
     }
   },
   "glossary": {

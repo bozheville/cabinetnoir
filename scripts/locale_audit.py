@@ -39,6 +39,7 @@ ALLOWLIST = {
     'learning.challenges.morse-medium-1.title',
     'processing.railFence.title',
     'processing.railFence.short_title',
+    'processing.saknussemm.short_title',
     'glossary.rail-fence.name',
     'processing.adfgvx.variants.adfgx',
     'processing.adfgvx.variants.adfgvx',

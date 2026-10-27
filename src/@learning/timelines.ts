@@ -330,6 +330,23 @@ export const TIMELINES: Record<string, TimelineEvent[]> = {
       sourceUrl: 'https://en.wikipedia.org/wiki/Index_of_coincidence',
     },
   ],
+  saknussemm: [
+    {
+      year: 'c. 1530s (fiction)',
+      textKey: 'learning.timeline.saknussemm.1530s',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Arne_Saknussemm',
+    },
+    {
+      year: '1864',
+      textKey: 'learning.timeline.saknussemm.1864',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Journey_to_the_Centre_of_the_Earth',
+    },
+    {
+      year: '1871',
+      textKey: 'learning.timeline.saknussemm.1871',
+      sourceUrl: 'https://www.gutenberg.org/ebooks/18857',
+    },
+  ],
 };
 
 export const getTimeline = (cipher: string): TimelineEvent[] => TIMELINES[cipher] || [];

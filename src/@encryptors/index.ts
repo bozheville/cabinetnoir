@@ -15,6 +15,7 @@ export { default as Vigenere } from './Vigenere';
 export { default as Nihilist } from './Nihilist';
 export { default as Adfgvx } from './Adfgvx';
 export { default as Rot13 } from './Rot13';
+export { default as Saknussemm } from './Saknussemm';
 
 import { encodingsList, encryptorsList } from './algorithms';
 export { encodingsList, encryptorsList };
