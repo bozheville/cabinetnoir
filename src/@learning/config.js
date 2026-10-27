@@ -35,7 +35,9 @@ const CIPHER_LADDER = [
   'keyword',
   'columnar',
   'playfair',
+  'beaufort',
   'vigenere',
+  'autokey',
   'nihilist',
   'adfgvx',
   'alberti',
@@ -45,6 +47,72 @@ const CIPHER_LADDER = [
 const START_HERE_CIPHER = 'caesar';
 
 const learningConfig = {
+  beaufort: {
+    tabs: ['learn', 'history', 'practice'],
+    sections: {
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.polyalphabetic',
+      difficulty: 'learning.difficulty.hard',
+      era: 'learning.beaufort.era',
+      origin: 'learning.beaufort.origin',
+      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+    },
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'key',
+      'alphabet',
+      'tabula-recta',
+      'reciprocal',
+      'key-length',
+      'slice',
+      'frequency-analysis',
+      'index-of-coincidence',
+      'kasiski-examination',
+      'crib',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Beaufort_cipher',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
+  autokey: {
+    tabs: ['learn', 'history', 'practice'],
+    sections: {
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.polyalphabetic',
+      difficulty: 'learning.difficulty.hard',
+      era: 'learning.autokey.era',
+      origin: 'learning.autokey.origin',
+      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+    },
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'key',
+      'alphabet',
+      'primer',
+      'keystream',
+      'crib',
+      'frequency-analysis',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Autokey_cipher',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
   vigenere: {
     tabs: ['learn', 'history', 'practice'],
     sections: {

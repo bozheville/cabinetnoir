@@ -18,7 +18,9 @@ Bellaso, who paired the tabula recta with an easy-to-remember key phrase
 and noted that the key should be changed often. In 1586 the French
 diplomat Blaise de Vigenère published a stronger, autokey variant of his
 own. History got the attribution backwards: the simpler repeating-key
-cipher was named after Vigenère, and the name stuck.
+cipher was named after Vigenère, and the name stuck. (The cipher
+Vigenère actually described is on this site too — the autokey cipher,
+one rung below in the ladder.)
 
 ## "Le chiffre indéchiffrable"
 

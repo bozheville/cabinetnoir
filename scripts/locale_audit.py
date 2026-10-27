@@ -43,6 +43,7 @@ ALLOWLIST = {
     'glossary.rail-fence.name',
     'processing.adfgvx.variants.adfgx',
     'processing.adfgvx.variants.adfgvx',
+    'learning.autokey.origin',
 }
 
 # The dynamic families the UI resolves with template literals, and the

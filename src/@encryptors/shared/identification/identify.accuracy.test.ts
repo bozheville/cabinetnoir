@@ -12,6 +12,8 @@ import type { IdentificationResult } from './types';
 import { STANDARD_ALPHABET } from '@encryptors/shared/analysis/frequency';
 import { monoalphabeticEncrypt } from '@encryptors/Monoalphabetic/monoalphabetic-crypt';
 import { vigenereEncrypt } from '@encryptors/Vigenere/vigenere-encryption';
+import { beaufortEncrypt } from '@encryptors/Beaufort/beaufort-crypt';
+import { autokeyEncrypt } from '@encryptors/Autokey/autokey-crypt';
 import { playfairEncrypt } from '@encryptors/Playfair/playfair-encryption';
 import { adfgvxEncrypt } from '@encryptors/Adfgvx/adfgvx-encryption';
 import { albertiEncrypt, ALBERTI_STATIC_DISC, ALBERTI_DYNAMIC_DISC } from '@encryptors/Alberti/alberti-crypt';
@@ -72,6 +74,8 @@ const ENCRYPTORS: Record<string, (text: string) => string> = {
   keyword: (text) => keywordEncrypt({ input: text, keyword: 'KRYPTOS', keepSpaces: false }),
   homophonic: (text) => homophonicEncrypt(text),
   vigenere: (text) => vigenereEncrypt(text, 'LEMON'),
+  beaufort: (text) => beaufortEncrypt(text, 'LEMON'),
+  autokey: (text) => autokeyEncrypt(text, 'PRIMER'),
   alberti: (text) => albertiEncrypt({
     input: text,
     isDecryptMode: false,

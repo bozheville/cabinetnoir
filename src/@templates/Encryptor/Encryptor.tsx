@@ -79,6 +79,7 @@ const Encryptor: React.FC = () => {
           input: challenge.ciphertext,
           cracker: true,
           hintPreset: challenge.difficulty,
+          crib: challenge.crib,
         });
         clearParam();
       }

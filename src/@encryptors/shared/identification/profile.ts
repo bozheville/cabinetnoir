@@ -134,6 +134,11 @@ export interface TextProfile {
   // does not — lower score.
   sliceShiftScore: number;
 
+  // The same measure under the reflected shift map — classic Beaufort's
+  // slices fit reflected curves, so their reflected score beats their
+  // plain one. Variant Beaufort and Vigenère score alike on both.
+  sliceReflectScore: number;
+
   // The raw input mixes upper and lower case letters.
   mixedCase: boolean;
 
@@ -328,9 +333,14 @@ export const profileText = (input: string): TextProfile => {
   const uniformityScore = chiToScorePerLetter(uniformChi, letterCount);
 
   // Slices at the best period: how well plain shifts alone decrypt them
-  // (the Vigenère-vs-Alberti discriminator).
-  let sliceShiftScore = 0;
-  if (best && best.length >= 2 && letterCount / best.length >= 4) {
+  // (the Vigenère-vs-Alberti discriminator), and how well *reflected*
+  // shifts do (the Beaufort discriminator: classic Beaufort slices are
+  // Vigenère slices read backwards, so their chi² fit peaks under the
+  // mirrored map (display, shift) → shift − display).
+  const sliceScoreFor = (reflected: boolean): number => {
+    if (!best || best.length < 2 || letterCount / best.length < 4) {
+      return 0;
+    }
     const period = best.length;
     const sliceScores: number[] = [];
     for (let offset = 0; offset < period; offset += 1) {
@@ -343,12 +353,22 @@ export const profileText = (input: string): TextProfile => {
         continue;
       }
       sliceScores.push(Math.max(...Array.from({ length: ALPHABET_LENGTH }, (_, shift) =>
-        chiToScorePerLetter(chiSquaredAt(sliceCounts, shift), sliceTotal))));
+        chiToScorePerLetter(chiSquaredAt(
+          sliceCounts,
+          shift,
+          STANDARD_ALPHABET,
+          reflected
+            ? (display, value) => (((value - display) % ALPHABET_LENGTH) + ALPHABET_LENGTH) % ALPHABET_LENGTH
+            : undefined,
+        ), sliceTotal))));
     }
-    if (sliceScores.length > 0) {
-      sliceShiftScore = Math.round(sliceScores.reduce((sum, score) => sum + score, 0) / sliceScores.length);
+    if (sliceScores.length === 0) {
+      return 0;
     }
-  }
+    return Math.round(sliceScores.reduce((sum, score) => sum + score, 0) / sliceScores.length);
+  };
+  const sliceShiftScore = sliceScoreFor(false);
+  const sliceReflectScore = sliceScoreFor(true);
 
   return {
     letters,
@@ -389,6 +409,7 @@ export const profileText = (input: string): TextProfile => {
     nihilistInRangeRatio,
     uniformityScore,
     sliceShiftScore,
+    sliceReflectScore,
     mixedCase,
     distinctDigitPairs,
   };

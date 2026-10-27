@@ -21,6 +21,8 @@ import {
   Pigpen,
   Playfair,
   Vigenere,
+  Beaufort,
+  Autokey,
   Nihilist,
   Adfgvx,
   Saknussemm,
@@ -97,6 +99,8 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
     algorithm === 'enigma' ? Enigma :
     algorithm === 'playfair' ? Playfair :
     algorithm === 'vigenere' ? Vigenere :
+    algorithm === 'beaufort' ? Beaufort :
+    algorithm === 'autokey' ? Autokey :
     algorithm === 'nihilist' ? Nihilist :
     algorithm === 'adfgvx' ? Adfgvx :
     algorithm === 'morse' ? Morse :

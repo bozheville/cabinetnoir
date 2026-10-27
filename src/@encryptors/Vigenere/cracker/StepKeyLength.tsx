@@ -4,7 +4,7 @@ import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import { Repeat } from '@encryptors/shared/analysis';
-import { CipherText, HIGHLIGHT_COLORS } from '@encryptors/shared/cracker';
+import { CipherText, HIGHLIGHT_COLORS, useCrackerKey } from '@encryptors/shared/cracker';
 import KeyLengthCards from './KeyLengthCards';
 import { CrackerAnalysis } from './useCracker';
 import { HintSettings } from './hintSettings';
@@ -46,6 +46,7 @@ const StepKeyLength: React.FC<StepKeyLengthRepeatsProps> = ({
 }) => {
   const [hoveredRepeat, setHoveredRepeat] = useState<number | null>(null);
   const { t } = useTranslation('common');
+  const base = useCrackerKey('wizard.repeats.');
 
 
   const shownRepeats: Repeat[] = analysis
@@ -90,19 +91,19 @@ const StepKeyLength: React.FC<StepKeyLengthRepeatsProps> = ({
                   >
                     <strong>{repeat.sequence}</strong>
                     {` at ${repeat.positions.join(', ')}`}
-                    {hints.showGaps ? `, ${t('processing.vigenere.cracker.wizard.repeats.gapsLabel')}: ${repeat.gaps.join(', ')}` : ''}
+                    {hints.showGaps ? `, ${t(`${base}gapsLabel`)}: ${repeat.gaps.join(', ')}` : ''}
                   </RepeatRow>
                 );
               })}
             </RepeatsList>
           ) : (
             <Text size={300} display="block" marginTop="8px">
-              {t('processing.vigenere.cracker.wizard.repeats.none')}
+              {t(`${base}none`)}
             </Text>
           )}
         </>
       ) : (
-        <Text size={300}>{t('processing.vigenere.cracker.wizard.repeats.emptyInput')}</Text>
+        <Text size={300}>{t(`${base}emptyInput`)}</Text>
       )}
 
       {/* Key length cards come in task 19. */}

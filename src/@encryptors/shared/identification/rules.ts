@@ -13,6 +13,7 @@ import {
   CHI_FIT_GOOD,
   HOMOPHONIC_SYMBOLS,
   HOMOPHONIC_UNIFORMITY,
+  IC_BAND_MIN,
   IC_RANDOM,
   MAX_DISTINCT_PLAYFAIR,
   ALBERTI_MAX_DISTINCT,
@@ -113,10 +114,13 @@ export const FAMILY_RULES: Rule[] = [
       ? { period: profile.bestPeriod, gain: Math.round(profile.periodIcGain * 1000) / 1000 }
       : null)),
 
-  // Aperiodic polyalphabetic (Enigma-style): IC near random and no
-  // periodic structure. Low weight — hard to tell apart from noise.
+  // Aperiodic polyalphabetic (Enigma-style): IC below the English-like
+  // band and no periodic structure. Low weight — hard to tell apart from
+  // noise. Autokey ciphertexts live at the top of this band (their IC is
+  // plaintext-diluted, ~0.046), which is why the band runs to
+  // IC_BAND_MIN rather than just above random.
   rule('aperiodicPolyalphabetic', family('polyalphabetic'), 15,
-    (profile) => (profile.ic < IC_RANDOM * 1.15 && profile.periodIcGain < PERIOD_GAIN
+    (profile) => (profile.ic < IC_BAND_MIN && profile.periodIcGain < PERIOD_GAIN
       ? { ic: Math.round(profile.ic * 1000) / 1000 }
       : null)),
 
@@ -215,11 +219,36 @@ export const CIPHER_RULES: Rule[] = [
       : null)),
 
   // Vigenère: a periodic polyalphabetic whose slices decrypt with plain
-  // shifts.
+  // shifts — and whose reflected score does not beat the plain one (the
+  // latter would point at classic Beaufort).
   rule('vigenereSlices', cipher('vigenere'), 35,
     (profile) => (profile.periodIcGain >= PERIOD_GAIN
       && profile.sliceShiftScore >= CHI_FIT_GOOD
+      && profile.sliceShiftScore >= profile.sliceReflectScore
       ? { period: profile.bestPeriod ?? 0 }
+      : null)),
+
+  // Beaufort: the same periodic fingerprint, but the slices fit
+  // reflected shifts clearly better than plain ones — the mirror is the
+  // cipher's signature. Variant Beaufort stays statistically identical
+  // to Vigenère and is deliberately not separable here.
+  rule('beaufortSlices', cipher('beaufort'), 35,
+    (profile) => (profile.periodIcGain >= PERIOD_GAIN
+      && profile.sliceReflectScore >= CHI_FIT_GOOD
+      && profile.sliceReflectScore > profile.sliceShiftScore + CAESAR_GAP
+      ? { period: profile.bestPeriod ?? 0 }
+      : null)),
+
+  // Autokey: aperiodic like Enigma (its keystream never repeats), with
+  // no measurable statistical fingerprint of its own — the honest
+  // position is a small weight in the aperiodic bucket, documented as
+  // indistinguishable (primer recovery needs crib-dragging, not
+  // statistics). Its IC sits at the top of the aperiodic band: the
+  // keystream is mostly plaintext, so the ciphertext keeps some of
+  // English's unevenness.
+  rule('autokeyAperiodic', cipher('autokey'), 15,
+    (profile) => (profile.ic < IC_BAND_MIN && profile.periodIcGain < PERIOD_GAIN
+      ? { ic: Math.round(profile.ic * 1000) / 1000 }
       : null)),
 
   // Alberti: its mixed-alphabet disc leaves a double fingerprint — the

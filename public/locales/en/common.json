@@ -26,14 +26,13 @@
       "builtTitle": "What's built",
       "nextTitle": "What's next",
       "built": {
-        "ciphers": "Fourteen cipher pages with guided learning tabs — tool, learn, history, practice",
-        "cryptoanalysis": "Guided cryptoanalysis wizards for Vigenère, ADFGVX, Affine, Playfair, Alberti, Keyword, Columnar and Rail fence",
+        "ciphers": "Sixteen cipher pages with guided learning tabs — tool, learn, history, practice",
+        "cryptoanalysis": "Guided cryptoanalysis wizards for Vigenère, Beaufort, Autokey, ADFGVX, Affine, Playfair, Alberti, Keyword, Columnar and Rail fence",
         "challenges": "Practice challenges with difficulty-matched hint presets — in three languages",
         "saknussemm": "The Arne Saknussemm easter egg — the runic parchment from “Journey to the Centre of the Earth”"
       },
       "next": {
-        "substitution": "The homophonic substitution cipher — numbers replacing the frequent letters",
-        "nihilist": "The Nihilist cipher — substitution meets transposition"
+        "substitution": "The homophonic substitution cipher — numbers replacing the frequent letters"
       }
     },
     "identify": {
@@ -83,7 +82,9 @@
       "playfair": "Playfair",
       "adfgvx": "ADFGVX",
       "nihilist": "Nihilist",
-      "polybius": "Polybius square"
+      "polybius": "Polybius square",
+      "beaufort": "Beaufort",
+      "autokey": "Autokey"
     },
     "reasons": {
       "transpositionShape": "The letter frequencies match English exactly (index of coincidence {{ic}}) — the letters were moved, not replaced.",
@@ -114,7 +115,9 @@
       "nihilistBlockShape": "Number-only output — the classic written form of a block cipher like Nihilist.",
       "homophonicFlat": "{{symbols}} distinct symbols — more than any single-letter substitution alphabet holds.",
       "knownText.saknussemm": "This is the Arne Saknussemm parchment from Jules Verne's “Journey to the Centre of the Earth” — {{letters}} matching letters.",
-      "polybiusPairs": "All {{pairs}} pairs sit inside the Polybius square range (11–55)."
+      "polybiusPairs": "All {{pairs}} pairs sit inside the Polybius square range (11–55).",
+      "beaufortSlices": "Periodic slices fit reflected shifts (Beaufort), not plain ones",
+      "autokeyAperiodic": "No period, but letter runs look like plain English (autokey or running key)"
     },
     "metrics": {
       "letters": {
@@ -828,6 +831,151 @@
         "clustersPerLineLabel": "{{count}} clusters per line",
         "parchmentButton": "Load the parchment"
       }
+    },
+    "beaufort": {
+      "title": "Beaufort cipher",
+      "short_title": "Beaufort",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram",
+      "cracker": {
+        "keyLabel": "Key",
+        "alphabetLabel": "Alphabet",
+        "wizard": {
+          "steps": {
+            "keyLength": "Key length",
+            "keyLetters": "Key letters",
+            "done": "Done"
+          },
+          "repeats": {
+            "title": "Repeated sequences",
+            "gapsLabel": "gaps",
+            "none": "No repeated sequences found. Use the key length cards below instead.",
+            "emptyInput": "Paste ciphertext first."
+          },
+          "keyLength": {
+            "otherLabel": "Other length",
+            "otherPlaceholder": "1-20",
+            "selected": "Selected"
+          },
+          "keyLetters": {
+            "sliceLabel": "Slice {{index}} of {{total}}",
+            "lockedPrefix": "locked:",
+            "allLocked": "All letters set. Continue to step 3.",
+            "manualTag": "manual",
+            "yourKey": "Your key",
+            "keyHint": "Type a letter to override, clear it to un-lock.",
+            "suggestedTag": "suggested"
+          },
+          "cribs": {
+            "title": "Cribs",
+            "inputLabel": "Word you think is in the message",
+            "inputPlaceholder": "e.g. ATTACK",
+            "apply": "Apply",
+            "noMatches": "The word does not fit anywhere with this key length.",
+            "conflictsNote": "conflicts with locked letters"
+          }
+        },
+        "keyLengthLabels": {
+          "veryLikely": "very likely",
+          "possible": "possible",
+          "unlikely": "unlikely"
+        },
+        "reason": {
+          "kasiski-and-ic": "{{count}} repeat gaps divisible by this length, slices look like English (IC {{ic}})",
+          "kasiski-only": "{{count}} repeat gaps divisible by this length",
+          "ic-only": "slices look like English (IC {{ic}})",
+          "weak": "no strong evidence for this length"
+        },
+        "tooltips": {
+          "key": "The secret key. Every plaintext letter is subtracted from the matching key letter; the key repeats over the whole message.",
+          "alphabet": "The set of letters the cipher works with. Paste any letters — the tool uppercases them and drops duplicates. The default is the English alphabet.",
+          "keyLengthCards": "Likely key lengths ranked by two signals: distances between repeated sequences, and how English-like the text slices look. Click a card to choose.",
+          "otherLength": "Enter a key length manually if none of the suggested cards fits.",
+          "sliceTabs": "With a key length of N the text splits into N slices; every letter of a slice is subtracted from the same key letter. Click a tab to work on that slice.",
+          "keyStrip": "Your key as you build it. Click a cell to jump to its slice, type a letter to override the chart choice, clear a cell to un-set it.",
+          "cribInput": "If you guess a word that appears in the plaintext, the cracker computes which key letters it implies, at every position it fits.",
+          "apply": "Fill the empty key slots with the letters this position suggests. Letters already set differently are never overwritten."
+        },
+        "alphabetUnsupported": "The frequency tables behind the cracker are English — switch the alphabet back to the standard 26 letters to use it."
+      },
+      "tool": {
+        "variantLabel": "Variant",
+        "variant": {
+          "beaufort": "Beaufort",
+          "variantBeaufort": "Variant Beaufort"
+        },
+        "tabula": {
+          "beaufort": "C = K − P: each row reads the alphabet backwards from its key letter.",
+          "variant": "C = P − K: each row reads the alphabet shifted back by its key letter."
+        },
+        "reciprocal": "Classic Beaufort is reciprocal — encrypting twice with the same key restores the plaintext."
+      },
+      "tooltips": {
+        "key": "The secret key. Every plaintext letter is subtracted from the matching key letter; the key repeats over the whole message.",
+        "variant": "Classic Beaufort computes cipher = key − plaintext and is self-reciprocal. The variant computes cipher = plaintext − key — statistically identical to Vigenère.",
+        "alphabet": "The set of letters the cipher works with. Paste any letters — the tool uppercases them and drops duplicates. The default is the English alphabet."
+      }
+    },
+    "autokey": {
+      "title": "Autokey cipher",
+      "short_title": "Autokey",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram",
+      "tool": {
+        "primerLabel": "Primer",
+        "streamCaption": "The keystream: your primer (highlighted), then the message itself feeding the key."
+      },
+      "tooltips": {
+        "primer": "The primer: the only secret. After it runs out, the keystream continues with the plaintext itself — that is why the row below grows with your text."
+      },
+      "cracker": {
+        "wizard": {
+          "steps": {
+            "word": "Guess a word",
+            "drag": "Drag it along",
+            "unroll": "Unroll the key",
+            "done": "Done"
+          },
+          "word": {
+            "title": "Guess a probable word",
+            "hint": "In autokey the key is the plaintext itself: one guessed word unravels the whole message. Pick a word that likely appears in the text.",
+            "suggested": "From the challenge",
+            "primerLength": "Primer length",
+            "primerHint": "how long the secret primer was (2-12)"
+          },
+          "drag": {
+            "title": "Drag the word along the ciphertext",
+            "hint": "Each position implies a key fragment (cipher − guess). In autokey that fragment is plaintext from one primer-length earlier — the readable positions are the right ones. Click a row to place the word.",
+            "likely": "looks like English"
+          },
+          "unroll": {
+            "title": "Unroll the key",
+            "hint": "The known plaintext propagates on its own, both directions. Highlighted letters are your crib; the primer falls out at the start. Blank primer letters stay for you to type.",
+            "fillMissing": "Type the missing primer letters:"
+          },
+          "done": {
+            "title": "Your primer"
+          }
+        },
+        "tooltips": {
+          "back": "Back one step.",
+          "next": "Continue to the next step.",
+          "useThisKey": "Send the recovered primer to the tool."
+        },
+        "wizardNav": {
+          "back": "Back",
+          "next": "Next",
+          "skip": "Skip"
+        },
+        "hints": {
+          "toggles": {
+            "offsetScores": "Show English-likeness score of each implied fragment",
+            "bestOffsetGlow": "Mark the most English-like offset"
+          }
+        }
+      }
     }
   },
   "message": "Message",
@@ -939,7 +1087,8 @@
         "plainNumber": "Plaintext number",
         "keyNumber": "Key number",
         "sum": "Sum (no carry)",
-        "cluster": "Cluster"
+        "cluster": "Cluster",
+        "keystream": "Keystream"
       }
     },
     "tryInTool": "Try it in the tool",
@@ -996,7 +1145,13 @@
       "glyph-keyboard": "the glyph keyboard",
       "cluster-width-picker": "the letters-per-cluster picker",
       "clusters-per-line-picker": "the clusters-per-line picker",
-      "load-parchment": "the “Load the parchment” button"
+      "load-parchment": "the “Load the parchment” button",
+      "variant-select": "Choose between classic Beaufort and the variant.",
+      "keystream": "The keystream row: the primer followed by the message itself.",
+      "primer-length": "Set the assumed primer length.",
+      "offset-list": "The crib dragged along the ciphertext; click a position to place it.",
+      "unroll-worksheet": "The plaintext unrolled from the crib placement.",
+      "primer-fill": "Type the primer letters the crib could not reach."
     },
     "timeline": {
       "source": "Source",
@@ -1095,6 +1250,16 @@
         "1530s": "In the novel's chronology, the alchemist Arne Saknussemm descends into the Icelandic volcano Snæfellsjökull and carves his message on a runic parchment.",
         "1864": "Jules Verne publishes \"Voyage au centre de la Terre\" — the parchment's cryptic runes drive the whole plot.",
         "1871": "The first English translation prints the scrambled dictation \"mm.rnlls esruel seecJde…\" — the wording this site reproduces."
+      },
+      "beaufort": {
+        "1553": "Giovan Battista Bellaso publishes the key-phrase cipher family the Beaufort variants belong to.",
+        "1857": "The cipher is published posthumously under the name of Sir Francis Beaufort, the Royal Navy hydrographer of the wind-scale fame.",
+        "1930s": "The variant Beaufort arithmetic (C = P − K) works inside the American M-209 field cipher machine."
+      },
+      "autokey": {
+        "1553": "Giovan Battista Bellaso proposes the earliest known autokey: the message itself continues the key.",
+        "1586": "Blaise de Vigenère publishes his autokey construction in his Traicté des chiffres — the cipher that carries his name is the simpler, weaker one.",
+        "1863": "Kasiski publishes the periodicity attack; the autokey's lack of a period is its defence — but crib-dragging breaks it anyway."
       }
     },
     "challenge": {
@@ -1443,6 +1608,46 @@
         "hint1": "The message is Latin — and it reads backwards. Reverse the whole letter stream first.",
         "hint2": "The parchment’s shape: clusters of 7 letters, 3 clusters per line — 21 columns in all.",
         "hint3": "Set the shape to 7×3 in the tool and read the rows across: the descent into Sneffels, and Saknussemm’s signature."
+      },
+      "beaufort-demo": {
+        "title": "Beaufort, warm-up",
+        "hint1": "The Beaufort cracker is the Vigenère one with the chart curve mirrored — same steps, same key-length cards."
+      },
+      "beaufort-easy-1": {
+        "title": "Poe, keyed at sea",
+        "hint1": "Key length 5. Watch for the reflected frequency curves in the slice charts.",
+        "hint2": "The crib \"MIDNIGHT\" fits somewhere."
+      },
+      "beaufort-medium-1": {
+        "title": "Austen under a harbour light",
+        "hint1": "Key length 6. The slices fit reflected shifts better than plain ones — that is how you know it is Beaufort.",
+        "hint2": "The opening words are famous."
+      },
+      "beaufort-hard-1": {
+        "title": "Hamlet, admiral's dispatch",
+        "hint1": "Key length 7, no confidence bars. Try 5 and 6 first — the impostors will feel plausible.",
+        "hint2": "A reflected chart that lines up badly is still wrong; trust the match score, not the shape.",
+        "hint3": "The crib \"OUTRAGEOUS\" fits."
+      },
+      "autokey-demo": {
+        "title": "Autokey, warm-up",
+        "hint1": "Drag \"THE\" along the ciphertext: the placement whose implied fragment reads like English is the right one. Then unroll."
+      },
+      "autokey-easy-1": {
+        "title": "Poe, feeding on itself",
+        "hint1": "Primer length 4. Drag \"THE\" — the readable fragments are the right placements.",
+        "hint2": "One primer letter stays hidden; type it from what looks like English."
+      },
+      "autokey-medium-1": {
+        "title": "Austen, the real Vigenère",
+        "hint1": "Primer length 7. Drag \"AND\" — short cribs leave more primer letters for you to type.",
+        "hint2": "The unroll fills everything except the residues the crib never touched."
+      },
+      "autokey-hard-1": {
+        "title": "Hamlet, no period to find",
+        "hint1": "Primer length 8, hard preset: no scores, no glow. Judge the fragments by eye.",
+        "hint2": "Wrong placements look like noise; the right one reads like the play.",
+        "hint3": "The crib \"OUTRAGEOUS\" fits."
       }
     },
     "tooltips": {
@@ -1605,6 +1810,16 @@
       "description": "The runic parchment from Jules Verne’s “Journey to the Centre of the Earth” — a reversal plus a route transposition, letters only.",
       "era": "1864 (set in the 16th century)",
       "origin": "Arne Saknussemm, the fictional Icelandic alchemist who carved the message"
+    },
+    "beaufort": {
+      "era": "Renaissance family, 19th-century name",
+      "origin": "Royal Navy, named for Sir Francis Beaufort",
+      "description": "The Vigenère's mirror twin — same repeating key, subtraction the other way round, self-reciprocal."
+    },
+    "autokey": {
+      "era": "Renaissance — the real 1586 Vigenère",
+      "origin": "Giovan Battista Bellaso, 1553",
+      "description": "Vigenère's actual cipher: the key starts with a short primer, then the plaintext itself feeds the keystream."
     }
   },
   "glossary": {
@@ -1747,6 +1962,26 @@
     "anagrammage": {
       "name": "Anagramming",
       "definition": "Sliding suspected column fragments side by side and reading the seams — the classic attack on transposition ciphers: each trial arrangement is judged by how English the letter pairs at the joins look."
+    },
+    "tabula-recta": {
+      "name": "Tabula recta",
+      "definition": "The square table of all 26 shift alphabets used by Vigenère-family ciphers: one row per key letter, read as \"row key letter, column plaintext letter\"."
+    },
+    "reciprocal": {
+      "name": "Reciprocal",
+      "definition": "A cipher whose encryption operation is its own decryption: applying it twice with the same key restores the plaintext (Beaufort, Atbash, ROT13)."
+    },
+    "cryptanalysis": {
+      "name": "Cryptanalysis",
+      "definition": "The art of breaking ciphers without the key — reading the statistics of a language through the disguise of a cipher."
+    },
+    "primer": {
+      "name": "Primer",
+      "definition": "The short starting key of an autokey cipher: the only secret, after which the keystream continues with the plaintext itself."
+    },
+    "keystream": {
+      "name": "Keystream",
+      "definition": "The running sequence of key letters a cipher consumes, one per plaintext letter. In autokey the keystream is the primer followed by the plaintext."
     }
   }
 }

@@ -5,7 +5,7 @@ import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import { CipherText, HIGHLIGHT_COLORS } from '@encryptors/shared/cracker';
-import { FrequencyChart } from '@encryptors/shared/cracker';
+import { FrequencyChart, useCrackerKey } from '@encryptors/shared/cracker';
 import CribPanel from './CribPanel';
 import KeyStrip from './KeyStrip';
 import { LockedLetter, useCracker } from './useCracker';
@@ -41,8 +41,11 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
     setActiveSlice,
     hintConfig,
     alphabet,
+    transform,
   } = cracker;
   const { t } = useTranslation('common');
+  const base = useCrackerKey('wizard.');
+  const tooltip = useCrackerKey('tooltips.');
 
 
   if (!analysis || keyLength === null) {
@@ -71,7 +74,7 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
     <Pane width="100%">
       <CipherText input={cracker.input} normalized={analysis.normalized} colorFor={colorFor} />
 
-      <Tooltip content={t('processing.vigenere.cracker.tooltips.sliceTabs')}>
+      <Tooltip content={t(`${tooltip}sliceTabs`)}>
       <SliceTabs data-guide="slice-tabs">
         {Array.from({ length: keyLength }).map((_, slice) => {
           const locked: LockedLetter | undefined = lockedLetters[slice];
@@ -83,8 +86,8 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
               onClick={() => setActiveSlice(slice)}
             >
               <Text size={300}>
-                {`${t('processing.vigenere.cracker.wizard.keyLetters.sliceLabel', { index: slice + 1, total: keyLength })}`}
-                {locked ? ` (${t('processing.vigenere.cracker.wizard.keyLetters.lockedPrefix')} ${locked.letter})` : ''}
+                {`${t(`${base}keyLetters.sliceLabel`, { index: slice + 1, total: keyLength })}`}
+                {locked ? ` (${t(`${base}keyLetters.lockedPrefix`)} ${locked.letter})` : ''}
               </Text>
             </SliceTab>
           );
@@ -98,11 +101,12 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
         alphabet={alphabet}
         letter={lockedLetters[activeSlice]?.letter}
         onLetterChange={(letter) => setSliceLetter(activeSlice, letter, 'chart')}
+        mapIndex={transform.mapIndex}
       />
 
       {allLettersSet && (
         <Text size={300} display="block" marginTop="8px">
-          {t('processing.vigenere.cracker.wizard.keyLetters.allLocked')}
+          {t(`${base}keyLetters.allLocked`)}
         </Text>
       )}
 

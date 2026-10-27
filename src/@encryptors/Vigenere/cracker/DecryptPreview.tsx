@@ -32,7 +32,7 @@ const ColumnCell = styled.span<{ $color?: string; $active?: boolean }>`
 // so column k holds slice k and picking a key letter visibly rewrites the
 // whole column.
 const DecryptPreview: React.FC<{ cracker: ReturnType<typeof useCracker> }> = ({ cracker }) => {
-  const { input, analysis, keyLength, lockedLetters, alphabet, activeSlice } = cracker;
+  const { input, analysis, keyLength, lockedLetters, alphabet, activeSlice, transform } = cracker;
   const { t } = useTranslation('common');
 
 
@@ -46,6 +46,7 @@ const DecryptPreview: React.FC<{ cracker: ReturnType<typeof useCracker> }> = ({ 
       keyLength,
       lockedLetters as Record<number, LockedLetter>,
       alphabet,
+      transform,
     );
     const result: string[][] = [];
     for (let i = 0; i < decrypted.length; i += 1) {
@@ -56,7 +57,7 @@ const DecryptPreview: React.FC<{ cracker: ReturnType<typeof useCracker> }> = ({ 
       result[row].push(decrypted[i]);
     }
     return result;
-  }, [input, analysis, keyLength, lockedLetters, alphabet]);
+  }, [input, analysis, keyLength, lockedLetters, alphabet, transform]);
 
   if (rows.length === 0) {
     return null;

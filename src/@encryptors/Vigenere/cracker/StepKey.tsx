@@ -4,6 +4,7 @@ import { Heading, Pane, Text } from 'evergreen-ui';
 
 import KeyStrip from './KeyStrip';
 import { useCracker } from './useCracker';
+import { useCrackerKey } from '@encryptors/shared/cracker';
 
 interface StepKeyProps {
   cracker: ReturnType<typeof useCracker>;
@@ -18,6 +19,7 @@ const StepKey: React.FC<StepKeyProps> = ({ cracker }) => {
     setSliceLetter,
   } = cracker;
   const { t } = useTranslation('common');
+  const base = useCrackerKey('wizard.keyLetters.');
 
 
   if (keyLength === null) {
@@ -26,9 +28,9 @@ const StepKey: React.FC<StepKeyProps> = ({ cracker }) => {
 
   return (
     <Pane width="100%">
-      <Heading size={300} marginTop="8px">{t('processing.vigenere.cracker.wizard.keyLetters.yourKey')}</Heading>
+      <Heading size={300} marginTop="8px">{t(`${base}yourKey`)}</Heading>
       <Text size={300} display="block" marginTop="4px">
-        {t('processing.vigenere.cracker.wizard.keyLetters.keyHint')}
+        {t(`${base}keyHint`)}
       </Text>
       <KeyStrip
         keyLength={keyLength}

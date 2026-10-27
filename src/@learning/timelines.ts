@@ -330,6 +330,40 @@ export const TIMELINES: Record<string, TimelineEvent[]> = {
       sourceUrl: 'https://en.wikipedia.org/wiki/Index_of_coincidence',
     },
   ],
+  beaufort: [
+    {
+      year: '1553',
+      textKey: 'learning.timeline.beaufort.1553',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Beaufort_cipher',
+    },
+    {
+      year: '1857',
+      textKey: 'learning.timeline.beaufort.1857',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Beaufort_cipher',
+    },
+    {
+      year: '1930s',
+      textKey: 'learning.timeline.beaufort.1930s',
+      sourceUrl: 'https://en.wikipedia.org/wiki/M-209',
+    },
+  ],
+  autokey: [
+    {
+      year: '1553',
+      textKey: 'learning.timeline.autokey.1553',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Autokey_cipher',
+    },
+    {
+      year: '1586',
+      textKey: 'learning.timeline.autokey.1586',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher',
+    },
+    {
+      year: '1863',
+      textKey: 'learning.timeline.autokey.1863',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Kasiski_examination',
+    },
+  ],
   saknussemm: [
     {
       year: 'c. 1530s (fiction)',

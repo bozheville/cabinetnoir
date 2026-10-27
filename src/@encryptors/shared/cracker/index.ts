@@ -16,6 +16,14 @@ export { default as PartialStream } from './PartialStream';
 export { default as CombinationStrip } from './CombinationStrip';
 export { useAssignmentHistory } from './useAssignmentHistory';
 export { defineHints, applyPreset, toggleHint } from './hintSettings';
+export {
+  sliceTransform,
+  VIGENERE_TRANSFORM,
+  BEAUFORT_TRANSFORM,
+  VARIANT_BEAUFORT_TRANSFORM,
+} from '@encryptors/shared/analysis/sliceTransform';
+export type { SliceTransform, SliceCipher } from '@encryptors/shared/analysis/sliceTransform';
+export { CrackerScopeProvider, useCrackerScope, useCrackerKey } from './CrackerScopeContext';
 export type {
   HintConfig,
   Preset,

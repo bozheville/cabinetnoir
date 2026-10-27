@@ -11,6 +11,8 @@ export interface PendingExampleLoad {
   cracker?: boolean;
   // Hint preset to apply when the cracker opens (challenge difficulty).
   hintPreset?: PresetName;
+  // A probable word the challenge's hints point at (autokey crib-drag).
+  crib?: string;
 }
 
 // Carries a learning example into the Tool tab after a "try it in the

@@ -3,6 +3,10 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { NormalizedText, normalize } from '@encryptors/shared/analysis';
 import { Repeat, findRepeats } from '@encryptors/shared/analysis';
 import { KeyLengthCandidate, rankKeyLengths } from '@encryptors/shared/analysis';
+import {
+  SliceTransform,
+  VIGENERE_TRANSFORM,
+} from '@encryptors/shared/analysis';
 import { DEFAULT_ALPHABET } from '../vigenere-encryption';
 import { HintConfig } from './hintSettings';
 
@@ -24,8 +28,17 @@ export const useCracker = (params: {
   enabled: boolean;
   hintConfig: HintConfig;
   alphabet?: string;
+  // Slice arithmetic of the cipher being cracked: Vigenère by default,
+  // the Beaufort family passes its reflected transform.
+  transform?: SliceTransform;
 }) => {
-  const { input, enabled, hintConfig, alphabet = DEFAULT_ALPHABET } = params;
+  const {
+    input,
+    enabled,
+    hintConfig,
+    alphabet = DEFAULT_ALPHABET,
+    transform = VIGENERE_TRANSFORM,
+  } = params;
 
   const [step, setStep] = useState(1);
   const [keyLength, setKeyLength] = useState<number | null>(null);
@@ -62,6 +75,18 @@ export const useCracker = (params: {
     previousAlphabet.current = alphabet;
     reset(hadProgress);
   }, [alphabet]);
+
+  // A different slice transform (Vigenère ↔ Beaufort family) invalidates
+  // every locked letter the same way an alphabet change does.
+  const previousTransform = useRef(transform);
+  useEffect(() => {
+    if (previousTransform.current === transform) {
+      return;
+    }
+    const hadProgress = keyLength !== null || Object.keys(lockedLetters).length > 0;
+    previousTransform.current = transform;
+    reset(hadProgress);
+  }, [transform]);
 
   const analysis = useMemo<CrackerAnalysis | null>(() => {
     if (!enabled) {
@@ -121,6 +146,7 @@ export const useCracker = (params: {
 
   return {
     alphabet,
+    transform,
     assembledKey,
     input,
     step,
