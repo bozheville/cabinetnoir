@@ -23,6 +23,7 @@ import {
   Vigenere,
   Nihilist,
   Adfgvx,
+  Saknussemm,
   encodingsList,
   encryptorsList,
   Base64,
@@ -101,6 +102,7 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
     algorithm === 'morse' ? Morse :
     algorithm === 'rot13' ? Rot13 :
     algorithm === 'pigpen' ? Pigpen :
+    algorithm === 'saknussemm' ? Saknussemm :
     null;
 
   return (

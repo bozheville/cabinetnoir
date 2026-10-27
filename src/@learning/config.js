@@ -386,6 +386,37 @@ const learningConfig = {
       },
     ],
   },
+  // Saknussemm (easter egg, epic #104): the runic parchment from
+  // "Journey to the Centre of the Earth" — a reversal + route
+  // transposition, letters only. Off the cipher ladder on purpose: it
+  // is a literary homage, not a graded step. §10-exempt: no cracker —
+  // the practice tab's single challenge is the parchment itself.
+  saknussemm: {
+    tabs: ['learn', 'history', 'practice'],
+    sections: {
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.transposition',
+      difficulty: 'learning.difficulty.easy',
+      era: 'learning.saknussemm.era',
+      origin: 'learning.saknussemm.origin',
+      modes: ['encrypt', 'decrypt'],
+    },
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'transposition',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/Journey_to_the_Centre_of_the_Earth',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+    ],
+  },
   morse: {
     tabs: ['learn', 'history', 'practice'],
     sections: {

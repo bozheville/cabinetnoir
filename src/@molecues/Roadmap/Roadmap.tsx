@@ -37,11 +37,11 @@ const Roadmap: React.FC = () => {
     'home.roadmap.built.ciphers',
     'home.roadmap.built.cryptoanalysis',
     'home.roadmap.built.challenges',
+    'home.roadmap.built.saknussemm',
   ];
   const next = [
     'home.roadmap.next.substitution',
     'home.roadmap.next.nihilist',
-    'home.roadmap.next.saknussemm',
   ];
 
   return (

@@ -23,7 +23,10 @@ const StyledTextArea = styled.textarea`
   line-height: 36px;
   max-height: 350px;
   color: ${({ theme }) => theme.colors.text};
-  font-family: Helvetica, Arial, Sans-Serif;
+  // Monospace so cipher text keeps its column and cluster alignment
+  // (the Saknussemm clusters, polybius coordinates, …) — one shared
+  // TextArea molecule, every tool benefits.
+  font-family: monospace;
   border-bottom-left-radius: ${({ theme }) => theme.borderRadius.default}px;
 
   &[readonly] {

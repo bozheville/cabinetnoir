@@ -35,8 +35,9 @@ export const CATALOGUE: CatalogueEntry[] = [
   { id: 'railFence', family: 'transposition', inApp: true, breakingTarget: 'cracker' },
   { id: 'columnar', family: 'transposition', inApp: true, breakingTarget: 'cracker' },
   // Easter egg: recognised only by known-ciphertext match (task 08),
-  // never by statistics.
-  { id: 'saknussemm', family: 'transposition', inApp: false, breakingTarget: null },
+  // never by statistics. Shipped in M3: the match opens the tool with
+  // the parchment loaded (decrypt mode).
+  { id: 'saknussemm', family: 'transposition', inApp: true, breakingTarget: 'tool' },
 
   // Block (classical polygraphic).
   { id: 'playfair', family: 'block', inApp: true, breakingTarget: 'cracker' },

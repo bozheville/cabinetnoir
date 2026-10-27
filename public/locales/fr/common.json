@@ -660,6 +660,18 @@
           }
         }
       }
+    },
+    "saknussemm": {
+      "title": "Chiffre de Saknussemm",
+      "short_title": "Saknussemm",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
+      "messageLabel": "Cryptogramme",
+      "settings": {
+        "clusterWidthLabel": "{{count}} lettres par groupe",
+        "clustersPerLineLabel": "{{count}} groupes par ligne",
+        "parchmentButton": "Charger le parchemin"
+      }
     }
   },
   "message": "Message",
@@ -770,7 +782,8 @@
         "fractionated": "Texte fractionné (cumul)",
         "plainNumber": "Nombre du texte clair",
         "keyNumber": "Nombre de la clé",
-        "sum": "Somme (sans retenue)"
+        "sum": "Somme (sans retenue)",
+        "cluster": "Groupe"
       }
     },
     "tryInTool": "Essayer dans l'outil",
@@ -824,7 +837,10 @@
       "unknown-keys": "la case « Clés inconnues »",
       "column-chips": "les jetons d’arrangement des colonnes",
       "symbol-chart": "le graphique de fréquence des symboles",
-      "glyph-keyboard": "le clavier de glyphes"
+      "glyph-keyboard": "le clavier de glyphes",
+      "cluster-width-picker": "le sélecteur de lettres par groupe",
+      "clusters-per-line-picker": "le sélecteur de groupes par ligne",
+      "load-parchment": "le bouton « Charger le parchemin »"
     },
     "timeline": {
       "source": "Source",
@@ -918,6 +934,11 @@
         "1880s": "Des prisonniers nihilistes russes ajoutent une clé numérique au carré de Polybe pour faire passer des lettres devant la censure.",
         "tapCode": "Les camps de prisonniers ressuscitent le carré en code tap — les coordonnées, frappées contre un mur.",
         "vic": "Le chiffre VIC soviétique descend de l’addition nihiliste — le dernier grand chiffre au crayon et papier."
+      },
+      "saknussemm": {
+        "1530s": "Dans la chronologie du roman, l'alchimiste Arne Saknussemm descend dans le volcan islandais Snæfellsjökull et grave son message sur un parchemin runique.",
+        "1864": "Jules Verne publie « Voyage au centre de la Terre » — les runes du parchemin mènent toute l’intrigue.",
+        "1871": "La première traduction anglaise imprime la dictée brouillée « mm.rnlls esruel seecJde… » — le texte que ce site reproduit."
       }
     },
     "challenge": {
@@ -1260,6 +1281,12 @@
         "hint1": "Clé du carré et clé additive inconnues — retrouvez d’abord les nombres de clé, puis le carré.",
         "hint2": "Longueur de clé 8 ; une fois la clé épinglée, les paires se déchiffrent comme toute substitution.",
         "hint3": "La paire la plus fréquente est presque sûrement E — commencez là."
+      },
+      "saknussemm-parchment": {
+        "title": "Déchiffrez le parchemin",
+        "hint1": "Le message est en latin — et il se lit à rebours. Renversez d’abord tout le flot de lettres.",
+        "hint2": "La forme du parchemin : groupes de 7 lettres, 3 groupes par ligne — 21 colonnes en tout.",
+        "hint3": "Réglez la forme sur 7×3 dans l’outil et lisez les lignes en travers : la descente dans le Sneffels, et la signature de Saknussemm."
       }
     },
     "tooltips": {
@@ -1331,6 +1358,11 @@
         "squareKey": "Mot-clé facultatif pour le carré clé. Vide = carré simple.",
         "key": "Le mot-clé additif : ses nombres de coordonnées se répètent sur tout le texte.",
         "spaced": "Écrire les sommes avec des espaces (l’aspect classique) ou en un flux continu."
+      },
+      "saknussemm": {
+        "clusterWidth": "Combien de lettres contient chaque groupe-colonne — c’est aussi la hauteur de la grille. Le parchemin en compte 7.",
+        "clustersPerLine": "Combien de groupes imprime chaque ligne du cryptogramme. Le parchemin en imprime 3.",
+        "parchment": "Remplit le champ avec le parchemin du roman — le message latin en mode chiffrement, la dictée brouillée de Saknussemm en mode déchiffrement."
       }
     },
     "caesar": {
@@ -1412,6 +1444,11 @@
       "era": "Russie, années 1880",
       "origin": "Des nihilistes russes faisant passer des nombres devant la censure ; un ancêtre du chiffre VIC",
       "description": "Des coordonnées de Polybe plus une clé numérique répétitive, ajoutées chiffre par chiffre sans retenue — un Vigenère sur les nombres."
+    },
+    "saknussemm": {
+      "description": "Le parchemin runique du « Voyage au centre de la Terre » de Jules Verne — un renversement suivi d’une transposition, lettres seules.",
+      "era": "1864 (l’action au XVIᵉ siècle)",
+      "origin": "Arne Saknussemm, l’alchimiste islandais de fiction qui grava le message"
     }
   },
   "glossary": {
@@ -1573,7 +1610,8 @@
       "subtitle": "Grimpez du plus trivial jusqu'à Enigma. Chaque barreau : un outil et un cours guidé.",
       "tool": "Outil",
       "learn": "Apprendre",
-      "utilitiesNote": "Pas papier-crayon, mais pratique à l'ère du numérique : Base64"
+      "utilitiesNote": "Pas papier-crayon, mais pratique à l'ère du numérique : Base64",
+      "easterEggNote": "Hors de l’échelle, une page cachée : le parchemin runique d’Arne Saknussemm"
     },
     "roadmap": {
       "title": "La feuille de route",
@@ -1582,12 +1620,12 @@
       "built": {
         "ciphers": "Quatorze pages de chiffrements avec onglets d’apprentissage guidé — outil, apprentissage, histoire, pratique",
         "cryptoanalysis": "Assistants de cryptanalyse guidée pour Vigenère, ADFGVX, Affine, Playfair, Alberti, Keyword, Columnar et Rail fence",
-        "challenges": "Défis pratiques avec indices adaptés à la difficulté — en trois langues"
+        "challenges": "Défis pratiques avec indices adaptés à la difficulté — en trois langues",
+        "saknussemm": "L’œuf de Pâques Arne Saknussemm — le parchemin runique du « Voyage au centre de la Terre »"
       },
       "next": {
         "substitution": "Le chiffre par substitution homophonique — des nombres à la place des lettres fréquentes",
-        "nihilist": "Le chiffre nihiliste — la substitution rencontre la transposition",
-        "saknussemm": "Clins d'œil de la pop culture — le chiffre d'Arne Saknussemm"
+        "nihilist": "Le chiffre nihiliste — la substitution rencontre la transposition"
       }
     },
     "identify": {

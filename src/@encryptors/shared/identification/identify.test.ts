@@ -70,7 +70,8 @@ describe('identify()', () => {
     const result = identify('In Sneffels Yoculis craterem kem delibat umbra Scartaris Julii intra calendas descende, audas viator, et terrestre centrum attinges. Kod feci. Arne Saknussemm');
     const found = findCandidate(result, 'saknussemm');
     expect(found?.candidate.confidence).toBe('veryLikely');
-    expect(found?.candidate.inApp).toBe(false);
+    // In the app since M3: the match hands the parchment to the tool.
+    expect(found?.candidate.inApp).toBe(true);
   });
 
   it('never shows Saknussemm without a fingerprint match', () => {

@@ -19,6 +19,11 @@ import {
   nihilistEncrypt,
   nihilistKeyNumbers,
 } from '@encryptors/Nihilist/nihilist-crypt';
+import {
+  SAKNUSSEMM_DEFAULTS,
+  SAKNUSSEMM_PARCHMENT_PLAIN,
+  saknussemmEncrypt,
+} from '@encryptors/Saknussemm/saknussemm-crypt';
 import { polybiusEncrypt } from '@encryptors/Polybius/polybius-crypt';
 import { createEnigmaMachine } from '@learning/enigma-machine';
 
@@ -432,6 +437,25 @@ const buildRot13Challenge = (
   keyLength: 0,
   hints,
   answer: plaintext,
+  mode: 'decrypt',
+});
+
+// Saknussemm: one challenge only — the novel's own parchment. The
+// ciphertext is generated from the engine at the parchment's shape
+// (7-letter clusters, 3 per line), and the challenge opens the decrypt
+// tool, where "Load the parchment" replays the story.
+const buildSaknussemmChallenge = (
+  id: string,
+  hints: string[],
+): Challenge => ({
+  id,
+  cipher: 'saknussemm',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: saknussemmEncrypt(SAKNUSSEMM_PARCHMENT_PLAIN, SAKNUSSEMM_DEFAULTS),
+  difficulty: 'easy' as ChallengeDifficulty,
+  keyLength: 0,
+  hints,
+  answer: SAKNUSSEMM_PARCHMENT_PLAIN,
   mode: 'decrypt',
 });
 
@@ -1202,6 +1226,14 @@ export const CHALLENGES: Record<string, Challenge> = {
       'learning.challenges.nihilist-hard-1.hint1',
       'learning.challenges.nihilist-hard-1.hint2',
       'learning.challenges.nihilist-hard-1.hint3',
+    ],
+  ),
+  'saknussemm-parchment': buildSaknussemmChallenge(
+    'saknussemm-parchment',
+    [
+      'learning.challenges.saknussemm-parchment.hint1',
+      'learning.challenges.saknussemm-parchment.hint2',
+      'learning.challenges.saknussemm-parchment.hint3',
     ],
   ),
 };
