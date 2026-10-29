@@ -31,6 +31,16 @@ const Base = styled.section<PatchProps>`
   ${({ leather: leatherName, zone, theme }) =>
     leatherMixin(leatherName || theme.zones[zone || 'description'])}
   ${({ vignette }) => (vignette !== undefined ? '' : '')}
+  /* The seam: every patch is a stitched piece of leather. Applied here,
+     not via props spread — the old spread silently dropped the css. */
+  ${({ stitch: sides, shape, thread }) =>
+    sides === 'none'
+      ? ''
+      : stitch(
+          sides || (shape === 'card' ? 'all' : 'bottom'),
+          thread || 'cream',
+          shape === 'card' ? 5 : 6
+        )}
 `;
 
 /**
@@ -38,24 +48,13 @@ const Base = styled.section<PatchProps>`
  * Material recipe lives in @theme/mixins; this component only maps props.
  */
 const Patch = React.forwardRef<HTMLElement, PatchProps>(
-  (
-    {
-      shape = 'band',
-      stitch: stitchSides = shape === 'card' ? 'all' : 'bottom',
-      thread,
-      zone,
-      leather,
-      ...rest
-    },
-    ref
-  ) => {
+  ({ shape = 'band', zone, leather, ...rest }, ref) => {
     return (
       <Base
         ref={ref}
         shape={shape}
         zone={zone}
         leather={leather}
-        {...(stitchSides !== 'none' ? stitch(stitchSides, thread || 'cream', shape === 'card' ? 5 : 6) : {})}
         {...rest}
       />
     );

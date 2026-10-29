@@ -90,7 +90,7 @@ const CredentialsText = styled(Minion)`
 const Footer: React.FC = () => {
   const { t } = useTranslation('common');
   return (
-    <FooterWrapper color="footer" stitch="top">
+    <FooterWrapper color="footer" stitch="top" thread="gold">
       <BMCWrapper>
         <DidYouLike>
           {`${t('footer.did_you_like')}`}
