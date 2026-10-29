@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="96" height="96" fill="none" stroke="currentColor" stroke-linecap="square">
+  <title>DecoFrame stepped corner (top-left). Mirror with scale(-1,1) / scale(1,-1) for the other corners.</title>
+  <!-- outer rule: stepped (ziggurat) corner, 1.5px -->
+  <path d="M0.75 47.25 V16.75 H8.75 V8.75 H16.75 V0.75 H47.25" stroke-width="1.5"/>
+  <!-- inner rule: follows the steps, 4px inset, 0.75px -->
+  <path d="M4.75 47.25 V20.75 H12.75 V12.75 H20.75 V4.75 H47.25" stroke-width="0.75"/>
+  <!-- rivet in the innermost step -->
+  <circle cx="4.75" cy="4.75" r="3" fill="currentColor" stroke="none"/>
+  <circle cx="4" cy="4" r="1" fill="#fff" fill-opacity=".55" stroke="none"/>
+</svg>

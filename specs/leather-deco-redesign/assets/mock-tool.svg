@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 900" width="1280" height="900" font-family="Georgia, serif">
+  <title>Mock-up: cipher tool page (Caesar, encrypt), desktop 1280px</title>
+  <defs>
+    <linearGradient id="br" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3dc9a"/><stop offset=".18" stop-color="#e2c47a"/><stop offset=".55" stop-color="#c9a04f"/><stop offset="1" stop-color="#8a6212"/>
+    </linearGradient>
+    <linearGradient id="brP" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8a6212"/><stop offset=".45" stop-color="#c9a04f"/><stop offset="1" stop-color="#e2c47a"/>
+    </linearGradient>
+    <linearGradient id="cu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5c7a4"/><stop offset=".18" stop-color="#e7a77c"/><stop offset=".55" stop-color="#c58052"/><stop offset="1" stop-color="#8f4a2a"/>
+    </linearGradient>
+    <linearGradient id="cuP" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8f4a2a"/><stop offset=".45" stop-color="#c58052"/><stop offset="1" stop-color="#e7a77c"/>
+    </linearGradient>
+    <radialGradient id="vig" cx=".5" cy=".4" r=".8">
+      <stop offset="0" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#000" stop-opacity=".25"/>
+    </radialGradient>
+    <radialGradient id="knob" cx=".4" cy=".3" r=".8">
+      <stop offset="0" stop-color="#f3dc9a"/><stop offset=".5" stop-color="#c9a04f"/><stop offset="1" stop-color="#5a3f0c"/>
+    </radialGradient>
+    <g id="corner" fill="none" stroke="#c9a04f" stroke-linecap="square">
+      <path d="M0.75 23.25 V8.75 H4.75 V4.75 H8.75 V0.75 H23.25" stroke-width="1.5"/>
+      <path d="M4.75 23.25 V12.75 H8.75 V8.75 H12.75 V4.75 H23.25" stroke-width="0.75"/>
+    </g>
+    <pattern id="ruled" width="10" height="36" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="35.5" x2="10" y2="35.5" stroke="#c9b48c" stroke-opacity=".35"/>
+    </pattern>
+  </defs>
+  <style>
+    .eng{font-size:13px;font-weight:600;letter-spacing:2.2px;fill:#2a1a12}
+    .cap{font-size:11px;letter-spacing:2.4px}
+    .mono{font-family:'Courier New',monospace}
+  </style>
+
+  <!-- desk -->
+  <rect width="1280" height="900" fill="#2b1b13"/>
+
+  <!-- header band (chestnut) -->
+  <rect width="1280" height="72" fill="#5a3320"/>
+  <rect width="1280" height="72" fill="url(#vig)"/>
+  <line x1="0" y1="65.5" x2="1280" y2="65.5" stroke="#d9c4a0" stroke-opacity=".75" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <line x1="0" y1="71.5" x2="1280" y2="71.5" stroke="#3f2316"/>
+  <rect x="48" y="31" width="8" height="8" transform="rotate(45 52 35)" fill="#e2c47a"/>
+  <text x="68" y="41" font-size="18" letter-spacing="5" fill="#e2c47a">CABINET NOIR</text>
+  <g class="cap" fill="#c4b08f"><text x="262" y="40">›   CAESAR   ›   ENCRYPT</text></g>
+  <text x="1020" y="40" class="cap" fill="#e2c47a">IDENTIFY</text>
+  <line x1="1020" y1="45" x2="1092" y2="45" stroke="#8a6212"/>
+  <rect x="1132" y="20" width="100" height="32" rx="4" fill="url(#br)" stroke="#5a3f0c"/>
+  <text x="1160" y="41" class="eng">EN</text><path d="M1206 32 l6 6 l6 -6" fill="none" stroke="#2a1a12" stroke-width="1.5"/>
+
+  <!-- zone band -->
+  <rect y="72" width="1280" height="760" fill="#5a3320"/>
+  <rect y="72" width="1280" height="760" fill="url(#vig)"/>
+  <line x1="0" y1="78.5" x2="1280" y2="78.5" stroke="#d9c4a0" stroke-opacity=".75" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <line x1="0" y1="825.5" x2="1280" y2="825.5" stroke="#d9c4a0" stroke-opacity=".75" stroke-width="1.5" stroke-dasharray="6 4"/>
+
+  <!-- cipher index card -->
+  <rect x="80" y="104" width="1120" height="44" fill="#f1e7d0" stroke="#c9b48c"/>
+  <g class="cap" fill="#5a4636">
+    <text x="104" y="131">TYPE</text><text x="300" y="131">ERA</text><text x="480" y="131">KEY</text><text x="640" y="131">STRENGTH</text>
+  </g>
+  <g font-size="15" fill="#2a1a12">
+    <text x="150" y="131">Substitution</text><text x="338" y="131">1st c. BC</text><text x="516" y="131">Shift 1–25</text>
+  </g>
+  <g fill="#8a6212"><rect x="742" y="122" width="8" height="8" transform="rotate(45 746 126)"/></g>
+  <g fill="none" stroke="#8a6212"><rect x="760" y="122" width="8" height="8" transform="rotate(45 764 126)"/><rect x="778" y="122" width="8" height="8" transform="rotate(45 782 126)"/><rect x="796" y="122" width="8" height="8" transform="rotate(45 800 126)"/></g>
+  <text x="1110" y="131" class="cap" fill="#8f4a2a">DETAILS ▾</text>
+
+  <!-- tab plates sitting on the frame -->
+  <g text-anchor="middle" class="eng">
+    <path d="M124 172 H236 L244 208 H116 Z" fill="url(#cu)" stroke="#5c2c16"/><text x="180" y="196">TOOL</text>
+    <path d="M262 176 H374 L382 208 H254 Z" fill="url(#br)" stroke="#5a3f0c" opacity=".92"/><text x="318" y="199">BREAK IT</text>
+    <path d="M400 176 H512 L520 208 H392 Z" fill="url(#br)" stroke="#5a3f0c" opacity=".92"/><text x="456" y="199">LEARN</text>
+    <path d="M538 176 H650 L658 208 H530 Z" fill="url(#br)" stroke="#5a3f0c" opacity=".92"/><text x="594" y="199">HISTORY</text>
+    <path d="M676 176 H788 L796 208 H668 Z" fill="url(#br)" stroke="#5a3f0c" opacity=".92"/><text x="732" y="199">PRACTICE</text>
+  </g>
+
+  <!-- DecoFrame -->
+  <g fill="none" stroke="#c9a04f">
+    <path d="M104 208.75 H1176 M104 791.25 H1176 M80.75 232 V768 M1199.25 232 V768" stroke-width="1.5"/>
+    <path d="M104 212.75 H1176 M104 787.25 H1176 M84.75 232 V768 M1195.25 232 V768" stroke-width=".75"/>
+  </g>
+  <rect x="116" y="207" width="128" height="3" fill="#c58052"/>
+  <use href="#corner" transform="translate(80 208)"/>
+  <use href="#corner" transform="translate(1200 208) scale(-1 1)"/>
+  <use href="#corner" transform="translate(80 792) scale(1 -1)"/>
+  <use href="#corner" transform="translate(1200 792) scale(-1 -1)"/>
+
+  <!-- control panel (saddle inset) -->
+  <rect x="112" y="236" width="1056" height="168" rx="10" fill="#8a5a33"/>
+  <rect x="112" y="236" width="1056" height="168" rx="10" fill="url(#vig)"/>
+  <rect x="117" y="241" width="1046" height="158" rx="6" fill="none" stroke="#e2c47a" stroke-opacity=".6" stroke-width="1.2" stroke-dasharray="6 4"/>
+
+  <!-- row 1: direction lever, swap knob, cipher keys -->
+  <g class="eng" text-anchor="middle">
+    <rect x="140" y="258" width="96" height="36" rx="4" fill="url(#cuP)" stroke="#5c2c16"/><text x="188" y="281">ENCRYPT</text>
+    <rect x="236" y="258" width="96" height="36" rx="4" fill="url(#br)" stroke="#5a3f0c"/><text x="284" y="281">DECRYPT</text>
+  </g>
+  <g transform="translate(372 276)">
+    <circle r="18" cy="2" fill="#000" opacity=".4"/><circle r="18" fill="url(#knob)" stroke="#5a3f0c"/>
+    <path d="M-7 -3 H7 L3 -7 M7 3 H-7 L-3 7" fill="none" stroke="#2a1a12" stroke-width="1.5" stroke-linecap="square"/>
+  </g>
+  <g class="eng" text-anchor="middle">
+    <rect x="620" y="258" width="104" height="36" rx="4" fill="url(#cuP)" stroke="#5c2c16"/><text x="672" y="281">CAESAR</text>
+    <rect x="732" y="258" width="104" height="36" rx="4" fill="url(#br)" stroke="#5a3f0c"/><text x="784" y="281">VIGENÈRE</text>
+    <rect x="844" y="258" width="104" height="36" rx="4" fill="url(#br)" stroke="#5a3f0c"/><text x="896" y="281">ATBASH</text>
+    <rect x="956" y="258" width="96" height="36" rx="4" fill="url(#br)" stroke="#5a3f0c"/><text x="996" y="281">ALL</text>
+  </g>
+  <path d="M1030 272 l6 6 l6 -6" fill="none" stroke="#2a1a12" stroke-width="1.5"/>
+
+  <!-- engraved groove -->
+  <line x1="140" y1="316.5" x2="1140" y2="316.5" stroke="#5a3f0c"/>
+  <line x1="140" y1="317.5" x2="1140" y2="317.5" stroke="#f3dc9a" stroke-opacity=".3"/>
+
+  <!-- row 2: settings groups -->
+  <g class="cap" fill="#f3e9d2"><text x="140" y="346">SHIFT</text><text x="520" y="346">ALPHABET</text><text x="840" y="346">KEEP CASE</text><text x="990" y="346">KEEP SPACES</text></g>
+  <g transform="translate(140 372)">
+    <rect y="-3" width="300" height="6" rx="3" fill="url(#brP)" stroke="#5a3f0c"/>
+    <g stroke="#e2c47a" stroke-opacity=".7"><path d="M0 8 V14 M60 8 V14 M120 8 V14 M180 8 V14 M240 8 V14 M300 8 V14"/></g>
+    <rect x="28" y="-12" width="16" height="24" rx="3" fill="url(#cu)" stroke="#5c2c16"/>
+    <rect x="320" y="-12" width="36" height="24" rx="2" fill="#f1e7d0" stroke="#8a6212"/>
+    <text x="338" y="5" text-anchor="middle" class="mono" font-size="14" fill="#2a1a12">03</text>
+  </g>
+  <g transform="translate(520 356)">
+    <rect width="190" height="32" rx="4" fill="url(#br)" stroke="#5a3f0c"/>
+    <text x="16" y="21" class="eng">LATIN A–Z</text><path d="M166 13 l6 6 l6 -6" fill="none" stroke="#2a1a12" stroke-width="1.5"/>
+  </g>
+  <g transform="translate(722 362)"><rect x="-1" y="-1" width="18" height="18" transform="rotate(45 8 8)" fill="url(#br)" stroke="#5a3f0c"/><text x="8" y="13" text-anchor="middle" font-size="12" font-style="italic" fill="#2a1a12">i</text></g>
+  <g transform="translate(840 360)"><rect width="44" height="24" rx="12" fill="url(#brP)" stroke="#5a3f0c"/><circle cx="32" cy="12" r="9" fill="url(#cu)" stroke="#5c2c16"/></g>
+  <g transform="translate(990 360)"><rect width="44" height="24" rx="12" fill="url(#br)" stroke="#5a3f0c"/><circle cx="12" cy="12" r="9" fill="url(#cu)" stroke="#5c2c16"/></g>
+
+  <!-- reading area: two paper sheets -->
+  <g>
+    <rect x="112" y="430" width="516" height="330" fill="#000" opacity=".3" transform="translate(0 3)"/>
+    <rect x="112" y="430" width="516" height="330" fill="#f1e7d0" stroke="#c9b48c"/>
+    <rect x="112" y="430" width="516" height="330" fill="url(#ruled)"/>
+    <text x="136" y="458" class="cap" fill="#5a4636">PLAINTEXT</text>
+    <text x="136" y="502" class="mono" font-size="22" fill="#2a1a12">attack at dawn</text>
+    <rect x="322" y="484" width="2" height="24" fill="#2a1a12"/>
+    <text x="604" y="748" text-anchor="end" class="cap" fill="#8a7560">14</text>
+  </g>
+  <g>
+    <rect x="652" y="430" width="516" height="330" fill="#000" opacity=".3" transform="translate(0 3)"/>
+    <rect x="652" y="430" width="516" height="330" fill="#e8d9b8" stroke="#c9b48c"/>
+    <rect x="652" y="430" width="516" height="330" fill="url(#ruled)"/>
+    <text x="676" y="458" class="cap" fill="#5a4636">CIPHERTEXT</text>
+    <text x="676" y="502" class="mono" font-size="22" fill="#2a1a12">dwwdfn dw gdzq</text>
+    <g transform="translate(1136 462)">
+      <circle r="16" cy="2" fill="#000" opacity=".35"/><circle r="16" fill="url(#knob)" stroke="#5a3f0c"/>
+      <rect x="-6" y="-4" width="9" height="11" fill="none" stroke="#2a1a12" stroke-width="1.5"/>
+      <path d="M-3 -4 V-7 H6 V4 H3" fill="none" stroke="#2a1a12" stroke-width="1.5"/>
+    </g>
+  </g>
+
+  <!-- footer -->
+  <line x1="0" y1="832.5" x2="1280" y2="832.5" stroke="#1a100b"/>
+  <line x1="0" y1="838.5" x2="1280" y2="838.5" stroke="#e2c47a" stroke-opacity=".7" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <g class="cap" fill="#c4b08f" text-anchor="middle">
+    <text x="640" y="874">ABOUT   ◆   SUGGEST A FEATURE   ◆   REPORT A BUG   ◆   SITEMAP</text>
+  </g>
+</svg>

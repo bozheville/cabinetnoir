@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 760" width="375" height="760" font-family="Georgia, serif">
+<title>Mock-up: home cipher cards on mobile (375px), one card per row, horizontal card layout</title>
+<defs>
+<linearGradient id="br" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3dc9a"/><stop offset=".18" stop-color="#e2c47a"/><stop offset=".55" stop-color="#c9a04f"/><stop offset="1" stop-color="#8a6212"/></linearGradient>
+<linearGradient id="cu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5c7a4"/><stop offset=".18" stop-color="#e7a77c"/><stop offset=".55" stop-color="#c58052"/><stop offset="1" stop-color="#8f4a2a"/></linearGradient>
+<linearGradient id="cuP" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8f4a2a"/><stop offset=".45" stop-color="#c58052"/><stop offset="1" stop-color="#e7a77c"/></linearGradient>
+<radialGradient id="vig" cx=".5" cy=".4" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></radialGradient>
+<pattern id="desk" width="640" height="480" patternUnits="userSpaceOnUse"><g transform="scale(.6667)">
+<polygon points="0,0 420,0 420,260 0,260" fill="#2b1b13"/>
+<polygon points="0,0 420,0 420,260 0,260" fill="url(#v)"/>
+<polygon points="6,7 414,7 414,255 6,255" fill="none" stroke="#000" stroke-opacity=".45" stroke-width="1" stroke-dasharray="6 4"/>
+<polygon points="6,6 414,6 414,254 6,254" fill="none" stroke="#8d6a44" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+<polygon points="0,0 420,0 420,260 0,260" fill="none" stroke="#1a100b" stroke-width="1.5"/>
+<polygon points="420,0 960,0 960,200 420,200" fill="#35221a"/>
+<polygon points="420,0 960,0 960,200 420,200" fill="url(#v)"/>
+<polygon points="426,7 954,7 954,195 426,195" fill="none" stroke="#000" stroke-opacity=".45" stroke-width="1" stroke-dasharray="6 4"/>
+<polygon points="426,6 954,6 954,194 426,194" fill="none" stroke="#8d6a44" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+<polygon points="420,0 960,0 960,200 420,200" fill="none" stroke="#1a100b" stroke-width="1.5"/>
+<polygon points="420,200 960,200 960,440 700,440 620,520 420,520 420,260" fill="#3e2a1e"/>
+<polygon points="420,200 960,200 960,440 700,440 620,520 420,520 420,260" fill="url(#v)"/>
+<polygon points="426,207 954,207 954,435 697.51,435 617.51,515 426,515" fill="none" stroke="#000" stroke-opacity=".45" stroke-width="1" stroke-dasharray="6 4"/>
+<polygon points="426,206 954,206 954,434 697.51,434 617.51,514 426,514" fill="none" stroke="#8d6a44" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+<polygon points="420,200 960,200 960,440 700,440 620,520 420,520 420,260" fill="none" stroke="#1a100b" stroke-width="1.5"/>
+<polygon points="0,260 420,260 420,520 420,720 0,720" fill="#35221a"/>
+<polygon points="0,260 420,260 420,520 420,720 0,720" fill="url(#v)"/>
+<polygon points="6,267 414,267 414,715 6,715" fill="none" stroke="#000" stroke-opacity=".45" stroke-width="1" stroke-dasharray="6 4"/>
+<polygon points="6,266 414,266 414,714 6,714" fill="none" stroke="#8d6a44" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+<polygon points="0,260 420,260 420,520 420,720 0,720" fill="none" stroke="#1a100b" stroke-width="1.5"/>
+<polygon points="420,520 620,520 700,440 960,440 960,720 420,720" fill="#2b1b13"/>
+<polygon points="420,520 620,520 700,440 960,440 960,720 420,720" fill="url(#v)"/>
+<polygon points="426,527 622.49,527 702.49,447 954,447 954,715 426,715" fill="none" stroke="#000" stroke-opacity=".45" stroke-width="1" stroke-dasharray="6 4"/>
+<polygon points="426,526 622.49,526 702.49,446 954,446 954,714 426,714" fill="none" stroke="#8d6a44" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+<polygon points="420,520 620,520 700,440 960,440 960,720 420,720" fill="none" stroke="#1a100b" stroke-width="1.5"/>
+</g></pattern>
+</defs>
+<style>.eng{font-size:12px;font-weight:600;letter-spacing:2px;fill:#2a1a12}.cap{font-size:10px;letter-spacing:2.2px}</style>
+<rect width="375" height="760" fill="#2b1b13"/><rect width="375" height="760" fill="url(#desk)"/>
+<rect width="375" height="56" fill="#5a3320"/><rect width="375" height="56" fill="url(#vig)"/>
+<line x1="0" y1="50.5" x2="375" y2="50.5" stroke="#d9c4a0" stroke-opacity=".75" stroke-width="1.5" stroke-dasharray="6 4"/>
+<rect x="18" y="23" width="7" height="7" transform="rotate(45 21.5 26.5)" fill="#e2c47a"/><text x="34" y="32" font-size="14" letter-spacing="3.5" fill="#e2c47a">CABINET NOIR</text>
+<rect x="295" y="13" width="64" height="28" rx="4" fill="url(#br)" stroke="#5a3f0c"/><text x="318" y="32" class="eng">EN</text>
+<g stroke="#e2c47a" fill="#e2c47a"><rect x="80" y="104" width="7" height="7" transform="rotate(45 83.5 107.5)" stroke="none"/><rect x="288" y="104" width="7" height="7" transform="rotate(45 291.5 107.5)" stroke="none"/></g>
+<text x="187.5" y="114" text-anchor="middle" font-size="16" font-weight="600" letter-spacing="3.5" fill="#e2c47a">THE CABINET</text>
+<g transform="translate(16 140)"><rect width="343" height="40" rx="4" fill="url(#br)" stroke="#5a3f0c"/><text x="16" y="25" class="eng">FAMILY: ALL</text><path d="M313 17 l6 6 l6 -6" fill="none" stroke="#2a1a12" stroke-width="1.5"/></g>
+<text x="16" y="216" class="cap" fill="#c4b08f">20 CIPHERS</text>
+<g transform="translate(16 236)"><rect y="4" width="343" height="108" rx="10" fill="#000" opacity=".5"/><rect width="343" height="108" rx="10" fill="#5a3320"/><rect width="343" height="108" rx="10" fill="url(#vig)"/>
+<rect x="5" y="5" width="333" height="98" rx="6" fill="none" stroke="#d9c4a0" stroke-opacity=".75" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="20" y="30" class="cap" fill="#c4b08f">SUBSTITUTION</text><rect x="20" y="80" width="6" height="6" transform="rotate(45 23 83)" fill="#e2c47a"/><rect x="32" y="80" width="6" height="6" transform="rotate(45 35 83)" fill="none" stroke="#e2c47a"/><rect x="44" y="80" width="6" height="6" transform="rotate(45 47 83)" fill="none" stroke="#e2c47a"/><text x="20" y="56" font-size="20" fill="#f3e9d2">Caesar</text><text x="60" y="87" font-size="12" fill="#c4b08f">Shift every letter.</text>
+<rect x="243" y="18" width="84" height="32" rx="4" fill="url(#br)" stroke="#5a3f0c"/><text x="285" y="39" text-anchor="middle" class="eng">TOOL</text>
+<rect x="243" y="58" width="84" height="32" rx="4" fill="url(#cu)" stroke="#5c2c16"/><text x="285" y="79" text-anchor="middle" class="eng">LEARN</text></g><g transform="translate(16 360)"><rect y="4" width="343" height="108" rx="10" fill="#000" opacity=".5"/><rect width="343" height="108" rx="10" fill="#2f4a3b"/><rect width="343" height="108" rx="10" fill="url(#vig)"/>
+<rect x="5" y="5" width="333" height="98" rx="6" fill="none" stroke="#c4b08f" stroke-opacity=".75" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="20" y="30" class="cap" fill="#c4b08f">POLYALPHABETIC</text><rect x="20" y="80" width="6" height="6" transform="rotate(45 23 83)" fill="#e2c47a"/><rect x="32" y="80" width="6" height="6" transform="rotate(45 35 83)" fill="#e2c47a"/><rect x="44" y="80" width="6" height="6" transform="rotate(45 47 83)" fill="none" stroke="#e2c47a"/><text x="20" y="56" font-size="20" fill="#f3e9d2">Vigenère</text><text x="60" y="87" font-size="12" fill="#c4b08f">A keyword, many shifts.</text>
+<rect x="243" y="18" width="84" height="32" rx="4" fill="url(#br)" stroke="#5a3f0c"/><text x="285" y="39" text-anchor="middle" class="eng">TOOL</text>
+<rect x="243" y="58" width="84" height="32" rx="4" fill="url(#cu)" stroke="#5c2c16"/><text x="285" y="79" text-anchor="middle" class="eng">LEARN</text></g><g transform="translate(16 484)"><rect y="4" width="343" height="108" rx="10" fill="#000" opacity=".5"/><rect width="343" height="108" rx="10" fill="#5e211d"/><rect width="343" height="108" rx="10" fill="url(#vig)"/>
+<rect x="5" y="5" width="333" height="98" rx="6" fill="none" stroke="#d9c4a0" stroke-opacity=".75" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="20" y="30" class="cap" fill="#c4b08f">GRID</text><rect x="20" y="80" width="6" height="6" transform="rotate(45 23 83)" fill="#e2c47a"/><rect x="32" y="80" width="6" height="6" transform="rotate(45 35 83)" fill="#e2c47a"/><rect x="44" y="80" width="6" height="6" transform="rotate(45 47 83)" fill="#e2c47a"/><text x="20" y="56" font-size="20" fill="#f3e9d2">ADFGVX</text><text x="60" y="87" font-size="12" fill="#c4b08f">WWI field cipher.</text>
+<rect x="243" y="18" width="84" height="32" rx="4" fill="url(#br)" stroke="#5a3f0c"/><text x="285" y="39" text-anchor="middle" class="eng">TOOL</text>
+<rect x="243" y="58" width="84" height="32" rx="4" fill="url(#cu)" stroke="#5c2c16"/><text x="285" y="79" text-anchor="middle" class="eng">LEARN</text></g><g transform="translate(16 608)"><rect y="4" width="343" height="108" rx="10" fill="#000" opacity=".5"/><rect width="343" height="108" rx="10" fill="#5a3320"/><rect width="343" height="108" rx="10" fill="url(#vig)"/>
+<rect x="5" y="5" width="333" height="98" rx="6" fill="none" stroke="#e7a77c" stroke-opacity=".75" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="20" y="30" class="cap" fill="#c4b08f">MACHINE</text><rect x="20" y="80" width="6" height="6" transform="rotate(45 23 83)" fill="#e2c47a"/><rect x="32" y="80" width="6" height="6" transform="rotate(45 35 83)" fill="#e2c47a"/><rect x="44" y="80" width="6" height="6" transform="rotate(45 47 83)" fill="#e2c47a"/><text x="20" y="56" font-size="20" fill="#f3e9d2">Enigma</text><text x="60" y="87" font-size="12" fill="#c4b08f">Rotors and reflector.</text>
+<rect x="243" y="18" width="84" height="32" rx="4" fill="url(#br)" stroke="#5a3f0c"/><text x="285" y="39" text-anchor="middle" class="eng">TOOL</text>
+<rect x="243" y="58" width="84" height="32" rx="4" fill="url(#cu)" stroke="#5c2c16"/><text x="285" y="79" text-anchor="middle" class="eng">LEARN</text></g>
+</svg>

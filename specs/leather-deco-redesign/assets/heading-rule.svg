@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 120" width="640" height="120">
+  <title>Heading rule (top) and chevron band divider (bottom), brass on tan leather</title>
+  <defs>
+    <pattern id="chev" width="16" height="12" patternUnits="userSpaceOnUse">
+      <path d="M0 10 L8 2 L16 10" fill="none" stroke="#5a3f0c" stroke-width="1.5"/>
+      <path d="M0 12 L8 4 L16 12" fill="none" stroke="#5a3f0c" stroke-width=".75" stroke-opacity=".7"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="120" fill="#b48a5e"/>
+
+  <!-- heading rule -->
+  <g stroke="#5a3f0c" fill="#5a3f0c">
+    <line x1="40" y1="40.5" x2="196" y2="40.5" stroke-width=".75"/>
+    <rect x="199" y="37" width="7" height="7" transform="rotate(45 202.5 40.5)" stroke="none"/>
+    <line x1="210" y1="40.5" x2="226" y2="40.5" stroke-width="1.5"/>
+    <line x1="414" y1="40.5" x2="430" y2="40.5" stroke-width="1.5"/>
+    <rect x="434" y="37" width="7" height="7" transform="rotate(45 437.5 40.5)" stroke="none"/>
+    <line x1="444" y1="40.5" x2="600" y2="40.5" stroke-width=".75"/>
+  </g>
+  <text x="320" y="46" text-anchor="middle" font-family="Georgia, serif" font-size="16" font-weight="600" letter-spacing="3.2" fill="#2a1a12">THE CABINET</text>
+
+  <!-- chevron divider -->
+  <rect x="0" y="84" width="640" height="12" fill="url(#chev)" opacity=".6"/>
+</svg>

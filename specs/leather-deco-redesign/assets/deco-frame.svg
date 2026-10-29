@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+  <title>DecoFrame: stepped corners, double rule, keystone nameplate, on chestnut leather with vellum inside</title>
+  <defs>
+    <linearGradient id="brass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3dc9a"/>
+      <stop offset=".18" stop-color="#e2c47a"/>
+      <stop offset=".55" stop-color="#c9a04f"/>
+      <stop offset="1" stop-color="#8a6212"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx=".5" cy=".4" r=".75">
+      <stop offset="0" stop-color="#fff" stop-opacity=".06"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".22"/>
+    </radialGradient>
+    <g id="corner" fill="none" stroke="#c9a04f" stroke-linecap="square">
+      <path d="M0.75 47.25 V16.75 H8.75 V8.75 H16.75 V0.75 H47.25" stroke-width="1.5"/>
+      <path d="M4.75 47.25 V20.75 H12.75 V12.75 H20.75 V4.75 H47.25" stroke-width="0.75"/>
+      <circle cx="4.75" cy="4.75" r="3" fill="#c9a04f" stroke="none"/>
+    </g>
+  </defs>
+
+  <!-- leather band -->
+  <rect width="640" height="400" fill="#5a3320"/>
+  <rect width="640" height="400" fill="url(#vignette)"/>
+  <line x1="0" y1="6.5" x2="640" y2="6.5" stroke="#d9c4a0" stroke-width="1.5" stroke-dasharray="6 4" stroke-opacity=".8"/>
+  <line x1="0" y1="393.5" x2="640" y2="393.5" stroke="#d9c4a0" stroke-width="1.5" stroke-dasharray="6 4" stroke-opacity=".8"/>
+
+  <!-- frame edges (CSS borders in production) -->
+  <g fill="none" stroke="#c9a04f">
+    <path d="M95 48.75 H545 M95 351.25 H545 M48.75 95 V305 M591.25 95 V305" stroke-width="1.5"/>
+    <path d="M95 52.75 H545 M95 347.25 H545 M52.75 95 V305 M587.25 95 V305" stroke-width="0.75"/>
+  </g>
+  <!-- corners: one drawing, mirrored (48px box here; production size 24px) -->
+  <use href="#corner" transform="translate(48 48)"/>
+  <use href="#corner" transform="translate(592 48) scale(-1 1)"/>
+  <use href="#corner" transform="translate(48 352) scale(1 -1)"/>
+  <use href="#corner" transform="translate(592 352) scale(-1 -1)"/>
+
+  <!-- vellum sheet inside -->
+  <rect x="72" y="76" width="496" height="252" fill="#f1e7d0" stroke="#c9b48c"/>
+  <g stroke="#c9b48c" stroke-opacity=".35">
+    <path d="M88 132 H552 M88 164 H552 M88 196 H552 M88 228 H552 M88 260 H552 M88 292 H552"/>
+  </g>
+  <text x="88" y="104" font-family="Georgia, serif" font-size="11" letter-spacing="2.4" fill="#5a4636">PLAINTEXT</text>
+  <text x="88" y="156" font-family="'Courier New', monospace" font-size="20" fill="#2a1a12">attack at dawn</text>
+
+  <!-- keystone nameplate -->
+  <path d="M220 34 H420 L408 62 H232 Z" fill="url(#brass)" stroke="#5a3f0c"/>
+  <path d="M224 36 H416" stroke="#fff" stroke-opacity=".5"/>
+  <circle cx="236" cy="48" r="2.5" fill="#5a3f0c"/>
+  <circle cx="404" cy="48" r="2.5" fill="#5a3f0c"/>
+  <text x="320" y="53" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="600" letter-spacing="3" fill="#2a1a12">CAESAR · ENCRYPT</text>
+</svg>

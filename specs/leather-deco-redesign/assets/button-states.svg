@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" width="760" height="300" font-family="Georgia, serif">
+  <title>Metal fitting states: brass primary, copper secondary, quiet; rest / hover / pressed / focus / disabled. Plus toggle, knob, tab plates.</title>
+  <defs>
+    <linearGradient id="br" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3dc9a"/><stop offset=".18" stop-color="#e2c47a"/><stop offset=".55" stop-color="#c9a04f"/><stop offset="1" stop-color="#8a6212"/>
+    </linearGradient>
+    <linearGradient id="brH" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff0c0"/><stop offset=".2" stop-color="#ecd28c"/><stop offset=".55" stop-color="#d4ac5a"/><stop offset="1" stop-color="#93691a"/>
+    </linearGradient>
+    <linearGradient id="brP" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8a6212"/><stop offset=".45" stop-color="#c9a04f"/><stop offset="1" stop-color="#e2c47a"/>
+    </linearGradient>
+    <linearGradient id="cu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5c7a4"/><stop offset=".18" stop-color="#e7a77c"/><stop offset=".55" stop-color="#c58052"/><stop offset="1" stop-color="#8f4a2a"/>
+    </linearGradient>
+    <linearGradient id="cuH" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd8bb"/><stop offset=".2" stop-color="#efb48c"/><stop offset=".55" stop-color="#cf8a5c"/><stop offset="1" stop-color="#985232"/>
+    </linearGradient>
+    <linearGradient id="cuP" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8f4a2a"/><stop offset=".45" stop-color="#c58052"/><stop offset="1" stop-color="#e7a77c"/>
+    </linearGradient>
+    <radialGradient id="knob" cx=".4" cy=".3" r=".8">
+      <stop offset="0" stop-color="#f3dc9a"/><stop offset=".5" stop-color="#c9a04f"/><stop offset="1" stop-color="#5a3f0c"/>
+    </radialGradient>
+  </defs>
+  <style>
+    .lbl{font-size:12px;font-weight:600;letter-spacing:2px;fill:#2a1a12}
+    .cap{font-size:10px;letter-spacing:2px;fill:#c4b08f}
+  </style>
+  <rect width="760" height="300" fill="#5a3320"/>
+
+  <!-- column captions -->
+  <g class="cap" text-anchor="middle">
+    <text x="190" y="28">REST</text><text x="320" y="28">HOVER</text><text x="450" y="28">PRESSED</text><text x="580" y="28">FOCUS</text><text x="700" y="28">DISABLED</text>
+  </g>
+  <g class="cap"><text x="16" y="64">PRIMARY</text><text x="16" y="124">SECONDARY</text><text x="16" y="184">QUIET</text></g>
+
+  <!-- primary row -->
+  <g transform="translate(135 40)">
+    <rect y="2" width="110" height="40" rx="4" fill="#000" opacity=".4"/>
+    <rect width="110" height="40" rx="4" fill="url(#br)" stroke="#5a3f0c"/>
+    <path d="M4 1.5 H106" stroke="#fff" stroke-opacity=".55"/>
+    <text x="55" y="25" text-anchor="middle" class="lbl">CHECK</text>
+  </g>
+  <g transform="translate(265 39)">
+    <rect y="3" width="110" height="40" rx="4" fill="#000" opacity=".4"/>
+    <rect width="110" height="40" rx="4" fill="url(#brH)" stroke="#5a3f0c"/>
+    <path d="M4 1.5 H106" stroke="#fff" stroke-opacity=".7"/>
+    <text x="55" y="25" text-anchor="middle" class="lbl">CHECK</text>
+  </g>
+  <g transform="translate(395 41)">
+    <rect width="110" height="40" rx="4" fill="url(#brP)" stroke="#5a3f0c"/>
+    <rect x="1" y="1" width="108" height="5" rx="3" fill="#000" opacity=".25"/>
+    <text x="55" y="25" text-anchor="middle" class="lbl">CHECK</text>
+  </g>
+  <g transform="translate(525 40)">
+    <rect x="-4" y="-4" width="118" height="48" rx="7" fill="none" stroke="#e7a77c" stroke-width="2"/>
+    <rect y="2" width="110" height="40" rx="4" fill="#000" opacity=".4"/>
+    <rect width="110" height="40" rx="4" fill="url(#br)" stroke="#5a3f0c"/>
+    <text x="55" y="25" text-anchor="middle" class="lbl">CHECK</text>
+  </g>
+  <g transform="translate(645 40)">
+    <rect width="110" height="40" rx="4" fill="#8f8a6a"/>
+    <text x="55" y="25" text-anchor="middle" class="lbl" opacity=".6">CHECK</text>
+  </g>
+
+  <!-- secondary row -->
+  <g transform="translate(135 100)">
+    <rect y="2" width="110" height="40" rx="4" fill="#000" opacity=".4"/>
+    <rect width="110" height="40" rx="4" fill="url(#cu)" stroke="#5c2c16"/>
+    <path d="M4 1.5 H106" stroke="#fff" stroke-opacity=".5"/>
+    <text x="55" y="25" text-anchor="middle" class="lbl">HINT</text>
+  </g>
+  <g transform="translate(265 99)">
+    <rect y="3" width="110" height="40" rx="4" fill="#000" opacity=".4"/>
+    <rect width="110" height="40" rx="4" fill="url(#cuH)" stroke="#5c2c16"/>
+    <path d="M4 1.5 H106" stroke="#fff" stroke-opacity=".65"/>
+    <text x="55" y="25" text-anchor="middle" class="lbl">HINT</text>
+  </g>
+  <g transform="translate(395 101)">
+    <rect width="110" height="40" rx="4" fill="url(#cuP)" stroke="#5c2c16"/>
+    <rect x="1" y="1" width="108" height="5" rx="3" fill="#000" opacity=".25"/>
+    <text x="55" y="25" text-anchor="middle" class="lbl">HINT</text>
+  </g>
+  <g transform="translate(525 100)">
+    <rect x="-4" y="-4" width="118" height="48" rx="7" fill="none" stroke="#e7a77c" stroke-width="2"/>
+    <rect y="2" width="110" height="40" rx="4" fill="#000" opacity=".4"/>
+    <rect width="110" height="40" rx="4" fill="url(#cu)" stroke="#5c2c16"/>
+    <text x="55" y="25" text-anchor="middle" class="lbl">HINT</text>
+  </g>
+  <g transform="translate(645 100)">
+    <rect width="110" height="40" rx="4" fill="#4f8f80" opacity=".7"/>
+    <text x="55" y="25" text-anchor="middle" class="lbl" opacity=".6">HINT</text>
+  </g>
+
+  <!-- quiet row -->
+  <g font-size="12" font-weight="600" letter-spacing="2" text-anchor="middle">
+    <text x="190" y="185" fill="#e2c47a">SKIP</text><line x1="168" y1="190" x2="212" y2="190" stroke="#8a6212"/>
+    <text x="320" y="185" fill="#f3dc9a">SKIP</text><line x1="298" y1="190" x2="342" y2="190" stroke="#e2c47a" stroke-width="2"/>
+    <text x="450" y="186" fill="#c9a04f">SKIP</text><line x1="428" y1="191" x2="472" y2="191" stroke="#8a6212"/>
+    <rect x="550" y="168" width="60" height="30" rx="4" fill="none" stroke="#e7a77c" stroke-width="2"/>
+    <text x="580" y="185" fill="#e2c47a">SKIP</text><line x1="558" y1="190" x2="602" y2="190" stroke="#8a6212"/>
+    <text x="700" y="185" fill="#8f8a6a">SKIP</text>
+  </g>
+
+  <!-- other fittings -->
+  <g class="cap"><text x="16" y="250">FITTINGS</text></g>
+  <!-- toggle off / on -->
+  <g transform="translate(135 232)">
+    <rect width="44" height="24" rx="12" fill="url(#br)" stroke="#5a3f0c"/>
+    <circle cx="12" cy="12" r="9" fill="url(#cu)" stroke="#5c2c16"/>
+    <text x="22" y="44" text-anchor="middle" class="cap">OFF</text>
+  </g>
+  <g transform="translate(195 232)">
+    <rect width="44" height="24" rx="12" fill="url(#brP)" stroke="#5a3f0c"/>
+    <circle cx="32" cy="12" r="9" fill="url(#cu)" stroke="#5c2c16"/>
+    <text x="22" y="44" text-anchor="middle" class="cap">ON</text>
+  </g>
+  <!-- knob -->
+  <g transform="translate(290 244)">
+    <circle r="18" fill="#000" opacity=".4" cy="2"/>
+    <circle r="18" fill="url(#knob)" stroke="#5a3f0c"/>
+    <path d="M-7 -3 H7 L3 -7 M7 3 H-7 L-3 7" fill="none" stroke="#2a1a12" stroke-width="1.5" stroke-linecap="square"/>
+    <text y="32" text-anchor="middle" class="cap">SWAP</text>
+  </g>
+  <!-- slider -->
+  <g transform="translate(340 244)">
+    <rect x="0" y="-3" width="150" height="6" rx="3" fill="url(#brP)" stroke="#5a3f0c"/>
+    <g stroke="#e2c47a" stroke-opacity=".7"><path d="M0 8 V14 M30 8 V12 M60 8 V12 M75 8 V14 M90 8 V12 M120 8 V12 M150 8 V14"/></g>
+    <rect x="52" y="-12" width="16" height="24" rx="3" fill="url(#cu)" stroke="#5c2c16"/>
+    <rect x="48" y="-34" width="24" height="18" rx="2" fill="#f1e7d0" stroke="#8a6212"/>
+    <text x="60" y="-21" text-anchor="middle" font-family="'Courier New', monospace" font-size="12" fill="#2a1a12">03</text>
+  </g>
+  <!-- tab plates -->
+  <g transform="translate(520 228)" class="lbl" text-anchor="middle">
+    <path d="M6 2 H94 L100 36 H0 Z" fill="url(#cu)" stroke="#5c2c16"/>
+    <text x="50" y="24">TOOL</text>
+    <path d="M110 6 H198 L204 36 H104 Z" fill="url(#br)" stroke="#5a3f0c" opacity=".9"/>
+    <text x="154" y="27">LEARN</text>
+    <rect x="-10" y="36" width="230" height="4" fill="url(#cu)"/>
+  </g>
+</svg>
