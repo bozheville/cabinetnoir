@@ -94,10 +94,6 @@ const Hero: React.FC = () => {
             {t('home.hero.ctaIdentify')}
           </Button>
         </Ctas>
-        <Audiences>
-          <BodyCopy>{t('home.hero.beginner')}</BodyCopy>
-          <BodyCopy>{t('home.hero.expert')}</BodyCopy>
-        </Audiences>
       </HeroInner>
     </HeroBand>
   );
