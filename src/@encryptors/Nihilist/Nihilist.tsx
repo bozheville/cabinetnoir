@@ -1,36 +1,48 @@
 import React, { useEffect, useRef } from 'react';
-import { Heading, Pane, TextInput } from 'evergreen-ui';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
 import { CrypterProps } from '../types';
 import Tooltip from '@atoms/Tooltip';
+import { Cluster, Paper, Stack, TextInput, Toggle } from '@atoms';
+import { ControlGroup } from '@organisms/ControlPanel';
+import { Minion } from '@typography';
 import PolybiusSquare from '../shared/polybius/PolybiusSquare';
 import { usePendingExample } from '@learning/pendingExample';
 import { getKeyHandoff } from '@learning/keyHandoff';
 import { useNihilist } from './useNihilist';
 
+const PaneStack = styled(Stack)`
+  width: 100%;
+  padding: 0 16px 16px;
+`;
+
 // The addition table: one row per letter — the plaintext number and the
 // key number it absorbed, and their no-carry sum.
-const AdditionTable = styled(Pane)`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+const AdditionTable = styled(Cluster)`
   justify-content: center;
+  gap: 8px;
   margin-top: 8px;
 `;
 
-const AdditionCell = styled(Pane)`
+const AdditionCell = styled(Paper)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: monospace;
-  font-size: 12px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.gray[300]};
-  border-radius: 4px;
   padding: 4px 8px;
-  background: ${({ theme }) => theme.colors.background};
+  font-family: ${({ theme }) => theme.type.mono};
+  font-size: 12px;
+  box-shadow: none;
+`;
+
+const SquareHint = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
+  margin-top: 6px;
+`;
+
+const SquareBlock = styled.div`
+  margin-top: 8px;
 `;
 
 // The Nihilist tool: square keyword + additive key, the live square and
@@ -82,65 +94,53 @@ const Nihilist: React.FC<CrypterProps> = ({
   }, [router.query.usedKey]);
 
   return (
-    <Pane
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      width="100%"
-      paddingX="16px"
-      paddingBottom="16px"
-      {...paneProps}
-    >
-      <Pane
-        display="flex"
-        flexDirection="row"
-        justifyContent="center"
-        alignItems="center"
-        flexWrap="wrap"
-      >
-        <Heading size={100} marginRight="8px" data-guide="square-key">{t('processing.nihilist.squareKeyLabel')}</Heading>
-        <Tooltip content={t('learning.tooltips.nihilist.squareKey')}>
-          <TextInput
-            data-guide="square-key-input"
-            width="140px"
-            marginRight="8px"
-            placeholder={t('processing.nihilist.settings.square_placeholder')}
-            value={squareKey}
-            onChange={handleSquareKeyChange}
-          />
-        </Tooltip>
-        <Heading size={100} marginRight="8px" data-guide="key">{t('processing.nihilist.keyLabel')}</Heading>
-        <Tooltip content={t('learning.tooltips.nihilist.key')}>
-          <TextInput
-            data-guide="key-input"
-            width="140px"
-            marginRight="8px"
-            placeholder={t('processing.nihilist.settings.key_placeholder')}
-            value={key}
-            onChange={handleKeyChange}
-          />
-        </Tooltip>
+    <PaneStack {...paneProps}>
+      <Cluster justify="center" gap={4} wrap>
+        <ControlGroup>
+          <Tooltip content={t('learning.tooltips.nihilist.squareKey')}>
+            <TextInput
+              data-guide="square-key-input"
+              label={t('processing.nihilist.squareKeyLabel')}
+              mono
+              width="140px"
+              placeholder={t('processing.nihilist.settings.square_placeholder')}
+              value={squareKey}
+              onChange={handleSquareKeyChange}
+            />
+          </Tooltip>
+        </ControlGroup>
+        <ControlGroup>
+          <Tooltip content={t('learning.tooltips.nihilist.key')}>
+            <TextInput
+              data-guide="key-input"
+              label={t('processing.nihilist.keyLabel')}
+              mono
+              width="140px"
+              placeholder={t('processing.nihilist.settings.key_placeholder')}
+              value={key}
+              onChange={handleKeyChange}
+            />
+          </Tooltip>
+        </ControlGroup>
         {!isDecryptMode && (
-          <Tooltip content={t('learning.tooltips.nihilist.spaced')}>
-            <CheckboxWrap>
-              <input
-                type="checkbox"
+          <ControlGroup>
+            <Tooltip content={t('learning.tooltips.nihilist.spaced')}>
+              <Toggle
                 data-guide="spaced-toggle"
+                label={t('processing.nihilist.settings.spaced')}
                 checked={spaced}
                 onChange={handleSpacedChange}
               />
-              <span>{t('processing.nihilist.settings.spaced')}</span>
-            </CheckboxWrap>
-          </Tooltip>
+            </Tooltip>
+          </ControlGroup>
         )}
-      </Pane>
-      <Pane marginTop="8px" data-guide="polybius-square">
+      </Cluster>
+      <SquareBlock data-guide="polybius-square">
         <PolybiusSquare square={square} />
-        <Heading size={100} marginTop={6} opacity={0.7}>
+        <SquareHint>
           {t('processing.nihilist.settings.squareHint')}
-        </Heading>
-      </Pane>
+        </SquareHint>
+      </SquareBlock>
       {additionRows.length > 0 && (
         <AdditionTable data-guide="addition-table">
           {additionRows.map((row, index) => (
@@ -151,17 +151,9 @@ const Nihilist: React.FC<CrypterProps> = ({
           ))}
         </AdditionTable>
       )}
-    </Pane>
+    </PaneStack>
   );
 };
-
-const CheckboxWrap = styled.label`
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  cursor: pointer;
-`;
 
 Nihilist.displayName = 'Nihilist';
 

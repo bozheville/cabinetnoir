@@ -1,14 +1,34 @@
 import React, { useEffect, useRef } from 'react';
-import { Checkbox, Heading, Pane, TextInput } from 'evergreen-ui';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import styled from 'styled-components';
 
 import { CrypterProps } from '../types';
 import Tooltip from '@atoms/Tooltip';
+import { Cluster, Stack, TextInput, Toggle } from '@atoms';
+import { ControlGroup } from '@organisms/ControlPanel';
+import { Minion } from '@typography';
 import TranspositionGrid from '../shared/transposition/TranspositionGrid';
 import { usePendingExample } from '@learning/pendingExample';
 import { getKeyHandoff } from '@learning/keyHandoff';
 import { useColumnar } from './useColumnar';
+
+const PaneStack = styled(Stack)`
+  width: 100%;
+  padding: 0 16px 16px;
+`;
+
+const GridHint = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const GridBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+`;
 
 // The Columnar tool: keyword columnar transposition with a live grid.
 // The grid shows the ciphertext's columns in reading order; the cracker
@@ -72,82 +92,69 @@ const Columnar: React.FC<CrypterProps> = ({
   }, [router.query.usedKey]);
 
   return (
-    <Pane
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      width="100%"
-      paddingX="16px"
-      paddingBottom="16px"
-      {...paneProps}
-    >
-      <Pane
-        display="flex"
-        flexDirection="row"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Tooltip content={t('learning.tooltips.columnar.keyword')}>
-          <TextInput
-            data-guide="keyword-input"
-            width="160px"
-            marginRight="8px"
-            placeholder={t('processing.columnar.settings.keyword_placeholder')}
-            value={keyword}
-            onChange={handleKeywordChange}
-          />
-        </Tooltip>
-        {double && (
-          <Tooltip content={t('learning.tooltips.columnar.secondKeyword')}>
+    <PaneStack {...paneProps}>
+      <Cluster justify="center" gap={4} wrap>
+        <ControlGroup>
+          <Tooltip content={t('learning.tooltips.columnar.keyword')}>
             <TextInput
-              data-guide="second-keyword-input"
+              data-guide="keyword-input"
+              mono
               width="160px"
-              marginRight="8px"
-              placeholder={t('processing.columnar.settings.second_keyword_placeholder')}
-              value={secondKeyword}
-              onChange={handleSecondKeywordChange}
+              placeholder={t('processing.columnar.settings.keyword_placeholder')}
+              value={keyword}
+              onChange={handleKeywordChange}
             />
           </Tooltip>
+        </ControlGroup>
+        {double && (
+          <ControlGroup>
+            <Tooltip content={t('learning.tooltips.columnar.secondKeyword')}>
+              <TextInput
+                data-guide="second-keyword-input"
+                mono
+                width="160px"
+                placeholder={t('processing.columnar.settings.second_keyword_placeholder')}
+                value={secondKeyword}
+                onChange={handleSecondKeywordChange}
+              />
+            </Tooltip>
+          </ControlGroup>
         )}
-        <Tooltip content={t('learning.tooltips.columnar.double')}>
-          <Checkbox
-            data-guide="double-toggle"
-            marginLeft="6px"
-            label={t('processing.columnar.settings.double_transposition')}
-            checked={double}
-            onChange={handleDoubleChange}
-          />
-        </Tooltip>
-        <Tooltip content={t('learning.tooltips.columnar.irregular')}>
-          <Checkbox
-            data-guide="grid-toggle"
-            marginLeft="6px"
-            label={t('processing.columnar.settings.incomplete_row')}
-            checked={irregular}
-            onChange={handleIrregularChange}
-          />
-        </Tooltip>
+        <ControlGroup>
+          <Tooltip content={t('learning.tooltips.columnar.double')}>
+            <Toggle
+              data-guide="double-toggle"
+              label={t('processing.columnar.settings.double_transposition')}
+              checked={double}
+              onChange={handleDoubleChange}
+            />
+          </Tooltip>
+        </ControlGroup>
+        <ControlGroup>
+          <Tooltip content={t('learning.tooltips.columnar.irregular')}>
+            <Toggle
+              data-guide="grid-toggle"
+              label={t('processing.columnar.settings.incomplete_row')}
+              checked={irregular}
+              onChange={handleIrregularChange}
+            />
+          </Tooltip>
+        </ControlGroup>
         {!isDecryptMode && (
-          <Tooltip content={t('learning.tooltips.columnar.keepSpaces')}>
-            <Checkbox
-              data-guide="keep-spaces"
-              marginLeft="6px"
-              label={t('processing.columnar.settings.keep_spaces')}
-              checked={keepSpaces}
-              onChange={handleKeepSpacesChange}
-            />
-          </Tooltip>
+          <ControlGroup>
+            <Tooltip content={t('learning.tooltips.columnar.keepSpaces')}>
+              <Toggle
+                data-guide="keep-spaces"
+                label={t('processing.columnar.settings.keep_spaces')}
+                checked={keepSpaces}
+                onChange={handleKeepSpacesChange}
+              />
+            </Tooltip>
+          </ControlGroup>
         )}
-      </Pane>
+      </Cluster>
       {order.length > 0 && (
-        <Pane
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          marginTop="8px"
-          data-guide="transposition-grid"
-        >
+        <GridBlock data-guide="transposition-grid">
           <TranspositionGrid
             order={order}
             keyword={keyword.toUpperCase().replace(/[^A-Z]/g, '')}
@@ -155,12 +162,12 @@ const Columnar: React.FC<CrypterProps> = ({
             padChar={irregular ? '' : 'X'}
             highlight
           />
-          <Heading size={100} marginTop={8} opacity={0.7}>
+          <GridHint>
             {t('processing.columnar.settings.gridHint')}
-          </Heading>
-        </Pane>
+          </GridHint>
+        </GridBlock>
       )}
-    </Pane>
+    </PaneStack>
   );
 };
 

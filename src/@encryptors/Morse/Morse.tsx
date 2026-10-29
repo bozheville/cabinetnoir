@@ -1,10 +1,11 @@
-import { Select } from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CrypterProps } from '../types';
 import { morseDecoding, morseEncoding } from './morse-encoding';
 import Tooltip from '@atoms/Tooltip';
+import { Select } from '@atoms';
+import { engraved } from '@theme/mixins';
 
 const dotSymbols = '.*•';
 const dashSymbols = '-_~';
@@ -24,6 +25,19 @@ const SignSelector = styled.div`
   ${({ theme }) => theme.breakpoints.small} {
     flex-direction: column;
   }
+`;
+
+// Engraved brass label on the leather control panel.
+const PaneLabel = styled.span`
+  ${engraved('leather')}
+  font-size: 11px;
+`;
+
+const SignGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
 `;
 
 const Morse: React.FC<CrypterProps> = ({
@@ -49,22 +63,28 @@ const Morse: React.FC<CrypterProps> = ({
   return !isDecryptMode ? (
     <MorseSettingsWrapper>
       <SignSelector>
-        <div>
-          <span>{`${t('processing.morse.dot_symbol')}`}</span>
+        <SignGroup>
+          <PaneLabel>{`${t('processing.morse.dot_symbol')}`}</PaneLabel>
           <Tooltip content={t('learning.tooltips.morse.dot')}>
-            <Select data-guide="dot-symbol" defaultValue="•" onChange={handleDotSymbolChnage}>
-              {dotSymbols.split('').map((char) => <option value={char} key={`option-${char}`}>{char}</option>)}
-            </Select>
+            <Select
+              data-guide="dot-symbol"
+              defaultValue="•"
+              onChange={handleDotSymbolChnage}
+              options={dotSymbols.split('').map((char) => ({ value: char, label: char }))}
+            />
           </Tooltip>
-        </div>
-        <div>
+        </SignGroup>
+        <SignGroup>
           <Tooltip content={t('learning.tooltips.morse.dash')}>
-            <Select data-guide="dash-symbol" defaultValue="-" onChange={handleDashSymbolChnage}>
-              {dashSymbols.split('').map((char) => <option value={char} key={`option-${char}`}>{char}</option>)}
-            </Select>
+            <Select
+              data-guide="dash-symbol"
+              defaultValue="-"
+              onChange={handleDashSymbolChnage}
+              options={dashSymbols.split('').map((char) => ({ value: char, label: char }))}
+            />
           </Tooltip>
-          <span>{`${t('processing.morse.dash_symbol')}`}</span>
-        </div>
+          <PaneLabel>{`${t('processing.morse.dash_symbol')}`}</PaneLabel>
+        </SignGroup>
       </SignSelector>
     </MorseSettingsWrapper>
   ) : <div />;

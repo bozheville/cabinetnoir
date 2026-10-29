@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Pane, Text } from 'evergreen-ui';
+import styled from 'styled-components';
 
 import {
   CrackerInput,
@@ -21,6 +21,39 @@ import {
   MAX_PERIOD,
 } from './analysis/rank';
 import { ALBERTI_DYNAMIC_DISC } from './alberti-crypt';
+import { CipherText, Minion } from '@typography';
+
+const PaneRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const WizardBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 12px;
+  margin: 0 16px 16px;
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  border-radius: ${({ theme }) => theme.radius.metal};
+`;
+
+const Block = styled.div<{ $marginTop?: number }>`
+  margin-top: ${({ $marginTop }) => ($marginTop ? `${$marginTop}px` : '0')};
+`;
+
+const Note = styled(Minion)`
+  display: block;
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const MonoText = styled(CipherText)`
+  display: block;
+  margin-top: 8px;
+  color: ${({ theme }) => theme.ink.cream};
+  word-break: break-all;
+`;
 
 // Hint keys for the Alberti wizard; labels resolve from the shared
 // cracker locale block. Only honest toggles: the cards always show
@@ -117,18 +150,9 @@ const AlbertiCryptoanalysis: React.FC<{
   const canGoNext = step === 1 ? period !== null : step === 2 ? discStep !== null : false;
 
   return (
-    <Pane display="flex" flexDirection="column" width="100%">
+    <PaneRoot>
       <CrackerInput value={input} onChange={onInputChange} />
-      <Pane
-        display="flex"
-        flexDirection="column"
-        width="100%"
-        padding="12px"
-        marginX="16px"
-        marginBottom="16px"
-        border="muted"
-        borderRadius="4px"
-      >
+      <WizardBox>
         <CrackerSettings
           config={{ preset: 'custom', hints }}
           onChange={(config) => setHints(config.hints)}
@@ -148,10 +172,10 @@ const AlbertiCryptoanalysis: React.FC<{
           message={ciphertext && <ShortTextWarning letters={ciphertext} minLetters={150} />}
         >
           {step === 1 && (
-            <Pane marginTop="12px">
-              <Text size={300} display="block" marginBottom="4px">
+            <Block $marginTop={12}>
+              <Note>
                 {t('processing.alberti.cracker.wizard.assumption')}
-              </Text>
+              </Note>
               <CandidateCards
                 items={periods.map((candidate) => ({
                   id: String(candidate.value),
@@ -165,10 +189,10 @@ const AlbertiCryptoanalysis: React.FC<{
                 tooltip={t('processing.alberti.cracker.tooltips.periodCards')}
                 dataGuide="cracker-period"
               />
-            </Pane>
+            </Block>
           )}
           {step === 2 && period !== null && (
-            <Pane marginTop="12px">
+            <Block $marginTop={12}>
               <CandidateCards
                 items={steps.map((candidate) => ({
                   id: String(candidate.value),
@@ -181,30 +205,30 @@ const AlbertiCryptoanalysis: React.FC<{
                 tooltip={t('processing.alberti.cracker.tooltips.stepCards')}
                 dataGuide="cracker-disc-step"
               />
-            </Pane>
+            </Block>
           )}
           {step === 3 && period !== null && discStep !== null && (
-            <Pane marginTop="12px">
-              <Text size={300} display="block">
+            <Block $marginTop={12}>
+              <Note>
                 {t('processing.alberti.cracker.wizard.done.summary', { step: discStep, period })}
-              </Text>
-              <Text fontFamily="monospace" size={300} display="block" marginTop="8px" wordBreak="break-all">
+              </Note>
+              <MonoText>
                 {decrypted.slice(0, 200)}
-              </Text>
-            </Pane>
+              </MonoText>
+            </Block>
           )}
 
           {hints.livePreview && period !== null && discStep !== null && step < 3 && (
-            <Pane marginTop="12px">
-              <Text size={300} display="block">{t('processing.cracker.wizard.previewTitle')}</Text>
-              <Text fontFamily="monospace" size={300} display="block" wordBreak="break-all">
+            <Block $marginTop={12}>
+              <Note>{t('processing.cracker.wizard.previewTitle')}</Note>
+              <MonoText>
                 {decrypted.slice(0, 200)}
-              </Text>
-            </Pane>
+              </MonoText>
+            </Block>
           )}
         </CrackerWizardFrame>
-      </Pane>
-    </Pane>
+      </WizardBox>
+    </PaneRoot>
   );
 };
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
-import { Pane } from 'evergreen-ui';
+import styled from 'styled-components';
 
 import useAutokeyCracker from './cracker/useAutokeyCracker';
 import {
@@ -15,6 +14,22 @@ import AutokeyCracker from './cracker/AutokeyCracker';
 import { CrackerInput, CrackerSettings } from '@encryptors/shared/cracker';
 import { usePendingExample } from '@learning/pendingExample';
 import { setKeyHandoff } from '@learning/keyHandoff';
+
+const PaneRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const WizardBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 12px;
+  margin: 0 16px 16px;
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  border-radius: ${({ theme }) => theme.radius.metal};
+`;
 
 // Autokey cracker on the Cryptoanalysis tab: the guided crib-drag
 // wizard owns the page. "Use this primer" hands the recovered key to
@@ -56,22 +71,9 @@ const AutokeyCryptoanalysis: React.FC<{
   };
 
   return (
-    <Pane
-      display="flex"
-      flexDirection="column"
-      width="100%"
-    >
+    <PaneRoot>
       <CrackerInput value={input} onChange={onInputChange} />
-      <Pane
-        display="flex"
-        flexDirection="column"
-        width="100%"
-        padding="12px"
-        marginX="16px"
-        marginBottom="16px"
-        border="muted"
-        borderRadius="4px"
-      >
+      <WizardBox>
         <CrackerSettings config={hintConfig} onChange={setHintConfig} keys={HINT_KEYS} i18nScope="processing.autokey.cracker" />
         <AutokeyCracker
           cracker={cracker}
@@ -79,8 +81,8 @@ const AutokeyCryptoanalysis: React.FC<{
           onUseKey={handleUseKey}
           onSkip={handleSkip}
         />
-      </Pane>
-    </Pane>
+      </WizardBox>
+    </PaneRoot>
   );
 };
 

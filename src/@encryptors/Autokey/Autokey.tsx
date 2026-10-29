@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { Heading, Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
 import { CrypterProps } from '../types';
 import Tooltip from '@atoms/Tooltip';
+import { Cluster, Stack, TextInput } from '@atoms';
+import { ControlGroup } from '@organisms/ControlPanel';
+import { CipherText, Minion } from '@typography';
 import {
   DEFAULT_ALPHABET,
   autokeyDecrypt,
@@ -14,31 +16,44 @@ import {
 import { usePendingExample } from '@learning/pendingExample';
 import { getKeyHandoff } from '@learning/keyHandoff';
 
+const PaneStack = styled(Stack)`
+  align-items: center;
+  padding: 0 16px 16px;
+`;
+
 // The keystream row: the primer letters, then the plaintext letters
 // feeding the key. In decrypt mode the plaintext is the recovered one —
 // either way the row is the key the engine actually used, letter for
-// letter above the text.
-const StreamRow = styled(Pane)`
+// letter above the text. Primer cells get the copper treatment; the
+// plaintext cells are parchment.
+const StreamRow = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1px;
   margin-top: 8px;
-  font-family: monospace;
-  font-size: 14px;
 `;
 
-const StreamLetter = styled(Text)<{ $primer: boolean }>`
-  font-family: monospace;
+const StreamLetter = styled(CipherText)<{ $primer: boolean }>`
   font-size: 14px;
   width: 16px;
   text-align: center;
-  background: ${({ $primer, theme }) => ($primer ? theme.colorScheme.blue[200] : theme.colorScheme.gray[100])};
+  color: ${({ theme }) => theme.ink.primary};
+  background: ${({ $primer, theme }) => ($primer
+    ? `${theme.metal.copper.light}73`
+    : theme.paper.parchment)};
+  border: 1px solid ${({ $primer, theme }) => ($primer ? theme.metal.copper.base : theme.paper.rule)};
   border-radius: 2px;
 `;
 
-const StreamWrap = styled(Pane)`
+const StreamWrap = styled.div`
   width: 100%;
   padding: 0 16px;
+`;
+
+const StreamCaption = styled(Minion)`
+  display: block;
+  margin-top: 4px;
+  color: ${({ theme }) => theme.ink.creamMuted};
 `;
 
 // The autokey tool: encrypt/decrypt with a primer. The keystream row
@@ -98,31 +113,21 @@ const Autokey: React.FC<CrypterProps> = ({
   const primerLength = primer.toUpperCase().split('').filter((letter) => DEFAULT_ALPHABET.includes(letter)).length;
 
   return (
-    <Pane
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      paddingX="16px"
-      paddingBottom="16px"
-      {...paneProps}
-    >
-      <Pane
-        display="flex"
-        flexDirection="row"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Heading size={100} data-guide="key">{t('processing.autokey.tool.primerLabel')}</Heading>
-        <Tooltip content={t('processing.autokey.tooltips.primer')}>
-          <TextInput
-            width="150px"
-            fontFamily="monospace"
-            value={primer}
-            onChange={(event) => setPrimer(event.target.value.toUpperCase())}
-          />
-        </Tooltip>
-      </Pane>
+    <PaneStack {...paneProps}>
+      <Cluster justify="center" gap={4} wrap>
+        <ControlGroup>
+          <Tooltip content={t('processing.autokey.tooltips.primer')}>
+            <TextInput
+              data-guide="key"
+              label={t('processing.autokey.tool.primerLabel')}
+              mono
+              width="150px"
+              value={primer}
+              onChange={(event) => setPrimer(event.target.value.toUpperCase())}
+            />
+          </Tooltip>
+        </ControlGroup>
+      </Cluster>
       {stream && (
         <StreamWrap data-guide="keystream">
           <StreamRow>
@@ -132,12 +137,12 @@ const Autokey: React.FC<CrypterProps> = ({
               </StreamLetter>
             ))}
           </StreamRow>
-          <Text size={300} marginTop="4px" display="block">
+          <StreamCaption>
             {t('processing.autokey.tool.streamCaption')}
-          </Text>
+          </StreamCaption>
         </StreamWrap>
       )}
-    </Pane>
+    </PaneStack>
   );
 };
 

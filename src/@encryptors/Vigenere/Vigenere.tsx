@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { Heading, Pane, TextInput } from 'evergreen-ui';
+import styled from 'styled-components';
 import { CrypterProps } from '../types';
 import Tooltip from '@atoms/Tooltip';
+import { Cluster, Stack, TextInput } from '@atoms';
+import { ControlGroup } from '@organisms/ControlPanel';
 import { vigenereEncrypt, vigenereDecrypt, DEFAULT_ALPHABET, cleanAlphabet } from './vigenere-encryption';
 import { usePendingExample } from '@learning/pendingExample';
 import { getKeyHandoff } from '@learning/keyHandoff';
+
+const PaneStack = styled(Stack)`
+  width: 100%;
+  padding: 0 16px 16px;
+`;
 
 // The Vigenère tool: encrypt/decrypt with a known key. The cracker lives
 // on its own Cryptoanalysis tab (/encoder/vigenere/cryptoanalysis) and
@@ -64,33 +71,34 @@ const Vigenere: React.FC<CrypterProps> = ({
   }, [input, secretKey, isDecryptMode, customAlphabet]);
 
   return (
-    <Pane
-      display="flex"
-      flexDirection="row"
-      justifyContent="center"
-      alignItems="center"
-      paddingX="16px"
-      paddingBottom="16px"
-      {...paneProps}
-    >
-      <Heading size={100} data-guide="key">{t('processing.vigenere.cracker.keyLabel')}</Heading>
-      <Tooltip content={t('processing.vigenere.cracker.tooltips.key')}>
-        <TextInput
-          width="150px"
-          value={secretKey}
-          onChange={(event) => setSecretKey(event.target.value)}
-        />
-      </Tooltip>
-      <Heading size={100} marginLeft="12px" data-guide="alphabet">{t('processing.vigenere.cracker.alphabetLabel')}</Heading>
-      <Tooltip content={t('processing.vigenere.cracker.tooltips.alphabet')}>
-        <TextInput
-          width="280px"
-          fontFamily="monospace"
-          value={customAlphabet}
-          onChange={handleAlphabetChange}
-        />
-      </Tooltip>
-    </Pane>
+    <PaneStack {...paneProps}>
+      <Cluster justify="center" gap={4} wrap>
+        <ControlGroup>
+          <Tooltip content={t('processing.vigenere.cracker.tooltips.key')}>
+            <TextInput
+              data-guide="key"
+              label={t('processing.vigenere.cracker.keyLabel')}
+              mono
+              width="150px"
+              value={secretKey}
+              onChange={(event) => setSecretKey(event.target.value)}
+            />
+          </Tooltip>
+        </ControlGroup>
+        <ControlGroup>
+          <Tooltip content={t('processing.vigenere.cracker.tooltips.alphabet')}>
+            <TextInput
+              data-guide="alphabet"
+              label={t('processing.vigenere.cracker.alphabetLabel')}
+              mono
+              width="280px"
+              value={customAlphabet}
+              onChange={handleAlphabetChange}
+            />
+          </Tooltip>
+        </ControlGroup>
+      </Cluster>
+    </PaneStack>
   );
 };
 

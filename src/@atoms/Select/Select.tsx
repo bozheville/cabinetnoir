@@ -4,7 +4,7 @@ import { metal, focusRing, engraved } from '@theme/mixins';
 import { Chevron } from '@ornaments';
 
 export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  options: Array<{ value: string; label: string }>;
+  options: Array<{ value: string; label: string; disabled?: boolean }>;
   width?: string;
 }
 
@@ -44,7 +44,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     <Shell $width={width}>
       <NativeSelect ref={ref} {...rest}>
         {options.map((option) => (
-          <option key={option.value} value={option.value}>
+          <option key={option.value} value={option.value} disabled={option.disabled}>
             {option.label}
           </option>
         ))}

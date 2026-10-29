@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Pane, Text } from 'evergreen-ui';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import styled from 'styled-components';
 
 import {
   CrackerInput,
@@ -10,6 +10,7 @@ import {
   ShortTextWarning,
   useAssignmentHistory,
 } from '@encryptors/shared/cracker';
+import { Minion } from '@typography';
 import {
   findConflicts,
   scoreTrigrams,
@@ -36,6 +37,28 @@ import {
   applyPreset,
   PresetName,
 } from './cracker/hintSettings';
+
+const PaneRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const WizardBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 12px;
+  margin: 0 16px 16px;
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  border-radius: ${({ theme }) => theme.radius.metal};
+`;
+
+const Note = styled(Minion)`
+  display: block;
+  margin: 12px 0 8px;
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
 
 // Polybius cracker on the Cryptoanalysis tab: the stripped ciphertext is
 // a plain substitution over coordinate pairs whose square is unknown —
@@ -155,18 +178,9 @@ const PolybiusCryptoanalysis: React.FC<{
   };
 
   return (
-    <Pane display="flex" flexDirection="column" width="100%">
+    <PaneRoot>
       <CrackerInput value={input} onChange={onInputChange} />
-      <Pane
-        display="flex"
-        flexDirection="column"
-        width="100%"
-        padding="12px"
-        marginX="16px"
-        marginBottom="16px"
-        border="muted"
-        borderRadius="4px"
-      >
+      <WizardBox>
         <CrackerSettings
           config={hintConfig}
           onChange={setHintConfig}
@@ -187,9 +201,9 @@ const PolybiusCryptoanalysis: React.FC<{
             <ShortTextWarning letters={'x'.repeat(Math.min(pairs.length, 200))} />
           )}
         >
-          <Text size={300} display="block" marginTop={12} marginBottom={8}>
+          <Note>
             {t('processing.polybius.cracker.wizard.square.hint')}
-          </Text>
+          </Note>
           <SquareDecipherStep
             symbols={pairs}
             mapping={mapping}
@@ -210,8 +224,8 @@ const PolybiusCryptoanalysis: React.FC<{
             englishness={englishScore}
           />
         </CrackerWizardFrame>
-      </Pane>
-    </Pane>
+      </WizardBox>
+    </PaneRoot>
   );
 };
 

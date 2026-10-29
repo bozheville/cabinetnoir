@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Pane } from 'evergreen-ui';
+import styled from 'styled-components';
 
 import {
   CrackerInput,
@@ -16,6 +16,22 @@ import {
   PresetName,
 } from './cracker/hintSettings';
 import CrackerWizard from './cracker/CrackerWizard';
+
+const PaneRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const WizardBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 12px;
+  margin: 0 16px 16px;
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  border-radius: ${({ theme }) => theme.radius.metal};
+`;
 
 // Rail fence cracker on the Cryptoanalysis tab: the guided wizard owns
 // the page. "Use this result" hands "rails/offset" to the Tool tab
@@ -51,18 +67,9 @@ const RailFenceCryptoanalysis: React.FC<{
   };
 
   return (
-    <Pane display="flex" flexDirection="column" width="100%">
+    <PaneRoot>
       <CrackerInput value={input} onChange={onInputChange} />
-      <Pane
-        display="flex"
-        flexDirection="column"
-        width="100%"
-        padding="12px"
-        marginX="16px"
-        marginBottom="16px"
-        border="muted"
-        borderRadius="4px"
-      >
+      <WizardBox>
         <CrackerSettings
           config={hintConfig}
           onChange={setHintConfig}
@@ -75,8 +82,8 @@ const RailFenceCryptoanalysis: React.FC<{
           onUseKey={handleUseKey}
           onSkip={handleSkip}
         />
-      </Pane>
-    </Pane>
+      </WizardBox>
+    </PaneRoot>
   );
 };
 

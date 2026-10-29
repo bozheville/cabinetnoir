@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Select } from 'evergreen-ui';
+import { Select } from '@atoms';
 
 import { useAlphabetSelector } from './useAlphabetSelector';
 import { AlphabetInput } from './AlphabetInput';
@@ -37,18 +37,15 @@ const AlphabetSelector: React.FC<AlphabetSelectorProps> = ({
     <AlphabetSelectorWrapper data-guide="alphabet">
       <Tooltip content={t('learning.tooltips.alphabet')}>
         <AlphabetSelectorInner>
-          <Select onChange={handleAphabetKeyChange}>
-            {options.map((item) => (
-              <option
-                key={item.type}
-                value={item.type}
-                selected={item.type === alphabetKey}
-                disabled={item.type === 'custom'}
-              >
-                {`${t(`alphabet.${item.type}`)}`}
-              </option>
-            ))}
-          </Select>
+          <Select
+            value={alphabetKey}
+            onChange={handleAphabetKeyChange}
+            options={options.map((item) => ({
+              value: item.type,
+              label: t(`alphabet.${item.type}`),
+              disabled: item.type === 'custom',
+            }))}
+          />
           <AlphabetInput value={value} onChange={handleChange} />
         </AlphabetSelectorInner>
       </Tooltip>
