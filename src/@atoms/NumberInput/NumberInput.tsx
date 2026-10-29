@@ -53,7 +53,7 @@ const Stepper = styled.button`
   justify-content: center;
   background: linear-gradient(180deg, ${({ theme }) => theme.metal.copper.light}, ${({ theme }) => theme.metal.copper.dark});
   border: 1px solid ${({ theme }) => theme.metal.copper.shadow};
-  color: #2a1a12;
+  color: ${({ theme }) => theme.ink.primary};
   cursor: pointer;
   &:active { box-shadow: inset 0 2px 3px rgba(0,0,0,.35); }
   ${focusRing}

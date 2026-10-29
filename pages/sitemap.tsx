@@ -7,16 +7,22 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Footer, Header, LanguageSelector } from '@molecues';
-import Section from '@atoms/Section/Section';
+import { Patch } from '@atoms';
+import HeadingRule from '@ornaments/HeadingRule';
 import { GreatPrimer, Minion } from '@typography';
 import { encodingsList, encryptorsList } from '@encryptors/algorithms';
 import { buildSitemapEntries, localePrefix } from '@lib/sitemap-data';
 
-const SitemapSection = styled(Section)`
+// Standard page anatomy (spec 06 §6): tan band, sheet width, groups as
+// drawers with heading rules, links as paper index cards.
+const SitemapSection = styled(Patch).attrs({ leather: 'tan', stitch: 'both' })`
+  flex: 1 0 auto;
+
   & > div {
     margin: 0 auto;
     width: 100%;
-    max-width: 720px;
+    max-width: ${({ theme }) => theme.widths.sheet};
+    padding: 0 16px 32px;
   }
 `;
 
@@ -28,17 +34,22 @@ const Grid = styled.div`
   margin-top: 12px;
   display: grid;
   grid-template-columns: 1fr;
+  gap: 8px;
 
-  ${({ theme }) => theme.breakpoints.small} {
+  ${({ theme }) => theme.breakpoints.tablet} {
     grid-template-columns: 1fr 1fr;
+  }
+  ${({ theme }) => theme.breakpoints.desktop} {
+    grid-template-columns: repeat(3, 1fr);
   }
 `;
 
 const Card = styled.div`
   padding: 12px 16px;
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.radius.paper};
   border: 1px solid ${({ theme }) => theme.paper.rule};
   background-color: ${({ theme }) => theme.paper.vellum};
+  box-shadow: ${({ theme }) => theme.shadow.card};
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -128,7 +139,7 @@ const SitemapPage: React.FC = () => {
         <div>
           <Minion>{t('sitemap.subtitle')}</Minion>
           <Group>
-            <GreatPrimer>{t('sitemap.groups.pages')}</GreatPrimer>
+            <HeadingRule>{t('sitemap.groups.pages')}</HeadingRule>
             <Grid>
               {staticPages.map((page) => (
                 <Card key={page.path}>
@@ -144,7 +155,7 @@ const SitemapPage: React.FC = () => {
             { key: 'encryptors', entries: encryptors },
           ].map((group) => (
             <Group key={group.key}>
-              <GreatPrimer>{t(`sitemap.groups.${group.key}`)}</GreatPrimer>
+              <HeadingRule>{t(`sitemap.groups.${group.key}`)}</HeadingRule>
               <Grid>
                 {group.entries.map((entry) => (
                   <Card key={entry.algorithm}>

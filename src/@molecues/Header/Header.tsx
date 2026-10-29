@@ -12,6 +12,10 @@ interface HeaderProps {
 }
 
 const StyledHeader = styled(Section)`
+  /* Print: the header is site chrome, not article content (spec 08). */
+  @media print {
+    display: none;
+  }
   padding: 16px 24px;
   display: flex;
 

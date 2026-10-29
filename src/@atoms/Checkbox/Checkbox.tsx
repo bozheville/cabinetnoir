@@ -45,7 +45,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, children, ...rest }) => (
   <Wrapper>
     <HiddenInput type="checkbox" {...rest} />
     <Box>
-      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="#2a1a12" strokeWidth="2" aria-hidden="true">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
         <path d="M1.5 5.5 L4 8 L8.5 2" />
       </svg>
     </Box>

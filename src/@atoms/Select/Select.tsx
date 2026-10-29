@@ -34,7 +34,7 @@ const ChevronWrap = styled.span`
   right: 12px;
   top: 50%;
   transform: translateY(-50%) rotate(90deg);
-  color: #2a1a12;
+  color: ${({ theme }) => theme.ink.primary};
   pointer-events: none;
 `;
 

@@ -18,6 +18,10 @@ const Bar = styled.nav`
   ${({ theme }) => theme.breakpoints.small} {
     justify-content: flex-start;
   }
+  /* Print: tabs are navigation, not article content (spec 08). */
+  @media print {
+    display: none;
+  }
 `;
 
 const Tab = styled.span<{ $active: boolean }>`
