@@ -41,9 +41,8 @@ const Frame = styled.div<DecoFrameProps>`
     inset: 4px;
     border-width: 0.75px;
   }
-  /* leave gaps for tabs attached to the top edge */
-  &::before { border-top-color: transparent; }
-  &::after { border-top-color: transparent; }
+  /* Tabs sit on the top edge and overlap the border there; the rule
+     itself stays complete (no transparent-top gap). */
 
   > .deco-frame-corner {
     position: absolute;
