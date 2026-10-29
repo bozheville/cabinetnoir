@@ -38,10 +38,29 @@ export const stitch = (sides: 'top' | 'bottom' | 'both' | 'all' | 'none', thread
   ${({ theme }) => {
     const color = THREAD_TILES[threadColor] || theme.thread[threadColor as keyof typeof theme.thread] || threadColor;
     const tile = stitchTile(color);
-    const horizontal = sides === 'both' || sides === 'all';
-    const vertical = sides === 'all';
-    const showTop = sides === 'top' || sides === 'both' || sides === 'all';
-    const showBottom = sides === 'bottom' || sides === 'both' || sides === 'all';
+    // All four sides: one dashed outline inset from the edges, exactly
+    // like the mock-up card (stroke 1.5, dasharray 6 4, 75% opacity).
+    // A pseudo-element outline stays crisp on any leather and is not
+    // muted by background blend modes, unlike tiled background layers.
+    if (sides === 'all') {
+      return css`
+        &::before {
+          content: '';
+          position: absolute;
+          inset: ${inset}px;
+          border: 1.5px dashed ${color};
+          border-radius: calc(${({ theme: t }) => t.radius.leather} - 3px);
+          opacity: 0.75;
+          pointer-events: none;
+        }
+        @media (forced-colors: active) {
+          &::before { display: none; }
+        }
+      `;
+    }
+    const horizontal = sides === 'both';
+    const showTop = sides === 'top' || sides === 'both';
+    const showBottom = sides === 'bottom' || sides === 'both';
     return css`
       &::before,
       &::after {
@@ -64,12 +83,6 @@ export const stitch = (sides: 'top' | 'bottom' | 'both' | 'all' | 'none', thread
           background-repeat: repeat-x;
           ${showBottom ? '' : 'display: none;'}
         }
-      ` : ''}
-      ${vertical ? css`
-        background-image: ${tile}, ${tile}, radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.06), rgba(0,0,0,0.18) 100%), url(/images/grain.png);
-        background-repeat: repeat-y, repeat-y, no-repeat, repeat;
-        background-size: 3px auto, 3px auto, auto, auto;
-        background-position: ${inset}px 0, calc(100% - ${inset}px) 0, 0 0, 0 0;
       ` : ''}
       @media (forced-colors: active) {
         &::before, &::after { display: none; }
