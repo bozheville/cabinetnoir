@@ -1,9 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Button, Pane, Text, TextInput } from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
+import { Button, TextInput } from '@atoms';
 import Tooltip from '@atoms/Tooltip';
+import { CipherText, Minion } from '@typography';
+import { paper } from '@theme/mixins';
 import {
   DoubleSuggestion,
   DigraphSuggestion,
@@ -34,17 +36,31 @@ import { squareLabels, SquareMerge, SquareSize } from './polybius';
 
 const SCOPE = 'processing.cracker.squareDecipher';
 
-const CribRow = styled(Pane)`
+const StepRoot = styled.div`
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+const HistoryRow = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+const CribRow = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
 `;
 
-const PreviewBox = styled(Pane)`
+// Parchment reading box for the partial plaintext.
+const PreviewBox = styled.div`
+  ${paper('parchment')}
   padding: 10px 12px;
-  border-radius: 4px;
-  background: ${({ theme }) => theme.colorScheme.gray[100]};
-  font-family: monospace;
+  border-radius: ${({ theme }) => theme.radius.paper};
+  font-family: ${({ theme }) => theme.type.mono};
+  color: ${({ theme }) => theme.ink.primary};
   font-size: 13px;
   line-height: 1.5;
   white-space: pre-wrap;
@@ -53,48 +69,59 @@ const PreviewBox = styled(Pane)`
   overflow-y: auto;
 `;
 
+const NoteText = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const SectionText = styled(NoteText)`
+  display: block;
+  margin-bottom: 4px;
+`;
+
 // The worksheet feedback meter: how English the draft reads under the
 // current partial square, 0-100 from the trigram scorer. Feedback only
-// — the meter never assigns or solves anything.
-const MeterTrack = styled(Pane)`
+// — the meter never assigns or solves anything. A brass rail with a
+// copper fill, like the candidate-card confidence bars.
+const MeterTrack = styled.div`
   height: 6px;
   border-radius: 3px;
-  background: ${({ theme }) => theme.colorScheme.gray[200]};
+  background: ${({ theme }) => theme.metal.brass.base};
   margin-top: 4px;
 `;
 
-const MeterFill = styled(Pane)<{ $ratio: number }>`
+const MeterFill = styled.div<{ $ratio: number }>`
   width: ${({ $ratio }) => Math.round($ratio * 100)}%;
   height: 6px;
   border-radius: 3px;
-  background: ${({ theme }) => theme.colorScheme.blue[500]};
+  background: ${({ theme }) => theme.metal.copper.base};
   transition: width 0.15s ease-out;
 `;
 
 const EnglishnessMeter: React.FC<{ score: number }> = ({ score }) => {
   const { t } = useTranslation('common');
   return (
-    <Pane marginTop={8} data-guide="englishness-meter">
-      <Text size={200}>
+    <div style={{ marginTop: 8 }} data-guide="englishness-meter">
+      <NoteText>
         {t(`${SCOPE}.englishness`, { score })}
-      </Text>
+      </NoteText>
       <MeterTrack>
         <MeterFill $ratio={Math.max(0, Math.min(1, score / 100))} />
       </MeterTrack>
-    </Pane>
+    </div>
   );
 };
 
 // The optional frequency chart: symbols ranked most-frequent-first with
 // their per-symbol letter suggestion — the reading order of the break.
 // The board stays the working surface; the chart is a hint widget.
-const ChartArea = styled(Pane)`
+const ChartArea = styled.div`
+  ${paper('parchment')}
   padding: 12px;
-  border-radius: 4px;
-  background: ${({ theme }) => theme.colorScheme.gray[100]};
+  border-radius: ${({ theme }) => theme.radius.paper};
+  color: ${({ theme }) => theme.ink.primary};
 `;
 
-const BarsRow = styled(Pane)`
+const BarsRow = styled.div`
   display: flex;
   align-items: flex-end;
   gap: 3px;
@@ -102,7 +129,7 @@ const BarsRow = styled(Pane)`
   flex-wrap: wrap;
 `;
 
-const BarSlot = styled(Pane)<{ $selected: boolean }>`
+const BarSlot = styled.div<{ $selected: boolean }>`
   width: 34px;
   height: 100%;
   display: flex;
@@ -112,27 +139,39 @@ const BarSlot = styled(Pane)<{ $selected: boolean }>`
   cursor: pointer;
   border-radius: 2px;
   border: 1px solid transparent;
-  ${({ $selected, theme }) => ($selected ? `outline: 2px solid ${theme.colorScheme.blue[600]};` : '')}
+  ${({ $selected, theme }) => ($selected ? `outline: 2px solid ${theme.metal.copper.dark};` : '')}
 `;
 
-const Bar = styled.div<{ $fill: string }>`
+const Bar = styled.div<{ $assigned: boolean }>`
   width: 100%;
-  background: ${({ $fill }) => $fill};
+  background: ${({ theme, $assigned }) => ($assigned
+    ? theme.ink.green
+    : theme.paper.rule)};
   border-radius: 2px 2px 0 0;
 `;
 
-const SymbolRow = styled(Pane)`
+const SymbolRow = styled.div`
   display: flex;
   gap: 3px;
   margin-top: 2px;
   flex-wrap: wrap;
 `;
 
-const SymbolCell = styled(Text)`
+const SymbolCell = styled.span`
   width: 34px;
   text-align: center;
   font-size: 9px;
-  font-family: monospace;
+  font-family: ${({ theme }) => theme.type.mono};
+  color: ${({ theme }) => theme.ink.primary};
+`;
+
+const SuggestionLetter = styled.span`
+  color: ${({ theme }) => theme.metal.copper.dark};
+  font-weight: 700;
+`;
+
+const CountText = styled.span`
+  opacity: 0.6;
 `;
 
 const FrequencyChart: React.FC<{
@@ -165,7 +204,7 @@ const FrequencyChart: React.FC<{
               onClick={() => onSelect(symbol)}
             >
               <Bar
-                $fill={mapping[symbol] ? '#30a46c' : '#a9a9a9cc'}
+                $assigned={Boolean(mapping[symbol])}
                 style={{ height: `${(count / maxCount) * 100}%` }}
               />
             </BarSlot>
@@ -176,9 +215,9 @@ const FrequencyChart: React.FC<{
             <SymbolCell key={symbol}>
               {symbol}
               {suggestions[symbol] ? (
-                <span style={{ color: '#0091ff' }}>{suggestions[symbol]}</span>
+                <SuggestionLetter>{suggestions[symbol]}</SuggestionLetter>
               ) : ''}
-              <span style={{ opacity: 0.6 }}>{count}</span>
+              <CountText>{count}</CountText>
             </SymbolCell>
           ))}
         </SymbolRow>
@@ -186,6 +225,30 @@ const FrequencyChart: React.FC<{
     </Tooltip>
   );
 };
+
+const CribList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+const CribPosition = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const SquarePane = styled.div``;
+
+const PreviewPane = styled.div`
+  flex: 1;
+  min-width: 240px;
+`;
+
+const HandoffRow = styled.div`
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+`;
 
 interface SquareDecipherStepProps {
   // The cipher's symbol stream — coordinate pairs in text order.
@@ -307,19 +370,19 @@ const SquareDecipherStep: React.FC<SquareDecipherStepProps> = ({
   const hasAssignments = Object.keys(mapping).length > 0;
 
   return (
-    <Pane marginTop={12} display="flex" flexDirection="column" gap={10}>
+    <StepRoot>
       {history && (
-        <Pane display="flex" gap={8}>
-          <Button size="small" disabled={!history.canUndo} onClick={history.undo}>
+        <HistoryRow>
+          <Button size="sm" variant="secondary" disabled={!history.canUndo} onClick={history.undo}>
             {t('processing.cracker.assignment.undo')}
           </Button>
-          <Button size="small" disabled={!history.canRedo} onClick={history.redo}>
+          <Button size="sm" variant="secondary" disabled={!history.canRedo} onClick={history.redo}>
             {t('processing.cracker.assignment.redo')}
           </Button>
-          <Button size="small" onClick={history.clear}>
+          <Button size="sm" variant="secondary" onClick={history.clear}>
             {t('processing.cracker.assignment.clearAll')}
           </Button>
-        </Pane>
+        </HistoryRow>
       )}
 
       {showFrequencyChart && (
@@ -355,12 +418,13 @@ const SquareDecipherStep: React.FC<SquareDecipherStepProps> = ({
       )}
 
       {cribs && (
-        <Pane display="flex" flexDirection="column" gap="6px">
+        <CribList>
           <CribRow>
-            <Text size={300}>{t(`${SCOPE}.cribLabel`)}</Text>
+            <NoteText>{t(`${SCOPE}.cribLabel`)}</NoteText>
             <Tooltip content={t(`${SCOPE}.cribTooltip`)}>
               <TextInput
                 data-guide="crib-input"
+                mono
                 width="180px"
                 value={cribs.value}
                 placeholder={t(`${SCOPE}.cribPlaceholder`)}
@@ -371,23 +435,23 @@ const SquareDecipherStep: React.FC<SquareDecipherStepProps> = ({
           </CribRow>
           {cribs.matches.slice(0, 8).map(({ start }) => (
             <CribRow key={start}>
-              <Text size={300} fontFamily="monospace">
+              <CribPosition>
                 {t(`${SCOPE}.cribAt`, { position: start })}
-              </Text>
-              <Button size="small" onClick={() => cribs!.onApply(start)}>
+              </CribPosition>
+              <Button size="sm" variant="secondary" onClick={() => cribs!.onApply(start)}>
                 {t(`${SCOPE}.cribApply`)}
               </Button>
             </CribRow>
           ))}
-        </Pane>
+        </CribList>
       )}
 
       {hasAssignments && (
-        <Pane display="flex" gap={16} alignItems="flex-start" flexWrap="wrap">
-          <Pane>
-            <Text size={300} display="block" marginBottom={4}>
+        <HandoffRow>
+          <SquarePane>
+            <SectionText>
               {t(`${SCOPE}.squareLabel`)}
-            </Text>
+            </SectionText>
             <PolybiusSquare
               square={recoveredSquare}
               labels={labels}
@@ -396,11 +460,11 @@ const SquareDecipherStep: React.FC<SquareDecipherStepProps> = ({
               highlightCells={Object.keys(mapping)}
               highlightCell={selectedSymbol ?? undefined}
             />
-          </Pane>
-          <Pane flex={1} minWidth={240}>
-            <Text size={300} display="block" marginBottom={4}>
+          </SquarePane>
+          <PreviewPane>
+            <SectionText>
               {t('processing.cracker.wizard.previewTitle')}
-            </Text>
+            </SectionText>
             <PreviewBox data-guide="plaintext-preview">
               <PartialStream
                 symbols={symbols}
@@ -409,10 +473,10 @@ const SquareDecipherStep: React.FC<SquareDecipherStepProps> = ({
               />
             </PreviewBox>
             {englishness !== null && <EnglishnessMeter score={englishness} />}
-          </Pane>
-        </Pane>
+          </PreviewPane>
+        </HandoffRow>
       )}
-    </Pane>
+    </StepRoot>
   );
 };
 

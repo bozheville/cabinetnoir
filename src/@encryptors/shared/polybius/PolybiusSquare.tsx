@@ -1,7 +1,7 @@
 import React from 'react';
-import { Heading, Pane } from 'evergreen-ui';
 import styled from 'styled-components';
 
+import { GreatPrimer } from '@typography';
 import { cellHighlight, CellHighlightLevel } from '../cracker/highlight';
 import { coordinatesToIndex, foldForSquare, SquareMerge } from './polybius';
 
@@ -10,31 +10,44 @@ import { coordinatesToIndex, foldForSquare, SquareMerge } from './polybius';
 // its row and column — the worked-example, tool and cracker visuals all
 // come from this one component.
 
-const SquareGrid = styled(Pane)<{ $cell: number; $gap: number }>`
-  display: inline-grid;
-  gap: ${({ $gap }) => $gap}px;
-  font-family: monospace;
+const SquareFrame = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 `;
 
-const LabelCell = styled(Pane)<{ $cell: number }>`
+const BoardTitle = styled(GreatPrimer)`
+  color: ${({ theme }) => theme.ink.cream};
+`;
+
+// Typeset type tray: ivory cells, 1px rule lines, typewriter font.
+const SquareGrid = styled.div<{ $cell: number; $gap: number }>`
+  display: inline-grid;
+  gap: ${({ $gap }) => $gap}px;
+  font-family: ${({ theme }) => theme.type.mono};
+`;
+
+const LabelCell = styled.div<{ $cell: number }>`
   width: ${({ $cell }) => $cell}px;
   height: ${({ $cell }) => $cell}px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 10px;
-  color: ${({ theme }) => theme.colors.textLight};
+  color: ${({ theme }) => theme.ink.creamMuted};
 `;
 
-const SquareCell = styled(Pane)<{ $cell: number; $level: CellHighlightLevel }>`
+const SquareCell = styled.div<{ $cell: number; $level: CellHighlightLevel }>`
   width: ${({ $cell }) => $cell}px;
   height: ${({ $cell }) => $cell}px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 13px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.gray[300]};
-  background: ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  background: ${({ theme }) => theme.paper.ivory};
+  color: ${({ theme }) => theme.ink.primary};
   font-weight: 400;
   border-radius: 3px;
   ${({ $level }) => cellHighlight($level)}
@@ -107,12 +120,12 @@ const PolybiusSquare: React.FC<PolybiusSquareProps> = ({
   );
 
   return (
-    <Pane display="flex" flexDirection="column" alignItems="center" gap={6}>
-      {title && <Heading size={400}>{title}</Heading>}
+    <SquareFrame>
+      {title && <BoardTitle>{title}</BoardTitle>}
       <SquareGrid
         $cell={cellSize}
         $gap={2}
-        gridTemplateColumns={`repeat(${size + 1}, ${cellSize}px)`}
+        style={{ gridTemplateColumns: `repeat(${size + 1}, ${cellSize}px)` }}
         data-guide={dataGuide}
       >
         <LabelCell $cell={cellSize} />
@@ -142,7 +155,7 @@ const PolybiusSquare: React.FC<PolybiusSquareProps> = ({
           </React.Fragment>
         ))}
       </SquareGrid>
-    </Pane>
+    </SquareFrame>
   );
 };
 

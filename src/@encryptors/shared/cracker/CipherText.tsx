@@ -1,19 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import theme from '@theme';
 import { NormalizedText } from '../analysis/normalize';
 
-// Palette used across the crackers for repeats, slices and so on.
-export const HIGHLIGHT_COLORS = [
-  '#e5484d', // red
-  '#30a46c', // green
-  '#0091ff', // blue
-  '#f5a623', // amber
-  '#8e4ec6', // purple
-  '#00a2c7', // cyan
-  '#e5683c', // orange
-  '#c738b8', // magenta
-];
+// Palette used across the crackers for repeats, slices and so on:
+// the theme's data inks (specs/leather-deco-redesign/01 §6), cycled
+// per index modulo 8. Kept as an exported name because the cracker
+// kit indexes it directly (`HIGHLIGHT_COLORS[i % HIGHLIGHT_COLORS.length]`).
+export const HIGHLIGHT_COLORS = theme.data;
 
 interface CipherTextProps {
   input: string;
@@ -25,7 +20,7 @@ interface CipherTextProps {
 const Segment = styled.span<{ $color?: string }>`
   color: ${({ $color }) => $color || 'inherit'};
   font-weight: ${({ $color }) => ($color ? 700 : 400)};
-  font-family: monospace;
+  font-family: ${({ theme }) => theme.type.mono};
   white-space: pre-wrap;
   word-break: break-all;
 `;

@@ -1,10 +1,26 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { Heading, Pane, Text } from 'evergreen-ui';
+import styled from 'styled-components';
 
+import { GreatPrimer, Minion } from '@typography';
 import KeyStrip from './KeyStrip';
 import { useCracker } from './useCracker';
 import { useCrackerKey } from '@encryptors/shared/cracker';
+
+const StepRoot = styled.div`
+  width: 100%;
+`;
+
+const StepTitle = styled(GreatPrimer)`
+  color: ${({ theme }) => theme.ink.cream};
+  margin-top: 8px;
+`;
+
+const StepHint = styled(Minion)`
+  display: block;
+  margin-top: 4px;
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
 
 interface StepKeyProps {
   cracker: ReturnType<typeof useCracker>;
@@ -27,11 +43,11 @@ const StepKey: React.FC<StepKeyProps> = ({ cracker }) => {
   }
 
   return (
-    <Pane width="100%">
-      <Heading size={300} marginTop="8px">{t(`${base}yourKey`)}</Heading>
-      <Text size={300} display="block" marginTop="4px">
+    <StepRoot>
+      <StepTitle>{t(`${base}yourKey`)}</StepTitle>
+      <StepHint>
         {t(`${base}keyHint`)}
-      </Text>
+      </StepHint>
       <KeyStrip
         keyLength={keyLength}
         lockedLetters={lockedLetters}
@@ -43,7 +59,7 @@ const StepKey: React.FC<StepKeyProps> = ({ cracker }) => {
         onClear={(slice) => setSliceLetter(slice, '')}
       />
       {/* Use this key button comes in task 25. */}
-    </Pane>
+    </StepRoot>
   );
 };
 

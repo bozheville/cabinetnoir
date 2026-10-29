@@ -1,9 +1,11 @@
 import { useTranslation } from 'next-i18next';
 import Tooltip from '@atoms/Tooltip';
 import React from 'react';
-import { Heading, Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
 
+import { TextInput } from '@atoms';
+import { GreatPrimer, Minion } from '@typography';
+import { paper } from '@theme/mixins';
 import { MAX_KEY_LENGTH } from '@encryptors/shared/analysis';
 import { CrackerAnalysis } from './useCracker';
 import { HintSettings } from './hintSettings';
@@ -11,33 +13,43 @@ import { useCrackerKey } from '@encryptors/shared/cracker';
 
 const MAX_CARDS = 6;
 
-const CardsGrid = styled(Pane)`
+const CardsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 8px;
   margin-top: 12px;
 `;
 
-const Card = styled(Pane)<{ $selected: boolean }>`
+// A vellum index card; the selected one gets a copper frame.
+const Card = styled.div<{ $selected: boolean }>`
+  ${paper('vellum')}
   cursor: pointer;
   padding: 10px 12px;
-  border-radius: 4px;
-  border: 1px solid ${({ theme, $selected }) => ($selected ? theme.colorScheme.blue[500] : 'muted')};
+  border-radius: ${({ theme }) => theme.radius.paper};
+  border: 1px solid ${({ theme, $selected }) => ($selected ? theme.metal.copper.dark : theme.paper.rule)};
   border-width: ${({ $selected }) => ($selected ? '2px' : '1px')};
-  background: ${({ theme, $selected }) => ($selected ? theme.colorScheme.blue[50] : 'transparent')};
+  color: ${({ theme }) => theme.ink.primary};
 `;
 
-const ConfidenceBar = styled(Pane)`
+const CardTitle = styled(GreatPrimer)``;
+
+const CardText = styled(Minion)`
+  display: block;
+  color: ${({ theme }) => theme.ink.secondary};
+`;
+
+// Confidence: a brass rail with a copper fill.
+const ConfidenceBar = styled.div`
   height: 4px;
   border-radius: 2px;
-  background: ${({ theme }) => theme.colorScheme.gray[300]};
+  background: ${({ theme }) => theme.metal.brass.base};
   margin-top: 8px;
   overflow: hidden;
 `;
 
-const ConfidenceFill = styled(Pane)`
+const ConfidenceFill = styled.div`
   height: 100%;
-  background: ${({ theme }) => theme.colorScheme.blue[500]};
+  background: ${({ theme }) => theme.metal.copper.base};
 `;
 
 interface KeyLengthCardsProps {
@@ -88,8 +100,8 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
         <CardsGrid data-guide="key-length-cards">
           {[...byLength.entries()].map(([length, gaps]) => (
             <Card key={length} $selected={selected === length} onClick={() => onSelect(length)}>
-              <Heading size={400}>{length}</Heading>
-              <Text size={300} display="block">{`${t(`${base}repeats.gapsLabel`)}: ${gaps.join(', ')}`}</Text>
+              <CardTitle>{length}</CardTitle>
+              <CardText>{`${t(`${base}repeats.gapsLabel`)}: ${gaps.join(', ')}`}</CardText>
             </Card>
           ))}
         </CardsGrid>
@@ -109,16 +121,16 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
             $selected={selected === candidate.length}
             onClick={() => onSelect(candidate.length)}
           >
-            <Heading size={400}>{candidate.length}</Heading>
-            <Text size={300} display="block">
+            <CardTitle>{candidate.length}</CardTitle>
+            <CardText>
               {t(`${base}keyLengthLabels.${candidate.label}`)}
-            </Text>
-            <Text size={300} display="block">
+            </CardText>
+            <CardText>
               {t(`${base}reason.${candidate.reasonKind}`, {
                 count: candidate.divisorCount,
                 ic: candidate.averageIC.toFixed(3),
               })}
-            </Text>
+            </CardText>
             <ConfidenceBar>
               <ConfidenceFill style={{ width: `${candidate.confidence}%` }} />
             </ConfidenceBar>
@@ -131,6 +143,17 @@ const KeyLengthCards: React.FC<KeyLengthCardsProps> = ({
   );
 };
 
+const OtherRow = styled.div`
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+const OtherLabel = styled(Minion)`
+  color: ${({ theme }) => theme.ink.cream};
+`;
+
 const OtherLengthInput: React.FC<{ selected: number | null; onSelect: (length: number) => void }> = ({
   selected,
   onSelect,
@@ -139,10 +162,11 @@ const OtherLengthInput: React.FC<{ selected: number | null; onSelect: (length: n
   const base = useCrackerKey('wizard.keyLength.');
   const tooltip = useCrackerKey('tooltips.');
   return (
-  <Pane marginTop="12px" display="flex" alignItems="center" gap="8px">
-    <Text size={300}>{t(`${base}otherLabel`)}</Text>
+  <OtherRow>
+    <OtherLabel>{t(`${base}otherLabel`)}</OtherLabel>
     <Tooltip content={t(`${tooltip}otherLength`)}>
     <TextInput
+      mono
       width="80px"
       type="number"
       min={1}
@@ -157,7 +181,7 @@ const OtherLengthInput: React.FC<{ selected: number | null; onSelect: (length: n
       }}
     />
     </Tooltip>
-  </Pane>
+  </OtherRow>
   );
 };
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import { SymbolMapping } from '../analysis/substitution';
@@ -14,7 +13,8 @@ import { SymbolMapping } from '../analysis/substitution';
 // Keyword cracker.
 
 const StreamBox = styled.div`
-  font-family: monospace;
+  font-family: ${({ theme }) => theme.type.mono};
+  color: ${({ theme }) => theme.ink.primary};
   font-size: 13px;
   line-height: 1.6;
   white-space: pre-wrap;
@@ -25,17 +25,15 @@ const PlainSegment = styled.span`
   font-weight: 700;
 `;
 
-const CipherSegment = styled.span<{ theme: { colors: { textLight: string } } }>`
-  color: ${({ theme }) => theme.colors.textLight};
+const CipherSegment = styled.span`
+  color: ${({ theme }) => theme.ink.secondary};
   margin: 0 2px;
 `;
 
-// The amber the assignment board uses for highlighted cells.
-const HIGHLIGHT = '#f5a623';
-
+// The copper the assignment board uses for highlighted cells.
 const HighlightedSegment = styled.span`
   font-weight: 700;
-  color: ${HIGHLIGHT};
+  color: ${({ theme }) => theme.metal.copper.dark};
   margin: 0 2px;
 `;
 

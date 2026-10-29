@@ -1,12 +1,33 @@
 import React from 'react';
-import { Heading, Pane, Text } from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
+import styled from 'styled-components';
 
+import { CipherText, GreatPrimer, Minion } from '@typography';
 import useCracker from './useCracker';
 import SquareDecipherStep from '@encryptors/shared/polybius/SquareDecipherStep';
 import { SQUARE_ALPHABET } from '../adfgvx-encryption';
 import { ENGLISH_FREQUENCY_ORDER } from '../analysis/frequency';
 import type { SymbolMapping } from '@encryptors/shared/analysis/substitution';
+
+const StepRoot = styled.div`
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+const KeysTitle = styled(GreatPrimer)`
+  color: ${({ theme }) => theme.ink.cream};
+`;
+
+const KeyLabel = styled(Minion)`
+  display: block;
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const KeyValue = styled(CipherText)`
+  color: ${({ theme }) => theme.ink.cream};
+`;
 
 interface StepSquareProps {
   cracker: ReturnType<typeof useCracker>;
@@ -52,7 +73,7 @@ const StepSquare: React.FC<StepSquareProps> = ({ cracker }) => {
   }
 
   return (
-    <Pane marginTop={12} display="flex" flexDirection="column" gap={10}>
+    <StepRoot>
       <SquareDecipherStep
         symbols={symbols}
         mapping={mapping}
@@ -71,16 +92,16 @@ const StepSquare: React.FC<StepSquareProps> = ({ cracker }) => {
         fill="auto"
       />
 
-      <Heading size={300}>
+      <KeysTitle>
         {t('processing.adfgvx.cracker.wizard.square.yourKeys')}
-      </Heading>
-      <Pane>
-        <Text size={300} display="block">
+      </KeysTitle>
+      <div>
+        <KeyLabel>
           {t('processing.adfgvx.cracker.wizard.square.transpositionKey')}
-        </Text>
-        <Text size={400} fontFamily="monospace">{cracker.assembledTranspositionKey}</Text>
-      </Pane>
-    </Pane>
+        </KeyLabel>
+        <KeyValue>{cracker.assembledTranspositionKey}</KeyValue>
+      </div>
+    </StepRoot>
   );
 };
 
