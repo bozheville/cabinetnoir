@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components';
 import styled from 'styled-components';
 
 import { Button, Patch } from '@atoms';
-import { stitch } from '@theme/mixins';
+import { stitch, stitchBorder } from '@theme/mixins';
 import { BodyCopy, Caption, GreatPrimer, Minion } from '@typography';
 import { CIPHER_LADDER, getLearningConfig } from '@learning/config';
 
@@ -55,9 +55,9 @@ const Card = styled(Patch)`
     color: ${({ theme }) => theme.ink.primary};
   }
 
-  /* Hover: the stitch turns gold and the card lifts by 2px. */
+  /* Hover: stitch turns gold and the card lifts by 2px. */
   &:hover {
-    ${stitch('all', 'gold', 5)}
+    ${({ theme }) => stitchBorder(theme.thread.gold, 3)}
     transform: translateY(-2px);
   }
 `;
