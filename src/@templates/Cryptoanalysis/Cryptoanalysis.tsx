@@ -5,9 +5,10 @@ import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 
 import Section from '@atoms/Section/Section';
-import CipherTabs from '@molecues/CipherTabs';
+import TabPlates from '@molecues/TabPlates';
 import AtGlanceCard from '@molecues/AtGlanceCard';
 import CipherCracker from '@organisms/CipherCracker/CipherCracker';
+import { ToolCase } from '@organisms';
 import { getExample } from '@learning/examples';
 import { getChallenge } from '@learning/challenges';
 import { PendingExampleContext, PendingExampleLoad } from '@learning/pendingExample';
@@ -18,40 +19,21 @@ const CryptoanalysisSection = styled(Section)`
   flex: 1 0 auto;
 `;
 
-const CryptoanalysisWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  padding: 0;
-  border: 1px solid ${({ theme }) => theme.colorScheme.blue_green[500]};
-
-  box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.colorScheme.blue_green[200]};;
-  margin: 24px auto;
-  background-color: ${({ theme }) => theme.colorScheme.orange[50]};
-  overflow: hidden;
-  border-radius: 8px;
-
-  ${({ theme }) => theme.breakpoints.small} {
-    margin: 4px;
-  }
-
-  ${({ theme }) => theme.breakpoints.desktop} {
-    max-width: 1016px;
-  }
-`;
-
 const IdentifyHint = styled.div`
   margin: 0 auto 8px;
+  max-width: ${({ theme }) => theme.widths.read};
   font-size: 13px;
+  text-align: center;
 
   a {
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.ink.cream};
     text-decoration: underline;
-    text-decoration-color: ${({ theme }) => theme.colorScheme.blue[500]};
+    text-decoration-color: ${({ theme }) => theme.metal.brass.dark};
+    text-underline-offset: 3px;
 
     &:hover {
-      color: ${({ theme }) => theme.colorScheme.blue[600]};
+      color: ${({ theme }) => theme.metal.copper.light};
+      text-decoration-color: ${({ theme }) => theme.metal.copper.base};
     }
   }
 `;
@@ -130,15 +112,14 @@ const Cryptoanalysis: React.FC = () => {
   }
 
   return (
-    <CryptoanalysisSection stitch="both" color="encryptor">
+    <CryptoanalysisSection stitch="both" zone="tool">
       <AtGlanceCard />
-      <CipherTabs algorithm={algorithm} activeTab="cryptoanalysis" />
       {shouldShowIdentifyerLink && (
         <IdentifyHint>
           <Link href="/identify">{t('identify.backEntry')}</Link>
         </IdentifyHint>
       )}
-      <CryptoanalysisWrapper>
+      <ToolCase tabs={<TabPlates algorithm={algorithm} activeTab="cryptoanalysis" />}>
         <PendingExampleContext.Provider value={pending}>
           <CipherCracker
             algorithm={algorithm}
@@ -146,7 +127,7 @@ const Cryptoanalysis: React.FC = () => {
             onInputChange={setInput}
           />
         </PendingExampleContext.Provider>
-      </CryptoanalysisWrapper>
+      </ToolCase>
     </CryptoanalysisSection>
   );
 };

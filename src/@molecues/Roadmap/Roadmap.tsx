@@ -1,9 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
-import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
-import { GreatPrimer, Minion } from '@typography';
+import { Paper } from '@atoms';
+import { Lozenge } from '@ornaments';
+import { Minion } from '@typography';
 
 const Columns = styled.div`
   margin-top: 16px;
@@ -15,17 +16,45 @@ const Columns = styled.div`
   }
 `;
 
-const Item = styled(Text)`
-  display: block;
+const Column = styled(Paper)`
+  padding: 16px;
+  min-width: 0;
+`;
+
+const ColumnTitle = styled(Minion)`
+  color: ${({ theme }) => theme.ink.secondary};
+  margin-bottom: 8px;
+`;
+
+const Item = styled.div`
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
   margin-bottom: 6px;
+  font-family: ${({ theme }) => theme.type.body};
+  font-size: 14px;
+  line-height: 20px;
+  color: ${({ theme }) => theme.ink.primary};
 `;
 
-const DoneItem = styled(Item)`
-  color: ${({ theme }) => theme.colorScheme.gray[700]};
+const Bullet = styled.span`
+  display: inline-flex;
+  flex: none;
+  color: ${({ theme }) => theme.metal.brass.dark};
+  transform: translateY(1px);
 `;
 
-const NextItem = styled(Item)`
-  color: ${({ theme }) => theme.colorScheme.gray[600]};
+const NextBullet = styled(Bullet)`
+  color: ${({ theme }) => theme.metal.copper.dark};
+`;
+
+const Title = styled.h3`
+  margin: 0;
+  font-family: ${({ theme }) => theme.type.body};
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  color: ${({ theme }) => theme.ink.cream};
 `;
 
 // The roadmap section on the home page (#75): what is built and what is
@@ -46,20 +75,30 @@ const Roadmap: React.FC = () => {
 
   return (
     <>
-      <GreatPrimer>{t('home.roadmap.title')}</GreatPrimer>
+      <Title>{t('home.roadmap.title')}</Title>
       <Columns>
-        <Pane>
-          <Minion>{`✓ ${t('home.roadmap.builtTitle')}`}</Minion>
+        <Column>
+          <ColumnTitle>{`✓ ${t('home.roadmap.builtTitle')}`}</ColumnTitle>
           {built.map((key) => (
-            <DoneItem key={key}>{t(key)}</DoneItem>
+            <Item key={key}>
+              <Bullet aria-hidden="true">
+                <Lozenge size={6} />
+              </Bullet>
+              {t(key)}
+            </Item>
           ))}
-        </Pane>
-        <Pane>
-          <Minion>{`→ ${t('home.roadmap.nextTitle')}`}</Minion>
+        </Column>
+        <Column>
+          <ColumnTitle>{`→ ${t('home.roadmap.nextTitle')}`}</ColumnTitle>
           {next.map((key) => (
-            <NextItem key={key}>{t(key)}</NextItem>
+            <Item key={key}>
+              <NextBullet aria-hidden="true">
+                <Lozenge size={6} filled={false} />
+              </NextBullet>
+              {t(key)}
+            </Item>
           ))}
-        </Pane>
+        </Column>
       </Columns>
     </>
   );

@@ -3,7 +3,8 @@ import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
 import Tooltip from '@atoms/Tooltip';
-import { Minion } from '@typography';
+import { Paper } from '@atoms';
+import { Caption, Minion } from '@typography';
 import type { TextProfile } from '@encryptors/shared/identification/profile';
 
 import { FamilyBlock, FamilyBody } from './elements';
@@ -14,28 +15,29 @@ const Grid = styled(FamilyBody)`
   gap: 8px;
 `;
 
-const Metric = styled.div`
+// Gauge tile: parchment paper with an engraved caption and
+// tabular typewriter digits.
+const Metric = styled(Paper).attrs({ tone: 'parchment', elevated: false })`
   display: flex;
   flex-direction: column;
   gap: 2px;
   padding: 8px 10px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.gray[200]};
-  border-radius: 4px;
 `;
 
 const MetricLabel = styled.span`
   display: inline-flex;
   align-items: center;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: ${({ theme }) => theme.colors.text};
+`;
+
+const MetricLabelText = styled(Caption)`
+  color: ${({ theme }) => theme.ink.secondary};
 `;
 
 const MetricValue = styled(Minion)`
   margin: 0;
-  font-family: monospace;
+  color: ${({ theme }) => theme.ink.primary};
+  font-family: ${({ theme }) => theme.type.mono};
+  font-variant-numeric: tabular-nums;
 `;
 
 interface MetricEntry {
@@ -113,7 +115,7 @@ const MetricsPanel: React.FC<{ profile: TextProfile }> = ({ profile }) => {
           <Metric key={metric.label}>
             <MetricLabel>
               <Tooltip content={metric.hint} trigger="children">
-                <span>{metric.label}</span>
+                <MetricLabelText>{metric.label}</MetricLabelText>
               </Tooltip>
             </MetricLabel>
             <MetricValue>{metric.value}</MetricValue>

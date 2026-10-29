@@ -1,45 +1,45 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
+
+import { Button, Paper } from '@atoms';
+import { BodyCopy, Caption, Minion } from '@typography';
 
 import { getLearningConfig } from '@learning/config';
 
-const Card = styled(Pane)`
+// Slim library index card on vellum.
+const Card = styled(Paper)`
   width: 100%;
   max-width: 720px;
   padding: 12px 16px;
-  margin: 0 auto;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.gray[300]};
-  background: ${({ theme }) => theme.colorScheme.gray[50]};
+  margin: 0 auto 16px;
   text-align: left;
 `;
 
-const FactsGrid = styled(Pane)`
+const Description = styled(BodyCopy)`
+  margin: 0;
+`;
+
+const FactsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 4px 16px;
   margin-top: 8px;
 `;
 
-const FactLabel = styled(Text)`
+const FactLabel = styled(Caption)`
   display: block;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: ${({ theme }) => theme.colors.textLight};
+  color: ${({ theme }) => theme.ink.secondary};
 `;
 
-const Toggle = styled.button`
+const FactValue = styled(Minion)`
+  display: block;
+  color: ${({ theme }) => theme.ink.primary};
+`;
+
+const CollapseToggle = styled(Button)`
   margin-top: 8px;
-  border: none;
-  background: none;
-  cursor: pointer;
-  color: ${({ theme }) => theme.colorScheme.blue[500]};
-  font-size: 12px;
-  padding: 0;
 `;
 
 // Short card above the tabs: what the cipher is in five seconds. Data
@@ -57,36 +57,38 @@ const AtGlanceCard: React.FC = () => {
 
   return (
     <Card>
-      <Text size={400} display="block">
-        {t(`learning.${algorithm}.description`)}
-      </Text>
+      <Description>{t(`learning.${algorithm}.description`)}</Description>
       {expanded && (
         <FactsGrid>
-          <Pane>
+          <div>
             <FactLabel>{t('learning.atGlance.type')}</FactLabel>
-            <Text size={300}>{t(config.atGlance.type)}</Text>
-          </Pane>
-          <Pane>
+            <FactValue>{t(config.atGlance.type)}</FactValue>
+          </div>
+          <div>
             <FactLabel>{t('learning.atGlance.difficulty')}</FactLabel>
-            <Text size={300}>{t(config.atGlance.difficulty)}</Text>
-          </Pane>
-          <Pane>
+            <FactValue>{t(config.atGlance.difficulty)}</FactValue>
+          </div>
+          <div>
             <FactLabel>{t('learning.atGlance.era')}</FactLabel>
-            <Text size={300}>{t(config.atGlance.era)}</Text>
-          </Pane>
-          <Pane>
+            <FactValue>{t(config.atGlance.era)}</FactValue>
+          </div>
+          <div>
             <FactLabel>{t('learning.atGlance.origin')}</FactLabel>
-            <Text size={300}>{t(config.atGlance.origin)}</Text>
-          </Pane>
-          <Pane>
+            <FactValue>{t(config.atGlance.origin)}</FactValue>
+          </div>
+          <div>
             <FactLabel>{t('learning.atGlance.modes')}</FactLabel>
-            <Text size={300}>{config.atGlance.modes.map((mode) => t(`learning.modes.${mode}`)).join(' · ')}</Text>
-          </Pane>
+            <FactValue>{config.atGlance.modes.map((mode) => t(`learning.modes.${mode}`)).join(' · ')}</FactValue>
+          </div>
         </FactsGrid>
       )}
-      <Toggle onClick={() => setExpanded(!expanded)}>
+      <CollapseToggle
+        variant="quiet"
+        size="sm"
+        onClick={() => setExpanded(!expanded)}
+      >
         {t(expanded ? 'learning.atGlance.collapse' : 'learning.atGlance.expand')}
-      </Toggle>
+      </CollapseToggle>
     </Card>
   );
 };

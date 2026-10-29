@@ -6,7 +6,10 @@ import Tooltip from '@atoms/Tooltip';
 
 const Term = styled.em`
   font-style: normal;
-  border-bottom: 1px dashed ${({ theme }) => theme.colorScheme.blue[400]};
+  color: ${({ theme }) => theme.metal.copper.dark};
+  text-decoration: underline dotted;
+  text-decoration-color: ${({ theme }) => theme.metal.copper.dark};
+  text-underline-offset: 3px;
   cursor: help;
 `;
 

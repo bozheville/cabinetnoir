@@ -1,29 +1,15 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import Link from 'next/link';
 import styled from 'styled-components';
+
+import { Button } from '@atoms';
 
 import { getChallenge } from '@learning/challenges';
 import { hasCryptoanalysis } from '@learning/config';
 
-const StyledLink = styled(Link)`
+const Inline = styled.span`
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
   margin: 8px 0;
-  padding: 6px 16px;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.blue[500]};
-  background: ${({ theme }) => theme.colorScheme.blue[500]};
-  color: ${({ theme }) => theme.colorScheme.white};
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-
-  &:hover {
-    background: ${({ theme }) => theme.colorScheme.blue[600]};
-  }
 `;
 
 interface ChallengeLinkButtonProps {
@@ -50,9 +36,15 @@ const ChallengeLinkButton: React.FC<ChallengeLinkButtonProps> = ({ challengeId }
     : challenge.mode === 'decrypt' ? 'reverse' : 'direct';
 
   return (
-    <StyledLink href={`/encoder/${challenge.cipher}/${action}?challenge=${challenge.id}`}>
-      {t('learning.tryInTool')}
-    </StyledLink>
+    <Inline>
+      <Button
+        href={`/encoder/${challenge.cipher}/${action}?challenge=${challenge.id}`}
+        variant="primary"
+        size="sm"
+      >
+        {t('learning.tryInTool')}
+      </Button>
+    </Inline>
   );
 };
 

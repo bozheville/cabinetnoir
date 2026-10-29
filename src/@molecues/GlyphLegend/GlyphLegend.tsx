@@ -1,11 +1,12 @@
 import React from 'react';
-import { Pane } from 'evergreen-ui';
 import styled from 'styled-components';
+
+import { Paper } from '@atoms';
 
 import { getPigpenVariant } from '@encryptors/Pigpen/variants';
 import { getGlyphGeometry } from '@encryptors/Pigpen/glyphs';
 
-const Sheet = styled(Pane)`
+const Sheet = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
@@ -13,14 +14,13 @@ const Sheet = styled(Pane)`
   width: 100%;
 `;
 
-const Card = styled(Pane)`
+// Tiny ivory tile: glyph stamp + letter beneath.
+const Card = styled(Paper).attrs({ tone: 'ivory', elevated: false })`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2px 4px;
-  border-radius: 4px;
-  background: ${({ theme }) => theme.colorScheme.white};
-  color: ${({ theme }) => theme.colorScheme.black};
+  color: ${({ theme }) => theme.ink.primary};
 `;
 
 const KeyGlyph = styled.svg`
@@ -29,7 +29,7 @@ const KeyGlyph = styled.svg`
 
 const Letter = styled.span`
   font-size: 10px;
-  color: ${({ theme }) => theme.colorScheme.gray[500]};
+  color: ${({ theme }) => theme.ink.secondary};
 `;
 
 interface GlyphLegendProps {

@@ -6,7 +6,9 @@
     "subtitle": "Learn cryptography by breaking real ciphers, step by step.",
     "hero": {
       "beginner": "New to ciphers? Start with the classics and work your way up — every cipher comes with guided learning and a breaking tool.",
-      "expert": "Already know your stuff? Jump straight to the tool — every cipher in the collection, no tracking, no accounts."
+      "expert": "Already know your stuff? Jump straight to the tool — every cipher in the collection, no tracking, no accounts.",
+      "ctaPrimary": "Choose a cipher",
+      "ctaIdentify": "Identify"
     },
     "startHere": {
       "label": "Start here",

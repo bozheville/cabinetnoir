@@ -1830,7 +1830,9 @@
     "subtitle": "Apprenez la cryptographie en déchiffrant de vrais chiffrements, étape par étape.",
     "hero": {
       "beginner": "Débutant ? Commencez par les classiques et progressez — chaque chiffrement s'accompagne d'un apprentissage guidé et d'un outil de déchiffrement.",
-      "expert": "Vous savez déjà ? Passez directement à l'outil — tout le catalogue de chiffrements, sans traqueurs, sans comptes."
+      "expert": "Vous savez déjà ? Passez directement à l'outil — tout le catalogue de chiffrements, sans traqueurs, sans comptes.",
+      "ctaPrimary": "Choisir un chiffrement",
+      "ctaIdentify": "Identifier"
     },
     "startHere": {
       "label": "Commencer ici",

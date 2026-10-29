@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
 import { GreatPrimer, Minion } from '@typography';
+import { metal, engraved, focusRing } from '@theme/mixins';
 import TextArea from '@molecues/TextArea/TextArea';
 import { identify } from '@encryptors/shared/identification/identify';
 import type { IdentificationResult } from '@encryptors/shared/identification/types';
@@ -11,8 +12,14 @@ import { IdentificationSection, Wrapper, Inner } from './elements';
 import ResultsTree from './ResultsTree';
 import MetricsPanel from './MetricsPanel';
 
+// Cream text on the navy band.
 const InputHeading = styled(GreatPrimer)`
   margin: 0;
+  color: ${({ theme }) => theme.ink.cream};
+`;
+
+const Subtitle = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
 `;
 
 const UploadRow = styled.div`
@@ -21,30 +28,33 @@ const UploadRow = styled.div`
   gap: 12px;
 `;
 
+// The .txt upload control: a brass plate button.
 const UploadLabel = styled.label`
   display: inline-flex;
   align-items: center;
-  padding: 6px 14px;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.blue[500]};
-  color: ${({ theme }) => theme.colorScheme.blue[600]};
-  font-size: 13px;
+  padding: 0 16px;
+  height: 36px;
   cursor: pointer;
-
-  &:hover {
-    background: ${({ theme }) => theme.colorScheme.blue[100]};
-  }
+  ${metal('brass')}
+  ${engraved('metal')}
+  font-size: 12px;
+  ${focusRing}
 
   input {
     display: none;
   }
 `;
 
+const UploadError = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
 const Banner = styled(Minion)`
   padding: 10px 14px;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.orange[500]};
-  background: ${({ theme }) => theme.colorScheme.orange[100]};
+  border: 1px solid ${({ theme }) => theme.metal.copper.dark};
+  border-radius: 2px;
+  background: ${({ theme }) => theme.paper.parchment};
+  color: ${({ theme }) => theme.ink.primary};
 `;
 
 // .txt upload: 100 KB is far beyond any hand cipher anyone will paste;
@@ -86,11 +96,11 @@ const Identification: React.FC = () => {
   };
 
   return (
-    <IdentificationSection stitch="both" color="description">
+    <IdentificationSection stitch="both" zone="identify">
       <Wrapper>
         <Inner>
           <InputHeading>{t('identify.title')}</InputHeading>
-          <Minion>{t('identify.subtitle')}</Minion>
+          <Subtitle>{t('identify.subtitle')}</Subtitle>
           <TextArea
             value={input}
             onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setInput(event.target.value)}
@@ -107,7 +117,7 @@ const Identification: React.FC = () => {
                 onChange={(event) => handleFile(event.target.files?.[0])}
               />
             </UploadLabel>
-            {uploadError && <Minion>{uploadError}</Minion>}
+            {uploadError && <UploadError>{uploadError}</UploadError>}
           </UploadRow>
           {result && result.tier === 'tooShort' && (
             <Banner>{t('identify.tooShort')}</Banner>

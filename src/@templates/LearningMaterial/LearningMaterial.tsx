@@ -3,14 +3,15 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
-import { Heading, Pane, Text } from 'evergreen-ui';
-
 import Section from '@atoms/Section/Section';
-import CipherTabs from '@molecues/CipherTabs';
+import { Paper } from '@atoms';
+import HeadingRule from '@ornaments/HeadingRule';
+import TabPlates from '@molecues/TabPlates';
 import AtGlanceCard from '@molecues/AtGlanceCard';
 import MarkdownContent from '@molecues/MarkdownContent';
 import GlossarySection from '@molecues/GlossarySection';
 import ChallengeCard from '@molecues/ChallengeCard';
+import { Minion } from '@typography';
 import { getChallenges } from '@learning/challenges';
 
 const LearningWrapper = styled(Section)`
@@ -20,6 +21,27 @@ const LearningWrapper = styled(Section)`
   gap: 8px;
   flex: 1 0 auto;
   padding-top: 48px;
+`;
+
+// Each markdown block is a paper sheet on the green band.
+const Sheet = styled(Paper)`
+  width: 100%;
+  max-width: ${({ theme }) => theme.widths.sheet};
+  padding: 24px;
+  margin-top: 8px;
+`;
+
+const TabTitle = styled(HeadingRule)`
+  width: 100%;
+  max-width: ${({ theme }) => theme.widths.sheet};
+`;
+
+const CipherSubtitle = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const PlaceholderText = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
 `;
 
 // Learning tab layout (Learn / History / Practice). Each tab replaces the
@@ -36,18 +58,20 @@ const LearningMaterial: React.FC<LearningMaterialProps> = ({ learningContent = {
   const tab = action as string;
 
   return (
-    <LearningWrapper stitch="both" color="encryptor">
+    <LearningWrapper stitch="both" zone="learn">
       <AtGlanceCard />
-      <CipherTabs algorithm={algorithm as string} activeTab={tab as any} />
-      <Heading size={500}>{t(`learning.tabs.${tab}`)}</Heading>
-      <Text size={300}>{t(`processing.${algorithm as string}.title`)}</Text>
+      <TabPlates algorithm={algorithm as string} activeTab={tab as any} />
+      <TabTitle on="dark">{t(`learning.tabs.${tab}`)}</TabTitle>
+      <CipherSubtitle>{t(`processing.${algorithm as string}.title`)}</CipherSubtitle>
       {Object.keys(learningContent).length === 0 && (
-        <Pane>
-          <Text size={300}>{t('learning.placeholder')}</Text>
-        </Pane>
+        <div>
+          <PlaceholderText>{t('learning.placeholder')}</PlaceholderText>
+        </div>
       )}
       {TOPIC_ORDER.filter((topic) => learningContent[topic]).map((topic) => (
-        <MarkdownContent key={topic} source={learningContent[topic]} />
+        <Sheet key={topic}>
+          <MarkdownContent source={learningContent[topic]} />
+        </Sheet>
       ))}
       {tab === 'learn' && <GlossarySection algorithm={algorithm as string} />}
       {tab === 'practice' && getChallenges(algorithm as string).map((challenge) => (

@@ -1,6 +1,12 @@
 import React from 'react';
+import styled from 'styled-components';
 
-import Minion from '@typography/Minion';
+import { Minion } from '@typography';
+
+// Release info sits on the espresso footer band: cream-muted ink.
+const ReleaseText = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
 
 const ReleaseInfo: React.FC = () => {
   const timeStamp = process.env.NEXT_PUBLIC_RELEASE_DATE;
@@ -13,7 +19,7 @@ const ReleaseInfo: React.FC = () => {
   const date = new Date(parseInt(timeStamp, 10));
   const formattedDate = `${`${date.getDate()}`.padStart(2, '0')}.${`${date.getMonth() + 1}`.padStart(2, '0')}.${date.getFullYear()}`;
   return (
-    <Minion>v.{version} // released on {formattedDate}</Minion>
+    <ReleaseText>v.{version} // released on {formattedDate}</ReleaseText>
   );
 };
 

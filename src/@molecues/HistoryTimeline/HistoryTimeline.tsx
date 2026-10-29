@@ -1,38 +1,53 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
-import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
+
+import { Minion } from '@typography';
 
 import { getTimeline } from '@learning/timelines';
 
-const List = styled(Pane)`
+// Vertical brass rail with copper lozenge markers.
+const List = styled.div`
   margin: 12px 0;
-  border-left: 2px solid ${({ theme }) => theme.colorScheme.blue[300]};
+  border-left: 2px solid ${({ theme }) => theme.metal.brass.base};
   padding-left: 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 `;
 
-const EventRow = styled(Pane)`
+const EventRow = styled.div`
   position: relative;
 
   &::before {
     content: '';
     position: absolute;
-    left: -21px;
-    top: 6px;
+    left: -22px;
+    top: 5px;
     width: 8px;
     height: 8px;
-    border-radius: 50%;
-    background: ${({ theme }) => theme.colorScheme.blue[500]};
+    transform: rotate(45deg);
+    border-radius: 1px;
+    background: ${({ theme }) => theme.metal.copper.base};
   }
 `;
 
-const Year = styled(Text)`
+const Year = styled.span`
   display: block;
+  font-family: ${({ theme }) => theme.type.display};
   font-weight: 700;
-  font-size: 13px;
+  font-variant: small-caps;
+  font-size: 14px;
+  color: ${({ theme }) => theme.ink.primary};
+`;
+
+const EventText = styled(Minion)`
+  display: block;
+  color: ${({ theme }) => theme.ink.primary};
+
+  a {
+    color: ${({ theme }) => theme.metal.copper.dark};
+  }
 `;
 
 interface HistoryTimelineProps {
@@ -54,13 +69,13 @@ const HistoryTimeline: React.FC<HistoryTimelineProps> = ({ cipher }) => {
       {events.map((event) => (
         <EventRow key={event.year + event.textKey}>
           <Year>{event.year}</Year>
-          <Text size={300} display="block">
+          <EventText>
             {t(event.textKey)}
             {' '}
             <a href={event.sourceUrl} target="_blank" rel="noopener noreferrer">
               {t('learning.timeline.source')}
             </a>
-          </Text>
+          </EventText>
         </EventRow>
       ))}
     </List>
