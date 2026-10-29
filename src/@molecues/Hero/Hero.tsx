@@ -13,11 +13,13 @@ const HeroBand = styled(Section)`
 
 // Sunburst anchored to the bottom centre of the band, rays fanning
 // upward behind the nameplate (mock-home.svg: translate(640 512)).
+// The svg is square with the apex at its centre, so the centre must
+// sit exactly on the band's bottom edge.
 const SunburstBack = styled.div`
   position: absolute;
-  bottom: 0;
+  top: 100%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   color: ${({ theme }) => theme.metal.brass.light};
   pointer-events: none;
 `;
