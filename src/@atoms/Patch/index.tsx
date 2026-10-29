@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import { leather as leatherMixin, stitch } from '@theme/mixins';
+import styled, { css } from 'styled-components';
+import { leather as leatherMixin, stitch, stitchBorder } from '@theme/mixins';
 import { ZoneName } from '@theme/zones';
 
 export interface PatchProps extends React.HTMLAttributes<HTMLElement> {
@@ -33,9 +33,16 @@ const Base = styled.section<PatchProps>`
   ${({ vignette }) => (vignette !== undefined ? '' : '')}
   /* The seam: every patch is a stitched piece of leather. Applied here,
      not via props spread — the old spread silently dropped the css. */
-  ${({ stitch: sides, shape, thread }) =>
+  ${({ stitch: sides, shape, thread, theme }) =>
     sides === 'none'
       ? ''
+      : sides === 'all'
+      ? css`
+          /* Cards: replace the solid inset seam ring with a dashed
+             border-image so every edge reads as stitching. */
+          box-shadow: ${theme.shadow.card};
+          ${stitchBorder(thread || theme.thread.cream, 3)}
+        `
       : stitch(
           sides || (shape === 'card' ? 'all' : 'bottom'),
           thread || 'cream',

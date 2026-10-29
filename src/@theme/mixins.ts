@@ -32,7 +32,13 @@ export const leather = (name: string, vignette = 0.18) => css`
   }}
 `;
 
-/** Stitch lines inset from the edges. Pass which sides get thread. */
+/** Dashed stitch as a border-image: visible on any surface, unlike
+ * background stitches that blend modes can mute. */
+export const stitchBorder = (threadColor: string, width = 3) => css`
+  border: ${width}px dashed ${threadColor};
+  border-image: ${stitchTile(threadColor)};
+  border-image-slice: ${width};
+`;
 export const stitch = (sides: 'top' | 'bottom' | 'both' | 'all' | 'none', threadColor = 'cream', inset = 6) => css`
   position: relative;
   ${({ theme }) => {
