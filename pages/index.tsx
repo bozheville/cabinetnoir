@@ -14,7 +14,7 @@ import { GreatPrimer, Minion } from '@typography';
 // patchwork (spec 06 §1, band 3). Only the container is fixed.
 const LadderZone = styled.section`
   flex: 1 0 auto;
-  padding: 48px 0 56px;
+  padding: 64px 0 72px;
 
   & > div {
     margin: 0 auto;
@@ -25,6 +25,8 @@ const LadderZone = styled.section`
 `;
 
 const RoadmapSection = styled(Section)`
+  padding: 64px 0 72px;
+
   & > div {
     margin: 0 auto;
     width: 100%;
@@ -33,6 +35,8 @@ const RoadmapSection = styled(Section)`
 `;
 
 const IdentifySection = styled(Section)`
+  padding: 64px 0 72px;
+
   & > div {
     margin: 0 auto;
     width: 100%;
