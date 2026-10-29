@@ -87,7 +87,7 @@ const Hero: React.FC = () => {
   return (
     <HeroBand stitch="bottom" zone="hero">
       <SunburstBack aria-hidden="true">
-        <Sunburst size={720} radius={360} />
+        <Sunburst size={1400} radius={700} />
       </SunburstBack>
       <HeroInner>
         <NameplatePlate>
