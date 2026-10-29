@@ -50,8 +50,9 @@ const Bubble = styled.span<{
   max-width: 260px;
   padding: 6px 10px;
   border-radius: 4px;
-  background: ${({ theme }) => theme.colors.text};
-  color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.paper.ivory};
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  color: ${({ theme }) => theme.ink.primary};
   font-size: 12px;
   line-height: 1.4;
   text-align: left;
@@ -66,8 +67,8 @@ const Bubble = styled.span<{
     transform: translateX(-50%);
     border: 5px solid transparent;
     ${({ $placement, theme }) => ($placement === 'above'
-      ? `top: 100%; border-top-color: ${theme.colors.text};`
-      : `bottom: 100%; border-bottom-color: ${theme.colors.text};`)}
+      ? `top: 100%; border-top-color: ${({ theme }) => theme.paper.ivory};`
+      : `bottom: 100%; border-bottom-color: ${({ theme }) => theme.paper.ivory};`)}
   }
 `;
 
