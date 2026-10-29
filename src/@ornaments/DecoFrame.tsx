@@ -63,6 +63,11 @@ const Frame = styled.div<DecoFrameProps>`
     &::before { border: 1px solid CanvasText; border-top-color: transparent; }
     &::after, > .deco-frame-corner { display: none; }
   }
+
+  /* Print: the frame is ornament, not content (spec 08). */
+  @media print {
+    &::before, &::after, > .deco-frame-corner { display: none; }
+  }
 `;
 
 const Keystone = styled.div`
@@ -77,6 +82,10 @@ const Keystone = styled.div`
   ${engraved('metal')}
   font-size: 13px;
   white-space: nowrap;
+
+  @media print {
+    display: none;
+  }
 `;
 
 /**

@@ -4,6 +4,7 @@ import { ink, data } from './ink';
 import { zones } from './zones';
 import { space, radius, shadow, widths } from './space';
 import type from './type';
+import { badgeTones } from './badge';
 
 // Theme shape per specs/leather-deco-redesign/07-code-organisation.md.
 // The pastel colorScheme ramps are retired with the redesign.
@@ -17,6 +18,7 @@ const theme = {
   ink,
   data,
   zones,
+  badge: badgeTones,
   // layout tokens
   space,
   radius,

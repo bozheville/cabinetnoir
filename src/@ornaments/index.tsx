@@ -15,7 +15,7 @@ export const SteppedCorner: React.FC<OrnamentProps> = ({ size = 24, ...rest }) =
     <path d="M0.75 23.25 V8.75 H4.75 V4.75 H8.75 V0.75 H23.25" strokeWidth="1.5" />
     <path d="M4.75 23.25 V12.75 H8.75 V8.75 H12.75 V4.75 H23.25" strokeWidth="0.75" />
     <circle cx="4.75" cy="4.75" r="3" fill="currentColor" stroke="none" />
-    <circle cx="4" cy="4" r="1" fill="#fff" fillOpacity="0.55" stroke="none" />
+    <circle cx="4" cy="4" r="1" fill="white" fillOpacity="0.55" stroke="none" />
   </svg>
 );
 

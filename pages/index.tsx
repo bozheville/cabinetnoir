@@ -10,8 +10,11 @@ import { leather } from '@theme/mixins';
 import { Sunburst } from '@ornaments';
 import { GreatPrimer, Minion } from '@typography';
 
-const LadderSection = styled(Section)`
+// The cabinet has no band: the cards lie directly on the desk
+// patchwork (spec 06 §1, band 3). Only the container is fixed.
+const LadderZone = styled.section`
   flex: 1 0 auto;
+  padding: 48px 0 56px;
 
   & > div {
     margin: 0 auto;
@@ -80,12 +83,12 @@ const Index: React.FC = () => {
     <>
       <Hero />
       <StartHereCard />
-      <LadderSection stitch="both" color="description" id="cipher-ladder">
+      <LadderZone id="cipher-ladder">
         <div>
           <CipherLadder />
         </div>
-      </LadderSection>
-      <IdentifySection stitch="both" color="footer">
+      </LadderZone>
+      <IdentifySection stitch="both" zone="identify">
         <div>
           <IdentifyCard href="/identify">
             <CardSunburst aria-hidden="true">
@@ -96,7 +99,7 @@ const Index: React.FC = () => {
           </IdentifyCard>
         </div>
       </IdentifySection>
-      <RoadmapSection stitch="both" color="footer">
+      <RoadmapSection stitch="both" zone="description">
         <div>
           <Roadmap />
         </div>

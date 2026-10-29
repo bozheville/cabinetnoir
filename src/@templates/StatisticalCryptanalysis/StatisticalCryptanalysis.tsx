@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import useStatisticalCryptanalysis from './useStatisticalCryptanalysis';
 import { TextInput } from '@atoms';
+import DecoFrame from '@ornaments/DecoFrame';
 import { parseText } from '@math/parser';
 
 import {
@@ -17,6 +18,15 @@ const DecryptedChar = styled.span<{ $decrypted?: boolean }>`
   ${({ theme, $decrypted }) => ($decrypted
     ? `text-decoration: line-through; text-decoration-color: ${theme.ink.red}; text-decoration-thickness: 2px;`
     : '')}
+`;
+
+// The tool sits in a brass DecoFrame on the tan band, max tool width.
+const StatCase = styled.div`
+  max-width: ${({ theme }) => theme.widths.tool};
+  margin: 24px auto;
+  ${({ theme }) => theme.breakpoints.small} {
+    margin: 16px 12px;
+  }
 `;
 
 
@@ -44,7 +54,9 @@ const StatisticalCryptanalysis: React.FC = () => {
 
   return (
     <StatisticalCryptanalysisSection>
-      <div>Decrypted: {decryptionScore}%</div>
+      <StatCase>
+        <DecoFrame padding="tight">
+          <div>Decrypted: {decryptionScore}%</div>
       <TextWrapper>
         {decrypted.map((item, index) => (
           <Text
@@ -211,6 +223,8 @@ const StatisticalCryptanalysis: React.FC = () => {
       </table>
         </>
       )}
+        </DecoFrame>
+      </StatCase>
     </StatisticalCryptanalysisSection>
   );
 };

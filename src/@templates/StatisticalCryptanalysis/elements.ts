@@ -1,6 +1,6 @@
 import React, { useRef, useState} from 'react';
 import styled, { css } from 'styled-components';
-import Section from '@atoms/Section/Section';
+import { Patch } from '@atoms';
 
 import useStatisticalCryptanalysis from './useStatisticalCryptanalysis';
 import { monoalphabeticEncrypt } from '@encryptors/Monoalphabetic/monoalphabetic-crypt';
@@ -57,7 +57,11 @@ export const Text = styled.span<React.HTMLAttributes<HTMLSpanElement> & {type: s
   font-weight: ${({ type }) => weights[type]};
 `;
 
-export const StatisticalCryptanalysisSection = styled(Section)`
+// Standard page anatomy for the legacy stats tool: tan band (spec 06 §7).
+export const StatisticalCryptanalysisSection = styled(Patch).attrs({
+  leather: 'tan',
+  stitch: 'both',
+})`
   flex: 1 0 auto;
   width: 100%;
 `;

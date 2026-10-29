@@ -91,26 +91,27 @@ const GlanceLine = styled(Minion)`
   }
 `;
 
+// The ladder band is gone: cards lie on the desk patchwork, so the
+// heading and notes use cream inks (spec 06 §1, band 3).
 const UtilitiesNote = styled(BodyCopy)`
   margin-top: 20px;
   text-align: center;
-  color: ${({ theme }) => theme.ink.primary};
+  color: ${({ theme }) => theme.ink.creamMuted};
 
   a {
-    color: ${({ theme }) => theme.metal.copper.dark};
+    color: ${({ theme }) => theme.metal.brass.light};
   }
 `;
-
 
 const LadderHead = styled.div`
   text-align: center;
 
   ${GreatPrimer} {
-    color: ${({ theme }) => theme.ink.primary};
+    color: ${({ theme }) => theme.ink.cream};
   }
 
   ${Minion} {
-    color: ${({ theme }) => theme.ink.secondary};
+    color: ${({ theme }) => theme.ink.creamMuted};
   }
 `;
 

@@ -94,6 +94,22 @@ body {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* Print: strip leather, metal and ornaments. Paper is white, ink is
+   black, text areas print their content (spec 08 "Print"). Chrome
+   (header, footer, tabs) hides itself in its own print rules. */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  * {
+    background-image: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
 `;
 
 const MyApp = ({ Component, pageProps }) => {

@@ -8,6 +8,10 @@ import { Minion } from '@typography';
 import Section from '@atoms/Section/Section';
 
 const FooterWrapper = styled(Section)`
+  /* Print: the footer is site chrome, not article content (spec 08). */
+  @media print {
+    display: none;
+  }
   text-align: center;
 `;
 
