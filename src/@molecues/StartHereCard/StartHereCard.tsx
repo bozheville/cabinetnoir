@@ -13,7 +13,7 @@ const Letter = styled(Paper)`
   margin: 0 auto;
   width: 100%;
   max-width: 640px;
-  padding: 16px;
+  padding: 32px 16px;
   display: flex;
   flex-direction: row;
   align-items: center;

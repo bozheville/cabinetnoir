@@ -23,7 +23,7 @@ const SunburstBack = styled.div`
 const HeroInner = styled.div`
   position: relative;
   margin: 0 auto;
-  padding: 24px 16px;
+  padding: 48px 16px;
   width: 100%;
   max-width: 640px;
   text-align: center;
