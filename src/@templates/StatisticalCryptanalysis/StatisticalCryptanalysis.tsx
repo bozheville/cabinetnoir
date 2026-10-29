@@ -203,7 +203,7 @@ const StatisticalCryptanalysis: React.FC = () => {
       </table>
         </>
       )}
-    <style jsx>{`.decrypted{text-decoration: line-through 2px red;}`}</style>
+    <style>{`.decrypted{text-decoration: line-through 2px red;}`}</style>
     </StatisticalCryptanalysisSection>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon  from './coffee.svg';
+import Icon from './coffee.svg';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';

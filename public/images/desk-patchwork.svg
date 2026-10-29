@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" width="960" height="720">
+<title>Desk patchwork tile (seamless, repeat both axes): espresso #2b1b13, umber #35221a, walnut #3e2a1e; seams #1a100b; thread #8d6a44</title>
+<defs><radialGradient id="v" cx=".5" cy=".45" r=".75"><stop offset="0" stop-color="#fff" stop-opacity=".035"/><stop offset="1" stop-color="#000" stop-opacity=".2"/></radialGradient></defs>
+<polygon points="0,0 420,0 420,260 0,260" fill="#2b1b13"/>
+<polygon points="0,0 420,0 420,260 0,260" fill="url(#v)"/>
+<polygon points="6,7 414,7 414,255 6,255" fill="none" stroke="#000" stroke-opacity=".45" stroke-width="1" stroke-dasharray="6 4"/>
+<polygon points="6,6 414,6 414,254 6,254" fill="none" stroke="#8d6a44" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+<polygon points="0,0 420,0 420,260 0,260" fill="none" stroke="#1a100b" stroke-width="1.5"/>
+<polygon points="420,0 960,0 960,200 420,200" fill="#35221a"/>
+<polygon points="420,0 960,0 960,200 420,200" fill="url(#v)"/>
+<polygon points="426,7 954,7 954,195 426,195" fill="none" stroke="#000" stroke-opacity=".45" stroke-width="1" stroke-dasharray="6 4"/>
+<polygon points="426,6 954,6 954,194 426,194" fill="none" stroke="#8d6a44" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+<polygon points="420,0 960,0 960,200 420,200" fill="none" stroke="#1a100b" stroke-width="1.5"/>
+<polygon points="420,200 960,200 960,440 700,440 620,520 420,520 420,260" fill="#3e2a1e"/>
+<polygon points="420,200 960,200 960,440 700,440 620,520 420,520 420,260" fill="url(#v)"/>
+<polygon points="426,207 954,207 954,435 697.51,435 617.51,515 426,515" fill="none" stroke="#000" stroke-opacity=".45" stroke-width="1" stroke-dasharray="6 4"/>
+<polygon points="426,206 954,206 954,434 697.51,434 617.51,514 426,514" fill="none" stroke="#8d6a44" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+<polygon points="420,200 960,200 960,440 700,440 620,520 420,520 420,260" fill="none" stroke="#1a100b" stroke-width="1.5"/>
+<polygon points="0,260 420,260 420,520 420,720 0,720" fill="#35221a"/>
+<polygon points="0,260 420,260 420,520 420,720 0,720" fill="url(#v)"/>
+<polygon points="6,267 414,267 414,715 6,715" fill="none" stroke="#000" stroke-opacity=".45" stroke-width="1" stroke-dasharray="6 4"/>
+<polygon points="6,266 414,266 414,714 6,714" fill="none" stroke="#8d6a44" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+<polygon points="0,260 420,260 420,520 420,720 0,720" fill="none" stroke="#1a100b" stroke-width="1.5"/>
+<polygon points="420,520 620,520 700,440 960,440 960,720 420,720" fill="#2b1b13"/>
+<polygon points="420,520 620,520 700,440 960,440 960,720 420,720" fill="url(#v)"/>
+<polygon points="426,527 622.49,527 702.49,447 954,447 954,715 426,715" fill="none" stroke="#000" stroke-opacity=".45" stroke-width="1" stroke-dasharray="6 4"/>
+<polygon points="426,526 622.49,526 702.49,446 954,446 954,714 426,714" fill="none" stroke="#8d6a44" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+<polygon points="420,520 620,520 700,440 960,440 960,720 420,720" fill="none" stroke="#1a100b" stroke-width="1.5"/>
+</svg>
