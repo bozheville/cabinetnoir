@@ -58,7 +58,7 @@ export const stitch = (sides: 'top' | 'bottom' | 'both' | 'all' | 'none', thread
         }
       `;
     }
-    const horizontal = sides === 'both';
+    const horizontal = sides === 'both' || sides === 'top' || sides === 'bottom';
     const showTop = sides === 'top' || sides === 'both';
     const showBottom = sides === 'bottom' || sides === 'both';
     return css`
