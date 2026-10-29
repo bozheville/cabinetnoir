@@ -128,7 +128,7 @@ const Wrapper = styled.div<{ $maxWidth: number }>`
   width: 100%;
   max-width: ${({ $maxWidth }) => $maxWidth}px;
   overflow-x: auto;
-  --glyph-accent: ${({ theme }) => theme.colorScheme.red_violet[500]};
+  --glyph-accent: ${({ theme }) => theme.metal.copper.light};
 `;
 
 const GlyphKeyDiagram: React.FC<GlyphKeyDiagramProps> = ({ variant, highlight }) => {
