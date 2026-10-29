@@ -1,5 +1,4 @@
 import React from 'react';
-import { Pane, Select } from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
@@ -7,24 +6,18 @@ import { CrypterProps } from '../types';
 import { usePigpen } from './usePigpen';
 import { PIGPEN_VARIANT_IDS, getPigpenVariant } from './variants';
 import Tooltip from '@atoms/Tooltip';
+import { Cluster, Select, Stack } from '@atoms';
 import GlyphKeyDiagram from '@molecues/GlyphKeyDiagram';
 import GlyphLegend from '@molecues/GlyphLegend';
 import GlyphKeyboard from '@molecues/GlyphKeyboard';
 
-const PigpenWrapper = styled(Pane)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const PigpenWrapper = styled(Stack)`
   width: 100%;
   gap: 8px;
   padding: 0 16px 12px;
 `;
 
-const ControlsRow = styled(Pane)`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+const ControlsRow = styled(Cluster)`
   width: 100%;
 `;
 
@@ -52,20 +45,18 @@ const Pigpen: React.FC<CrypterProps> = ({
   });
 
   return (
-    <PigpenWrapper {...paneProps}>
-        <ControlsRow>
+    <PigpenWrapper {...paneProps} align="center">
+        <ControlsRow justify="center">
           <Tooltip content={t('learning.tooltips.pigpen.variant')}>
             <Select
               data-guide="variant-selector"
               value={variantId}
               onChange={handleVariantChange}
-            >
-              {PIGPEN_VARIANT_IDS.map((id) => (
-                <option value={id} key={id}>
-                  {t(getPigpenVariant(id).nameKey)}
-                </option>
-              ))}
-            </Select>
+              options={PIGPEN_VARIANT_IDS.map((id) => ({
+                value: id,
+                label: t(getPigpenVariant(id).nameKey),
+              }))}
+            />
           </Tooltip>
         </ControlsRow>
         {/* The key figure shows WHY the glyphs look the way they do —

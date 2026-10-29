@@ -1,50 +1,101 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
-import { Button, Heading, Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
+
+import { Badge, Button, Paper, TextInput } from '@atoms';
+import { CipherText, GreatPrimer, Minion } from '@typography';
 
 import { Challenge } from '@learning/challenges';
 import GlyphRenderer from '@molecues/GlyphRenderer';
 
-const Card = styled(Pane)`
+// Telegram envelope: parchment paper.
+const Card = styled(Paper).attrs({ tone: 'parchment' })`
   width: 100%;
   max-width: 720px;
   padding: 12px 16px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.gray[300]};
-  border-radius: 4px;
+  margin: 8px auto;
   text-align: left;
 `;
 
-const Ciphertext = styled(Pane)`
-  font-family: monospace;
-  font-size: 13px;
-  word-break: break-all;
+const HeaderRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+const Title = styled(GreatPrimer)`
+  margin: 0;
+  min-width: 0;
+`;
+
+const Ciphertext = styled(Paper).attrs({ tone: 'ivory', ruled: true })`
   padding: 8px;
   margin: 8px 0;
-  background: ${({ theme }) => theme.colorScheme.gray[100]};
-  border-radius: 4px;
+  word-break: break-all;
+`;
+
+const CiphertextText = styled(CipherText)`
+  font-size: 13px;
 `;
 
 const GlyphCiphertext = styled(GlyphRenderer)`
   display: block;
   padding: 8px;
   margin: 8px 0;
-  background: ${({ theme }) => theme.colorScheme.gray[100]};
-  border-radius: 4px;
-  color: ${({ theme }) => theme.colorScheme.black};
+  background-color: ${({ theme }) => theme.paper.parchment};
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  border-radius: 2px;
+  color: ${({ theme }) => theme.ink.primary};
 `;
 
-const DifficultyBadge = styled(Text)<{ $difficulty: string }>`
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 11px;
-  text-transform: uppercase;
-  background: ${({ theme, $difficulty }) => ({
-    easy: theme.colorScheme.green[100],
-    medium: theme.colorScheme.yellow[100],
-    hard: theme.colorScheme.red[100],
-  } as any)[$difficulty]};
+const Hints = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+`;
+
+const HintText = styled(Minion)`
+  color: ${({ theme }) => theme.ink.primary};
+`;
+
+const AnswerRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+`;
+
+const ResultText = styled(Minion)<{ $tone: 'green' | 'red' }>`
+  color: ${({ theme, $tone }) => ($tone === 'green' ? theme.ink.green : theme.ink.red)};
+`;
+
+const AnswerIsText = styled(CipherText)`
+  font-size: 13px;
+  color: ${({ theme }) => theme.ink.primary};
+`;
+
+const FooterRow = styled.div`
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+`;
+
+const ToolLink = styled(Link)`
+  font-family: ${({ theme }) => theme.type.body};
+  font-size: 13px;
+  line-height: 20px;
+  color: ${({ theme }) => theme.metal.copper.dark};
+  text-decoration: underline;
+  text-underline-offset: 3px;
+`;
+
+const Divider = styled(Minion)`
+  color: ${({ theme }) => theme.ink.secondary};
 `;
 
 const onlyLetters = (value: string): string =>
@@ -74,37 +125,39 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({ challenge }) => {
 
   return (
     <Card>
-      <Pane display="flex" alignItems="center" gap="8px">
-        <Heading size={300}>{t(challenge.titleKey)}</Heading>
-        <DifficultyBadge $difficulty={challenge.difficulty}>
+      <HeaderRow>
+        <Title>{t(challenge.titleKey)}</Title>
+        <Badge tone={challenge.difficulty}>
           {t(`learning.challenge.labels.${challenge.difficulty}`)}
-        </DifficultyBadge>
-      </Pane>
+        </Badge>
+      </HeaderRow>
       {challenge.glyphVariant ? (
         <GlyphCiphertext text={challenge.ciphertext} variant={challenge.glyphVariant} size={26} />
       ) : (
-        <Ciphertext>{challenge.ciphertext}</Ciphertext>
+        <Ciphertext>
+          <CiphertextText>{challenge.ciphertext}</CiphertextText>
+        </Ciphertext>
       )}
 
-      <Pane display="flex" flexDirection="column" gap="4px" marginTop="4px">
+      <Hints>
         {challenge.hints.slice(0, revealedHints).map((hint) => (
-          <Text key={hint} size={300}>
-            {t(hint)}
-          </Text>
+          <HintText key={hint}>{t(hint)}</HintText>
         ))}
         {revealedHints < challenge.hints.length && (
           <Button
-            width="fit-content"
+            variant="secondary"
+            size="sm"
             onClick={() => setRevealedHints(revealedHints + 1)}
           >
             {t('learning.challenge.revealHint')}
           </Button>
         )}
-      </Pane>
+      </Hints>
 
-      <Pane display="flex" alignItems="center" gap="8px" marginTop="8px" flexWrap="wrap">
+      <AnswerRow>
         <TextInput
           width="240px"
+          mono
           placeholder={t('learning.challenge.answerPlaceholder')}
           value={answer}
           onChange={(event) => {
@@ -112,30 +165,26 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({ challenge }) => {
             setChecked('none');
           }}
         />
-        <Button appearance="primary" onClick={check}>
+        <Button variant="primary" size="md" onClick={check}>
           {t('learning.challenge.check')}
         </Button>
         {checked === 'correct' && (
-          <Text size={300} color="green">
-            {t('learning.challenge.correct')}
-          </Text>
+          <ResultText $tone="green">{t('learning.challenge.correct')}</ResultText>
         )}
         {checked === 'wrong' && (
-          <Text size={300} color="red">
-            {t('learning.challenge.wrong')}
-          </Text>
+          <ResultText $tone="red">{t('learning.challenge.wrong')}</ResultText>
         )}
-      </Pane>
+      </AnswerRow>
 
-      <Pane display="flex" gap="8px" marginTop="8px" alignItems="center" flexWrap="wrap">
-        <Link href={toolHref}>
-          <Text size={300} color="blue">
-            {t('learning.challenge.openInTool')}
-          </Text>
-        </Link>
-        <Text size={300}>·</Text>
+      <FooterRow>
+        <ToolLink href={toolHref}>
+          {t('learning.challenge.openInTool')}
+        </ToolLink>
+        <Divider>·</Divider>
         {!showAnswer ? (
           <Button
+            variant="quiet"
+            size="sm"
             onClick={() => {
               setShowAnswer(true);
             }}
@@ -143,13 +192,13 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({ challenge }) => {
             {t('learning.challenge.showAnswer')}
           </Button>
         ) : (
-          <Text size={300} fontFamily="monospace">
+          <AnswerIsText>
             {t('learning.challenge.answerIs')}
             {': '}
             {challenge.answer.toLowerCase()}
-          </Text>
+          </AnswerIsText>
         )}
-      </Pane>
+      </FooterRow>
     </Card>
   );
 };

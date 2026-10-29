@@ -2,27 +2,58 @@ import React from 'react';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
-import { Heading, Pane, Text } from 'evergreen-ui';
+import { Paper } from '@atoms';
+import GlossaryTerm from '@molecues/GlossaryTerm';
+import { BodyCopy, Caption, Minion } from '@typography';
 
 import { getLearningConfig } from '@learning/config';
-import GlossaryTerm from '@molecues/GlossaryTerm';
 
-const List = styled(Pane)`
+const Wrap = styled.div`
+  margin-top: 24px;
+  width: 100%;
+  max-width: ${({ theme }) => theme.widths.read};
+  text-align: left;
+`;
+
+const Title = styled.h4`
+  margin: 0 0 8px;
+  font-family: ${({ theme }) => theme.type.engraved};
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.metal.brass.light};
+`;
+
+// Paper cards in a grid: engraved caption term, body-text definition.
+const List = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 8px 24px;
-  margin-top: 8px;
+  gap: 8px 16px;
 `;
 
-const TermRow = styled(Pane)`
-  line-height: 1.5;
+const TermCard = styled(Paper)`
+  padding: 10px 12px;
 `;
 
-const Links = styled(Pane)`
+const Links = styled.div`
   margin-top: 16px;
   display: flex;
   flex-direction: column;
   gap: 4px;
+`;
+
+const LinksTitle = styled(Caption)`
+  color: ${({ theme }) => theme.metal.brass.light};
+`;
+
+const LinkText = styled(Minion)`
+  color: ${({ theme }) => theme.ink.primary};
+
+  a {
+    color: ${({ theme }) => theme.metal.copper.dark};
+  }
 `;
 
 interface GlossarySectionProps {
@@ -40,28 +71,32 @@ const GlossarySection: React.FC<GlossarySectionProps> = ({ algorithm }) => {
   }
 
   return (
-    <Pane marginTop="24px" width="100%">
-      <Heading size={300}>{t('learning.glossary.title')}</Heading>
+    <Wrap>
+      <Title>{t('learning.glossary.title')}</Title>
       <List>
         {config.glossary.map((id) => (
-          <TermRow key={id}>
-            <GlossaryTerm id={id} />
-            {' — '}
-            <Text size={300}>{t(`glossary.${id}.definition`)}</Text>
-          </TermRow>
+          <TermCard key={id}>
+            <BodyCopy>
+              <GlossaryTerm id={id} />
+              {' — '}
+              {t(`glossary.${id}.definition`)}
+            </BodyCopy>
+          </TermCard>
         ))}
       </List>
       {config.furtherReading.length > 0 && (
         <Links>
-          <Heading size={200}>{t('learning.glossary.furtherReading')}</Heading>
+          <LinksTitle>{t('learning.glossary.furtherReading')}</LinksTitle>
           {config.furtherReading.map((link) => (
-            <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer">
-              <Text size={300}>{t(link.labelKey)}</Text>
-            </a>
+            <LinkText key={link.url}>
+              <a href={link.url} target="_blank" rel="noopener noreferrer">
+                {t(link.labelKey)}
+              </a>
+            </LinkText>
           ))}
         </Links>
       )}
-    </Pane>
+    </Wrap>
   );
 };
 

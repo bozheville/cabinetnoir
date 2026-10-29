@@ -1,11 +1,18 @@
 import React from 'react';
-import { Checkbox, Pane, Select } from 'evergreen-ui';
+import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 
 import { alphabetCollection } from '../constants';
 import { CrypterProps } from '../types';
 import { useAtbash } from './useAtbash';
+import { Cluster, Select, Stack, Toggle } from '@atoms';
 import Tooltip from '@atoms/Tooltip';
+import { ControlGroup } from '@organisms/ControlPanel';
+
+const PaneStack = styled(Stack)`
+  width: 100%;
+  padding: 0 16px 16px;
+`;
 
 const Atbash: React.FC<CrypterProps> = ({
   input,
@@ -28,49 +35,41 @@ const Atbash: React.FC<CrypterProps> = ({
   });
 
   return (
-    <Pane
-      display="flex"
-      flexDirection="row"
-      justifyContent="center"
-      alignItems="center"
-      width="100%"
-      paddingX="16px"
-      paddingBottom="16px"
-      {...paneProps}
-    >
-      {!isDecryptMode && (
-        <>
-          <Checkbox
-            marginLeft="6px"
-            label="Keep spaces"
-            checked={keepSpaces}
-            onChange={handleKeepSpacesChange}
-          />
-          <Checkbox
-            marginLeft="6px"
-            label="Keep case"
-            checked={keepCase}
-            onChange={handleKeepCaseChange}
-          />
-        </>
-      )}
-      <Tooltip content={t('learning.tooltips.atbash.alphabet')}>
-        <Select
-          data-guide="alphabet"
-          onChange={handleAphabetKeyChange}
-        >
-          {alphabetCollection.map((item) => (
-            <option
-              selected={alphabetKey === item.type}
-              value={item.type}
-              key={item.type}
-            >
-              {t(`alphabet.${item.type}`)}
-            </option>
-          ))}
-        </Select>
-      </Tooltip>
-    </Pane>
+    <PaneStack {...paneProps}>
+      <Cluster justify="center" gap={4} wrap>
+        <ControlGroup>
+          <Tooltip content={t('learning.tooltips.atbash.alphabet')}>
+            <Select
+              data-guide="alphabet"
+              defaultValue={alphabetKey}
+              onChange={handleAphabetKeyChange}
+              options={alphabetCollection.map((item) => ({
+                value: item.type,
+                label: t(`alphabet.${item.type}`),
+              }))}
+            />
+          </Tooltip>
+        </ControlGroup>
+        {!isDecryptMode && (
+          <>
+            <ControlGroup>
+              <Toggle
+                label="Keep spaces"
+                checked={keepSpaces}
+                onChange={handleKeepSpacesChange}
+              />
+            </ControlGroup>
+            <ControlGroup>
+              <Toggle
+                label="Keep case"
+                checked={keepCase}
+                onChange={handleKeepCaseChange}
+              />
+            </ControlGroup>
+          </>
+        )}
+      </Cluster>
+    </PaneStack>
   );
 };
 

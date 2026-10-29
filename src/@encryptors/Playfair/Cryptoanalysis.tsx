@@ -1,9 +1,12 @@
 import { useTranslation } from 'next-i18next';
 import React, { useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Button, Heading, Pane, Text, TextInput } from 'evergreen-ui';
+import styled from 'styled-components';
 
+import { Button, Cluster, Stack, TextInput } from '@atoms';
 import Tooltip from '@atoms/Tooltip';
+import { CipherText, Minion } from '@typography';
+import { engraved } from '@theme/mixins';
 import { normalize } from '@encryptors/shared/analysis';
 import { CrackerInput, CrackerWizardFrame, ShortTextWarning } from '@encryptors/shared/cracker';
 import { setKeyHandoff } from '@learning/keyHandoff';
@@ -12,6 +15,55 @@ import { playfairDecrypt } from './playfair-encryption';
 import { autoImprove, improveOnce, keyToSquare, randomSquare, scoreSquare, squareToKey } from './cracker/hillclimb';
 import DigraphPanel from './cracker/DigraphPanel';
 import SquareGrid from './cracker/SquareGrid';
+
+const PaneRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const WizardBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 12px;
+  margin: 0 16px 16px;
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  border-radius: ${({ theme }) => theme.radius.metal};
+`;
+
+const Block = styled.div<{ $marginTop?: number }>`
+  margin-top: ${({ $marginTop }) => ($marginTop ? `${$marginTop}px` : '0')};
+`;
+
+// Engraved brass step label on the leather band.
+const StepLabel = styled.span`
+  ${engraved('leather')}
+  font-size: 11px;
+  display: block;
+`;
+
+const Note = styled(Minion)`
+  display: block;
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const MonoText = styled(CipherText)`
+  display: block;
+  color: ${({ theme }) => theme.ink.cream};
+  word-break: break-all;
+`;
+
+const MonoBlock = styled(CipherText)`
+  display: block;
+  margin-top: 8px;
+  color: ${({ theme }) => theme.ink.cream};
+  word-break: break-all;
+`;
+
+const Row = styled(Cluster)`
+  margin-top: 8px;
+`;
 
 // Playfair cracker on the Cryptoanalysis tab: digraph statistics first,
 // then hill-climbing on the key square with the user watching (and
@@ -112,18 +164,9 @@ const PlayfairCryptoanalysis: React.FC<{
   ];
 
   return (
-    <Pane display="flex" flexDirection="column" width="100%">
+    <PaneRoot>
       <CrackerInput value={input} onChange={onInputChange} />
-      <Pane
-        display="flex"
-        flexDirection="column"
-        width="100%"
-        padding="12px"
-        marginX="16px"
-        marginBottom="16px"
-        border="muted"
-        borderRadius="4px"
-      >
+      <WizardBox>
         <CrackerWizardFrame
           steps={stepNames}
           step={step}
@@ -137,77 +180,78 @@ const PlayfairCryptoanalysis: React.FC<{
           message={normalized && <ShortTextWarning letters={normalized} minLetters={200} />}
         >
           {step === 1 && (
-            <Pane marginTop="12px">
-              <Heading size={100}>{t('processing.playfair.cracker.start.title')}</Heading>
-              <Pane display="flex" alignItems="center" gap="8px" marginTop="8px" flexWrap="wrap">
+            <Block $marginTop={12}>
+              <StepLabel>{t('processing.playfair.cracker.start.title')}</StepLabel>
+              <Row gap={2} wrap>
                 <Tooltip content={t('processing.playfair.cracker.tooltips.startKeyword')}>
                   <TextInput
                     data-guide="start-keyword"
+                    mono
                     width="200px"
                     placeholder={t('processing.playfair.cracker.start.keywordPlaceholder')}
                     value={keyword}
                     onChange={(event) => setKeyword(event.target.value)}
                   />
                 </Tooltip>
-                <Button appearance="primary" onClick={start}>
+                <Button variant="primary" onClick={start}>
                   {t('processing.playfair.cracker.start.startButton')}
                 </Button>
-                <Button onClick={() => { setKeyword(''); setSquare(randomSquare()); setStep(2); setScore(0); setExhausted(false); }}>
+                <Button variant="secondary" onClick={() => { setKeyword(''); setSquare(randomSquare()); setStep(2); setScore(0); setExhausted(false); }}>
                   {t('processing.playfair.cracker.start.randomButton')}
                 </Button>
-              </Pane>
+              </Row>
               {normalized && <DigraphPanel letters={normalized} />}
-            </Pane>
+            </Block>
           )}
 
           {step === 2 && square && (
-            <Pane>
-              <Text size={300} display="block" marginTop="8px">
+            <Block>
+              <Note>
                 {t('processing.playfair.cracker.improve.score', { score })}
-              </Text>
-              <Pane display="flex" gap="8px" marginTop="8px" flexWrap="wrap">
+              </Note>
+              <Row gap={2} wrap>
                 <Tooltip content={t('processing.playfair.cracker.tooltips.improve')}>
-                  <Button appearance="primary" data-guide="improve-square" onClick={runImprove}>
+                  <Button variant="primary" data-guide="improve-square" onClick={runImprove}>
                     {t('processing.playfair.cracker.improve.improveButton')}
                   </Button>
                 </Tooltip>
                 <Tooltip content={t('processing.playfair.cracker.tooltips.auto')}>
-                  <Button onClick={runAuto}>
+                  <Button variant="secondary" onClick={runAuto}>
                     {t('processing.playfair.cracker.improve.autoButton')}
                   </Button>
                 </Tooltip>
-              </Pane>
+              </Row>
               {exhausted && (
-                <Text size={300} display="block" marginTop="4px">
+                <Note>
                   {t('processing.playfair.cracker.improve.noImprovement')}
-                </Text>
+                </Note>
               )}
               <SquareGrid square={square} selected={selectedCells} onSelect={selectCell} />
-              <Pane marginTop="12px">
-                <Text size={300} display="block">{t('processing.cracker.wizard.previewTitle')}</Text>
-                <Text fontFamily="monospace" size={300} display="block" wordBreak="break-all">
+              <Block $marginTop={12}>
+                <Note>{t('processing.cracker.wizard.previewTitle')}</Note>
+                <MonoText>
                   {plaintext.replace(/\s/g, ' ').slice(0, 200)}
-                </Text>
-              </Pane>
-            </Pane>
+                </MonoText>
+              </Block>
+            </Block>
           )}
 
           {step === 3 && square && (
-            <Pane marginTop="12px">
-              <Text size={300} display="block">
+            <Block $marginTop={12}>
+              <Note>
                 {t('processing.playfair.cracker.done.keyLabel')}
-              </Text>
-              <Text fontFamily="monospace" display="block">
+              </Note>
+              <MonoText>
                 {squareToKey(square)}
-              </Text>
-              <Text fontFamily="monospace" size={300} display="block" marginTop="8px" wordBreak="break-all">
+              </MonoText>
+              <MonoBlock>
                 {plaintext.slice(0, 200)}
-              </Text>
-            </Pane>
+              </MonoBlock>
+            </Block>
           )}
         </CrackerWizardFrame>
-      </Pane>
-    </Pane>
+      </WizardBox>
+    </PaneRoot>
   );
 };
 

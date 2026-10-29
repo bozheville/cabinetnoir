@@ -1,40 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Button } from '@atoms';
+import { leather as leatherMixin, paper as paperMixin, metal } from '@theme/mixins';
 
 import Section from '@atoms/Section/Section';
+import ToolCase from '@organisms/ToolCase';
 
-// Shared styled elements of the identification template. The wrapper
-// mirrors the Encryptor wrapper (same borders, radius and background) so
-// the tool feels like part of the same family.
+// Shared styled elements of the identification template. The navy zone
+// holds the results; candidate ciphers sit on paper index cards inside
+// leather family drawers.
 export const IdentificationSection = styled(Section)`
   flex: 1 0 auto;
 `;
 
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  padding: 0;
-  border: 1px solid ${({ theme }) => theme.colorScheme.blue_green[500]};
-
-  box-shadow: 0px 0px 0px 1px ${({ theme }) => theme.colorScheme.blue_green[200]};;
-  margin: 24px auto;
-  background-color: ${({ theme }) => theme.colorScheme.orange[50]};
-  overflow: hidden;
-  border-radius: 8px;
-
-  ${({ theme }) => theme.breakpoints.small} {
-    margin: 4px;
-  }
-
-  ${({ theme }) => theme.breakpoints.desktop} {
-    max-width: 1016px;
-  }
-`;
+// The tool frame: same DecoFrame the encryptor and cracker use.
+export const Wrapper = ToolCase;
 
 export const Inner = styled.div`
-  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -42,11 +24,12 @@ export const Inner = styled.div`
 
 // --- Results tree ---
 
+// Family drawer: a navy leather front with the family nameplate.
 export const FamilyBlock = styled.div`
-  border: 1px solid ${({ theme }) => theme.colorScheme.blue_green[300]};
-  border-radius: 6px;
-  background: ${({ theme }) => theme.colors.background};
+  ${leatherMixin('navy', 0.1)}
+  border-radius: ${({ theme }) => theme.radius.leather};
   overflow: hidden;
+  color: ${({ theme }) => theme.leather.navy.text};
 `;
 
 export const FamilyHeader = styled.button<{ $dimmed: boolean }>`
@@ -56,9 +39,11 @@ export const FamilyHeader = styled.button<{ $dimmed: boolean }>`
   width: 100%;
   padding: 12px 14px;
   border: 0;
-  background: ${({ theme, $dimmed }) => ($dimmed ? theme.colors.background : theme.colorScheme.blue[50])};
+  background: ${({ theme, $dimmed }) => ($dimmed ? 'transparent' : theme.leather.navy.seam)};
   cursor: ${({ $dimmed }) => ($dimmed ? 'default' : 'pointer')};
   text-align: left;
+  color: inherit;
+  font: inherit;
 
   ${({ $dimmed }) => ($dimmed ? 'opacity: 0.75;' : '')}
 `;
@@ -84,14 +69,13 @@ export const CipherGrid = styled.div`
   gap: 8px;
 `;
 
+// Candidate card: a paper index card inside the drawer.
 export const CipherCard = styled.div<{ $dimmed: boolean }>`
+  ${paperMixin('vellum', true)}
   display: flex;
   flex-direction: column;
   gap: 6px;
   padding: 10px 12px;
-  border: 1px solid ${({ theme, $dimmed }) => ($dimmed ? theme.colorScheme.gray[300] : theme.colorScheme.blue[300])};
-  border-radius: 4px;
-  background: ${({ theme, $dimmed }) => ($dimmed ? theme.colors.background : theme.colorScheme.blue[50])};
 
   ${({ $dimmed }) => ($dimmed ? 'opacity: 0.7;' : '')}
 `;
@@ -106,48 +90,54 @@ export const CardHead = styled.div`
 export const CardName = styled.span`
   font-weight: 700;
   font-size: 14px;
-  color: ${({ theme }) => theme.colors.text};
+  color: inherit;
 `;
 
+// Confidence badge: very likely = copper, possible = brass, unlikely = patina.
 export const Badge = styled.span<{ $confidence: string }>`
   flex-shrink: 0;
   padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 700;
+  border-radius: 999px;
+  border: 1px solid ${({ theme }) => theme.metal.brass.shadow};
+  font-family: ${({ theme }) => theme.type.engraved};
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
   color: ${({ theme, $confidence }) => ($confidence === 'veryLikely'
-    ? theme.colorScheme.white
-    : theme.colors.text)};
+    ? theme.ink.primary
+    : theme.ink.primary)};
   background: ${({ theme, $confidence }) => ($confidence === 'veryLikely'
-    ? theme.colorScheme.blue[500]
+    ? theme.metal.copper.base
     : $confidence === 'possible'
-      ? theme.colorScheme.blue[100]
-      : theme.colorScheme.gray[100])};
+      ? theme.metal.brass.base
+      : theme.metal.brass.patina)};
 `;
 
 export const RoadmapBadge = styled.span`
   flex-shrink: 0;
   padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 700;
+  border-radius: 999px;
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  font-family: ${({ theme }) => theme.type.engraved};
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: ${({ theme }) => theme.colors.text};
-  background: ${({ theme }) => theme.colorScheme.gray[200]};
+  color: ${({ theme }) => theme.ink.primary};
+  background: ${({ theme }) => theme.paper.parchment};
 `;
 
+// Confidence bar: brass rail with a copper fill.
 export const ScoreBar = styled.div`
   height: 4px;
   border-radius: 2px;
-  background: ${({ theme }) => theme.colorScheme.gray[200]};
+  background: ${({ theme }) => theme.metal.brass.base};
 
   & > div {
     height: 100%;
     border-radius: 2px;
-    background: ${({ theme }) => theme.colorScheme.blue[500]};
+    background: ${({ theme }) => theme.metal.copper.base};
   }
 `;
 
@@ -160,18 +150,7 @@ export const CardReasons = styled.ul`
   gap: 2px;
 `;
 
-export const BreakButton = styled.button`
+// "Break it" action: primary brass plate.
+export const BreakButton = styled(Button).attrs({ variant: 'primary', size: 'sm' })`
   align-self: flex-start;
-  padding: 6px 14px;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.blue[500]};
-  background: ${({ theme }) => theme.colorScheme.blue[500]};
-  color: ${({ theme }) => theme.colorScheme.white};
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-
-  &:hover {
-    background: ${({ theme }) => theme.colorScheme.blue[600]};
-  }
 `;

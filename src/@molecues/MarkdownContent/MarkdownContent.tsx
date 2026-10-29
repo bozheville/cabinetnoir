@@ -11,13 +11,18 @@ import './placeholders';
 // skipped on purpose.
 
 const Wrapper = styled.div`
-  max-width: 640px;
+  max-width: ${({ theme }) => theme.widths.read};
+  width: 100%;
+  margin: 0 auto;
   line-height: 1.6;
   text-align: left;
+  font-family: ${({ theme }) => theme.type.body};
+  color: ${({ theme }) => theme.ink.primary};
 
   h1, h2, h3, h4, h5, h6 {
     margin: 24px 0 8px;
     font-weight: 700;
+    color: ${({ theme }) => theme.ink.primary};
   }
 
   h1 { font-size: 24px; }
@@ -34,25 +39,27 @@ const Wrapper = styled.div`
   blockquote {
     margin: 8px 0;
     padding: 4px 12px;
-    border-left: 3px solid ${({ theme }) => theme.colorScheme.gray[300]};
-    color: ${({ theme }) => theme.colors.textLight};
+    border-left: 2px solid ${({ theme }) => theme.metal.brass.base};
+    font-style: italic;
+    color: ${({ theme }) => theme.ink.secondary};
   }
 
   pre {
-    background: ${({ theme }) => theme.colorScheme.gray[100]};
+    background: ${({ theme }) => theme.paper.parchment};
+    border: 1px solid ${({ theme }) => theme.paper.rule};
     padding: 12px;
-    border-radius: 4px;
+    border-radius: 2px;
     overflow-x: auto;
-    font-family: monospace;
+    font-family: ${({ theme }) => theme.type.mono};
     font-size: 13px;
   }
 
   code {
-    font-family: monospace;
+    font-family: ${({ theme }) => theme.type.mono};
     font-size: 13px;
-    background: ${({ theme }) => theme.colorScheme.gray[100]};
+    background: ${({ theme }) => theme.paper.parchment};
     padding: 1px 4px;
-    border-radius: 3px;
+    border-radius: 2px;
   }
 
   pre code {
@@ -66,13 +73,19 @@ const Wrapper = styled.div`
   }
 
   th, td {
-    border: 1px solid ${({ theme }) => theme.colorScheme.gray[300]};
+    border: 1px solid ${({ theme }) => theme.paper.rule};
     padding: 4px 8px;
     text-align: left;
   }
 
+  th {
+    background-color: ${({ theme }) => theme.paper.parchment};
+  }
+
   a {
-    color: ${({ theme }) => theme.colorScheme.blue[500]};
+    color: ${({ theme }) => theme.metal.copper.dark};
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 `;
 

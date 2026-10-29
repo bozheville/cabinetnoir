@@ -1,13 +1,23 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
-import { Button, IconButton, Pane, TrashIcon } from 'evergreen-ui';
 import styled from 'styled-components';
+import { metal, focusRing } from '@theme/mixins';
 
 import { getPigpenVariant, DEFAULT_PIGPEN_VARIANT } from '@encryptors/Pigpen/variants';
 import { getGlyphGeometry } from '@encryptors/Pigpen/glyphs';
+import { Button, IconButton } from '@atoms';
+import { EraseIcon } from '@ornaments';
 import Tooltip from '@atoms/Tooltip';
 
-const Grid = styled(Pane)`
+const Keyboard = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  width: 100%;
+`;
+
+const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
@@ -18,24 +28,24 @@ const Grid = styled(Pane)`
   }
 `;
 
+// Small square brass stamp: press to append the glyph.
 const Key = styled.button`
   padding: 4px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.gray[300]};
-  border-radius: 4px;
-  background: ${({ theme }) => theme.colorScheme.white};
-  color: ${({ theme }) => theme.colorScheme.black};
-  cursor: pointer;
   line-height: 0;
+  cursor: pointer;
+  color: ${({ theme }) => theme.ink.primary};
 
-  &:hover,
-  &:focus-visible {
-    border-color: ${({ theme }) => theme.colorScheme.red_violet[300]};
-    background: ${({ theme }) => theme.colorScheme.red_violet[100]};
-  }
+  ${metal('brass')}
+  ${focusRing}
 `;
 
 const KeyGlyph = styled.svg`
   display: block;
+`;
+
+const Actions = styled.div`
+  display: flex;
+  gap: 8px;
 `;
 
 interface GlyphKeyboardProps {
@@ -64,7 +74,7 @@ const GlyphKeyboard: React.FC<GlyphKeyboardProps> = ({
   const keys = Object.keys(glyphOf).sort();
 
   return (
-    <Pane display="flex" flexDirection="column" gap="4px" alignItems="center" width="100%">
+    <Keyboard>
       <Grid>
         {keys.map((letter) => {
           const geometry = getGlyphGeometry(glyphOf[letter]);
@@ -72,7 +82,7 @@ const GlyphKeyboard: React.FC<GlyphKeyboardProps> = ({
             return null;
           }
           return (
-            <Tooltip key={letter} content={t('learning.tooltips.pigpen.key')}>
+            <Tooltip key={letter} content={t('learning.tooltips.pigpen.key')} trigger="children">
               <Key
                 type="button"
                 onClick={() => onKey(letter)}
@@ -109,22 +119,19 @@ const GlyphKeyboard: React.FC<GlyphKeyboardProps> = ({
           );
         })}
       </Grid>
-      <Pane display="flex" gap="8px">
+      <Actions>
         <Tooltip content={t('learning.tooltips.pigpen.delete')}>
-          <Button size="small" onClick={onDelete}>
+          <Button variant="secondary" size="sm" onClick={onDelete}>
             {t('processing.pigpen.deleteKey')}
           </Button>
         </Tooltip>
         <Tooltip content={t('learning.tooltips.pigpen.clear')}>
-          <IconButton
-            size="small"
-            icon={TrashIcon}
-            onClick={onClear}
-            aria-label={t('learning.tooltips.pigpen.clear')}
-          />
+          <IconButton label={t('learning.tooltips.pigpen.clear')} onClick={onClear}>
+            <EraseIcon />
+          </IconButton>
         </Tooltip>
-      </Pane>
-    </Pane>
+      </Actions>
+    </Keyboard>
   );
 };
 

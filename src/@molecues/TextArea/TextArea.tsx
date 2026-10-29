@@ -18,31 +18,35 @@ const StyledTextArea = styled.textarea`
   resize: none;
   flex-grow: 1;
   padding: 16px 16px 32px 16px;
-  border: 0;
-  font-size: 24px;
-  line-height: 36px;
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  border-radius: 0;
+  font-size: 20px;
+  line-height: 32px;
   max-height: 350px;
-  color: ${({ theme }) => theme.colors.text};
-  // Monospace so cipher text keeps its column and cluster alignment
-  // (the Saknussemm clusters, polybius coordinates, …) — one shared
-  // TextArea molecule, every tool benefits.
-  font-family: monospace;
-  border-bottom-left-radius: ${({ theme }) => theme.borderRadius.default}px;
+  color: ${({ theme }) => theme.ink.primary};
+  // Paper sheet: vellum for the input side, parchment for readonly
+  // output. Monospace so cipher text keeps its column and cluster
+  // alignment (the Saknussemm clusters, polybius coordinates, …) —
+  // one shared TextArea molecule, every tool benefits.
+  font-family: ${({ theme }) => theme.type.mono};
+  background-color: ${({ theme }) => theme.paper.vellum};
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent,
+    transparent 31px,
+    ${({ theme }) => theme.paper.rule}22 31px,
+    ${({ theme }) => theme.paper.rule}22 32px
+  );
+  background-origin: content-box;
 
   &[readonly] {
-    background-color: #f2f2f2;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: ${({ theme }) => theme.borderRadius.default}px;
-
-    ${({ theme }) => theme.breakpoints.small} {
-      border-bottom-left-radius: ${({ theme }) => theme.borderRadius.default}px;
-      border-bottom-right-radius: ${({ theme }) => theme.borderRadius.default}px;
-    }
+    background-color: ${({ theme }) => theme.paper.parchment};
   }
 
   &:focus {
-    border: 0;
-    outline: 0;
+    border: 1px solid ${({ theme }) => theme.paper.rule};
+    outline: 2px solid ${({ theme }) => theme.metal.copper.light};
+    outline-offset: -2px;
   }
 `;
 

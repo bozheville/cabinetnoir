@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Pane, Text } from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
-// The transposition grid: columns of the text as vertical strips, shown
-// in READING order (the first-read column is leftmost). Shared by the
-// Columnar tool (static view) and the cracker (drag to rebuild the
+import { paper } from '@theme/mixins';
+
+// The transposition grid: columns of the text as vertical paper strips,
+// shown in READING order (the first-read column is leftmost). Shared by
+// the Columnar tool (static view) and the cracker (drag to rebuild the
 // column order — the user's one big decision; the tool never reorders
 // by itself).
 //
@@ -35,60 +36,86 @@ interface TranspositionGridProps {
 const GRID_COLUMNS = 12;
 const CELL = 22;
 
-const Grid = styled(Pane)`
+const Grid = styled.div`
   display: flex;
-  gap: 4px;
+  gap: 8px;
   overflow-x: auto;
-  padding-bottom: 4px;
+  padding: 6px 0 4px;
 `;
 
+// A paper slip with a metal clip at the top as the grab handle.
 const Strip = styled.div<{ $draggable: boolean; $selected: boolean; $dragging: boolean; $hinted: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
   min-width: 34px;
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.radius.paper};
   border: 1px solid
-    ${({ theme, $selected }) => ($selected ? theme.colorScheme.blue[500] : theme.colorScheme.gray[300])};
-  outline: ${({ $hinted }) => ($hinted ? '2px solid #f5a623' : 'none')};
-  background: ${({ theme, $dragging }) => ($dragging ? theme.colorScheme.gray[100] : 'transparent')};
+    ${({ theme, $selected }) => ($selected ? theme.metal.copper.dark : theme.paper.rule)};
+  outline: ${({ $hinted, theme }) => ($hinted ? `2px dashed ${theme.metal.copper.base}` : 'none')};
+  outline-offset: 1px;
+  background: ${({ theme }) => theme.paper.vellum};
+  box-shadow: ${({ theme, $dragging }) => ($dragging ? theme.shadow.metal : 'none')};
   cursor: ${({ $draggable }) => ($draggable ? 'grab' : 'default')};
   user-select: none;
 `;
 
-const Header = styled(Pane)`
+// The clip: a small metal fitting straddling the slip's top edge.
+const Clip = styled.div<{ $selected: boolean }>`
+  width: 18px;
+  height: 6px;
+  margin: -3px 0 4px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, ${({ theme, $selected }) => ($selected
+    ? theme.metal.copper.highlight
+    : theme.metal.brass.highlight)} 0%, ${({ theme, $selected }) => ($selected
+    ? theme.metal.copper.base
+    : theme.metal.brass.base)} 100%);
+  border: 1px solid ${({ theme, $selected }) => ($selected
+    ? theme.metal.copper.shadow
+    : theme.metal.brass.shadow)};
+`;
+
+const Header = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  border-bottom: 1px solid ${({ theme }) => theme.colorScheme.gray[300]};
+  border-bottom: 1px solid ${({ theme }) => theme.paper.rule};
   padding-bottom: 2px;
   margin-bottom: 2px;
 `;
 
-const Cell = styled(Text)`
-  font-family: monospace;
+const Cell = styled.span`
+  font-family: ${({ theme }) => theme.type.mono};
+  color: ${({ theme }) => theme.ink.primary};
   font-size: 13px;
   line-height: ${CELL}px;
   height: ${CELL}px;
 `;
 
-const OrderBadge = styled(Text)`
+const OrderBadge = styled.span`
+  font-family: ${({ theme }) => theme.type.mono};
   font-size: 9px;
-  color: ${({ theme }) => theme.colors.textLight};
+  color: ${({ theme }) => theme.ink.secondary};
 `;
 
-const KeywordLetter = styled(Text)`
-  font-family: monospace;
+const KeywordLetter = styled.span`
+  font-family: ${({ theme }) => theme.type.mono};
+  color: ${({ theme }) => theme.ink.primary};
   font-weight: 700;
   font-size: 13px;
+`;
+
+const MoveButtons = styled.div`
+  display: flex;
 `;
 
 const MoveButton = styled.button`
   border: none;
   background: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.colorScheme.blue[500]};
+  color: ${({ theme }) => theme.metal.copper.dark};
   font-size: 11px;
   padding: 0 4px;
 `;
@@ -170,11 +197,12 @@ const TranspositionGrid: React.FC<TranspositionGridProps> = ({
             if (event.key === 'ArrowRight') { move(position, 1); event.preventDefault(); }
           }}
         >
+          <Clip $selected={selected === position} />
           <Header>
             {highlight && <OrderBadge>{position + 1}</OrderBadge>}
             {keyword && <KeywordLetter>{keyword[sourceColumn] || '·'}</KeywordLetter>}
             {onReorder && (
-              <Pane display="flex">
+              <MoveButtons>
                 <MoveButton
                   type="button"
                   aria-label={t('processing.cracker.grid.moveLeft')}
@@ -189,7 +217,7 @@ const TranspositionGrid: React.FC<TranspositionGridProps> = ({
                 >
                   ›
                 </MoveButton>
-              </Pane>
+              </MoveButtons>
             )}
           </Header>
           {Array.from({ length: rows }, (_, row) => (

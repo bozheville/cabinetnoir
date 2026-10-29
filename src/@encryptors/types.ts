@@ -1,9 +1,12 @@
-import { PaneProps } from "evergreen-ui";
+import React from 'react';
 
 interface OnProcessingEndProps {
   output: string;
 }
-export interface CrypterProps extends PaneProps {
+
+// The pane root is a plain div: it only ever carried arbitrary div
+// attributes, which HTMLAttributes covers.
+export interface CrypterProps extends React.HTMLAttributes<HTMLDivElement> {
   input: string;
   onProcessingEnd: (props: OnProcessingEndProps) => void;
   isDecryptMode: boolean;

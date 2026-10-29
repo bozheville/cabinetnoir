@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { Heading, Pane, Text, TextInput } from 'evergreen-ui';
+import styled from 'styled-components';
 
+import { Cluster, TextInput } from '@atoms';
+import { ControlGroup } from '@organisms/ControlPanel';
 import Tooltip from '@atoms/Tooltip';
 import { DEFAULT_ALPHABET, cleanAlphabet, isEnglishAlphabet } from './vigenere-encryption';
 import useCracker from './cracker/useCracker';
@@ -11,6 +13,35 @@ import CrackerWizard from './cracker/CrackerWizard';
 import { CrackerInput, CrackerSettings } from '@encryptors/shared/cracker';
 import { usePendingExample } from '@learning/pendingExample';
 import { setKeyHandoff } from '@learning/keyHandoff';
+import { Minion } from '@typography';
+
+const PaneRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const AlphabetRow = styled(Cluster)`
+  padding: 12px 16px;
+`;
+
+const WizardBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 12px;
+  margin: 0 16px 16px;
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  border-radius: ${({ theme }) => theme.radius.metal};
+`;
+
+const UnsupportedNote = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const FallbackBlock = styled.div`
+  padding: 16px;
+`;
 
 // Vigenère cracker on the Cryptoanalysis tab: the guided wizard owns the
 // page. "Use this key" hands the recovered key to the Tool tab (in-memory
@@ -61,50 +92,33 @@ const VigenereCryptoanalysis: React.FC<{
   };
 
   return (
-    <Pane
-      display="flex"
-      flexDirection="column"
-      width="100%"
-    >
+    <PaneRoot>
       <CrackerInput value={input} onChange={onInputChange} />
-      <Pane
-        display="flex"
-        flexDirection="row"
-        justifyContent="center"
-        alignItems="center"
-        paddingX="16px"
-        paddingY="12px"
-      >
-        <Heading size={100} data-guide="alphabet">{t('processing.vigenere.cracker.alphabetLabel')}</Heading>
-        <Tooltip content={t('processing.vigenere.cracker.tooltips.alphabet')}>
-          <TextInput
-            width="280px"
-            fontFamily="monospace"
-            value={customAlphabet}
-            onChange={handleAlphabetChange}
-          />
-        </Tooltip>
-      </Pane>
+      <AlphabetRow justify="center" gap={4}>
+        <ControlGroup>
+          <Tooltip content={t('processing.vigenere.cracker.tooltips.alphabet')}>
+            <TextInput
+              data-guide="alphabet"
+              label={t('processing.vigenere.cracker.alphabetLabel')}
+              mono
+              width="280px"
+              value={customAlphabet}
+              onChange={handleAlphabetChange}
+            />
+          </Tooltip>
+        </ControlGroup>
+      </AlphabetRow>
       {canCrack ? (
-        <Pane
-          display="flex"
-          flexDirection="column"
-          width="100%"
-          padding="12px"
-          marginX="16px"
-          marginBottom="16px"
-          border="muted"
-          borderRadius="4px"
-        >
+        <WizardBox>
           <CrackerSettings config={hintConfig} onChange={setHintConfig} keys={HINT_KEYS} i18nScope="processing.vigenere.cracker" />
           <CrackerWizard cracker={cracker} onUseKey={handleUseKey} onSkip={handleSkip} />
-        </Pane>
+        </WizardBox>
       ) : (
-        <Pane padding="16px">
-          <Text>{t('processing.vigenere.cracker.alphabetUnsupported')}</Text>
-        </Pane>
+        <FallbackBlock>
+          <UnsupportedNote>{t('processing.vigenere.cracker.alphabetUnsupported')}</UnsupportedNote>
+        </FallbackBlock>
       )}
-    </Pane>
+    </PaneRoot>
   );
 };
 

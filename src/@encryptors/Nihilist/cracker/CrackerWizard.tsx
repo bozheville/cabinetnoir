@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Button, Pane, Text } from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
+import { Button } from '@atoms';
+import { CipherText, Minion } from '@typography';
 import {
   findConflicts,
   scoreTrigrams,
@@ -45,12 +46,39 @@ const KEY_NUMBERS = [1, 2, 3, 4, 5].flatMap((row) =>
 // The board's cells laid out as the square itself: 11–55 in reading order.
 const SQUARE_COORDINATES = squareCoordinates(5);
 
-const StepText = styled(Text)`
+const StepText = styled(Minion)`
   display: block;
   margin-bottom: 8px;
+  color: ${({ theme }) => theme.ink.creamMuted};
 `;
 
-const KeyGrid = styled(Pane)`
+const StepTextTop = styled(StepText)`
+  margin-top: 12px;
+`;
+
+const InputChangedNote = styled(Minion)`
+  display: block;
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const StepBlock = styled.div`
+  margin-top: 12px;
+`;
+
+const ColumnBlock = styled.div`
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+const ColumnNav = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+const KeyGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 52px);
   gap: 6px;
@@ -58,31 +86,92 @@ const KeyGrid = styled(Pane)`
   margin: 8px 0;
 `;
 
+// One of the 25 possible key numbers: brass-filled when pinned
+// (the shared cell-highlight language), parchment-dimmed when the
+// range constraint rules it out.
 const KeyButton = styled.button<{
   $pinned: boolean;
   $impossible: boolean;
 }>`
   width: 52px;
   height: 34px;
-  font-family: monospace;
+  font-family: ${({ theme }) => theme.type.mono};
+  color: ${({ theme }) => theme.ink.primary};
   font-weight: ${({ $pinned }) => ($pinned ? 700 : 400)};
   border-radius: 4px;
-  border: 1px solid ${({ $pinned, theme }) => (
-    $pinned ? theme.colorScheme.blue[500] : theme.colorScheme.gray[300]
-  )};
-  background: ${({ $pinned, $impossible, theme }) => (
-    $pinned ? theme.colorScheme.blue[100]
-      : $impossible ? theme.colorScheme.gray[100]
-        : theme.colors.background
-  )};
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  background: ${({ theme }) => theme.paper.ivory};
   opacity: ${({ $impossible }) => ($impossible ? 0.4 : 1)};
   cursor: pointer;
+
+  ${({ theme, $pinned }) => ($pinned
+    ? `background: ${theme.metal.brass.light}59; border-color: ${theme.metal.brass.dark};`
+    : '')}
+  ${({ theme, $impossible }) => ($impossible
+    ? `background: ${theme.paper.parchment};`
+    : '')}
 `;
 
-const ValueRow = styled(Text)<{ $ok: boolean }>`
-  font-family: monospace;
-  font-size: 13px;
-  color: ${({ $ok, theme }) => ($ok ? theme.colorScheme.blue_green[600] : theme.colorScheme.red[600])};
+const ColumnText = styled(Minion)`
+  color: ${({ theme }) => theme.ink.cream};
+`;
+
+const PinnedRow = styled(Minion)`
+  color: ${({ theme }) => theme.ink.cream};
+  font-family: ${({ theme }) => theme.type.mono};
+`;
+
+const FeedbackList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+`;
+
+const ValueRow = styled(Minion)<{ $ok: boolean }>`
+  font-family: ${({ theme }) => theme.type.mono};
+  color: ${({ $ok, theme }) => ($ok ? theme.metal.brass.base : theme.ink.red)};
+`;
+
+const DoneBlock = styled.div`
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+const DoneRow = styled.div`
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+`;
+
+const DoneKeyLabel = styled(Minion)`
+  display: block;
+  margin-bottom: 4px;
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const DoneKeyStack = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+const DoneKey = styled(Minion)`
+  color: ${({ theme }) => theme.ink.cream};
+  font-family: ${({ theme }) => theme.type.mono};
+  font-size: 16px;
+`;
+
+// The recovered keyword: engraved brass on the leather.
+const KeywordGuess = styled(Minion)`
+  color: ${({ theme }) => theme.metal.brass.light};
+  font-size: 16px;
+  font-weight: 700;
+`;
+
+const PlainNote = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
 `;
 
 interface CrackerWizardProps {
@@ -310,9 +399,9 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
       message={(
         <>
           {hasInputChanged && (
-            <Text size={300} color="amber500" display="block">
+            <InputChangedNote>
               {t('processing.cracker.wizard.inputChanged')}
-            </Text>
+            </InputChangedNote>
           )}
           {numbers.length > 0 && (
             <ShortTextWarning letters={'x'.repeat(Math.min(numbers.length, 200))} />
@@ -321,12 +410,12 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
       )}
     >
       {step === 1 && (
-        <Pane marginTop={12}>
-          <StepText size={300}>
+        <StepBlock>
+          <StepText>
             {t('processing.nihilist.cracker.wizard.length.hint', { count: numbers.length })}
           </StepText>
           {candidates.length === 0 ? (
-            <StepText size={300}>{t('processing.nihilist.cracker.wizard.length.tooShort')}</StepText>
+            <StepText>{t('processing.nihilist.cracker.wizard.length.tooShort')}</StepText>
           ) : (
             <CandidateCards
               items={candidates.map((candidate) => ({
@@ -344,43 +433,45 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
               dataGuide="key-length-cards"
             />
           )}
-        </Pane>
+        </StepBlock>
       )}
 
       {step === 2 && (
-        <Pane marginTop={12} display="flex" flexDirection="column" gap={8}>
-          <StepText size={300}>
+        <ColumnBlock>
+          <StepText>
             {t('processing.nihilist.cracker.wizard.key.hint')}
           </StepText>
-          <Pane display="flex" alignItems="center" gap={8}>
+          <ColumnNav>
             <Button
-              size="small"
+              size="sm"
+              variant="secondary"
               disabled={column === 0}
               onClick={() => setColumn(column - 1)}
             >
               ←
             </Button>
-            <Text size={300}>
+            <ColumnText>
               {t('processing.nihilist.cracker.wizard.key.column', {
                 current: column + 1,
                 total: length,
               })}
-            </Text>
+            </ColumnText>
             <Button
-              size="small"
+              size="sm"
+              variant="secondary"
               disabled={column >= length - 1}
               onClick={() => setColumn(column + 1)}
             >
               →
             </Button>
-            <Text size={300} fontFamily="monospace">
+            <PinnedRow>
               {Array.from({ length }, (_, index) => (
                 typeof pinned[index] === 'number'
                   ? String(pinned[index]).padStart(2, '0')
                   : '··'
               )).join(' ')}
-            </Text>
-          </Pane>
+            </PinnedRow>
+          </ColumnNav>
           <KeyGrid data-guide="key-number-grid">
             {KEY_NUMBERS.map((value) => (
               <KeyButton
@@ -397,25 +488,25 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
             ))}
           </KeyGrid>
           {feedback && (
-            <Pane display="flex" flexDirection="column" gap={2} data-guide="column-feedback">
+            <FeedbackList data-guide="column-feedback">
               {feedback.map(({ value, ok }) => (
                 <ValueRow key={value} $ok={ok}>
                   {ok ? '✓' : '✗'} {value}
                 </ValueRow>
               ))}
-            </Pane>
+            </FeedbackList>
           )}
-          <StepText size={300}>
+          <StepText>
             {t('processing.nihilist.cracker.wizard.key.feedback')}
           </StepText>
-        </Pane>
+        </ColumnBlock>
       )}
 
       {step === 3 && (
         <>
-          <StepText size={300} marginTop={12}>
+          <StepTextTop>
             {t('processing.nihilist.cracker.wizard.square.hint')}
-          </StepText>
+          </StepTextTop>
           <SquareDecipherStep
             symbols={coordinates}
             mapping={mapping}
@@ -437,35 +528,35 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
       )}
 
       {step === 4 && (
-        <Pane marginTop={12} display="flex" flexDirection="column" gap={8}>
-          <StepText size={300}>
+        <DoneBlock>
+          <StepText>
             {t('processing.nihilist.cracker.wizard.done.hint')}
           </StepText>
-          <Pane display="flex" gap={16} flexWrap="wrap">
-            <Pane>
-              <Text size={300} display="block" marginBottom={4}>
+          <DoneRow>
+            <div>
+              <DoneKeyLabel>
                 {t('processing.nihilist.cracker.wizard.done.square')}
-              </Text>
+              </DoneKeyLabel>
               <PolybiusSquare square={recoveredSquare} />
-            </Pane>
-            <Pane display="flex" flexDirection="column" gap={6}>
-              <Text size={300} display="block">
+            </div>
+            <DoneKeyStack>
+              <DoneKeyLabel>
                 {t('processing.nihilist.cracker.wizard.done.keyLabel')}
-              </Text>
-              <Text size={400} fontFamily="monospace">{recoveredKey}</Text>
+              </DoneKeyLabel>
+              <DoneKey>{recoveredKey}</DoneKey>
               {keywordGuess && (
-                <Text size={400} color="green600">
+                <KeywordGuess>
                   {t('processing.nihilist.cracker.wizard.done.keyword', { keyword: keywordGuess })}
-                </Text>
+                </KeywordGuess>
               )}
               {!complete && (
-                <Text size={300} color="amber500">
+                <PlainNote>
                   {t('processing.nihilist.cracker.wizard.done.incomplete')}
-                </Text>
+                </PlainNote>
               )}
-            </Pane>
-          </Pane>
-        </Pane>
+            </DoneKeyStack>
+          </DoneRow>
+        </DoneBlock>
       )}
     </CrackerWizardFrame>
   );

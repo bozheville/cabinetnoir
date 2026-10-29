@@ -18,32 +18,12 @@ module.exports = {
         as: '*.js',
       },
     },
-    resolveAlias: {
-      // evergreen-ui's toaster singleton runs ReactDOM.render at import
-      // time (removed in React 19), in every version up to 7.1.9. The
-      // app never calls the toaster, so alias it to a no-op stub. Nothing
-      // in the app imports it directly, so the stub is safe in production
-      // too (prod tree-shakes it away either way).
-      'evergreen-ui/esm/toaster': './evergreen-toaster.dev-stub.js',
-      'evergreen-ui/esm/toaster/src/index.js': './evergreen-toaster.dev-stub.js',
-      'evergreen-ui/esm/toaster/src/Toaster.js': './evergreen-toaster.dev-stub.js',
-    },
   },
-  webpack(config, { dev }) {
+  webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack"]
     });
-
-    if (dev) {
-      // The toaster singleton runs ReactDOM.render at import time (React 19
-      // removed it). Prod tree-shakes it away; dev keeps the barrel, so alias
-      // the real module files to a no-op stub.
-      const stub = path.join(__dirname, 'evergreen-toaster.dev-stub.js');
-      config.resolve.alias[path.join(__dirname, 'node_modules/evergreen-ui/esm/toaster')] = stub;
-      config.resolve.alias[path.join(__dirname, 'node_modules/evergreen-ui/esm/toaster/src/index.js')] = stub;
-      config.resolve.alias[path.join(__dirname, 'node_modules/evergreen-ui/esm/toaster/src/Toaster.js')] = stub;
-    }
 
     return config;
   },

@@ -1,8 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
-import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
+import { Paper } from '@atoms';
+import { Minion } from '@typography';
 import {
   BeaufortVariant,
   DEFAULT_ALPHABET,
@@ -12,36 +13,47 @@ import {
 // Beaufort the row reads the alphabet backwards from the key letter
 // (C = K − P); for the variant it is the ordinary shifted row (C = P − K).
 // The cell where the first input letter meets the current key letter is
-// highlighted, so the lookup the cipher performs is literally visible.
-const Grid = styled(Pane)`
-  display: grid;
-  grid-template-columns: 26px repeat(26, 17px);
-  font-family: monospace;
-  font-size: 11px;
-  line-height: 17px;
-  margin-top: 10px;
+// highlighted with a copper frame, so the lookup the cipher performs is
+// literally visible.
+const Sheet = styled(Paper)`
+  margin-top: 8px;
+  padding: 8px;
   overflow-x: auto;
 `;
 
-const HeadCell = styled(Text)`
-  font-family: monospace;
-  font-size: 11px;
-  text-align: center;
-  color: ${({ theme }) => theme.colors.textLight};
+// Secondary note on the leather panel reads cream, not the paper-ink grey.
+const Note = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
 `;
 
-const RowLabel = styled(Text)`
-  font-family: monospace;
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 26px repeat(26, 17px);
+  font-family: ${({ theme }) => theme.type.mono};
+  font-size: 11px;
+  line-height: 17px;
+`;
+
+const HeadCell = styled.span`
+  font-family: ${({ theme }) => theme.type.mono};
+  font-size: 11px;
+  text-align: center;
+  color: ${({ theme }) => theme.ink.secondary};
+`;
+
+const RowLabel = styled.span`
+  font-family: ${({ theme }) => theme.type.mono};
   font-size: 11px;
   font-weight: 700;
   text-align: center;
 `;
 
-const Cell = styled(Text)<{ $highlight: boolean }>`
-  font-family: monospace;
+const Cell = styled.span<{ $highlight: boolean }>`
+  font-family: ${({ theme }) => theme.type.mono};
   font-size: 11px;
   text-align: center;
-  background: ${({ $highlight, theme }) => ($highlight ? theme.colorScheme.blue[200] : 'transparent')};
+  background: ${({ $highlight, theme }) => ($highlight ? `${theme.metal.copper.light}40` : 'transparent')};
+  border: 1px solid ${({ $highlight, theme }) => ($highlight ? theme.metal.copper.base : 'transparent')};
   border-radius: 2px;
 `;
 
@@ -84,32 +96,34 @@ const TabulaRecta: React.FC<TabulaRectaProps> = ({
   };
 
   return (
-    <Pane marginTop="8px">
-      <Text size={300}>
+    <div>
+      <Note>
         {variant === 'beaufort'
           ? t('processing.beaufort.tool.tabula.beaufort')
           : t('processing.beaufort.tool.tabula.variant')}
-      </Text>
-      <Grid>
-        <span />
-        {alphabet.split('').map((letter) => (
-          <HeadCell key={`head-${letter}`}>{letter}</HeadCell>
-        ))}
-        {keyLetters.map((keyLetter) => (
-          <React.Fragment key={`row-${keyLetter}`}>
-            <RowLabel>{keyLetter}</RowLabel>
-            {alphabet.split('').map((plainLetter, plainIndex) => {
-              const highlight = keyLetter === firstKey && plainLetter === firstPlain;
-              return (
-                <Cell key={`cell-${keyLetter}-${plainLetter}`} $highlight={highlight}>
-                  {alphabet[rowIndexFor(keyLetter, plainIndex)]}
-                </Cell>
-              );
-            })}
-          </React.Fragment>
-        ))}
-      </Grid>
-    </Pane>
+      </Note>
+      <Sheet>
+        <Grid>
+          <span />
+          {alphabet.split('').map((letter) => (
+            <HeadCell key={`head-${letter}`}>{letter}</HeadCell>
+          ))}
+          {keyLetters.map((keyLetter) => (
+            <React.Fragment key={`row-${keyLetter}`}>
+              <RowLabel>{keyLetter}</RowLabel>
+              {alphabet.split('').map((plainLetter, plainIndex) => {
+                const highlight = keyLetter === firstKey && plainLetter === firstPlain;
+                return (
+                  <Cell key={`cell-${keyLetter}-${plainLetter}`} $highlight={highlight}>
+                    {alphabet[rowIndexFor(keyLetter, plainIndex)]}
+                  </Cell>
+                );
+              })}
+            </React.Fragment>
+          ))}
+        </Grid>
+      </Sheet>
+    </div>
   );
 };
 

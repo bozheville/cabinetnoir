@@ -1,8 +1,8 @@
 import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
-import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
+import { Minion } from '@typography';
 import { Repeat } from '@encryptors/shared/analysis';
 import { CipherText, HIGHLIGHT_COLORS, useCrackerKey } from '@encryptors/shared/cracker';
 import KeyLengthCards from './KeyLengthCards';
@@ -12,21 +12,32 @@ import { HintSettings } from './hintSettings';
 // Longer repeats are more meaningful than stray 3-grams.
 const MAX_HIGHLIGHTED_REPEATS = 6;
 
-const RepeatsList = styled(Pane)`
+const StepRoot = styled.div`
+  width: 100%;
+`;
+
+const RepeatsList = styled.div`
   margin-top: 8px;
   display: flex;
   flex-direction: column;
   gap: 4px;
 `;
 
-const RepeatRow = styled(Text)<{ $color: string; $dimmed: boolean }>`
+// One row per repeat: the data ink of its slices as the left rule.
+const RepeatRow = styled.div<{ $color: string; $dimmed: boolean }>`
   cursor: default;
-  font-family: monospace;
+  font-family: ${({ theme }) => theme.type.mono};
   font-size: 12px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.ink.cream};
   opacity: ${({ $dimmed }) => ($dimmed ? 0.35 : 1)};
   border-left: 3px solid ${({ $color }) => $color};
   padding-left: 8px;
+`;
+
+const EmptyNote = styled(Minion)`
+  display: block;
+  margin-top: 8px;
+  color: ${({ theme }) => theme.ink.creamMuted};
 `;
 
 interface StepKeyLengthRepeatsProps {
@@ -73,7 +84,7 @@ const StepKeyLength: React.FC<StepKeyLengthRepeatsProps> = ({
   };
 
   return (
-    <Pane width="100%">
+    <StepRoot>
       {analysis ? (
         <>
           <CipherText input={input} normalized={analysis.normalized} colorFor={colorFor} />
@@ -97,13 +108,13 @@ const StepKeyLength: React.FC<StepKeyLengthRepeatsProps> = ({
               })}
             </RepeatsList>
           ) : (
-            <Text size={300} display="block" marginTop="8px">
+            <EmptyNote>
               {t(`${base}none`)}
-            </Text>
+            </EmptyNote>
           )}
         </>
       ) : (
-        <Text size={300}>{t(`${base}emptyInput`)}</Text>
+        <EmptyNote>{t(`${base}emptyInput`)}</EmptyNote>
       )}
 
       {/* Key length cards come in task 19. */}
@@ -113,7 +124,7 @@ const StepKeyLength: React.FC<StepKeyLengthRepeatsProps> = ({
         selected={selectedKeyLength}
         onSelect={onSelectKeyLength}
       />
-    </Pane>
+    </StepRoot>
   );
 };
 

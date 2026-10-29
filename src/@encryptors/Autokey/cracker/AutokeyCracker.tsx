@@ -1,8 +1,9 @@
 import { useTranslation } from 'next-i18next';
 import React, { useMemo, useState } from 'react';
-import { Button, Heading, Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
 
+import { Button, TextInput } from '@atoms';
+import { CipherText, GreatPrimer, Minion } from '@typography';
 import {
   MAX_PRIMER_LENGTH,
   MIN_PRIMER_LENGTH,
@@ -16,63 +17,139 @@ import { HintSettings } from './hintSettings';
 
 const MAX_SHOWN_OFFSETS = 40;
 
-const OffsetList = styled(Pane)`
+const InputChangedNote = styled(Minion)`
+  display: block;
+  margin-top: 8px;
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const StepBlock = styled.div`
+  width: 100%;
+  padding: 0 16px;
+  margin-top: 8px;
+`;
+
+const StepTitle = styled(GreatPrimer)`
+  color: ${({ theme }) => theme.ink.cream};
+`;
+
+const StepHint = styled(Minion)`
+  display: block;
+  margin-top: 4px;
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const InputRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+`;
+
+const RowText = styled(Minion)`
+  color: ${({ theme }) => theme.ink.cream};
+`;
+
+const RowHint = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const OffsetList = styled.div`
   max-height: 260px;
   overflow-y: auto;
   margin-top: 8px;
-  border: muted;
+  border: 1px solid ${({ theme }) => theme.paper.rule};
   border-radius: 4px;
 `;
 
-const OffsetRow = styled(Pane)<{ $selected: boolean; $best: boolean }>`
+// One drag candidate per row: the selected offset gets a copper left
+// marker and a brass wash; the best offset an ink.green one.
+const OffsetRow = styled.div<{ $selected: boolean; $best: boolean }>`
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 4px 8px;
-  font-family: monospace;
+  font-family: ${({ theme }) => theme.type.mono};
   font-size: 12px;
   cursor: pointer;
   border-left: 3px solid
     ${({ $selected, $best, theme }) => ($selected
-    ? theme.colorScheme.blue[500]
-    : $best ? theme.colorScheme.green[500] : 'transparent')};
-  background: ${({ $selected, theme }) => ($selected ? theme.colorScheme.blue[50] : 'transparent')};
+    ? theme.metal.copper.dark
+    : $best ? theme.ink.green : 'transparent')};
+  background: ${({ $selected, theme }) => ($selected ? `${theme.metal.brass.light}26` : 'transparent')};
 
   &:hover {
-    background: ${({ theme }) => theme.colorScheme.gray[50]};
+    background: ${({ $selected, theme }) => ($selected ? `${theme.metal.brass.light}26` : `${theme.paper.vellum}14`)};
   }
 `;
 
-const ScoreBar = styled(Pane)`
+const OffsetText = styled(Minion)`
+  color: ${({ theme }) => theme.ink.cream};
+  font-family: ${({ theme }) => theme.type.mono};
+`;
+
+const OffsetFragment = styled(Minion)`
+  color: ${({ theme }) => theme.ink.cream};
+  font-family: ${({ theme }) => theme.type.mono};
+  font-weight: 600;
+`;
+
+// Score: a brass rail with a copper fill.
+const ScoreBar = styled.div`
   width: 80px;
   height: 4px;
   border-radius: 2px;
-  background: ${({ theme }) => theme.colorScheme.gray[300]};
+  background: ${({ theme }) => theme.metal.brass.base};
   overflow: hidden;
   flex: none;
 `;
 
-const ScoreFill = styled(Pane)<{ $score: number }>`
+const ScoreFill = styled.div<{ $score: number }>`
   height: 100%;
-  background: ${({ theme }) => theme.colorScheme.blue[500]};
+  background: ${({ theme }) => theme.metal.copper.base};
   width: ${({ $score }) => `${$score}%`};
 `;
 
-const Worksheet = styled(Pane)`
-  font-family: monospace;
+const Worksheet = styled.div`
+  font-family: ${({ theme }) => theme.type.mono};
+  color: ${({ theme }) => theme.ink.cream};
   font-size: 13px;
   line-height: 1.5;
   white-space: pre;
   margin-top: 8px;
 `;
 
-const PrimerCell = styled(TextInput)`
-  width: 34px;
-  height: 34px;
-  text-align: center;
-  font-family: monospace;
+const CribSpan = styled.span`
+  color: ${HIGHLIGHT_COLORS[0]};
   font-weight: 700;
-  font-size: 16px;
+`;
+
+const PrimerFillRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+`;
+
+// A missing primer letter's typewriter key.
+const PrimerCell = styled(TextInput)`
+  width: 40px;
+
+  input {
+    height: 34px;
+    padding: 0;
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px;
+  }
+`;
+
+const PrimerKey = styled(CipherText)`
+  color: ${({ theme }) => theme.ink.cream};
+  font-size: 18px;
+  font-weight: 700;
 `;
 
 interface AutokeyCrackerProps {
@@ -167,41 +244,42 @@ const AutokeyCracker: React.FC<AutokeyCrackerProps> = ({ cracker, hints, onUseKe
       message={(
         <>
           {hasInputChanged && (
-            <Text size={300} display="block" marginTop="8px">
+            <InputChangedNote>
               {t('processing.cracker.wizard.inputChanged')}
-            </Text>
+            </InputChangedNote>
           )}
           {normalized && <ShortTextWarning letters={normalized.letters} />}
         </>
       )}
     >
       {step === 1 && (
-        <Pane width="100%" paddingX="16px" marginTop="8px">
-          <Heading size={300}>{t('processing.autokey.cracker.wizard.word.title')}</Heading>
-          <Text size={300} display="block" marginTop="4px">
+        <StepBlock>
+          <StepTitle>{t('processing.autokey.cracker.wizard.word.title')}</StepTitle>
+          <StepHint>
             {t('processing.autokey.cracker.wizard.word.hint')}
-          </Text>
-          <Pane display="flex" alignItems="center" gap="8px" marginTop="8px" data-guide="crib-input">
+          </StepHint>
+          <InputRow data-guide="crib-input">
             <TextInput
+              mono
               width="180px"
-              fontFamily="monospace"
               value={word}
               onChange={(event) => setWord(event.target.value.toUpperCase())}
             />
             {cracker.suggestedCrib && cracker.suggestedCrib !== word && (
-              <Button size="small" onClick={() => setWord(cracker.suggestedCrib as string)}>
+              <Button size="sm" variant="secondary" onClick={() => setWord(cracker.suggestedCrib as string)}>
                 {`${t('processing.autokey.cracker.wizard.word.suggested')}: ${cracker.suggestedCrib}`}
               </Button>
             )}
             {['THE', 'AND'].filter((common) => common !== word).map((common) => (
-              <Button key={common} size="small" onClick={() => setWord(common)}>
+              <Button key={common} size="sm" variant="secondary" onClick={() => setWord(common)}>
                 {common}
               </Button>
             ))}
-          </Pane>
-          <Pane display="flex" alignItems="center" gap="8px" marginTop="12px" data-guide="primer-length">
-            <Text size={300}>{t('processing.autokey.cracker.wizard.word.primerLength')}</Text>
+          </InputRow>
+          <InputRow data-guide="primer-length">
+            <RowText>{t('processing.autokey.cracker.wizard.word.primerLength')}</RowText>
             <TextInput
+              mono
               width="80px"
               type="number"
               min={MIN_PRIMER_LENGTH}
@@ -214,19 +292,19 @@ const AutokeyCracker: React.FC<AutokeyCrackerProps> = ({ cracker, hints, onUseKe
                 }
               }}
             />
-            <Text size={300} color="muted">
+            <RowHint>
               {t('processing.autokey.cracker.wizard.word.primerHint')}
-            </Text>
-          </Pane>
-        </Pane>
+            </RowHint>
+          </InputRow>
+        </StepBlock>
       )}
 
       {step === 2 && (
-        <Pane width="100%" paddingX="16px" marginTop="8px">
-          <Heading size={300}>{t('processing.autokey.cracker.wizard.drag.title')}</Heading>
-          <Text size={300} display="block" marginTop="4px">
+        <StepBlock>
+          <StepTitle>{t('processing.autokey.cracker.wizard.drag.title')}</StepTitle>
+          <StepHint>
             {t('processing.autokey.cracker.wizard.drag.hint')}
-          </Text>
+          </StepHint>
           <OffsetList data-guide="offset-list">
             {shownOffsets.slice(0, MAX_SHOWN_OFFSETS).map((candidate) => {
               const isBest = bestOffset !== null && candidate.offset === bestOffset.offset;
@@ -237,27 +315,27 @@ const AutokeyCracker: React.FC<AutokeyCrackerProps> = ({ cracker, hints, onUseKe
                   $best={isBest}
                   onClick={() => setOffset(candidate.offset)}
                 >
-                  <Text size={300} fontFamily="monospace">{`${candidate.offset}`}</Text>
-                  <Text size={300} fontFamily="monospace" fontWeight={600}>{candidate.fragment}</Text>
+                  <OffsetText>{`${candidate.offset}`}</OffsetText>
+                  <OffsetFragment>{candidate.fragment}</OffsetFragment>
                   {hints.offsetScores && (
                     <ScoreBar>
                       <ScoreFill $score={candidate.score} />
                     </ScoreBar>
                   )}
-                  {isBest && <Text size={300}>{t('processing.autokey.cracker.wizard.drag.likely')}</Text>}
+                  {isBest && <RowHint>{t('processing.autokey.cracker.wizard.drag.likely')}</RowHint>}
                 </OffsetRow>
               );
             })}
           </OffsetList>
-        </Pane>
+        </StepBlock>
       )}
 
       {step === 3 && unrolled && offset !== null && (
-        <Pane width="100%" paddingX="16px" marginTop="8px">
-          <Heading size={300}>{t('processing.autokey.cracker.wizard.unroll.title')}</Heading>
-          <Text size={300} display="block" marginTop="4px">
+        <StepBlock>
+          <StepTitle>{t('processing.autokey.cracker.wizard.unroll.title')}</StepTitle>
+          <StepHint>
             {t('processing.autokey.cracker.wizard.unroll.hint')}
-          </Text>
+          </StepHint>
           <Worksheet data-guide="unroll-worksheet">
             {Array.from({ length: Math.ceil(unrolled.plain.length / primerLength) }).map((_, row) => (
               <div key={row}>
@@ -267,25 +345,21 @@ const AutokeyCracker: React.FC<AutokeyCrackerProps> = ({ cracker, hints, onUseKe
                     const position = row * primerLength + column;
                     const fromCrib = position >= offset && position < offset + word.length;
                     return (
-                      <span
-                        key={column}
-                        style={fromCrib
-                          ? { color: HIGHLIGHT_COLORS[0], fontWeight: 700 }
-                          : undefined}
-                      >
-                        {letter ?? '_'}
-                      </span>
+                      fromCrib
+                        ? <CribSpan key={column}>{letter ?? '_'}</CribSpan>
+                        : <span key={column}>{letter ?? '_'}</span>
                     );
                   })}
               </div>
             ))}
           </Worksheet>
           {missingPrimer > 0 && (
-            <Pane display="flex" alignItems="center" gap="6px" marginTop="12px" flexWrap="wrap" data-guide="primer-fill">
-              <Text size={300}>{t('processing.autokey.cracker.wizard.unroll.fillMissing')}</Text>
+            <PrimerFillRow data-guide="primer-fill">
+              <RowText>{t('processing.autokey.cracker.wizard.unroll.fillMissing')}</RowText>
               {unrolled.primer.map((letter, index) => (
                 <PrimerCell
                   key={index}
+                  mono
                   maxLength={1}
                   value={letter ?? manualPrimer[index] ?? ''}
                   placeholder="_"
@@ -298,24 +372,24 @@ const AutokeyCracker: React.FC<AutokeyCrackerProps> = ({ cracker, hints, onUseKe
                   }}
                 />
               ))}
-            </Pane>
+            </PrimerFillRow>
           )}
-        </Pane>
+        </StepBlock>
       )}
 
       {step === 4 && (
-        <Pane width="100%" paddingX="16px" marginTop="8px">
-          <Heading size={300}>{t('processing.autokey.cracker.wizard.done.title')}</Heading>
-          <Text size={300} fontFamily="monospace" fontSize={18} fontWeight={700} display="block" marginTop="8px">
-            {assembledPrimer}
-          </Text>
+        <StepBlock>
+          <StepTitle>{t('processing.autokey.cracker.wizard.done.title')}</StepTitle>
+          <div style={{ marginTop: 8 }}>
+            <PrimerKey>{assembledPrimer}</PrimerKey>
+          </div>
           {hints.livePreview && primerComplete && (
             <>
-              <Heading size={300} marginTop="12px">{t('processing.cracker.wizard.previewTitle')}</Heading>
+              <StepTitle style={{ marginTop: 12 }}>{t('processing.cracker.wizard.previewTitle')}</StepTitle>
               <Worksheet>{autokeyDecrypt(cracker.input, assembledPrimer)}</Worksheet>
             </>
           )}
-        </Pane>
+        </StepBlock>
       )}
     </CrackerWizardFrame>
   );

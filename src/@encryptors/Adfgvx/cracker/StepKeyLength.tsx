@@ -1,51 +1,80 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { Heading, Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
 
+import { TextInput } from '@atoms';
 import Tooltip from '@atoms/Tooltip';
+import { GreatPrimer, Minion } from '@typography';
+import { paper } from '@theme/mixins';
 import { useCracker } from './useCracker';
 import { HintSettings } from './hintSettings';
 
 const MAX_CARDS = 6;
 
-const CipherBox = styled(Pane)`
-  font-family: monospace;
+const StepRoot = styled.div`
+  width: 100%;
+`;
+
+// Parchment reading box for the ciphertext.
+const CipherBox = styled.div`
+  ${paper('parchment')}
+  padding: 10px 12px;
+  border-radius: ${({ theme }) => theme.radius.paper};
+  font-family: ${({ theme }) => theme.type.mono};
+  color: ${({ theme }) => theme.ink.primary};
   font-size: 13px;
   line-height: 1.6;
   word-break: break-all;
-  padding: 10px 12px;
-  border-radius: 4px;
-  background: ${({ theme }) => theme.colorScheme.gray[100]};
 `;
 
-const CardsGrid = styled(Pane)`
+const CardsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 8px;
   margin-top: 12px;
 `;
 
-const Card = styled(Pane)<{ $selected: boolean }>`
+// A vellum index card; the selected one gets a copper frame.
+const Card = styled.div<{ $selected: boolean }>`
+  ${paper('vellum')}
   cursor: pointer;
   padding: 10px 12px;
-  border-radius: 4px;
-  border: 1px solid ${({ theme, $selected }) => ($selected ? theme.colorScheme.blue[500] : 'muted')};
+  border-radius: ${({ theme }) => theme.radius.paper};
+  border: 1px solid ${({ theme, $selected }) => ($selected ? theme.metal.copper.dark : theme.paper.rule)};
   border-width: ${({ $selected }) => ($selected ? '2px' : '1px')};
-  background: ${({ theme, $selected }) => ($selected ? theme.colorScheme.blue[50] : 'transparent')};
+  color: ${({ theme }) => theme.ink.primary};
 `;
 
-const ConfidenceBar = styled(Pane)`
+const CardTitle = styled(GreatPrimer)``;
+
+const CardText = styled(Minion)`
+  display: block;
+  color: ${({ theme }) => theme.ink.secondary};
+`;
+
+// Confidence: a brass rail with a copper fill.
+const ConfidenceBar = styled.div`
   height: 4px;
   border-radius: 2px;
-  background: ${({ theme }) => theme.colorScheme.gray[300]};
+  background: ${({ theme }) => theme.metal.brass.base};
   margin-top: 8px;
   overflow: hidden;
 `;
 
-const ConfidenceFill = styled(Pane)`
+const ConfidenceFill = styled.div`
   height: 100%;
-  background: ${({ theme }) => theme.colorScheme.blue[500]};
+  background: ${({ theme }) => theme.metal.copper.base};
+`;
+
+const OtherRow = styled.div`
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+const OtherLabel = styled(Minion)`
+  color: ${({ theme }) => theme.ink.cream};
 `;
 
 interface StepKeyLengthProps {
@@ -67,7 +96,7 @@ const StepKeyLength: React.FC<StepKeyLengthProps> = ({ cracker }) => {
   const candidates = (analysis?.rankedLengths ?? []).slice(0, MAX_CARDS);
 
   return (
-    <Pane width="100%">
+    <StepRoot>
       <CipherBox>{input}</CipherBox>
 
       <Tooltip content={t('processing.adfgvx.cracker.tooltips.keyLengthCards')}>
@@ -78,15 +107,15 @@ const StepKeyLength: React.FC<StepKeyLengthProps> = ({ cracker }) => {
               $selected={keyLength === candidate.keyLength}
               onClick={() => chooseKeyLength(candidate.keyLength)}
             >
-              <Heading size={400}>{candidate.keyLength}</Heading>
+              <CardTitle>{candidate.keyLength}</CardTitle>
               {hints.confidenceBars && (
                 <>
                   <ConfidenceBar>
                     <ConfidenceFill style={{ width: `${normalizeQuality(candidate.score)}%` }} />
                   </ConfidenceBar>
-                  <Text size={300} display="block">
+                  <CardText>
                     {candidate.score.toFixed(1)}
-                  </Text>
+                  </CardText>
                 </>
               )}
             </Card>
@@ -94,10 +123,11 @@ const StepKeyLength: React.FC<StepKeyLengthProps> = ({ cracker }) => {
         </CardsGrid>
       </Tooltip>
 
-      <Pane marginTop="12px" display="flex" alignItems="center" gap="8px">
-        <Text size={300}>{t('processing.adfgvx.cracker.wizard.keyLength.otherLabel')}</Text>
+      <OtherRow>
+        <OtherLabel>{t('processing.adfgvx.cracker.wizard.keyLength.otherLabel')}</OtherLabel>
         <Tooltip content={t('processing.adfgvx.cracker.tooltips.otherLength')}>
           <TextInput
+            mono
             width="80px"
             type="number"
             min={4}
@@ -112,8 +142,8 @@ const StepKeyLength: React.FC<StepKeyLengthProps> = ({ cracker }) => {
             }}
           />
         </Tooltip>
-      </Pane>
-    </Pane>
+      </OtherRow>
+    </StepRoot>
   );
 };
 

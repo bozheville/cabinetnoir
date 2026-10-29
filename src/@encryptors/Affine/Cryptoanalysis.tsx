@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import React, { useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Heading, Pane, Text } from 'evergreen-ui';
+import styled from 'styled-components';
 
 import { normalize } from '@encryptors/shared/analysis';
 import { CrackerInput, CrackerSettings, CrackerWizardFrame, FrequencyChart, ShortTextWarning } from '@encryptors/shared/cracker';
@@ -9,6 +9,53 @@ import { setKeyHandoff } from '@learning/keyHandoff';
 
 import { MultiplierCandidate, affineDecryptLetters, rankMultipliers } from './analysis/rank';
 import { CandidateCards } from '@encryptors/shared/cracker';
+import { CipherText, Minion } from '@typography';
+import { engraved } from '@theme/mixins';
+
+const PaneRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const WizardBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 12px;
+  margin: 0 16px 16px;
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  border-radius: ${({ theme }) => theme.radius.metal};
+`;
+
+const Block = styled.div<{ $marginTop?: number }>`
+  margin-top: ${({ $marginTop }) => ($marginTop ? `${$marginTop}px` : '0')};
+`;
+
+// Engraved brass step label on the leather band.
+const StepLabel = styled.span`
+  ${engraved('leather')}
+  font-size: 11px;
+  display: block;
+`;
+
+const Note = styled(Minion)`
+  display: block;
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const MonoText = styled(CipherText)`
+  display: block;
+  margin-top: 8px;
+  color: ${({ theme }) => theme.ink.cream};
+  word-break: break-all;
+`;
+
+const PreviewMono = styled(CipherText)`
+  display: block;
+  color: ${({ theme }) => theme.ink.cream};
+  word-break: break-all;
+`;
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -79,18 +126,9 @@ const AffineCryptoanalysis: React.FC<{
   const canGoNext = step === 1 ? multiplier !== null : step === 2 ? shift !== null : false;
 
   return (
-    <Pane display="flex" flexDirection="column" width="100%">
+    <PaneRoot>
       <CrackerInput value={input} onChange={onInputChange} />
-      <Pane
-        display="flex"
-        flexDirection="column"
-        width="100%"
-        padding="12px"
-        marginX="16px"
-        marginBottom="16px"
-        border="muted"
-        borderRadius="4px"
-      >
+      <WizardBox>
         <CrackerSettings
           config={{ preset: 'custom', hints }}
           onChange={(config) => setHints(config.hints)}
@@ -116,7 +154,7 @@ const AffineCryptoanalysis: React.FC<{
           )}
         >
           {step === 1 && (
-            <Pane marginTop="12px">
+            <Block $marginTop={12}>
               <CandidateCards
                 items={candidates.map((candidate: MultiplierCandidate) => ({
                   id: String(candidate.multiplier),
@@ -129,13 +167,13 @@ const AffineCryptoanalysis: React.FC<{
                 tooltip={t('processing.affine.cracker.tooltips.multiplierCards')}
                 dataGuide="cracker-multiplier"
               />
-            </Pane>
+            </Block>
           )}
           {step === 2 && multiplier !== null && (
-            <Pane>
-              <Heading size={100} marginTop="12px">
+            <Block>
+              <StepLabel>
                 {t('processing.affine.cracker.wizard.shift.title')}
-              </Heading>
+              </StepLabel>
               <FrequencyChart
                 sliceLetters={normalized.letters}
                 hints={hints}
@@ -145,32 +183,32 @@ const AffineCryptoanalysis: React.FC<{
                 mapIndex={(position, currentShift) => (multiplier * position + currentShift) % 26}
                 keyLetterLabel={t('processing.affine.cracker.wizard.shift.keyLetter')}
               />
-            </Pane>
+            </Block>
           )}
           {step === 3 && multiplier !== null && shift !== null && (
-            <Pane marginTop="12px">
-              <Text size={300} display="block">
+            <Block $marginTop={12}>
+              <Note>
                 {t('processing.affine.cracker.wizard.done.formula', { multiplier, shift })}
-              </Text>
-              <Text fontFamily="monospace" marginTop="8px" display="block" wordBreak="break-all">
+              </Note>
+              <MonoText>
                 {decrypted.slice(0, 200)}
-              </Text>
-            </Pane>
+              </MonoText>
+            </Block>
           )}
 
           {hints.livePreview && multiplier !== null && shift !== null && step < 3 && (
-            <Pane marginTop="12px">
-              <Text size={300} display="block">
+            <Block $marginTop={12}>
+              <Note>
                 {t('processing.cracker.wizard.previewTitle')}
-              </Text>
-              <Text fontFamily="monospace" size={300} display="block" wordBreak="break-all">
+              </Note>
+              <PreviewMono>
                 {decrypted.slice(0, 200)}
-              </Text>
-            </Pane>
+              </PreviewMono>
+            </Block>
           )}
         </CrackerWizardFrame>
-      </Pane>
-    </Pane>
+      </WizardBox>
+    </PaneRoot>
   );
 };
 

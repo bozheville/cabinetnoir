@@ -1,6 +1,12 @@
 import React from 'react';
-import { Select } from 'evergreen-ui';
+import { Select } from '@atoms';
 import { useRouter } from 'next/router';
+
+const LOCALES = [
+  { value: 'en', label: 'English' },
+  { value: 'fr', label: 'Français' },
+  { value: 'ua', label: 'Українська' },
+];
 
 const LanguageSelector: React.FC = () => {
   const router = useRouter();
@@ -15,12 +21,10 @@ const LanguageSelector: React.FC = () => {
     <Select
       onChange={handleChangeLocale}
       defaultValue={router.locale}
-      maxWidth="200px"
-    >
-      <option value="en">English</option>
-      <option value="fr">Français</option>
-      <option value="ua">Українська</option>
-    </Select>
+      options={LOCALES}
+      width="200px"
+      aria-label="Language"
+    />
   );
 };
 

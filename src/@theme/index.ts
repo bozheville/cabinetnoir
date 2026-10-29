@@ -1,17 +1,31 @@
-import * as breakpoints from './breakpoints';
-import colorScheme from './color-scheme.json';
-import * as colors from './colors';
-import { paddings } from './sizes';
+import breakpoints from './breakpoints';
+import { leather, paper, metal, thread, desk } from './materials';
+import { ink, data } from './ink';
+import { zones } from './zones';
+import { space, radius, shadow, widths } from './space';
+import type from './type';
+import { badgeTones } from './badge';
 
+// Theme shape per specs/leather-deco-redesign/07-code-organisation.md.
+// The pastel colorScheme ramps are retired with the redesign.
 const theme = {
-  colors,
-  colorScheme,
+  // materials
+  leather,
+  paper,
+  metal,
+  thread,
+  desk,
+  ink,
+  data,
+  zones,
+  badge: badgeTones,
+  // layout tokens
+  space,
+  radius,
+  shadow,
+  widths,
+  type,
   breakpoints,
-  paddings,
-  borderRadius: {
-    small: 4,
-    default: 8,
-  }
 };
 
 export default theme;

@@ -1,17 +1,18 @@
 import React from 'react';
-import { Pane } from 'evergreen-ui';
 import { CrypterProps } from '../types';
 import { useAlberti } from './useAlberti';
 import styled from 'styled-components';
 import RotationPicker from '@encryptors/Caesar/RotationPicker';
 import Tooltip from '@atoms/Tooltip';
+import { Cluster, IconButton, Paper, Stack } from '@atoms';
+import { ControlGroup } from '@organisms/ControlPanel';
+import { CipherText } from '@typography';
 import { useRouter } from 'next/router';
 import { getKeyHandoff } from '@learning/keyHandoff';
 import { useEffect } from 'react';
 
 
 const AlbertiSettings = styled.div<{size: number}>`
-  margin-top: 36px;
   display: grid;
   grid-template-columns: repeat(${({size}) => size}, calc(100%/${({size}) => size}) [col-start]);
   row-gap: 16px;
@@ -19,6 +20,19 @@ const AlbertiSettings = styled.div<{size: number}>`
   ${({ theme }) => theme.breakpoints.small} {
     grid-template-columns: repeat(2, 50% [col-start]);
   }
+`;
+
+const DiscSheet = styled(Paper)`
+  width: 100%;
+  padding: 12px 8px;
+`;
+
+const PaneStack = styled(Stack)`
+  width: 100%;
+`;
+
+const RotateKnob = styled(IconButton)`
+  align-self: center;
 `;
 
 const Alberti: React.FC<CrypterProps> = ({
@@ -62,65 +76,54 @@ const Alberti: React.FC<CrypterProps> = ({
   }, [router.query.usedKey]);
 
   return (
-    <Pane>
-      <Pane
-        display="flex"
-        flexDirection="row"
-        justifyContent="center"
-        alignItems="center"
-        width="100%"
-        paddingX="16px"
-        paddingBottom="16px"
-        {...paneProps}
-      >
+    <PaneStack {...paneProps}>
+      <Cluster justify="center" gap={4}>
         <Tooltip content={t('learning.tooltips.alberti.disc')}>
-          <Pane
-            data-guide="disc"
-            display="flex"
-            flexDirection="column"
-            width="100%"
-          >
-            <AlbertiSettings
-            size={staticDisc.length + 2}
-            >
+          <DiscSheet data-guide="disc">
+            <AlbertiSettings size={staticDisc.length + 2}>
               <span />
               {staticDisc.split('').map((char) => (
-                <span key={`static-${char}`}>{char}</span>
+                <CipherText key={`static-${char}`}>{char}</CipherText>
               ))}
               <span />
             </AlbertiSettings>
-            <AlbertiSettings
-              size={staticDisc.length + 2}
-            >
-              <button data-guide="rotate-left" onClick={rotateLeft}>&lt;</button>
+            <AlbertiSettings size={staticDisc.length + 2}>
+              <RotateKnob data-guide="rotate-left" label="Rotate left" onClick={rotateLeft}>
+                ◀
+              </RotateKnob>
               {dynamicDisc.split('').map((char) => (
-                <span key={`dynamic-${char}`}>{char}</span>
+                <CipherText key={`dynamic-${char}`}>{char}</CipherText>
               ))}
-              <button data-guide="rotate-right" onClick={rotateRight}>&gt;</button>
+              <RotateKnob data-guide="rotate-right" label="Rotate right" onClick={rotateRight}>
+                ▶
+              </RotateKnob>
             </AlbertiSettings>
-          </Pane>
+          </DiscSheet>
         </Tooltip>
-
-      </Pane>
-      <Pane display="flex" flexDirection="row" justifyContent="center">
-        <Tooltip content={t('learning.tooltips.alberti.increment')}>
-          <RotationPicker
-            dataGuide="increment"
-            label={t('processing.alberti.settings.increment_label')}
-            value={iterationStep}
-            onChange={handleIncrementChange}
-          />
-        </Tooltip>
-        <Tooltip content={t('learning.tooltips.alberti.period')}>
-          <RotationPicker
-            dataGuide="period"
-            label={t('processing.alberti.settings.period_label')}
-            value={period}
-            onChange={handlePeriodChange}
-          />
-        </Tooltip>
-      </Pane>
-    </Pane>
+      </Cluster>
+      <Cluster justify="center" gap={4}>
+        <ControlGroup>
+          <Tooltip content={t('learning.tooltips.alberti.increment')}>
+            <RotationPicker
+              dataGuide="increment"
+              label={t('processing.alberti.settings.increment_label')}
+              value={iterationStep}
+              onChange={handleIncrementChange}
+            />
+          </Tooltip>
+        </ControlGroup>
+        <ControlGroup>
+          <Tooltip content={t('learning.tooltips.alberti.period')}>
+            <RotationPicker
+              dataGuide="period"
+              label={t('processing.alberti.settings.period_label')}
+              value={period}
+              onChange={handlePeriodChange}
+            />
+          </Tooltip>
+        </ControlGroup>
+      </Cluster>
+    </PaneStack>
   );
 };
 

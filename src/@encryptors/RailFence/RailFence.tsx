@@ -1,16 +1,37 @@
 import React, { useEffect, useRef } from 'react';
-import { Checkbox, Heading, Pane, Select, TextInput } from 'evergreen-ui';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import styled from 'styled-components';
 
 import { CrypterProps } from '../types';
 import Tooltip from '@atoms/Tooltip';
+import { Cluster, Select, Stack, Toggle } from '@atoms';
+import { ControlGroup } from '@organisms/ControlPanel';
+import { Minion } from '@typography';
 import ZigzagFence from '../shared/transposition/ZigzagFence';
 import { usePendingExample } from '@learning/pendingExample';
 import { getKeyHandoff } from '@learning/keyHandoff';
 import { useRailFence, parseHandoffKey } from './useRailFence';
 
 const RAIL_OPTIONS = Array.from({ length: 9 }, (_, index) => index + 2);
+
+const PaneStack = styled(Stack)`
+  width: 100%;
+  padding: 0 16px 16px;
+`;
+
+const ZigzagHint = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
+  margin-top: 4px;
+`;
+
+const ZigzagBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8px;
+  width: 100%;
+`;
 
 // The Rail fence tool: rails and offset pickers above a live zigzag —
 // the letters riding the fence re-draw with every change. The cracker
@@ -64,80 +85,58 @@ const RailFence: React.FC<CrypterProps> = ({
     : input.toUpperCase().replace(/[^A-Z]/g, '');
 
   return (
-    <Pane
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      width="100%"
-      paddingX="16px"
-      paddingBottom="16px"
-      {...paneProps}
-    >
-      <Pane
-        display="flex"
-        flexDirection="row"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Tooltip content={t('learning.tooltips.railFence.rails')}>
-          <Select
-            data-guide="rails-picker"
-            width="110px"
-            marginRight="8px"
-            value={String(rails)}
-            onChange={(event) => handleRailsChange(Number(event.target.value))}
-          >
-            {RAIL_OPTIONS.map((count) => (
-              <option key={count} value={count}>
-                {t('processing.railFence.settings.railsLabel', { count })}
-              </option>
-            ))}
-          </Select>
-        </Tooltip>
-        <Tooltip content={t('learning.tooltips.railFence.offset')}>
-          <Select
-            data-guide="offset-picker"
-            width="110px"
-            marginRight="8px"
-            value={String(offset)}
-            onChange={(event) => handleOffsetChange(Number(event.target.value))}
-          >
-            {Array.from({ length: rails }, (_, value) => (
-              <option key={value} value={value}>
-                {t('processing.railFence.settings.offsetLabel', { value })}
-              </option>
-            ))}
-          </Select>
-        </Tooltip>
-        {!isDecryptMode && (
-          <Tooltip content={t('learning.tooltips.railFence.keepSpaces')}>
-            <Checkbox
-              data-guide="keep-spaces"
-              marginLeft="6px"
-              label={t('processing.railFence.settings.keep_spaces')}
-              checked={keepSpaces}
-              onChange={handleKeepSpacesChange}
+    <PaneStack {...paneProps}>
+      <Cluster justify="center" gap={4} wrap>
+        <ControlGroup>
+          <Tooltip content={t('learning.tooltips.railFence.rails')}>
+            <Select
+              data-guide="rails-picker"
+              width="110px"
+              value={String(rails)}
+              onChange={(event) => handleRailsChange(Number(event.target.value))}
+              options={RAIL_OPTIONS.map((count) => ({
+                value: String(count),
+                label: t('processing.railFence.settings.railsLabel', { count }),
+              }))}
             />
           </Tooltip>
+        </ControlGroup>
+        <ControlGroup>
+          <Tooltip content={t('learning.tooltips.railFence.offset')}>
+            <Select
+              data-guide="offset-picker"
+              width="110px"
+              value={String(offset)}
+              onChange={(event) => handleOffsetChange(Number(event.target.value))}
+              options={Array.from({ length: rails }, (_, value) => ({
+                value: String(value),
+                label: t('processing.railFence.settings.offsetLabel', { value }),
+              }))}
+            />
+          </Tooltip>
+        </ControlGroup>
+        {!isDecryptMode && (
+          <ControlGroup>
+            <Tooltip content={t('learning.tooltips.railFence.keepSpaces')}>
+              <Toggle
+                data-guide="keep-spaces"
+                label={t('processing.railFence.settings.keep_spaces')}
+                checked={keepSpaces}
+                onChange={handleKeepSpacesChange}
+              />
+            </Tooltip>
+          </ControlGroup>
         )}
-      </Pane>
+      </Cluster>
       {shownText.length > 0 && (
-        <Pane
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          marginTop="8px"
-          width="100%"
-          data-guide="zigzag-fence"
-        >
+        <ZigzagBlock data-guide="zigzag-fence">
           <ZigzagFence text={shownText} rails={rails} offset={offset} />
-          <Heading size={100} marginTop={4} opacity={0.7}>
+          <ZigzagHint>
             {t('processing.railFence.settings.zigzagHint')}
-          </Heading>
-        </Pane>
+          </ZigzagHint>
+        </ZigzagBlock>
       )}
-    </Pane>
+    </PaneStack>
   );
 };
 

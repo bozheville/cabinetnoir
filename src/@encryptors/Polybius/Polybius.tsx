@@ -1,14 +1,31 @@
 import React, { useEffect, useRef } from 'react';
-import { Checkbox, Heading, Pane, TextInput } from 'evergreen-ui';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import styled from 'styled-components';
 
 import { CrypterProps } from '../types';
 import Tooltip from '@atoms/Tooltip';
+import { Cluster, Stack, TextInput, Toggle } from '@atoms';
+import { ControlGroup } from '@organisms/ControlPanel';
+import { Minion } from '@typography';
 import PolybiusSquare from '../shared/polybius/PolybiusSquare';
 import { usePendingExample } from '@learning/pendingExample';
 import { getKeyHandoff } from '@learning/keyHandoff';
 import { usePolybius } from './usePolybius';
+
+const PaneStack = styled(Stack)`
+  width: 100%;
+  padding: 0 16px 16px;
+`;
+
+const SquareHint = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
+  margin-top: 6px;
+`;
+
+const SquareBlock = styled.div`
+  margin-top: 8px;
+`;
 
 // The Polybius tool: letters in, digit pairs out, with the live square
 // beside the controls — the highlighted cell (and its row and column)
@@ -57,51 +74,41 @@ const Polybius: React.FC<CrypterProps> = ({
   }, [router.query.usedKey]);
 
   return (
-    <Pane
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      width="100%"
-      paddingX="16px"
-      paddingBottom="16px"
-      {...paneProps}
-    >
-      <Pane
-        display="flex"
-        flexDirection="row"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Heading size={100} marginRight="8px" data-guide="square-key">{t('processing.polybius.squareKeyLabel')}</Heading>
-        <Tooltip content={t('learning.tooltips.polybius.squareKey')}>
-          <TextInput
-            data-guide="square-key-input"
-            width="160px"
-            marginRight="8px"
-            placeholder={t('processing.polybius.settings.keyword_placeholder')}
-            value={keyword}
-            onChange={handleKeywordChange}
-          />
-        </Tooltip>
-        {!isDecryptMode && (
-          <Tooltip content={t('learning.tooltips.polybius.spaced')}>
-            <Checkbox
-              data-guide="spaced-toggle"
-              label={t('processing.polybius.settings.spaced')}
-              checked={spaced}
-              onChange={handleSpacedChange}
+    <PaneStack {...paneProps}>
+      <Cluster justify="center" gap={4} wrap>
+        <ControlGroup>
+          <Tooltip content={t('learning.tooltips.polybius.squareKey')}>
+            <TextInput
+              data-guide="square-key-input"
+              label={t('processing.polybius.squareKeyLabel')}
+              mono
+              width="160px"
+              placeholder={t('processing.polybius.settings.keyword_placeholder')}
+              value={keyword}
+              onChange={handleKeywordChange}
             />
           </Tooltip>
+        </ControlGroup>
+        {!isDecryptMode && (
+          <ControlGroup>
+            <Tooltip content={t('learning.tooltips.polybius.spaced')}>
+              <Toggle
+                data-guide="spaced-toggle"
+                label={t('processing.polybius.settings.spaced')}
+                checked={spaced}
+                onChange={handleSpacedChange}
+              />
+            </Tooltip>
+          </ControlGroup>
         )}
-      </Pane>
-      <Pane marginTop="8px" data-guide="polybius-square">
+      </Cluster>
+      <SquareBlock data-guide="polybius-square">
         <PolybiusSquare square={square} highlightLetter={highlightLetter} />
-        <Heading size={100} marginTop={6} opacity={0.7}>
+        <SquareHint>
           {t('processing.polybius.settings.squareHint')}
-        </Heading>
-      </Pane>
-    </Pane>
+        </SquareHint>
+      </SquareBlock>
+    </PaneStack>
   );
 };
 

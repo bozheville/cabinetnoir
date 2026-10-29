@@ -1,11 +1,8 @@
 import React, { ChangeEvent, ChangeEventHandler, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import {
-  DuplicateIcon,
-  IconButton,
-  Pane,
-} from 'evergreen-ui';
+import { IconButton } from '@atoms';
+import { CopyIcon } from '@ornaments';
 
 import { TextArea } from '@molecues';
 import GlyphRenderer from '@molecues/GlyphRenderer';
@@ -13,12 +10,14 @@ import styled, { keyframes } from 'styled-components';
 import { usePendingExample } from '@learning/pendingExample';
 import { getKeyHandoff, clearKeyHandoff } from '@learning/keyHandoff';
 import { DEFAULT_PIGPEN_VARIANT } from '@encryptors/Pigpen/variants';
+
 interface EncryptionInputsProps {
   onChange: (value: string) => void;
   output: string;
 }
 
 const EncryptionInputsWrapper = styled.div<{ $evenColumns?: boolean }>`
+  position: relative;
   display: flex;
   flex-direction: row;
   /* Pigpen's result side is a div (the glyph strip), whose flex basis
@@ -49,20 +48,26 @@ const EncryptionInputsWrapper = styled.div<{ $evenColumns?: boolean }>`
 `;
 
 const fadeIn = keyframes`
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 `;
 
+// "Copied" toast: a small brass plate sliding up from the copy knob.
 const CopiedToast = styled.div`
   position: absolute;
-  bottom: 8px;
-  right: 48px;
+  bottom: 16px;
+  right: 52px;
   z-index: 10;
-  padding: 6px 12px;
-  border-radius: ${({ theme }) => theme.borderRadius.default}px;
-  background-color: ${({ theme }) => theme.colorScheme.blue_green[700]};
-  color: ${({ theme }) => theme.colorScheme.white};
-  font-size: 12px;
+  padding: 4px 10px;
+  border: 1px solid ${({ theme }) => theme.metal.brass.dark};
+  border-radius: 2px;
+  background-color: ${({ theme }) => theme.paper.ivory};
+  color: ${({ theme }) => theme.ink.primary};
+  font-family: ${({ theme }) => theme.type.engraved};
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  box-shadow: ${({ theme }) => theme.shadow.metal};
   pointer-events: none;
   animation: ${fadeIn} 150ms ease-out;
 `;
@@ -76,15 +81,14 @@ const GlyphOutput = styled.div`
   padding: 16px;
   max-height: 350px;
   overflow-y: auto;
-  background-color: #f2f2f2;
-  color: ${({ theme }) => theme.colors.text};
-  border-bottom-right-radius: ${({ theme }) => theme.borderRadius.default}px;
+  background-color: ${({ theme }) => theme.paper.parchment};
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  color: ${({ theme }) => theme.ink.primary};
 
   /* Stacked layout: flex-basis would mean height here — back to auto
      so the strip sizes to its content like the textareas do. */
   ${({ theme }) => theme.breakpoints.small} {
     flex-basis: auto;
-    border-bottom-left-radius: ${({ theme }) => theme.borderRadius.default}px;
   }
 `;
 
@@ -92,8 +96,8 @@ interface EncryptionInputsProps {
   onChange: (value: string) => void;
   output: string;
   // The lifted input value: panes that edit the input themselves
-  // (pigpen's glyph keyboard) change it outside this component, so the
-  // textarea follows the lifted value when it drifts from the local one.
+  // (pigpen's glyph keyboard) change it outside this component, so
+  // the textarea follows the lifted value when it drifts from the local one.
   input?: string;
   // Pigpen: the pane's selected glyph variant; the result side renders
   // the glyph strip instead of the result textarea.
@@ -188,13 +192,13 @@ const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
 
   return (
     <EncryptionInputsWrapper $evenColumns={isPigpenEncrypt}>
-      <Pane data-guide="message-input" display="contents">
+      <div data-guide="message-input" style={{ display: 'contents' }}>
         <TextArea
           value={input}
           onChange={handleInputChange}
         />
-      </Pane>
-      <Pane data-guide="output" display="contents">
+      </div>
+      <div data-guide="output" style={{ display: 'contents' }}>
         {isPigpenEncrypt ? (
           <GlyphOutput>
             <GlyphRenderer text={input} variant={glyphVariant} size={30} />
@@ -206,18 +210,16 @@ const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
             ref={outputRef}
           />
         )}
-      </Pane>
+      </div>
       {isCopied && <CopiedToast>Copied to clipboard</CopiedToast>}
       {output && (
         <IconButton
-          icon={DuplicateIcon}
-          appearance="minimal"
-          position="absolute"
-          bottom="8px"
-          right="8px"
-          zIndex={10}
+          label="Copy output"
           onClick={handleCopy}
-        />
+          style={{ position: 'absolute', bottom: '8px', right: '8px', zIndex: 10 }}
+        >
+          <CopyIcon />
+        </IconButton>
       )}
     </EncryptionInputsWrapper>
   );

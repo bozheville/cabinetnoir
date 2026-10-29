@@ -1,29 +1,45 @@
 import { useTranslation } from 'next-i18next';
 import Tooltip from '@atoms/Tooltip';
 import React from 'react';
-import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
+import { Minion } from '@typography';
 import { CipherText, HIGHLIGHT_COLORS } from '@encryptors/shared/cracker';
 import { FrequencyChart, useCrackerKey } from '@encryptors/shared/cracker';
 import CribPanel from './CribPanel';
 import KeyStrip from './KeyStrip';
 import { LockedLetter, useCracker } from './useCracker';
 
-const SliceTabs = styled(Pane)`
+const StepRoot = styled.div`
+  width: 100%;
+`;
+
+const SliceTabs = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
   margin-top: 12px;
 `;
 
-const SliceTab = styled(Pane)<{ $selected: boolean; $color: string }>`
+// One tab per key slice: bordered by the slice's data ink when
+// selected, faintly washed otherwise.
+const SliceTab = styled.div<{ $selected: boolean; $color: string }>`
   cursor: pointer;
   padding: 6px 10px;
   border-radius: 4px;
   border: ${({ $selected }) => ($selected ? '2px' : '1px')} solid
     ${({ $color, $selected }) => ($selected ? $color : 'transparent')};
-  background: ${({ $color, $selected }) => ($selected ? `${$color}22` : '#00000008')};
+  background: ${({ $color, $selected }) => ($selected ? `${$color}22` : 'transparent')};
+`;
+
+const SliceTabText = styled(Minion)`
+  color: ${({ theme }) => theme.ink.cream};
+`;
+
+const AllLockedNote = styled(Minion)`
+  display: block;
+  margin-top: 8px;
+  color: ${({ theme }) => theme.ink.creamMuted};
 `;
 
 interface StepKeyLettersProps {
@@ -71,7 +87,7 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
   const allLettersSet = Array.from({ length: keyLength }).every((_, slice) => lockedLetters[slice]);
 
   return (
-    <Pane width="100%">
+    <StepRoot>
       <CipherText input={cracker.input} normalized={analysis.normalized} colorFor={colorFor} />
 
       <Tooltip content={t(`${tooltip}sliceTabs`)}>
@@ -85,10 +101,10 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
               $color={HIGHLIGHT_COLORS[slice % HIGHLIGHT_COLORS.length]}
               onClick={() => setActiveSlice(slice)}
             >
-              <Text size={300}>
+              <SliceTabText>
                 {`${t(`${base}keyLetters.sliceLabel`, { index: slice + 1, total: keyLength })}`}
                 {locked ? ` (${t(`${base}keyLetters.lockedPrefix`)} ${locked.letter})` : ''}
-              </Text>
+              </SliceTabText>
             </SliceTab>
           );
         })}
@@ -105,9 +121,9 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
       />
 
       {allLettersSet && (
-        <Text size={300} display="block" marginTop="8px">
+        <AllLockedNote>
           {t(`${base}keyLetters.allLocked`)}
-        </Text>
+        </AllLockedNote>
       )}
 
       {hints.cribs && <CribPanel cracker={cracker} alphabet={alphabet} />}
@@ -120,7 +136,7 @@ const StepKeyLetters: React.FC<StepKeyLettersProps> = ({ cracker }) => {
         onOverride={(slice, letter) => setSliceLetter(slice, letter, 'manual')}
         onClear={(slice) => setSliceLetter(slice, '')}
       />
-    </Pane>
+    </StepRoot>
   );
 };
 

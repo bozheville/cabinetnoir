@@ -1,26 +1,52 @@
 import React, { useEffect, useRef } from 'react';
-import { Checkbox, Heading, Pane, TextInput, Text } from 'evergreen-ui';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
 import { CrypterProps } from '../types';
 import Tooltip from '@atoms/Tooltip';
+import { Cluster, Paper, Stack, TextInput, Toggle } from '@atoms';
+import { ControlGroup } from '@organisms/ControlPanel';
+import { CipherText, Minion } from '@typography';
 import { usePendingExample } from '@learning/pendingExample';
 import { getKeyHandoff } from '@learning/keyHandoff';
 import { useKeyword } from './useKeyword';
 
-const StripRow = styled(Pane)`
-  display: flex;
-  justify-content: center;
-  font-family: monospace;
-  font-size: 14px;
-  line-height: 20px;
+const PaneStack = styled(Stack)`
+  width: 100%;
+  padding: 0 16px 16px;
 `;
 
-const StripCell = styled(Pane)`
+// The plain/target alphabet strips: typewritten letters on a sheet of
+// paper, the target strip shaded parchment.
+const StripSheet = styled(Paper)`
+  margin-top: 8px;
+  padding: 8px 12px;
+`;
+
+const StripRow = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const StripCell = styled(CipherText)`
   width: 20px;
   text-align: center;
+`;
+
+const TargetStrip = styled(StripRow)`
+  background: ${({ theme }) => theme.paper.parchment};
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  border-radius: ${({ theme }) => theme.radius.paper};
+  margin-top: 4px;
+`;
+
+const AlphabetError = styled(Minion)`
+  color: ${({ theme }) => theme.ink.red};
+`;
+
+const AlphabetHint = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
 `;
 
 const stripCells = (letters: string) => letters.split('').map((letter, index) => (
@@ -89,107 +115,95 @@ const Keyword: React.FC<CrypterProps> = ({
   }, [router.query.usedKey]);
 
   return (
-    <Pane
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      width="100%"
-      paddingX="16px"
-      paddingBottom="16px"
-      {...paneProps}
-    >
-      <Pane
-        display="flex"
-        flexDirection="row"
-        justifyContent="center"
-        alignItems="center"
-      >
+    <PaneStack {...paneProps}>
+      <Cluster justify="center" gap={4} wrap>
         {!freeAlphabetMode && (
-          <Tooltip content={t('learning.tooltips.keyword.keyword')}>
-            <TextInput
-              data-guide="keyword-input"
-              width="180px"
-              marginRight="8px"
-              placeholder={t('processing.keyword.settings.keyword_placeholder')}
-              value={keyword}
-              onChange={handleKeywordChange}
-            />
-          </Tooltip>
+          <ControlGroup>
+            <Tooltip content={t('learning.tooltips.keyword.keyword')}>
+              <TextInput
+                data-guide="keyword-input"
+                mono
+                width="180px"
+                placeholder={t('processing.keyword.settings.keyword_placeholder')}
+                value={keyword}
+                onChange={handleKeywordChange}
+              />
+            </Tooltip>
+          </ControlGroup>
         )}
         {freeAlphabetMode && (
-          <Tooltip content={t('learning.tooltips.keyword.freeAlphabet')}>
-            <TextInput
-              data-guide="free-alphabet-input"
-              width="380px"
-              marginRight="8px"
-              maxLength={30}
-              placeholder={t('processing.keyword.settings.freeAlphabet_placeholder')}
-              value={freeAlphabet}
-              onChange={handleFreeAlphabetChange}
-            />
-          </Tooltip>
+          <ControlGroup>
+            <Tooltip content={t('learning.tooltips.keyword.freeAlphabet')}>
+              <TextInput
+                data-guide="free-alphabet-input"
+                mono
+                width="380px"
+                maxLength={30}
+                placeholder={t('processing.keyword.settings.freeAlphabet_placeholder')}
+                value={freeAlphabet}
+                onChange={handleFreeAlphabetChange}
+              />
+            </Tooltip>
+          </ControlGroup>
         )}
-        <Checkbox
-          data-guide="free-alphabet-toggle"
-          marginLeft="6px"
-          label={t('processing.keyword.settings.free_alphabet')}
-          checked={freeAlphabetMode}
-          onChange={handleFreeAlphabetModeChange}
-        />
+        <ControlGroup>
+          <Toggle
+            data-guide="free-alphabet-toggle"
+            label={t('processing.keyword.settings.free_alphabet')}
+            checked={freeAlphabetMode}
+            onChange={handleFreeAlphabetModeChange}
+          />
+        </ControlGroup>
         {!freeAlphabetMode && (
-          <Tooltip content={t('learning.tooltips.keyword.continueFromLast')}>
-            <Checkbox
-              data-guide="continuation-toggle"
-              marginLeft="6px"
-              label={t('processing.keyword.settings.continue_from_last')}
-              checked={continueFromLast}
-              onChange={handleContinueFromLastChange}
-            />
-          </Tooltip>
+          <ControlGroup>
+            <Tooltip content={t('learning.tooltips.keyword.continueFromLast')}>
+              <Toggle
+                data-guide="continuation-toggle"
+                label={t('processing.keyword.settings.continue_from_last')}
+                checked={continueFromLast}
+                onChange={handleContinueFromLastChange}
+              />
+            </Tooltip>
+          </ControlGroup>
         )}
         {!isDecryptMode && (
           <>
-            <Tooltip content={t('learning.tooltips.keyword.keepSpaces')}>
-              <Checkbox
-                data-guide="keep-spaces"
-                marginLeft="6px"
-                label={t('processing.keyword.settings.keep_spaces')}
-                checked={keepSpaces}
-                onChange={handleKeepSpacesChange}
-              />
-            </Tooltip>
-            <Tooltip content={t('learning.tooltips.keyword.keepCase')}>
-              <Checkbox
-                data-guide="keep-case"
-                marginLeft="6px"
-                label={t('processing.keyword.settings.keep_case')}
-                checked={keepCase}
-                onChange={handleKeepCaseChange}
-              />
-            </Tooltip>
+            <ControlGroup>
+              <Tooltip content={t('learning.tooltips.keyword.keepSpaces')}>
+                <Toggle
+                  data-guide="keep-spaces"
+                  label={t('processing.keyword.settings.keep_spaces')}
+                  checked={keepSpaces}
+                  onChange={handleKeepSpacesChange}
+                />
+              </Tooltip>
+            </ControlGroup>
+            <ControlGroup>
+              <Tooltip content={t('learning.tooltips.keyword.keepCase')}>
+                <Toggle
+                  data-guide="keep-case"
+                  label={t('processing.keyword.settings.keep_case')}
+                  checked={keepCase}
+                  onChange={handleKeepCaseChange}
+                />
+              </Tooltip>
+            </ControlGroup>
           </>
         )}
-      </Pane>
+      </Cluster>
       {freeAlphabetMode && freeAlphabetError && (
-        <Text size={300} color="red500" data-guide="free-alphabet-error">
+        <AlphabetError data-guide="free-alphabet-error">
           {t(`processing.keyword.settings.freeAlphabetError.${freeAlphabetError}`)}
-        </Text>
+        </AlphabetError>
       )}
-      <Pane
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        marginTop="8px"
-        data-guide="alphabet-strip"
-      >
+      <StripSheet data-guide="alphabet-strip">
         <StripRow>{stripCells(plainAlphabet)}</StripRow>
-        <StripRow background="tint2" borderRadius={4}>{stripCells(targetAlphabet)}</StripRow>
-      </Pane>
-      <Heading size={100} marginTop={8} opacity={0.7}>
+        <TargetStrip>{stripCells(targetAlphabet)}</TargetStrip>
+      </StripSheet>
+      <AlphabetHint>
         {t('processing.keyword.settings.alphabetHint')}
-      </Heading>
-    </Pane>
+      </AlphabetHint>
+    </PaneStack>
   );
 };
 

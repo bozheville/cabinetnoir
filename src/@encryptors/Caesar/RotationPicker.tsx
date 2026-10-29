@@ -1,23 +1,9 @@
-import React, { InputHTMLAttributes } from 'react';
-import { TextInputField } from 'evergreen-ui';
+import React from 'react';
 import styled from 'styled-components';
+import { Slider } from '@atoms';
 
-const RotationWrapper = styled.div`
-  position: relative;
-
-  span:first-of-type {
-    position: absolute;
-    top: -14px;
-    left: 0;
-    font-size: 12px;
-  }
-
-  span:last-of-type {
-    position: absolute;
-    top: -14px;
-    right: 0;
-    font-size: 12px;
-  }
+const RailWrap = styled.div`
+  width: 150px;
 `;
 
 interface RotationPickerProps {
@@ -27,6 +13,9 @@ interface RotationPickerProps {
   dataGuide?: string;
 }
 
+// The rotation control: a brass rail with a copper lever, the current
+// value in a small brass window. Native range underneath, so keyboard
+// and screen readers behave exactly as before.
 const RotationPicker: React.FC<React.InputHTMLAttributes<HTMLInputElement> & RotationPickerProps> = ({
   value,
   label,
@@ -35,19 +24,16 @@ const RotationPicker: React.FC<React.InputHTMLAttributes<HTMLInputElement> & Rot
   dataGuide,
 }) => {
   return (
-    <RotationWrapper data-guide={dataGuide}>
-      <TextInputField
+    <RailWrap data-guide={dataGuide}>
+      <Slider
         label={label}
-        description={value}
-        type="range"
-        min="1"
+        showValue
+        min={1}
         max={max - 1}
-        width="150px"
         value={value}
-        marginY="0"
         onChange={onChange}
       />
-    </RotationWrapper>
+    </RailWrap>
   );
 };
 

@@ -1,7 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import useStatisticalCryptanalysis from './useStatisticalCryptanalysis';
 import { TextInput } from '@atoms';
+import DecoFrame from '@ornaments/DecoFrame';
 import { parseText } from '@math/parser';
 
 import {
@@ -10,6 +12,22 @@ import {
   TextWrapper,
   ParsedStats
 } from './elements';
+
+// Red editing pen over recovered characters.
+const DecryptedChar = styled.span<{ $decrypted?: boolean }>`
+  ${({ theme, $decrypted }) => ($decrypted
+    ? `text-decoration: line-through; text-decoration-color: ${theme.ink.red}; text-decoration-thickness: 2px;`
+    : '')}
+`;
+
+// The tool sits in a brass DecoFrame on the tan band, max tool width.
+const StatCase = styled.div`
+  max-width: ${({ theme }) => theme.widths.tool};
+  margin: 24px auto;
+  ${({ theme }) => theme.breakpoints.small} {
+    margin: 16px 12px;
+  }
+`;
 
 
 const StatisticalCryptanalysis: React.FC = () => {
@@ -36,7 +54,9 @@ const StatisticalCryptanalysis: React.FC = () => {
 
   return (
     <StatisticalCryptanalysisSection>
-      <div>Decrypted: {decryptionScore}%</div>
+      <StatCase>
+        <DecoFrame padding="tight">
+          <div>Decrypted: {decryptionScore}%</div>
       <TextWrapper>
         {decrypted.map((item, index) => (
           <Text
@@ -89,18 +109,18 @@ const StatisticalCryptanalysis: React.FC = () => {
         {Array.from(new Array(10)).map((_, index) => (
           <tr key={hints.topEncriptedTrigrams[index].value}>
             <td>{hints.topEncriptedTrigrams[index].value.split('').map((char) => (
-              <span className={decryptedSourceChars.includes(char) ? 'decrypted' : ''}>
+              <DecryptedChar $decrypted={decryptedSourceChars.includes(char)}>
                 {char}
-              </span>
+              </DecryptedChar>
             ))}</td>
             <td>{hints.topEncriptedTrigrams[index].count}</td>
             <td>{hints.topEncriptedTrigrams[index].frequency.toFixed(3)}</td>
             <td>{hints.topExampleTrigrams[index].frequency.toFixed(3)}</td>
             <td>{hints.topExampleTrigrams[index].count}</td>
             <td>{hints.topExampleTrigrams[index].value.split('').map((char) => (
-              <span className={decryptedTargetChars.includes(char) ? 'decrypted' : ''}>
+              <DecryptedChar $decrypted={decryptedTargetChars.includes(char)}>
                 {char}
-              </span>
+              </DecryptedChar>
             ))}</td>
           </tr>
         ))}
@@ -123,18 +143,18 @@ const StatisticalCryptanalysis: React.FC = () => {
         {Array.from(new Array(10)).map((_, index) => (
           <tr key={hints.topEncriptedBigrams[index].value}>
             <td>{hints.topEncriptedBigrams[index].value.split('').map((char) => (
-              <span className={decryptedSourceChars.includes(char) ? 'decrypted' : ''}>
+              <DecryptedChar $decrypted={decryptedSourceChars.includes(char)}>
                 {char}
-              </span>
+              </DecryptedChar>
             ))}</td>
             <td>{hints.topEncriptedBigrams[index].count}</td>
             <td>{hints.topEncriptedBigrams[index].frequency.toFixed(3)}</td>
             <td>{hints.topExampleBigrams[index].frequency.toFixed(3)}</td>
             <td>{hints.topExampleBigrams[index].count}</td>
             <td>{hints.topExampleBigrams[index].value.split('').map((char) => (
-              <span className={decryptedTargetChars.includes(char) ? 'decrypted' : ''}>
+              <DecryptedChar $decrypted={decryptedTargetChars.includes(char)}>
                 {char}
-              </span>
+              </DecryptedChar>
             ))}</td>
           </tr>
         ))}
@@ -157,18 +177,18 @@ const StatisticalCryptanalysis: React.FC = () => {
         {Array.from(new Array(10)).map((_, index) => (
           <tr key={hints.topEncriptedDoubles[index].value}>
             <td>{hints.topEncriptedDoubles[index].value.split('').map((char) => (
-              <span className={decryptedSourceChars.includes(char) ? 'decrypted' : ''}>
+              <DecryptedChar $decrypted={decryptedSourceChars.includes(char)}>
                 {char}
-              </span>
+              </DecryptedChar>
             ))}</td>
             <td>{hints.topEncriptedDoubles[index].count}</td>
             <td>{hints.topEncriptedDoubles[index].frequency.toFixed(3)}</td>
             <td>{hints.topExampleDoubles[index].frequency.toFixed(3)}</td>
             <td>{hints.topExampleDoubles[index].count}</td>
             <td>{hints.topExampleDoubles[index].value.split('').map((char) => (
-              <span className={decryptedTargetChars.includes(char) ? 'decrypted' : ''}>
+              <DecryptedChar $decrypted={decryptedTargetChars.includes(char)}>
                 {char}
-              </span>
+              </DecryptedChar>
             ))}</td>
           </tr>
         ))}
@@ -203,7 +223,8 @@ const StatisticalCryptanalysis: React.FC = () => {
       </table>
         </>
       )}
-    <style jsx>{`.decrypted{text-decoration: line-through 2px red;}`}</style>
+        </DecoFrame>
+      </StatCase>
     </StatisticalCryptanalysisSection>
   );
 };

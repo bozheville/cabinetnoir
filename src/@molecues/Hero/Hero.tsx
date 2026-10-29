@@ -3,26 +3,84 @@ import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
 import Section from '@atoms/Section/Section';
+import { Button } from '@atoms';
+import { Sunburst } from '@ornaments';
 import { BodyCopy, Canon, DoublePica } from '@typography';
 
+const HeroBand = styled(Section)`
+  overflow: hidden;
+`;
+
+// Sunburst anchored to the bottom centre of the band, rays fanning
+// upward behind the nameplate (mock-home.svg: translate(640 512)).
+// The svg is square with the apex at its centre, so the centre must
+// sit exactly on the band's bottom edge.
+const SunburstBack = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: ${({ theme }) => theme.metal.brass.light};
+  pointer-events: none;
+`;
+
 const HeroInner = styled.div`
+  position: relative;
   margin: 0 auto;
+  padding: 48px 16px;
   width: 100%;
   max-width: 640px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 `;
 
-const Audiences = styled.div`
-  margin-top: 20px;
-  display: grid;
-  gap: 4px;
-  justify-items: center;
+// The nameplate: double brass rule around the app name, no corners
+// (mock-home.svg: 600×96 plate, 1.5px outer + 0.75px inner rule).
+const NameplatePlate = styled.div`
+  position: relative;
+  padding: 24px 32px;
+  /* Filled with the band leather, so the sunburst is occluded behind
+     the plate (mock-home.svg: rect fill #2f4a3b under the rules). */
+  background-color: ${({ theme }) => theme.leather.green.base};
+  border: 1.5px solid ${({ theme }) => theme.metal.brass.light};
 
-  ${({ theme }) => theme.breakpoints.small} {
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-    gap: 24px;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 0.75px solid ${({ theme }) => theme.metal.brass.light};
+    opacity: 0.8;
+    pointer-events: none;
   }
+
+  @media (forced-colors: active) {
+    &::after { display: none; }
+  }
+`;
+
+const Nameplate = styled(Canon)`
+  color: ${({ theme }) => theme.ink.cream};
+  letter-spacing: 0.18em;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
+`;
+
+const Subtitle = styled(DoublePica)`
+  color: ${({ theme }) => theme.ink.cream};
+`;
+
+const HeroBody = styled(BodyCopy)`
+  color: ${({ theme }) => theme.ink.creamMuted};
+  margin: 0 auto;
+`;
+
+const Ctas = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
 `;
 
 // Home-page hero (#73): what Cabinet Noir is and who it serves — the
@@ -32,17 +90,26 @@ const Hero: React.FC = () => {
   const { t } = useTranslation('common');
 
   return (
-    <Section stitch="bottom" color="homeMenu">
+    <HeroBand stitch="bottom" zone="hero">
+      <SunburstBack aria-hidden="true">
+        <Sunburst size={1400} radius={700} />
+      </SunburstBack>
       <HeroInner>
-        <Canon>{t('name')}</Canon>
-        <DoublePica>{t('home.title')}</DoublePica>
-        <BodyCopy>{t('home.subtitle')}</BodyCopy>
-        <Audiences>
-          <BodyCopy>{t('home.hero.beginner')}</BodyCopy>
-          <BodyCopy>{t('home.hero.expert')}</BodyCopy>
-        </Audiences>
+        <NameplatePlate>
+          <Nameplate>{t('name')}</Nameplate>
+        </NameplatePlate>
+        <Subtitle>{t('home.title')}</Subtitle>
+        <HeroBody>{t('home.subtitle')}</HeroBody>
+        <Ctas>
+          <Button href="#cipher-ladder" variant="primary" size="lg">
+            {t('home.hero.ctaPrimary')}
+          </Button>
+          <Button href="/identify" variant="secondary" size="lg">
+            {t('home.hero.ctaIdentify')}
+          </Button>
+        </Ctas>
       </HeroInner>
-    </Section>
+    </HeroBand>
   );
 };
 

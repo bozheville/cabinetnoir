@@ -1,11 +1,12 @@
 import React, { useEffect, useContext } from 'react';
 import Tooltip from '@atoms/Tooltip';
 import { useRouter } from 'next/router';
-import { Pane, Select,
-  IconButton,
-  SwapHorizontalIcon,
-} from 'evergreen-ui';
+import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
+
+import { IconButton } from '@atoms';
+import { SwapIcon } from '@ornaments';
+import { ControlPanel } from '@organisms/ControlPanel';
 
 import {
   Affine,
@@ -33,6 +34,36 @@ import {
 } from '@encryptors';
 import { EcryptionSelector } from '@molecues';
 import { RecentlyUsedContext } from '@contexts';
+
+const DirectionRow = styled.div`
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+`;
+
+const DirectionLabel = styled.span`
+  width: 100%;
+  font-family: ${({ theme }) => theme.type.engraved};
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.metal.brass.light};
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
+`;
+
+// Engraved groove instead of the old #999 divider: a dark cut line
+// with a faint light catch below it.
+const Groove = styled.div`
+  border-top: 1px solid ${({ theme }) => theme.metal.brass.shadow};
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+`;
+
+const SettingsRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
 
 interface EncryptionSettingsProps {
   input: string;
@@ -76,16 +107,6 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
     );
   };
 
-  const handleChangeAlgorithm = (event) => {
-    router.push(
-      `/encoder/${event.target.value}/${action}`,
-      undefined,
-      {
-        shallow: true
-      }
-    );
-  };
-
   const EncryptionComponent =
     algorithm === 'affine' ? Affine :
     algorithm === 'alberti' ? Alberti :
@@ -110,23 +131,13 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
     null;
 
   return (
-    <Pane
-      borderBottom="1px solid #999"
-    >
-      <Pane
-        display="grid"
-        padding="16px"
-        gridTemplateColumns="1fr auto 1fr"
-        alignItems="center"
-      >
-        <Pane
-          width="100%"
-          order={isDecryptMode ? 3 : 1}
-          textAlign={isDecryptMode ? 'right' : 'left'}
-
+    <ControlPanel>
+      <DirectionRow>
+        <DirectionLabel
+          style={{ order: isDecryptMode ? 3 : 1, textAlign: isDecryptMode ? 'right' : 'left' }}
         >
           {`${t('message')}`}
-        </Pane>
+        </DirectionLabel>
         {/* order lives on the Tooltip wrapper: it is the actual grid child */}
         <Tooltip
           content={t('learning.tooltips.swap')}
@@ -134,23 +145,26 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
         >
           <IconButton
             data-guide="swap"
-            icon={SwapHorizontalIcon}
+            label={t('learning.tooltips.swap')}
             onClick={handleSwapMode}
-            appearance="minimal"
-            padding="9px"
-          />
+          >
+            <SwapIcon />
+          </IconButton>
         </Tooltip>
-        <Pane
-          display="flex"
-          flexDirection="row"
-          width="100%"
-          order={isDecryptMode ? 1 : 3}
-          justifyContent={isDecryptMode ? 'start': 'end'}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            width: '100%',
+            order: isDecryptMode ? 1 : 3,
+            justifyContent: isDecryptMode ? 'flex-start' : 'flex-end',
+          }}
         >
           <EcryptionSelector />
-        </Pane>
-      </Pane>
-      <Pane>
+        </div>
+      </DirectionRow>
+      <SettingsRow>
+        <Groove />
         <EncryptionComponent
           input={input}
           onProcessingEnd={onOutputUpdate}
@@ -158,8 +172,8 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
           onInputChange={onInputChange}
           onVariantChange={onVariantChange}
         />
-      </Pane>
-    </Pane>
+      </SettingsRow>
+    </ControlPanel>
   );
 };
 
