@@ -37,15 +37,15 @@ const Grid = styled.div`
 const Card = styled.div`
   padding: 12px 16px;
   border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.gray[300]};
-  background: ${({ theme }) => theme.colorScheme.white};
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  background-color: ${({ theme }) => theme.paper.vellum};
   display: flex;
   flex-direction: column;
   gap: 4px;
 `;
 
 const PageLink = styled(Link)`
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.ink.primary};
   text-decoration: none;
 
   &:hover {
@@ -69,7 +69,7 @@ const CardLinks = styled.div`
 
 const CardLink = styled(Link)`
   font-size: 13px;
-  color: ${({ theme }) => theme.colorScheme.blue[600]};
+  color: ${({ theme }) => theme.metal.copper.dark};
   text-decoration: none;
 
   &:hover {
