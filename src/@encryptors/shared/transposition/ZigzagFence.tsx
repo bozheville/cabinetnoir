@@ -25,8 +25,21 @@ const Wrapper = styled.div`
 
 const Note = styled.div`
   font-size: 11px;
-  color: ${({ theme }) => theme.colors.textLight};
+  color: ${({ theme }) => theme.ink.creamMuted};
   margin-top: 2px;
+`;
+
+const RailLine = styled.line`
+  stroke: ${({ theme }) => theme.paper.rule};
+`;
+
+const ZigPath = styled.polyline`
+  stroke: ${({ theme }) => theme.metal.copper.dark};
+`;
+
+const Letter = styled.text`
+  font-family: ${({ theme }) => theme.type.mono};
+  fill: ${({ theme }) => theme.ink.primary};
 `;
 
 const RAIL_HEIGHT = 22;
@@ -68,38 +81,34 @@ const ZigzagFence: React.FC<ZigzagFenceProps> = ({
       <svg width={width} height={height} role="img">
         {/* the rails */}
         {Array.from({ length: rails }, (_, rail) => (
-          <line
+          <RailLine
             key={rail}
             x1={PADDING}
             y1={y(rail)}
             x2={width - PADDING}
             y2={y(rail)}
-            stroke="#d4d4d8"
             strokeWidth={1}
           />
         ))}
         {/* the zigzag path */}
-        <polyline
+        <ZigPath
           points={pathPoints}
           fill="none"
-          stroke="#30a46c"
           strokeWidth={1.5}
           opacity={0.7}
         />
         {/* the letters on their rails */}
         {shown.split('').map((letter, index) => (
-          <text
+          <Letter
             key={index}
             x={x(index)}
             y={y(pattern[index]) - 5}
             textAnchor="middle"
             fontSize={12}
-            fontFamily="monospace"
             fontWeight={700}
-            fill="#1f2937"
           >
             {letter}
-          </text>
+          </Letter>
         ))}
       </svg>
       {text.length > maxLetters && (

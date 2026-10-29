@@ -1,19 +1,28 @@
 import { useTranslation } from 'next-i18next';
 import Tooltip from '@atoms/Tooltip';
 import React, { useEffect, useState } from 'react';
-import { Button, Heading, Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
+import { IconButton } from '@atoms';
+import { Chevron } from '@ornaments';
+import { GreatPrimer, Minion } from '@typography';
+import { paper } from '@theme/mixins';
 import { ALPHABET_LENGTH, ENGLISH_FREQUENCIES, countLetters, englishFrequencyAt, findBestShift, scoreShift } from '../analysis/frequency';
 
-const ChartArea = styled(Pane)`
+// The instrument panel: parchment background, brass columns for the
+// observed counts, a dashed copper outline for the English reference.
+// Rotation IS the key parameter — rotating rewrites the key letter
+// through `onLetterChange`.
+
+const ChartArea = styled.div`
+  ${paper('parchment')}
   margin-top: 12px;
   padding: 12px;
-  border-radius: 4px;
-  background: #00000005;
+  border-radius: ${({ theme }) => theme.radius.paper};
+  color: ${({ theme }) => theme.ink.primary};
 `;
 
-const BarsRow = styled(Pane)`
+const BarsRow = styled.div`
   display: flex;
   align-items: flex-end;
   gap: 2px;
@@ -21,19 +30,20 @@ const BarsRow = styled(Pane)`
   outline: none;
 `;
 
-const BarSlot = styled(Pane)<{ $glow: boolean }>`
+const BarSlot = styled.div<{ $glow: boolean }>`
   position: relative;
   flex: 1;
   height: 100%;
   display: flex;
   align-items: flex-end;
-  box-shadow: ${({ $glow }) => ($glow ? '0 0 8px 2px #f5a62388' : 'none')};
+  box-shadow: ${({ $glow, theme }) => ($glow ? `0 0 8px 2px ${theme.metal.copper.base}55` : 'none')};
   border-radius: 2px;
 `;
 
+// Brushed brass column.
 const ObservedBar = styled.div`
   width: 100%;
-  background: #a9a9a9cc;
+  background: linear-gradient(180deg, ${({ theme }) => theme.metal.brass.light}, ${({ theme }) => theme.metal.brass.dark});
   border-radius: 2px 2px 0 0;
 `;
 
@@ -42,22 +52,46 @@ const EnglishOutline = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  border: 1px dashed ${({ theme }) => theme.colorScheme.blue[500]};
+  border: 2px dashed ${({ theme }) => theme.metal.copper.dark};
   border-bottom: none;
   border-radius: 2px 2px 0 0;
 `;
 
-const LetterRow = styled(Pane)`
+const LetterRow = styled.div`
   display: flex;
   gap: 2px;
   margin-top: 2px;
 `;
 
-const LetterCell = styled(Text)`
+const LetterCell = styled.span`
   flex: 1;
   text-align: center;
   font-size: 9px;
-  font-family: monospace;
+  font-family: ${({ theme }) => theme.type.mono};
+  color: ${({ theme }) => theme.ink.secondary};
+`;
+
+const ShortSliceNote = styled(Minion)`
+  display: block;
+  margin-bottom: 4px;
+`;
+
+const ControlsRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+const ChartHeading = styled(GreatPrimer)``;
+
+const MatchText = styled(Minion)``;
+
+const RotateLeftChevron = styled(Chevron)`
+  transform: rotate(90deg);
+`;
+
+const RotateRightChevron = styled(Chevron)`
+  transform: rotate(-90deg);
 `;
 
 interface FrequencyChartProps {
@@ -75,9 +109,8 @@ interface FrequencyChartProps {
   keyLetterLabel?: string;
 }
 
-// Two-bar frequency chart: observed gray bars vs dashed English reference
-// outline. Rotation IS the key parameter — rotating rewrites the key
-// letter through `onLetterChange`.
+// Two-bar frequency chart: observed brass bars vs dashed copper English
+// reference outline.
 const FrequencyChart: React.FC<FrequencyChartProps> = ({
   sliceLetters,
   hints,
@@ -130,27 +163,27 @@ const FrequencyChart: React.FC<FrequencyChartProps> = ({
       }}
     >
       {shortSlice && (
-        <Text size={300} display="block" marginBottom="4px">
+        <ShortSliceNote>
           {t('processing.cracker.wizard.warnings.shortSlice')}
-        </Text>
+        </ShortSliceNote>
       )}
       <Tooltip content={t('processing.cracker.tooltips.chartArrows')}>
-      <Pane display="flex" alignItems="center" gap="8px" data-guide="chart-arrows">
-        <Button aria-label="Rotate left" onClick={() => rotate(-1)}>
-          {'<'}
-        </Button>
-        <Heading size={400}>
+      <ControlsRow data-guide="chart-arrows">
+        <IconButton label="Rotate left" kind="copper" size="sm" onClick={() => rotate(-1)}>
+          <RotateLeftChevron size={8} />
+        </IconButton>
+        <ChartHeading>
           {`${keyLetterLabel || t('processing.cracker.wizard.keyLetters.keyLetter')}: ${alphabet[shift]}`}
-        </Heading>
-        <Button aria-label="Rotate right" onClick={() => rotate(1)}>
-          {'>'}
-        </Button>
+        </ChartHeading>
+        <IconButton label="Rotate right" kind="copper" size="sm" onClick={() => rotate(1)}>
+          <RotateRightChevron size={8} />
+        </IconButton>
         {hints.matchScore && (
           <Tooltip content={t('processing.cracker.tooltips.matchScore')}>
-            <Text size={300}>{`Match: ${score}%`}</Text>
+            <MatchText>{`Match: ${score}%`}</MatchText>
           </Tooltip>
         )}
-      </Pane>
+      </ControlsRow>
       </Tooltip>
 
       <BarsRow>

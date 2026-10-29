@@ -1,9 +1,9 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { Pane } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import Tooltip from '@atoms/Tooltip';
+import { paper } from '@theme/mixins';
 
 export interface CandidateItem {
   id: string;
@@ -16,7 +16,9 @@ export interface CandidateItem {
 // Ranked candidate cards shared by the wizards' "pick a parameter"
 // steps (Affine's multiplier, Alberti's period and disc step). A hint,
 // not a verdict — every card stays selectable.
-const CardsRow = styled(Pane)`
+
+// Small vellum index cards on the leather.
+const CardsRow = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 8px;
@@ -24,45 +26,57 @@ const CardsRow = styled(Pane)`
 `;
 
 const Card = styled.button<{ $active: boolean }>`
+  ${paper('vellum')}
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
   padding: 8px 10px;
-  border-radius: 4px;
-  border: 1px solid ${({ theme, $active }) => ($active ? theme.colorScheme.blue[500] : theme.colorScheme.gray[300])};
-  background: ${({ theme, $active }) => ($active ? theme.colorScheme.blue[100] : theme.colors.background)};
+  border-radius: ${({ theme }) => theme.radius.paper};
   cursor: pointer;
   text-align: left;
 
+  ${({ $active, theme }) => ($active
+    ? `box-shadow: 0 0 0 1.5px ${theme.metal.copper.base}, ${theme.shadow.card};`
+    : '')}
+
   &:hover {
-    border-color: ${({ theme }) => theme.colorScheme.blue[500]};
+    border-color: ${({ theme }) => theme.metal.copper.dark};
   }
 `;
 
 const CardValue = styled.span`
-  font-family: monospace;
+  font-family: ${({ theme }) => theme.type.mono};
   font-weight: 700;
   font-size: 13px;
+  color: ${({ theme }) => theme.ink.primary};
 `;
 
 const CardHint = styled.span`
+  font-family: ${({ theme }) => theme.type.body};
   font-size: 10px;
-  color: ${({ theme }) => theme.colors.textLight};
+  color: ${({ theme }) => theme.ink.secondary};
 `;
 
-const ConfidenceTrack = styled(Pane)`
+// Confidence: a brass rail with a copper fill.
+const ConfidenceTrack = styled.div`
   width: 100%;
-  height: 4px;
-  border-radius: 2px;
-  background: ${({ theme }) => theme.colorScheme.gray[200]};
+  height: 2px;
+  border-radius: 1px;
+  background: ${({ theme }) => theme.metal.brass.base};
 `;
 
-const ConfidenceFill = styled(Pane)<{ $confidence: number }>`
+const ConfidenceFill = styled.div<{ $confidence: number }>`
   width: ${({ $confidence }) => $confidence}%;
   height: 100%;
-  border-radius: 2px;
-  background: ${({ theme }) => theme.colorScheme.blue[500]};
+  border-radius: 1px;
+  background: ${({ theme }) => theme.metal.copper.base};
+`;
+
+const MatchText = styled.span`
+  font-family: ${({ theme }) => theme.type.body};
+  font-size: 11px;
+  color: ${({ theme }) => theme.ink.secondary};
 `;
 
 interface CandidateCardsProps {
@@ -88,6 +102,7 @@ const CandidateCards: React.FC<CandidateCardsProps> = ({
       {items.map((item) => (
         <Card
           key={item.id}
+          type="button"
           $active={selectedId === item.id}
           onClick={() => onSelect(item.id)}
         >
@@ -95,7 +110,7 @@ const CandidateCards: React.FC<CandidateCardsProps> = ({
           <ConfidenceTrack>
             <ConfidenceFill $confidence={item.confidence} />
           </ConfidenceTrack>
-          <span style={{ fontSize: 11 }}>{matchLabel.replace('{{score}}', String(item.confidence))}</span>
+          <MatchText>{matchLabel.replace('{{score}}', String(item.confidence))}</MatchText>
           {item.hint && <CardHint>{item.hint}</CardHint>}
         </Card>
       ))}

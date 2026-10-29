@@ -1,17 +1,37 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
+
+import { LampIcon } from '@ornaments';
+import { Minion } from '@typography';
+import { paper } from '@theme/mixins';
 
 const MIN_RELIABLE_LETTERS = 100;
 
 export { MIN_RELIABLE_LETTERS };
 
-const Banner = styled(Pane)`
+// A small parchment note pinned into the worksheet, with an oxblood
+// left edge and the lamp ornament.
+const Banner = styled.div`
+  ${paper('parchment')}
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
   margin-top: 8px;
   padding: 8px 12px;
-  border-radius: 4px;
-  background: ${({ theme }) => theme.colorScheme.yellow[100]};
+  border-left: 4px solid ${({ theme }) => theme.leather.oxblood.base};
+  border-radius: ${({ theme }) => theme.radius.paper};
+  color: ${({ theme }) => theme.ink.secondary};
+`;
+
+const NoteText = styled(Minion)`
+  color: ${({ theme }) => theme.ink.secondary};
+`;
+
+const NoteIcon = styled(LampIcon)`
+  flex: none;
+  color: ${({ theme }) => theme.ink.secondary};
+  margin-top: 1px;
 `;
 
 interface ShortTextWarningProps {
@@ -30,7 +50,8 @@ const ShortTextWarning: React.FC<ShortTextWarningProps> = ({ letters, warningKey
 
   return (
     <Banner>
-      <Text size={300}>{t(warningKey || 'processing.cracker.wizard.warnings.shortText')}</Text>
+      <NoteIcon size={14} />
+      <NoteText>{t(warningKey || 'processing.cracker.wizard.warnings.shortText')}</NoteText>
     </Banner>
   );
 };

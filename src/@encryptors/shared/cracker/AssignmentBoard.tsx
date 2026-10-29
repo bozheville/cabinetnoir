@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Button, Heading, Pane, Text } from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
+import { Button } from '@atoms';
+import { CipherText, GreatPrimer, Minion } from '@typography';
+import { paper } from '@theme/mixins';
 import {
   countSymbols,
   findConflicts,
@@ -38,7 +40,7 @@ interface AssignmentBoardProps {
   // Nihilist square, scored against the letters already assigned).
   // Still gated by showSuggestions.
   suggestions?: SymbolMapping;
-  // Symbols the current step asks the user to look at (amber outline).
+  // Symbols the current step asks the user to look at (copper outline).
   highlighted?: string[];
   // Notifies the parent which cell got selected (or null on deselect),
   // so a wrapper can sync other views — e.g. the preview's occurrence
@@ -58,6 +60,7 @@ interface AssignmentBoardProps {
   readOnly?: boolean;
 }
 
+// Cells are typeset type-tray squares: ivory paper, 1px rule lines.
 const Cell = styled.button<{ $selected: boolean; $assigned: boolean; $highlighted: boolean }>`
   display: flex;
   flex-direction: column;
@@ -65,54 +68,58 @@ const Cell = styled.button<{ $selected: boolean; $assigned: boolean; $highlighte
   justify-content: center;
   min-width: 52px;
   padding: 4px 6px;
-  border-radius: 6px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.gray[300]};
-  background: ${({ theme }) => theme.colorScheme.gray[50]};
+  border-radius: ${({ theme }) => theme.radius.paper};
+  border: 1px solid ${({ theme }) => theme.paper.rule};
+  background: ${({ theme }) => theme.paper.ivory};
+  color: ${({ theme }) => theme.ink.primary};
   ${({ $selected, $assigned }) => cellHighlight($selected ? 'strong' : $assigned ? 'filled' : 'none')}
-  outline: ${({ $highlighted }) => ($highlighted ? '2px solid #f5a623' : 'none')};
+  outline: ${({ $highlighted, theme }) => ($highlighted ? `2px dashed ${theme.metal.copper.base}` : 'none')};
+  outline-offset: 1px;
   cursor: pointer;
 `;
 
-const SymbolText = styled(Text)`
-  font-family: monospace;
+const SymbolText = styled(CipherText)`
   font-weight: 700;
 `;
 
-const AssignedText = styled(Text)`
-  font-family: monospace;
+const AssignedText = styled(CipherText)<{ $conflict: boolean }>`
   font-size: 18px;
   font-weight: 700;
+  color: ${({ theme, $conflict }) => ($conflict ? theme.ink.red : theme.ink.primary)};
 `;
 
-const MutedText = styled(Text)`
-  color: ${({ theme }) => theme.colors.textLight};
+const MutedText = styled.span`
+  font-family: ${({ theme }) => theme.type.body};
+  font-size: 12px;
+  color: ${({ theme }) => theme.ink.secondary};
 `;
 
-const BarFill = styled(Pane)<{ $ratio: number }>`
+// Frequency mini-bar: a brass rail with a brushed brass fill.
+const BarFill = styled.div<{ $ratio: number }>`
   width: ${({ $ratio }) => Math.round($ratio * 100)}%;
   height: 4px;
   border-radius: 2px;
-  background: ${({ theme }) => theme.colorScheme.blue[500]};
+  background: linear-gradient(180deg, ${({ theme }) => theme.metal.brass.light}, ${({ theme }) => theme.metal.brass.dark});
 `;
 
-const BarTrack = styled(Pane)`
+const BarTrack = styled.div`
   width: 40px;
   height: 4px;
   border-radius: 2px;
-  background: ${({ theme }) => theme.colorScheme.gray[200]};
+  background: ${({ theme }) => theme.paper.rule};
   margin-top: 2px;
 `;
 
 // Fixed-order layout (square coordinates): a strict grid so the board
 // reads as the square itself, cells in coordinate order.
-const CellGrid = styled(Pane)<{ $columns: number }>`
+const CellGrid = styled.div<{ $columns: number }>`
   display: grid;
   grid-template-columns: repeat(${({ $columns }) => $columns}, 52px);
   gap: 6px;
   justify-content: center;
 `;
 
-const LetterPicker = styled(Pane)`
+const LetterPicker = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -122,16 +129,32 @@ const LetterPicker = styled(Pane)`
 
 const LetterButton = styled(Button)<{ $used: boolean }>`
   width: 34px;
-  height: 30px;
-  font-family: monospace;
+  padding: 0;
+  font-family: ${({ theme }) => theme.type.mono};
   opacity: ${({ $used }) => ($used ? 0.4 : 1)};
 `;
 
+const PartialBox = styled.div`
+  ${paper('parchment')}
+  padding: 12px;
+  border-radius: ${({ theme }) => theme.radius.paper};
+  max-height: 200px;
+  overflow: auto;
+`;
+
 const PartialSegment = styled.span<{ $muted: boolean }>`
-  font-family: monospace;
-  color: ${({ theme, $muted }) => ($muted ? theme.colors.textLight : 'inherit')};
+  font-family: ${({ theme }) => theme.type.mono};
+  color: ${({ theme, $muted }) => ($muted ? theme.ink.secondary : theme.ink.primary)};
   white-space: pre-wrap;
   word-break: break-all;
+`;
+
+const BoardTitle = styled(GreatPrimer)`
+  color: ${({ theme }) => theme.ink.cream};
+`;
+
+const ConflictText = styled(Minion)`
+  color: ${({ theme }) => theme.ink.red};
 `;
 
 // The partial plaintext: assigned letters shown, unassigned cipher
@@ -164,11 +187,11 @@ const PartialText: React.FC<{
   }
 
   return (
-    <Pane background="tint1" borderRadius={6} padding={12} maxHeight={200} overflow="auto">
+    <PartialBox>
       {segments.map(({ text, muted }, index) => (
         <PartialSegment key={index} $muted={muted}>{text}</PartialSegment>
       ))}
-    </Pane>
+    </PartialBox>
   );
 };
 
@@ -211,16 +234,16 @@ const BoardCell: React.FC<{
       onClick={() => !readOnly && onSelect(symbol)}
       title={t('processing.cracker.assignment.clickCell')}
     >
-      <SymbolText size={400}>{symbol}</SymbolText>
-      <AssignedText color={conflict ? 'red500' : 'dark'}>
+      <SymbolText>{symbol}</SymbolText>
+      <AssignedText $conflict={conflict}>
         {assigned || '·'}
       </AssignedText>
       <BarTrack>
         <BarFill $ratio={count / maxCount} />
       </BarTrack>
-      <MutedText size={200}>{count}</MutedText>
+      <MutedText>{count}</MutedText>
       {showSuggestions && suggestion && !assigned && (
-        <MutedText size={200}>
+        <MutedText>
           {t('processing.cracker.assignment.suggestion', { suggestion })}
         </MutedText>
       )}
@@ -276,8 +299,8 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
   const gridColumns = columns ?? (order ? Math.round(Math.sqrt(order.length)) : 0);
 
   return (
-    <Pane display="flex" flexDirection="column" gap={12}>
-      {title && <Heading size={400}>{title}</Heading>}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      {title && <BoardTitle>{title}</BoardTitle>}
       {order ? (
         <CellGrid $columns={gridColumns}>
           {cells.map(({ symbol, count }) => (
@@ -298,7 +321,7 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
           ))}
         </CellGrid>
       ) : (
-        <Pane display="flex" flexWrap="wrap" gap={6} justifyContent="center">
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center' }}>
           {cells.map(({ symbol, count }) => (
             <BoardCell
               key={symbol}
@@ -315,7 +338,7 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
               onSelect={handleCellSelect}
             />
           ))}
-        </Pane>
+        </div>
       )}
       {!readOnly && (
         <LetterPicker>
@@ -323,6 +346,7 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
             <LetterButton
               key={letter}
               type="button"
+              size="sm"
               data-guide="assignment-letter"
               $used={usedLetters.has(letter)}
               disabled={!selected}
@@ -333,6 +357,7 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
           ))}
           <LetterButton
             type="button"
+            size="sm"
             data-guide="assignment-clear"
             $used={false}
             disabled={!selected || !mapping[selected]}
@@ -343,14 +368,14 @@ const AssignmentBoard: React.FC<AssignmentBoardProps> = ({
         </LetterPicker>
       )}
       {conflicts.length > 0 && (
-        <Text size={300} color="red500">
+        <ConflictText>
           {t('processing.cracker.assignment.conflict', { letter: conflicts[0].letter })}
-        </Text>
+        </ConflictText>
       )}
       {input && normalized && (
         <PartialText input={input} normalized={normalized} mapping={mapping} />
       )}
-    </Pane>
+    </div>
   );
 };
 

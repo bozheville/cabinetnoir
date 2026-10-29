@@ -1,8 +1,8 @@
 import React from 'react';
-import { Heading, Text } from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
+import { GreatPrimer } from '@typography';
 import {
   DigraphSuggestion,
   DoubleSuggestion,
@@ -22,22 +22,26 @@ const Strip = styled.div`
   border-radius: 4px;
 `;
 
-const SectionTitle = styled(Heading)`
+const SectionTitle = styled(GreatPrimer)`
+  color: ${({ theme }) => theme.ink.cream};
+
   &:not(:first-child) {
     margin-top: 10px;
   }
 `;
 
-const Row = styled(Text)`
+const Row = styled.div`
   display: block;
-  font-family: monospace;
+  font-family: ${({ theme }) => theme.type.mono};
+  color: ${({ theme }) => theme.ink.creamMuted};
   font-size: 13px;
   line-height: 1.8;
   cursor: default;
 `;
 
-const PairText = styled(Text)`
-  font-family: monospace;
+const PairText = styled.span`
+  font-family: ${({ theme }) => theme.type.mono};
+  color: ${({ theme }) => theme.ink.cream};
   font-weight: 700;
   font-size: 13px;
 `;
@@ -81,7 +85,7 @@ const CombinationStrip: React.FC<CombinationStripProps> = ({
   return (
     <Strip data-guide="combination-strip">
       {hasDigraphs && (
-        <SectionTitle size={200} marginBottom={4}>
+        <SectionTitle>
           {t('processing.cracker.combinations.title')}
         </SectionTitle>
       )}
@@ -93,7 +97,7 @@ const CombinationStrip: React.FC<CombinationStripProps> = ({
         </Row>
       ))}
       {hasTrigraphs && (
-        <SectionTitle size={200} marginBottom={4}>
+        <SectionTitle>
           {t('processing.cracker.combinations.tripletsTitle')}
         </SectionTitle>
       )}
@@ -105,7 +109,7 @@ const CombinationStrip: React.FC<CombinationStripProps> = ({
         </Row>
       ))}
       {hasDoubles && (
-        <SectionTitle size={200} marginBottom={4}>
+        <SectionTitle>
           {t('processing.cracker.combinations.doublesTitle')}
         </SectionTitle>
       )}

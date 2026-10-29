@@ -1,7 +1,8 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { Pane, Text } from 'evergreen-ui';
+import styled from 'styled-components';
 
+import { Minion } from '@typography';
 import useCracker from './useCracker';
 import {
   CrackerScopeProvider,
@@ -13,6 +14,12 @@ import StepKeyLength from './StepKeyLength';
 import StepKeyLetters from './StepKeyLetters';
 import StepKey from './StepKey';
 import DecryptPreview from './DecryptPreview';
+
+const InputChangedNote = styled(Minion)`
+  display: block;
+  margin-top: 8px;
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
 
 const CrackerWizard: React.FC<{
   cracker: ReturnType<typeof useCracker>;
@@ -60,9 +67,9 @@ const CrackerWizard: React.FC<{
       message={(
         <>
           {hasInputChanged && (
-            <Text size={300} display="block" marginTop="8px">
+            <InputChangedNote>
               {t('processing.cracker.wizard.inputChanged')}
-            </Text>
+            </InputChangedNote>
           )}
           {analysis && <ShortTextWarning letters={analysis.normalized.letters} />}
         </>

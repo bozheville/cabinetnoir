@@ -1,33 +1,51 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { Pane, Text, TextInput } from 'evergreen-ui';
 import styled from 'styled-components';
 
+import { TextInput } from '@atoms';
+import { Caption } from '@typography';
 import { HIGHLIGHT_COLORS, useCrackerKey } from '@encryptors/shared/cracker';
 import { LockedLetter } from './useCracker';
 
-const Strip = styled(Pane)`
+const Strip = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
   margin-top: 12px;
 `;
 
-const Cell = styled(Pane)`
+const Cell = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2px;
 `;
 
+// The slice's typewriter key: a small mono field bordered with the
+// slice's data ink, the slice number engraved below-right as a second
+// colour cue.
 const LetterInput = styled(TextInput)<{ $color: string; $active: boolean }>`
-  width: 34px;
-  height: 34px;
-  text-align: center;
-  font-family: monospace;
-  font-weight: 700;
-  font-size: 16px;
-  border-color: ${({ $color, $active }) => ($active ? $color : undefined)};
+  width: 40px;
+
+  input {
+    height: 34px;
+    padding: 0;
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px;
+    border-color: ${({ $color }) => $color};
+  }
+
+  ${({ $color, $active }) => ($active
+    ? `input { box-shadow: inset 0 1px 2px rgba(0,0,0,0.18), 0 0 4px ${$color}80; }`
+    : '')}
+`;
+
+const SliceTag = styled(Caption)`
+  align-self: flex-end;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: ${({ theme }) => theme.metal.brass.light};
 `;
 
 interface KeyStripProps {
@@ -62,6 +80,7 @@ const KeyStrip: React.FC<KeyStripProps> = ({
           <LetterInput
             $color={color}
             $active={activeSlice === slice}
+            mono
             maxLength={1}
             value={locked?.letter ?? ''}
             placeholder="_"
@@ -78,13 +97,13 @@ const KeyStrip: React.FC<KeyStripProps> = ({
               }
             }}
           />
-          <Text size={300}>
+          <SliceTag>
             {locked?.source === 'manual'
               ? t(`${base}manualTag`)
               : locked?.source === 'crib'
                 ? t(`${base}suggestedTag`)
                 : `${slice + 1}`}
-          </Text>
+          </SliceTag>
         </Cell>
       );
     })}

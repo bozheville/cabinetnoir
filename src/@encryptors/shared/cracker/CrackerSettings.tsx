@@ -1,14 +1,16 @@
 import { useTranslation } from 'next-i18next';
 import Tooltip from '@atoms/Tooltip';
 import React from 'react';
-import { Checkbox, Heading, Pane } from 'evergreen-ui';
 import styled from 'styled-components';
 
+import { Segmented, Toggle } from '@atoms';
+import { GreatPrimer } from '@typography';
 import {
   HintConfig,
   applyPreset,
   toggleHint,
 } from './hintSettings';
+import type { Preset } from './hintSettings';
 
 interface CrackerSettingsProps {
   config: HintConfig;
@@ -22,31 +24,27 @@ interface CrackerSettingsProps {
   i18nScope?: string;
 }
 
-const PresetPicker = styled(Pane)`
-  display: inline-flex;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.gray[300]};
-  overflow: hidden;
+const Title = styled(GreatPrimer)`
+  color: ${({ theme }) => theme.ink.cream};
+  margin-bottom: 8px;
 `;
 
-const PresetOption = styled.button<{ $active: boolean }>`
-  padding: 4px 12px;
-  border: none;
-  cursor: pointer;
-  font-size: 12px;
-  background: ${({ theme, $active }) => ($active ? theme.colorScheme.blue[500] : theme.colors.background)};
-  color: ${({ theme, $active }) => ($active ? theme.colorScheme.white : theme.colors.text)};
-
-  &:not(:last-child) {
-    border-right: 1px solid ${({ theme }) => theme.colorScheme.gray[300]};
-  }
-
-  &:hover {
-    background: ${({ theme, $active }) => ($active ? theme.colorScheme.blue[500] : theme.colorScheme.gray[100])};
-  }
+const PresetRow = styled.div`
+  margin-bottom: 8px;
 `;
 
-const PRESET_KEYS = ['easy', 'medium', 'hard', 'custom'];
+const TogglesGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  column-gap: 16px;
+  margin-top: 8px;
+`;
+
+const ToggleCell = styled.div`
+  margin: 4px 0;
+`;
+
+const PRESET_KEYS: Preset[] = ['easy', 'medium', 'hard', 'custom'];
 
 const SHARED_SCOPE = 'processing.cracker';
 
@@ -64,39 +62,34 @@ const CrackerSettings: React.FC<CrackerSettingsProps> = ({ config, onChange, key
       : t(`${SHARED_SCOPE}.tooltips.toggle.${key}`);
 
   return (
-    <Pane width="100%">
-      <Heading size={100} marginBottom="8px">{t(`${SHARED_SCOPE}.hints.title`)}</Heading>
+    <div style={{ width: '100%' }}>
+      <Title>{t(`${SHARED_SCOPE}.hints.title`)}</Title>
       <Tooltip content={t(`${SHARED_SCOPE}.tooltips.hintPresets`)}>
-        <PresetPicker data-guide="hint-presets">
-          {PRESET_KEYS.map((preset) => (
-            <PresetOption
-              key={preset}
-              $active={config.preset === preset}
-              onClick={() => onChange(applyPreset(config, preset as any))}
-            >
-              {t(`${SHARED_SCOPE}.hints.presets.${preset}`)}
-            </PresetOption>
-          ))}
-        </PresetPicker>
+        <PresetRow data-guide="hint-presets">
+          <Segmented
+            options={PRESET_KEYS.map((preset) => ({
+              value: preset,
+              label: t(`${SHARED_SCOPE}.hints.presets.${preset}`),
+            }))}
+            value={config.preset}
+            onChange={(preset) => onChange(applyPreset(config, preset))}
+          />
+        </PresetRow>
       </Tooltip>
-      <Pane
-        display="grid"
-        gridTemplateColumns="repeat(auto-fill, minmax(220px, 1fr))"
-        columnGap="16px"
-        marginTop="8px"
-      >
+      <TogglesGrid>
         {keys.map((key) => (
-          <Tooltip key={key} content={toggleTooltip(key)}>
-            <Checkbox
-              marginY="4px"
-              label={toggleLabel(key)}
-              checked={config.hints[key]}
-              onChange={(event) => onChange(toggleHint(config, key, event.target.checked))}
-            />
-          </Tooltip>
+          <ToggleCell key={key}>
+            <Tooltip content={toggleTooltip(key)}>
+              <Toggle
+                label={toggleLabel(key)}
+                checked={config.hints[key]}
+                onChange={(event) => onChange(toggleHint(config, key, event.target.checked))}
+              />
+            </Tooltip>
+          </ToggleCell>
         ))}
-      </Pane>
-    </Pane>
+      </TogglesGrid>
+    </div>
   );
 };
 

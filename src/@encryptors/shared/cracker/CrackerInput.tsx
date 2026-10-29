@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
-import { Heading, Pane } from 'evergreen-ui';
 import styled from 'styled-components';
 
+import { Caption } from '@typography';
 import TextArea from '@molecues/TextArea';
 
 // Shared ciphertext input for every Cryptoanalysis tab: one labeled
@@ -12,9 +12,15 @@ interface CrackerInputProps {
   onChange: (value: string) => void;
 }
 
-const InputWrapper = styled(Pane)`
-  border-bottom: 1px solid #999;
+const InputWrapper = styled.div`
+  border-bottom: 1px solid ${({ theme }) => theme.paper.rule};
   padding: 0 16px 16px;
+`;
+
+const InputLabel = styled(Caption)`
+  display: block;
+  padding: 8px 0;
+  color: ${({ theme }) => theme.metal.brass.light};
 `;
 
 const CrackerInput: React.FC<CrackerInputProps> = ({ value, onChange }) => {
@@ -22,7 +28,7 @@ const CrackerInput: React.FC<CrackerInputProps> = ({ value, onChange }) => {
 
   return (
     <InputWrapper>
-      <Heading size={100} paddingY="8px">{t('processing.cracker.inputLabel')}</Heading>
+      <InputLabel>{t('processing.cracker.inputLabel')}</InputLabel>
       <TextArea
         data-guide="cracker-input"
         value={value}

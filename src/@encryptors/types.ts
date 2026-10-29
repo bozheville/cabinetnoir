@@ -4,8 +4,8 @@ interface OnProcessingEndProps {
   output: string;
 }
 
-// The pane root is a plain div: evergreen PaneProps only ever carried
-// arbitrary div attributes to it, which HTMLAttributes covers.
+// The pane root is a plain div: it only ever carried arbitrary div
+// attributes, which HTMLAttributes covers.
 export interface CrypterProps extends React.HTMLAttributes<HTMLDivElement> {
   input: string;
   onProcessingEnd: (props: OnProcessingEndProps) => void;

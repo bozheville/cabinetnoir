@@ -1,8 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Button, Pane, Text, Tooltip } from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
+import Tooltip from '@atoms/Tooltip';
+import { Button } from '@atoms';
+import { Minion } from '@typography';
+import { paper } from '@theme/mixins';
 import {
   columnarDecrypt,
 } from '@encryptors/shared/transposition';
@@ -20,30 +23,77 @@ import {
 } from '../analysis/width';
 import { HintConfig } from './hintSettings';
 
-const StepText = styled(Text)`
+const StepText = styled(Minion)`
   display: block;
   margin-bottom: 8px;
+  color: ${({ theme }) => theme.ink.creamMuted};
 `;
 
-const PlaintextRows = styled(Text)`
-  font-family: monospace;
+const InputChangedNote = styled(Minion)`
+  display: block;
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+// Parchment reading box for the plaintext candidate.
+const PlaintextRows = styled.div`
+  ${paper('parchment')}
+  font-family: ${({ theme }) => theme.type.mono};
+  color: ${({ theme }) => theme.ink.primary};
   word-break: break-all;
   white-space: pre-wrap;
-  background: ${({ theme }) => theme.colorScheme.gray[50]};
-  border-radius: 6px;
   padding: 10px 12px;
+  border-radius: ${({ theme }) => theme.radius.paper};
   max-height: 220px;
   overflow-y: auto;
-  display: block;
 `;
 
-const Badge = styled(Text)<{ $score: number }>`
+// Pair-score badge between two adjacent strips: green enamel when the
+// pair reads well, copper when it might, plain otherwise.
+const Badge = styled.span<{ $score: number }>`
   font-size: 10px;
   padding: 1px 5px;
   border-radius: 8px;
-  background: ${({ $score }) => ($score >= 55 ? '#30a46c' : $score >= 35 ? '#f5a623' : 'transparent')};
-  color: ${({ $score }) => ($score >= 55 ? 'white' : '#6b7280')};
-  border: ${({ $score }) => ($score >= 55 ? 'none' : '1px solid #d4d4d8')};
+  background: ${({ $score, theme }) => ($score >= 55 ? theme.ink.green : $score >= 35 ? theme.metal.copper.base : 'transparent')};
+  color: ${({ $score, theme }) => ($score >= 55 ? theme.ink.cream : $score >= 35 ? theme.ink.primary : theme.ink.creamMuted)};
+  border: ${({ $score, theme }) => ($score >= 55 ? 'none' : `1px solid ${theme.paper.rule}`)};
+`;
+
+const StepBlock = styled.div`
+  margin-top: 12px;
+`;
+
+const OrderBlock = styled.div`
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+const OrderControls = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+`;
+
+const SelectedText = styled(Minion)`
+  color: ${({ theme }) => theme.ink.cream};
+`;
+
+// The hint's best-partner note: readable brass on the leather.
+const BestPartnerText = styled(Minion)`
+  color: ${({ theme }) => theme.metal.brass.light};
+`;
+
+const BadgesRow = styled.div`
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
+
+const OrderText = styled(Minion)`
+  color: ${({ theme }) => theme.ink.cream};
+  font-family: ${({ theme }) => theme.type.mono};
 `;
 
 interface CrackerWizardProps {
@@ -165,17 +215,17 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
       message={(
         <>
           {hasInputChanged && (
-            <Text size={300} color="amber500" display="block">
+            <InputChangedNote>
               {t('processing.cracker.wizard.inputChanged')}
-            </Text>
+            </InputChangedNote>
           )}
           {ciphertext.length > 0 && <ShortTextWarning letters={ciphertext} />}
         </>
       )}
     >
       {step === 1 && (
-        <Pane marginTop={12}>
-          <StepText size={300}>
+        <StepBlock>
+          <StepText>
             {t('processing.columnar.cracker.wizard.width.hint')}
           </StepText>
           <CandidateCards
@@ -192,28 +242,28 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
             matchLabel={t('processing.cracker.candidate.matchScore')}
             dataGuide="width-cards"
           />
-        </Pane>
+        </StepBlock>
       )}
       {step > 1 && width !== null && (
-        <Pane marginTop={12} display="flex" flexDirection="column" gap={8}>
-          <StepText size={300}>
+        <OrderBlock>
+          <StepText>
             {step === 2
               ? t('processing.columnar.cracker.wizard.order.hint')
               : t('processing.columnar.cracker.wizard.done.hint')}
           </StepText>
           {step === 2 && (
-            <Pane display="flex" gap={8} alignItems="center">
-              <Button size="small" data-guide="order-reset" onClick={resetOrder}>
+            <OrderControls>
+              <Button size="sm" variant="secondary" data-guide="order-reset" onClick={resetOrder}>
                 {t('processing.columnar.cracker.wizard.order.reset')}
               </Button>
               {selected !== null && (
-                <Text size={300}>
+                <SelectedText>
                   {t('processing.columnar.cracker.wizard.order.selected', {
                     position: selected + 1,
                   })}
-                </Text>
+                </SelectedText>
               )}
-            </Pane>
+            </OrderControls>
           )}
           <TranspositionGrid
             order={order}
@@ -225,14 +275,14 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
             dataGuide="transposition-grid"
           />
           {bestPartnerSource !== null && selected !== null && (
-            <Text size={300} color="#b58a00">
+            <BestPartnerText>
               {t('processing.columnar.cracker.wizard.order.bestPartner', {
                 position: order.indexOf(bestPartnerSource) + 1,
               })}
-            </Text>
+            </BestPartnerText>
           )}
           {hints.badges && (
-            <Pane display="flex" gap={6} justifyContent="center" flexWrap="wrap">
+            <BadgesRow>
               {Array.from({ length: order.length }, (_, position) => {
                 const score = badgeScore(position);
                 return score === null ? null : (
@@ -249,19 +299,19 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
                   </Tooltip>
                 );
               })}
-            </Pane>
+            </BadgesRow>
           )}
           {hints.livePreview && plaintext && (
             <PlaintextRows data-guide="plaintext-preview">{plaintext}</PlaintextRows>
           )}
           {step === 3 && (
-            <Text size={300} fontFamily="monospace">
+            <OrderText>
               {t('processing.columnar.cracker.wizard.done.order', {
                 order: order.map((source) => source + 1).join(' '),
               })}
-            </Text>
+            </OrderText>
           )}
-        </Pane>
+        </OrderBlock>
       )}
     </CrackerWizardFrame>
   );

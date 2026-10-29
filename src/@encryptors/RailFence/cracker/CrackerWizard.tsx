@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Pane, Text } from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
+import { Minion } from '@typography';
+import { paper } from '@theme/mixins';
 import {
   railFenceDecrypt,
 } from '@encryptors/shared/transposition';
@@ -16,32 +17,52 @@ import { HintConfig } from './hintSettings';
 
 const MAX_RAILS = 10;
 
-const StepText = styled(Text)`
+const StepText = styled(Minion)`
   display: block;
   margin-bottom: 8px;
+  color: ${({ theme }) => theme.ink.creamMuted};
 `;
 
-const PlaintextRows = styled(Text)`
-  font-family: monospace;
+const InputChangedNote = styled(Minion)`
+  display: block;
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+// Parchment reading box for the plaintext candidate.
+const PlaintextRows = styled.div`
+  ${paper('parchment')}
+  font-family: ${({ theme }) => theme.type.mono};
+  color: ${({ theme }) => theme.ink.primary};
   word-break: break-all;
   white-space: pre-wrap;
-  background: ${({ theme }) => theme.colorScheme.gray[50]};
-  border-radius: 6px;
   padding: 10px 12px;
+  border-radius: ${({ theme }) => theme.radius.paper};
   max-height: 200px;
   overflow-y: auto;
-  display: block;
 `;
 
+// A brass rail slider (native range input underneath).
 const Slider = styled.input`
   width: 100%;
-  accent-color: ${({ theme }) => theme.colorScheme.blue_green[500]};
+  accent-color: ${({ theme }) => theme.metal.brass.base};
 `;
 
-const MeterBar = styled.div<{ $score: number }>`
+const SliderBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+const SliderLabel = styled(Minion)`
+  color: ${({ theme }) => theme.ink.cream};
+`;
+
+// The digraph meter: a brass rail, the fill green when the setting
+// reads like English, copper in the maybe band, red ink when it doesn't.
+const MeterBar = styled.div`
   height: 10px;
   border-radius: 6px;
-  background: ${({ theme }) => theme.colorScheme.gray[200]};
+  background: ${({ theme }) => theme.metal.brass.base};
   overflow: hidden;
   flex: 1;
 `;
@@ -50,12 +71,44 @@ const MeterFill = styled.div<{ $score: number }>`
   height: 100%;
   width: ${({ $score }) => $score}%;
   border-radius: 6px;
-  background: ${({ $score }) => ($score >= 55 ? '#30a46c' : $score >= 35 ? '#f5a623' : '#e5695f')};
+  background: ${({ $score, theme }) => ($score >= 55
+    ? theme.ink.green
+    : $score >= 35 ? theme.metal.copper.base : theme.ink.red)};
 `;
 
 const BestMark = styled.span`
-  color: ${({ theme }) => theme.colorScheme.blue_green[600]};
+  color: ${({ theme }) => theme.metal.brass.base};
   font-weight: 700;
+`;
+
+const MeterRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+const MeterValue = styled(Minion)`
+  color: ${({ theme }) => theme.ink.cream};
+  font-family: ${({ theme }) => theme.type.mono};
+`;
+
+const SettingText = styled(Minion)`
+  color: ${({ theme }) => theme.ink.cream};
+  font-family: ${({ theme }) => theme.type.mono};
+`;
+
+const StepBlock = styled.div`
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+const DoneBlock = styled.div`
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 interface CrackerWizardProps {
@@ -153,21 +206,21 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
       message={(
         <>
           {hasInputChanged && (
-            <Text size={300} color="amber500" display="block">
+            <InputChangedNote>
               {t('processing.cracker.wizard.inputChanged')}
-            </Text>
+            </InputChangedNote>
           )}
           {ciphertext.length > 0 && <ShortTextWarning letters={ciphertext} />}
         </>
       )}
     >
       {step === 1 && (
-        <Pane marginTop={12} display="flex" flexDirection="column" gap={10}>
-          <StepText size={300}>
+        <StepBlock>
+          <StepText>
             {t('processing.railFence.cracker.wizard.try.hint')}
           </StepText>
-          <Pane display="flex" flexDirection="column" gap={4} data-guide="rails-slider">
-            <Text size={300}>
+          <SliderBlock data-guide="rails-slider">
+            <SliderLabel>
               {t('processing.railFence.cracker.wizard.try.railsLabel', { value: rails })}
               {hints.bestMark && best && (
                 <BestMark>
@@ -178,7 +231,7 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
                   })}
                 </BestMark>
               )}
-            </Text>
+            </SliderLabel>
             <Slider
               type="range"
               min={2}
@@ -190,11 +243,11 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
                 setOffset((current) => Math.min(current, value - 1));
               }}
             />
-          </Pane>
-          <Pane display="flex" flexDirection="column" gap={4} data-guide="offset-slider">
-            <Text size={300}>
+          </SliderBlock>
+          <SliderBlock data-guide="offset-slider">
+            <SliderLabel>
               {t('processing.railFence.cracker.wizard.try.offsetLabel', { value: offset })}
-            </Text>
+            </SliderLabel>
             <Slider
               type="range"
               min={0}
@@ -202,34 +255,34 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
               value={offset}
               onChange={(event) => setOffset(Number(event.target.value))}
             />
-          </Pane>
-          <Pane display="flex" alignItems="center" gap={8} data-guide="score-meter">
-            <Text size={300}>{t('processing.railFence.cracker.wizard.try.meterLabel')}</Text>
-            <MeterBar $score={meter}>
+          </SliderBlock>
+          <MeterRow data-guide="score-meter">
+            <SliderLabel>{t('processing.railFence.cracker.wizard.try.meterLabel')}</SliderLabel>
+            <MeterBar>
               <MeterFill $score={meter} />
             </MeterBar>
-            <Text size={300} fontFamily="monospace">{meter}</Text>
-          </Pane>
+            <MeterValue>{meter}</MeterValue>
+          </MeterRow>
           {plaintext && (
             <ZigzagFence text={plaintext} rails={rails} offset={offset} dataGuide="zigzag-fence" />
           )}
           {plaintext && (
             <PlaintextRows data-guide="plaintext-preview">{plaintext}</PlaintextRows>
           )}
-        </Pane>
+        </StepBlock>
       )}
       {step === 2 && (
-        <Pane marginTop={12} display="flex" flexDirection="column" gap={8}>
-          <StepText size={300}>
+        <DoneBlock>
+          <StepText>
             {t('processing.railFence.cracker.wizard.done.hint')}
           </StepText>
-          <Text size={300} fontFamily="monospace">
+          <SettingText>
             {t('processing.railFence.cracker.wizard.done.setting', { rails, offset })}
-          </Text>
+          </SettingText>
           {plaintext && (
             <PlaintextRows data-guide="plaintext-preview">{plaintext}</PlaintextRows>
           )}
-        </Pane>
+        </DoneBlock>
       )}
     </CrackerWizardFrame>
   );

@@ -1,8 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Button, Pane, Text, Tooltip } from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
+import Tooltip from '@atoms/Tooltip';
+import { Button } from '@atoms';
+import { CipherText, Minion } from '@typography';
 import {
   countSymbols,
   extractWords,
@@ -24,12 +26,35 @@ import { HintConfig } from './hintSettings';
 
 const ALPHABET = STANDARD_ALPHABET;
 
-const StepText = styled(Text)`
+const StepText = styled(Minion)`
   display: block;
+  margin-bottom: 8px;
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const InputChangedNote = styled(Minion)`
+  display: block;
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const HistoryRow = styled.div`
+  display: flex;
+  gap: 8px;
   margin-bottom: 8px;
 `;
 
-const WordRow = styled(Pane)`
+const StepBlock = styled.div`
+  margin-top: 12px;
+`;
+
+const DoneBlock = styled.div`
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+const WordRow = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -37,14 +62,46 @@ const WordRow = styled(Pane)`
   margin-bottom: 6px;
 `;
 
+const WordText = styled(Minion)`
+  color: ${({ theme }) => theme.ink.cream};
+  font-family: ${({ theme }) => theme.type.mono};
+`;
+
+// A pattern-candidate chip: a brass-washed mono button.
 const CandidateButton = styled.button`
-  font-family: monospace;
+  font-family: ${({ theme }) => theme.type.mono};
+  color: ${({ theme }) => theme.ink.cream};
   font-weight: 700;
   padding: 2px 8px;
   border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.blue[300]};
-  background: ${({ theme }) => theme.colorScheme.blue[50]};
+  border: 1px solid ${({ theme }) => theme.metal.brass.dark};
+  background: ${({ theme }) => `${theme.metal.brass.light}26`};
   cursor: pointer;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.metal.copper.dark};
+  }
+`;
+
+const RecoveredAlphabet = styled(CipherText)`
+  color: ${({ theme }) => theme.ink.cream};
+  word-break: break-all;
+`;
+
+// The recovered keyword: engraved brass on the leather.
+const KeywordGuess = styled(Minion)`
+  color: ${({ theme }) => theme.metal.brass.light};
+  font-size: 16px;
+  font-weight: 700;
+`;
+
+const PlainNote = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
+`;
+
+const PreviewLabel = styled(Minion)`
+  display: block;
+  color: ${({ theme }) => theme.ink.creamMuted};
 `;
 
 interface CrackerWizardProps {
@@ -183,9 +240,9 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
       message={(
         <>
           {hasInputChanged && (
-            <Text size={300} color="amber500" display="block">
+            <InputChangedNote>
               {t('processing.cracker.wizard.inputChanged')}
-            </Text>
+            </InputChangedNote>
           )}
           {normalized.letters.length > 0 && (
             <ShortTextWarning letters={normalized.letters} />
@@ -194,57 +251,57 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
       )}
     >
       {step > 1 && (
-        <Pane display="flex" gap={8} marginBottom={8}>
+        <HistoryRow>
           <Tooltip content={t('processing.cracker.tooltips.undo')}>
-            <Button size="small" disabled={!history.canUndo} onClick={history.undo}>
+            <Button size="sm" variant="secondary" disabled={!history.canUndo} onClick={history.undo}>
               {t('processing.cracker.assignment.undo')}
             </Button>
           </Tooltip>
           <Tooltip content={t('processing.cracker.tooltips.redo')}>
-            <Button size="small" disabled={!history.canRedo} onClick={history.redo}>
+            <Button size="sm" variant="secondary" disabled={!history.canRedo} onClick={history.redo}>
               {t('processing.cracker.assignment.redo')}
             </Button>
           </Tooltip>
-          <Button size="small" onClick={history.clear}>
+          <Button size="sm" variant="secondary" onClick={history.clear}>
             {t('processing.cracker.assignment.clearAll')}
           </Button>
-        </Pane>
+        </HistoryRow>
       )}
       {step === 1 && (
-        <Pane marginTop={12}>
-          <StepText size={300}>
+        <StepBlock>
+          <StepText>
             {t('processing.keyword.cracker.wizard.count.summary', {
               letters: normalized.letters.length,
               distinct,
             })}
           </StepText>
-          <StepText size={300}>
+          <StepText>
             {t('processing.keyword.cracker.wizard.count.hint')}
           </StepText>
           {board({ readOnly: true })}
-        </Pane>
+        </StepBlock>
       )}
       {step === 2 && (
-        <Pane marginTop={12}>
-          <StepText size={300}>
+        <StepBlock>
+          <StepText>
             {t('processing.keyword.cracker.wizard.obvious.hint')}
           </StepText>
           {board({ showSuggestions: true })}
-        </Pane>
+        </StepBlock>
       )}
       {step === 3 && (
-        <Pane marginTop={12}>
-          <StepText size={300}>
+        <StepBlock>
+          <StepText>
             {t('processing.keyword.cracker.wizard.words.hint')}
           </StepText>
           {hints.patterns && patternMatches.length === 0 && (
-            <StepText size={300}>
+            <StepText>
               {t('processing.keyword.cracker.wizard.words.none')}
             </StepText>
           )}
           {hints.patterns && patternMatches.slice(0, 6).map(({ word, candidates }) => (
             <WordRow key={`${word}-${candidates[0]}`}>
-              <Text fontFamily="monospace" size={300}>{word} →</Text>
+              <WordText>{word} →</WordText>
               {candidates.slice(0, 5).map((candidate) => (
                 <Tooltip
                   key={candidate}
@@ -262,7 +319,7 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
             </WordRow>
           ))}
           {hints.doubles && doubles.length > 0 && (
-            <StepText size={300}>
+            <StepText>
               {t('processing.keyword.cracker.wizard.words.doubles', {
                 doubles: doubles.slice(0, 4)
                   .map(({ symbol }) => `${symbol}${symbol}`)
@@ -271,58 +328,58 @@ const CrackerWizard: React.FC<CrackerWizardProps> = ({
             </StepText>
           )}
           {hints.doubles && oneLetterWords.length > 0 && (
-            <StepText size={300}>
+            <StepText>
               {t('processing.keyword.cracker.wizard.words.oneLetter', {
                 words: oneLetterWords.slice(0, 4).map(({ word }) => word).join(', '),
               })}
             </StepText>
           )}
           {board({ showSuggestions: false })}
-        </Pane>
+        </StepBlock>
       )}
       {step === 4 && (
-        <Pane marginTop={12}>
-          <StepText size={300}>
+        <StepBlock>
+          <StepText>
             {t('processing.keyword.cracker.wizard.gaps.hint')}
           </StepText>
           {board({ showSuggestions: true })}
-        </Pane>
+        </StepBlock>
       )}
       {step === 5 && (
-        <Pane marginTop={12} display="flex" flexDirection="column" gap={8}>
-          <StepText size={300}>
+        <DoneBlock>
+          <StepText>
             {t('processing.keyword.cracker.wizard.done.alphabet')}
           </StepText>
-          <Text fontFamily="monospace" wordBreak="break-all">{recoveredAlphabet}</Text>
+          <RecoveredAlphabet>{recoveredAlphabet}</RecoveredAlphabet>
           {keywordGuess && (
-            <Text size={400} color="green600">
+            <KeywordGuess>
               {t('processing.keyword.cracker.wizard.done.keyword', { keyword: keywordGuess })}
-            </Text>
+            </KeywordGuess>
           )}
           {!keywordGuess && complete && (
-            <Text size={300}>
+            <PlainNote>
               {t('processing.keyword.cracker.wizard.done.noKeyword')}
-            </Text>
+            </PlainNote>
           )}
           {!complete && (
-            <Text size={300} color="amber500">
+            <PlainNote>
               {t('processing.keyword.cracker.wizard.done.incomplete')}
-            </Text>
+            </PlainNote>
           )}
           {complete && !all26 && (
-            <Text size={300}>
+            <PlainNote>
               {t('processing.keyword.cracker.wizard.done.fillNote')}
-            </Text>
+            </PlainNote>
           )}
-        </Pane>
+        </DoneBlock>
       )}
       {hints.livePreview && !complete && step < 5 && (
-        <Pane marginTop={12}>
-          <Text size={300} display="block">
+        <StepBlock>
+          <PreviewLabel>
             {t('processing.cracker.wizard.previewTitle')}
-          </Text>
+          </PreviewLabel>
           {board({ readOnly: true })}
-        </Pane>
+        </StepBlock>
       )}
     </CrackerWizardFrame>
   );
