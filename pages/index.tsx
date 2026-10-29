@@ -6,6 +6,8 @@ import styled from 'styled-components';
 
 import { CipherLadder, Footer, Hero, Roadmap, StartHereCard } from '@molecues';
 import Section from '@atoms/Section/Section';
+import { leather } from '@theme/mixins';
+import { Sunburst } from '@ornaments';
 import { GreatPrimer, Minion } from '@typography';
 
 const LadderSection = styled(Section)`
@@ -14,7 +16,8 @@ const LadderSection = styled(Section)`
   & > div {
     margin: 0 auto;
     width: 100%;
-    max-width: 720px;
+    max-width: 1280px;
+    padding: 0 16px;
   }
 `;
 
@@ -34,19 +37,38 @@ const IdentifySection = styled(Section)`
   }
 `;
 
+// Navy leather card with a sunburst corner: the identify call-out.
 const IdentifyCard = styled(Link)`
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 6px;
   padding: 16px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.blue_green[500]};
-  border-radius: 4px;
-  background: ${({ theme }) => theme.colorScheme.blue_green[50]};
+  border-radius: ${({ theme }) => theme.radius.leather};
+  ${leather('navy', 0.1)}
   text-decoration: none;
+  transition: transform 120ms ease-out;
 
   &:hover {
-    box-shadow: 0 0 0 1px ${({ theme }) => theme.colorScheme.blue_green[500]};
+    transform: translateY(-2px);
   }
+
+  ${GreatPrimer} {
+    color: ${({ theme }) => theme.ink.cream};
+  }
+
+  ${Minion} {
+    color: ${({ theme }) => theme.ink.creamMuted};
+  }
+`;
+
+const CardSunburst = styled.span`
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  color: ${({ theme }) => theme.metal.brass.light};
+  pointer-events: none;
 `;
 
 // Landing page (#73): hero, pinned "Start here", the cipher ladder
@@ -58,7 +80,7 @@ const Index: React.FC = () => {
     <>
       <Hero />
       <StartHereCard />
-      <LadderSection stitch="both" color="description">
+      <LadderSection stitch="both" color="description" id="cipher-ladder">
         <div>
           <CipherLadder />
         </div>
@@ -66,6 +88,9 @@ const Index: React.FC = () => {
       <IdentifySection stitch="both" color="footer">
         <div>
           <IdentifyCard href="/identify">
+            <CardSunburst aria-hidden="true">
+              <Sunburst size={160} radius={80} rays={12} />
+            </CardSunburst>
             <GreatPrimer>{t('home.identify.title')}</GreatPrimer>
             <Minion>{t('home.identify.subtitle')}</Minion>
           </IdentifyCard>

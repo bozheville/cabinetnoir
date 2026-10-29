@@ -1,18 +1,59 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'next-i18next';
-import { Button, Pane, Table, Text } from 'evergreen-ui';
 import styled from 'styled-components';
+
+import { Button, Paper } from '@atoms';
+import { Caption, Minion } from '@typography';
 
 import { getExample } from '@learning/examples';
 import GlyphRenderer from '@molecues/GlyphRenderer';
 
-const Container = styled(Pane)`
+// Paper table: rule lines, header row on parchment.
+const Container = styled(Paper)`
   margin: 12px 0;
   padding: 12px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.gray[300]};
-  border-radius: 4px;
   width: 100%;
   overflow-x: auto;
+`;
+
+const StepOf = styled(Minion)`
+  display: block;
+  margin-bottom: 8px;
+  color: ${({ theme }) => theme.ink.secondary};
+`;
+
+const StyledTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    background-color: ${({ theme }) => theme.paper.parchment};
+    border: 1px solid ${({ theme }) => theme.paper.rule};
+    padding: 6px 10px;
+    text-align: left;
+  }
+
+  td {
+    border: 1px solid ${({ theme }) => theme.paper.rule};
+    padding: 6px 10px;
+    color: ${({ theme }) => theme.ink.primary};
+  }
+`;
+
+const HeaderLabel = styled(Caption)`
+  color: ${({ theme }) => theme.ink.secondary};
+`;
+
+const CellText = styled.span`
+  font-family: ${({ theme }) => theme.type.mono};
+  font-size: 15px;
+  color: ${({ theme }) => theme.ink.primary};
+`;
+
+const Controls = styled.div`
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
 `;
 
 interface WorkedExampleProps {
@@ -39,51 +80,53 @@ const WorkedExample: React.FC<WorkedExampleProps> = ({ id }) => {
 
   return (
     <Container>
-      <Text size={300} display="block" marginBottom="8px">
+      <StepOf>
         {t('learning.example.stepOf', { step: visibleRows, total: example.rows.length })}
-      </Text>
-      <Table width="100%">
-        <Table.Head>
-          {example.columns.map((column) => (
-            <Table.TextHeaderCell key={column.key}>
-              {t(column.labelKey)}
-            </Table.TextHeaderCell>
-          ))}
-        </Table.Head>
-        <Table.Body>
+      </StepOf>
+      <StyledTable>
+        <thead>
+          <tr>
+            {example.columns.map((column) => (
+              <th key={column.key}>
+                <HeaderLabel>{t(column.labelKey)}</HeaderLabel>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
           {shownRows.map((row, rowIndex) => (
-            <Table.Row key={rowIndex}>
+            <tr key={rowIndex}>
               {row.map((cell, cellIndex) => (
-                <Table.TextCell key={cellIndex}>
+                <td key={cellIndex}>
                   {example.glyphVariant &&
                   example.glyphColumns?.includes(example.columns[cellIndex]?.key) ? (
                     <GlyphRenderer text={cell} variant={example.glyphVariant} size={24} />
                   ) : (
-                    cell
+                    <CellText>{cell}</CellText>
                   )}
-                </Table.TextCell>
+                </td>
               ))}
-            </Table.Row>
+            </tr>
           ))}
-        </Table.Body>
-      </Table>
-      <Pane display="flex" gap="8px" marginTop="8px">
+        </tbody>
+      </StyledTable>
+      <Controls>
         {!allShown && (
-          <Button size="small" onClick={() => setVisibleRows(visibleRows + 1)}>
+          <Button variant="secondary" size="sm" onClick={() => setVisibleRows(visibleRows + 1)}>
             {t('learning.example.nextStep')}
           </Button>
         )}
         {!allShown && (
-          <Button size="small" onClick={() => setVisibleRows(example.rows.length)}>
+          <Button variant="quiet" size="sm" onClick={() => setVisibleRows(example.rows.length)}>
             {t('learning.example.showAll')}
           </Button>
         )}
         {allShown && (
-          <Button size="small" onClick={() => setVisibleRows(1)}>
+          <Button variant="quiet" size="sm" onClick={() => setVisibleRows(1)}>
             {t('learning.example.restart')}
           </Button>
         )}
-      </Pane>
+      </Controls>
     </Container>
   );
 };

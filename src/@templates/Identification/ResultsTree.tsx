@@ -29,6 +29,12 @@ import {
   ScoreBar,
 } from './elements';
 
+// Section heading on the navy band.
+const ResultsHeading = styled(Minion)`
+  color: ${({ theme }) => theme.ink.creamMuted};
+  margin-bottom: 8px;
+`;
+
 // Renders one predefined reason: locale key `identify.reasons.<id>`
 // filled with the rule's numeric params.
 const ReasonLine: React.FC<{ id: string; params?: Record<string, number | string> }> = ({ id, params }) => {
@@ -149,7 +155,7 @@ const ResultsTree: React.FC<{ result: IdentificationResult; input: string }> = (
 
   return (
     <div>
-      <Minion>{t('identify.resultsHeading')}</Minion>
+      <ResultsHeading>{t('identify.resultsHeading')}</ResultsHeading>
       {result.families.map((family) => (
         <FamilyEntry key={family.family} family={family} input={input} />
       ))}

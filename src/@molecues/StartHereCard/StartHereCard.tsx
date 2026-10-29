@@ -1,22 +1,19 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
-import Link from 'next/link';
-import { Pane, Text } from 'evergreen-ui';
 import styled from 'styled-components';
 
 import Section from '@atoms/Section/Section';
-import { GreatPrimer, Minion } from '@typography';
+import { Button, Paper } from '@atoms';
+import { GreatPrimer, Minion, Caption } from '@typography';
 import { START_HERE_CIPHER } from '@learning/config';
 
-const Card = styled(Pane)`
+// A paper letter pinned to the beige band with two copper rivets.
+const Letter = styled(Paper)`
+  position: relative;
   margin: 0 auto;
   width: 100%;
   max-width: 640px;
   padding: 16px;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.blue[500]};
-  box-shadow: 0 0 0 1px ${({ theme }) => theme.colorScheme.blue[200]};
-  background: ${({ theme }) => theme.colorScheme.blue[100]};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -29,36 +26,32 @@ const Card = styled(Pane)`
   }
 `;
 
-const PinnedLabel = styled(Text)`
+const Rivet = styled.span`
+  position: absolute;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: ${({ theme }) => theme.metal.copper.base};
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 0 rgba(0, 0, 0, 0.35);
+
+  &:first-of-type { left: 8px; }
+  &:last-of-type { right: 8px; }
+`;
+
+const PinnedLabel = styled(Caption)`
   display: inline-block;
   padding: 2px 10px;
   margin-bottom: 8px;
-  border-radius: 4px;
-  background: ${({ theme }) => theme.colorScheme.blue[500]};
-  color: ${({ theme }) => theme.colorScheme.white};
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  color: ${({ theme }) => theme.metal.brass.dark};
 `;
 
-const Cta = styled(Link)`
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 20px;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.blue[500]};
-  background: ${({ theme }) => theme.colorScheme.blue[500]};
-  color: ${({ theme }) => theme.colorScheme.white};
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 500;
+const CardTitle = styled(GreatPrimer)`
+  margin-bottom: 4px;
+`;
 
-  &:hover {
-    background: ${({ theme }) => theme.colorScheme.blue[600]};
-  }
+const CardText = styled(Minion)`
+  color: ${({ theme }) => theme.ink.secondary};
 `;
 
 // Pinned "Start here" card on the home page (#74): one pointer to the
@@ -68,16 +61,18 @@ const StartHereCard: React.FC = () => {
 
   return (
     <Section stitch="both" color="description">
-      <Card>
-        <Pane>
+      <Letter>
+        <Rivet aria-hidden="true" />
+        <Rivet aria-hidden="true" />
+        <div>
           <PinnedLabel>{`★ ${t('home.startHere.label')}`}</PinnedLabel>
-          <GreatPrimer>{t(`processing.${START_HERE_CIPHER}.title`)}</GreatPrimer>
-          <Minion>{t('home.startHere.text')}</Minion>
-        </Pane>
-        <Cta href={`/encoder/${START_HERE_CIPHER}/learn`}>
+          <CardTitle>{t(`processing.${START_HERE_CIPHER}.title`)}</CardTitle>
+          <CardText>{t('home.startHere.text')}</CardText>
+        </div>
+        <Button href={`/encoder/${START_HERE_CIPHER}/learn`} variant="primary">
           {t('home.startHere.cta')}
-        </Cta>
-      </Card>
+        </Button>
+      </Letter>
     </Section>
   );
 };

@@ -1,28 +1,14 @@
 import React from 'react';
-import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
+import { Button } from '@atoms';
+
 import { getExample } from '@learning/examples';
 
-const StyledLink = styled(Link)`
+const Inline = styled.span`
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
   margin: 8px 0;
-  padding: 6px 16px;
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.colorScheme.blue[500]};
-  background: ${({ theme }) => theme.colorScheme.blue[500]};
-  color: ${({ theme }) => theme.colorScheme.white};
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-
-  &:hover {
-    background: ${({ theme }) => theme.colorScheme.blue[600]};
-  }
 `;
 
 interface TryInToolButtonProps {
@@ -45,9 +31,15 @@ const TryInToolButton: React.FC<TryInToolButtonProps> = ({ exampleId }) => {
   const modePath = example.mode === 'decrypt' ? 'reverse' : 'direct';
 
   return (
-    <StyledLink href={`/encoder/${example.cipher}/${modePath}?example=${example.id}`}>
-      {t('learning.tryInTool')}
-    </StyledLink>
+    <Inline>
+      <Button
+        href={`/encoder/${example.cipher}/${modePath}?example=${example.id}`}
+        variant="primary"
+        size="sm"
+      >
+        {t('learning.tryInTool')}
+      </Button>
+    </Inline>
   );
 };
 

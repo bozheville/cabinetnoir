@@ -31,40 +31,23 @@ const weights = {
   group9: 600,
 };
 
+// Group colours cycle the eight enamel data inks (spec 01 §6);
+// highlighted groups read as cream text on the enamel fill.
 const colors = css<{type: string; isHighlighted: boolean}>`
-  color: ${({ type, isHighlighted, theme }) => isHighlighted && type.match('group') ? 'white'
-  : type === 'message' ? 'green'
-  : type === 'message' ? theme.colorScheme.green[400]
-  : type === 'standalone' ? theme.colorScheme.orange[500]
-  : type === 'double' ? 'blue'
-  : type === 'cryptogram' ? 'black'
-  : type === 'group0' ? theme.colorScheme.yellow_orange[500]
-  : type === 'group1' ? theme.colorScheme.yellow_orange[700]
-  : type === 'group2' ? theme.colorScheme.yellow_orange[600]
-  : type === 'group3' ? theme.colorScheme.red_violet[700]
-  : type === 'group4' ? theme.colorScheme.red_violet[600]
-  : type === 'group5' ? theme.colorScheme.red_orange[800]
-  : type === 'group6' ? theme.colorScheme.red_orange[700]
-  : type === 'group7' ? theme.colorScheme.red_orange[600]
-  : type === 'group8' ? theme.colorScheme.red_orange[500]
-  : type === 'group9' ? theme.colorScheme.red_orange[400]
-  : 'black'
+  color: ${({ type, isHighlighted, theme }) => isHighlighted && type?.match('group') ? theme.ink.cream
+  : type === 'message' ? theme.ink.green
+  : type === 'standalone' ? theme.data[3]
+  : type === 'double' ? theme.data[1]
+  : type === 'cryptogram' ? theme.ink.primary
+  : type?.match(/^group(\d+)$/) ? theme.data[Number(type.slice(5)) % theme.data.length]
+  : theme.ink.primary
   };
 `;
 
 const backgrounds = css<{type: string; isHighlighted: boolean}>`
-  background-color: ${({ type, isHighlighted, theme }) => !isHighlighted ? 'transpatent'
-  : type === 'group0' ? theme.colorScheme.yellow_orange[500]
-  : type === 'group1' ? theme.colorScheme.yellow_orange[700]
-  : type === 'group2' ? theme.colorScheme.yellow_orange[600]
-  : type === 'group3' ? theme.colorScheme.red_violet[700]
-  : type === 'group4' ? theme.colorScheme.red_violet[600]
-  : type === 'group5' ? theme.colorScheme.red_orange[800]
-  : type === 'group6' ? theme.colorScheme.red_orange[700]
-  : type === 'group7' ? theme.colorScheme.red_orange[600]
-  : type === 'group8' ? theme.colorScheme.red_orange[500]
-  : type === 'group9' ? theme.colorScheme.red_orange[400]
-  : 'transpatent'
+  background-color: ${({ type, isHighlighted, theme }) => !isHighlighted ? 'transparent'
+  : type?.match(/^group(\d+)$/) ? theme.data[Number(type.slice(5)) % theme.data.length]
+  : 'transparent'
   };
 `;
 
