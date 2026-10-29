@@ -1,6 +1,7 @@
 // Shared material mixins. One place decides what leather, paper and metal look like.
 // Usage: ${leather('chestnut')} inside a styled-component.
 import { css } from 'styled-components';
+export { css } from 'styled-components';
 import { LeatherTone } from './materials';
 import { ink, data } from './ink';
 
