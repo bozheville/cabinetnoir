@@ -12,6 +12,8 @@ const FooterWrapper = styled(Section)`
   @media print {
     display: none;
   }
+  /* Clear the top stitch before the first box (spec 03 spacing). */
+  padding: 24px 16px 8px;
   text-align: center;
 `;
 

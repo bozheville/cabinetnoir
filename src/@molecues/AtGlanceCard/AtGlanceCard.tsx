@@ -8,12 +8,13 @@ import { BodyCopy, Caption, Minion } from '@typography';
 
 import { getLearningConfig } from '@learning/config';
 
-// Slim library index card on vellum.
+// Slim library index card on vellum. The 24px top offset keeps it off
+// the band's top stitch — the wrapping band carries no padding itself.
 const Card = styled(Paper)`
   width: 100%;
   max-width: 720px;
   padding: 12px 16px;
-  margin: 0 auto 16px;
+  margin: 24px auto 16px;
   text-align: left;
 `;
 
