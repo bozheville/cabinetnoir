@@ -20,14 +20,26 @@ const Letter = styled(Paper)`
   max-width: 640px;
   padding: 32px 16px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 16px;
 
+  > div {
+    flex: 1 0 auto;
+    width: 100%;
+  }
+
+  > button {
+    align-self: flex-start;
+  }
+
   ${({ theme }) => theme.breakpoints.small} {
-    flex-direction: column;
+    align-items: center;
     text-align: center;
+
+    > button {
+      align-self: stretch;
+    }
   }
 `;
 
@@ -65,22 +77,33 @@ const NotesRow = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
-  max-width: 640px;
+  max-width: 960px;
   margin: 0 auto;
   width: 100%;
 
   ${({ theme }) => theme.breakpoints.desktop} {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 220px 220px;
     align-items: stretch;
+    gap: 16px;
+  }
+
+  ${({ theme }) => theme.breakpoints.small} {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 `;
 
 const AudienceNote = styled(Paper)`
-  padding: 16px;
+  padding: 16px 20px;
   box-shadow: ${({ theme }) => theme.shadow.card};
   transform: rotate(-1.2deg);
 
   &:last-of-type { transform: rotate(1.2deg); }
+
+  ${Minion} {
+    font-size: 14px;
+    line-height: 20px;
+  }
 
   ${({ theme }) => theme.breakpoints.small} {
     transform: none;
