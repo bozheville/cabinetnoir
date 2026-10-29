@@ -42,6 +42,9 @@ const HeroInner = styled.div`
 const NameplatePlate = styled.div`
   position: relative;
   padding: 24px 32px;
+  /* Filled with the band leather, so the sunburst is occluded behind
+     the plate (mock-home.svg: rect fill #2f4a3b under the rules). */
+  background-color: ${({ theme }) => theme.leather.green.base};
   border: 1.5px solid ${({ theme }) => theme.metal.brass.light};
 
   &::after {
