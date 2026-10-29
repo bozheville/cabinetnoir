@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Heading, Pane } from 'evergreen-ui';
 import { useTranslation } from 'next-i18next';
+import styled from 'styled-components';
 import { CrypterProps } from '../types';
 import { playfairEncrypt, playfairDecrypt } from './playfair-encryption';
+import { Cluster, Stack } from '@atoms';
 import TextInput from '@atoms/TextInput/TextInput';
 import Tooltip from '@atoms/Tooltip';
+import { ControlGroup } from '@organisms/ControlPanel';
 import { usePendingExample } from '@learning/pendingExample';
+
+const PaneStack = styled(Stack)`
+  width: 100%;
+  padding: 0 16px 16px;
+`;
 
 const Playfair: React.FC<CrypterProps> = ({
   input,
@@ -35,25 +42,22 @@ const Playfair: React.FC<CrypterProps> = ({
   }, [input, secretKey, isDecryptMode]);
 
   return (
-    <Pane
-      display="flex"
-      flexDirection="row"
-      justifyContent="center"
-      alignItems="center"
-      paddingX="16px"
-      paddingBottom="16px"
-      {...paneProps}
-    >
-      <Heading size={100}>Key</Heading>
-      <Tooltip content={t('learning.tooltips.playfair.key')}>
-        <TextInput
-          data-guide="key"
-          width="150px"
-          value={secretKey}
-          onChange={(event) => setSecretKey(event.target.value)}
-        />
-      </Tooltip>
-    </Pane>
+    <PaneStack {...paneProps}>
+      <Cluster justify="center" gap={4}>
+        <ControlGroup>
+          <Tooltip content={t('learning.tooltips.playfair.key')}>
+            <TextInput
+              data-guide="key"
+              label="Key"
+              mono
+              width="150px"
+              value={secretKey}
+              onChange={(event) => setSecretKey(event.target.value)}
+            />
+          </Tooltip>
+        </ControlGroup>
+      </Cluster>
+    </PaneStack>
   );
 };
 

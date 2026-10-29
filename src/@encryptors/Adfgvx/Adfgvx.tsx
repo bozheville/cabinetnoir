@@ -1,14 +1,28 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Heading, Pane, Select } from 'evergreen-ui';
+import styled from 'styled-components';
 import { useTranslation } from 'next-i18next';
 
 import { CrypterProps } from '../types';
 import { useAdfgvx } from './useAdfgvx';
+import { Cluster, Select, Stack } from '@atoms';
 import TextInput from '@atoms/TextInput/TextInput';
 import Tooltip from '@atoms/Tooltip';
+import { ControlGroup } from '@organisms/ControlPanel';
+import { engraved } from '@theme/mixins';
 import { usePendingExample } from '@learning/pendingExample';
 import { getKeyHandoff } from '@learning/keyHandoff';
+
+const PaneStack = styled(Stack)`
+  width: 100%;
+  padding: 0 16px 16px;
+`;
+
+// Engraved brass label on the leather control panel.
+const PaneLabel = styled.span`
+  ${engraved('leather')}
+  font-size: 11px;
+`;
 
 // "Try it in the tool": the example carries both keys in one string,
 // square key first, transposition key second ("NIGHT GERMAN").
@@ -65,49 +79,51 @@ const Adfgvx: React.FC<CrypterProps> = ({
   }, [router.query.usedKey]);
 
   return (
-    <Pane
-      display="flex"
-      flexDirection="row"
-      justifyContent="center"
-      alignItems="center"
-      width="100%"
-      paddingX="16px"
-      paddingBottom="16px"
-      {...paneProps}
-    >
-      <Heading size={100} data-guide="variant">{t('processing.adfgvx.variantLabel')}</Heading>
-      <Tooltip content={t('learning.tooltips.adfgvx.variant')}>
-        <Select
-          data-guide="variant-selector"
-          width="160px"
-          value={variant}
-          onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
-            setVariant(event.target.value as typeof variant)
-          }
-        >
-          <option value="adfgx">{t('processing.adfgvx.variants.adfgx')}</option>
-          <option value="adfgvx">{t('processing.adfgvx.variants.adfgvx')}</option>
-        </Select>
-      </Tooltip>
-      <Heading size={100} marginLeft="12px" data-guide="square-key">{t('processing.adfgvx.squareKeyLabel')}</Heading>
-      <Tooltip content={t('learning.tooltips.adfgvx.square-key')}>
-        <TextInput
-          data-guide="square-key"
-          width="150px"
-          value={squareKey}
-          onChange={(event) => setSquareKey(event.target.value)}
-        />
-      </Tooltip>
-      <Heading size={100} marginLeft="12px" data-guide="transposition-key">{t('processing.adfgvx.transpositionKeyLabel')}</Heading>
-      <Tooltip content={t('learning.tooltips.adfgvx.transposition-key')}>
-        <TextInput
-          data-guide="transposition-key"
-          width="150px"
-          value={transpositionKey}
-          onChange={(event) => setTranspositionKey(event.target.value)}
-        />
-      </Tooltip>
-    </Pane>
+    <PaneStack {...paneProps}>
+      <Cluster justify="center" gap={4} wrap>
+        <ControlGroup>
+          <PaneLabel data-guide="variant">{t('processing.adfgvx.variantLabel')}</PaneLabel>
+          <Tooltip content={t('learning.tooltips.adfgvx.variant')}>
+            <Select
+              data-guide="variant-selector"
+              width="160px"
+              value={variant}
+              onChange={(event: React.ChangeEvent<HTMLSelectElement>) =>
+                setVariant(event.target.value as typeof variant)
+              }
+              options={[
+                { value: 'adfgx', label: t('processing.adfgvx.variants.adfgx') },
+                { value: 'adfgvx', label: t('processing.adfgvx.variants.adfgvx') },
+              ]}
+            />
+          </Tooltip>
+        </ControlGroup>
+        <ControlGroup>
+          <Tooltip content={t('learning.tooltips.adfgvx.square-key')}>
+            <TextInput
+              data-guide="square-key"
+              label={t('processing.adfgvx.squareKeyLabel')}
+              mono
+              width="150px"
+              value={squareKey}
+              onChange={(event) => setSquareKey(event.target.value)}
+            />
+          </Tooltip>
+        </ControlGroup>
+        <ControlGroup>
+          <Tooltip content={t('learning.tooltips.adfgvx.transposition-key')}>
+            <TextInput
+              data-guide="transposition-key"
+              label={t('processing.adfgvx.transpositionKeyLabel')}
+              mono
+              width="150px"
+              value={transpositionKey}
+              onChange={(event) => setTranspositionKey(event.target.value)}
+            />
+          </Tooltip>
+        </ControlGroup>
+      </Cluster>
+    </PaneStack>
   );
 };
 
