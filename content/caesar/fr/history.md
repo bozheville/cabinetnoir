@@ -16,7 +16,7 @@ comme de la cryptographie sérieuse.
 Suétone décrit les deux schémas sans détour dans *Vie des douze
 Césars* — c'est ainsi que nous connaissons encore les détails. Le
 chiffre n'a jamais été un secret d'État : il circulait comme une
-curiosité, une astuce du grand commandeur, et des manuscrits médiévaux
+curiosité, une astuce du grand commandant, et des manuscrits médiévaux
 ont recopié des tables de rotation pour « l'alphabet de César » bien
 après la chute de l'empire.
 

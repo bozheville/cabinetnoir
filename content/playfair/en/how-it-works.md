@@ -29,16 +29,16 @@ determines a single ciphertext letter.
 {{example:playfair-basic}}
 
 The square built from the keyword PLAYFAIREXAMPLE starts
-`PLAYF / AIREX / AMPLE …`. **HI** has no shared row or column, so
+`PLAYF / IREXM / BCDGH …`. **HI** has no shared row or column, so
 each letter jumps to the opposite corner of the rectangle —
-**CX**. **EG** shares a column, so both letters step down —
-**LQ**. Notice the deep change from older ciphers: the same letter
+**BM**. **DE** shares a column, so both letters step down —
+**OD**. Notice the deep change from older ciphers: the same letter
 encrypts differently depending on its partner.
 
 ## The formula
 
 There is no formula in the affine sense — the key is a whole table.
-Mathematically it is a substitution on 336 possible digraph pairs
+Mathematically it is a substitution on 600 possible digraph pairs
 (25 letters, minus the impossible doubles), driven by row, column
 and rectangle rules that all shift pairs *inside* the square while
 never mixing rows and columns.

@@ -21,8 +21,8 @@ sont des comptages des lettres claires déguisés.
 1. **Compter les lettres.** Le tableau trie les symboles chiffrés par
    fréquence et dessine chaque compte en barre. Comparez la forme avec
    l'anglais — E, T, A, O mènent — et vérifiez que le texte est assez
-   long pour être fiable (l'outil avertit sous 100 lettres).
-2. **Attribuer les évidentes.** Cliquez la cellule la plus fréquente et
+   long pour être fiable (l'outil avertit en dessous de 100 lettres).
+2. **Attribuer les évidentes.** Cliquez sur la cellule la plus fréquente et
    choisissez la lettre qu'elle représente à votre avis ; la suggestion
    sous une cellule n'est qu'un indice. Après chaque clic le texte
    partiel se met à jour : une mauvaise hypothèse se voit immédiatement
@@ -30,7 +30,7 @@ sont des comptages des lettres claires déguisés.
 3. **Trouver les mots.** Avec quelques lettres placées, des mots
    entiers s'illuminent. Le panneau liste les mots chiffrés dont la
    forme correspond à un mot anglais courant (correspondance par
-   {{term:pattern-word}} — THE a la forme ABC, THAT ABCA) et ne montre
+   {{term:pattern-word}} — THE a la forme ABC, THAT ABAC) et ne montre
    que les candidats compatibles avec vos attributions. Un clic place
    le mot entier. Les lettres doublées et les mots d'une seule lettre
    (seulement A et I en anglais) sont des indices aussi.

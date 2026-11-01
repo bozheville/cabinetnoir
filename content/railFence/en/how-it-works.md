@@ -13,10 +13,10 @@ another, top to bottom.
    `A` on rail 1, `T` on rail 2, `T` on rail 3, `A` back on rail 2, and
    so on — the {{term:zigzag}}.
 2. With `ATTACKATDAWN` the fence fills up as
-   rail 1: `A · A · A`, rail 2: `T · C · T · T · A · W`,
-   rail 3: `T · K · D · N`.
-3. Read the rails top to bottom: `AAA`, then `TCTTAW`, then `KDN`.
-4. The ciphertext is `AAATCTTAWKDN`. Decryption is the same walk in
+   rail 1: `A · C · D`, rail 2: `T · A · K · T · A · N`,
+   rail 3: `T · A · W`.
+3. Read the rails top to bottom: `ACD`, then `TAKTAN`, then `TAW`.
+4. The ciphertext is `ACDTAKTANTAW`. Decryption is the same walk in
    reverse: count how many letters each rail owns, slice the ciphertext
    accordingly, and ride the fence again.
 

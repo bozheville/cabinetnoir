@@ -26,7 +26,7 @@ The protection ROT13 offers is against *accidental* reading: a
 reviewer glancing at a joke's punchline, a reader who does not want
 the plot spoiled. That is a real use case — just not a
 cryptographic one. It is the same lesson Atbash teaches one page
-earlier: an cipher with no key is a convenience feature.
+earlier: a cipher with no key is a convenience feature.
 
 ## The family resemblance
 

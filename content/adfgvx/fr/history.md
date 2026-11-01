@@ -7,8 +7,8 @@ tactique par radio, et chaque mot en parvenait aux Alliés. Les
 chiffres de campagne du moment ne survivaient pas à ce volume : les
 substitutions se noyaient dans les tableaux de fréquences, les
 transpositions fuyaient à chaque phrase répétée. Le service du
-colonel Max Rongé répondit en mars 1918 avec un dessin de l'officier
-transmissionnaire Fritz Nebel qui empilait les deux défenses — un
+colonel Max Rongé répondit en mars 1918 avec une conception de l'officier
+des transmissions Fritz Nebel qui empilait les deux défenses — un
 {{term:polybius-square}} à mot-clé ({{term:fractionation}}) suivi
 d'un mélange de colonnes à clé ({{term:transposition}}).
 
@@ -26,7 +26,7 @@ chiffres.
 
 Georges Painvin, du bureau du déchiffrement français — connu pour
 travailler jusqu'à griser ses cheveux en quelques semaines et
-s'effondrer avec une tuberculose — s'attaqua au trafic. Pendant des
+s'effondrer, atteint de tuberculose — s'attaqua au trafic. Pendant des
 mois il ne récolta que des fragments. La percée vint par la quantité :
 des dizaines de messages par jour sur la même clé lui permirent de
 comparer les longueurs de colonnes et d'appairer des colonnes entre
@@ -43,7 +43,8 @@ Allemands changeaient de clé chaque jour, les Français suivaient.
 ## L'héritage
 
 ADFGVX a fixé le gabarit que les chiffres modernes suivent encore :
-confondre (substituer) les symboles, puis les diffuser (transposer).
+confondre (substituer) les symboles, puis les diffuser (transposer) —
+dans l'ordre inverse de ce qui devint plus tard la maxime de Shannon.
 Son carré a aussi semé la famille bifide des chiffres à
 fractionnement. Chaque argument « deux couches valent mieux qu'une »
 de la cryptographie classique commence ici.

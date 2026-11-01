@@ -30,7 +30,7 @@
 2. Étape 1 — devinez un mot probablement présent dans le texte (tapez-le
    dans {{control:crib-input}} ; les indices du défi en suggèrent un) et
    fixez la longueur d'amorce dans {{control:primer-length}}. Un mot
-   aussi long que l'amorce révèle tout ; un plus court vous laisse
+   au moins aussi long que l'amorce révèle tout ; un plus court vous laisse
    quelques lettres.
 3. Étape 2 — faites glisser le mot le long du texte dans
    {{control:offset-list}}. À chaque position, le chiffre implique un

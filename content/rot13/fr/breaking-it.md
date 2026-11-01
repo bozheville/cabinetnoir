@@ -14,7 +14,7 @@ de succès.
 
 ## Attaque — recommencez
 
-1. Collez le {{term:ciphertext}} dans l'outil. Comme ROT13 est sa
+1. Collez le {{term:ciphertext}} dans l'outil. Comme ROT13 est son
    propre inverse, la même opération qui l'a produit le supprime.
 2. Pas d'{{term:frequency-analysis}}, pas de chasse au
    {{term:crib}}, pas de statistiques : la distribution des lettres
@@ -33,7 +33,7 @@ un chiffre sans clé est une fonction de confort.
 ## La ressemblance de famille
 
 ROT13 est le chiffre affine avec `a` = 1, `b` = 13, et le seul
-décalage de César qui soit sa propre inverse. Dans la famille des
+décalage de César qui soit son propre inverse. Dans la famille des
 chiffres monoalphabétiques, il marque le plancher : aucune clé,
 aucune sécurité, et — précisément pour cela — un monument permanent
 de la nétiquette.

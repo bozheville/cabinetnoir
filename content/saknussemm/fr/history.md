@@ -4,12 +4,13 @@
 
 Le chiffre de Saknussemm existe parce que Jules Verne avait besoin
 d'un ressort dramatique : un message que personne ne sait lire. Dans
-le « Voyage au centre de la Terre » (1864), le professeur Lidenbrock
-achète un parchemin runique inscrit au XVIᵉ siècle par l'alchimiste
-islandais Arne Saknussemm et passe des jours à échouer — jusqu'à ce
-que son neveu Axel remarque que les runes se lisent à rebours, et que
-le message latin « descends dans le cratère du Yoculis, au Snaeffels »
-les envoie tous les deux en Islande.
+*Voyage au centre de la Terre* (1864), le professeur Lidenbrock
+achète un vieux livre runique, d'où tombe un parchemin inscrit au
+XVIᵉ siècle par l'alchimiste islandais Arne Saknussemm. Il passe des
+jours à échouer à le lire — jusqu'à ce que son neveu Axel remarque
+que les runes se lisent à rebours, et que le message latin
+« descends dans le cratère du Yoculis, au Snaeffels » les envoie tous
+les deux en Islande.
 
 ## Ce que montre réellement le roman
 

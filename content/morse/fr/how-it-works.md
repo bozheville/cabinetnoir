@@ -2,10 +2,10 @@
 
 ## Un encodage, pas un chiffre
 
-Le code Morse est l'exemple classique de ce que ce site appelle une
+Le code Morse est l'exemple classique de ce que ce site appelle un
 {{term:encoding}} : chaque lettre devient un motif public, que
-n'importe qui peut annuler — pas de clé, pas de secret. Son but est
-la *transmission*, pas la discrétion : un message devait survivre à
+n'importe qui peut défaire — pas de clé, pas de secret. Son but est
+la *transmission*, pas le secret : un message devait survivre à
 un fil qui ne savait alterner qu'un clic et un silence.
 
 ## L'idée en une phrase
@@ -18,13 +18,14 @@ courantes restent courtes.
 ## La recette
 
 1. Cherchez la lettre dans la table : E, la lettre anglaise la plus
-   courante, reçoit un seul point ; T un seul trait ; Z paie quatre
+   courante, reçoit un seul point ; T un seul trait ; Z reçoit quatre
    symboles.
-2. Envoyez le motif, puis marquez une pause d'une unité pour
+2. Envoyez le motif, puis marquez une pause de trois unités pour
    séparer les lettres.
-3. Entre les mots, la pause est plus longue — en Morse écrit, cette
-   pause est la barre oblique : `... --- ...` sont trois lettres,
-   `.../---/...` marque une frontière de mot.
+3. Entre les mots, la pause est plus longue (sept unités) — en Morse
+   écrit, cette pause est la barre oblique : `... --- ...` est un mot
+   de trois lettres, alors que `.../---/...` serait trois mots d'une
+   lettre.
 4. Chaque chiffre reçoit son propre motif de cinq symboles.
 
 ## Un exemple détaillé
@@ -32,8 +33,8 @@ courantes restent courtes.
 {{example:morse-basic}}
 
 SOS est célèbre précisément parce qu'il est si peu coûteux à envoyer :
-trois points, trois traits, trois points — les espaces portant le
-rythme.
+trois points, trois traits, trois points — les pauses entre lettres
+portant le rythme.
 
 ## Les conventions de l'outil
 
@@ -52,6 +53,6 @@ fréquentielle des années 1840. Vail a compté les lettres dans une
 casse d'imprimeur et donné aux lettres les plus courantes les motifs
 les plus courts : E vaut un point, T un trait, tandis que Q et Z
 paient quatre symboles. Un message en anglais ordinaire prend
-simplement moins d'antenne. C'est la même intuition statistique qui
-alimentera plus tard l'{{term:frequency-analysis}} — braquée sur le
+simplement moins de temps d'antenne. C'est la même intuition statistique
+qui alimentera plus tard l'{{term:frequency-analysis}} — braquée sur le
 fil plutôt que sur le cryptogramme.

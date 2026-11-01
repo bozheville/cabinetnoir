@@ -38,7 +38,7 @@ mapping is `y = (25·x + 25) mod 26`, which simplifies to `y = 25 − x`.
 Compare the family: Caesar shifts the alphabet, Affine reshapes it
 with a chosen multiplier, Atbash flips it completely. All three are
 monoalphabetic; all three fall to the same statistics; only the key
-space differs — 312 keys, then 1.
+space differs — 25 keys, 312 keys, then 1.
 
 ## Why it still gets taught
 

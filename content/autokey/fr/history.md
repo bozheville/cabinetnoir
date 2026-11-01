@@ -24,15 +24,15 @@ l'histoire de la mauvaise attribution.
 L'autokey est réellement plus solide face aux attaques par recherche de
 période qui ont tué le schéma à clé répétée — mais il est fragile sur le
 terrain. Chaque erreur de transmission corrompt la clé à partir de ce
-point, l'émetteur et le récepteur doivent rester en parfait pas, et un
+point, l'émetteur et le récepteur doivent rester parfaitement synchronisés, et un
 seul mot deviné déroule le message de l'intérieur. Les diplomates et les
 armées du XIXe siècle préférèrent en général des systèmes qui se
-dégradent avec grâce.
+dégradent progressivement.
 
 ## La postérité
 
 L'idée refusa de mourir. Les flux de clé nourris par le message (ou par
-le chiffre, dans la forme voisine d'*autokey sur le chiffre*)
+le texte chiffré, dans la forme voisine d'*autokey sur le chiffre*)
 réapparurent dans la cryptographie à machines puis dans la conception
 des chiffres de flux modernes — le principe général qu'un flux de clé
 doit être imprévisible et ne jamais se répéter est exactement ce que

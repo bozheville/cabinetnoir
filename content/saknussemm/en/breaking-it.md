@@ -46,7 +46,7 @@ sweep; the parchment deserves the hand-work.
 
 ## What Saknussemm teaches
 
-Verne's professor keeps the runes secret for weeks and falls to the
+Verne's professor keeps the runes secret for days and falls to the
 simplest trick in the book: reading backwards. The cipher is a lesson
 in humility — security that rests on the adversary not trying the
 second obvious thing is not security at all.

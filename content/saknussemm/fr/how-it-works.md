@@ -5,7 +5,7 @@
 Saknussemm est une {{term:transposition}} en deux temps — le message
 entier écrit à rebours, puis le flot de lettres renversé découpé en
 groupes en forme de colonnes — le parchemin runique qu'Arne Saknussemm
-laisse dans le « Voyage au centre de la Terre » de Jules Verne.
+laisse dans *Voyage au centre de la Terre* de Jules Verne.
 
 ## La recette
 
@@ -27,7 +27,7 @@ laisse dans le « Voyage au centre de la Terre » de Jules Verne.
    espaces. Le {{term:ciphertext}} de DESCENDE dans la forme du
    parchemin est `EEE DCD NS` — trois groupes sur une seule ligne.
 
-## Un exemple travaillé
+## Un exemple détaillé
 
 {{example:saknussemm-basic}}
 
@@ -35,8 +35,8 @@ Chaque rangée ajoute un groupe dans l'ordre d'impression. SNEFFELS
 renversé donne SLEFFENS ; la forme 3×2 demande quatre groupes, et le
 groupe numéro 1 prend une lettre sur quatre du flot renversé en
 commençant par la première : S, puis F. Le groupe 2 prend L et E, le
-groupe 3 prend E et N, le groupe 4 prend F et S. La cryptogramme
-imprimée est `SF LE EN FS` — quatre groupes, deux par ligne.
+groupe 3 prend E et N, le groupe 4 prend F et S. Le cryptogramme
+imprimé est `SF LE EN FS` — quatre groupes, deux par ligne.
 
 ## La mécanique
 
@@ -44,8 +44,8 @@ Tout découle d'une seule relation : **le groupe k contient les
 lettres S[k], S[k+W], S[k+2W], …** où S est le message renversé et W
 le nombre de groupes. Les groupes lus côte à côte reconstruisent les
 rangées de la grille, qui lues en travers épellent S — et un dernier
-renversement épele le texte en clair. Aucune lettre n'est jamais
-modifiée, dupliquée ni perdue : la cryptogramme est toujours une
+renversement épelle le texte en clair. Aucune lettre n'est jamais
+modifiée, dupliquée ni perdue : le cryptogramme est toujours une
 anagramme du message, ce qui est à la fois le charme du chiffre et sa
 faiblesse.
 

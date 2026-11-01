@@ -13,7 +13,7 @@ convention.
 
 ## Pourquoi 13 et pas 3
 
-Deux raisons, toutes pratiques. D'abord, 13 est sa propre inverse —
+Deux raisons, toutes pratiques. D'abord, 13 est son propre inverse —
 la même procédure cache et révèle, ce qui permettait aux lecteurs
 d'utiliser une seule commande (ou un coup d'œil à une roue imprimée)
 dans les deux sens. Ensuite, 13 déplace chaque lettre hors de sa
@@ -26,9 +26,9 @@ restant sur place.
 Des années 1980 aux années 1990, ROT13 est devenu un élément de la
 nétiquette : avertissements de spoiler, indices d'énigmes, chutes de
 blagues, réponses aux quiz. Unix a gagné une commande `rot13` ; les
-lecteurs de news l'ont intégrée. Les professionnels de la sécurité la
+lecteurs de news l'ont intégrée. Les professionnels de la sécurité le
 citent comme l'exemple canonique que *l'obfuscation n'est pas le
-chiffrement* — et les poseurs d'énigmes la gardent canonique pour
+chiffrement* — et les poseurs d'énigmes le gardent canonique pour
 exactement la même raison.
 
 ## Toujours en rotation
@@ -36,7 +36,7 @@ exactement la même raison.
 Des décennies plus tard, la roue continue de tourner : les journaux
 de transparence des certificats y cachent des noms d'hôtes, les
 énigmes de géocaching s'en servent, et chaque nouveau programmeur
-écrit sa propre ROT13 comme exercice de jeunesse. Le plus vieux
-cache-chute d'internet est aussi le plus longtemps vivant.
+écrit son propre ROT13 comme exercice de jeunesse. Le plus vieux
+cache-chute d'internet est aussi le plus durable.
 
 {{timeline:rot13}}

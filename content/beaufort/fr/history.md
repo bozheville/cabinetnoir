@@ -22,7 +22,7 @@ emprunté le procédé aux publications de son temps.
 
 Le Beaufort variante (chiffre = texte clair − clé) connut une carrière
 encore plus illustre : c'est pour l'essentiel l'arithmétique que
-l'armée allemande utilisa dans son convertisseur M-209 des années
+l'armée américaine utilisa dans son convertisseur M-209 des années
 1930–1940, au cœur d'une construction mécanique plus élaborée. Une
 variante écartée d'un siècle devint le composant d'une machine de
 campagne au suivant.

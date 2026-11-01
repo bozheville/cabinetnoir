@@ -26,10 +26,10 @@ mathématiques.
 
 ## L'après-vie du manuel scolaire
 
-Quand la cryptographie sérieuse est passée aux alphabets clé puis aux
+Quand la cryptographie sérieuse est passée aux alphabets à clé puis aux
 machines, le rail fence s'est installé dans une longue après-vie de
 recueils d'énigmes, de manuels de scouts et de salles de classe. Il
-garde exactement une leçon qui vaut l'enseignement : une transposition
+garde exactement une leçon qui mérite d'être enseignée : une transposition
 ne change que *l'endroit* où sont les lettres, donc les lettres
 elles-mêmes restent en pleine vue — et un espace de clés trop petit
 n'est pas une clé. Chaque cours moderne ouvre encore la transposition

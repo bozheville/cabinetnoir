@@ -1,16 +1,16 @@
-# guides
+# Guides pas à pas
 
-## Chiffrer votre premier message
+## Chiffrez votre premier message
 
 1. Tapez votre message dans {{control:message-input}}.
 2. Choisissez un mot comme secret et saisissez-le dans {{control:key}} —
-   une clé plus longue est plus difficile à déchiffrer.
+   une clé plus longue est plus difficile à casser.
 3. Vérifiez le mode : le bouton d'échange {{control:swap}} bascule entre
    chiffrer et déchiffrer. L'en-tête montre le mode courant.
 4. Lisez le résultat chiffré dans {{control:output}}. Seules les lettres
    sont chiffrées ; les espaces et la ponctuation sont supprimés.
 
-## Déchiffrer un message reçu
+## Déchiffrez un message reçu
 
 1. Collez le cryptogramme dans {{control:message-input}}.
 2. Saisissez la clé qu'a utilisée l'expéditeur dans {{control:key}} — il
@@ -19,12 +19,12 @@
    déchiffrement.
 4. Lisez le message original dans {{control:output}}.
 
-## Déchiffrer un message sans la clé
+## Brisez un message sans la clé
 
 1. Cochez la case {{control:unknown-key}} à côté du champ clé.
    L'assistant de déchiffrement s'ouvre en dessous.
 2. Étape 1 — la longueur de la clé : les séquences répétées du texte
-   sont surlignées ; choisissez la carte la plus confiante parmi
+   sont surlignées ; choisissez la carte la plus fiable parmi
    {{control:key-length-cards}}. Mauvais choix ? Retournez en arrière et
    essayez-en une autre.
 3. Étape 2 — les lettres de clé : pour chaque tranche de

@@ -8,7 +8,7 @@ coordinates that says nothing without the grid.
 
 ## The recipe
 
-1. Draw a 5×5 grid and fill it with the alphabet. There are only 24
+1. Draw a 5×5 grid and fill it with the alphabet. There are only 25
    letters after I and J share a cell, so both live in the same box.
 2. Number the rows and columns 1–5. Every letter now has an address:
    `A` is `11`, `B` is `12`, `Z` is `55`.
@@ -29,7 +29,7 @@ nothing but the digits 1–5 — the whole fingerprint of this cipher.
 
 Fill the grid with a {{term:key}} first and the mapping changes
 completely. With the keyword `SPARTAN`, the square starts
-`S P A R T A N…` — the keyword's letters (deduplicated), then the rest
+`S P A R T N…` — the keyword's letters (deduplicated), then the rest
 of the alphabet in order.
 
 {{example:polybius-keyed}}

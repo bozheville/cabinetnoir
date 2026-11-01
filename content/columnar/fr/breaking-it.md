@@ -26,7 +26,7 @@ levier dont toute l'attaque se sert.
    indice, pas une réponse : sur les textes courts une mauvaise largeur
    peut surpasser la bonne, et le vrai test est l'étape 2.
 2. **Ordonner les colonnes.** Le chiffre se dresse en colonnes ;
-   l'{{term:anagrammage}} consiste à les faire glisser côte à côte
+   l'{{term:anagramming}} consiste à les faire glisser côte à côte
    jusqu'à ce que les lignes se lisent comme un texte anglais. Chaque
    paire voisine est notée d'après les digrammes que leurs lignes
    forment ensemble — TH, HE, IN s'allument, QX non. Suivez les
@@ -42,9 +42,9 @@ levier dont toute l'attaque se sert.
 
 Les lettres de l'anglais ne sont pas indépendantes : certaines paires
 sont fréquentes, la plupart sont rares. Deux vraies colonnes voisines
-zippent leurs lignes en vrais digrammes anglais ; deux inconnues
-zippent en bruit. Cette seule statistique suffit à reconstruire la clé
-décision par décision — le même principe que l'attaquant ADFGVX
+assemblent leurs lignes en vrais digrammes anglais ; deux étrangères
+n'assemblent que du bruit. Cette seule statistique suffit à reconstruire
+la clé décision par décision — le même principe que le déchiffreur ADFGVX
 applique à sa deuxième étape, où les colonnes sont le même objet.
 
 ## Ce que change la double transposition

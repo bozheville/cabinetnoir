@@ -9,7 +9,7 @@ francs-maçons ».
 
 ## La recette
 
-1. Dessinez trois formes : deux grilles de morpion (#) et deux croix
+1. Dessinez quatre formes : deux grilles de morpion (#) et deux croix
    diagonales (X).
 2. Remplissez la première grille avec A–I, la seconde avec J–R, puis
    placez S–V et W–Z sur les bras des deux croix.
@@ -27,8 +27,8 @@ francs-maçons ».
 Chaque ligne associe la lettre au dessin qu'elle devient. S, la
 première lettre, habite la croix non pointée : son glyphe est un
 V — les deux traits de la croix qui bornent le bras du haut. O, la
-quinzième lettre, habite la grille pointée : une forme de coin comme
-A, mais avec un point à l'intérieur.
+quinzième lettre, habite la grille pointée : la même forme de bord
+que F, ouverte d'un côté, mais avec un point à l'intérieur.
 
 ## Pourquoi ces formes
 

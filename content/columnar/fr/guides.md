@@ -30,8 +30,8 @@
    exemple `WOLF`.
 2. Chiffrez le même message avec et sans le second mot-clé et comparez
    les deux cryptogrammes : le double ne laisse aucun fragment de
-   colonne lisible — précisément les fragments que fuite le chiffre
-   simple.
+   colonne lisible — précisément les fragments que laisse fuiter le
+   chiffre simple.
 3. Voilà pourquoi les armées doublaient la transposition, et pourquoi le
    déchiffreur guidé de cette application s'en tient à la version
    simple.

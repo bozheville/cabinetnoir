@@ -45,10 +45,10 @@ instantanément. Les défis de pratique fonctionnent exactement ainsi.
 
 Un casseur par fréquence de digraphes demande un solveur de niveau
 corpus, pas une boucle de recherche de clé : l'espace des carrés
-(25 !) écrase toute balayage à la César, mais la propagation des
+(25!) écrase tout balayage à la César, mais la propagation des
 contraintes est le vrai sujet. L'outil laisse donc le cassage de
 Playfair en exercice — la démonstration ci-dessus montre la
-mécanique d'un crib connu, et les guides montrent où les statistiques
+mécanique d'un mot probable connu, et les guides montrent où les statistiques
 viendraient s'attacher.
 
 ## Le verdict historique

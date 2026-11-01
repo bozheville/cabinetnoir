@@ -20,13 +20,13 @@ démontage guidé.
    l'ordre anglais habituel portant des nombres.
 2. Attribuez des lettres candidates aux paires fréquentes, exactement
    comme l'étape d'{{term:frequency-analysis}} du casseur de Keyword.
-3. Quand le carré est clé, l'assignation *est* le carré : récupérez
+3. Quand le carré est à clé, l'assignation *est* le carré : récupérez
    assez de lettres et la grille se remplit toute seule — puis le
    mot-clé se révèle comme dans le casseur de Keyword.
 
 ## Essayez dans l'application
 
-Prenez un chiffré Polybe à carré clé, collez-le dans le casseur
+Prenez un chiffré de Polybe à carré à clé, collez-le dans le casseur
 **Keyword substitution** après avoir réécrit chaque paire comme sa
 lettre du carré simple (ou n'importe quel repère fixe), et le plateau
 d'assignation fait le reste. Les coordonnées changent le costume, pas

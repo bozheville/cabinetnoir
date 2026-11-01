@@ -62,7 +62,7 @@ casser, mais bâti sur la même rotation.
 
 Notez que le disque intérieur n'est pas un alphabet décalé mais un
 alphabet *mélangé* (**mqihfdbacegklnprtuz&xyso**). Le mélange tue le
-raccourci « distance avec E » dans chaque pile : l'attaquant doit
+raccourci « distance par rapport à E » dans chaque pile : l'attaquant doit
 résoudre de vraies substitutions, pas des décalages. C'est la première
 apparition d'un truc que des chiffres ultérieurs (Playfair entre
 autres) réutilisent — et le rappel que la conception de la clé, et non

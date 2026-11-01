@@ -22,14 +22,14 @@ Three procedural gifts sank Enigma:
    (`WETTER…`), salutations, `ANX` headers, predictable placeholders —
    gave Bletchley a stretch of probable plaintext for almost any day's
    traffic.
-3. **Keys chosen by humans.** "No letters allowed" rules against AAA
-   and QWE made operator-chosen keys *weaker*, and lazy keys (three
-   consecutive keyboard rows) appeared anyway.
+3. **Keys chosen by humans.** "No repeated or adjacent letters" rules
+   against AAA and QWE made operator-chosen keys *weaker*, and lazy
+   keys (three consecutive keys on a keyboard row) appeared anyway.
 
 ## The bombe: contradiction machines, not key search
 
 The British **bombe** (designed by Alan Turing, with Gordon
-Welchley's crucial improvements after the Polish `bomba`) did not try
+Welchman's crucial improvements after the Polish `bomba`) did not try
 keys. Given a crib, it searched for rotor settings that were
 *impossible*:
 

@@ -17,7 +17,7 @@ employèrent le pigpen dès le début du XVIIIe siècle pour garder privés
 leurs récits d'histoire et leurs rites et pour la correspondance entre
 les dirigeants de loges — si assidûment que le système s'appelle
 aujourd'hui simplement le chiffre des francs-maçons. On le trouve
-gravé là où on l'attend : des pierres tombales maçonnes portent des
+gravé là où on l'attend : des pierres tombales maçonniques portent des
 gravures en pigpen, et l'une des plus anciennes pierres du cimetière
 de l'église Trinity de New York se lit « Remember death » — un
 *memento mori* maçonnique.
@@ -49,8 +49,8 @@ chiffre ; la légende est un habillage moderne d'une vieille idée.
 Le chiffre a survécu en devenant un jeu. Il paraît dans les livres pour
 enfants sur l'écriture secrète, les chasses au trésor, les escape
 games, la fiction de trésor depuis Verne, et même dans le journal
-australien de 1852 d'un colon examiné par des historiens deux siècles
-plus tard. Le pigpen ne protège plus rien — il *signale* le secret,
+australien de 1852 d'un colon examiné par des historiens plus d'un
+siècle plus tard. Le pigpen ne protège plus rien — il *signale* le secret,
 ce qui est peut-être le plus durable des métiers pour un chiffre.
 
 {{timeline:pigpen}}

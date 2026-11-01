@@ -33,7 +33,7 @@ séparément. Les chiffres qui coupent ainsi les lettres pratiquent le
 Lisez les premières lignes : **A** occupe la case ligne **A**,
 colonne **A** du carré, il devient donc `AA` ; **T** tombe ligne
 **A**, colonne **G** et devient `AG`. La troisième colonne montre le
-flot fractionné grandir — le flot que la transposition mélangea plus
+flot fractionné grandir — le flot que la transposition mélangera plus
 tard.
 
 ## Le déchiffrement marche à reculons
@@ -47,7 +47,7 @@ Avec les clés, le déchiffrement est mécanique :
 3. Prenez les coordonnées deux par deux et cherchez chaque paire dans
    le carré : la case est le caractère en clair.
 
-L'outil fait les trois étapes quand vous appuyez sur Décrypter avec
+L'outil fait les trois étapes quand vous appuyez sur Déchiffrer avec
 les deux clés remplies.
 
 ## Deux variantes, une idée

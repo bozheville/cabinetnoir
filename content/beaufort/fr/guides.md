@@ -29,11 +29,11 @@
 ## Percer un message sans la clé
 
 1. Ouvrez l'onglet Cryptanalyse. Le décodeur guidé suit les mêmes
-   étapes que celui de Vigenère, avec une torsion : chaque tranche est
+   étapes que celui de Vigenère, à une nuance près : chaque tranche est
    comparée à une courbe de fréquence *inversée*, car Beaufort soustrait
    dans l'autre sens.
 2. Étape 1 — la longueur de clé : les séquences répétées du texte sont
-   surlignées ; choisissez la carte la plus confiante dans
+   surlignées ; choisissez la carte la plus fiable dans
    {{control:key-length-cards}}. Mauvais choix ? Revenez et essayez
    une autre.
 3. Étape 2 — les lettres de clé : pour chaque tranche dans

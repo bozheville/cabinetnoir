@@ -7,7 +7,7 @@ nombres.
 
 ## La faille : une transposition pure
 
-Le chiffre ne substitue jamais une seule lettre : la
+Le chiffre ne substitue jamais une seule lettre : le
 {{term:ciphertext}} est toujours une anagramme du {{term:plaintext}}.
 Les seuls secrets sont le sens de lecture (à rebours — mais la
 suggestion d'Axel est la première chose que tout solveur essaie) et la
@@ -40,7 +40,7 @@ explorables à la main en quelques minutes.
 
 ## Pourquoi il n'y a pas de casseur ici
 
-Les cassers guidés de ce site parcourent des espaces de clés qui
+Les casseurs guidés de ce site parcourent des espaces de clés qui
 méritent d'être guidés — alphabets, disques, permutations de
 colonnes. Tout l'espace de clés de Saknussemm tient dans deux petits
 entiers qu'on peut balayer à la main avec les sélecteurs de forme,
@@ -50,7 +50,7 @@ parchemin mérite le travail à la main.
 
 ## Ce que Saknussemm enseigne
 
-Le professeur de Verne garde les runes secrètes pendant des semaines
+Le professeur de Verne garde les runes secrètes pendant des jours
 et cède devant le truc le plus simple du manuel : lire à rebours. Le
 chiffre est une leçon d'humilité — une sécurité qui repose sur le
 fait que l'adversaire n'essaie pas la deuxième chose évidente n'est

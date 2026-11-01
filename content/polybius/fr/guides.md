@@ -11,11 +11,11 @@
    revient. Les paires ne sont que des adresses ; la grille les lit
    dans les deux sens.
 
-## Guide 2 — le carré clé
+## Guide 2 — le carré à clé
 
 1. Tapez une clé de carré, par exemple `SPARTAN`, et rechiffrez le
    même `HELLO`. La sortie change complètement — mêmes paires dans le
-   carré simple, nouvelles lettres dans le carré clé.
+   carré simple, nouvelles lettres dans le carré à clé.
 2. Videz la clé et comparez les deux sorties paire par paire : seules
    les lettres qui ont bougé dans la grille ont changé de nombre.
 3. Remarquez que le carré garde exactement 25 lettres quoi que vous
@@ -32,4 +32,4 @@
    le monde.
 3. Essayez les défis d'entraînement : les exercices de décodage
    utilisent le carré simple, et le plus difficile utilise un carré
-   clé — son mot-clé voyage dans les indices.
+   à clé — son mot-clé voyage dans les indices.

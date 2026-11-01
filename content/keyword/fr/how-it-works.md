@@ -3,8 +3,8 @@
 ## L'idée en une phrase
 
 Le chiffre par mot-clé est une {{term:substitution}} dont
-l'{{term:cipher-alphabet}} s'épelle tout seul : écrivez d'abord le mot
-de passe (le {{term:key}}), puis continuez avec les lettres qu'il
+l'{{term:cipher-alphabet}} s'épelle tout seul : écrivez d'abord le
+mot-clé (la {{term:key}}), puis continuez avec les lettres qu'il
 n'utilise pas — l'alphabet garde le mot-clé dans sa forme même.
 
 ## La recette
@@ -19,7 +19,7 @@ n'utilise pas — l'alphabet garde le mot-clé dans sa forme même.
    sous elle : A devient K, B devient R, C devient Y. Le déchiffrement
    parcourt les rangées dans l'autre sens.
 
-## Un exemple travaillé
+## Un exemple détaillé
 
 {{example:keyword-basic}}
 

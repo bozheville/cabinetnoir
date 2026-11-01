@@ -21,14 +21,14 @@ mot-clé.
    déchiffrer, reconstruisez la grille de la même manière et lisez-la
    ligne par ligne.
 
-## Un exemple travaillé
+## Un exemple détaillé
 
 {{example:columnar-basic}}
 
 Chaque ligne suit une lettre du texte clair : dans quelle colonne de la
 grille elle a été écrite, et à quelle position du chiffre elle
 aboutit. Les lettres ne changent jamais — A reste A — mais leur ordre
-est brouillé au point de méconnaître sans le mot-clé.
+est brouillé au point d'être méconnaissable sans le mot-clé.
 
 ## Complètement et dernière ligne incomplète
 
@@ -44,7 +44,7 @@ classique. L'outil propose les deux.
 
 Chiffrer le résultat une seconde fois avec un autre mot-clé — la double
 transposition classique — brise la structure simple des colonnes. La
-faiblesse de la colonne unique que vous allez exploiter ci-dessous
+faiblesse de la transposition simple que vous allez exploiter ci-dessous
 disparaît en grande partie ; c'est pourquoi les utilisateurs sérieux
-(deux armées de 14-18 au SOE) appliquaient toujours la transposition
+(des armées de 14-18 au SOE) appliquaient toujours la transposition
 deux fois.

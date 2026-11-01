@@ -2,8 +2,8 @@
 
 ## Un encodage, pas un chiffre
 
-Base64 est la deuxième grande {{term:encoding}} de ce site : tout le
-monde peut la décoder, elle ne cache rien, et ce n'est pas du
+Base64 est le deuxième grand {{term:encoding}} de ce site : tout le
+monde peut le décoder, il ne cache rien, et ce n'est pas du
 chiffrement. Son but est le transport — transformer des octets
 arbitraires en texte qui survit aux canaux qui ne comprennent que le
 texte : corps de courriel, URL, fichiers JSON.
@@ -12,7 +12,7 @@ texte : corps de courriel, URL, fichiers JSON.
 
 Chaque groupe de trois octets d'entrée (24 bits) est redécoupé en
 quatre groupes de six bits, et chaque valeur de six bits — de 0 à 63,
-d'où « base 64 » — s'écrit comme une lettre d'un alphabet fixe de
+d'où « Base64 » — s'écrit comme une lettre d'un alphabet fixe de
 64 caractères : `A–Z`, `a–z`, `0–9`, `+` et `/`.
 
 ## La recette
@@ -49,8 +49,8 @@ toute lettre de toute langue tombe dans les mêmes 64 caractères.
 ## À quoi cela sert — et à quoi cela ne sert pas
 
 Base64 rend les données binaires imprimables et sûres pour le canal
-postal ; il ne sert aussi à rien comme cachette. Les chaînes encodées
-se décodent en un clic sans clé, donc « illisible à l'œil » ne vaut
+postal ; comme cachette, en revanche, il ne cache rien. Les chaînes
+encodées se décodent en une étape sans clé, donc « illisible à l'œil » ne vaut
 pas « protégé ». Si un mot de passe, une clé d'API ou un « secret »
 voyage en Base64, il voyage à découvert — le décodage est à un bouton
 de collage, comme l'onglet pratique le démontre.

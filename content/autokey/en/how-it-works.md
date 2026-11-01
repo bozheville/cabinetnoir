@@ -3,7 +3,7 @@
 ## The idea in one sentence
 
 The autokey cipher is what the "Vigenère cipher" really was in 1586:
-a {{term:Vigenère}}-style cipher whose {{term:key}} grows out of the
+a Vigenère-style cipher whose {{term:key}} grows out of the
 message itself. It starts with a short primer — say `QUEEN` — and after
 those five letters the keystream continues with the plaintext you have
 already written. The key feeds on itself; that is the *auto* in autokey.
@@ -23,7 +23,7 @@ already written. The key feeds on itself; that is the *auto* in autokey.
 
 {{example:autokey-basic}}
 
-Watch the keystream column: `QUEENLY` runs out after six letters, and
+Watch the keystream column: `QUEENLY` runs out after seven letters, and
 from then on every key letter is simply the message's own letter from
 one primer-length earlier. The tool shows this live: the keystream row
 under the input grows with your text, the primer part highlighted.

@@ -7,7 +7,7 @@ pont de mesure porte son nom) — invente le chiffre en 1854. Mais il
 porte le nom de son ami Lord Playfair, scientifique et homme
 politique qui le promut auprès des autorités britanniques. Playfair
 le démontra à un dîner devant les responsables du Foreign Office et
-de la Poste ; la réaction fut célèbre de dédain — trop difficile,
+de la Poste ; la réaction, restée célèbre, fut dédaigneuse — trop difficile,
 jugèrent les fonctionnaires, pour leurs clercs.
 
 ## L'armée n'était pas d'accord
@@ -35,7 +35,7 @@ pendant quelque soixante ans.
 
 L'idée de chiffrer des unités groupées devint un motif de design :
 les chiffres à deux et à quatre carrés dédoublent le carré pour plus
-de mélange, et les chiffres de type Bifid superposent la
+de mélange, et les chiffres de type Bifid superposent le
 fractionnement. La ligne directe finit aux machines — les systèmes
 à rotors substituent des alphabets entiers à la volée — mais
 l'intuition que *le contexte change le sens d'une lettre* est le

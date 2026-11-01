@@ -24,7 +24,7 @@ d'autokey.
 
 {{example:autokey-basic}}
 
-Observez la colonne du flux de clé : `QUEENLY` s'épuise après six
+Observez la colonne du flux de clé : `QUEENLY` s'épuise après sept
 lettres, et à partir de là chaque lettre de clé n'est que la lettre du
 message datant d'une longueur d'amorce plus tôt. L'outil le montre en
 direct : la rangée de flux de clé sous la saisie grandit avec votre

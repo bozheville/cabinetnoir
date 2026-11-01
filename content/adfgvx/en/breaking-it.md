@@ -26,7 +26,7 @@ ciphertext were neighbouring columns of the grid — the same
 {{term:anagramming}} the plain Columnar cracker teaches with digraph
 scores, though here the zipped pairs are fractionated coordinates, not
 letters, so the tell-tale sign changes. When two chunks really were
-when two chunks really were neighbours, zipping them together pairs
+neighbours, zipping them together pairs
 every row-coordinate with the matching column-coordinate of the *same*
 plaintext letter — the resulting two-letter "symbols" are real
 letters, with skewed, language-like frequencies. A chi-square

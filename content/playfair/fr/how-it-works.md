@@ -10,7 +10,7 @@ détermine plus une seule lettre chiffrée.
 ## La recette
 
 1. Écrivez le mot-clé (sans doublons), puis le reste de l'alphabet —
-   sans J, fondu dans I — dessous, et découpez en carré 5×5.
+   sans J, fusionné avec I — dessous, et découpez en carré 5×5.
 2. Coupez le message en paires ({{term:digraph}}). Une lettre doublée
    à l'intérieur d'une paire reçoit un X serré entre les jumelles ;
    une queue impaire reçoit un X au bout.
@@ -28,16 +28,16 @@ détermine plus une seule lettre chiffrée.
 {{example:playfair-basic}}
 
 Le carré construit sur PLAYFAIREXAMPLE commence par
-`PLAYF / AIREX / AMPLE …`. **HI** n'a ni ligne ni colonne commune :
-chaque lettre saute au coin opposé du rectangle — **CX**. **EG**
-partage une colonne : les deux lettres descendent — **LQ**.
+`PLAYF / IREXM / BCDGH …`. **HI** n'a ni ligne ni colonne commune :
+chaque lettre saute au coin opposé du rectangle — **BM**. **DE**
+partage une colonne : les deux lettres descendent — **OD**.
 Notez le changement profond par rapport aux chiffres plus anciens :
 la même lettre se chiffre différemment selon sa partenaire.
 
 ## La formule
 
 Pas de formule au sens affine — la clé est une table entière.
-Mathématiquement, c'est une substitution sur les 336 paires
+Mathématiquement, c'est une substitution sur les 600 paires
 possibles (25 lettres, moins les doubles impossibles), pilotée par
 les règles de ligne, de colonne et de rectangle qui déplacent les
 paires *à l'intérieur* du carré sans jamais mélanger lignes et

@@ -19,7 +19,7 @@
    après le mot-clé » désactivé, une fois activé. Comparez les bandes :
    la première moitié est identique, la seconde tourne.
 2. Les deux alphabets sont des alphabets à mot-clé légitimes — c'est
-   pourquoi un décrypteur qui reconstitue un alphabet doit encore
+   pourquoi un cryptanalyste qui reconstitue un alphabet doit encore
    vérifier s'il épelle un mot-clé.
 3. Passez en mode déchiffrement et collez votre propre cryptogramme.
    Chiffrement et déchiffrement empruntent les mêmes deux rangées en

@@ -27,7 +27,7 @@ dernier grand système au crayon et papier jamais déployé.
 
 ## Pourquoi il gagne sa place sur l'échelle
 
-Le chiffre nihiliste s'assoit exactement entre la famille des
+Le chiffre nihiliste se situe exactement entre la famille des
 substitutions et celle des clés périodiques : c'est le rythme de clé de
 Vigenère appliqué à des nombres au lieu de lettres. L'apprendre, c'est
 apprendre deux attaques d'un coup — la recherche de période sur un

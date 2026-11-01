@@ -28,9 +28,9 @@ seule : la substitution n'aplatit rien par elle-même, et la
 transposition ne porte aucune statistique de lettres — la force vient
 de leur empilement.
 
-## Étape 3 — décrypter avec l'outil
+## Étape 3 — déchiffrer avec l'outil
 
-Passez en Décrypter, collez le texte chiffré et gardez les mêmes
+Passez en Déchiffrer, collez le texte chiffré et gardez les mêmes
 clés. L'outil reconstruit la grille, la relit ligne par ligne et
 cherche les paires de coordonnées dans le carré. Les caractères de
 complétion (le remplissage du rectangle) peuvent ajouter une ou deux
@@ -40,7 +40,7 @@ qui se complète, pas un bug.
 ## Étape 4 — essayer la variante ADFGX
 
 Passez la variante sur ADFGX : le carré perd sa sixième ligne (pas de
-chiffres, et J se fond dans I), et les caractères non alphabétiques
+chiffres, et J fusionne avec I), et les caractères non alphabétiques
 disparaissent de la sortie. Le reste du flux de travail est identique.
 
 ## Étape 5 — donnez les clés à un ami

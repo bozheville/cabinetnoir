@@ -22,15 +22,16 @@ fois est une attaque par {{term:brute-force}} avec une charge de un.
    idées voisines : un décalage de César, une
    {{term:substitution}} générale.
 3. Notez que l'{{term:frequency-analysis}} est inutile ici, bien
-   qu'elle marcherait : Atbash est monoalphabétique. Sans clé à
-   retrouver, même les statistiques classiques sont trop de travail.
+   qu'elle puisse fonctionner : Atbash est monoalphabétique. Sans clé à
+   retrouver, même les statistiques classiques demandent plus de
+   travail que nécessaire.
 
 ## Un chiffre qui se cache lui-même
 
 La seule protection d'Atbash est l'obscurité : un lecteur qui ne
 soupçonne pas de chiffre ne voit que du charabia. C'est la même
 protection que ROT13 sur internet — assez pour cacher une chute,
-jamais assez pour cacher un secret de qui regarde deux fois.
+jamais assez pour cacher un secret à qui regarde deux fois.
 
 ## La ressemblance de famille
 
@@ -39,14 +40,14 @@ en miroir est `y = (25·x + 25) mod 26`, ce qui simplifie en
 `y = 25 − x`. Comparez la famille : César glisse l'alphabet, l'affine
 le redistribue avec un multiplicateur choisi, Atbash le retourne
 complètement. Tous trois sont monoalphabétiques ; tous trois tombent
-sous les mêmes statistiques ; seul l'espace de clés diffère — 312
-clés, puis 1.
+sous les mêmes statistiques ; seul l'espace de clés diffère — 25
+clés, 312 clés, puis 1.
 
 ## Pourquoi on l'enseigne encore
 
 Parce que c'est le cas limite. Chaque question sur la force d'un
 chiffre — quelle taille d'espace de clés ? la correspondance est-elle
-inversible ? la même lettre clair se chiffre-t-elle toujours pareil ? —
+inversible ? la même lettre du clair se chiffre-t-elle toujours pareil ? —
 trouve sur Atbash une réponse immédiate et visible. Quand un étudiant
 sait expliquer *pourquoi* Atbash ne vaut rien, il sait expliquer ce
 qu'il faut à toute substitution pour valoir quelque chose.

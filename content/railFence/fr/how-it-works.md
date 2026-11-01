@@ -14,15 +14,15 @@ lues l'une après l'autre, de haut en bas.
    la rampe 3, `A` de retour sur la rampe 2, et ainsi de suite — le
    {{term:zigzag}}.
 2. Avec `ATTACKATDAWN`, la clôture se remplit ainsi :
-   rampe 1 : `A · A · A`, rampe 2 : `T · C · T · T · A · W`,
-   rampe 3 : `T · K · D · N`.
-3. Lisez les rampes de haut en bas : `AAA`, puis `TCTTAW`, puis `KDN`.
-4. Le chiffre est `AAATCTTAWKDN`. Le déchiffrement est la même marche en
+   rampe 1 : `A · C · D`, rampe 2 : `T · A · K · T · A · N`,
+   rampe 3 : `T · A · W`.
+3. Lisez les rampes de haut en bas : `ACD`, puis `TAKTAN`, puis `TAW`.
+4. Le chiffre est `ACDTAKTANTAW`. Le déchiffrement est la même marche en
    sens inverse : comptez combien de lettres possède chaque rampe,
    découpez le chiffre en conséquence et parcourez à nouveau la
    clôture.
 
-## Un exemple travaillé
+## Un exemple détaillé
 
 {{example:railFence-basic}}
 
@@ -42,6 +42,7 @@ milieu en descendant. Même clôture, une chose de plus à essayer.
 ## Pourquoi c'est la rampe d'accès, pas la forteresse
 
 La clé tient en deux petits nombres. Même le réglage maximal ici — dix
-rampes — se teste en un clin d'œil, et chaque essai se juge à savoir si
-le texte se lit. Voilà pourquoi rail fence est la première transposition
-à casser à la main, et le déchiffreur guidé en fait un simple curseur.
+rampes — ne fait que dix fois une poignée d'essais, et chaque essai se
+juge à savoir si le texte se lit. Voilà pourquoi rail fence est la
+première transposition idéale à casser à la main, et le déchiffreur
+guidé en fait un simple curseur.

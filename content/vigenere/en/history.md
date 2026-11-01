@@ -8,7 +8,7 @@ Battista Alberti proposed a cipher disk: two stacked wheels of letters,
 rotated between words so that the same letter would not always encrypt
 the same way. A few decades later the German abbot Johannes Trithemius
 published the *tabula recta* — the square table of all 26 shift
-alphabets that Vigenère-style ciphers still use — in his steganography
+alphabets that Vigenère-style ciphers still use — in his cryptography
 book *Polygraphia* (1508).
 
 ## Bellaso, not Vigenère

@@ -18,7 +18,7 @@
 
 1. Appuyez sur le bouton d'échange {{control:swap}} pour passer en
    mode déchiffrement.
-2. Collez la cryptogramme dans {{control:message-input}}. Les espaces
+2. Collez le cryptogramme dans {{control:message-input}}. Les espaces
    entre les groupes se lisent comme des frontières — gardez-les si
    vous pouvez. Un bloc plein de lettres marche aussi ; l'outil le
    découpe avec la règle de forme en cours.

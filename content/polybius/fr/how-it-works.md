@@ -9,7 +9,7 @@ message devient un flux de coordonnées qui ne dit rien sans la grille.
 ## La recette
 
 1. Dessinez une grille 5×5 et remplissez-la avec l'alphabet. Il ne
-   reste que 24 lettres après le partage de la cellule entre I et J :
+   reste que 25 lettres après le partage de la cellule entre I et J :
    les deux vivent dans la même case.
 2. Numérotez les lignes et les colonnes de 1 à 5. Chaque lettre a
    désormais une adresse : `A` est `11`, `B` est `12`, `Z` est `55`.
@@ -28,11 +28,11 @@ devient, et la croissance du flux de paires. Remarquez la forme : deux
 chiffres par lettre, rien que les chiffres de 1 à 5 — toute
 l'empreinte de ce chiffre.
 
-## Le carré clé
+## Le carré à clé
 
 Remplissez d'abord la grille avec une {{term:key}} et la correspondance
 change du tout au tout. Avec le mot-clé `SPARTAN`, le carré commence
-`S P A R T A N…` — les lettres du mot-clé (dédoublonnées), puis le
+`S P A R T N…` — les lettres du mot-clé (dédoublonnées), puis le
 reste de l'alphabet dans l'ordre.
 
 {{example:polybius-keyed}}

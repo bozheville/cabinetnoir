@@ -41,6 +41,7 @@ harder to analyse, and the classic hand practice. The tool offers both.
 ## Double transposition
 
 Encrypting the result a second time with another keyword — the classic
-*double transposition* — shatters the simple column structure. The single-columnar weakness you will exploit below mostly disappears;
+*double transposition* — shatters the simple column structure. The
+single-transposition weakness you will exploit below mostly disappears;
 that is why serious users (from WWI armies to the SOE) always applied
 the transposition twice.

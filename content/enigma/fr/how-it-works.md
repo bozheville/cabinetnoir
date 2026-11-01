@@ -16,7 +16,7 @@ L'outil modélise une Enigma I en configuration fixe :
   vous tapez (trois lettres, A–Z — la *Grundstellung*, les positions
   de départ) ;
 - **Réflecteur B** ;
-- **pas de tableau de connexions** et un entrée-walze droite.
+- **pas de tableau de connexions** et une roue d'entrée droite.
 
 Soyons honnêtes avec le mot *clé* : sur la vraie machine, la feuille
 de clés portait aussi l'ordre des rotors (cinq rotors parmi
@@ -29,10 +29,10 @@ positions de départ — la plus petite part d'une vraie clé Enigma.
 1. Réglez les trois rotors sur la clé, par exemple `AAA`.
 2. Tapez une lettre. **Les rotors avancent d'abord** — la roue de
    droite gagne une position à chaque frappe.
-3. Le signal court alors : à travers l'entrée-walze, de droite à
+3. Le signal court alors : à travers la roue d'entrée, de droite à
    gauche dans les trois rotors, dans le réflecteur, qui le renvoie
    de gauche à droite dans les mêmes rotors, puis sort par
-   l'entrée-walze.
+   la roue d'entrée.
 4. Une lampe au-dessus du clavier s'allume : c'est la lettre du
    texte chiffré.
 
@@ -60,9 +60,9 @@ différentes.
 
 ## Pourquoi la même machine chiffre et déchiffre
 
-Le réflecteur échange les lettres par paires (A↔Y, R↔U…) et ne mappe
+Le réflecteur échange les lettres par paires (A↔Y, C↔U…) et ne mappe
 jamais une lettre sur elle-même. Comme chaque étape du trajet est
-parcourue en avant puis en arrière en ordre miroir, la machine toute
+parcourue en avant puis en arrière en ordre miroir, la machine tout
 entière est sa propre inverse : mêmes positions de départ, texte
 chiffré tapé — et les lampes du texte clair s'allument. Voilà
 pourquoi l'outil n'a pas de vrai « mode déchiffrement » — le bouton

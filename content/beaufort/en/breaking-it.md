@@ -47,7 +47,7 @@ statistically indistinguishable.)
 
 A guessed word works here too, with the subtraction flipped: each
 ciphertext letter *plus* the guessed plaintext letter is a key letter
-(for the variant, ciphertext *minus* the guess). The tool's crib panel
+(for the variant, the guess *minus* the ciphertext). The tool's crib panel
 does the arithmetic for the variant you are cracking.
 
 ## The limits

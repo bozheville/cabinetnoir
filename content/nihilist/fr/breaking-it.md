@@ -1,6 +1,6 @@
 # Casser le chiffre nihiliste
 
-Deux clés, deux faiblesses. L'assistant de l'onglet Cryptanalysis
+Deux clés, deux faiblesses. L'assistant de l'onglet Cryptanalyse
 conduit l'attaque en quatre étapes ; cette page explique ce que chacune
 écoute.
 
@@ -37,8 +37,8 @@ la grille.
    partagé prend le relais : lettres par fréquence, texte partiel en
    direct, retour en arrière libre. Le carré se remplit à côté du
    plateau au fur et à mesure.
-4. **Terminé.** Le carré reconstitué (et le mot-clé qu'il épelle, s'il
-   est clé) plus la clé additive partent vers l'outil avec « Utiliser ce
+4. **Terminé.** Le carré reconstitué (et le mot-clé qu'il épelle, si
+   c'est un carré à clé) plus la clé additive partent vers l'outil avec « Utiliser ce
    résultat ».
 
 ## Pourquoi l'attaque en deux temps marche
@@ -46,7 +46,7 @@ la grille.
 Aucune des deux étapes n'est décisive seule, mais chacune rétrécit la
 recherche de l'autre : la contrainte de plage ramène les 25 nombres de
 clé possibles par colonne à une poignée, et une fois la clé partie le
-chiffre n'est plus qu'un comptage de fréquences manuel. C'est le même
+chiffre n'est plus qu'un comptage de fréquences d'école. C'est le même
 diviser-pour-régner que le casseur de Vigenère — trouver la période,
 puis attaquer chaque tranche — avec des tranches faites de nombres au
 lieu de lettres.

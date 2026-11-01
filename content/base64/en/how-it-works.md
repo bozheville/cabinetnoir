@@ -11,7 +11,7 @@ and JSON files.
 ## The idea in one sentence
 
 Every three bytes of input (24 bits) are re-cut into four groups of
-six bits, and each six-bit value — 0 to 63, hence "base 64" — is
+six bits, and each six-bit value — 0 to 63, hence "Base64" — is
 written as one letter of a fixed 64-character alphabet:
 `A–Z`, `a–z`, `0–9`, `+` and `/`.
 

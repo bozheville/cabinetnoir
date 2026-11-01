@@ -1,6 +1,6 @@
 # Histoire du Base64
 
-## Le problème : le courriel ne pouvait pas porter des octets
+## Le problème : le courriel ne pouvait pas transporter d'octets
 
 Le courrier électronique des années 1980 supposait le texte des plus
 vieux protocoles : lignes de caractères imprimables, pas d'octets

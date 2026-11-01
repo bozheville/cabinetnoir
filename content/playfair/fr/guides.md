@@ -6,7 +6,7 @@
 2. Saisissez un mot-clé dans {{control:key}} — court et mémorable,
    comme SHADOW. Le mot-clé se dédoublonne et sème le carré.
 3. Lisez les paires chiffrées dans {{control:output}} — l'outil les
-   joint avec des espaces, et ces espaces sont décoratives : le
+   joint avec des espaces, et ces espaces sont décoratifs : le
    déchiffrement les ignore.
 
 ## Déchiffrez un message reçu

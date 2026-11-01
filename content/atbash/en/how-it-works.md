@@ -20,9 +20,9 @@ becomes Z, B becomes Y, and the last letter becomes the first.
 {{example:atbash-basic}}
 
 The index column is the whole story: a letter at position `x` always
-travels to position `25 − x`. **R** (17) becomes **H** (7), because
-17 + 7 = 25. Every row is a mirrored pair, and the middle of the
-alphabet (M ↔ N) maps onto itself's neighbourhood.
+travels to position `25 − x`. **S** (18) becomes **H** (7), because
+18 + 7 = 25. Every row is a mirrored pair, and the middle of the
+alphabet (M ↔ N) maps onto its own neighbourhood.
 
 ## The formula
 

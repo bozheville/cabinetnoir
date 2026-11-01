@@ -34,7 +34,7 @@ followed.
 ## Bletchley Park and the bombe
 
 At Bletchley Park, Alan Turing designed a new machine — the
-**bombe** — around Turing-Welchley crib-based logic, refined from the
+**bombe** — around Turing-Welchman crib-based logic, refined from the
 Polish idea. The first bombe, *Victory*, ran in March 1940; dozens
 followed, working around the clock against the daily traffic. Naval
 Enigma was the hardest prize: when the U-boats moved to the

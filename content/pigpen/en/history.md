@@ -44,7 +44,7 @@ legend is modern branding on an old idea.
 The cipher survived by becoming a game. It appears in children's books
 on secret writing, puzzle hunts, escape rooms, treasure-fiction from
 Verne onward, and even in a settler's 1852 Australian diary examined by
-historians two centuries later. Pigpen is not used to protect anything
+historians more than a century later. Pigpen is not used to protect anything
 — it is used to *signal* secrecy, which may be the most durable job a
 cipher can have.
 

@@ -20,9 +20,9 @@ devient Z, B devient Y, et la dernière lettre devient la première.
 {{example:atbash-basic}}
 
 La colonne des indices raconte tout : une lettre à la position `x`
-va toujours à la position `25 − x`. **R** (17) devient **H** (7), car
-17 + 7 = 25. Chaque ligne est une paire en miroir, et le milieu de
-l'alphabet (M ↔ N) se mappe sur son voisinage.
+va toujours à la position `25 − x`. **S** (18) devient **H** (7), car
+18 + 7 = 25. Chaque ligne est une paire en miroir, et le milieu de
+l'alphabet (M ↔ N) est envoyé sur son propre voisinage.
 
 ## La formule
 

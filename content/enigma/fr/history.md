@@ -10,7 +10,7 @@ pas acheté. L'armée allemande, si : la Marine adopte la machine en
 1930, la confiance de la Wehrmacht en elle devient une doctrine : la
 machine est jugée incassable.
 
-## Les Polonais cassent la première
+## Les Polonais la cassent les premiers
 
 En décembre 1932, le mathématicien **Marian Rejewski**, du Bureau du
 chiffre polonais — aidé de documents du renseignement français issus
@@ -38,8 +38,8 @@ cours des travaux à venir.
 ## Bletchley Park et la bombe
 
 À Bletchley Park, Alan Turing dessine une nouvelle machine — la
-**bombe** — autour de la logique des cribs de Turing et Welchley,
-affinée depuis l'idée polonaise. La première bombe, *Victory*,
+**bombe** — autour de la logique des mots probables de Turing et
+Welchman, affinée depuis l'idée polonaise. La première bombe, *Victory*,
 tourne en mars 1940 ; des dizaines suivent, travaillant jour et nuit
 contre le trafic du jour. L'Enigma navale est le prix le plus dur :
 quand les U-Boote passent au M4 à quatre rotors en février 1942, la
@@ -56,6 +56,6 @@ cela a raccourci la guerre de deux à quatre ans. Puis vint le
 silence : toute l'entreprise est restée secrète jusque dans les
 années 1970. Les vétérans revenus à la vie civile ne pouvaient dire à
 personne ce qu'ils avaient fait ; l'histoire du déchiffrement le plus
-connéquent du siècle s'est écrite des décennies trop tard.
+lourd de conséquences du siècle s'est écrite des décennies trop tard.
 
 {{timeline:enigma}}

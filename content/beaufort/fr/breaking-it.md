@@ -1,6 +1,6 @@
 # Percer le chiffre de Beaufort
 
-La {{term:key}} répétée rend le chiffre perçable — et l'attaque est
+La {{term:key}} répétée rend le chiffre cassable — et l'attaque est
 celle de Vigenère avec un demi-tour de miroir. Cette page explique
 l'attaque ; chaque étape a son pendant dans le décodeur guidé de
 l'outil, pour suivre la lecture en direct.
@@ -49,7 +49,7 @@ indiscernabilité statistique.)
 
 Un mot deviné marche ici aussi, soustraction inversée : chaque lettre du
 texte chiffré *plus* la lettre devinée du texte clair donne une lettre de
-clé (pour la variante, texte chiffré *moins* la devinette). Le panneau de
+clé (pour la variante, la lettre devinée *moins* le texte chiffré). Le panneau de
 mots probables de l'outil fait l'arithmétique pour la variante en cours.
 
 ## Les limites
@@ -58,9 +58,9 @@ mots probables de l'outil fait l'arithmétique pour la variante en cours.
   l'analyse fréquentielle devient de la divination — voilà pourquoi le
   décodeur vous alerte et pourquoi un mot probable aide.
 - **La variante se fond dans la foule.** Les textes du Beaufort variante
-  sont exactement des textes de Vigenère à clé négée : un intercepteur
+  sont exactement des textes de Vigenère à clé inversée : un intercepteur
   ne peut même pas savoir lequel des deux vous avez utilisé — maigre
   consolation, puisque tous deux tombent sous la même attaque.
-- **Les longues clés blessent.** Une clé aussi longue que le texte,
+- **Les clés longues gênent.** Une clé aussi longue que le texte,
   utilisée une seule fois, atteint l'idéal du masque jetable — Beaufort
   hérite cette propriété de Vigenère.

@@ -54,7 +54,7 @@ different rotor state, which is why the outputs differ.
 
 ## Why the same machine encrypts and decrypts
 
-The reflector maps letters in pairs (A↔Y, R↔U…) and never maps a
+The reflector maps letters in pairs (A↔Y, C↔U…) and never maps a
 letter to itself. Because every stage of the path is traversed
 forward and then backward in mirror order, the whole machine is its
 own inverse: set the same start positions, type the ciphertext, and

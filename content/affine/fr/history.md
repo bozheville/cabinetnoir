@@ -15,7 +15,7 @@ Des chiffres de cette forme ont certainement circulé à l'âge des
 manuscrits, mais la compréhension systématique est venue avec la
 théorie des nombres. Travailler modulo 26, demander quels
 multiplicateurs peuvent être défaits — lesquels ont un inverse
-modulaire — est une question qu'Euler et Gauss jugeaient élémentaire.
+modulaire — est une question qu'Euler et Gauss auraient jugée élémentaire.
 Le chiffre est devenu un exercice de manuel : le plus petit système
 où chiffrer est faire de l'arithmétique et la clé est une formule.
 

@@ -26,11 +26,11 @@ télégraphiques du monde se réunissent à Paris en 1865, la lignée de
 Gerke est adoptée comme Morse international — le code encore en
 vigueur aujourd'hui (avec de menus amendements).
 
-## SOS et l'âge sans fil
+## SOS et l'ère du sans-fil
 
 La télégraphie sans fil hérite du code, et en 1906 la convention de
 Berlin fait de `... --- ...` le signal de détresse mondial — choisi
-non comme abréviation mais comme rythme inconfondable et facile à
+non comme abréviation mais comme rythme impossible à confondre et facile à
 envoyer. Six ans plus tard, les opérateurs du Titanic le transmettent
 (joint au vieux CQD) tandis que le navire coule, et le monde comprend
 ce que disent les points.
@@ -38,9 +38,10 @@ ce que disent les points.
 ## Une longue éclipse
 
 L'usage commercial décline au XXᵉ siècle, mais la mer garde Morse le
-plus longtemps : marines et radios-officiers tapent jusqu'en 1999,
-quand le Système mondial de détresse et de sécurité en mer impose le
-satellite et met fin à la veille officielle de Morse. Les radioamateurs,
+plus longtemps : marines et officiers radio des navires pianotent
+jusqu'en 1999, quand le Système mondial de détresse et de sécurité en
+mer fait des équipements satellitaires la norme et met fin à la veille
+officielle du Morse en mer. Les radioamateurs,
 les balises aéronautiques et les lampes torches des camps de
 prisonniers le maintiennent en vie malgré tout.
 

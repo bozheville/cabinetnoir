@@ -28,7 +28,7 @@ counts of plain letters in disguise.
 3. **Find the words.** With a few letters placed, whole words light up.
    The panel lists cipher words whose shape matches a common English
    word ({{term:pattern-word}} matching — THE has the shape ABC, THAT
-   ABCA) and only shows candidates consistent with your assignments.
+   ABAC) and only shows candidates consistent with your assignments.
    Clicking a candidate places the whole word in one click. Doubled
    letters and one-letter words (only A and I in English) are clues too.
 4. **Fill the gaps.** Rare symbols are last: use the partial text as

@@ -4,9 +4,10 @@
 
 The Saknussemm cipher exists because Jules Verne needed a plot device:
 a message no one alive can read. In "Journey to the Centre of the
-Earth" (1864), Professor Lidenbrock buys a runic parchment inscribed
-by the 16th-century Icelandic alchemist Arne Saknussemm and spends
-days failing to read it — until his nephew Axel notices the runes
+Earth" (1864), Professor Lidenbrock buys an old runic book, and out
+of it falls a parchment inscribed by the 16th-century Icelandic
+alchemist Arne Saknussemm. He spends days failing to read it — until
+his nephew Axel notices the runes
 should be read backwards, and the Latin message "descend into the
 crater of Yoculis at Sneffels" sends them both to Iceland.
 

@@ -5,7 +5,7 @@
 Le chiffre affine est une {{term:substitution}} pilotée par une droite
 : chaque lettre est d'abord étirée par un multiplicateur puis
 décalée, le tout dans l'{{term:modular-arithmetic}} — l'arithmétique
-du rebroussement à 26.
+du rebouclage à 26.
 
 ## La recette
 
@@ -26,7 +26,7 @@ du rebroussement à 26.
 Avec un multiplicateur de 3 et un décalage de 7, **S** (lettre 18)
 atterrit sur (3·18 + 7) mod 26 = 9 — **J**. **E** (lettre 4) atterrit
 sur 19 — **T**. La colonne centrale est le cœur sincère du chiffre :
-une multiplication et une addition, avec rebroussement à 26.
+une multiplication et une addition, avec rebouclage à 26.
 
 ## La formule
 

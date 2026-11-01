@@ -2,7 +2,7 @@
 
 ## The idea in one sentence
 
-The Beaufort cipher is the Vigenère's mirror twin: it uses the
+The Beaufort cipher is Vigenère's mirror twin: it uses the
 same repeating {{term:key}} and the same {{term:tabula-recta}} idea, but
 subtracts the other way round. Where Vigenère computes
 cipher = plaintext + key, Beaufort computes

@@ -1868,7 +1868,7 @@
     },
     "pattern-word": {
       "name": "Pattern word",
-      "definition": "A word recognised by the shape of its repeated letters: THE has the pattern ABC, THAT ABAC — the shape survives any substitution."
+      "definition": "A word recognised by the shape of its repeated letters: THE has the pattern ABC, THAT ABCA — the shape survives any substitution."
     },
     "polyalphabetic": {
       "name": "Polyalphabetic",
@@ -1965,10 +1965,6 @@
     "additive-key": {
       "name": "Additive key",
       "definition": "Additive key — a keyword converted to numbers that repeat over the text and are added digit by digit, without carry."
-    },
-    "anagrammage": {
-      "name": "Anagramming",
-      "definition": "Sliding suspected column fragments side by side and reading the seams — the classic attack on transposition ciphers: each trial arrangement is judged by how English the letter pairs at the joins look."
     },
     "tabula-recta": {
       "name": "Tabula recta",

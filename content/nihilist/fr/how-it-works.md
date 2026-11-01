@@ -10,7 +10,7 @@ grille.
 
 ## La recette
 
-1. Fixez le carré — simple ou clé. Chaque lettre a désormais un nombre
+1. Fixez le carré — simple ou à clé. Chaque lettre a désormais un nombre
    de `11` à `55` (I et J partagent une case).
 2. Convertissez le mot-clé en ses propres nombres de la même façon.
    Avec la clé `RUSSIA` les nombres sont `42 45 43 43 24 11`, et ils se
@@ -49,4 +49,4 @@ Chaque somme contient encore la grille : soustrayez n'importe quel
 nombre de clé et les deux chiffres doivent retomber entre 1 et 5, sinon
 l'hypothèse est fausse. Et comme la clé se répète, les sommes d'une
 même position de clé partagent son biais — le flux ondule avec une
-période, exactement ce que l'onglet Cryptanalysis mesure.
+période, exactement ce que l'onglet Cryptanalyse mesure.

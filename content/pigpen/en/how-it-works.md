@@ -8,7 +8,7 @@ grid, with or without a dot — the famous "Freemason's cipher".
 
 ## The recipe
 
-1. Draw three shapes: two tic-tac-toe grids (#) and two diagonal
+1. Draw four shapes: two tic-tac-toe grids (#) and two diagonal
    crosses (X).
 2. Fill the first grid with A–I, the second with J–R, and put S–V and
    W–Z on the arms of the two crosses.
@@ -26,8 +26,8 @@ grid, with or without a dot — the famous "Freemason's cipher".
 Each row pairs the letter with the drawing it becomes. S, the first
 letter, lives on the plain cross: its glyph is a V-shape — the two
 strokes of the cross that bound the top arm. O, the fifteenth letter,
-lives in the dotted grid: the same kind of corner shape as A, but with
-a dot inside.
+lives in the dotted grid: the same edge shape as F, open on one side,
+but with a dot inside.
 
 ## Why the shapes look like this
 

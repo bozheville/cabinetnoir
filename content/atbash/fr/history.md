@@ -23,11 +23,11 @@ ancien chiffre de substitution attesté, et de loin.
 
 Les chercheurs débattent encore de l'intention : déguisement de noms
 sensibles, jeu littéraire ou énigme de scribe — les scribes de la
-Bible n'ont laissé de mémo. Ce qui est clair, c'est que le miroir de
-l'alphabet faisait partie de la culture scribrale hébraïque des
+Bible n'ont laissé aucun mémo. Ce qui est clair, c'est que le miroir de
+l'alphabet faisait partie de la culture scribale hébraïque des
 siècles avant l'existence de la cryptographie européenne, et qu'il a
 survécu dans la mystique juive aux côtés de la Gematria, où les
-lettres sont des nombres à rearranger.
+lettres sont des nombres à réarranger.
 
 ## L'idée du miroir voyage
 

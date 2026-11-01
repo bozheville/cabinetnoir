@@ -10,7 +10,7 @@ mots pour qu'une même lettre ne soit pas toujours chiffrée de la même
 façon. Quelques décennies plus tard, l'abbé allemand Johannes
 Trithemius publie la *tabula recta* — la table carrée des 26 alphabets
 de décalage qu'utilisent encore les chiffres de type Vigenère — dans
-son livre de stéganographie *Polygraphia* (1508).
+son livre de cryptographie *Polygraphia* (1508).
 
 ## Bellaso, pas Vigenère
 
@@ -47,7 +47,7 @@ le chiffre devient un exercice de manuel.
 
 ## Sources
 
-- [Chiffre de Alberti — Wikipédia](https://en.wikipedia.org/wiki/Alberti_cipher)
+- [Chiffre d'Alberti — Wikipédia](https://en.wikipedia.org/wiki/Alberti_cipher)
 - [Tabula recta — Wikipédia](https://en.wikipedia.org/wiki/Tabula_recta)
 - [Chiffre de Vigenère — Wikipédia](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher)
 - [Examen de Kasiski — Wikipédia](https://en.wikipedia.org/wiki/Kasiski_examination)

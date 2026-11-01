@@ -4,7 +4,7 @@
 
 1. Tapez votre message dans {{control:message-input}}.
 2. Choisissez un jeu de symboles avec {{control:variant-selector}} —
-   les grilles maçonnes classiques par défaut. Les variantes codent le
+   les grilles maçonniques classiques par défaut. Les variantes codent le
    même chiffre ; elles ne diffèrent que par l'agencement et le
    pointage des cases.
 3. Regardez le bandeau de glyphes se remplir sous le sélecteur : chaque
@@ -33,7 +33,7 @@ Dès qu'on connaît les trois formes, le pigpen apparaît partout :
    l'employaient dans les gravures, et un célèbre cryptogramme sur une
    tombe new-yorkaise se lit « Remember death ».
 2. Chasses au trésor, escape games et livres pour enfants — le pigpen
-   est l'« écriture secrète » la plus empruntée de la presse, la plupart
+   est l'« écriture secrète » la plus reprise dans l'édition, et la plupart
    des auteurs d'énigmes supposent que vous savez la lire.
 3. Fiction et jeux — des histoires de trésor pirate aux jeux vidéo,
    les fragments de grille signifient « message secret » à tout

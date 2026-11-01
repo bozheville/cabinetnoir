@@ -10,7 +10,7 @@
 3. Passez en mode déchiffrer et recollez les nombres. La soustraction
    défait l'addition chiffre par chiffre ; jamais d'emprunt.
 
-## Guide 2 — le carré clé
+## Guide 2 — le carré à clé
 
 1. Ajoutez une clé de carré, par exemple `MOSCOW`, et rechiffrez le
    même message. Les sommes changent parce que les coordonnées du

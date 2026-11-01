@@ -23,8 +23,11 @@ d'abord défaire le mélange, puis résoudre ce qui reste.
 ## Attaque 1 — reconstituer les colonnes
 
 Défaire la {{term:transposition}} revient à découvrir quels morceaux
-du texte chiffré étaient des colonnes voisines de la grille. Le signe
-révélateur : quand deux morceaux étaient vraiment voisins, leur
+du texte chiffré étaient des colonnes voisines de la grille — le même
+{{term:anagramming}} que le casseur Columnar simple enseigne avec des
+scores de digrammes, sauf qu'ici les paires entrelacées sont des
+coordonnées fractionnées, pas des lettres, donc le signe révélateur
+change : quand deux morceaux étaient vraiment voisins, leur
 entrelacement associe chaque coordonnée de ligne à la coordonnée de
 colonne de la *même* lettre en clair — les « symboles » de deux
 lettres obtenus sont de vraies lettres, aux fréquences déséquilibrées
@@ -42,7 +45,7 @@ lettres d'une {{term:substitution}} monoalphabétique ordinaire sur 25
 ou 36 symboles. La vieille machinerie s'applique : les symboles les
 plus fréquents sont les lettres les plus fréquentes, les
 {{term:crib}} confirment les hypothèses, et chaque symbole confirmé
-fiche une case du carré et contraint ses voisines de ligne et de
+fixe une case du carré et contraint ses voisines de ligne et de
 colonne. Le décrypteur guidé de l'outil parcourt cette étape avec un
 graphique de fréquences, des suggestions de lettres et un aperçu en
 direct.
@@ -61,6 +64,6 @@ bataille plus que le chiffre.
 
 Le trafic déchiffré aida à arrêter l'offensive allemande du printemps
 1918. Le chiffre lui-même était solide pour l'époque ; les procédures
-autour ne l'étaient pas. ADFGVX reste l' exemple canonique du
+autour ne l'étaient pas. ADFGVX reste l'exemple canonique du
 fractionnement plus transposition — et de la façon dont la réutilisation
 des clés terrasse même les bons chiffrements.

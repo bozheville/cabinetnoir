@@ -2,14 +2,14 @@
 
 La machine Enigma elle-même n'a jamais été « brisée » comme tombent
 César ou Vigenère — ses mathématiques, message par message, dépassaient
-l'arithmétique manuelle de quiconque. Ce qui a brisé, c'est le
-**système autour d'elle** : les habitudes, les procédures, les cribs.
-Cette page raconte cette histoire, car c'est la plus grande leçon de
+l'arithmétique manuelle de quiconque. Ce qui a cédé, c'est le
+**système autour d'elle** : les habitudes, les procédures, les mots
+probables. Cette page raconte cette histoire, car c'est la plus grande leçon de
 cryptanalyse de toutes.
 
 {{challenge:enigma-demo}}
 
-## La faiblesse : une machine solide entre des mains qui fuient
+## La faiblesse : une machine solide entre des mains peu sûres
 
 Trois cadeaux procéduraux ont coulé Enigma :
 
@@ -25,23 +25,23 @@ Trois cadeaux procéduraux ont coulé Enigma :
    prévisibles — offraient à Bletchley un tronçon de texte clair
    probable pour presque tout le trafic de la journée.
 3. **Des clés choisies par des humains.** Les règles « pas de
-   lettres consécutives » interdisant AAA et QWE rendaient les clés
-   des opérateurs *plus faibles*, et des clés paresseuses (trois
-   rangées du clavier) apparaissaient quand même.
+   lettres répétées ou voisines » interdisant AAA et QWE rendaient
+   les clés des opérateurs *plus faibles*, et des clés paresseuses
+   (trois touches voisines du clavier) apparaissaient quand même.
 
 ## La bombe : des machines à contradictions, pas une recherche de clé
 
 La **bombe** britannique (dessinée par Alan Turing, améliorée de
-manière décisive par Gordon Welchley après la `bomba` polonaise) ne
-cherchait pas de clés. Devant un crib, elle cherchait des réglages de
-rotors *impossibles* :
+manière décisive par Gordon Welchman après la `bomba` polonaise) ne
+cherchait pas de clés. Devant un mot probable, elle cherchait des
+réglages de rotors *impossibles* :
 
-- Un crib comme `WETTER` dit : la lettre claire W devient la lettre
-  chiffrée X en position 1, E→Y en position 2, etc.
+- Un mot probable comme `WETTER` dit : la lettre claire W devient la
+  lettre chiffrée X en position 1, E→Y en position 2, etc.
 - Pour chaque réglage candidat, la bombe testait si cette
   correspondance était cohérente avec le câblage de la machine — de
-  nombreux cribs produisent des **boucles** (chaînes d'énoncés de
-  paires de lettres qui reviennent sur elles-mêmes), et une boucle
+  nombreux mots probables produisent des **boucles** (chaînes
+  d'énoncés de paires de lettres qui reviennent sur elles-mêmes), et une boucle
   rend toute une classe de réglages logiquement contradictoire.
 - Chaque contradiction éliminait des milliers de réglages d'un coup ;
   les quelques survivants étaient testés sur une vraie machine pour
@@ -53,8 +53,8 @@ toute l'informatique.
 
 ## Pourquoi pas de casseur dans cet outil
 
-Une simulation de bombe demande un crib, un moteur de contradictions
-et une recherche sur ordres des rotors, anneaux et tableaux de
+Une simulation de bombe demande un mot probable, un moteur de
+contradictions et une recherche sur ordres des rotors, anneaux et tableaux de
 connexions — un projet à part entière, bien au-delà des casseurs à
 recherche de clé de ce site. La démonstration ci-dessus procède
 comme l'adversaire d'un vrai opérateur radio : avec une clé capturée
@@ -70,7 +70,7 @@ ans**. Aucune autre défaite de chiffre n'a une revendication
 comparable. La machine qui a perdu n'était pas faible — la procédure
 autour d'elle l'était, et cette distinction est la leçon la plus
 profonde de ce site : la cryptographie est un système, et les
-systèmes cassent à leur plus faible habitude.
+systèmes cèdent par leur habitude la plus faible.
 
 ## Pour aller plus loin
 
@@ -78,5 +78,5 @@ systèmes cassent à leur plus faible habitude.
   statistiques ; l'Enigma est tombée devant les procédures. Les deux
   attaques visent le *système*.
 - La `bomba` polonaise et la bombe britannique sont deux machines
-  différentes sous un même nom et avec une même ancêtre — la page
+  différentes sous un même nom et avec un même ancêtre — la page
   d'histoire les démêle.

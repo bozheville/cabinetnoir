@@ -20,7 +20,7 @@ picked up from published sources of his time.
 ## The variant's other parent
 
 The variant Beaufort (cipher = plaintext − key) has an even more
-distinguished career: it is essentially the arithmetic the German army's
+distinguished career: it is essentially the arithmetic the US Army's
 M-209 converter of the 1930s–1940s used inside its more elaborate
 mechanical construction. A discarded variant of one century became a
 component of a field machine in the next.

@@ -65,6 +65,6 @@ rejetée car elle se contredit.
   l'invulnérabilité est démontrée. Vigenère avec une clé jetable *est*
   un masque jetable.
 - **Tout le reste est de la comptabilité.** Dès que la longueur de clé
-  est connue, le reste est mécanique — c'est exactement ce pour quoi
-  l'assistant automatisait le calcul, pendant que vous prenez les
+  est connue, le reste est mécanique — c'est exactement pourquoi
+  l'assistant automatise le calcul, pendant que vous prenez les
   décisions.

@@ -13,7 +13,7 @@
 
 1. Collez le cryptogramme dans {{control:message-input}} et appuyez
    sur le bouton d'échange {{control:swap}} — bien qu'ici ce soit une
-   formalité : chiffrer et déchiffrer en Atbash sont la toute même
+   formalité : chiffrer et déchiffrer en Atbash sont une seule et même
    opération.
 2. Vérifiez que le même {{control:alphabet-selector}} que celui de
    l'expéditeur est sélectionné.

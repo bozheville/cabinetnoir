@@ -4,8 +4,8 @@
 
 Réarranger des lettres selon un motif convenu est l'une des plus
 anciennes idées cryptographiques — la scytale spartiate est un ruban
-ligné par lignes et lu par colonnes, une transposition à tout le moins
-dans les faits. La forme colonnaire, clé par un mot, paraît dans la
+écrit par lignes et lu par colonnes, une transposition en tout sauf
+le nom. La forme colonnaire, à clé par un mot, paraît dans la
 littérature du XVIIe siècle et s'installe dans tous les grands manuels
 de chiffres au XIXe. Elle n'exige ni machine, ni tables, ni
 arithmétique : une feuille de papier et un mot dont on se souvient.
@@ -14,8 +14,8 @@ arithmétique : une feuille de papier et un mot dont on se souvient.
 
 La guerre des tranchées a produit des montagnes de messages à chiffrer
 vite, par des signaleurs épuisés. Les chiffres de substitution tombaient
-sous le comptage des fréquences ; les machines n'existaient pas au
-front. La transposition colonnaire — appliquée en général **deux fois**
+sous le comptage des fréquences ; les machines à chiffrer n'existaient pas
+au front. La transposition colonnaire — appliquée en général **deux fois**
 avec deux mots-clés — est devenue le chiffre de campagne standard de
 plusieurs armées, dont l'armée allemande. Les Français, qui lisaient le
 trafic allemand, apprirent à attaquer la double transposition par
@@ -27,9 +27,9 @@ professionnels.
 ## ADFGVX, 1918 : la transposition comme second verrou
 
 Le plus sophistiqué des chiffres de campagne allemands de la guerre,
-ADFGVX, enchaînait deux idées : la fractionation (chaque lettre du
+ADFGVX, enchaînait deux idées : le fractionnement (chaque lettre du
 texte clair devient deux lettres de coordonnées) et une transposition
-colonnaire clé sur le résultat. La transposition était là précisément
+colonnaire à clé sur le résultat. La transposition était là précisément
 pour détruire les fréquences que les coordonnées fractionnées auraient
 sinon montrées — et la percée de Georges Painvin fut de défaire
 l'{{term:column-order}} d'abord, grâce au volume du trafic, avant
@@ -52,7 +52,7 @@ humaine, pas dans un dispositif saisissable.
 ## Toujours un professeur
 
 La transposition colonnaire n'a jamais protégé quoi que ce soit contre
-un professionnel disposant de assez de trafic — et ce n'était pas son
+un professionnel disposant d'assez de trafic — et ce n'était pas son
 rôle. Elle survit comme la démonstration la plus claire que *cacher
 l'ordre* est un problème différent de *cacher les lettres*, et comme le
 premier chapitre de toute leçon de transposition : la grille est le

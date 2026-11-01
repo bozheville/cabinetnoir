@@ -58,5 +58,5 @@ wrong one is rejected because it contradicts itself.
   {{term:substitution}}-free ideal: the one-time pad, the only cipher
   proven unbreakable. Vigenère with a one-time key *is* a one-time pad.
 - **Everything else is bookkeeping.** Once the key length is known, the
-  rest is mechanical — which is exactly what the guided cracker
-  automates the arithmetic for, while you make the decisions.
+  rest is mechanical — which is exactly why the guided cracker
+  automates the arithmetic, while you make the decisions.

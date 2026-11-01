@@ -20,7 +20,7 @@ déjoue une substitution simple s'applique à l'identique — il n'y a que
    généralement pas besoin de *déjouer* le pigpen, seulement de le
    *déchiffrer* — la clé est un savoir public, comme l'alphabet lui-même.
 2. **Identifier la variante.** Le jeu de symboles se devine souvent :
-   grilles maçonnes d'abord, puis les variantes à cases pointées ou à
+   grilles maçonniques d'abord, puis les variantes à cases pointées ou à
    croix. Essayer la poignée de variantes publiées prend des minutes.
 3. **Revenir à l'{{term:frequency-analysis}}.** Si la variante est non
    standard, comptez les symboles : le glyphe le plus fréquent est

@@ -2,8 +2,8 @@
 
 Le chiffre affine est une {{term:substitution}} monoalphabétique avec
 un squelette mathématique — et c'est précisément ce squelette qui le
-trahit. Deux lettres connues effondrent toute la clé. Cette page
-montre les deux routes.
+trahit. Deux lettres connues suffisent à faire tomber toute la clé.
+Cette page montre les deux routes.
 
 {{challenge:affine-demo}}
 
@@ -20,7 +20,7 @@ une droite — deux paires de lettres connues déterminent donc la clé.
 2. Soustrayez : `y₁ − y₂ ≡ a·(x₁ − x₂) (mod 26)`. Divisez par
    `x₁ − x₂` — dans l'{{term:modular-arithmetic}}, diviser revient à
    multiplier par l'inverse modulaire — pour retrouver `a`.
-3. Remplacez en arrière pour retrouver `b`.
+3. Réinjectez `a` pour retrouver `b`.
 4. Saisissez la clé et déchiffrez. Les {{term:crib}} — mots connus en
    tête de message — offrent les paires gratuitement.
 
@@ -38,12 +38,14 @@ contre César, seuls les alphabets candidats sont moins réguliers.
 
 Le multiplicateur doit être premier avec 26 — sinon deux lettres du
 texte clair se confondent en une seule lettre chiffrée et le message
-ne peut plus être déchiffré de façon unique. Cette exigence réduit de
-moitié l'espace de clés à 312 combinaisons, et elle est la première
+ne peut plus être déchiffré de façon unique. Cette exigence réduit
+l'espace de clés de 676 à 312 combinaisons, et elle est la première
 rencontre d'un débutant avec l'idée qui porte la cryptographie
-moderne : l'inversibilité dans l'arithmétique modulaire.
+moderne : l'inversibilité dans l'arithmétique modulaire. La même
+arithmétique, prise infiniment plus au sérieux, protège aujourd'hui
+les échanges à clé publique.
 
-## De César à l'affine à RSA
+## De César à l'affine, puis à RSA
 
 Le décalage de César est le chiffre affine avec `a` = 1. L'affine
 ajoute une multiplication, et avec elle la notion d'inverse

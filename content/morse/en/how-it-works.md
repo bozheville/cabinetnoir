@@ -19,10 +19,10 @@ short.
 
 1. Look the letter up in the table: E, the commonest English letter,
    gets a single dot; T a single dash; Z gets four symbols.
-2. Send the pattern, then pause one unit to separate letters.
-3. Between words, pause longer — in written Morse, that gap is the
-   slash: `... --- ...` are three letters, `.../---/...` is a word
-   boundary.
+2. Send the pattern, then pause three units to separate letters.
+3. Between words, pause longer (seven units) — in written Morse, that
+   gap is the slash: `... --- ...` is one word of three letters, while
+   `.../---/...` would be three one-letter words.
 4. Digits each get their own five-symbol pattern.
 
 ## A worked example

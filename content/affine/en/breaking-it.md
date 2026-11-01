@@ -37,7 +37,7 @@ only the candidate alphabets are less orderly.
 
 The multiplier must be coprime with 26 — otherwise two plaintext
 letters collide onto one ciphertext letter and the message cannot be
-uniquely decrypted. That requirement halves the key space to 312
+uniquely decrypted. That requirement cuts the key space from 676 to 312
 combos, and it is the first place a beginner meets the idea that
 carries modern cryptography: invertibility inside modular arithmetic.
 The same arithmetic, taken vastly more seriously, secures today's

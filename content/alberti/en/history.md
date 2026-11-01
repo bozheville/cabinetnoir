@@ -17,14 +17,14 @@ and the Arab cryptographers had already shown how to break such ciphers
 by letter counting. Alberti's disk answers that attack directly: turn
 the disc and the frequency table of your message no longer applies. The
 twenty letters of the outer ring were shared across Europe at the time
-(I, J and U were not yet separate letters, K and W were rarely used),
+(I/J and U/V were not yet separate letters, K and W were rarely used),
 and the digits 1–4 on the ring encoded a second layer: a codebook of
 336 phrases that could be superenciphered with the numbers.
 
 ## A book, not a machine
 
-Alberti wrote the system down in *De Cifris* (1467), the first printed
-book on cryptography. The Latin West slowly absorbed the idea:
+Alberti wrote the system down in *De Cifris* (1467), the first book
+devoted to cryptography. The Latin West slowly absorbed the idea:
 Johannes Trithemius published the tabula recta — a table of all
 alphabets laid out in a square — a generation later, and Giovan
 Battista Bellaso turned the alphabets with an easy-to-remember key
