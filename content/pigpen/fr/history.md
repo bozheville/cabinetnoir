@@ -48,7 +48,7 @@ chiffre ; la légende est un habillage moderne d'une vieille idée.
 
 Le chiffre a survécu en devenant un jeu. Il paraît dans les livres pour
 enfants sur l'écriture secrète, les chasses au trésor, les escape
-games, la fiction de trésor depuis Verne, et même dans le journal
+games, les romans de chasse au trésor, et même dans le journal
 australien de 1852 d'un colon examiné par des historiens plus d'un
 siècle plus tard. Le pigpen ne protège plus rien — il *signale* le secret,
 ce qui est peut-être le plus durable des métiers pour un chiffre.
