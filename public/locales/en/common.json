@@ -123,8 +123,8 @@
       "homophonicFlat": "{{symbols}} distinct symbols — more than any single-letter substitution alphabet holds.",
       "knownText.saknussemm": "This is the Arne Saknussemm parchment from Jules Verne's “Journey to the Centre of the Earth” — {{letters}} matching letters.",
       "polybiusPairs": "All {{pairs}} pairs sit inside the Polybius square range (11–55).",
-      "beaufortSlices": "Periodic slices fit reflected shifts (Beaufort), not plain ones",
-      "autokeyAperiodic": "No period, but letter runs look like plain English (autokey or running key)"
+      "beaufortSlices": "Periodic slices fit reflected shifts (Beaufort), not plain ones.",
+      "autokeyAperiodic": "No period, but letter runs look like plain English (autokey or running key)."
     },
     "metrics": {
       "letters": {
@@ -430,8 +430,8 @@
       "messageLabel": "Encoded message"
     },
     "base64": {
-      "title": "Base 64",
-      "short_title": "Base 64",
+      "title": "Base64",
+      "short_title": "Base64",
       "directAction": "Encode",
       "reverseAction": "Decode",
       "messageLabel": "Encoded message"
@@ -446,8 +446,8 @@
       "messageLabel": "Encoded message"
     },
     "vigenere": {
-      "title": "Vigènere cipher",
-      "short_title": "Vigènere",
+      "title": "Vigenère cipher",
+      "short_title": "Vigenère",
       "directAction": "Encrypt",
       "reverseAction": "Decrypt",
       "messageLabel": "Cryptogram",
@@ -477,7 +477,7 @@
             "allLocked": "All letters set. Continue to step 3.",
             "manualTag": "manual",
             "yourKey": "Your key",
-            "keyHint": "Type a letter to override, clear it to un-lock.",
+            "keyHint": "Type a letter to override, clear it to unlock.",
             "suggestedTag": "suggested"
           },
           "cribs": {
@@ -871,7 +871,7 @@
             "allLocked": "All letters set. Continue to step 3.",
             "manualTag": "manual",
             "yourKey": "Your key",
-            "keyHint": "Type a letter to override, clear it to un-lock.",
+            "keyHint": "Type a letter to override, clear it to unlock.",
             "suggestedTag": "suggested"
           },
           "cribs": {
@@ -1194,7 +1194,7 @@
       "affine": {
         "850": "Al-Kindi's frequency analysis dooms every single-alphabet cipher, affine rules included.",
         "1976": "Diffie and Hellman introduce public-key cryptography, making modular arithmetic the backbone of modern ciphers.",
-        "58bc": "Julius Caesar's shift cipher — the Affine cipher's a = 1 special case — protects his military messages."
+        "58bc": "Julius Caesar's shift cipher — the Affine cipher's a = 1 special case — protects his private correspondence."
       },
       "atbash": {
         "1100": "Medieval commentators (Rashi, then Radak) discuss the Atbash passages of Jeremiah, the oldest attested substitution cipher.",
@@ -1690,7 +1690,7 @@
       "columnar": {
         "keyword": "The keyword fixes the column order: its letters sorted alphabetically say which column is read first, second, third…",
         "secondKeyword": "A second keyword transposes the already-transposed text — the classic double transposition.",
-        "double": "Double transposition: encrypt with the first keyword, then transposition the result again with the second.",
+        "double": "Double transposition: encrypt with the first keyword, then transpose the result again with the second.",
         "irregular": "Leave the last row incomplete: no padding letter is added, so the last row stays short (the classic hand cipher).",
         "keepSpaces": "Keep spaces: spaces ride the zigzag like letters instead of being stripped."
       },
@@ -1816,12 +1816,12 @@
     "saknussemm": {
       "description": "The runic parchment from Jules Verne’s “Journey to the Centre of the Earth” — a reversal plus a route transposition, letters only.",
       "era": "1864 (set in the 16th century)",
-      "origin": "Arne Saknussemm, the fictional Icelandic alchemist who carved the message"
+      "origin": "Arne Saknussemm, the fictional Icelandic alchemist who inscribed the message on a runic parchment."
     },
     "beaufort": {
       "era": "Renaissance family, 19th-century name",
       "origin": "Royal Navy, named for Sir Francis Beaufort",
-      "description": "The Vigenère's mirror twin — same repeating key, subtraction the other way round, self-reciprocal."
+      "description": "Vigenère's mirror twin — same repeating key, subtraction the other way round, self-reciprocal."
     },
     "autokey": {
       "era": "Renaissance — the real 1586 Vigenère",
@@ -1868,7 +1868,7 @@
     },
     "pattern-word": {
       "name": "Pattern word",
-      "definition": "A word recognised by the shape of its repeated letters: THE has the pattern ABC, THAT ABCA — the shape survives any substitution."
+      "definition": "A word recognised by the shape of its repeated letters: THE has the pattern ABC, THAT ABAC — the shape survives any substitution."
     },
     "polyalphabetic": {
       "name": "Polyalphabetic",
