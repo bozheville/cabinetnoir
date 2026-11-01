@@ -35,6 +35,9 @@ const Item = styled.div`
   font-size: 14px;
   line-height: 20px;
   color: ${({ theme }) => theme.ink.primary};
+  /* A stray long token (e.g. an untranslated key) must never widen the
+     page: break it instead of overflowing the viewport. */
+  overflow-wrap: anywhere;
 `;
 
 const Bullet = styled.span`

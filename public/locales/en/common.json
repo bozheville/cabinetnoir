@@ -34,7 +34,8 @@
         "saknussemm": "The Arne Saknussemm easter egg — the runic parchment from “Journey to the Centre of the Earth”"
       },
       "next": {
-        "substitution": "The homophonic substitution cipher — numbers replacing the frequent letters"
+        "substitution": "The homophonic substitution cipher — numbers replacing the frequent letters",
+        "nihilist": "The Nihilist cipher — numbers combined with a keyword"
       }
     },
     "identify": {

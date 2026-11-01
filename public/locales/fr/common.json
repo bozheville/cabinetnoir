@@ -1858,7 +1858,8 @@
         "saknussemm": "L’œuf de Pâques Arne Saknussemm — le parchemin runique du « Voyage au centre de la Terre »"
       },
       "next": {
-        "substitution": "Le chiffre par substitution homophonique — des nombres à la place des lettres fréquentes"
+        "substitution": "Le chiffre par substitution homophonique — des nombres à la place des lettres fréquentes",
+        "nihilist": "Le chiffre Nihiliste — des nombres combinés à un mot-clé"
       }
     },
     "identify": {
