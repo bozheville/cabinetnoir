@@ -4,7 +4,7 @@
   "alphabet": {
     "latin": "Latin",
     "german": "Allemand",
-    "french": "Francais",
+    "french": "Français",
     "russian": "Russe",
     "ukrainian": "Ukrainien"
   },
@@ -12,8 +12,8 @@
     "affine": {
       "title": "Chiffre affine",
       "short_title": "Affine",
-      "directAction": "Crypter",
-      "reverseAction": "Décrypter",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
       "messageLabel": "Cryptogramme",
       "cracker": {
         "tooltips": {
@@ -41,8 +41,8 @@
     "alberti": {
       "title": "Chiffre d'Alberti",
       "short_title": "Alberti",
-      "directAction": "Crypter",
-      "reverseAction": "Décrypter",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
       "messageLabel": "Cryptogramme",
       "cracker": {
         "wizard": {
@@ -57,7 +57,7 @@
           "done": {
             "summary": "Clé retrouvée : pas du disque {{step}}, période {{period}}."
           },
-          "assumption": "Les disques sont ceux fixes de l’outil : seuls la période et le pas du disque sont inconnus. Exact pour les ciphertextes dont toutes les lettres du texte clair sont sur le disque (comme les défis) — sinon les lettres abandonnées décalent les tronçons."
+          "assumption": "Les disques sont ceux fixes de l’outil : seuls la période et le pas du disque sont inconnus. Exact pour les cryptogrammes dont toutes les lettres du texte clair sont sur le disque (comme les défis) — sinon les lettres abandonnées décalent les tronçons."
         },
         "tooltips": {
           "periodCards": "Tailles de tronçons classées selon la ressemblance anglaise du meilleur pas du disque. Choisissez-en une ; le pas vient ensuite.",
@@ -72,15 +72,15 @@
     "atbash": {
       "title": "Atbash",
       "short_title": "Atbash",
-      "directAction": "Crypter",
-      "reverseAction": "Décrypter",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
       "messageLabel": "Cryptogramme"
     },
     "caesar": {
       "title": "Chiffre de César",
       "short_title": "César",
-      "directAction": "Crypter",
-      "reverseAction": "Décrypter",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
       "messageLabel": "Cryptogramme",
       "settings": {
         "rotation_label": "Décalage",
@@ -135,7 +135,7 @@
             "hint": "Remplissez les cellules restantes. Gardez l'œil sur le texte partiel : là où une hypothèse se lit mal, annulez-la et essayez la candidate suivante."
           },
           "done": {
-            "alphabet": "Aliment chiffré reconstitué (A → Z du texte clair en haut, lettre chiffrée en bas) :",
+            "alphabet": "Alphabet chiffré reconstitué (A → Z du texte clair en haut, lettre chiffrée en bas) :",
             "keyword": "Le mot-clé était probablement : {{keyword}}",
             "noKeyword": "L'alphabet n'a pas la forme d'un mot-clé — un alphabet mélangé a été utilisé.",
             "incomplete": "Attribuez chaque symbole du texte chiffré pour débloquer « Utiliser ce résultat ».",
@@ -254,8 +254,8 @@
       "messageLabel": "Message codé"
     },
     "base64": {
-      "title": "Base 64",
-      "short_title": "Base 64",
+      "title": "Base64",
+      "short_title": "Base64",
       "directAction": "Encoder",
       "reverseAction": "Décoder",
       "messageLabel": "Message codé"
@@ -272,8 +272,8 @@
     "vigenere": {
       "title": "Chiffre de Vigenère",
       "short_title": "Vigenère",
-      "directAction": "Crypter",
-      "reverseAction": "Décrypter",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
       "messageLabel": "Cryptogramme",
       "cracker": {
         "keyLabel": "Clé",
@@ -351,8 +351,8 @@
     "playfair": {
       "title": "Chiffre de Playfair",
       "short_title": "Playfair",
-      "directAction": "Crypter",
-      "reverseAction": "Décrypter",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
       "messageLabel": "Cryptogramme",
       "cracker": {
         "wizard": {
@@ -393,8 +393,8 @@
     "enigma": {
       "title": "Machine Enigma",
       "short_title": "Enigma",
-      "directAction": "Crypter",
-      "reverseAction": "Décrypter",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
       "messageLabel": "Cryptogramme",
       "keyLabel": "Clé",
       "rotors": "Rotors : I II III",
@@ -403,8 +403,8 @@
     "adfgvx": {
       "title": "Chiffre ADFGVX",
       "short_title": "ADFGVX",
-      "directAction": "Crypter",
-      "reverseAction": "Décrypter",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
       "messageLabel": "Cryptogramme",
       "variantLabel": "Variante",
       "variants": {
@@ -543,7 +543,7 @@
       "squareDecipher": {
         "squareLabel": "Le carré en l'état",
         "chartTooltip": "Les symboles du texte chiffré, du plus fréquent au moins fréquent. Cliquez sur un symbole pour le sélectionner ; le compte indique sa fréquence.",
-        "cribLabel": "Mot probable (crible) :",
+        "cribLabel": "Mot probable :",
         "cribTooltip": "Un mot attendu dans le message. Les correspondances respectent les lettres déjà attribuées.",
         "cribPlaceholder": "ex. ATTAQUE",
         "cribAt": "Correspondance à la position {{position}}",
@@ -788,7 +788,7 @@
           },
           "drag": {
             "title": "Faites glisser le mot le long du texte chiffré",
-            "hint": "Chaque position implique un fragment de clé (chiffre − devin). Dans l'autokey, ce fragment est du texte clair datant d'une longueur d'amorce plus tôt — les positions lisibles sont les bonnes. Cliquez sur une ligne pour placer le mot.",
+            "hint": "Chaque position implique un fragment de clé (chiffre − mot deviné). Dans l'autokey, ce fragment est du texte clair datant d'une longueur d'amorce plus tôt — les positions lisibles sont les bonnes. Cliquez sur une ligne pour placer le mot.",
             "likely": "ressemble à l'anglais"
           },
           "unroll": {
@@ -825,7 +825,7 @@
     "about": "À propos de Cabinet Noir",
     "suggest_a_feature": "Suggérer une fonctionnalité",
     "report_a_bug": "Signaler un bug",
-    "did_you_like": "As-tu aimé?",
+    "did_you_like": "Ça vous a plu ?",
     "buy_me_a_coffee": "Achetez-moi un café",
     "sitemap": "Plan du site"
   },
@@ -1028,7 +1028,7 @@
       "affine": {
         "850": "L'analyse fréquentielle d'Al-Kindi condamne tout chiffre à alphabet unique, règles affines comprises.",
         "1976": "Diffie et Hellman introduisent la cryptographie à clé publique : l'arithmétique modulaire devient l'épine dorsale des chiffres modernes.",
-        "58bc": "Le chiffre par décalage de Jules César — cas particulier a = 1 du chiffre affine — protège ses messages militaires."
+        "58bc": "Le chiffre par décalage de Jules César — cas particulier a = 1 du chiffre affine — protège sa correspondance privée."
       },
       "atbash": {
         "1100": "Les commentateurs médiévaux (Rachi, puis Radak) discutent les passages Atbash de Jérémie, le plus ancien chiffre de substitution attesté.",
@@ -1039,7 +1039,7 @@
         "1844": "Morse tape « What hath God wrought » sur la ligne Washington–Baltimore, premier message télégraphique officiel.",
         "1865": "La convention télégraphique de Paris adopte la révision de Gerke comme Morse international — le code d'aujourd'hui.",
         "1906": "La convention radiotélégraphique de Berlin adopte SOS comme signal de détresse maritime mondial.",
-        "1999": "Le Système mondial de détresse et de sécurité en met fin à la veille officielle de Morse en mer."
+        "1999": "Le Système mondial de détresse et de sécurité en mer (SMDSM) met fin à la veille officielle en Morse."
       },
       "base64": {
         "1992": "MIME introduit base64 pour que le courriel puisse porter des pièces jointes sur des canaux purement textuels.",
@@ -1218,7 +1218,7 @@
       },
       "atbash-medium-1": {
         "title": "En Dieu nous nous fions",
-        "hint1": "Atbash est sa propre inverse : chiffrer et déchiffrer sont la même opération.",
+        "hint1": "Atbash est son propre inverse : chiffrer et déchiffrer sont la même opération.",
         "hint2": "La correspondance est publique — aucune recherche, appliquez le miroir."
       },
       "atbash-hard-1": {
@@ -1281,7 +1281,7 @@
       "columnar-hard-1": {
         "title": "Sept colonnes de Gettysburg",
         "hint1": "Sept colonnes. Le contour du meilleur voisin (préréglage Facile) disparaît à ce niveau — fiez-vous aux badges.",
-        "hint2": "Les débuts célèbres sont des mots probable : glissez FOURSCORE mentalement contre les paires candidates."
+        "hint2": "Les débuts célèbres sont des mots probables : glissez FOURSCORE mentalement contre les paires candidates."
       },
       "morse-easy-1": {
         "title": "L'aigle est atterri",
@@ -1316,7 +1316,7 @@
       },
       "rot13-easy-1": {
         "title": "Le gâteau est un mensonge",
-        "hint1": "ROT13 est sa propre inverse — déchiffrer est la toute même opération.",
+        "hint1": "ROT13 est son propre inverse — déchiffrer est exactement la même opération.",
         "hint2": "Le décalage est fixé à 13 ; aucune clé à trouver."
       },
       "rot13-medium-1": {
@@ -1331,13 +1331,13 @@
         "hint3": "L'espacement est préservé : les longueurs de mots sont des indices lisibles."
       },
       "playfair-demo": {
-        "title": "Texte de démonstration avec crib",
-        "hint1": "Un crib pour commencer : le message commence par ATTACK."
+        "title": "Texte de démonstration avec mot probable",
+        "hint1": "Un mot probable pour commencer : le message commence par ATTACK."
       },
       "playfair-easy-1": {
         "title": "Voilier à l’aube",
         "hint1": "Le mot-clé est SHADOW.",
-        "hint2": "L'outil fond J dans I et bourre les lettres doublées et les queues impaires avec X."
+        "hint2": "L'outil fusionne J avec I et bourre les lettres doublées et les queues impaires avec X."
       },
       "playfair-medium-1": {
         "title": "La partie est lancée",
@@ -1351,7 +1351,7 @@
         "hint3": "Déchiffrez les paires avec l’outil ; le texte clair n’a aucune paire doublée, aucun X de bourrage n’apparaît."
       },
       "enigma-demo": {
-        "title": "Crib et clé capturée",
+        "title": "Mot probable et clé capturée",
         "hint1": "La feuille de clés capturée dit : positions de départ QCV — et le message commence par ATTACK. Réglez la clé, collez, lisez."
       },
       "enigma-easy-1": {
@@ -1378,7 +1378,7 @@
         "title": "Dernière demeure",
         "hint1": "La variante est ADFGVX et la clé du carré est NIGHT.",
         "hint2": "La clé de transposition est GERMAN — six lettres distinctes.",
-        "hint3": "Tapez les deux clés dans l’outil et décryptez."
+        "hint3": "Tapez les deux clés dans l’outil et déchiffrez."
       },
       "adfgvx-medium-1": {
         "title": "Conte de deux époques",
@@ -1405,7 +1405,7 @@
       "pigpen-hard-1": {
         "title": "Deux villes pour un conte",
         "hint1": "Cela reste une substitution fixe : identifiez quelques glyphes à haute fréquence, le reste suit.",
-        "hint2": "Cherchez le motif IT…AS…TH… — les incipit de romans célèbres donnent de solides cribs.",
+        "hint2": "Cherchez le motif IT…AS…TH… — les incipit de romans célèbres donnent de solides mots probables.",
         "hint3": "La variante est la clé maçonnique classique ; la légende dans l'outil liste chaque correspondance."
       },
       "polybius-easy-1": {
@@ -1542,7 +1542,7 @@
       },
       "adfgvx": {
         "variant": "La variante : ADFGX utilise un carré 5×5 de lettres, ADFGVX ajoute une sixième ligne avec les chiffres 0–9.",
-        "square-key": "Le carré à mot-clé : les lettres de la clé remplissent d’abord le carré (doublons retirés, J fondu dans I), le reste de l’alphabet suit. Changez-le et les coordonnées comme la transposition finale changent.",
+        "square-key": "Le carré à mot-clé : les lettres de la clé remplissent d’abord le carré (doublons retirés, J fusionné avec I), le reste de l’alphabet suit. Changez-le et les coordonnées comme la transposition finale changent.",
         "transposition-key": "La clé de transposition : ses lettres fixent le nombre et l’ordre de lecture des colonnes par lesquelles le texte fractionné est mélangé.",
         "unknown-keys": "Cochez ceci quand vous ne connaissez pas les clés : un décrypteur guidé apparaît ci-dessous et vous mène du texte chiffré aux deux clés."
       },
@@ -1613,7 +1613,7 @@
       "origin": "Standardisé pour les pièces jointes MIME (Nathaniel Borenstein, RFC 2045)."
     },
     "rot13": {
-      "description": "Un décalage fixe de 13 — sa propre inverse : l'appliquer deux fois restaure le texte. Obfuscation, pas chiffrement.",
+      "description": "Un décalage fixe de 13 — son propre inverse : l'appliquer deux fois restaure le texte. Obfuscation, pas chiffrement.",
       "era": "Années 1980",
       "origin": "Popularisé sur les groupes de discussion Usenet pour cacher spoilers et chutes de blagues."
     },
@@ -1697,12 +1697,12 @@
       "definition": "Remplacer chaque lettre par une autre."
     },
     "cipher-alphabet": {
-      "name": "Aliment chiffré",
+      "name": "Alphabet chiffré",
       "definition": "L'alphabet réordonné sur lequel une substitution projette l'alphabet clair — ici, épelé par le mot-clé."
     },
     "pattern-word": {
       "name": "Mot à motif",
-      "definition": "Un mot reconnu à la forme de ses lettres répétées : THE a le motif ABC, THAT ABCA — la forme survit à toute substitution."
+      "definition": "Un mot reconnu à la forme de ses lettres répétées : THE a le motif ABC, THAT ABAC — la forme survit à toute substitution."
     },
     "polyalphabetic": {
       "name": "Polyalphabétique",
@@ -1769,7 +1769,7 @@
       "definition": "Un câblage fixe et auto-inverse qui renvoie le signal à travers les rotors ; il rend Enigma réciproque mais ne mappe jamais une lettre sur elle-même."
     },
     "polybius-square": {
-      "name": "Carré Polybe",
+      "name": "Carré de Polybe",
       "definition": "Une grille qui transforme chaque caractère en deux coordonnées : la ligne et la colonne de sa case."
     },
     "fractionation": {
@@ -1923,15 +1923,15 @@
       "substitutionShape": "Le profil des fréquences a la forme de l'anglais, mais les lettres ne sont pas à leur place — une substitution fixe.",
       "substitutionNotShuffled": "Le texte se lit déjà comme de l'anglais dans l'ordre original des lettres — aucune substitution n'a été appliquée.",
       "periodicPolyalphabetic": "Lire une lettre sur {{period}} donne des fréquences proches de l'anglais que le texte entier n'a pas — la signature d'un chiffre polyalphabétique périodique.",
-      "aperiodicPolyalphabetic": "L'indice de coïncidence ({{ic}}) est proche du hasard et il n'y a aucune structure périodique — un chiffre à clef courante ou une machine.",
+      "aperiodicPolyalphabetic": "L'indice de coïncidence ({{ic}}) est proche du hasard et il n'y a aucune structure périodique — un chiffre à clé courante ou une machine.",
       "polyalphabeticNotPeriodic": "L'indice de coïncidence est proche de l'anglais et les tranches à chaque période se ressemblent — pas de structure polyalphabétique périodique.",
       "blockStructure": "Texte de longueur paire avec un jeu de lettres réduit — typique des chiffres par blocs de deux lettres.",
       "blockOddLength": "Une longueur impaire écarte tous les chiffres par blocs de deux lettres.",
       "caesarBestShift": "Décaler chaque lettre de {{shift}} vers l'arrière rend le texte lisible en anglais.",
       "rot13Shift": "Le meilleur décalage est exactement 13 — la signature de ROT13.",
       "atbashMirror": "Inverser l'alphabet (A↔Z, B↔Y, …) rend le texte lisible en anglais.",
-      "affineKey": "Une clef affine de {{key}} (multiplier, puis décaler) rend le texte lisible en anglais.",
-      "keywordNoSimpleKey": "Une substitution convient, mais ni un décalage, ni un miroir, ni une clef affine — l'alphabet a probablement été reconstruit à partir d'un mot-clé.",
+      "affineKey": "Une clé affine de {{key}} (multiplier, puis décaler) rend le texte lisible en anglais.",
+      "keywordNoSimpleKey": "Une substitution convient, mais ni un décalage, ni un miroir, ni une clé affine — l'alphabet a probablement été reconstruit à partir d'un mot-clé.",
       "vigenereSlices": "Chaque tranche d'une lettre sur {{period}} se déchiffre par un simple décalage — la signature de Vigenère.",
       "albertiMixedDisc": "Les tranches résistent aux décalages simples — un alphabet mélangé, comme sur le disque d'Alberti.",
       "enigmaAperiodic": "Fréquences des lettres proches du hasard sans structure périodique — caractéristique des machines à rotors comme Enigma. La confiance reste faible : un simple bruit y ressemble.",
@@ -1973,7 +1973,7 @@
       },
       "period": {
         "label": "Meilleure période",
-        "hint": "La longueur de clef répétitive la plus probable, avec l'indice de coïncidence des tranches à cette période."
+        "hint": "La longueur de clé répétitive la plus probable, avec l'indice de coïncidence des tranches à cette période."
       },
       "distinct": {
         "label": "Lettres distinctes",
