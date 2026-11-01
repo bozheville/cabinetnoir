@@ -60,7 +60,7 @@ const Adfgvx: React.FC<CrypterProps> = ({
     }
   }, [pendingExample]);
 
-  // "Use these keys" on the Cryptanalysis tab: pick both recovered keys
+  // "Use this result" on the Cryptanalysis tab: pick both recovered keys
   // up from the in-memory hand-off (the URL carries only the usedKey
   // flag).
   useEffect(() => {

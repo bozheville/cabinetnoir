@@ -123,7 +123,7 @@ const EncryptionInputs: React.FC<EncryptionInputsProps> = ({
 
   useEffect(() => {
     if (isInitialized) {
-      // The Cryptanalysis tab's "use this key" flags its navigation so
+      // The Cryptanalysis tab's "Use this result" flags its navigation so
       // the ciphertext travels in the in-memory hand-off instead of being
       // replaced by the stale output of the previous mode.
       if (router.query.usedKey === '1') {

@@ -58,7 +58,7 @@ const StepKey: React.FC<StepKeyProps> = ({ cracker }) => {
         onOverride={(slice, letter) => setSliceLetter(slice, letter, 'manual')}
         onClear={(slice) => setSliceLetter(slice, '')}
       />
-      {/* Use this key button comes in task 25. */}
+      {/* Use this result button comes in task 25. */}
     </StepRoot>
   );
 };

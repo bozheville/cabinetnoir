@@ -38,8 +38,8 @@ la grille.
    direct, retour en arrière libre. Le carré se remplit à côté du
    plateau au fur et à mesure.
 4. **Terminé.** Le carré reconstitué (et le mot-clé qu'il épelle, s'il
-   est clé) plus la clé additive partent vers l'outil avec « use this
-   result ».
+   est clé) plus la clé additive partent vers l'outil avec « Utiliser ce
+   résultat ».
 
 ## Pourquoi l'attaque en deux temps marche
 

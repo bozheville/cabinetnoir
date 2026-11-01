@@ -107,7 +107,7 @@ const PreviewLabel = styled(Minion)`
 interface CrackerWizardProps {
   input: string;
   hintConfig: HintConfig;
-  // "Use this key": hands the recovered 26-letter cipher alphabet over.
+  // "Use this result": hands the recovered 26-letter cipher alphabet over.
   onUseKey: (alphabet: string) => void;
   onSkip: () => void;
   // Undo/redo/clear controls, rendered by the wizard next to the steps.

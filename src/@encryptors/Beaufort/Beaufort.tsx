@@ -69,7 +69,7 @@ const Beaufort: React.FC<CrypterProps> = ({
     }
   }, [pendingExample]);
 
-  // "Use this key" on the Cryptanalysis tab: pick the recovered key up
+  // "Use this result" on the Cryptanalysis tab: pick the recovered key up
   // from the in-memory hand-off (the URL carries only the usedKey flag).
   useEffect(() => {
     if (router.query.usedKey !== '1') {

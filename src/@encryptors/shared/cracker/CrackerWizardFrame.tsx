@@ -94,7 +94,7 @@ interface CrackerWizardFrameProps {
   onBack: () => void;
   onNext: () => void;
   canGoNext: boolean;
-  // Translated label of the final-step action ("Use this key").
+  // Translated label of the final-step action ("Use this result").
   useLabel: string;
   onUse: () => void;
   useDisabled?: boolean;

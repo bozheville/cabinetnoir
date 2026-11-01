@@ -38,7 +38,7 @@ sont des comptages des lettres claires déguisés.
    laissez-vous guider par le texte partiel jusqu'à ce que chaque
    cellule soit prise.
 5. **Terminé.** L'alphabet reconstitué apparaît ; s'il a la forme d'un
-   mot-clé, l'assistant nomme le mot qu'il cache. « Utiliser cette clé »
+   mot-clé, l'assistant nomme le mot qu'il cache. « Utiliser ce résultat »
    porte l'alphabet jusqu'à l'onglet Outil, qui déchiffre la suite.
 
 L'outil n'attribue jamais une lettre de lui-même. Chaque clic est le

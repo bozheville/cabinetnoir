@@ -1,6 +1,6 @@
 // In-memory hand-off of a cracker result to the Tool tab.
 //
-// "Use this key" on the Cryptanalysis tab navigates to the decrypt tool
+// "Use this result" on the Cryptanalysis tab navigates to the decrypt tool
 // with the recovered key applied. Privacy rules (standard §7) forbid user
 // text in URLs, so the key and the input travel in this module-scoped
 // slot instead: memory only, gone on reload, never persisted. The URL

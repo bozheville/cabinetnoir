@@ -44,7 +44,7 @@ const FallbackBlock = styled.div`
 `;
 
 // Vigenère cracker on the Cryptanalysis tab: the guided wizard owns the
-// page. "Use this key" hands the recovered key to the Tool tab (in-memory
+// page. "Use this result" hands the recovered key to the Tool tab (in-memory
 // hand-off, nothing persisted).
 const VigenereCryptanalysis: React.FC<{
   input: string;

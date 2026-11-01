@@ -41,7 +41,7 @@ const WizardBox = styled.div`
 `;
 
 // ADFGVX cracker on the Cryptanalysis tab: variant picker + the guided
-// wizard (columns, square). "Use these keys" hands both recovered keys
+// wizard (columns, square). "Use this result" hands both recovered keys
 // to the Tool tab via the in-memory hand-off.
 const AdfgvxCryptanalysis: React.FC<{
   input: string;

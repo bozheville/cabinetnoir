@@ -138,7 +138,7 @@
             "alphabet": "Aliment chiffré reconstitué (A → Z du texte clair en haut, lettre chiffrée en bas) :",
             "keyword": "Le mot-clé était probablement : {{keyword}}",
             "noKeyword": "L'alphabet n'a pas la forme d'un mot-clé — un alphabet mélangé a été utilisé.",
-            "incomplete": "Attribuez chaque symbole du texte chiffré pour débloquer « Utiliser cette clé ».",
+            "incomplete": "Attribuez chaque symbole du texte chiffré pour débloquer « Utiliser ce résultat ».",
             "fillNote": "Les lettres claires qui n'apparaissent jamais dans le texte gardent leur remplissage par défaut — impossible de les retrouver à partir de ce texte."
           }
         },
@@ -189,7 +189,7 @@
             "bestPartner": "La colonne surlignée ({{position}}) se lit le mieux après la sélectionnée — essayez de la placer juste après."
           },
           "done": {
-            "hint": "Voici le texte clair retrouvé (des lettres de complètement peuvent traîner à la fin). « Utiliser cette clé » pour déchiffrer avec le même ordre des colonnes dans l'onglet Outil.",
+            "hint": "Voici le texte clair retrouvé (des lettres de complètement peuvent traîner à la fin). Cliquez sur « Utiliser ce résultat » pour déchiffrer avec le même ordre des colonnes dans l'onglet Outil.",
             "order": "Ordre des colonnes (première lue → dernière) : {{order}}"
           }
         },
@@ -232,7 +232,7 @@
             "best": "le compteur culmine à {{rails}} rampes, décalage {{offset}}"
           },
           "done": {
-            "hint": "Voici le texte clair retrouvé. « Utiliser ce résultat » pour déchiffrer avec le même réglage dans l'onglet Outil.",
+            "hint": "Voici le texte clair retrouvé. Cliquez sur « Utiliser ce résultat » pour déchiffrer avec le même réglage dans l'onglet Outil.",
             "setting": "Réglage : {{rails}} rampes, décalage {{offset}}"
           }
         },
@@ -421,7 +421,7 @@
             "columns": "Colonnes",
             "square": "Carré"
           },
-          "useKey": "Utiliser ces clés",
+          "useKey": "Utiliser ce résultat",
           "keyLength": {
             "otherLabel": "Autre longueur :",
             "otherPlaceholder": "4–12"
@@ -510,7 +510,7 @@
         "back": "Retour",
         "next": "Suivant",
         "skip": "Passer l'analyse",
-        "useKey": "Utiliser cette clé",
+        "useKey": "Utiliser ce résultat",
         "inputChanged": "Le message chiffré a changé — l'analyse a recommencé.",
         "previewTitle": "Déchiffré jusqu'ici",
         "warnings": {
@@ -947,7 +947,7 @@
       "chart-arrows": "les flèches du graphique",
       "key-strip": "la bande de clé",
       "crib-input": "le champ de mot probable",
-      "use-this-key": "le bouton « Utiliser cette clé »",
+      "use-this-key": "le bouton « Utiliser ce résultat »",
       "back": "le bouton Retour",
       "next": "le bouton Suivant",
       "skip": "le bouton « Passer »",

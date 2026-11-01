@@ -304,7 +304,7 @@
             "alphabet": "Recovered cipher alphabet (plain A → Z on top, cipher letter below):",
             "keyword": "The keyword was probably: {{keyword}}",
             "noKeyword": "The alphabet is not keyword-shaped — a mixed alphabet was used.",
-            "incomplete": "Assign every symbol of the ciphertext to unlock \"Use this key\".",
+            "incomplete": "Assign every symbol of the ciphertext to unlock \"Use this result\".",
             "fillNote": "Plain letters that never appear in the text keep their default fill — they cannot be recovered from this text."
           }
         },
@@ -355,7 +355,7 @@
             "bestPartner": "The outlined column ({{position}}) reads best after the selected one — try moving it next."
           },
           "done": {
-            "hint": "This is the recovered plaintext (padding letters may trail at the end). Use this result to decrypt with the same column order in the Tool tab.",
+            "hint": "This is the recovered plaintext (padding letters may trail at the end). Press \"Use this result\" to decrypt with the same column order in the Tool tab.",
             "order": "Column order (first read → last): {{order}}"
           }
         },
@@ -398,7 +398,7 @@
             "best": "the meter peaks at {{rails}} rails, offset {{offset}}"
           },
           "done": {
-            "hint": "This is the recovered plaintext. Use this result to decrypt with the same setting in the Tool tab.",
+            "hint": "This is the recovered plaintext. Press \"Use this result\" to decrypt with the same setting in the Tool tab.",
             "setting": "Setting: {{rails}} rails, offset {{offset}}"
           }
         },
@@ -587,7 +587,7 @@
             "columns": "Columns",
             "square": "Square"
           },
-          "useKey": "Use these keys",
+          "useKey": "Use this result",
           "keyLength": {
             "otherLabel": "Other length:",
             "otherPlaceholder": "4–12"
@@ -676,7 +676,7 @@
         "back": "Back",
         "next": "Next",
         "skip": "Skip analysis",
-        "useKey": "Use this key",
+        "useKey": "Use this result",
         "inputChanged": "The ciphertext changed — the analysis restarted.",
         "previewTitle": "Decrypted so far",
         "warnings": {
@@ -1113,7 +1113,7 @@
       "chart-arrows": "the chart arrows",
       "key-strip": "the key strip",
       "crib-input": "the crib input",
-      "use-this-key": "the \"Use this key\" button",
+      "use-this-key": "the \"Use this result\" button",
       "back": "the Back button",
       "next": "the Next button",
       "skip": "the \"Skip\" button",

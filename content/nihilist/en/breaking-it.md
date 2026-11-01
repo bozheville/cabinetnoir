@@ -35,7 +35,7 @@ digit and the value falls off the grid.
    you go.
 4. **Done.** The recovered square (and the keyword it spells, if it is
    a keyed one) plus the additive key travel to the Tool tab with
-   "use this result".
+   "Use this result".
 
 ## Why the two-stage attack works
 

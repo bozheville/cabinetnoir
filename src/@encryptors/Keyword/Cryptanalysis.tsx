@@ -35,7 +35,7 @@ const WizardBox = styled.div`
 `;
 
 // Keyword substitution cracker on the Cryptanalysis tab: the guided
-// wizard owns the page. "Use this key" hands the recovered 26-letter
+// wizard owns the page. "Use this result" hands the recovered 26-letter
 // cipher alphabet to the Tool tab (in-memory hand-off, nothing
 // persisted).
 const KeywordCryptanalysis: React.FC<{

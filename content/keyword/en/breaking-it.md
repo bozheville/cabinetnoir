@@ -34,7 +34,7 @@ counts of plain letters in disguise.
 4. **Fill the gaps.** Rare symbols are last: use the partial text as
    your guide, assigning until every cell is taken.
 5. **Done.** The recovered alphabet appears; if it is keyword-shaped,
-   the wizard names the keyword it hides. "Use this key" carries the
+   the wizard names the keyword it hides. "Use this result" carries the
    alphabet to the Tool tab, which decrypts the rest.
 
 The tool never assigns a letter on its own. Every click is yours, and
