@@ -45,4 +45,4 @@ plaintext digit + key digit.
 Every sum still contains the grid: subtract any key number and both
 digits must land in 1–5, or the guess is wrong. And because the key
 repeats, sums at the same key position share its bias — the stream
-ripples with a period, exactly what the Cryptoanalysis tab measures.
+ripples with a period, exactly what the Cryptanalysis tab measures.

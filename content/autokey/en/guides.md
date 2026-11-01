@@ -24,7 +24,7 @@
 
 ## Break a message without the key
 
-1. Open the Cryptoanalysis tab. The guided cracker works by
+1. Open the Cryptanalysis tab. The guided cracker works by
    {{term:crib}} dragging — guessing a word and letting the cipher's own
    key trick unravel the message.
 2. Step 1 — guess a word that likely appears in the plaintext (type it

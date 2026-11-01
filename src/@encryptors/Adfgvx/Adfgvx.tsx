@@ -32,7 +32,7 @@ const SPLIT_EXAMPLE_KEY = (key: string): [string, string] => {
 };
 
 // The ADFGVX tool: encrypt/decrypt with known keys. The cracker lives on
-// its own Cryptoanalysis tab (/encoder/adfgvx/cryptoanalysis) and hands
+// its own Cryptanalysis tab (/encoder/adfgvx/cryptanalysis) and hands
 // both recovered keys over via the in-memory key hand-off.
 const Adfgvx: React.FC<CrypterProps> = ({
   input,
@@ -60,7 +60,7 @@ const Adfgvx: React.FC<CrypterProps> = ({
     }
   }, [pendingExample]);
 
-  // "Use these keys" on the Cryptoanalysis tab: pick both recovered keys
+  // "Use these keys" on the Cryptanalysis tab: pick both recovered keys
   // up from the in-memory hand-off (the URL carries only the usedKey
   // flag).
   useEffect(() => {

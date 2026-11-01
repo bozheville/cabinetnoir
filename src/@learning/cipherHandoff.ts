@@ -12,7 +12,7 @@ export interface CipherHandoff {
   // Parameters the identification already recovered
   // (Caesar: { shift }; Vigenère: { period }; ADFGVX/Playfair: none).
   params: Record<string, string | number>;
-  // Where to continue: the Cryptoanalysis tab or the decrypt tool.
+  // Where to continue: the Cryptanalysis tab or the decrypt tool.
   target: 'cracker' | 'tool';
 }
 

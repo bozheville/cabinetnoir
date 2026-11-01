@@ -24,7 +24,7 @@
 
 ## Percer un message sans la clé
 
-1. Ouvrez l'onglet Cryptoanalyse. Le décodeur guidé travaille par
+1. Ouvrez l'onglet Cryptanalyse. Le décodeur guidé travaille par
    glissement de {{term:crib}} — deviner un mot et laisser la ruse de
    la clé du chiffre dérouler le message.
 2. Étape 1 — devinez un mot probablement présent dans le texte (tapez-le

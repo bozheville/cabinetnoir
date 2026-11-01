@@ -59,7 +59,7 @@ const StreamCaption = styled(Minion)`
 // The autokey tool: encrypt/decrypt with a primer. The keystream row
 // under the input shows the primer (highlighted) followed by the
 // plaintext letters — the "the key IS the message" visual. The cracker
-// lives on the Cryptoanalysis tab and hands its recovered primer over
+// lives on the Cryptanalysis tab and hands its recovered primer over
 // via the in-memory key hand-off.
 const Autokey: React.FC<CrypterProps> = ({
   input,
@@ -85,7 +85,7 @@ const Autokey: React.FC<CrypterProps> = ({
     }
   }, [pendingExample]);
 
-  // "Use this key" on the Cryptoanalysis tab: pick the recovered primer
+  // "Use this key" on the Cryptanalysis tab: pick the recovered primer
   // up from the in-memory hand-off (the URL carries only the usedKey flag).
   useEffect(() => {
     if (router.query.usedKey !== '1') {

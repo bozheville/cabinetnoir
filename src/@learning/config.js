@@ -13,10 +13,10 @@
 // modes (direct / reverse) on /encoder/<cipher>/<action> pages.
 const LEARNING_TABS = ['learn', 'history', 'practice'];
 
-// The cryptoanalysis tab: a first-class tab for ciphers with a cracker
+// The cryptanalysis tab: a first-class tab for ciphers with a cracker
 // wizard, not a decrypt-mode checkbox. Governed by
 // specs/learning-material-standardisation/standard.md §10.
-const CRYPTOANALYSIS_TAB = 'cryptoanalysis';
+const CRYPTANALYSIS_TAB = 'cryptanalysis';
 
 // Home-page cipher ladder (#74): every cipher in one difficulty-ordered
 // list, trivial → hardest. Base64 is excluded on purpose — it is a
@@ -59,7 +59,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.hard',
       era: 'learning.beaufort.era',
       origin: 'learning.beaufort.origin',
-      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+      modes: ['encrypt', 'decrypt', 'cryptanalysis'],
     },
     glossary: [
       'plaintext',
@@ -94,7 +94,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.hard',
       era: 'learning.autokey.era',
       origin: 'learning.autokey.origin',
-      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+      modes: ['encrypt', 'decrypt', 'cryptanalysis'],
     },
     glossary: [
       'plaintext',
@@ -125,7 +125,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.hard',
       era: 'learning.vigenere.era',
       origin: 'learning.vigenere.origin',
-      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+      modes: ['encrypt', 'decrypt', 'cryptanalysis'],
     },
     glossary: [
       'plaintext',
@@ -189,7 +189,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.easy',
       era: 'learning.alberti.era',
       origin: 'learning.alberti.origin',
-      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+      modes: ['encrypt', 'decrypt', 'cryptanalysis'],
     },
     glossary: [
       'plaintext',
@@ -221,7 +221,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.easy',
       era: 'learning.affine.era',
       origin: 'learning.affine.origin',
-      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+      modes: ['encrypt', 'decrypt', 'cryptanalysis'],
     },
     glossary: [
       'plaintext',
@@ -279,7 +279,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.easy',
       era: 'learning.keyword.era',
       origin: 'learning.keyword.origin',
-      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+      modes: ['encrypt', 'decrypt', 'cryptanalysis'],
     },
     glossary: [
       'plaintext',
@@ -312,7 +312,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.easy',
       era: 'learning.columnar.era',
       origin: 'learning.columnar.origin',
-      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+      modes: ['encrypt', 'decrypt', 'cryptanalysis'],
     },
     glossary: [
       'plaintext',
@@ -343,7 +343,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.trivial',
       era: 'learning.railFence.era',
       origin: 'learning.railFence.origin',
-      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+      modes: ['encrypt', 'decrypt', 'cryptanalysis'],
     },
     glossary: [
       'plaintext',
@@ -361,7 +361,7 @@ const learningConfig = {
     ],
   },
   // Polybius square: coordinates instead of letters — a substitution in
-  // disguise. The cryptoanalysis tab shares the guided square-deciphing
+  // disguise. The cryptanalysis tab shares the guided square-deciphing
   // step with Nihilist and ADFGVX: an unknown-keyword square is rebuilt
   // from the coordinate stream, then handed back to the tool.
   polybius: {
@@ -376,7 +376,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.trivial',
       era: 'learning.polybius.era',
       origin: 'learning.polybius.origin',
-      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+      modes: ['encrypt', 'decrypt', 'cryptanalysis'],
     },
     glossary: [
       'plaintext',
@@ -407,7 +407,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.medium',
       era: 'learning.nihilist.era',
       origin: 'learning.nihilist.origin',
-      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+      modes: ['encrypt', 'decrypt', 'cryptanalysis'],
     },
     glossary: [
       'plaintext',
@@ -574,7 +574,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.hard',
       era: 'learning.playfair.era',
       origin: 'learning.playfair.origin',
-      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+      modes: ['encrypt', 'decrypt', 'cryptanalysis'],
     },
     glossary: [
       'plaintext',
@@ -635,7 +635,7 @@ const learningConfig = {
       difficulty: 'learning.difficulty.hard',
       era: 'learning.adfgvx.era',
       origin: 'learning.adfgvx.origin',
-      modes: ['encrypt', 'decrypt', 'cryptoanalysis'],
+      modes: ['encrypt', 'decrypt', 'cryptanalysis'],
     },
     glossary: [
       'plaintext',
@@ -664,20 +664,20 @@ const hasTab = (cipher, tab) => {
   return !!config && config.tabs.indexOf(tab) !== -1;
 };
 
-// The Cryptoanalysis tab exists only for ciphers that ship a cracker
+// The Cryptanalysis tab exists only for ciphers that ship a cracker
 // wizard; the atGlance.modes flag is the single source of truth.
-const hasCryptoanalysis = (cipher) => {
+const hasCryptanalysis = (cipher) => {
   const config = getLearningConfig(cipher);
-  return !!config && config.atGlance.modes.indexOf('cryptoanalysis') !== -1;
+  return !!config && config.atGlance.modes.indexOf('cryptanalysis') !== -1;
 };
 
 module.exports = {
   LEARNING_TABS,
-  CRYPTOANALYSIS_TAB,
+  CRYPTANALYSIS_TAB,
   CIPHER_LADDER,
   START_HERE_CIPHER,
   learningConfig,
   getLearningConfig,
   hasTab,
-  hasCryptoanalysis,
+  hasCryptanalysis,
 };

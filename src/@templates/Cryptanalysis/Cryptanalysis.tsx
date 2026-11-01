@@ -12,10 +12,10 @@ import { ToolCase } from '@organisms';
 import { getExample } from '@learning/examples';
 import { getChallenge } from '@learning/challenges';
 import { PendingExampleContext, PendingExampleLoad } from '@learning/pendingExample';
-import { hasCryptoanalysis } from '@learning/config';
+import { hasCryptanalysis } from '@learning/config';
 import { getCipherHandoff, clearCipherHandoff } from '@learning/cipherHandoff';
 
-const CryptoanalysisSection = styled(Section)`
+const CryptanalysisSection = styled(Section)`
   flex: 1 0 auto;
 `;
 
@@ -38,10 +38,10 @@ const IdentifyHint = styled.div`
   }
 `;
 
-// The Cryptoanalysis tab: guided cracking as a first-class tab. The
+// The Cryptanalysis tab: guided cracking as a first-class tab. The
 // template owns the ciphertext input and hands it to the cipher's
 // cracker organism; the wizard lives entirely inside.
-const Cryptoanalysis: React.FC = () => {
+const Cryptanalysis: React.FC = () => {
   const [input, setInput] = useState('');
   const [pendingExample, setPendingExample] = useState<PendingExampleLoad | null>(null);
   const router = useRouter();
@@ -107,19 +107,19 @@ const Cryptoanalysis: React.FC = () => {
 
   const pending = pendingExample && pendingExample.cipher === algorithm ? pendingExample : null;
 
-  if (typeof algorithm !== 'string' || !hasCryptoanalysis(algorithm)) {
+  if (typeof algorithm !== 'string' || !hasCryptanalysis(algorithm)) {
     return null;
   }
 
   return (
-    <CryptoanalysisSection stitch="both" zone="tool">
+    <CryptanalysisSection stitch="both" zone="tool">
       <AtGlanceCard />
       {shouldShowIdentifyerLink && (
         <IdentifyHint>
           <Link href="/identify">{t('identify.backEntry')}</Link>
         </IdentifyHint>
       )}
-      <ToolCase tabs={<TabPlates algorithm={algorithm} activeTab="cryptoanalysis" />}>
+      <ToolCase tabs={<TabPlates algorithm={algorithm} activeTab="cryptanalysis" />}>
         <PendingExampleContext.Provider value={pending}>
           <CipherCracker
             algorithm={algorithm}
@@ -128,10 +128,10 @@ const Cryptoanalysis: React.FC = () => {
           />
         </PendingExampleContext.Provider>
       </ToolCase>
-    </CryptoanalysisSection>
+    </CryptanalysisSection>
   );
 };
 
-Cryptoanalysis.displayName = 'Cryptoanalysis';
+Cryptanalysis.displayName = 'Cryptanalysis';
 
-export default Cryptoanalysis;
+export default Cryptanalysis;

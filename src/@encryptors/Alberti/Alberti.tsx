@@ -60,7 +60,7 @@ const Alberti: React.FC<CrypterProps> = ({
 
   const router = useRouter();
 
-  // "Use this key" on the Cryptoanalysis tab: pick the recovered
+  // "Use this key" on the Cryptanalysis tab: pick the recovered
   // step/period (and the disc alignment) up from the in-memory hand-off;
   // the URL carries only the usedKey flag.
   useEffect(() => {

@@ -68,7 +68,7 @@ export const useKeyword = ({
   const handleKeepSpacesChange = (event) => setKeepSpaces(event.target.checked);
   const handleKeepCaseChange = (event) => setKeepCase(event.target.checked);
 
-  // "Use this result" on the Cryptoanalysis tab: the cracker recovered a
+  // "Use this result" on the Cryptanalysis tab: the cracker recovered a
   // full 26-letter cipher alphabet, which may not be keyword-derivable —
   // switch to free-alphabet mode and pre-fill it.
   const applyRecoveredAlphabet = (alphabet: string) => {

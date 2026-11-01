@@ -89,7 +89,7 @@ const Keystone = styled.div`
 
 /**
  * DecoFrame: thin brass double rule with stepped corners around the tool,
- * cryptoanalysis wizard, identify panel and hero nameplate.
+ * cryptanalysis wizard, identify panel and hero nameplate.
  */
 const DecoFrame: React.FC<DecoFrameProps> = ({
   tone = 'brass',

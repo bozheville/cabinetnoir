@@ -1,6 +1,6 @@
 # Breaking the Nihilist cipher
 
-Two keys, two weaknesses. The wizard on the Cryptoanalysis tab walks
+Two keys, two weaknesses. The wizard on the Cryptanalysis tab walks
 the attack in four steps; this page explains what each one listens for.
 
 {{challenge:nihilist-demo}}

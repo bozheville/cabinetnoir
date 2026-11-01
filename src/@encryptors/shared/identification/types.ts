@@ -26,7 +26,7 @@ export interface Reason {
 }
 
 // How the user can continue with this cipher.
-// - `cracker`: cipher has a Cryptoanalysis tab (guided wizard).
+// - `cracker`: cipher has a Cryptanalysis tab (guided wizard).
 // - `tool`: decrypt tool only.
 // - `null`: roadmap cipher, not in the app yet.
 export type BreakingTarget = 'cracker' | 'tool' | null;

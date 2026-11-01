@@ -1,17 +1,17 @@
 import React from 'react';
 
-import AutokeyCryptoanalysis from '@encryptors/Autokey/Cryptoanalysis';
-import VigenereCryptoanalysis from '@encryptors/Vigenere/Cryptoanalysis';
-import BeaufortCryptoanalysis from '@encryptors/Beaufort/Cryptoanalysis';
-import AdfgvxCryptoanalysis from '@encryptors/Adfgvx/Cryptoanalysis';
-import AffineCryptoanalysis from '@encryptors/Affine/Cryptoanalysis';
-import PlayfairCryptoanalysis from '@encryptors/Playfair/Cryptoanalysis';
-import AlbertiCryptoanalysis from '@encryptors/Alberti/Cryptoanalysis';
-import KeywordCryptoanalysis from '@encryptors/Keyword/Cryptoanalysis';
-import ColumnarCryptoanalysis from '@encryptors/Columnar/Cryptoanalysis';
-import RailFenceCryptoanalysis from '@encryptors/RailFence/Cryptoanalysis';
-import NihilistCryptoanalysis from '@encryptors/Nihilist/Cryptoanalysis';
-import PolybiusCryptoanalysis from '@encryptors/Polybius/Cryptoanalysis';
+import AutokeyCryptanalysis from '@encryptors/Autokey/Cryptanalysis';
+import VigenereCryptanalysis from '@encryptors/Vigenere/Cryptanalysis';
+import BeaufortCryptanalysis from '@encryptors/Beaufort/Cryptanalysis';
+import AdfgvxCryptanalysis from '@encryptors/Adfgvx/Cryptanalysis';
+import AffineCryptanalysis from '@encryptors/Affine/Cryptanalysis';
+import PlayfairCryptanalysis from '@encryptors/Playfair/Cryptanalysis';
+import AlbertiCryptanalysis from '@encryptors/Alberti/Cryptanalysis';
+import KeywordCryptanalysis from '@encryptors/Keyword/Cryptanalysis';
+import ColumnarCryptanalysis from '@encryptors/Columnar/Cryptanalysis';
+import RailFenceCryptanalysis from '@encryptors/RailFence/Cryptanalysis';
+import NihilistCryptanalysis from '@encryptors/Nihilist/Cryptanalysis';
+import PolybiusCryptanalysis from '@encryptors/Polybius/Cryptanalysis';
 
 interface CipherCrackerProps {
   algorithm: string;
@@ -19,22 +19,22 @@ interface CipherCrackerProps {
   onInputChange: (value: string) => void;
 }
 
-// Dispatches the Cryptoanalysis tab to the cipher's cracker organism.
+// Dispatches the Cryptanalysis tab to the cipher's cracker organism.
 // Only ciphers with a cracker can be routed here (getStaticPaths guards
 // the route; the standard doc's cipher matrix is the source of truth).
 const CRACKERS: Record<string, React.ComponentType<{ input: string; onInputChange: (value: string) => void }>> = {
-  vigenere: VigenereCryptoanalysis,
-  beaufort: BeaufortCryptoanalysis,
-  autokey: AutokeyCryptoanalysis,
-  adfgvx: AdfgvxCryptoanalysis,
-  affine: AffineCryptoanalysis,
-  playfair: PlayfairCryptoanalysis,
-  alberti: AlbertiCryptoanalysis,
-  keyword: KeywordCryptoanalysis,
-  columnar: ColumnarCryptoanalysis,
-  railFence: RailFenceCryptoanalysis,
-  nihilist: NihilistCryptoanalysis,
-  polybius: PolybiusCryptoanalysis,
+  vigenere: VigenereCryptanalysis,
+  beaufort: BeaufortCryptanalysis,
+  autokey: AutokeyCryptanalysis,
+  adfgvx: AdfgvxCryptanalysis,
+  affine: AffineCryptanalysis,
+  playfair: PlayfairCryptanalysis,
+  alberti: AlbertiCryptanalysis,
+  keyword: KeywordCryptanalysis,
+  columnar: ColumnarCryptanalysis,
+  railFence: RailFenceCryptanalysis,
+  nihilist: NihilistCryptanalysis,
+  polybius: PolybiusCryptanalysis,
 };
 
 const CipherCracker: React.FC<CipherCrackerProps> = ({ algorithm, input, onInputChange }) => {

@@ -49,4 +49,4 @@ Chaque somme contient encore la grille : soustrayez n'importe quel
 nombre de clé et les deux chiffres doivent retomber entre 1 et 5, sinon
 l'hypothèse est fausse. Et comme la clé se répète, les sommes d'une
 même position de clé partagent son biais — le flux ondule avec une
-période, exactement ce que l'onglet Cryptoanalysis mesure.
+période, exactement ce que l'onglet Cryptanalysis mesure.

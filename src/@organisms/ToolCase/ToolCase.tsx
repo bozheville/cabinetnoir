@@ -9,7 +9,7 @@ export interface ToolCaseProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Keystone nameplate, shown only when there are no tabs. */
   keystone?: React.ReactNode;
   /**
-   * full: the complete DecoFrame (tool, cryptoanalysis).
+   * full: the complete DecoFrame (tool, cryptanalysis).
    * lintel: only the double top rule with a centre lozenge — the
    * delimiter the storytelling tabs dock onto (learn/history/practice).
    */

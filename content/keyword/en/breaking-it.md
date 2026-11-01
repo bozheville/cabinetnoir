@@ -2,7 +2,7 @@
 
 A keyword alphabet feels personal and memorisable — and it is still a
 monoalphabetic {{term:substitution}}, so the classic statistics apply
-unchanged. The wizard on the Cryptoanalysis tab walks the attack; this
+unchanged. The wizard on the Cryptanalysis tab walks the attack; this
 page explains what each step does and why it works.
 
 {{challenge:keyword-demo}}

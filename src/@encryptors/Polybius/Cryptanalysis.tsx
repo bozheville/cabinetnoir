@@ -60,12 +60,12 @@ const Note = styled(Minion)`
   color: ${({ theme }) => theme.ink.creamMuted};
 `;
 
-// Polybius cracker on the Cryptoanalysis tab: the stripped ciphertext is
+// Polybius cracker on the Cryptanalysis tab: the stripped ciphertext is
 // a plain substitution over coordinate pairs whose square is unknown —
 // the shared square-decipher step rebuilds it letter by letter. "Use
 // this result" hands the recovered square (or its keyword) to the Tool
 // tab (in-memory hand-off, nothing persisted).
-const PolybiusCryptoanalysis: React.FC<{
+const PolybiusCryptanalysis: React.FC<{
   input: string;
   onInputChange: (value: string) => void;
 }> = ({ input, onInputChange }) => {
@@ -229,6 +229,6 @@ const PolybiusCryptoanalysis: React.FC<{
   );
 };
 
-PolybiusCryptoanalysis.displayName = 'PolybiusCryptoanalysis';
+PolybiusCryptanalysis.displayName = 'PolybiusCryptanalysis';
 
-export default PolybiusCryptoanalysis;
+export default PolybiusCryptanalysis;

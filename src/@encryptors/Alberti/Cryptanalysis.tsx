@@ -65,12 +65,12 @@ const DEFAULT_HINTS = HINT_KEYS.reduce(
   {} as Record<string, boolean>,
 );
 
-// Alberti cracker on the Cryptoanalysis tab. The discs are fixed, so the
+// Alberti cracker on the Cryptanalysis tab. The discs are fixed, so the
 // unknowns are the chunk period and the disc step: step 1 ranks the
 // periods, step 2 the disc steps for the chosen period, step 3 assembles
 // the key ("step/period", the tool's own format) and hands it to the
 // Tool tab via the in-memory hand-off.
-const AlbertiCryptoanalysis: React.FC<{
+const AlbertiCryptanalysis: React.FC<{
   input: string;
   onInputChange: (value: string) => void;
 }> = ({ input, onInputChange }) => {
@@ -232,6 +232,6 @@ const AlbertiCryptoanalysis: React.FC<{
   );
 };
 
-AlbertiCryptoanalysis.displayName = 'AlbertiCryptoanalysis';
+AlbertiCryptanalysis.displayName = 'AlbertiCryptanalysis';
 
-export default AlbertiCryptoanalysis;
+export default AlbertiCryptanalysis;

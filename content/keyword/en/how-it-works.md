@@ -40,7 +40,7 @@ with the "Continue after the keyword" checkbox.
 Any arrangement of the 26 letters works as a cipher alphabet — the
 keyword is just the memorable way to write one down. The tool's
 "Free alphabet" mode accepts any permutation, which is exactly what the
-cryptoanalysis wizard produces: a recovered alphabet need not come from
+cryptanalysis wizard produces: a recovered alphabet need not come from
 any keyword at all.
 
 {{try:keyword-basic}}

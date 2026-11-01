@@ -9,9 +9,9 @@
 const { encodingsList, encryptorsList } = require('../@encryptors/algorithms');
 const {
   LEARNING_TABS,
-  CRYPTOANALYSIS_TAB,
+  CRYPTANALYSIS_TAB,
   hasTab,
-  hasCryptoanalysis,
+  hasCryptanalysis,
 } = require('../@learning/config');
 
 // The canonical origin. NEXT_PUBLIC_SITE_URL lets a preview/staging deploy
@@ -42,7 +42,7 @@ const buildSitemapEntries = () => ({
     algorithm,
     segments: [
       ...ACTIONS,
-      ...(hasCryptoanalysis(algorithm) ? [CRYPTOANALYSIS_TAB] : []),
+      ...(hasCryptanalysis(algorithm) ? [CRYPTANALYSIS_TAB] : []),
       ...LEARNING_TABS.filter((tab) => hasTab(algorithm, tab)),
     ],
   })),

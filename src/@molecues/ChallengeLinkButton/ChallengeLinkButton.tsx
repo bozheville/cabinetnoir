@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Button } from '@atoms';
 
 import { getChallenge } from '@learning/challenges';
-import { hasCryptoanalysis } from '@learning/config';
+import { hasCryptanalysis } from '@learning/config';
 
 const Inline = styled.span`
   display: inline-flex;
@@ -17,7 +17,7 @@ interface ChallengeLinkButtonProps {
 }
 
 // Opens the challenge's ciphertext with the hint preset matching the
-// challenge difficulty. Ciphers with a cracker open the Cryptoanalysis
+// challenge difficulty. Ciphers with a cracker open the Cryptanalysis
 // tab; the rest open the tool with the ciphertext pre-filled. The URL
 // carries only the challenge id.
 const ChallengeLinkButton: React.FC<ChallengeLinkButtonProps> = ({ challengeId }) => {
@@ -31,8 +31,8 @@ const ChallengeLinkButton: React.FC<ChallengeLinkButtonProps> = ({ challengeId }
     return null;
   }
 
-  const action = hasCryptoanalysis(challenge.cipher)
-    ? 'cryptoanalysis'
+  const action = hasCryptanalysis(challenge.cipher)
+    ? 'cryptanalysis'
     : challenge.mode === 'decrypt' ? 'reverse' : 'direct';
 
   return (

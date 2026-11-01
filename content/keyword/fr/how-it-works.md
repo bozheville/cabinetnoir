@@ -40,7 +40,7 @@ deux modes avec la case « Continuer après le mot-clé ».
 N'importe quel arrangement des 26 lettres fonctionne comme alphabet
 chiffré — le mot-clé n'est que la manière mémorisable de l'écrire. Le
 mode « Alphabet libre » de l'outil accepte toute permutation ; c'est
-exactement ce que produit l'assistant de cryptoanalyse : un alphabet
+exactement ce que produit l'assistant de cryptanalyse : un alphabet
 reconstitué ne vient pas forcément d'un mot-clé.
 
 {{try:keyword-basic}}

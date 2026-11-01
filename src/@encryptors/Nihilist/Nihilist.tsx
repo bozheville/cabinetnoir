@@ -82,7 +82,7 @@ const Nihilist: React.FC<CrypterProps> = ({
     }
   }, [pendingExample]);
 
-  // "Use this result" on the Cryptoanalysis tab.
+  // "Use this result" on the Cryptanalysis tab.
   useEffect(() => {
     if (router.query.usedKey !== '1') {
       return;

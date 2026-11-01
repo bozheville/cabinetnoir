@@ -68,12 +68,12 @@ const DEFAULT_HINTS = HINT_KEYS.reduce(
   {} as Record<string, boolean>,
 );
 
-// Affine cracker on the Cryptoanalysis tab. The key space is tiny
+// Affine cracker on the Cryptanalysis tab. The key space is tiny
 // (12 × 26), so the wizard teaches *why* a candidate is right instead of
 // brute-forcing silently: step 1 ranks the multipliers by English
 // likeness, step 2 reads the shift off the frequency chart, step 3
 // assembles the key.
-const AffineCryptoanalysis: React.FC<{
+const AffineCryptanalysis: React.FC<{
   input: string;
   onInputChange: (value: string) => void;
 }> = ({ input, onInputChange }) => {
@@ -212,6 +212,6 @@ const AffineCryptoanalysis: React.FC<{
   );
 };
 
-AffineCryptoanalysis.displayName = 'AffineCryptoanalysis';
+AffineCryptanalysis.displayName = 'AffineCryptanalysis';
 
-export default AffineCryptoanalysis;
+export default AffineCryptanalysis;

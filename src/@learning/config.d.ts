@@ -24,7 +24,7 @@ export interface LearningAtGlance {
   difficulty: string;
   era: string;
   origin: string;
-  modes: Array<'encrypt' | 'decrypt' | 'cryptoanalysis' | 'encode' | 'decode'>;
+  modes: Array<'encrypt' | 'decrypt' | 'cryptanalysis' | 'encode' | 'decode'>;
 }
 
 export interface LearningConfigEntry {
@@ -38,7 +38,7 @@ export interface LearningConfigEntry {
 
 export declare const LEARNING_TABS: LearningTabName[];
 
-export declare const CRYPTOANALYSIS_TAB: 'cryptoanalysis';
+export declare const CRYPTANALYSIS_TAB: 'cryptanalysis';
 
 // Home-page cipher ladder: difficulty-ordered cipher ids (trivial →
 // hardest), Base64 excluded on purpose.
@@ -53,4 +53,4 @@ export declare function getLearningConfig(cipher: string): LearningConfigEntry |
 
 export declare function hasTab(cipher: string, tab: LearningTabName): boolean;
 
-export declare function hasCryptoanalysis(cipher: string): boolean;
+export declare function hasCryptanalysis(cipher: string): boolean;

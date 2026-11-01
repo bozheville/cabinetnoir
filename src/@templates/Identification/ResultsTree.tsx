@@ -71,7 +71,7 @@ const CipherEntry: React.FC<{ cipher: CipherCandidate; input: string }> = ({ cip
         params: cipher.params || {},
         target: 'cracker',
       });
-      router.push(`/encoder/${cipher.id}/cryptoanalysis`);
+      router.push(`/encoder/${cipher.id}/cryptanalysis`);
       return;
     }
     // Decrypt tools reuse the existing key-handoff flow: the input

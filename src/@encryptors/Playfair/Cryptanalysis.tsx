@@ -65,11 +65,11 @@ const Row = styled(Cluster)`
   margin-top: 8px;
 `;
 
-// Playfair cracker on the Cryptoanalysis tab: digraph statistics first,
+// Playfair cracker on the Cryptanalysis tab: digraph statistics first,
 // then hill-climbing on the key square with the user watching (and
 // correcting) every step. No silent auto-solve: each pass is triggered
 // from the UI, manual swaps are always available.
-const PlayfairCryptoanalysis: React.FC<{
+const PlayfairCryptanalysis: React.FC<{
   input: string;
   onInputChange: (value: string) => void;
 }> = ({ input, onInputChange }) => {
@@ -255,6 +255,6 @@ const PlayfairCryptoanalysis: React.FC<{
   );
 };
 
-PlayfairCryptoanalysis.displayName = 'PlayfairCryptoanalysis';
+PlayfairCryptanalysis.displayName = 'PlayfairCryptanalysis';
 
-export default PlayfairCryptoanalysis;
+export default PlayfairCryptanalysis;

@@ -3,7 +3,7 @@
 Rail fence est une {{term:transposition}} à clé de deux nombres : le
 nombre de rampes et le décalage. Rien à analyser lentement — toute
 l'attaque consiste à *essayer des réglages*, et l'assistant de l'onglet
-Cryptoanalyse la réduit à un seul curseur.
+Cryptanalyse la réduit à un seul curseur.
 
 {{challenge:railFence-demo}}
 

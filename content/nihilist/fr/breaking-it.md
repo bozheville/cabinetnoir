@@ -1,6 +1,6 @@
 # Casser le chiffre nihiliste
 
-Deux clés, deux faiblesses. L'assistant de l'onglet Cryptoanalysis
+Deux clés, deux faiblesses. L'assistant de l'onglet Cryptanalysis
 conduit l'attaque en quatre étapes ; cette page explique ce que chacune
 écoute.
 

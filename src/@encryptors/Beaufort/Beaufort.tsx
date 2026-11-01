@@ -38,7 +38,7 @@ const PaneLabel = styled.span`
 // The Beaufort tool: encrypt/decrypt with a known key, in either variant.
 // Classic Beaufort is reciprocal — encrypt and decrypt are the same
 // operation, so switching modes with the same key restores the text.
-// The cracker lives on the Cryptoanalysis tab and hands its recovered
+// The cracker lives on the Cryptanalysis tab and hands its recovered
 // key over via the in-memory key hand-off.
 const Beaufort: React.FC<CrypterProps> = ({
   input,
@@ -69,7 +69,7 @@ const Beaufort: React.FC<CrypterProps> = ({
     }
   }, [pendingExample]);
 
-  // "Use this key" on the Cryptoanalysis tab: pick the recovered key up
+  // "Use this key" on the Cryptanalysis tab: pick the recovered key up
   // from the in-memory hand-off (the URL carries only the usedKey flag).
   useEffect(() => {
     if (router.query.usedKey !== '1') {

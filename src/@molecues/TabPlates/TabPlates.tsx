@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { metal, focusRing } from '@theme/mixins';
 
-import { getLearningConfig, hasCryptoanalysis, LearningTabName, CRYPTOANALYSIS_TAB } from '@learning/config';
+import { getLearningConfig, hasCryptanalysis, LearningTabName, CRYPTANALYSIS_TAB } from '@learning/config';
 
 const Bar = styled.nav`
   display: flex;
@@ -50,7 +50,7 @@ const Tab = styled.span<{ $active: boolean }>`
 
 interface TabPlatesProps {
   algorithm: string;
-  activeTab: 'tool' | typeof CRYPTOANALYSIS_TAB | LearningTabName;
+  activeTab: 'tool' | typeof CRYPTANALYSIS_TAB | LearningTabName;
 }
 
 /**
@@ -65,10 +65,10 @@ const TabPlates: React.FC<TabPlatesProps> = ({ algorithm, activeTab }) => {
     return null;
   }
 
-  const tabs: Array<{ name: 'tool' | typeof CRYPTOANALYSIS_TAB | LearningTabName; href: string }> = [
+  const tabs: Array<{ name: 'tool' | typeof CRYPTANALYSIS_TAB | LearningTabName; href: string }> = [
     { name: 'tool', href: `/encoder/${algorithm}/direct` },
-    ...(hasCryptoanalysis(algorithm)
-      ? [{ name: CRYPTOANALYSIS_TAB, href: `/encoder/${algorithm}/${CRYPTOANALYSIS_TAB}` }]
+    ...(hasCryptanalysis(algorithm)
+      ? [{ name: CRYPTANALYSIS_TAB, href: `/encoder/${algorithm}/${CRYPTANALYSIS_TAB}` }]
       : []),
     ...config.tabs.map((tab) => ({ name: tab, href: `/encoder/${algorithm}/${tab}` })),
   ];

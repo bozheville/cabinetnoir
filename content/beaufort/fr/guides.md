@@ -28,7 +28,7 @@
 
 ## Percer un message sans la clé
 
-1. Ouvrez l'onglet Cryptoanalyse. Le décodeur guidé suit les mêmes
+1. Ouvrez l'onglet Cryptanalyse. Le décodeur guidé suit les mêmes
    étapes que celui de Vigenère, avec une torsion : chaque tranche est
    comparée à une courbe de fréquence *inversée*, car Beaufort soustrait
    dans l'autre sens.

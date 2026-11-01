@@ -43,10 +43,10 @@ const FallbackBlock = styled.div`
   padding: 16px;
 `;
 
-// Vigenère cracker on the Cryptoanalysis tab: the guided wizard owns the
+// Vigenère cracker on the Cryptanalysis tab: the guided wizard owns the
 // page. "Use this key" hands the recovered key to the Tool tab (in-memory
 // hand-off, nothing persisted).
-const VigenereCryptoanalysis: React.FC<{
+const VigenereCryptanalysis: React.FC<{
   input: string;
   onInputChange: (value: string) => void;
 }> = ({ input, onInputChange }) => {
@@ -122,6 +122,6 @@ const VigenereCryptoanalysis: React.FC<{
   );
 };
 
-VigenereCryptoanalysis.displayName = 'VigenereCryptoanalysis';
+VigenereCryptanalysis.displayName = 'VigenereCryptanalysis';
 
-export default VigenereCryptoanalysis;
+export default VigenereCryptanalysis;

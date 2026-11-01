@@ -3,7 +3,7 @@
 Un alphabet à mot-clé paraît personnel et facile à mémoriser — il
 reste une {{term:substitution}} monoalphabétique, et les statistiques
 classiques s'appliquent sans changement. L'assistant de l'onglet
-Cryptoanalyse conduit l'attaque ; cette page explique ce que fait
+Cryptanalyse conduit l'attaque ; cette page explique ce que fait
 chaque étape et pourquoi elle fonctionne.
 
 {{challenge:keyword-demo}}

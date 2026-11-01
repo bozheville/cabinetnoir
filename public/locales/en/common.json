@@ -29,7 +29,7 @@
       "nextTitle": "What's next",
       "built": {
         "ciphers": "Sixteen cipher pages with guided learning tabs — tool, learn, history, practice",
-        "cryptoanalysis": "Guided cryptoanalysis wizards for Vigenère, Beaufort, Autokey, ADFGVX, Affine, Playfair, Alberti, Keyword, Columnar and Rail fence",
+        "cryptanalysis": "Guided cryptanalysis wizards for Vigenère, Beaufort, Autokey, ADFGVX, Affine, Playfair, Alberti, Keyword, Columnar and Rail fence",
         "challenges": "Practice challenges with difficulty-matched hint presets — in three languages",
         "saknussemm": "The Arne Saknussemm easter egg — the runic parchment from “Journey to the Centre of the Earth”"
       },
@@ -1017,13 +1017,13 @@
       "practice": "Practice",
       "tool": "Tool",
       "tabsLabel": "Cipher page sections",
-      "cryptoanalysis": "Cryptoanalysis"
+      "cryptanalysis": "Cryptanalysis"
     },
     "metaDescription": {
       "learn": "Learn how the cipher works, follow step-by-step guides and see how it is broken.",
       "history": "The history of the cipher: where it came from, who used it and how it was broken.",
       "practice": "Practice on ready-made challenges, from easy to hard.",
-      "cryptoanalysis": "Break real ciphertexts step by step with the guided cryptoanalysis tool."
+      "cryptanalysis": "Break real ciphertexts step by step with the guided cryptanalysis tool."
     },
     "placeholder": "Learning content is coming soon.",
     "types": {
@@ -1042,7 +1042,7 @@
     "modes": {
       "encrypt": "encrypt",
       "decrypt": "decrypt",
-      "cryptoanalysis": "cryptoanalysis",
+      "cryptanalysis": "cryptanalysis",
       "encode": "encode",
       "decode": "decode"
     },

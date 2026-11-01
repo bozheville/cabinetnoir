@@ -2,7 +2,7 @@
 
 Rail fence is a {{term:transposition}} with a two-number key: the rail
 count and the offset. There is nothing to analyse slowly — the whole
-attack is *trying settings*, and the wizard on the Cryptoanalysis tab
+attack is *trying settings*, and the wizard on the Cryptanalysis tab
 compresses it into one slider.
 
 {{challenge:railFence-demo}}

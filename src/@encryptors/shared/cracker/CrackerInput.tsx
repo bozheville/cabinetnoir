@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Caption } from '@typography';
 import TextArea from '@molecues/TextArea';
 
-// Shared ciphertext input for every Cryptoanalysis tab: one labeled
+// Shared ciphertext input for every Cryptanalysis tab: one labeled
 // textarea, owned by the template, fed into the cipher's cracker.
 interface CrackerInputProps {
   value: string;

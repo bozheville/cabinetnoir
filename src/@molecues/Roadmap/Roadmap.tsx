@@ -67,7 +67,7 @@ const Roadmap: React.FC = () => {
 
   const built = [
     'home.roadmap.built.ciphers',
-    'home.roadmap.built.cryptoanalysis',
+    'home.roadmap.built.cryptanalysis',
     'home.roadmap.built.challenges',
     'home.roadmap.built.saknussemm',
   ];

@@ -5,19 +5,19 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Footer, Header, LanguageSelector } from '@molecues';
-import { Encryptor, LearningMaterial, Cryptoanalysis } from '@templates';
+import { Encryptor, LearningMaterial, Cryptanalysis } from '@templates';
 import { encodingsList, encryptorsList } from '@encryptors';
-import { LEARNING_TABS, CRYPTOANALYSIS_TAB, hasTab, hasCryptoanalysis } from '@learning/config';
+import { LEARNING_TABS, CRYPTANALYSIS_TAB, hasTab, hasCryptanalysis } from '@learning/config';
 import { MARKDOWN_TOPICS } from '@learning/content';
 
 // The second URL segment is shared by the encryption modes (direct /
-// reverse), the cryptoanalysis tab and the learning tabs (learn /
+// reverse), the cryptanalysis tab and the learning tabs (learn /
 // history / practice).
 const isLearningTab = (action: string | string[] | undefined): boolean =>
   typeof action === 'string' && (LEARNING_TABS as string[]).includes(action);
 
-const isCryptoanalysisTab = (action: string | string[] | undefined): boolean =>
-  action === CRYPTOANALYSIS_TAB;
+const isCryptanalysisTab = (action: string | string[] | undefined): boolean =>
+  action === CRYPTANALYSIS_TAB;
 
 interface HomeProps {
   learningContent?: Record<string, string>;
@@ -29,32 +29,32 @@ const Home: React.FC<HomeProps> = ({ learningContent = {} }) => {
 
   const { algorithm, action } = router.query;
   const learningTab = isLearningTab(action);
-  const cryptoanalysisTab = isCryptoanalysisTab(action);
+  const cryptanalysisTab = isCryptanalysisTab(action);
 
   return (
     <>
       <Head>
         <title>
-          {cryptoanalysisTab
-            ? `${t('learning.tabs.cryptoanalysis')} • ${t(`processing.${algorithm as string}.title`)} • ${t('name')}`
+          {cryptanalysisTab
+            ? `${t('learning.tabs.cryptanalysis')} • ${t(`processing.${algorithm as string}.title`)} • ${t('name')}`
             : learningTab
               ? `${t(`learning.tabs.${action as string}`)} • ${t(`processing.${algorithm as string}.title`)} • ${t('name')}`
               : `${t(`processing.${algorithm as string}.title`)} • ${t('name')}`}
         </title>
         <link rel="icon" href="/favicon.ico" />
-        {(learningTab || cryptoanalysisTab) && (
+        {(learningTab || cryptanalysisTab) && (
           <meta
             name="description"
             content={t(learningTab
               ? `learning.metaDescription.${action as string}`
-              : 'learning.metaDescription.cryptoanalysis')}
+              : 'learning.metaDescription.cryptanalysis')}
           />
         )}
       </Head>
       <Header
         title={
-          cryptoanalysisTab
-            ? `${t('learning.tabs.cryptoanalysis')} / ${t(`processing.${algorithm as string}.title`)}`
+          cryptanalysisTab
+            ? `${t('learning.tabs.cryptanalysis')} / ${t(`processing.${algorithm as string}.title`)}`
             : learningTab
               ? `${t(`learning.tabs.${action as string}`)} / ${t(`processing.${algorithm as string}.title`)}`
               : `${t(`processing.${algorithm as string}.${action as string}Action`)} / ${t(`processing.${algorithm as string}.title`)}`
@@ -62,8 +62,8 @@ const Home: React.FC<HomeProps> = ({ learningContent = {} }) => {
       >
         <LanguageSelector />
       </Header>
-      {cryptoanalysisTab ? (
-        <Cryptoanalysis />
+      {cryptanalysisTab ? (
+        <Cryptanalysis />
       ) : learningTab ? (
         <LearningMaterial learningContent={learningContent} />
       ) : (
@@ -81,8 +81,8 @@ export const getStaticPaths = async ({ locales }) => ({
   paths: algorithms.flatMap((algorithm) =>
     [
       ...actions,
-      // Cryptoanalysis is a first-class tab for ciphers with a cracker.
-      ...(hasCryptoanalysis(algorithm) ? [CRYPTOANALYSIS_TAB] : []),
+      // Cryptanalysis is a first-class tab for ciphers with a cracker.
+      ...(hasCryptanalysis(algorithm) ? [CRYPTANALYSIS_TAB] : []),
       ...(LEARNING_TABS as string[]).filter((tab) => hasTab(algorithm, tab as any)),
     ].flatMap((action) =>
       locales.map((locale) => ({ params: { algorithm, action }, locale }))

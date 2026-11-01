@@ -26,7 +26,7 @@
 
 ## Break a message without the key
 
-1. Open the Cryptoanalysis tab. The guided cracker walks the same steps
+1. Open the Cryptanalysis tab. The guided cracker walks the same steps
    as the Vigenère one, with one twist: each slice is matched against a
    *reflected* frequency curve, because Beaufort subtracts the other way.
 2. Step 1 — the key length: repeated sequences in the text are

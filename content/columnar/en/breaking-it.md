@@ -3,7 +3,7 @@
 A transposition hides the *order* of the letters, not the letters
 themselves — so the frequencies that kill substitution ciphers are flat
 here, and a different weakness takes over: structure. The wizard on the
-Cryptoanalysis tab walks the attack; this page explains what each step
+Cryptanalysis tab walks the attack; this page explains what each step
 does and why it works.
 
 {{challenge:columnar-demo}}

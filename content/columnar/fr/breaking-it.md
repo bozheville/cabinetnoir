@@ -3,7 +3,7 @@
 Une transposition cache l'*ordre* des lettres, pas les lettres
 elles-mêmes — les fréquences qui tuent les chiffres de substitution
 sont donc plates ici, et une autre faiblesse prend le relais : la
-structure. L'assistant de l'onglet Cryptoanalyse guide l'attaque ; cette
+structure. L'assistant de l'onglet Cryptanalyse guide l'attaque ; cette
 page explique ce que fait chaque étape et pourquoi elle marche.
 
 {{challenge:columnar-demo}}

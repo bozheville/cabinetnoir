@@ -16,7 +16,7 @@ const PaneStack = styled(Stack)`
 `;
 
 // The Vigenère tool: encrypt/decrypt with a known key. The cracker lives
-// on its own Cryptoanalysis tab (/encoder/vigenere/cryptoanalysis) and
+// on its own Cryptanalysis tab (/encoder/vigenere/cryptanalysis) and
 // hands its recovered key over via the in-memory key hand-off.
 const Vigenere: React.FC<CrypterProps> = ({
   input,
@@ -46,7 +46,7 @@ const Vigenere: React.FC<CrypterProps> = ({
     }
   }, [pendingExample]);
 
-  // "Use this key" on the Cryptoanalysis tab: pick the recovered key up
+  // "Use this key" on the Cryptanalysis tab: pick the recovered key up
   // from the in-memory hand-off (the URL carries only the usedKey flag).
   useEffect(() => {
     if (router.query.usedKey !== '1') {

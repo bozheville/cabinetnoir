@@ -5,7 +5,7 @@ export const zones = {
   header: 'chestnut',
   hero: 'green',
   tool: 'chestnut',
-  cryptoanalysis: 'oxblood',
+  cryptanalysis: 'oxblood',
   learn: 'green',
   history: 'navy',
   practice: 'olive',

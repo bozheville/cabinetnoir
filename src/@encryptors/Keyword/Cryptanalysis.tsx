@@ -34,11 +34,11 @@ const WizardBox = styled.div`
   border-radius: ${({ theme }) => theme.radius.metal};
 `;
 
-// Keyword substitution cracker on the Cryptoanalysis tab: the guided
+// Keyword substitution cracker on the Cryptanalysis tab: the guided
 // wizard owns the page. "Use this key" hands the recovered 26-letter
 // cipher alphabet to the Tool tab (in-memory hand-off, nothing
 // persisted).
-const KeywordCryptoanalysis: React.FC<{
+const KeywordCryptanalysis: React.FC<{
   input: string;
   onInputChange: (value: string) => void;
 }> = ({ input, onInputChange }) => {
@@ -91,6 +91,6 @@ const KeywordCryptoanalysis: React.FC<{
   );
 };
 
-KeywordCryptoanalysis.displayName = 'KeywordCryptoanalysis';
+KeywordCryptanalysis.displayName = 'KeywordCryptanalysis';
 
-export default KeywordCryptoanalysis;
+export default KeywordCryptanalysis;

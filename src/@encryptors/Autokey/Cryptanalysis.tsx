@@ -2,20 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
-import {
-  CrackerInput,
-  CrackerSettings,
-} from '@encryptors/shared/cracker';
-import { setKeyHandoff } from '@learning/keyHandoff';
-import { usePendingExample } from '@learning/pendingExample';
-
+import useAutokeyCracker from './cracker/useAutokeyCracker';
 import {
   DEFAULT_HINT_CONFIG,
+  HintConfig,
   HINT_KEYS,
   applyPreset,
   PresetName,
 } from './cracker/hintSettings';
-import CrackerWizard from './cracker/CrackerWizard';
+import AutokeyCracker from './cracker/AutokeyCracker';
+import { CrackerInput, CrackerSettings } from '@encryptors/shared/cracker';
+import { usePendingExample } from '@learning/pendingExample';
+import { setKeyHandoff } from '@learning/keyHandoff';
 
 const PaneRoot = styled.div`
   display: flex;
@@ -33,17 +31,20 @@ const WizardBox = styled.div`
   border-radius: ${({ theme }) => theme.radius.metal};
 `;
 
-// Columnar cracker on the Cryptoanalysis tab: the guided wizard owns the
-// page. "Use this result" hands the recovered column order (numeric
-// string) to the Tool tab (in-memory hand-off, nothing persisted).
-const ColumnarCryptoanalysis: React.FC<{
+// Autokey cracker on the Cryptanalysis tab: the guided crib-drag
+// wizard owns the page. "Use this primer" hands the recovered key to
+// the Tool tab (in-memory hand-off, nothing persisted).
+const AutokeyCryptanalysis: React.FC<{
   input: string;
   onInputChange: (value: string) => void;
 }> = ({ input, onInputChange }) => {
-  const [hintConfig, setHintConfig] = useState(DEFAULT_HINT_CONFIG);
+  const [hintConfig, setHintConfig] = useState<HintConfig>(DEFAULT_HINT_CONFIG);
   const router = useRouter();
 
-  // Challenges and examples: apply the hint preset once.
+  const cracker = useAutokeyCracker({ input, enabled: true });
+
+  // Challenges and examples: apply the hint preset and the challenge's
+  // crib suggestion once.
   const pendingExample = usePendingExample();
   const appliedExample = React.useRef(false);
   useEffect(() => {
@@ -54,31 +55,29 @@ const ColumnarCryptoanalysis: React.FC<{
     if (pendingExample.hintPreset) {
       setHintConfig((current) => applyPreset(current, pendingExample.hintPreset as PresetName));
     }
+    if (pendingExample.crib) {
+      cracker.setWord(pendingExample.crib.toUpperCase());
+    }
   }, [pendingExample]);
 
-  const handleUseKey = (order: number[]) => {
-    setKeyHandoff({ cipher: 'columnar', input, keys: [order.join(',')] });
-    router.push('/encoder/columnar/reverse?usedKey=1');
+  const handleUseKey = (primer: string) => {
+    setKeyHandoff({ cipher: 'autokey', input, keys: [primer] });
+    router.push('/encoder/autokey/reverse?usedKey=1');
   };
 
   // The escape hatch: back to the Tool tab without using anything.
   const handleSkip = () => {
-    router.push('/encoder/columnar/direct');
+    router.push('/encoder/autokey/direct');
   };
 
   return (
     <PaneRoot>
       <CrackerInput value={input} onChange={onInputChange} />
       <WizardBox>
-        <CrackerSettings
-          config={hintConfig}
-          onChange={setHintConfig}
-          keys={HINT_KEYS}
-          i18nScope="processing.columnar.cracker"
-        />
-        <CrackerWizard
-          input={input}
-          hintConfig={hintConfig}
+        <CrackerSettings config={hintConfig} onChange={setHintConfig} keys={HINT_KEYS} i18nScope="processing.autokey.cracker" />
+        <AutokeyCracker
+          cracker={cracker}
+          hints={hintConfig.hints}
           onUseKey={handleUseKey}
           onSkip={handleSkip}
         />
@@ -87,6 +86,6 @@ const ColumnarCryptoanalysis: React.FC<{
   );
 };
 
-ColumnarCryptoanalysis.displayName = 'ColumnarCryptoanalysis';
+AutokeyCryptanalysis.displayName = 'AutokeyCryptanalysis';
 
-export default ColumnarCryptoanalysis;
+export default AutokeyCryptanalysis;

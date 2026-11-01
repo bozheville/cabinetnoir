@@ -66,11 +66,11 @@ const FallbackBlock = styled.div`
   padding: 16px;
 `;
 
-// Beaufort cracker on the Cryptoanalysis tab: the Vigenère wizard with
+// Beaufort cracker on the Cryptanalysis tab: the Vigenère wizard with
 // the slice arithmetic swapped (reflected shifts). The variant select
 // switches between the two transforms live; "use this key" hands the
 // recovered key to the Tool tab (in-memory hand-off, nothing persisted).
-const BeaufortCryptoanalysis: React.FC<{
+const BeaufortCryptanalysis: React.FC<{
   input: string;
   onInputChange: (value: string) => void;
 }> = ({ input, onInputChange }) => {
@@ -178,6 +178,6 @@ const BeaufortCryptoanalysis: React.FC<{
   );
 };
 
-BeaufortCryptoanalysis.displayName = 'BeaufortCryptoanalysis';
+BeaufortCryptanalysis.displayName = 'BeaufortCryptanalysis';
 
-export default BeaufortCryptoanalysis;
+export default BeaufortCryptanalysis;

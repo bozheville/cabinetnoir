@@ -33,10 +33,10 @@ const WizardBox = styled.div`
   border-radius: ${({ theme }) => theme.radius.metal};
 `;
 
-// Rail fence cracker on the Cryptoanalysis tab: the guided wizard owns
+// Rail fence cracker on the Cryptanalysis tab: the guided wizard owns
 // the page. "Use this result" hands "rails/offset" to the Tool tab
 // (in-memory hand-off, nothing persisted).
-const RailFenceCryptoanalysis: React.FC<{
+const RailFenceCryptanalysis: React.FC<{
   input: string;
   onInputChange: (value: string) => void;
 }> = ({ input, onInputChange }) => {
@@ -87,6 +87,6 @@ const RailFenceCryptoanalysis: React.FC<{
   );
 };
 
-RailFenceCryptoanalysis.displayName = 'RailFenceCryptoanalysis';
+RailFenceCryptanalysis.displayName = 'RailFenceCryptanalysis';
 
-export default RailFenceCryptoanalysis;
+export default RailFenceCryptanalysis;

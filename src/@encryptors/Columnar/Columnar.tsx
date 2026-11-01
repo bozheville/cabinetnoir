@@ -79,7 +79,7 @@ const Columnar: React.FC<CrypterProps> = ({
     handleSecondKeywordChange({ target: { value } });
   }
 
-  // "Use this result" on the Cryptoanalysis tab: the recovered column
+  // "Use this result" on the Cryptanalysis tab: the recovered column
   // order (numeric) or keyword travels in the in-memory hand-off.
   useEffect(() => {
     if (router.query.usedKey !== '1') {

@@ -6,7 +6,7 @@ import type { BreakingTarget, Family } from './types';
 // break them here.
 //
 // The breaking target decides what "Try breaking it" opens (task 17/18):
-// - `cracker` — the cipher's Cryptoanalysis tab;
+// - `cracker` — the cipher's Cryptanalysis tab;
 // - `tool` — the decrypt tool;
 // - `null` — nothing, not in the app.
 export interface CatalogueEntry {

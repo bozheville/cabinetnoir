@@ -851,13 +851,13 @@
       "practice": "Pratique",
       "tool": "Outil",
       "tabsLabel": "Sections de la page du chiffre",
-      "cryptoanalysis": "Cryptanalyse"
+      "cryptanalysis": "Cryptanalyse"
     },
     "metaDescription": {
       "learn": "Découvrez le fonctionnement du chiffre, suivez des guides pas à pas et voyez comment le déchiffrer.",
       "history": "L'histoire du chiffre : son origine, ses utilisateurs et son déchiffrement.",
       "practice": "Entraînez-vous sur des défis prêts à l'emploi, du plus facile au plus difficile.",
-      "cryptoanalysis": "Déchiffrez de vrais messages chiffrés étape par étape avec l'outil guidé de cryptanalyse."
+      "cryptanalysis": "Déchiffrez de vrais messages chiffrés étape par étape avec l'outil guidé de cryptanalyse."
     },
     "placeholder": "Le contenu pédagogique arrive bientôt.",
     "types": {
@@ -876,7 +876,7 @@
     "modes": {
       "encrypt": "chiffrer",
       "decrypt": "déchiffrer",
-      "cryptoanalysis": "cryptanalyse",
+      "cryptanalysis": "cryptanalyse",
       "encode": "encoder",
       "decode": "décoder"
     },
@@ -1853,7 +1853,7 @@
       "nextTitle": "Ce qui arrive",
       "built": {
         "ciphers": "Seize pages de chiffres avec onglets d'apprentissage guidés — outil, apprendre, histoire, pratique",
-        "cryptoanalysis": "Assistants de cryptanalyse guidée pour Vigenère, Beaufort, Autokey, ADFGVX, Affine, Playfair, Alberti, Keyword, Columnar et Rail fence",
+        "cryptanalysis": "Assistants de cryptanalyse guidée pour Vigenère, Beaufort, Autokey, ADFGVX, Affine, Playfair, Alberti, Keyword, Columnar et Rail fence",
         "challenges": "Défis pratiques avec indices adaptés à la difficulté — en trois langues",
         "saknussemm": "L’œuf de Pâques Arne Saknussemm — le parchemin runique du « Voyage au centre de la Terre »"
       },

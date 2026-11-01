@@ -175,7 +175,7 @@ def dynamic_keys():
         for sub in WIZARD_FRAME_SUBKEYS:
             problems.append(('wizard frames', f'{scope}.{sub}'))
     # Shared learning tabs (CipherTabs resolves tool + the learning tabs).
-    for tab in ['learn', 'history', 'practice', 'tool', 'cryptoanalysis']:
+    for tab in ['learn', 'history', 'practice', 'tool', 'cryptanalysis']:
         problems.append(('learning tabs', f'learning.tabs.{tab}'))
     return problems
 

@@ -54,8 +54,8 @@ const stripCells = (letters: string) => letters.split('').map((letter, index) =>
 ));
 
 // The Keyword tool: encrypt/decrypt with a keyword-built (or free)
-// alphabet. The cracker lives on its own Cryptoanalysis tab
-// (/encoder/keyword/cryptoanalysis) and hands its recovered alphabet
+// alphabet. The cracker lives on its own Cryptanalysis tab
+// (/encoder/keyword/cryptanalysis) and hands its recovered alphabet
 // over via the in-memory key hand-off.
 const Keyword: React.FC<CrypterProps> = ({
   input,
@@ -100,7 +100,7 @@ const Keyword: React.FC<CrypterProps> = ({
     }
   }, [pendingExample]);
 
-  // "Use this result" on the Cryptoanalysis tab: pick the recovered
+  // "Use this result" on the Cryptanalysis tab: pick the recovered
   // 26-letter alphabet up from the in-memory hand-off (the URL carries
   // only the usedKey flag) and switch to free-alphabet mode — a recovered
   // alphabet need not be keyword-derivable.

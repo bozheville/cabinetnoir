@@ -5,6 +5,16 @@ const { initOpenNextCloudflareForDev } = require('@opennextjs/cloudflare');
 module.exports = {
   i18n,
   outputFileTracingRoot: path.join(__dirname),
+  // The cryptanalysis tab used to live at the misspelt /cryptoanalysis.
+  redirects() {
+    return [
+      {
+        source: '/encoder/:algorithm/cryptoanalysis',
+        destination: '/encoder/:algorithm/cryptanalysis',
+        permanent: true,
+      },
+    ];
+  },
   // Deterministic styled-components class names, so SSR and client match.
   compiler: {
     styledComponents: true,
