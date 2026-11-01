@@ -2,15 +2,9 @@ type Square = string[];
 
 const getSquare = (key: string): Square => {
   const alphabet = `ABCDEFGHIJKLMNOPQRSTUVWXYZ`;
-  const keyUpper = key.toUpperCase();
-  const square = (
-      keyUpper +
-        alphabet
-          .split('')
-          .filter((c) => ![...keyUpper, 'J'].includes(c))
-          .join('')
-    )
-    .match(/(.{5})/g);
+  const keyUpper = key.toUpperCase().replace(/[^A-Z]/g, '').replace(/J/g, 'I');
+  const letters = [...new Set([...keyUpper, ...alphabet.replace('J', '')])];
+  const square = letters.join('').match(/(.{5})/g);
 
   return square;
 };
