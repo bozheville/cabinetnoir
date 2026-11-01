@@ -1,15 +1,30 @@
 const fs = require('fs');
 const path = require('path');
-const { buildSitemapUrls } = require('../src/@lib/sitemap-data');
+const {
+  SUPPORTED_LOCALES,
+  alternatesFor,
+  buildSitemapPaths,
+  urlFor,
+} = require('../src/@lib/sitemap-data');
 
-const linksToXML = (links) => {
-  const date = new Date();
-  const formattedDate = `${date.getFullYear()}-${`${date.getMonth() + 1}`.padStart(2, '0')}-${`${date.getDate()}`.padStart(2, '0')}`;
-  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
-  for (const link of links) {
-    xml += `\n  <url>\n    <loc>${link}</loc>\n    <lastmod>${formattedDate}</lastmod>\n  </url>`;
+// Every URL carries its hreflang alternates so search engines treat the
+// en / fr / ua pages as translations, not duplicates. No <lastmod>: the
+// build date on every URL tells crawlers nothing, and they learn to
+// ignore a sitemap whose dates always change.
+const linksToXML = (paths) => {
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+    + 'xmlns:xhtml="http://www.w3.org/1999/xhtml">';
+  for (const pagePath of paths) {
+    const alternates = alternatesFor(pagePath)
+      .map(({ hrefLang, href }) =>
+        `\n    <xhtml:link rel="alternate" hreflang="${hrefLang}" href="${href}"/>`)
+      .join('');
+    for (const locale of SUPPORTED_LOCALES) {
+      xml += `\n  <url>\n    <loc>${urlFor(pagePath, locale)}</loc>${alternates}\n  </url>`;
+    }
   }
   return xml + '\n</urlset>\n';
 };
 
-fs.writeFileSync(path.join(__dirname, '../public/sitemap.xml'), linksToXML(buildSitemapUrls()));
+fs.writeFileSync(path.join(__dirname, '../public/sitemap.xml'), linksToXML(buildSitemapPaths()));

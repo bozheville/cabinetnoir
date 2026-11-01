@@ -1986,5 +1986,31 @@
       "name": "Keystream",
       "definition": "The running sequence of key letters a cipher consumes, one per plaintext letter. In autokey the keystream is the primer followed by the plaintext."
     }
+  },
+  "seo": {
+    "home": {
+      "title": "Cabinet Noir — learn and break classical ciphers online",
+      "description": "Free online tools for classical ciphers: Caesar, Vigenère, Playfair, Enigma and more. Encrypt, decrypt, identify unknown ciphers and learn cryptanalysis step by step."
+    },
+    "toolTitle": {
+      "encoding": {
+        "direct": "{{cipher}}: encode online",
+        "reverse": "{{cipher}}: decode online"
+      },
+      "encryptor": {
+        "direct": "{{cipher}}: encrypt online",
+        "reverse": "{{cipher}}: decrypt online"
+      }
+    },
+    "toolDescription": {
+      "encoding": {
+        "direct": "{{cipher}}: encode text online — free, instant, right in your browser.",
+        "reverse": "{{cipher}}: decode text online — free, instant, right in your browser."
+      },
+      "encryptor": {
+        "direct": "{{cipher}}: encrypt a message online — free, instant, right in your browser.",
+        "reverse": "{{cipher}}: decrypt a message online — free, instant, right in your browser."
+      }
+    }
   }
 }

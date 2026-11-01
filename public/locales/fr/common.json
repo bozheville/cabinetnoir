@@ -1986,5 +1986,31 @@
     },
     "headerEntry": "Chiffre inconnu ? Identifiez-le",
     "backEntry": "Ce n’est pas le bon chiffre ? Identifiez-le"
+  },
+  "seo": {
+    "home": {
+      "title": "Cabinet Noir — apprenez et cassez les chiffrements classiques en ligne",
+      "description": "Outils en ligne gratuits pour les chiffrements classiques : César, Vigenère, Playfair, Enigma et plus. Chiffrez, déchiffrez, identifiez un chiffre inconnu et apprenez la cryptanalyse pas à pas."
+    },
+    "toolTitle": {
+      "encoding": {
+        "direct": "{{cipher}} : encoder en ligne",
+        "reverse": "{{cipher}} : décoder en ligne"
+      },
+      "encryptor": {
+        "direct": "{{cipher}} : chiffrer en ligne",
+        "reverse": "{{cipher}} : déchiffrer en ligne"
+      }
+    },
+    "toolDescription": {
+      "encoding": {
+        "direct": "{{cipher}} : encodez un texte en ligne — gratuit, instantané, directement dans votre navigateur.",
+        "reverse": "{{cipher}} : décodez un texte en ligne — gratuit, instantané, directement dans votre navigateur."
+      },
+      "encryptor": {
+        "direct": "{{cipher}} : chiffrez un message en ligne — gratuit, instantané, directement dans votre navigateur.",
+        "reverse": "{{cipher}} : déchiffrez un message en ligne — gratuit, instantané, directement dans votre navigateur."
+      }
+    }
   }
 }

@@ -1,1383 +1,2418 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://cabinetnoir.eu</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/identify</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/identify"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/identify"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/identify"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/identify"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/identify</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/identify"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/identify"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/identify"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/identify"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/identify</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/identify"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/identify"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/identify"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/identify"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/sitemap</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/sitemap"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/sitemap"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/sitemap"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/sitemap"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/sitemap</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/sitemap"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/sitemap"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/sitemap"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/sitemap"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/sitemap</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/sitemap"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/sitemap"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/sitemap"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/sitemap"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/base64/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/base64/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/base64/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/base64/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/base64/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/base64/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/base64/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/base64/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/base64/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/base64/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/base64/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/base64/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/base64/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/base64/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/base64/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/base64/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/base64/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/base64/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/base64/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/base64/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/base64/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/base64/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/base64/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/base64/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/base64/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/base64/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/base64/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/base64/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/base64/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/base64/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/base64/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/base64/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/base64/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/base64/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/base64/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/base64/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/base64/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/base64/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/base64/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/base64/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/base64/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/base64/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/base64/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/base64/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/base64/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/base64/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/base64/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/base64/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/base64/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/base64/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/base64/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/base64/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/base64/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/base64/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/base64/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/base64/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/base64/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/base64/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/base64/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/base64/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/base64/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/base64/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/base64/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/base64/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/base64/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/base64/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/base64/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/base64/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/base64/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/base64/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/base64/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/base64/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/base64/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/base64/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/base64/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/rot13/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/rot13/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/rot13/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/rot13/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/rot13/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/rot13/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/rot13/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/rot13/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/rot13/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/rot13/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/rot13/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/rot13/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/rot13/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/rot13/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/rot13/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/rot13/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/rot13/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/rot13/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/rot13/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/rot13/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/rot13/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/rot13/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/rot13/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/rot13/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/rot13/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/rot13/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/rot13/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/rot13/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/rot13/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/rot13/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/rot13/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/rot13/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/rot13/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/rot13/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/rot13/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/rot13/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/rot13/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/rot13/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/rot13/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/rot13/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/rot13/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/rot13/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/rot13/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/rot13/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/rot13/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/rot13/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/rot13/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/rot13/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/rot13/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/rot13/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/rot13/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/rot13/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/rot13/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/rot13/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/rot13/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/rot13/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/rot13/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/rot13/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/rot13/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/rot13/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/rot13/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/rot13/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/rot13/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/rot13/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/rot13/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/rot13/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/rot13/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/rot13/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/rot13/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/rot13/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/rot13/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/rot13/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/rot13/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/rot13/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/rot13/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/morse/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/morse/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/morse/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/morse/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/morse/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/morse/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/morse/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/morse/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/morse/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/morse/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/morse/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/morse/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/morse/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/morse/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/morse/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/morse/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/morse/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/morse/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/morse/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/morse/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/morse/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/morse/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/morse/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/morse/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/morse/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/morse/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/morse/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/morse/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/morse/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/morse/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/morse/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/morse/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/morse/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/morse/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/morse/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/morse/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/morse/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/morse/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/morse/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/morse/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/morse/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/morse/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/morse/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/morse/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/morse/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/morse/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/morse/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/morse/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/morse/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/morse/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/morse/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/morse/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/morse/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/morse/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/morse/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/morse/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/morse/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/morse/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/morse/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/morse/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/morse/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/morse/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/morse/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/morse/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/morse/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/morse/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/morse/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/morse/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/morse/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/morse/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/morse/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/morse/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/morse/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/morse/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/morse/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/affine/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/affine/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/affine/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/affine/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/affine/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/affine/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/affine/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/affine/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/affine/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/affine/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/affine/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/affine/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/affine/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/affine/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/affine/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/affine/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/affine/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/affine/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/affine/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/affine/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/affine/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/affine/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/alberti/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/alberti/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/alberti/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/alberti/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/alberti/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/alberti/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/alberti/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/alberti/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/alberti/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/alberti/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/alberti/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/alberti/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/alberti/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/alberti/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/alberti/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/alberti/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/alberti/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/alberti/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/alberti/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/alberti/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/alberti/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/alberti/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/atbash/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/atbash/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/atbash/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/atbash/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/atbash/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/atbash/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/atbash/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/atbash/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/atbash/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/atbash/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/atbash/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/atbash/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/atbash/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/atbash/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/atbash/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/atbash/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/atbash/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/atbash/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/atbash/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/atbash/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/atbash/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/atbash/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/atbash/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/atbash/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/atbash/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/atbash/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/atbash/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/atbash/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/atbash/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/atbash/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/atbash/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/atbash/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/atbash/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/atbash/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/atbash/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/atbash/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/atbash/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/atbash/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/atbash/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/atbash/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/atbash/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/atbash/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/atbash/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/atbash/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/atbash/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/atbash/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/atbash/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/atbash/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/atbash/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/atbash/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/atbash/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/atbash/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/atbash/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/atbash/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/atbash/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/atbash/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/atbash/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/atbash/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/atbash/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/atbash/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/atbash/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/atbash/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/atbash/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/atbash/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/atbash/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/atbash/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/atbash/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/atbash/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/atbash/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/atbash/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/atbash/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/atbash/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/atbash/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/atbash/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/atbash/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/caesar/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/caesar/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/caesar/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/caesar/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/caesar/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/caesar/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/caesar/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/caesar/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/caesar/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/caesar/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/caesar/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/caesar/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/caesar/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/caesar/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/caesar/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/caesar/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/caesar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/caesar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/caesar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/caesar/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/caesar/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/caesar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/caesar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/caesar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/caesar/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/caesar/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/caesar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/caesar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/caesar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/caesar/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/caesar/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/caesar/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/caesar/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/caesar/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/caesar/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/caesar/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/caesar/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/caesar/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/caesar/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/caesar/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/caesar/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/caesar/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/caesar/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/caesar/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/caesar/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/caesar/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/caesar/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/caesar/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/caesar/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/caesar/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/caesar/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/caesar/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/caesar/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/caesar/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/caesar/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/caesar/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/caesar/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/caesar/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/caesar/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/caesar/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/caesar/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/caesar/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/caesar/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/caesar/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/caesar/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/caesar/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/caesar/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/caesar/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/caesar/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/caesar/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/caesar/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/caesar/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/caesar/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/caesar/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/caesar/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/polybius/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/polybius/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/polybius/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/polybius/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/polybius/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/polybius/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/polybius/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/polybius/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/polybius/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/polybius/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/polybius/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/polybius/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/polybius/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/polybius/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/polybius/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/polybius/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/polybius/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/polybius/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/polybius/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/polybius/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/polybius/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/polybius/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/enigma/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/enigma/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/enigma/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/enigma/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/enigma/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/enigma/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/enigma/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/enigma/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/enigma/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/enigma/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/enigma/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/enigma/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/enigma/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/enigma/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/enigma/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/enigma/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/enigma/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/enigma/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/enigma/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/enigma/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/enigma/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/enigma/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/enigma/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/enigma/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/enigma/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/enigma/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/enigma/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/enigma/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/enigma/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/enigma/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/enigma/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/enigma/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/enigma/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/enigma/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/enigma/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/enigma/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/enigma/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/enigma/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/enigma/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/enigma/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/enigma/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/enigma/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/enigma/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/enigma/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/enigma/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/enigma/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/enigma/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/enigma/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/enigma/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/enigma/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/enigma/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/enigma/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/enigma/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/enigma/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/enigma/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/enigma/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/enigma/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/enigma/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/enigma/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/enigma/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/enigma/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/enigma/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/enigma/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/enigma/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/enigma/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/enigma/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/enigma/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/enigma/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/enigma/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/enigma/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/enigma/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/enigma/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/enigma/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/enigma/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/enigma/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/keyword/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/keyword/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/keyword/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/keyword/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/keyword/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/keyword/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/keyword/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/keyword/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/keyword/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/keyword/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/keyword/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/keyword/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/keyword/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/keyword/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/keyword/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/keyword/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/keyword/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/keyword/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/keyword/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/keyword/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/keyword/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/keyword/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/columnar/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/columnar/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/columnar/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/columnar/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/columnar/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/columnar/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/columnar/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/columnar/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/columnar/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/columnar/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/columnar/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/columnar/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/columnar/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/columnar/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/columnar/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/columnar/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/columnar/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/columnar/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/columnar/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/columnar/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/columnar/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/columnar/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/railFence/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/railFence/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/railFence/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/railFence/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/railFence/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/railFence/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/railFence/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/railFence/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/railFence/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/railFence/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/railFence/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/railFence/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/railFence/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/railFence/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/railFence/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/railFence/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/railFence/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/railFence/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/railFence/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/railFence/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/railFence/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/railFence/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/playfair/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/playfair/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/playfair/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/playfair/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/playfair/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/playfair/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/playfair/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/playfair/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/playfair/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/playfair/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/playfair/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/playfair/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/playfair/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/playfair/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/playfair/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/playfair/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/playfair/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/playfair/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/playfair/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/playfair/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/playfair/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/playfair/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/vigenere/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/vigenere/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/vigenere/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/vigenere/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/vigenere/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/vigenere/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/vigenere/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/vigenere/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/vigenere/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/vigenere/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/vigenere/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/vigenere/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/vigenere/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/vigenere/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/vigenere/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/vigenere/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/vigenere/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/vigenere/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/vigenere/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/vigenere/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/vigenere/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/vigenere/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/beaufort/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/beaufort/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/beaufort/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/beaufort/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/beaufort/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/beaufort/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/beaufort/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/beaufort/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/beaufort/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/beaufort/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/beaufort/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/beaufort/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/beaufort/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/beaufort/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/beaufort/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/beaufort/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/beaufort/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/beaufort/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/beaufort/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/beaufort/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/beaufort/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/beaufort/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/autokey/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/autokey/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/autokey/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/autokey/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/autokey/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/autokey/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/autokey/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/autokey/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/autokey/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/autokey/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/autokey/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/autokey/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/autokey/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/autokey/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/autokey/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/autokey/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/autokey/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/autokey/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/autokey/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/autokey/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/autokey/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/autokey/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/nihilist/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/nihilist/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/nihilist/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/nihilist/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/nihilist/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/nihilist/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/nihilist/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/nihilist/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/nihilist/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/nihilist/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/nihilist/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/nihilist/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/nihilist/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/nihilist/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/nihilist/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/nihilist/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/nihilist/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/nihilist/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/nihilist/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/nihilist/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/nihilist/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/nihilist/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/adfgvx/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/adfgvx/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/adfgvx/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/adfgvx/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/adfgvx/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/adfgvx/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/adfgvx/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/adfgvx/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/adfgvx/cryptanalysis</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/cryptanalysis"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/cryptanalysis"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/adfgvx/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/adfgvx/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/adfgvx/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/adfgvx/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/adfgvx/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/adfgvx/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/adfgvx/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/adfgvx/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/adfgvx/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/adfgvx/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/adfgvx/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/adfgvx/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/adfgvx/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/pigpen/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/pigpen/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/pigpen/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/pigpen/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/pigpen/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/pigpen/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/pigpen/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/pigpen/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/pigpen/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/pigpen/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/pigpen/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/pigpen/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/pigpen/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/pigpen/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/pigpen/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/pigpen/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/pigpen/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/pigpen/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/pigpen/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/pigpen/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/pigpen/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/pigpen/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/pigpen/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/pigpen/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/pigpen/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/pigpen/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/pigpen/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/pigpen/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/pigpen/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/pigpen/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/pigpen/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/pigpen/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/pigpen/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/pigpen/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/pigpen/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/pigpen/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/pigpen/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/pigpen/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/pigpen/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/pigpen/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/pigpen/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/pigpen/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/pigpen/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/pigpen/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/pigpen/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/pigpen/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/pigpen/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/pigpen/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/pigpen/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/pigpen/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/pigpen/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/pigpen/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/pigpen/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/pigpen/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/pigpen/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/pigpen/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/pigpen/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/pigpen/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/pigpen/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/pigpen/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/pigpen/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/pigpen/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/pigpen/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/pigpen/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/pigpen/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/pigpen/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/pigpen/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/pigpen/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/pigpen/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/pigpen/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/pigpen/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/pigpen/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/pigpen/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/pigpen/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/pigpen/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/saknussemm/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/saknussemm/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/saknussemm/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/saknussemm/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/saknussemm/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/saknussemm/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/saknussemm/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/saknussemm/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/saknussemm/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/saknussemm/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/saknussemm/direct</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/saknussemm/direct"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/saknussemm/direct"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/saknussemm/direct"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/saknussemm/direct"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/saknussemm/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/saknussemm/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/saknussemm/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/saknussemm/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/saknussemm/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/saknussemm/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/saknussemm/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/saknussemm/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/saknussemm/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/saknussemm/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/saknussemm/reverse</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/saknussemm/reverse"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/saknussemm/reverse"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/saknussemm/reverse"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/saknussemm/reverse"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/saknussemm/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/saknussemm/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/saknussemm/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/saknussemm/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/saknussemm/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/saknussemm/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/saknussemm/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/saknussemm/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/saknussemm/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/saknussemm/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/saknussemm/learn</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/saknussemm/learn"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/saknussemm/learn"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/saknussemm/learn"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/saknussemm/learn"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/saknussemm/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/saknussemm/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/saknussemm/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/saknussemm/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/saknussemm/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/saknussemm/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/saknussemm/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/saknussemm/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/saknussemm/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/saknussemm/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/saknussemm/history</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/saknussemm/history"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/saknussemm/history"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/saknussemm/history"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/saknussemm/history"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/encoder/saknussemm/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/saknussemm/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/saknussemm/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/saknussemm/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/saknussemm/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/fr/encoder/saknussemm/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/saknussemm/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/saknussemm/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/saknussemm/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/saknussemm/practice"/>
   </url>
   <url>
     <loc>https://cabinetnoir.eu/ua/encoder/saknussemm/practice</loc>
-    <lastmod>2026-11-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/encoder/saknussemm/practice"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/encoder/saknussemm/practice"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/encoder/saknussemm/practice"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/encoder/saknussemm/practice"/>
   </url>
 </urlset>

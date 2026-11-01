@@ -4,11 +4,12 @@ import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { CipherLadder, Footer, Hero, Roadmap, StartHereCard } from '@molecues';
+import { CipherLadder, Footer, Hero, Roadmap, Seo, StartHereCard } from '@molecues';
 import Section from '@atoms/Section/Section';
 import { leather } from '@theme/mixins';
 import { Sunburst } from '@ornaments';
 import { GreatPrimer, Minion } from '@typography';
+import { SITE_URL } from '@lib/sitemap-data';
 
 // The cabinet has no band: the cards lie directly on the desk
 // patchwork (spec 06 §1, band 3). Only the container is fixed.
@@ -85,6 +86,19 @@ const Index: React.FC = () => {
 
   return (
     <>
+      <Seo
+        title={t('seo.home.title')}
+        description={t('seo.home.description')}
+        path="/"
+        jsonLd={[
+          {
+            '@type': 'WebSite',
+            name: t('name'),
+            url: SITE_URL,
+            description: t('seo.home.description'),
+          },
+        ]}
+      />
       <Hero />
       <StartHereCard />
       <LadderZone id="cipher-ladder">

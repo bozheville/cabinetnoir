@@ -1,10 +1,9 @@
 import React from 'react';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { Footer, Header, LanguageSelector } from '@molecues';
+import { Footer, Header, LanguageSelector, Seo } from '@molecues';
 import { Encryptor, LearningMaterial, Cryptanalysis } from '@templates';
 import { encodingsList, encryptorsList } from '@encryptors';
 import { LEARNING_TABS, CRYPTANALYSIS_TAB, hasTab, hasCryptanalysis } from '@learning/config';
@@ -30,27 +29,40 @@ const Home: React.FC<HomeProps> = ({ learningContent = {} }) => {
   const { algorithm, action } = router.query;
   const learningTab = isLearningTab(action);
   const cryptanalysisTab = isCryptanalysisTab(action);
+  const cipherTitle = t(`processing.${algorithm as string}.title`);
+  const kind = (encodingsList as string[]).includes(algorithm as string) ? 'encoding' : 'encryptor';
+
+  const title = cryptanalysisTab
+    ? `${t('learning.tabs.cryptanalysis')} • ${cipherTitle} • ${t('name')}`
+    : learningTab
+      ? `${t(`learning.tabs.${action as string}`)} • ${cipherTitle} • ${t('name')}`
+      : `${t(`seo.toolTitle.${kind}.${action as string}`, { cipher: cipherTitle })} • ${t('name')}`;
+
+  const description = learningTab || cryptanalysisTab
+    ? `${cipherTitle}. ${t(`learning.metaDescription.${action as string}`)}`
+    : `${t(`seo.toolDescription.${kind}.${action as string}`, { cipher: cipherTitle })} ${t(`learning.${algorithm as string}.description`)}`;
 
   return (
     <>
-      <Head>
-        <title>
-          {cryptanalysisTab
-            ? `${t('learning.tabs.cryptanalysis')} • ${t(`processing.${algorithm as string}.title`)} • ${t('name')}`
-            : learningTab
-              ? `${t(`learning.tabs.${action as string}`)} • ${t(`processing.${algorithm as string}.title`)} • ${t('name')}`
-              : `${t(`processing.${algorithm as string}.title`)} • ${t('name')}`}
-        </title>
-        <link rel="icon" href="/favicon.ico" />
-        {(learningTab || cryptanalysisTab) && (
-          <meta
-            name="description"
-            content={t(learningTab
-              ? `learning.metaDescription.${action as string}`
-              : 'learning.metaDescription.cryptanalysis')}
-          />
-        )}
-      </Head>
+      <Seo
+        title={title}
+        description={description}
+        path={`/encoder/${algorithm as string}/${action as string}`}
+        jsonLd={[
+          learningTab || cryptanalysisTab
+            ? { '@type': 'LearningResource', name: title, description, learningResourceType: action }
+            : {
+              '@type': 'WebApplication',
+              name: title,
+              description,
+              applicationCategory: 'UtilitiesApplication',
+              operatingSystem: 'Any',
+              browserRequirements: 'Requires JavaScript',
+              isAccessibleForFree: true,
+              offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+            },
+        ]}
+      />
       <Header
         title={
           cryptanalysisTab

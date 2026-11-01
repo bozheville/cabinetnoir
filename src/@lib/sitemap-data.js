@@ -21,6 +21,18 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://cabinetnoir.eu';
 // 'en' is the defaultLocale, which Next.js serves without a path prefix.
 const SUPPORTED_LOCALES = ['en', 'fr', 'ua'];
 
+const DEFAULT_LOCALE = 'en';
+
+// BCP 47 language tags per route locale. The Ukrainian route prefix is
+// /ua for historic reasons, but the language code is `uk` — `ua` is a
+// country code and search engines ignore it as a language.
+const LANGUAGE_TAGS = { en: 'en', fr: 'fr', ua: 'uk' };
+
+// Open Graph wants language_TERRITORY.
+const OG_LOCALES = { en: 'en_US', fr: 'fr_FR', ua: 'uk_UA' };
+
+const languageTag = (locale) => LANGUAGE_TAGS[locale] || locale;
+
 const localePrefix = (locale) => (locale === 'en' ? '' : `/${locale}`);
 
 const ACTIONS = ['direct', 'reverse'];
@@ -56,31 +68,44 @@ const urlFor = (path, locale) => {
   return `${SITE_URL}${fullPath}`;
 };
 
-// Flat list of absolute URLs for the XML sitemap, in sitemap.xml order:
-// static pages first, then every encoder segment in every locale.
-const buildSitemapUrls = () => {
+// hreflang alternates of a locale-free path: one per locale plus the
+// x-default fallback (the English page).
+const alternatesFor = (path) => [
+  ...SUPPORTED_LOCALES.map((locale) => ({
+    hrefLang: languageTag(locale),
+    href: urlFor(path, locale),
+  })),
+  { hrefLang: 'x-default', href: urlFor(path, DEFAULT_LOCALE) },
+];
+
+// Every locale-free page path, in sitemap.xml order: static pages first,
+// then every encoder segment.
+const buildSitemapPaths = () => {
   const { staticPages, encoders } = buildSitemapEntries();
-  const urls = [];
-  for (const page of staticPages) {
-    for (const locale of SUPPORTED_LOCALES) {
-      urls.push(urlFor(page.path, locale));
-    }
-  }
-  for (const encoder of encoders) {
-    for (const segment of encoder.segments) {
-      for (const locale of SUPPORTED_LOCALES) {
-        urls.push(urlFor(`/encoder/${encoder.algorithm}/${segment}`, locale));
-      }
-    }
-  }
-  return urls;
+  return [
+    ...staticPages.map((page) => page.path),
+    ...encoders.flatMap((encoder) =>
+      encoder.segments.map((segment) => `/encoder/${encoder.algorithm}/${segment}`),
+    ),
+  ];
 };
+
+// Flat list of absolute URLs for the XML sitemap: every path in every locale.
+const buildSitemapUrls = () =>
+  buildSitemapPaths().flatMap((path) =>
+    SUPPORTED_LOCALES.map((locale) => urlFor(path, locale)),
+  );
 
 module.exports = {
   SITE_URL,
   SUPPORTED_LOCALES,
+  DEFAULT_LOCALE,
+  OG_LOCALES,
+  languageTag,
   localePrefix,
+  alternatesFor,
   buildSitemapEntries,
+  buildSitemapPaths,
   buildSitemapUrls,
   urlFor,
 };

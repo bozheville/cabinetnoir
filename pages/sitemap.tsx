@@ -1,12 +1,11 @@
 import React from 'react';
-import Head from 'next/head';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { Footer, Header, LanguageSelector } from '@molecues';
+import { Footer, Header, LanguageSelector, Seo } from '@molecues';
 import { Patch } from '@atoms';
 import HeadingRule from '@ornaments/HeadingRule';
 import { GreatPrimer, Minion } from '@typography';
@@ -128,10 +127,11 @@ const SitemapPage: React.FC = () => {
 
   return (
     <>
-      <Head>
-        <title>{`${t('sitemap.title')} • ${t('name')}`}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Seo
+        title={`${t('sitemap.title')} • ${t('name')}`}
+        description={t('sitemap.subtitle')}
+        path="/sitemap"
+      />
       <Header title={t('sitemap.headerTitle')}>
         <LanguageSelector />
       </Header>

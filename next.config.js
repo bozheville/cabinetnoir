@@ -13,6 +13,14 @@ module.exports = {
         destination: '/encoder/:algorithm/cryptanalysis',
         permanent: true,
       },
+      // One canonical host: www duplicates the whole site otherwise.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.cabinetnoir.eu' }],
+        destination: 'https://cabinetnoir.eu/:path*',
+        permanent: true,
+        locale: false,
+      },
     ];
   },
   // Deterministic styled-components class names, so SSR and client match.
