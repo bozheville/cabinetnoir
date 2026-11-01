@@ -30,7 +30,7 @@ sont des comptages des lettres claires déguisés.
 3. **Trouver les mots.** Avec quelques lettres placées, des mots
    entiers s'illuminent. Le panneau liste les mots chiffrés dont la
    forme correspond à un mot anglais courant (correspondance par
-   {{term:pattern-word}} — THE a la forme ABC, THAT ABAC) et ne montre
+   {{term:pattern-word}} — THE a la forme ABC, THAT ABCA) et ne montre
    que les candidats compatibles avec vos attributions. Un clic place
    le mot entier. Les lettres doublées et les mots d'une seule lettre
    (seulement A et I en anglais) sont des indices aussi.

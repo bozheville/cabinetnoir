@@ -19,8 +19,8 @@
    celle de l'expéditeur. Une clé erronée produit un bruit pur, pas
    une dégradation élégante.
 3. Appuyez sur le bouton d'échange {{control:swap}} — ou pas. Une
-   Enigma est sa propre inverse : chiffrer et déchiffrer sont la
-   toute même opération ; le bouton d'échange n'existe que par
+   Enigma est sa propre inverse : chiffrer et déchiffrer sont
+   exactement la même opération ; le bouton d'échange n'existe que par
    symétrie avec les autres outils du site.
 
 ## Travaillez comme un clerc du livre de codes
