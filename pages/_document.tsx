@@ -33,7 +33,12 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang={languageTag(this.props.locale || 'en')}>
-        <Head />
+        <Head>
+          <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+          <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+          <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+          <meta name="theme-color" content="#2f4a3b" />
+        </Head>
         <body>
           <Main />
           <NextScript />
