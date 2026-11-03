@@ -8,6 +8,7 @@ import { Encryptor, LearningMaterial, Cryptanalysis } from '@templates';
 import { encodingsList, encryptorsList } from '@encryptors';
 import { LEARNING_TABS, CRYPTANALYSIS_TAB, hasTab, hasCryptanalysis } from '@learning/config';
 import { MARKDOWN_TOPICS } from '@learning/content';
+import { DEFAULT_LOCALE, ogImagePath } from '@lib/sitemap-data';
 
 // The second URL segment is shared by the encryption modes (direct /
 // reverse), the cryptanalysis tab and the learning tabs (learn /
@@ -27,6 +28,7 @@ const Home: React.FC<HomeProps> = ({ learningContent = {} }) => {
   const router = useRouter();
 
   const { algorithm, action } = router.query;
+  const locale = router.locale || DEFAULT_LOCALE;
   const learningTab = isLearningTab(action);
   const cryptanalysisTab = isCryptanalysisTab(action);
   const cipherTitle = t(`processing.${algorithm as string}.title`);
@@ -48,6 +50,8 @@ const Home: React.FC<HomeProps> = ({ learningContent = {} }) => {
         title={title}
         description={description}
         path={`/encoder/${algorithm as string}/${action as string}`}
+        image={ogImagePath(algorithm as string, locale)}
+        imageAlt={`${cipherTitle} • ${t('name')}`}
         jsonLd={[
           learningTab || cryptanalysisTab
             ? { '@type': 'LearningResource', name: title, description, learningResourceType: action }

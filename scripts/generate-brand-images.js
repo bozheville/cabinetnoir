@@ -1,6 +1,7 @@
 // Generates the brand mark and every raster derived from it: the Open
 // Graph banner and square card, touch/PWA icons and favicon.ico. Run by
-// hand after changing the mark; the outputs are committed.
+// hand after changing the mark; the outputs are committed. Also exports
+// `banner`, used by scripts/generate-og-images.js for per-cipher cards.
 //
 //   node scripts/generate-brand-images.js
 //
@@ -168,33 +169,65 @@ const rule = (width, align = 'left') => {
   return Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="12">${svg}</svg>`);
 };
 
+let og;
+const loadOg = () => (og ||= import('next/dist/compiled/@vercel/og/index.node.js'));
+let slabData;
+
 // Renders text on a transparent canvas, then trims it to the ink box so
-// layout maths works on visible glyphs only.
-const text = async (content, { size, color, width, align = 'left' }) => {
-  const { ImageResponse } = await import('next/dist/compiled/@vercel/og/index.node.js');
+// layout maths works on visible glyphs only. Text past `maxLines` is cut
+// with an ellipsis. `lines` is the number of lines actually rendered.
+const text = async (content, {
+  size,
+  color,
+  width,
+  align = 'left',
+  lineHeight = 1.3,
+  maxLines = 3,
+  letterSpacing = 0,
+  uppercase = false,
+}) => {
+  const { ImageResponse } = await loadOg();
+  slabData ||= fs.readFileSync(SLAB);
   const el = React.createElement('div', {
     style: {
-      display: 'flex',
+      display: 'block',
       width,
-      justifyContent: align === 'centre' ? 'center' : 'flex-start',
+      lineClamp: maxLines,
       textAlign: align === 'centre' ? 'center' : 'left',
+      textTransform: uppercase ? 'uppercase' : 'none',
       fontFamily: 'Roboto Slab',
       fontSize: size,
-      lineHeight: 1.3,
+      lineHeight,
+      letterSpacing,
       color,
     },
   }, content);
   const res = new ImageResponse(el, {
     width,
-    height: Math.ceil(size * 1.3 * 3),
-    fonts: [{ name: 'Roboto Slab', data: fs.readFileSync(SLAB), weight: 400, style: 'normal' }],
+    height: Math.ceil(size * lineHeight * (maxLines + 1)),
+    fonts: [{ name: 'Roboto Slab', data: slabData, weight: 400, style: 'normal' }],
   });
   const raw = Buffer.from(await res.arrayBuffer());
   const { data: buffer, info } = await sharp(raw).trim({ threshold: 1 }).png().toBuffer({ resolveWithObject: true });
-  return { buffer, w: info.width, h: info.height };
+  const lines = 1 + Math.max(0, Math.round((info.height - size) / (size * lineHeight)));
+  return { buffer, w: info.width, h: info.height, lines };
 };
 
-const banner = async () => {
+// Largest size at which the text fits in `maxLines`; the smallest size
+// clamps with an ellipsis as a last resort.
+const fitText = async (content, { sizes, maxLines, ...options }) => {
+  for (const size of sizes.slice(0, -1)) {
+    const result = await text(content, { ...options, size, maxLines: maxLines + 1 });
+    if (result.lines <= maxLines) return result;
+  }
+  const last = await text(content, { ...options, size: sizes[sizes.length - 1], maxLines: maxLines + 1 });
+  if (last.lines > maxLines) console.warn(`og: clamped to ${maxLines} lines: "${content.slice(0, 60)}…"`);
+  return text(content, { ...options, size: sizes[sizes.length - 1], maxLines });
+};
+
+// 1200x630 Open Graph card: mark on the left; title, copper rule, body and
+// an optional small-caps footer on the right, centred as one block.
+const banner = async ({ title, body, footer, file, titleSizes = [64, 56, 50, 44], bodySizes = [28, 25] }) => {
   const W = 1200;
   const H = 630;
   const markW = 440;
@@ -202,23 +235,30 @@ const banner = async () => {
   const textW = 520;
   const space = 56;
 
-  const title = await text('Cabinet Noir', { size: 72, color: metal.brass.light, width: textW });
-  const tagline = await text(TAGLINE, { size: 30, color: thread.cream, width: textW });
+  const head = await fitText(title, { sizes: titleSizes, maxLines: 2, color: metal.brass.light, width: textW, lineHeight: 1.15 });
+  const copy = await fitText(body, { sizes: bodySizes, maxLines: 5, color: thread.cream, width: textW, lineHeight: 1.35 });
+  const foot = footer
+    ? await text(footer, { size: 20, color: metal.brass.base, width: textW, maxLines: 1, letterSpacing: 4, uppercase: true })
+    : null;
 
   const left = Math.round((W - (markW + space + textW)) / 2);
   const textLeft = left + markW + space;
-  const blockH = title.h + 24 + 12 + 24 + tagline.h;
+  const ruleTop = head.h + 24;
+  const copyTop = ruleTop + 12 + 24;
+  const footTop = copyTop + copy.h + 40;
+  const blockH = foot ? footTop + foot.h : copyTop + copy.h;
   const textTop = Math.round((H - blockH) / 2);
 
-  await sharp(ground(W, H, 24, 4))
-    .composite([
-      { input: Buffer.from(mark.svg), left, top: Math.round((H - mark.height) / 2) },
-      { input: title.buffer, left: textLeft, top: textTop },
-      { input: rule(140), left: textLeft, top: textTop + title.h + 24 },
-      { input: tagline.buffer, left: textLeft, top: textTop + title.h + 24 + 12 + 24 },
-    ])
-    .png()
-    .toFile(path.join(PUBLIC, 'og-image.png'));
+  const layers = [
+    { input: Buffer.from(mark.svg), left, top: Math.round((H - mark.height) / 2) },
+    { input: head.buffer, left: textLeft, top: textTop },
+    { input: rule(140), left: textLeft, top: textTop + ruleTop },
+    { input: copy.buffer, left: textLeft, top: textTop + copyTop },
+  ];
+  if (foot) layers.push({ input: foot.buffer, left: textLeft, top: textTop + footTop });
+
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  await sharp(ground(W, H, 24, 4)).composite(layers).png().toFile(file);
 };
 
 const square = async () => {
@@ -269,7 +309,7 @@ const main = async () => {
   fs.writeFileSync(path.join(PUBLIC, 'images', 'logo.svg'), markTileSvg());
   fs.writeFileSync(path.join(PUBLIC, 'icon.svg'), markTileSvg({ compact: true, rounded: 64 }));
 
-  await banner();
+  await banner({ title: 'Cabinet Noir', body: TAGLINE, file: path.join(PUBLIC, 'og-image.png'), titleSizes: [72], bodySizes: [30] });
   await square();
 
   const full = markTileSvg({ size: 1024 });
@@ -285,7 +325,11 @@ const main = async () => {
   writeIco(frames, path.join(PUBLIC, 'favicon.ico'));
 };
 
-main().catch((err) => {
-  console.error(err);
-  process.exitCode = 1;
-});
+if (require.main === module) {
+  main().catch((err) => {
+    console.error(err);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = { banner };

@@ -33,6 +33,10 @@ const OG_LOCALES = { en: 'en_US', fr: 'fr_FR', ua: 'uk_UA' };
 
 const languageTag = (locale) => LANGUAGE_TAGS[locale] || locale;
 
+// Per-algorithm Open Graph card, written by scripts/generate-og-images.js.
+// Site-relative, with a leading slash.
+const ogImagePath = (algorithm, locale) => `/og/${locale}/${algorithm}.png`;
+
 const localePrefix = (locale) => (locale === 'en' ? '' : `/${locale}`);
 
 const ACTIONS = ['direct', 'reverse'];
@@ -103,6 +107,7 @@ module.exports = {
   OG_LOCALES,
   languageTag,
   localePrefix,
+  ogImagePath,
   alternatesFor,
   buildSitemapEntries,
   buildSitemapPaths,
