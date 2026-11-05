@@ -9,7 +9,8 @@
 // "CN" monogram inside the inner arc: brass rays, copper letters, green
 // leather ground. Letters are geometry, not type, so no font is involved.
 //
-// sharp and @vercel/og are not direct dependencies; both ship with Next.js.
+// sharp is a pinned devDependency (resolutions keep a single copy so the
+// hoisted libvips matches); @vercel/og is not direct, it ships with Next.js.
 // Wordmark text goes through @vercel/og (satori), which shapes glyphs from
 // the repo's Roboto Slab file. sharp's Pango text ignores `fontfile` on
 // macOS and silently falls back to a system sans.
