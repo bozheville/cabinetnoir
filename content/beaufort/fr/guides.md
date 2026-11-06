@@ -36,12 +36,25 @@
    surlignées ; choisissez la carte la plus fiable dans
    {{control:key-length-cards}}. Mauvais choix ? Revenez et essayez
    une autre.
-3. Étape 2 — les lettres de clé : pour chaque tranche dans
+3. Étape 2 — l'alphabet : l'assistant vérifie si l'alphabet de
+   {{control:alphabet}} explique chaque tranche. S'il convient,
+   gardez-le ; sinon (l'expéditeur a utilisé un alphabet mélangé),
+   choisissez « Le reconstruire » dans {{control:alphabet-mode}}.
+4. Étape 3 — reconstruire l'alphabet (seulement si vous le
+   reconstruisez) : choisissez deux tranches dans
+   {{control:column-pair}}, puis dans {{control:link-board}}
+   cliquez une lettre de la première tranche et la lettre de la seconde
+   qui représente la même lettre du clair. Les liens remplissent
+   {{control:alphabet-ring}} ; un lien contradictoire est signalé en
+   rouge. Regardez {{control:merged-ic}} monter vers l'anglais, et
+   placez les lettres rares à la main depuis
+   {{control:loose-letters}}.
+5. Étape 4 — les lettres de clé : pour chaque tranche dans
    {{control:slice-tabs}}, tournez le graphique avec
    {{control:chart-arrows}} jusqu'au score le plus haut. Les lettres
    s'accumulent dans {{control:key-strip}}. Bloqué ? Une proposition
    dans {{control:crib-input}} peut révéler plusieurs lettres d'un coup.
-4. Étape 3 — vérifiez la clé assemblée : corrigez toute lettre
+6. Étape 5 — vérifiez la clé assemblée : corrigez toute lettre
    directement dans la bande de clé, puis pressez
    {{control:use-this-key}}.
-5. L'outil déchiffre le message avec votre clé.
+7. L'outil déchiffre le message avec votre clé.

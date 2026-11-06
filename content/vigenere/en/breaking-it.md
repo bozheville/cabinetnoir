@@ -41,6 +41,36 @@ reference bars, and the shown letter is that slice's key letter. One
 rotation per slice, and the whole key is out — watch the live preview
 turn into readable text as you go.
 
+## When the alphabet is scrambled too
+
+Everything above assumes you know the alphabet the slices are shifted
+along. A careful sender scrambles it — typically a keyword alphabet
+(KRYPTOSABCDEFGHIJLMN…) — and then no rotation of the chart ever lines
+up with English: the bars are in the wrong order, not just shifted.
+The cracker checks this right after the key length: it fits every
+slice against English under its best shift, and if even the best fit
+is poor it proposes rebuilding the alphabet.
+
+The rebuild works because every slice was moved along the *same*
+alphabet. Take the plaintext E: in slice 1 it became, say, X, in
+slice 2 it became Q. Then X and Q sit a fixed distance apart in the
+secret alphabet — the distance between the two slices' key letters.
+Every other plaintext letter shows the same distance between the two
+slices. So pair the letters of two slices that stand for the same
+plaintext letter (frequent with frequent: the tool's partner hints
+help), and each pair places two letters on a ring of 26 slots. Pairs
+chain: once Q is placed, its partner in a third slice lands too. A few
+dozen pairs rebuild the whole ring; a wrong pair contradicts the ring
+and is flagged at once, and a meter shows how English all slices look
+once re-aligned on it.
+
+The ring is only known up to where it starts and how it steps — any
+such reading decrypts the text, just with a different key. If one of
+those readings is a keyword alphabet, the tool shows it, and with it
+the sender's alphabet keyword. Then step 2 proceeds as usual, on the
+recovered alphabet. This is the same divide-and-conquer as the
+Nihilist square: strip the key, then the alphabet falls out.
+
 ## A shortcut — cribs
 
 Sometimes you can guess a word that must appear in the plaintext (a

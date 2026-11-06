@@ -21,19 +21,31 @@
 
 ## Brisez un message sans la clé
 
-1. Cochez la case {{control:unknown-key}} à côté du champ clé.
-   L'assistant de déchiffrement s'ouvre en dessous.
+1. Ouvrez l'onglet Cryptanalyse. L'assistant guidé s'y ouvre.
 2. Étape 1 — la longueur de la clé : les séquences répétées du texte
    sont surlignées ; choisissez la carte la plus fiable parmi
    {{control:key-length-cards}}. Mauvais choix ? Retournez en arrière et
    essayez-en une autre.
-3. Étape 2 — les lettres de clé : pour chaque tranche de
+3. Étape 2 — l'alphabet : l'assistant vérifie si l'alphabet de
+   {{control:alphabet}} explique chaque tranche. S'il convient,
+   gardez-le ; sinon (l'expéditeur a utilisé un alphabet mélangé),
+   choisissez « Le reconstruire » dans {{control:alphabet-mode}}.
+4. Étape 3 — reconstruire l'alphabet (seulement si vous le
+   reconstruisez) : choisissez deux tranches dans
+   {{control:column-pair}}, puis dans {{control:link-board}}
+   cliquez une lettre de la première tranche et la lettre de la seconde
+   qui représente la même lettre du clair. Les liens remplissent
+   {{control:alphabet-ring}} ; un lien contradictoire est signalé en
+   rouge. Regardez {{control:merged-ic}} monter vers l'anglais, et
+   placez les lettres rares à la main depuis
+   {{control:loose-letters}}.
+5. Étape 4 — les lettres de clé : pour chaque tranche de
    {{control:slice-tabs}}, faites tourner le graphique avec
    {{control:chart-arrows}} jusqu'au score de correspondance le plus
    élevé. Les lettres se rassemblent dans {{control:key-strip}}.
    Bloqué ? Une hypothèse dans {{control:crib-input}} peut révéler
    plusieurs lettres à la fois.
-4. Étape 3 — vérifiez la clé assemblée : corrigez directement une
+6. Étape 5 — vérifiez la clé assemblée : corrigez directement une
    lettre dans la bande de clé, puis appuyez sur
    {{control:use-this-key}}.
-5. L'outil déchiffre le message avec votre clé.
+7. L'outil déchiffre le message avec votre clé.

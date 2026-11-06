@@ -1082,7 +1082,13 @@
       "primer-length": "Réglez la longueur d'amorce supposée.",
       "offset-list": "Le mot probable glissé le long du texte chiffré ; cliquez sur une position pour le placer.",
       "unroll-worksheet": "Le texte clair déroulé depuis le placement du mot probable.",
-      "primer-fill": "Tapez les lettres d'amorce que le mot probable n'a pas atteintes."
+      "primer-fill": "Tapez les lettres d'amorce que le mot probable n'a pas atteintes.",
+      "alphabet-mode": "le sélecteur d'alphabet",
+      "column-pair": "les onglets de la paire de tranches",
+      "link-board": "le tableau des liens",
+      "alphabet-ring": "l'anneau de l'alphabet",
+      "merged-ic": "l'indicateur d'anglais",
+      "loose-letters": "les lettres non placées"
     },
     "timeline": {
       "source": "Source",

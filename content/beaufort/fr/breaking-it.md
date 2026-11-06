@@ -45,6 +45,16 @@ dessine simplement la courbe inversée.
 comportent exactement comme celles de Vigenère, d'où leur
 indiscernabilité statistique.)
 
+## Quand l'alphabet est mélangé lui aussi
+
+Un alphabet mélangé met le graphique en échec pour Beaufort comme pour
+Vigenère, et tombe par la même reconstruction : associez les lettres
+de deux tranches qui représentent la même lettre du clair, et les
+paires s'enchaînent en anneau d'alphabet. Le miroir n'y change rien —
+deux tranches montrent toujours la même lettre du clair à une distance
+fixe — si bien que l'étape alphabet de l'assistant fonctionne telle
+quelle pour les deux variantes.
+
 ## Un raccourci — les mots probables
 
 Un mot deviné marche ici aussi, soustraction inversée : chaque lettre du

@@ -45,6 +45,40 @@ référence, et la lettre affichée est la lettre de clé de cette tranche.
 Une rotation par tranche, et la clé entière est sortie — regardez
 l'aperçu devenir lisible à mesure que vous avancez.
 
+## Quand l'alphabet est mélangé lui aussi
+
+Tout ce qui précède suppose que vous connaissez l'alphabet le long
+duquel les tranches sont décalées. Un expéditeur prudent le mélange —
+le plus souvent un alphabet à mot-clé (KRYPTOSABCDEFGHIJLMN…) — et
+alors aucune rotation du graphique ne s'aligne sur l'anglais : les
+barres sont dans le mauvais ordre, pas seulement décalées. L'assistant
+le vérifie juste après la longueur de clé : il compare chaque tranche
+à l'anglais sous son meilleur décalage, et si même le meilleur
+ajustement est mauvais, il propose de reconstruire l'alphabet.
+
+La reconstruction fonctionne parce que chaque tranche a été décalée
+le long du *même* alphabet. Prenez le E du clair : dans la tranche 1
+il est devenu, disons, X, dans la tranche 2, Q. Alors X et Q sont à
+une distance fixe dans l'alphabet secret — la distance entre les
+lettres de clé des deux tranches. Toutes les autres lettres du clair
+montrent la même distance entre ces deux tranches. Associez donc les
+lettres de deux tranches qui représentent la même lettre du clair
+(les fréquentes avec les fréquentes : les suggestions de l'outil
+aident), et chaque paire place deux lettres sur un anneau de 26
+cases. Les paires s'enchaînent : une fois Q placé, son partenaire
+dans une troisième tranche se place aussi. Quelques dizaines de paires
+reconstruisent l'anneau entier ; une paire fausse contredit l'anneau
+et est signalée aussitôt, et un indicateur montre à quel point toutes
+les tranches réalignées ressemblent à l'anglais.
+
+L'anneau n'est connu qu'à son point de départ et à son pas près —
+chacune de ces lectures déchiffre le texte, simplement avec une autre
+clé. Si l'une d'elles est un alphabet à mot-clé, l'outil l'affiche, et
+avec elle le mot-clé de l'expéditeur. L'étape 2 se déroule ensuite
+comme d'habitude, sur l'alphabet reconstruit. C'est le même
+diviser-pour-régner que le carré de Nihilist : retirez la clé, et
+l'alphabet tombe.
+
 ## Un raccourci — les mots probables
 
 Parfois on peut deviner un mot qui doit apparaître dans le texte clair

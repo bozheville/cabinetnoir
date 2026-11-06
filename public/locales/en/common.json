@@ -1248,7 +1248,13 @@
       "primer-length": "Set the assumed primer length.",
       "offset-list": "The crib dragged along the ciphertext; click a position to place it.",
       "unroll-worksheet": "The plaintext unrolled from the crib placement.",
-      "primer-fill": "Type the primer letters the crib could not reach."
+      "primer-fill": "Type the primer letters the crib could not reach.",
+      "alphabet-mode": "the alphabet mode switch",
+      "column-pair": "the slice pair tabs",
+      "link-board": "the link board",
+      "alphabet-ring": "the alphabet ring",
+      "merged-ic": "the English meter",
+      "loose-letters": "the unplaced letters"
     },
     "timeline": {
       "source": "Source",

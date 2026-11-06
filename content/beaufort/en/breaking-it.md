@@ -43,6 +43,15 @@ cracker's chart simply draws the reflected curve.
 behave exactly like Vigenère slices, which is why the two are
 statistically indistinguishable.)
 
+## When the alphabet is scrambled too
+
+A mixed alphabet defeats the chart for Beaufort just as for Vigenère,
+and falls to the same rebuild: pair the letters of two slices that
+stand for the same plaintext letter, and the pairs chain into the
+alphabet ring. The mirror changes nothing here — two slices still show
+the same plaintext letter a fixed distance apart — so the cracker's
+alphabet step works for both variants unchanged.
+
 ## A shortcut — cribs
 
 A guessed word works here too, with the subtraction flipped: each
