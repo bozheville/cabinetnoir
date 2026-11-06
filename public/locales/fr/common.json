@@ -281,6 +281,8 @@
         "wizard": {
           "steps": {
             "keyLength": "Longueur de la clé",
+            "alphabet": "Alphabet",
+            "recovery": "Reconstruire l'alphabet",
             "keyLetters": "Lettres de la clé",
             "done": "Terminé"
           },
@@ -298,7 +300,7 @@
           "keyLetters": {
             "sliceLabel": "Tranche {{index}} sur {{total}}",
             "lockedPrefix": "choisie :",
-            "allLocked": "Toutes les lettres sont choisies. Passez à l'étape 3.",
+            "allLocked": "Toutes les lettres sont choisies. Passez à l'étape suivante.",
             "manualTag": "manuelle",
             "yourKey": "Votre clé",
             "keyHint": "Tapez une lettre pour remplacer, effacez-la pour débloquer.",
@@ -311,6 +313,37 @@
             "apply": "Appliquer",
             "noMatches": "Le mot ne correspond nulle part avec cette longueur de clé.",
             "conflictsNote": "conflits avec des lettres déjà choisies"
+          },
+          "alphabet": {
+            "title": "Quel alphabet ?",
+            "hint": "L'expéditeur a peut-être mélangé l'alphabet (un alphabet à mot-clé, par exemple). Le casseur compare chaque tranche à l'anglais sous son meilleur décalage : le bon alphabet rend chaque tranche anglaise, un mauvais les laisse toutes à côté.",
+            "knownLabel": "Alphabet, si connu",
+            "fits": "Cet alphabet convient — chaque tranche s'aligne sur l'anglais.",
+            "mixed": "Cet alphabet ne convient pas — l'expéditeur a sans doute utilisé un alphabet mélangé. Reconstruisez-le à partir du cryptogramme.",
+            "noVerdict": "Trop peu de lettres par tranche pour juger l'alphabet.",
+            "unsupported": "Les tables de fréquences sont anglaises : seuls les réarrangements des 26 lettres anglaises peuvent être vérifiés. Reconstruisez plutôt l'alphabet à partir du cryptogramme.",
+            "fitScore": "écart {{score}}",
+            "useKnown": "Utiliser cet alphabet",
+            "recover": "Le reconstruire"
+          },
+          "recovery": {
+            "title": "Reconstruire l'alphabet",
+            "hint": "Choisissez deux tranches. Cliquez une lettre de la première, puis la lettre de la seconde qui représente la même lettre du clair — les lettres fréquentes vont avec les fréquentes. Chaque lien place deux lettres sur l'anneau de l'alphabet ; les liens s'enchaînent jusqu'à l'alphabet entier.",
+            "firstColumn": "Première tranche",
+            "secondColumn": "Seconde tranche",
+            "columnHead": "Tranche {{index}}",
+            "pickLetter": "Cliquez une lettre de la première tranche.",
+            "pickPartner": "Cliquez maintenant la lettre de la seconde tranche qui représente la même lettre du clair que {{letter}}.",
+            "predicted": "L'anneau indique déjà que {{letter}} va avec {{partner}} ici.",
+            "ringLabel": "L'anneau de l'alphabet ({{placed}} sur 26 placées)",
+            "looseLabel": "Non placées",
+            "meterLabel": "Ressemble à l'anglais",
+            "remove": "Retirer ce lien",
+            "conflicts": "Liens en contradiction avec l'anneau : {{count}}. Retirez-les, ou les liens avec lesquels ils entrent en conflit.",
+            "recovered": "Alphabet reconstruit :",
+            "keyword": "Un alphabet à mot-clé — mot-clé {{keyword}}.",
+            "standard": "Finalement, l'alphabet A–Z ordinaire.",
+            "unstraightened": "Aucune forme de mot-clé trouvée ; l'anneau fonctionne tel quel, la clé se lira simplement autrement."
           }
         },
         "keyLengthLabels": {
@@ -330,20 +363,29 @@
           "unknownKey": "Cochez cette case si vous ne connaissez pas la clé. Un assistant de déchiffrement s'ouvre ci-dessous : il vous aide à trouver la longueur de la clé puis chaque lettre, étape par étape.",
           "toggle": {
             "highlightRepeats": "Colore les groupes de lettres répétées — les distances entre eux suggèrent la longueur de la clé.",
-            "showGaps": "Affiche les distances entre les séquences répétées, à côté de chaque groupe."
+            "showGaps": "Affiche les distances entre les séquences répétées, à côté de chaque groupe.",
+            "partnerHints": "Surligne les lettres de la seconde tranche dont la fréquence correspond à la lettre choisie.",
+            "mergedIC": "Mesure à quel point les tranches réalignées sur l'anneau ressemblent à l'anglais."
           },
           "keyLengthCards": "Longueurs de clé probables, classées par deux signaux : les distances entre séquences répétées et la ressemblance des tranches avec l'anglais. Cliquez sur une carte pour choisir.",
           "otherLength": "Saisissez une longueur de clé manuellement si aucune carte ne convient.",
           "sliceTabs": "Avec une longueur de clé N, le texte se découpe en N tranches ; chaque lettre d'une tranche est décalée par la même lettre de clé. Cliquez sur un onglet pour travailler sur cette tranche.",
           "keyStrip": "Votre clé au fur et à mesure. Cliquez sur une case pour aller à sa tranche, tapez une lettre pour remplacer le choix du graphique, effacez pour débloquer.",
           "cribInput": "Si vous devinez un mot présent dans le texte clair, l'assistant calcule les lettres de clé qu'il implique, à chaque position possible.",
-          "apply": "Remplit les cases de clé vides avec les lettres suggérées par cette position. Les lettres déjà choisies différemment ne sont jamais écrasées."
+          "apply": "Remplit les cases de clé vides avec les lettres suggérées par cette position. Les lettres déjà choisies différemment ne sont jamais écrasées.",
+          "alphabetMode": "Garder l'alphabet ci-dessus, ou reconstruire celui de l'expéditeur à partir du cryptogramme lui-même.",
+          "columnPair": "Les deux tranches comparées. N'importe quelle paire convient ; les tranches riches en lettres donnent des fréquences plus nettes.",
+          "linkBoard": "Les lettres de chaque tranche, les plus fréquentes d'abord. Les lettres lumineuses sont les partenaires probables d'après la fréquence ; une lettre encadrée est celle que l'anneau prédit déjà.",
+          "ring": "Votre alphabet en construction. Il n'est connu qu'à une rotation et un pas près — chacune de ces lectures déchiffre le texte, avec une autre clé.",
+          "placeLetter": "Les lettres que les liens n'ont pas atteintes (souvent les rares). Choisissez-en une, puis cliquez une case vide de l'anneau.",
+          "mergedIC": "Toutes les tranches réalignées sur l'anneau et mesurées ensemble : près de 0,066 c'est de l'anglais, près de 0,038 un lien est faux quelque part."
         },
-        "alphabetUnsupported": "Les tables de fréquences de l'outil sont anglaises — revenez aux 26 lettres standard pour l'utiliser.",
         "hints": {
           "toggles": {
             "highlightRepeats": "Surligner les séquences répétées",
-            "showGaps": "Afficher les écarts entre les répétitions"
+            "showGaps": "Afficher les écarts entre les répétitions",
+            "partnerHints": "Suggérer les lettres partenaires",
+            "mergedIC": "Afficher l'indicateur d'anglais"
           }
         }
       }
@@ -685,6 +727,8 @@
         "wizard": {
           "steps": {
             "keyLength": "Longueur de clé",
+            "alphabet": "Alphabet",
+            "recovery": "Reconstruire l'alphabet",
             "keyLetters": "Lettres de la clé",
             "done": "Terminé"
           },
@@ -702,7 +746,7 @@
           "keyLetters": {
             "sliceLabel": "Tranche {{index}} sur {{total}}",
             "lockedPrefix": "verrouillée :",
-            "allLocked": "Toutes les lettres sont fixées. Passez à l'étape 3.",
+            "allLocked": "Toutes les lettres sont choisies. Passez à l'étape suivante.",
             "manualTag": "manuel",
             "yourKey": "Votre clé",
             "keyHint": "Tapez une lettre pour remplacer, effacez-la pour déverrouiller.",
@@ -715,6 +759,37 @@
             "apply": "Appliquer",
             "noMatches": "Le mot ne convient nulle part avec cette longueur de clé.",
             "conflictsNote": "en conflit avec les lettres verrouillées"
+          },
+          "alphabet": {
+            "title": "Quel alphabet ?",
+            "hint": "L'expéditeur a peut-être mélangé l'alphabet (un alphabet à mot-clé, par exemple). Le casseur compare chaque tranche à l'anglais sous son meilleur décalage : le bon alphabet rend chaque tranche anglaise, un mauvais les laisse toutes à côté.",
+            "knownLabel": "Alphabet, si connu",
+            "fits": "Cet alphabet convient — chaque tranche s'aligne sur l'anglais.",
+            "mixed": "Cet alphabet ne convient pas — l'expéditeur a sans doute utilisé un alphabet mélangé. Reconstruisez-le à partir du cryptogramme.",
+            "noVerdict": "Trop peu de lettres par tranche pour juger l'alphabet.",
+            "unsupported": "Les tables de fréquences sont anglaises : seuls les réarrangements des 26 lettres anglaises peuvent être vérifiés. Reconstruisez plutôt l'alphabet à partir du cryptogramme.",
+            "fitScore": "écart {{score}}",
+            "useKnown": "Utiliser cet alphabet",
+            "recover": "Le reconstruire"
+          },
+          "recovery": {
+            "title": "Reconstruire l'alphabet",
+            "hint": "Choisissez deux tranches. Cliquez une lettre de la première, puis la lettre de la seconde qui représente la même lettre du clair — les lettres fréquentes vont avec les fréquentes. Chaque lien place deux lettres sur l'anneau de l'alphabet ; les liens s'enchaînent jusqu'à l'alphabet entier.",
+            "firstColumn": "Première tranche",
+            "secondColumn": "Seconde tranche",
+            "columnHead": "Tranche {{index}}",
+            "pickLetter": "Cliquez une lettre de la première tranche.",
+            "pickPartner": "Cliquez maintenant la lettre de la seconde tranche qui représente la même lettre du clair que {{letter}}.",
+            "predicted": "L'anneau indique déjà que {{letter}} va avec {{partner}} ici.",
+            "ringLabel": "L'anneau de l'alphabet ({{placed}} sur 26 placées)",
+            "looseLabel": "Non placées",
+            "meterLabel": "Ressemble à l'anglais",
+            "remove": "Retirer ce lien",
+            "conflicts": "Liens en contradiction avec l'anneau : {{count}}. Retirez-les, ou les liens avec lesquels ils entrent en conflit.",
+            "recovered": "Alphabet reconstruit :",
+            "keyword": "Un alphabet à mot-clé — mot-clé {{keyword}}.",
+            "standard": "Finalement, l'alphabet A–Z ordinaire.",
+            "unstraightened": "Aucune forme de mot-clé trouvée ; l'anneau fonctionne tel quel, la clé se lira simplement autrement."
           }
         },
         "keyLengthLabels": {
@@ -736,9 +811,24 @@
           "sliceTabs": "Avec une clé de N lettres, le texte se découpe en N tranches ; chaque lettre d'une tranche est soustraite à la même lettre de clé. Cliquez sur un onglet pour travailler cette tranche.",
           "keyStrip": "Votre clé au fur et à mesure. Cliquez sur une case pour aller à sa tranche, tapez une lettre pour remplacer le choix du graphique, effacez pour libérer.",
           "cribInput": "Si vous devinez un mot du texte clair, l'outil calcule les lettres de clé qu'il implique, à chaque position possible.",
-          "apply": "Remplit les cases de clé vides avec les lettres que cette position suggère. Les lettres déjà fixées autrement ne sont jamais écrasées."
+          "apply": "Remplit les cases de clé vides avec les lettres que cette position suggère. Les lettres déjà fixées autrement ne sont jamais écrasées.",
+          "alphabetMode": "Garder l'alphabet ci-dessus, ou reconstruire celui de l'expéditeur à partir du cryptogramme lui-même.",
+          "columnPair": "Les deux tranches comparées. N'importe quelle paire convient ; les tranches riches en lettres donnent des fréquences plus nettes.",
+          "linkBoard": "Les lettres de chaque tranche, les plus fréquentes d'abord. Les lettres lumineuses sont les partenaires probables d'après la fréquence ; une lettre encadrée est celle que l'anneau prédit déjà.",
+          "ring": "Votre alphabet en construction. Il n'est connu qu'à une rotation et un pas près — chacune de ces lectures déchiffre le texte, avec une autre clé.",
+          "placeLetter": "Les lettres que les liens n'ont pas atteintes (souvent les rares). Choisissez-en une, puis cliquez une case vide de l'anneau.",
+          "mergedIC": "Toutes les tranches réalignées sur l'anneau et mesurées ensemble : près de 0,066 c'est de l'anglais, près de 0,038 un lien est faux quelque part.",
+          "toggle": {
+            "partnerHints": "Surligne les lettres de la seconde tranche dont la fréquence correspond à la lettre choisie.",
+            "mergedIC": "Mesure à quel point les tranches réalignées sur l'anneau ressemblent à l'anglais."
+          }
         },
-        "alphabetUnsupported": "Les tables de fréquences de l'outil sont anglaises — remettez l'alphabet aux 26 lettres standard pour l'utiliser."
+        "hints": {
+          "toggles": {
+            "partnerHints": "Suggérer les lettres partenaires",
+            "mergedIC": "Afficher l'indicateur d'anglais"
+          }
+        }
       },
       "tool": {
         "variantLabel": "Variante",

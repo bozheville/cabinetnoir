@@ -11,7 +11,9 @@ export type HintKey =
   | 'matchScore'
   | 'mostLikelyGlow'
   | 'livePreview'
-  | 'cribs';
+  | 'cribs'
+  | 'partnerHints'
+  | 'mergedIC';
 
 // Typed alias kept for readability; the shared HintConfig carries the
 // actual hint flags.
@@ -31,6 +33,8 @@ const defined = defineHints({
     'mostLikelyGlow',
     'livePreview',
     'cribs',
+    'partnerHints',
+    'mergedIC',
   ],
   mediumWithout: ['mostLikelyGlow', 'confidenceBars'],
   hardWith: ['englishReference', 'livePreview'],

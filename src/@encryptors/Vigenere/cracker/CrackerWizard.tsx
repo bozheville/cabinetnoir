@@ -11,6 +11,8 @@ import {
   useCrackerKey,
 } from '@encryptors/shared/cracker';
 import StepKeyLength from './StepKeyLength';
+import StepAlphabet from './StepAlphabet';
+import StepAlphabetRecovery from './StepAlphabetRecovery';
 import StepKeyLetters from './StepKeyLetters';
 import StepKey from './StepKey';
 import DecryptPreview from './DecryptPreview';
@@ -23,7 +25,8 @@ const InputChangedNote = styled(Minion)`
 
 const CrackerWizard: React.FC<{
   cracker: ReturnType<typeof useCracker>;
-  onUseKey: (key: string) => void;
+  // Recovered key and the alphabet it is read in.
+  onUseKey: (key: string, alphabet: string) => void;
   onSkip: () => void;
   // Locale subtree of the cipher reusing this wizard ('vigenere' default).
   scope?: string;
@@ -31,27 +34,32 @@ const CrackerWizard: React.FC<{
   const {
     step,
     setStep,
+    steps,
+    stepId,
     keyLength,
     lockedLetters,
     analysis,
     hintConfig,
     hasInputChanged,
     assembledKey,
+    workingAlphabet,
   } = cracker;
   const { input: crackerInput } = cracker;
   const { t } = useTranslation('common');
   const base = useCrackerKey('');
 
-  const stepNames = [
-    t(`${base}wizard.steps.keyLength`),
-    t(`${base}wizard.steps.keyLetters`),
-    t(`${base}wizard.steps.done`),
-  ];
+  const stepNames = steps.map((id) => t(`${base}wizard.steps.${id}`));
 
   const allLettersSet = keyLength !== null
     && Array.from({ length: keyLength }).every((_, slice) => lockedLetters[slice]);
 
-  const canGoNext = step === 1 ? keyLength !== null : step === 2 ? allLettersSet : false;
+  const canGoNext = stepId === 'keyLength'
+    ? keyLength !== null
+    : stepId === 'alphabet'
+      ? cracker.alphabetMode === 'recover' || workingAlphabet !== null
+      : stepId === 'recovery'
+        ? workingAlphabet !== null
+        : stepId === 'keyLetters' ? allLettersSet : false;
 
   return (
     <CrackerScopeProvider scope={scope}>
@@ -62,7 +70,8 @@ const CrackerWizard: React.FC<{
       onNext={() => setStep(step + 1)}
       canGoNext={canGoNext}
       useLabel={t('processing.cracker.wizard.useKey')}
-      onUse={() => onUseKey(assembledKey)}
+      onUse={() => onUseKey(assembledKey, workingAlphabet ?? cracker.knownAlphabet)}
+      useDisabled={!workingAlphabet}
       onSkip={onSkip}
       message={(
         <>
@@ -75,7 +84,7 @@ const CrackerWizard: React.FC<{
         </>
       )}
     >
-      {step === 1 && (
+      {stepId === 'keyLength' && (
         <StepKeyLength
           input={crackerInput}
           analysis={analysis}
@@ -84,10 +93,12 @@ const CrackerWizard: React.FC<{
           onSelectKeyLength={cracker.chooseKeyLength}
         />
       )}
-      {step === 2 && <StepKeyLetters cracker={cracker} />}
-      {step === 3 && <StepKey cracker={cracker} />}
+      {stepId === 'alphabet' && <StepAlphabet cracker={cracker} />}
+      {stepId === 'recovery' && <StepAlphabetRecovery cracker={cracker} />}
+      {stepId === 'keyLetters' && <StepKeyLetters cracker={cracker} />}
+      {stepId === 'done' && <StepKey cracker={cracker} />}
 
-      {hintConfig.hints.livePreview && (
+      {hintConfig.hints.livePreview && workingAlphabet && (stepId === 'keyLetters' || stepId === 'done') && (
         <DecryptPreview cracker={cracker} />
       )}
     </CrackerWizardFrame>

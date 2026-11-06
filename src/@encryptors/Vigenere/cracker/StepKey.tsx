@@ -31,7 +31,7 @@ const StepKey: React.FC<StepKeyProps> = ({ cracker }) => {
     keyLength,
     lockedLetters,
     setActiveSlice,
-    setStep,
+    goTo,
     setSliceLetter,
   } = cracker;
   const { t } = useTranslation('common');
@@ -53,7 +53,7 @@ const StepKey: React.FC<StepKeyProps> = ({ cracker }) => {
         lockedLetters={lockedLetters}
         onJump={(slice) => {
           setActiveSlice(slice);
-          setStep(2);
+          goTo('keyLetters');
         }}
         onOverride={(slice, letter) => setSliceLetter(slice, letter, 'manual')}
         onClear={(slice) => setSliceLetter(slice, '')}

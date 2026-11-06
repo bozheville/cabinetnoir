@@ -457,6 +457,8 @@
         "wizard": {
           "steps": {
             "keyLength": "Key length",
+            "alphabet": "Alphabet",
+            "recovery": "Rebuild alphabet",
             "keyLetters": "Key letters",
             "done": "Done"
           },
@@ -474,7 +476,7 @@
           "keyLetters": {
             "sliceLabel": "Slice {{index}} of {{total}}",
             "lockedPrefix": "locked:",
-            "allLocked": "All letters set. Continue to step 3.",
+            "allLocked": "All letters set. Continue to the next step.",
             "manualTag": "manual",
             "yourKey": "Your key",
             "keyHint": "Type a letter to override, clear it to unlock.",
@@ -487,6 +489,37 @@
             "apply": "Apply",
             "noMatches": "The word does not fit anywhere with this key length.",
             "conflictsNote": "conflicts with locked letters"
+          },
+          "alphabet": {
+            "title": "Which alphabet?",
+            "hint": "The sender may have scrambled the alphabet (a keyword alphabet, say). The cracker tests every slice against English under its best shift: the right alphabet makes every slice read like English, a wrong one leaves them all off.",
+            "knownLabel": "Alphabet, if known",
+            "fits": "This alphabet fits — every slice lines up with English.",
+            "mixed": "This alphabet does not fit — the sender probably used a mixed alphabet. Rebuild it from the ciphertext.",
+            "noVerdict": "Too few letters per slice to judge the alphabet.",
+            "unsupported": "The frequency tables are English: only reorderings of the 26 English letters can be checked. Rebuild the alphabet from the ciphertext instead.",
+            "fitScore": "misfit {{score}}",
+            "useKnown": "Use this alphabet",
+            "recover": "Rebuild it"
+          },
+          "recovery": {
+            "title": "Rebuild the alphabet",
+            "hint": "Pick two slices. Click a letter of the first slice, then the letter of the second slice that stands for the same plaintext letter — frequent letters pair with frequent ones. Every link places two letters on the alphabet ring; links chain into the whole alphabet.",
+            "firstColumn": "First slice",
+            "secondColumn": "Second slice",
+            "columnHead": "Slice {{index}}",
+            "pickLetter": "Click a letter in the first slice.",
+            "pickPartner": "Now click the letter of the second slice that stands for the same plaintext letter as {{letter}}.",
+            "predicted": "The ring already says {{letter}} pairs with {{partner}} here.",
+            "ringLabel": "The alphabet ring ({{placed}} of 26 placed)",
+            "looseLabel": "Unplaced",
+            "meterLabel": "Reads like English",
+            "remove": "Remove this link",
+            "conflicts": "Links contradicting the ring: {{count}}. Remove them, or the links they clash with.",
+            "recovered": "Recovered alphabet:",
+            "keyword": "A keyword alphabet — keyword {{keyword}}.",
+            "standard": "The plain A–Z alphabet after all.",
+            "unstraightened": "No keyword shape found; the ring works as it is, the key will just read differently."
           }
         },
         "keyLengthLabels": {
@@ -506,20 +539,29 @@
           "unknownKey": "Check this if you do not know the key. A guided cracker opens below: it helps you find the key length and then every key letter, step by step.",
           "toggle": {
             "highlightRepeats": "Colours repeated letter groups in the text — the distances between them hint at the key length.",
-            "showGaps": "Shows the distances between repeated sequences, next to each group."
+            "showGaps": "Shows the distances between repeated sequences, next to each group.",
+            "partnerHints": "Highlight letters of the second slice whose frequency matches the selected letter.",
+            "mergedIC": "Measure how English the slices look once re-aligned on the ring."
           },
           "keyLengthCards": "Likely key lengths ranked by two signals: distances between repeated sequences, and how English-like the text slices look. Click a card to choose.",
           "otherLength": "Enter a key length manually if none of the suggested cards fits.",
           "sliceTabs": "With a key length of N the text splits into N slices; every letter of a slice is shifted by the same key letter. Click a tab to work on that slice.",
           "keyStrip": "Your key as you build it. Click a cell to jump to its slice, type a letter to override the chart choice, clear a cell to un-set it.",
           "cribInput": "If you guess a word that appears in the plaintext, the cracker computes which key letters it implies, at every position it fits.",
-          "apply": "Fill the empty key slots with the letters this position suggests. Letters already set differently are never overwritten."
+          "apply": "Fill the empty key slots with the letters this position suggests. Letters already set differently are never overwritten.",
+          "alphabetMode": "Keep the alphabet above, or rebuild the sender's alphabet from the ciphertext itself.",
+          "columnPair": "The two slices you compare. Any pair works; slices with many letters give clearer frequencies.",
+          "linkBoard": "Each slice's letters, most frequent first. Glowing letters are the likely partners by frequency; a framed one is what the ring already predicts.",
+          "ring": "Your alphabet as it builds up. It is only known up to rotation and stepping — any such reading decrypts the text, with a different key.",
+          "placeLetter": "Letters the links have not reached (often rare ones). Pick one, then click an empty ring slot.",
+          "mergedIC": "All slices re-aligned onto the ring and measured together: near 0.066 means English, near 0.038 means a wrong link somewhere."
         },
-        "alphabetUnsupported": "The frequency tables behind the cracker are English — switch the alphabet back to the standard 26 letters to use it.",
         "hints": {
           "toggles": {
             "highlightRepeats": "Highlight repeated sequences",
-            "showGaps": "Show gaps between repeats"
+            "showGaps": "Show gaps between repeats",
+            "partnerHints": "Suggest partner letters",
+            "mergedIC": "Show the English meter"
           }
         }
       }
@@ -851,6 +893,8 @@
         "wizard": {
           "steps": {
             "keyLength": "Key length",
+            "alphabet": "Alphabet",
+            "recovery": "Rebuild alphabet",
             "keyLetters": "Key letters",
             "done": "Done"
           },
@@ -868,7 +912,7 @@
           "keyLetters": {
             "sliceLabel": "Slice {{index}} of {{total}}",
             "lockedPrefix": "locked:",
-            "allLocked": "All letters set. Continue to step 3.",
+            "allLocked": "All letters set. Continue to the next step.",
             "manualTag": "manual",
             "yourKey": "Your key",
             "keyHint": "Type a letter to override, clear it to unlock.",
@@ -881,6 +925,37 @@
             "apply": "Apply",
             "noMatches": "The word does not fit anywhere with this key length.",
             "conflictsNote": "conflicts with locked letters"
+          },
+          "alphabet": {
+            "title": "Which alphabet?",
+            "hint": "The sender may have scrambled the alphabet (a keyword alphabet, say). The cracker tests every slice against English under its best shift: the right alphabet makes every slice read like English, a wrong one leaves them all off.",
+            "knownLabel": "Alphabet, if known",
+            "fits": "This alphabet fits — every slice lines up with English.",
+            "mixed": "This alphabet does not fit — the sender probably used a mixed alphabet. Rebuild it from the ciphertext.",
+            "noVerdict": "Too few letters per slice to judge the alphabet.",
+            "unsupported": "The frequency tables are English: only reorderings of the 26 English letters can be checked. Rebuild the alphabet from the ciphertext instead.",
+            "fitScore": "misfit {{score}}",
+            "useKnown": "Use this alphabet",
+            "recover": "Rebuild it"
+          },
+          "recovery": {
+            "title": "Rebuild the alphabet",
+            "hint": "Pick two slices. Click a letter of the first slice, then the letter of the second slice that stands for the same plaintext letter — frequent letters pair with frequent ones. Every link places two letters on the alphabet ring; links chain into the whole alphabet.",
+            "firstColumn": "First slice",
+            "secondColumn": "Second slice",
+            "columnHead": "Slice {{index}}",
+            "pickLetter": "Click a letter in the first slice.",
+            "pickPartner": "Now click the letter of the second slice that stands for the same plaintext letter as {{letter}}.",
+            "predicted": "The ring already says {{letter}} pairs with {{partner}} here.",
+            "ringLabel": "The alphabet ring ({{placed}} of 26 placed)",
+            "looseLabel": "Unplaced",
+            "meterLabel": "Reads like English",
+            "remove": "Remove this link",
+            "conflicts": "Links contradicting the ring: {{count}}. Remove them, or the links they clash with.",
+            "recovered": "Recovered alphabet:",
+            "keyword": "A keyword alphabet — keyword {{keyword}}.",
+            "standard": "The plain A–Z alphabet after all.",
+            "unstraightened": "No keyword shape found; the ring works as it is, the key will just read differently."
           }
         },
         "keyLengthLabels": {
@@ -902,9 +977,24 @@
           "sliceTabs": "With a key length of N the text splits into N slices; every letter of a slice is subtracted from the same key letter. Click a tab to work on that slice.",
           "keyStrip": "Your key as you build it. Click a cell to jump to its slice, type a letter to override the chart choice, clear a cell to un-set it.",
           "cribInput": "If you guess a word that appears in the plaintext, the cracker computes which key letters it implies, at every position it fits.",
-          "apply": "Fill the empty key slots with the letters this position suggests. Letters already set differently are never overwritten."
+          "apply": "Fill the empty key slots with the letters this position suggests. Letters already set differently are never overwritten.",
+          "alphabetMode": "Keep the alphabet above, or rebuild the sender's alphabet from the ciphertext itself.",
+          "columnPair": "The two slices you compare. Any pair works; slices with many letters give clearer frequencies.",
+          "linkBoard": "Each slice's letters, most frequent first. Glowing letters are the likely partners by frequency; a framed one is what the ring already predicts.",
+          "ring": "Your alphabet as it builds up. It is only known up to rotation and stepping — any such reading decrypts the text, with a different key.",
+          "placeLetter": "Letters the links have not reached (often rare ones). Pick one, then click an empty ring slot.",
+          "mergedIC": "All slices re-aligned onto the ring and measured together: near 0.066 means English, near 0.038 means a wrong link somewhere.",
+          "toggle": {
+            "partnerHints": "Highlight letters of the second slice whose frequency matches the selected letter.",
+            "mergedIC": "Measure how English the slices look once re-aligned on the ring."
+          }
         },
-        "alphabetUnsupported": "The frequency tables behind the cracker are English — switch the alphabet back to the standard 26 letters to use it."
+        "hints": {
+          "toggles": {
+            "partnerHints": "Suggest partner letters",
+            "mergedIC": "Show the English meter"
+          }
+        }
       },
       "tool": {
         "variantLabel": "Variant",
