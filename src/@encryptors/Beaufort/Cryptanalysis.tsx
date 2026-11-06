@@ -3,10 +3,9 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
-import { Cluster, Select, TextInput } from '@atoms';
+import { Cluster, Select } from '@atoms';
 import { ControlGroup } from '@organisms/ControlPanel';
 import { engraved } from '@theme/mixins';
-import { Minion } from '@typography';
 import Tooltip from '@atoms/Tooltip';
 import {
   BeaufortVariant,
@@ -18,7 +17,7 @@ import {
   SliceTransform,
   VARIANT_BEAUFORT_TRANSFORM,
 } from '@encryptors/shared/analysis';
-import { cleanAlphabet, isEnglishAlphabet } from '../Vigenere/vigenere-encryption';
+import { cleanAlphabet } from '../Vigenere/vigenere-encryption';
 import useCracker from '../Vigenere/cracker/useCracker';
 import {
   DEFAULT_HINT_CONFIG,
@@ -58,18 +57,11 @@ const WizardBox = styled.div`
   border-radius: ${({ theme }) => theme.radius.metal};
 `;
 
-const UnsupportedNote = styled(Minion)`
-  color: ${({ theme }) => theme.ink.creamMuted};
-`;
-
-const FallbackBlock = styled.div`
-  padding: 16px;
-`;
-
 // Beaufort cracker on the Cryptanalysis tab: the Vigenère wizard with
 // the slice arithmetic swapped (reflected shifts). The variant select
-// switches between the two transforms live; "Use this result" hands the
-// recovered key to the Tool tab (in-memory hand-off, nothing persisted).
+// switches between the two transforms live; the alphabet is entered (or
+// rebuilt) inside the wizard. "Use this result" hands the recovered key
+// and alphabet to the Tool tab (in-memory hand-off, nothing persisted).
 const BeaufortCryptanalysis: React.FC<{
   input: string;
   onInputChange: (value: string) => void;
@@ -89,12 +81,9 @@ const BeaufortCryptanalysis: React.FC<{
     enabled: true,
     hintConfig,
     alphabet: customAlphabet,
+    onAlphabetChange: setCustomAlphabet,
     transform,
   });
-
-  // The cracker handles any reshuffling of the 26 English letters, but not
-  // foreign letters (its frequency tables are English).
-  const canCrack = isEnglishAlphabet(customAlphabet);
 
   // Challenges and examples: apply the hint preset (and alphabet) once.
   const pendingExample = usePendingExample();
@@ -112,10 +101,6 @@ const BeaufortCryptanalysis: React.FC<{
     }
   }, [pendingExample]);
 
-  const handleAlphabetChange = (event) => {
-    setCustomAlphabet(cleanAlphabet(event.target.value));
-  };
-
   const handleVariantChange = (event) => {
     const next = event.target.value;
     if (isBeaufortVariant(next)) {
@@ -123,8 +108,8 @@ const BeaufortCryptanalysis: React.FC<{
     }
   };
 
-  const handleUseKey = (key: string) => {
-    setKeyHandoff({ cipher: 'beaufort', input, keys: [key] });
+  const handleUseKey = (key: string, alphabet: string) => {
+    setKeyHandoff({ cipher: 'beaufort', input, keys: [key, alphabet, variant] });
     router.push('/encoder/beaufort/reverse?usedKey=1');
   };
 
@@ -151,29 +136,11 @@ const BeaufortCryptanalysis: React.FC<{
             />
           </Tooltip>
         </ControlGroup>
-        <ControlGroup>
-          <Tooltip content={t('processing.beaufort.tooltips.alphabet')}>
-            <TextInput
-              data-guide="alphabet"
-              label={t('processing.beaufort.cracker.alphabetLabel')}
-              mono
-              width="280px"
-              value={customAlphabet}
-              onChange={handleAlphabetChange}
-            />
-          </Tooltip>
-        </ControlGroup>
       </VariantRow>
-      {canCrack ? (
-        <WizardBox>
-          <CrackerSettings config={hintConfig} onChange={setHintConfig} keys={HINT_KEYS} i18nScope="processing.beaufort.cracker" />
-          <CrackerWizard cracker={cracker} onUseKey={handleUseKey} onSkip={handleSkip} scope="beaufort" />
-        </WizardBox>
-      ) : (
-        <FallbackBlock>
-          <UnsupportedNote>{t('processing.beaufort.cracker.alphabetUnsupported')}</UnsupportedNote>
-        </FallbackBlock>
-      )}
+      <WizardBox>
+        <CrackerSettings config={hintConfig} onChange={setHintConfig} keys={HINT_KEYS} i18nScope="processing.beaufort.cracker" />
+        <CrackerWizard cracker={cracker} onUseKey={handleUseKey} onSkip={handleSkip} scope="beaufort" />
+      </WizardBox>
     </PaneRoot>
   );
 };

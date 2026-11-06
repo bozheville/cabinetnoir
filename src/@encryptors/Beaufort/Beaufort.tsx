@@ -69,8 +69,9 @@ const Beaufort: React.FC<CrypterProps> = ({
     }
   }, [pendingExample]);
 
-  // "Use this result" on the Cryptanalysis tab: pick the recovered key up
-  // from the in-memory hand-off (the URL carries only the usedKey flag).
+  // "Use this result" on the Cryptanalysis tab: pick the recovered key,
+  // alphabet and variant up from the in-memory hand-off (the URL carries
+  // only the usedKey flag).
   useEffect(() => {
     if (router.query.usedKey !== '1') {
       return;
@@ -78,6 +79,12 @@ const Beaufort: React.FC<CrypterProps> = ({
     const handoff = getKeyHandoff();
     if (handoff?.cipher === 'beaufort' && handoff.keys[0]) {
       setSecretKey(handoff.keys[0]);
+      if (handoff.keys[1]) {
+        setCustomAlphabet(cleanAlphabet(handoff.keys[1]));
+      }
+      if (handoff.keys[2] && isBeaufortVariant(handoff.keys[2])) {
+        setVariant(handoff.keys[2]);
+      }
     }
   }, [router.query.usedKey]);
 

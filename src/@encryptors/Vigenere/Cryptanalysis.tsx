@@ -1,28 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
 import styled from 'styled-components';
 
-import { Cluster, TextInput } from '@atoms';
-import { ControlGroup } from '@organisms/ControlPanel';
-import Tooltip from '@atoms/Tooltip';
-import { DEFAULT_ALPHABET, cleanAlphabet, isEnglishAlphabet } from './vigenere-encryption';
+import { DEFAULT_ALPHABET, cleanAlphabet } from './vigenere-encryption';
 import useCracker from './cracker/useCracker';
 import { DEFAULT_HINT_CONFIG, HintConfig, HINT_KEYS, applyPreset, PresetName } from './cracker/hintSettings';
 import CrackerWizard from './cracker/CrackerWizard';
 import { CrackerInput, CrackerSettings } from '@encryptors/shared/cracker';
 import { usePendingExample } from '@learning/pendingExample';
 import { setKeyHandoff } from '@learning/keyHandoff';
-import { Minion } from '@typography';
 
 const PaneRoot = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-`;
-
-const AlphabetRow = styled(Cluster)`
-  padding: 12px 16px;
 `;
 
 const WizardBox = styled.div`
@@ -35,17 +26,10 @@ const WizardBox = styled.div`
   border-radius: ${({ theme }) => theme.radius.metal};
 `;
 
-const UnsupportedNote = styled(Minion)`
-  color: ${({ theme }) => theme.ink.creamMuted};
-`;
-
-const FallbackBlock = styled.div`
-  padding: 16px;
-`;
-
 // Vigenère cracker on the Cryptanalysis tab: the guided wizard owns the
-// page. "Use this result" hands the recovered key to the Tool tab (in-memory
-// hand-off, nothing persisted).
+// page. The alphabet is entered (or rebuilt from the ciphertext) inside
+// the wizard. "Use this result" hands the recovered key and alphabet to
+// the Tool tab (in-memory hand-off, nothing persisted).
 const VigenereCryptanalysis: React.FC<{
   input: string;
   onInputChange: (value: string) => void;
@@ -53,13 +37,14 @@ const VigenereCryptanalysis: React.FC<{
   const [customAlphabet, setCustomAlphabet] = useState(DEFAULT_ALPHABET);
   const [hintConfig, setHintConfig] = useState<HintConfig>(DEFAULT_HINT_CONFIG);
   const router = useRouter();
-  const { t } = useTranslation('common');
 
-  const cracker = useCracker({ input, enabled: true, hintConfig, alphabet: customAlphabet });
-
-  // The cracker handles any reshuffling of the 26 English letters, but not
-  // foreign letters (its frequency tables are English).
-  const canCrack = isEnglishAlphabet(customAlphabet);
+  const cracker = useCracker({
+    input,
+    enabled: true,
+    hintConfig,
+    alphabet: customAlphabet,
+    onAlphabetChange: setCustomAlphabet,
+  });
 
   // Challenges and examples: apply the hint preset (and alphabet) once.
   const pendingExample = usePendingExample();
@@ -77,12 +62,8 @@ const VigenereCryptanalysis: React.FC<{
     }
   }, [pendingExample]);
 
-  const handleAlphabetChange = (event) => {
-    setCustomAlphabet(cleanAlphabet(event.target.value));
-  };
-
-  const handleUseKey = (key: string) => {
-    setKeyHandoff({ cipher: 'vigenere', input, keys: [key] });
+  const handleUseKey = (key: string, alphabet: string) => {
+    setKeyHandoff({ cipher: 'vigenere', input, keys: [key, alphabet] });
     router.push('/encoder/vigenere/reverse?usedKey=1');
   };
 
@@ -94,30 +75,10 @@ const VigenereCryptanalysis: React.FC<{
   return (
     <PaneRoot>
       <CrackerInput value={input} onChange={onInputChange} />
-      <AlphabetRow justify="center" gap={4}>
-        <ControlGroup>
-          <Tooltip content={t('processing.vigenere.cracker.tooltips.alphabet')}>
-            <TextInput
-              data-guide="alphabet"
-              label={t('processing.vigenere.cracker.alphabetLabel')}
-              mono
-              width="280px"
-              value={customAlphabet}
-              onChange={handleAlphabetChange}
-            />
-          </Tooltip>
-        </ControlGroup>
-      </AlphabetRow>
-      {canCrack ? (
-        <WizardBox>
-          <CrackerSettings config={hintConfig} onChange={setHintConfig} keys={HINT_KEYS} i18nScope="processing.vigenere.cracker" />
-          <CrackerWizard cracker={cracker} onUseKey={handleUseKey} onSkip={handleSkip} />
-        </WizardBox>
-      ) : (
-        <FallbackBlock>
-          <UnsupportedNote>{t('processing.vigenere.cracker.alphabetUnsupported')}</UnsupportedNote>
-        </FallbackBlock>
-      )}
+      <WizardBox>
+        <CrackerSettings config={hintConfig} onChange={setHintConfig} keys={HINT_KEYS} i18nScope="processing.vigenere.cracker" />
+        <CrackerWizard cracker={cracker} onUseKey={handleUseKey} onSkip={handleSkip} />
+      </WizardBox>
     </PaneRoot>
   );
 };

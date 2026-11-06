@@ -9,7 +9,8 @@ export interface KeyHandoff {
   cipher: string;
   input: string;
   // Cipher-defined key payload; the consuming tool component knows the
-  // shape (Vigenère: [key]; ADFGVX: [squareKey, transpositionKey];
+  // shape (Vigenère: [key, alphabet]; Beaufort: [key, alphabet,
+  // variant]; ADFGVX: [squareKey, transpositionKey];
   // Affine: ['multiplier/shift']; Playfair: [squareKey];
   // Alberti: [period, iterationStep]).
   keys: string[];
