@@ -15,3 +15,4 @@ export * from './english-stats';
 export * from './columnar';
 export * from './substitution';
 export * from './sliceTransform';
+export * from './alphabetRecovery';
