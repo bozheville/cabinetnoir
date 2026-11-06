@@ -71,6 +71,8 @@ the sender's alphabet keyword. Then step 2 proceeds as usual, on the
 recovered alphabet. This is the same divide-and-conquer as the
 Nihilist square: strip the key, then the alphabet falls out.
 
+{{challenge:vigenere-mixed-demo}}
+
 ## A shortcut — cribs
 
 Sometimes you can guess a word that must appear in the plaintext (a

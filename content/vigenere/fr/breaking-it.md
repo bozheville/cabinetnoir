@@ -79,6 +79,8 @@ comme d'habitude, sur l'alphabet reconstruit. C'est le même
 diviser-pour-régner que le carré de Nihilist : retirez la clé, et
 l'alphabet tombe.
 
+{{challenge:vigenere-mixed-demo}}
+
 ## Un raccourci — les mots probables
 
 Parfois on peut deviner un mot qui doit apparaître dans le texte clair

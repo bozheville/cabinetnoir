@@ -16,7 +16,7 @@ import { adfgvxEncrypt } from '@encryptors/Adfgvx/adfgvx-encryption';
 import { morseEncoding } from '@encryptors/Morse/morse-encoding';
 import { columnarEncryptText } from '@encryptors/Columnar/columnar-crypt';
 import { railFenceEncrypt } from '@encryptors/shared/transposition';
-import { keywordEncrypt } from '@encryptors/Keyword/keyword-crypt';
+import { keywordAlphabet, keywordEncrypt } from '@encryptors/Keyword/keyword-crypt';
 import {
   nihilistEncrypt,
   nihilistKeyNumbers,
@@ -124,6 +124,30 @@ const VIGENERE_DEMO = {
   keyLength: 5,
   hints: [],
   answer: VIGENERE_DEMO_PLAINTEXT,
+  listOnPractice: false,
+};
+
+// The mixed-alphabet demo: Vigenère over a KRYPTOS keyword alphabet.
+// Long on purpose — the alphabet rebuild pairs letter frequencies of two
+// slices, which needs ~150 letters per slice to read clearly. The
+// alphabet does not travel with the challenge: finding it is the point.
+const VIGENERE_MIXED_DEMO_PLAINTEXT =
+  'ITWASTHEBESTOFTIMESITWASTHEWORSTOFTIMESITWASTHEAGEOFWISDOMITWASTHEAGE'
+  + 'OFFOOLISHNESSITWASTHEEPOCHOFBELIEFITWASTHEEPOCHOFINCREDULITYITWASTHE'
+  + 'SEASONOFLIGHTITWASTHESEASONOFDARKNESSITWASTHESPRINGOFHOPEITWASTHEWINT'
+  + 'EROFDESPAIRWEHADEVERYTHINGBEFOREUSWEHADNOTHINGBEFOREUSWEWEREALLGOINGD'
+  + 'IRECTTOHEAVENWEWEREALLGOINGDIRECTTHEOTHERWAYINSHORTTHEPERIODWASSOFARL'
+  + 'IKETHEPRESENTPERIODTHATSOMEOFITSNOISIESTAUTHORITIESINSISTEDONITSBEING'
+  + 'RECEIVEDFORGOODORFOREVILINTHESUPERLATIVEDEGREEOFCOMPARISONONLY';
+const VIGENERE_MIXED_DEMO = {
+  id: 'vigenere-mixed-demo',
+  cipher: 'vigenere',
+  titleKey: 'learning.challenges.vigenere-mixed-demo.title',
+  ciphertext: vigenereEncrypt(VIGENERE_MIXED_DEMO_PLAINTEXT, 'CAT', keywordAlphabet('KRYPTOS')),
+  difficulty: 'easy' as ChallengeDifficulty,
+  keyLength: 3,
+  hints: [],
+  answer: VIGENERE_MIXED_DEMO_PLAINTEXT,
   listOnPractice: false,
 };
 
@@ -670,6 +694,7 @@ const buildNihilistChallenge = (
 
 export const CHALLENGES: Record<string, Challenge> = {
   'vigenere-demo': VIGENERE_DEMO,
+  'vigenere-mixed-demo': VIGENERE_MIXED_DEMO,
   'caesar-demo': CAESAR_DEMO,
   'vigenere-easy-1': buildChallenge(
     'vigenere-easy-1',
