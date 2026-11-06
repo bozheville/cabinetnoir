@@ -1,8 +1,9 @@
 import { useTranslation } from 'next-i18next';
+import Link from 'next/link';
 import React, { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
-import { Button } from '@atoms';
+import { Button, Disclosure } from '@atoms';
 import Tooltip from '@atoms/Tooltip';
 import { GreatPrimer, Minion } from '@typography';
 import { paper } from '@theme/mixins';
@@ -14,8 +15,9 @@ import {
   mergedIC,
   suggestPartners,
 } from '@encryptors/shared/analysis';
-import { HIGHLIGHT_COLORS, useCrackerKey } from '@encryptors/shared/cracker';
+import { HIGHLIGHT_COLORS, useCrackerKey, useCrackerScope } from '@encryptors/shared/cracker';
 import { useCracker } from './useCracker';
+import { checklist as buildChecklist, coachTip } from './recoveryCoach';
 
 // Random letters ~0.038, English ~0.066: the merged-IC meter's scale.
 const IC_RANDOM = 0.038;
@@ -226,11 +228,91 @@ const Result = styled(Minion)`
   font-weight: 700;
 `;
 
+// The coach: one sentence on parchment telling the next move.
+const Coach = styled.div`
+  ${paper('vellum')}
+  padding: 8px 12px;
+  border-left: 3px solid ${({ theme }) => theme.metal.copper.base};
+  border-radius: ${({ theme }) => theme.radius.paper};
+  color: ${({ theme }) => theme.ink.primary};
+  font-size: 13px;
+  line-height: 1.5;
+`;
+
+const Checklist = styled.ol`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+`;
+
+const CheckItem = styled.li<{ $done: boolean }>`
+  font-size: 12px;
+  color: ${({ $done, theme }) => ($done ? theme.metal.brass.light : theme.ink.creamMuted)};
+
+  &::before {
+    content: '${({ $done }) => ($done ? '✓' : '○')}';
+    margin-right: 4px;
+  }
+`;
+
+// The worked figure in "Why this works": three plaintext letters and
+// their cipher letters in two slices of the practice cryptogram.
+const Figure = styled.table`
+  border-collapse: collapse;
+  font-family: ${({ theme }) => theme.type.mono};
+  font-size: 13px;
+
+  th, td {
+    padding: 2px 10px;
+    border: 1px solid ${({ theme }) => theme.paper.rule};
+    text-align: center;
+  }
+
+  th {
+    font-family: inherit;
+    font-weight: 400;
+    font-style: italic;
+    text-align: left;
+  }
+`;
+
+const FIGURE_ROWS: Array<[string, string[]]> = [
+  ['plain', ['E', 'T', 'A']],
+  ['first', ['Q', 'G', 'J']],
+  ['second', ['M', 'E', 'H']],
+];
+
+const LinkRow = styled(Row)`
+  gap: 14px;
+
+  a {
+    color: ${({ theme }) => theme.metal.brass.light};
+    font-size: 12px;
+  }
+`;
+
+const MeterBand = styled(Minion)<{ $tone: 'low' | 'mid' | 'high' }>`
+  color: ${({ $tone, theme }) => ($tone === 'high'
+    ? theme.metal.brass.light
+    : $tone === 'mid' ? theme.ink.cream : theme.ink.creamMuted)};
+`;
+
+const PositionsToggle = styled.button`
+  margin-left: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: ${({ theme }) => theme.metal.brass.light};
+  font-size: 11px;
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
 const colorOf = (column: number): string => HIGHLIGHT_COLORS[column % HIGHLIGHT_COLORS.length];
 
-const describe = (action: RingAction): string => (action.kind === 'link'
-  ? `${action.from}${action.fromColumn + 1} = ${action.to}${action.toColumn + 1}`
-  : `${action.letter} → ${action.slot}`);
 
 interface StepAlphabetRecoveryProps {
   cracker: ReturnType<typeof useCracker>;
@@ -262,11 +344,14 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
   const base = useCrackerKey('wizard.recovery.');
   const tooltip = useCrackerKey('tooltips.');
   const { hints } = hintConfig;
+  const scope = useCrackerScope();
+  const coachOn = !!hints.coach;
 
   const [fromColumn, setFromColumn] = useState(0);
   const [toColumn, setToColumn] = useState(1);
   const [selected, setSelected] = useState<string | null>(null);
   const [loose, setLoose] = useState<string | null>(null);
+  const [showPositions, setShowPositions] = useState(false);
 
   useEffect(() => {
     setSelected(null);
@@ -341,6 +426,47 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
   };
 
   const anchored = Object.keys(ringState.positions).length > 0;
+
+  const tip = coachTip({ letters, keyLength, fromColumn, toColumn, actions: ringActions, state: ringState });
+  const progress = buildChecklist(ringActions, ringState);
+
+  // "X (slice 1) ↔ Q (slice 2)" / "Z → slot 4".
+  const describe = (action: RingAction): string => (action.kind === 'link'
+    ? t(`${base}chip.link`, {
+      from: action.from,
+      fromSlice: action.fromColumn + 1,
+      to: action.to,
+      toSlice: action.toColumn + 1,
+    })
+    : t(`${base}chip.place`, { letter: action.letter, slot: action.slot }));
+
+  const chipTip = (index: number): string => t(`${base}chip.${ringState.statuses[index]}`);
+
+  const coachText = (() => {
+    switch (tip.id) {
+      case 'firstLink':
+      case 'nextLink':
+        return t(`${base}coach.${tip.id}`, {
+          from: tip.from,
+          to: tip.to,
+          first: fromColumn + 1,
+          second: toColumn + 1,
+        });
+      case 'conflict':
+        return t(`${base}coach.conflict`, { link: describe(tip.link) });
+      case 'switchPair':
+        return t(`${base}coach.switchPair`, { slice: tip.column + 1 });
+      case 'leftovers':
+        return t(`${base}coach.leftovers`, { count: tip.count });
+      default:
+        return t(`${base}coach.done`);
+    }
+  })();
+
+  const meterRatio = meter
+    ? Math.max(0, Math.min(1, (meter.ic - IC_RANDOM) / (IC_ENGLISH - IC_RANDOM)))
+    : 0;
+  const meterTone: 'low' | 'mid' | 'high' = meterRatio > 0.75 ? 'high' : meterRatio > 0.4 ? 'mid' : 'low';
   const looseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').filter((letter) => !(letter in ringState.positions));
   const conflicts = ringState.statuses.filter((status) => status === 'conflict').length;
   const placed = RING_SIZE - looseLetters.length;
@@ -364,6 +490,48 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
     <StepRoot>
       <StepTitle>{t(`${base}title`)}</StepTitle>
       <StepHint>{t(`${base}hint`)}</StepHint>
+
+      <Disclosure id={`${scope}.recovery.why`} title={t(`${base}learn.whyTitle`)} defaultOpen={coachOn}>
+        <span>{t(`${base}learn.why1`)}</span>
+        <Figure>
+          <tbody>
+            {FIGURE_ROWS.map(([row, cells]) => (
+              <tr key={row}>
+                <th>{t(`${base}learn.figure.${row}`)}</th>
+                {cells.map((cell, index) => <td key={index}>{cell}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </Figure>
+        <span>{t(`${base}learn.why2`)}</span>
+        <span>{t(`${base}learn.why3`)}</span>
+      </Disclosure>
+
+      <Disclosure id={`${scope}.recovery.how`} title={t(`${base}learn.howTitle`)} defaultOpen={coachOn}>
+        <ol style={{ margin: 0, paddingLeft: 18 }}>
+          {['how1', 'how2', 'how3', 'how4', 'how5'].map((key) => (
+            <li key={key}>{t(`${base}learn.${key}`)}</li>
+          ))}
+        </ol>
+      </Disclosure>
+
+      <LinkRow>
+        <Link href={`/encoder/${scope}/learn`}>{t(`${base}learn.readMore`)}</Link>
+        {scope === 'vigenere' && (
+          <Link href="/encoder/vigenere/cryptanalysis?challenge=vigenere-mixed-demo">{t(`${base}learn.practice`)}</Link>
+        )}
+      </LinkRow>
+
+      {coachOn && (
+        <>
+          <Coach data-guide="recovery-coach" role="status">{coachText}</Coach>
+          <Checklist data-guide="recovery-progress">
+            {(['firstLink', 'sixPlaced', 'secondPair', 'complete'] as const).map((key) => (
+              <CheckItem key={key} $done={progress[key]}>{t(`${base}progress.${key}`)}</CheckItem>
+            ))}
+          </Checklist>
+        </>
+      )}
 
       <Tooltip content={t(`${tooltip}columnPair`)}>
         <div data-guide="column-pair">
@@ -431,7 +599,12 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
 
       <Tooltip content={t(`${tooltip}ring`)}>
         <div data-guide="alphabet-ring">
-          <Minion>{t(`${base}ringLabel`, { placed })}</Minion>
+          <Minion>
+            {t(`${base}ringLabel`, { placed })}
+            <PositionsToggle type="button" onClick={() => setShowPositions((value) => !value)}>
+              {t(`${base}${showPositions ? 'hidePositions' : 'showPositions'}`)}
+            </PositionsToggle>
+          </Minion>
           <RingRow>
             {ringState.slots.map((letter, slot) => (
               <div key={slot}>
@@ -449,7 +622,7 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
                 >
                   {letter ?? '·'}
                 </Slot>
-                <SlotIndex>{slot}</SlotIndex>
+                {showPositions && <SlotIndex>{slot}</SlotIndex>}
               </div>
             ))}
           </RingRow>
@@ -478,14 +651,10 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
         <Tooltip content={t(`${tooltip}mergedIC`)}>
           <Row data-guide="merged-ic">
             <RowLabel>{t(`${base}meterLabel`)}</RowLabel>
-            <Meter>
-              <MeterFill
-                style={{
-                  width: `${Math.max(0, Math.min(1, (meter.ic - IC_RANDOM) / (IC_ENGLISH - IC_RANDOM))) * 100}%`,
-                }}
-              />
+            <Meter title={meter.ic.toFixed(3)}>
+              <MeterFill style={{ width: `${meterRatio * 100}%` }} />
             </Meter>
-            <Note>{meter.ic.toFixed(3)}</Note>
+            <MeterBand $tone={meterTone}>{t(`${base}meterBand.${meterTone}`)}</MeterBand>
           </Row>
         </Tooltip>
       )}
@@ -493,7 +662,7 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
       {ringActions.length > 0 && (
         <ActionList data-guide="ring-actions">
           {ringActions.map((action, index) => (
-            <ActionChip key={index} $status={ringState.statuses[index]}>
+            <ActionChip key={index} $status={ringState.statuses[index]} title={chipTip(index)}>
               {describe(action)}
               <RemoveButton
                 type="button"
@@ -537,6 +706,9 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
                 ? t(`${base}standard`)
                 : t(`${base}unstraightened`)}
           </Note>
+          <Disclosure id={`${scope}.recovery.rotated`} title={t(`${base}learn.rotatedTitle`)} defaultOpen={false}>
+            <span>{t(`${base}learn.rotated`)}</span>
+          </Disclosure>
         </div>
       )}
     </StepRoot>

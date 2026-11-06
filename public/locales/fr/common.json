@@ -324,7 +324,16 @@
             "unsupported": "Les tables de fréquences sont anglaises : seuls les réarrangements des 26 lettres anglaises peuvent être vérifiés. Reconstruisez plutôt l'alphabet à partir du cryptogramme.",
             "fitScore": "écart {{score}}",
             "useKnown": "Utiliser cet alphabet",
-            "recover": "Le reconstruire"
+            "recover": "Le reconstruire",
+            "learn": {
+              "mixedTitle": "Qu'est-ce qu'un alphabet mélangé ?",
+              "mixed1": "Vigenère décale chaque lettre le long d'un alphabet. D'habitude c'est l'A–Z ordinaire, mais l'expéditeur peut convenir de n'importe quel ordre avec le destinataire — le plus souvent un alphabet à mot-clé : le mot-clé d'abord, puis les lettres restantes dans l'ordre.",
+              "plainLabel": "ordinaire",
+              "keywordLabel": "mot-clé KRYPTOS",
+              "mixed2": "Avec un alphabet mélangé, le graphique de fréquences de l'étape des lettres de clé ne s'aligne jamais, quelle que soit la rotation : les barres sont dans le mauvais ordre, pas seulement décalées. Il faut donc d'abord trouver l'alphabet.",
+              "fitTitle": "Comment l'ajustement est-il jugé ?",
+              "fit": "Pour chaque tranche, l'assistant essaie les 26 décalages le long de l'alphabet ci-dessus et garde le plus proche des fréquences anglaises. Si même le meilleur décalage de chaque tranche reste loin de l'anglais, l'alphabet n'est pas celui de l'expéditeur. Le score d'écart est cette distance moyenne : en dessous de 1,4, l'alphabet convient."
+            }
           },
           "recovery": {
             "title": "Reconstruire l'alphabet",
@@ -343,7 +352,56 @@
             "recovered": "Alphabet reconstruit :",
             "keyword": "Un alphabet à mot-clé — mot-clé {{keyword}}.",
             "standard": "Finalement, l'alphabet A–Z ordinaire.",
-            "unstraightened": "Aucune forme de mot-clé trouvée ; l'anneau fonctionne tel quel, la clé se lira simplement autrement."
+            "unstraightened": "Aucune forme de mot-clé trouvée ; l'anneau fonctionne tel quel, la clé se lira simplement autrement.",
+            "learn": {
+              "whyTitle": "Pourquoi ça marche",
+              "why1": "Chaque tranche est décalée le long du même alphabet secret, seulement d'une quantité différente. Une lettre du clair devient donc des lettres chiffrées différentes dans deux tranches — mais toujours à la même distance dans l'alphabet secret. Par exemple :",
+              "figure": {
+                "plain": "clair",
+                "first": "tranche 1",
+                "second": "tranche 2"
+              },
+              "why2": "Q–M, G–E et J–H sont tous à 24 pas l'un de l'autre dans l'alphabet de l'expéditeur. Vous ne connaissez pas encore cet alphabet, et vous n'en avez pas besoin : chaque paire repérée dit « ces deux lettres sont à un pas fixe l'une de l'autre ». Enchaînez assez de paires et chaque lettre trouve sa place sur un anneau de 26 cases.",
+              "why3": "Les paires se repèrent par la fréquence : la lettre la plus courante de la tranche 1 et celle de la tranche 2 sont probablement toutes deux E ; les deuxièmes plus courantes sont probablement T, et ainsi de suite.",
+              "howTitle": "Comment faire",
+              "how1": "Gardez les deux tranches proposées (les plus longues). Cliquez la lettre la plus fréquente à gauche, puis la plus fréquente à droite : votre premier lien.",
+              "how2": "Descendez les listes : deuxième avec deuxième, troisième avec troisième. L'anneau se remplit au fur et à mesure.",
+              "how3": "Un lien rouge contredit les autres : l'un d'eux est faux. Retirez celui dont vous étiez le moins sûr.",
+              "how4": "Après environ huit liens, passez la seconde tranche à une autre — de nouvelles tranches atteignent des lettres que la première paire ne peut pas atteindre.",
+              "how5": "Les lettres rares sont difficiles à associer. Placez les dernières à la main, ou laissez-les : l'étape suivante fonctionne même avec des trous dans les lettres rares.",
+              "readMore": "Lire l'explication complète",
+              "practice": "S'exercer sur le cryptogramme d'entraînement",
+              "rotatedTitle": "Pourquoi mon alphabet semble-t-il tourné ou mélangé ?",
+              "rotated": "Les liens ne donnent que des distances : l'anneau n'a ni début naturel, ni sens, ni pas naturels. N'importe quelle rotation, lue toutes les 1, 3, 5… cases, déchiffre le texte tout aussi bien — avec une autre clé. Si l'une de ces lectures est un alphabet à mot-clé, l'outil affiche celle-là ; sinon il garde l'anneau tel que construit."
+            },
+            "coach": {
+              "firstLink": "Commencez ici : {{from}} est la lettre la plus fréquente de la tranche {{first}}, {{to}} celle de la tranche {{second}}. Toutes deux représentent probablement E. Cliquez {{from}} à gauche, puis {{to}} à droite.",
+              "nextLink": "Ensuite : reliez {{from}} (tranche {{first}}) à {{to}} (tranche {{second}}) — les lettres suivantes par fréquence. Les lettres lumineuses à droite sont d'autres partenaires probables.",
+              "conflict": "Le lien {{link}} contredit l'anneau. L'un des liens en conflit est faux — retirez celui dont vous êtes le moins sûr, ou appuyez sur Annuler.",
+              "switchPair": "Cette paire est bien exploitée. Passez la seconde tranche à la tranche {{slice}} : ses lettres atteignent des cases que cette paire ne peut pas atteindre.",
+              "leftovers": "Presque fini : il reste {{count}} lettres rares. Choisissez-en une sous « Non placées » et cliquez une case vide, ou continuez — les lettres rares comptent à peine.",
+              "done": "L'anneau est complet. Vérifiez l'indicateur d'anglais, puis passez aux lettres de la clé."
+            },
+            "progress": {
+              "firstLink": "Premier lien",
+              "sixPlaced": "Six lettres placées",
+              "secondPair": "Une seconde paire de tranches",
+              "complete": "Anneau complet"
+            },
+            "chip": {
+              "link": "{{from}} (tranche {{fromSlice}}) ↔ {{to}} (tranche {{toSlice}})",
+              "place": "{{letter}} → case {{slot}}",
+              "applied": "Placé sur l'anneau.",
+              "pending": "En attente : aucune de ses lettres n'est encore sur l'anneau. Il s'appliquera quand un lien les atteindra.",
+              "conflict": "Contredit l'anneau : retirez-le, ou le lien avec lequel il entre en conflit."
+            },
+            "showPositions": "afficher les numéros de case",
+            "hidePositions": "masquer les numéros de case",
+            "meterBand": {
+              "low": "aléatoire pour l'instant",
+              "mid": "on s'approche",
+              "high": "ressemble à l'anglais"
+            }
           }
         },
         "keyLengthLabels": {
@@ -365,7 +423,8 @@
             "highlightRepeats": "Colore les groupes de lettres répétées — les distances entre eux suggèrent la longueur de la clé.",
             "showGaps": "Affiche les distances entre les séquences répétées, à côté de chaque groupe.",
             "partnerHints": "Surligne les lettres de la seconde tranche dont la fréquence correspond à la lettre choisie.",
-            "mergedIC": "Mesure à quel point les tranches réalignées sur l'anneau ressemblent à l'anglais."
+            "mergedIC": "Mesure à quel point les tranches réalignées sur l'anneau ressemblent à l'anglais.",
+            "coach": "Affiche le guide de l'étape suivante et ouvre les explications. Désactivé en moyen et difficile."
           },
           "keyLengthCards": "Longueurs de clé probables, classées par deux signaux : les distances entre séquences répétées et la ressemblance des tranches avec l'anglais. Cliquez sur une carte pour choisir.",
           "otherLength": "Saisissez une longueur de clé manuellement si aucune carte ne convient.",
@@ -378,14 +437,16 @@
           "linkBoard": "Les lettres de chaque tranche, les plus fréquentes d'abord. Les lettres lumineuses sont les partenaires probables d'après la fréquence ; une lettre encadrée est celle que l'anneau prédit déjà.",
           "ring": "Votre alphabet en construction. Il n'est connu qu'à une rotation et un pas près — chacune de ces lectures déchiffre le texte, avec une autre clé.",
           "placeLetter": "Les lettres que les liens n'ont pas atteintes (souvent les rares). Choisissez-en une, puis cliquez une case vide de l'anneau.",
-          "mergedIC": "Toutes les tranches réalignées sur l'anneau et mesurées ensemble : près de 0,066 c'est de l'anglais, près de 0,038 un lien est faux quelque part."
+          "mergedIC": "Toutes les tranches réalignées sur l'anneau et mesurées ensemble : près de 0,066 c'est de l'anglais, près de 0,038 un lien est faux quelque part.",
+          "fitScore": "Distance moyenne à l'anglais sur toutes les tranches, chacune à son meilleur décalage. Plus bas, c'est mieux ; en dessous de 1,4, l'alphabet convient."
         },
         "hints": {
           "toggles": {
             "highlightRepeats": "Surligner les séquences répétées",
             "showGaps": "Afficher les écarts entre les répétitions",
             "partnerHints": "Suggérer les lettres partenaires",
-            "mergedIC": "Afficher l'indicateur d'anglais"
+            "mergedIC": "Afficher l'indicateur d'anglais",
+            "coach": "Me guider pas à pas"
           }
         }
       }
@@ -770,7 +831,16 @@
             "unsupported": "Les tables de fréquences sont anglaises : seuls les réarrangements des 26 lettres anglaises peuvent être vérifiés. Reconstruisez plutôt l'alphabet à partir du cryptogramme.",
             "fitScore": "écart {{score}}",
             "useKnown": "Utiliser cet alphabet",
-            "recover": "Le reconstruire"
+            "recover": "Le reconstruire",
+            "learn": {
+              "mixedTitle": "Qu'est-ce qu'un alphabet mélangé ?",
+              "mixed1": "Beaufort déplace chaque lettre le long d'un alphabet. D'habitude c'est l'A–Z ordinaire, mais l'expéditeur peut convenir de n'importe quel ordre avec le destinataire — le plus souvent un alphabet à mot-clé : le mot-clé d'abord, puis les lettres restantes dans l'ordre.",
+              "plainLabel": "ordinaire",
+              "keywordLabel": "mot-clé KRYPTOS",
+              "mixed2": "Avec un alphabet mélangé, le graphique de fréquences de l'étape des lettres de clé ne s'aligne jamais, quelle que soit la rotation : les barres sont dans le mauvais ordre, pas seulement décalées. Il faut donc d'abord trouver l'alphabet.",
+              "fitTitle": "Comment l'ajustement est-il jugé ?",
+              "fit": "Pour chaque tranche, l'assistant essaie les 26 décalages le long de l'alphabet ci-dessus et garde le plus proche des fréquences anglaises. Si même le meilleur décalage de chaque tranche reste loin de l'anglais, l'alphabet n'est pas celui de l'expéditeur. Le score d'écart est cette distance moyenne : en dessous de 1,4, l'alphabet convient."
+            }
           },
           "recovery": {
             "title": "Reconstruire l'alphabet",
@@ -789,7 +859,56 @@
             "recovered": "Alphabet reconstruit :",
             "keyword": "Un alphabet à mot-clé — mot-clé {{keyword}}.",
             "standard": "Finalement, l'alphabet A–Z ordinaire.",
-            "unstraightened": "Aucune forme de mot-clé trouvée ; l'anneau fonctionne tel quel, la clé se lira simplement autrement."
+            "unstraightened": "Aucune forme de mot-clé trouvée ; l'anneau fonctionne tel quel, la clé se lira simplement autrement.",
+            "learn": {
+              "whyTitle": "Pourquoi ça marche",
+              "why1": "Chaque tranche est décalée le long du même alphabet secret, seulement d'une quantité différente. Une lettre du clair devient donc des lettres chiffrées différentes dans deux tranches — mais toujours à la même distance dans l'alphabet secret. Par exemple :",
+              "figure": {
+                "plain": "clair",
+                "first": "tranche 1",
+                "second": "tranche 2"
+              },
+              "why2": "Q–M, G–E et J–H sont tous à 24 pas l'un de l'autre dans l'alphabet de l'expéditeur. Vous ne connaissez pas encore cet alphabet, et vous n'en avez pas besoin : chaque paire repérée dit « ces deux lettres sont à un pas fixe l'une de l'autre ». Enchaînez assez de paires et chaque lettre trouve sa place sur un anneau de 26 cases.",
+              "why3": "Les paires se repèrent par la fréquence : la lettre la plus courante de la tranche 1 et celle de la tranche 2 sont probablement toutes deux E ; les deuxièmes plus courantes sont probablement T, et ainsi de suite.",
+              "howTitle": "Comment faire",
+              "how1": "Gardez les deux tranches proposées (les plus longues). Cliquez la lettre la plus fréquente à gauche, puis la plus fréquente à droite : votre premier lien.",
+              "how2": "Descendez les listes : deuxième avec deuxième, troisième avec troisième. L'anneau se remplit au fur et à mesure.",
+              "how3": "Un lien rouge contredit les autres : l'un d'eux est faux. Retirez celui dont vous étiez le moins sûr.",
+              "how4": "Après environ huit liens, passez la seconde tranche à une autre — de nouvelles tranches atteignent des lettres que la première paire ne peut pas atteindre.",
+              "how5": "Les lettres rares sont difficiles à associer. Placez les dernières à la main, ou laissez-les : l'étape suivante fonctionne même avec des trous dans les lettres rares.",
+              "readMore": "Lire l'explication complète",
+              "practice": "S'exercer sur le cryptogramme d'entraînement",
+              "rotatedTitle": "Pourquoi mon alphabet semble-t-il tourné ou mélangé ?",
+              "rotated": "Les liens ne donnent que des distances : l'anneau n'a ni début naturel, ni sens, ni pas naturels. N'importe quelle rotation, lue toutes les 1, 3, 5… cases, déchiffre le texte tout aussi bien — avec une autre clé. Si l'une de ces lectures est un alphabet à mot-clé, l'outil affiche celle-là ; sinon il garde l'anneau tel que construit."
+            },
+            "coach": {
+              "firstLink": "Commencez ici : {{from}} est la lettre la plus fréquente de la tranche {{first}}, {{to}} celle de la tranche {{second}}. Toutes deux représentent probablement E. Cliquez {{from}} à gauche, puis {{to}} à droite.",
+              "nextLink": "Ensuite : reliez {{from}} (tranche {{first}}) à {{to}} (tranche {{second}}) — les lettres suivantes par fréquence. Les lettres lumineuses à droite sont d'autres partenaires probables.",
+              "conflict": "Le lien {{link}} contredit l'anneau. L'un des liens en conflit est faux — retirez celui dont vous êtes le moins sûr, ou appuyez sur Annuler.",
+              "switchPair": "Cette paire est bien exploitée. Passez la seconde tranche à la tranche {{slice}} : ses lettres atteignent des cases que cette paire ne peut pas atteindre.",
+              "leftovers": "Presque fini : il reste {{count}} lettres rares. Choisissez-en une sous « Non placées » et cliquez une case vide, ou continuez — les lettres rares comptent à peine.",
+              "done": "L'anneau est complet. Vérifiez l'indicateur d'anglais, puis passez aux lettres de la clé."
+            },
+            "progress": {
+              "firstLink": "Premier lien",
+              "sixPlaced": "Six lettres placées",
+              "secondPair": "Une seconde paire de tranches",
+              "complete": "Anneau complet"
+            },
+            "chip": {
+              "link": "{{from}} (tranche {{fromSlice}}) ↔ {{to}} (tranche {{toSlice}})",
+              "place": "{{letter}} → case {{slot}}",
+              "applied": "Placé sur l'anneau.",
+              "pending": "En attente : aucune de ses lettres n'est encore sur l'anneau. Il s'appliquera quand un lien les atteindra.",
+              "conflict": "Contredit l'anneau : retirez-le, ou le lien avec lequel il entre en conflit."
+            },
+            "showPositions": "afficher les numéros de case",
+            "hidePositions": "masquer les numéros de case",
+            "meterBand": {
+              "low": "aléatoire pour l'instant",
+              "mid": "on s'approche",
+              "high": "ressemble à l'anglais"
+            }
           }
         },
         "keyLengthLabels": {
@@ -820,13 +939,16 @@
           "mergedIC": "Toutes les tranches réalignées sur l'anneau et mesurées ensemble : près de 0,066 c'est de l'anglais, près de 0,038 un lien est faux quelque part.",
           "toggle": {
             "partnerHints": "Surligne les lettres de la seconde tranche dont la fréquence correspond à la lettre choisie.",
-            "mergedIC": "Mesure à quel point les tranches réalignées sur l'anneau ressemblent à l'anglais."
-          }
+            "mergedIC": "Mesure à quel point les tranches réalignées sur l'anneau ressemblent à l'anglais.",
+            "coach": "Affiche le guide de l'étape suivante et ouvre les explications. Désactivé en moyen et difficile."
+          },
+          "fitScore": "Distance moyenne à l'anglais sur toutes les tranches, chacune à son meilleur décalage. Plus bas, c'est mieux ; en dessous de 1,4, l'alphabet convient."
         },
         "hints": {
           "toggles": {
             "partnerHints": "Suggérer les lettres partenaires",
-            "mergedIC": "Afficher l'indicateur d'anglais"
+            "mergedIC": "Afficher l'indicateur d'anglais",
+            "coach": "Me guider pas à pas"
           }
         }
       },
@@ -1222,6 +1344,9 @@
       },
       "vigenere-demo": {
         "title": "Texte chiffré de démonstration"
+      },
+      "vigenere-mixed-demo": {
+        "title": "Cryptogramme de démonstration à alphabet mélangé"
       },
       "vigenere-easy-2": {
         "title": "Le roman continue",

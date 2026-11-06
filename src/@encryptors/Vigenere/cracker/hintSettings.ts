@@ -13,7 +13,8 @@ export type HintKey =
   | 'livePreview'
   | 'cribs'
   | 'partnerHints'
-  | 'mergedIC';
+  | 'mergedIC'
+  | 'coach';
 
 // Typed alias kept for readability; the shared HintConfig carries the
 // actual hint flags.
@@ -35,8 +36,10 @@ const defined = defineHints({
     'cribs',
     'partnerHints',
     'mergedIC',
+    'coach',
   ],
-  mediumWithout: ['mostLikelyGlow', 'confidenceBars'],
+  // The coach (next-step line, explanations open) is for first-timers.
+  mediumWithout: ['mostLikelyGlow', 'confidenceBars', 'coach'],
   hardWith: ['englishReference', 'livePreview'],
 });
 

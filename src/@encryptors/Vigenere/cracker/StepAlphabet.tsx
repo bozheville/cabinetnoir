@@ -2,10 +2,10 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import styled from 'styled-components';
 
-import { Segmented, TextInput } from '@atoms';
+import { Disclosure, Segmented, TextInput } from '@atoms';
 import Tooltip from '@atoms/Tooltip';
 import { GreatPrimer, Minion } from '@typography';
-import { useCrackerKey } from '@encryptors/shared/cracker';
+import { useCrackerKey, useCrackerScope } from '@encryptors/shared/cracker';
 import { cleanAlphabet } from '../vigenere-encryption';
 import { AlphabetMode, useCracker } from './useCracker';
 
@@ -33,6 +33,19 @@ const Verdict = styled(Minion)<{ $ok: boolean }>`
   color: ${({ $ok, theme }) => ($ok ? theme.metal.brass.light : theme.ink.red)};
 `;
 
+const Alphabets = styled.div`
+  display: grid;
+  grid-template-columns: max-content max-content;
+  gap: 2px 12px;
+  font-family: ${({ theme }) => theme.type.mono};
+  font-size: 13px;
+
+  span:nth-child(odd) {
+    font-family: inherit;
+    font-style: italic;
+  }
+`;
+
 interface StepAlphabetProps {
   cracker: ReturnType<typeof useCracker>;
 }
@@ -50,7 +63,10 @@ const StepAlphabet: React.FC<StepAlphabetProps> = ({ cracker }) => {
     fits,
     alphabetMode,
     chooseAlphabetMode,
+    hintConfig,
   } = cracker;
+  const scope = useCrackerScope();
+  const coachOn = !!hintConfig.hints.coach;
   const { t } = useTranslation('common');
   const base = useCrackerKey('wizard.alphabet.');
   const tooltip = useCrackerKey('tooltips.');
@@ -68,6 +84,17 @@ const StepAlphabet: React.FC<StepAlphabetProps> = ({ cracker }) => {
       <StepTitle>{t(`${base}title`)}</StepTitle>
       <StepHint>{t(`${base}hint`)}</StepHint>
 
+      <Disclosure id={`${scope}.alphabet.mixed`} title={t(`${base}learn.mixedTitle`)} defaultOpen={coachOn}>
+        <span>{t(`${base}learn.mixed1`)}</span>
+        <Alphabets>
+          <span>{t(`${base}learn.plainLabel`)}</span>
+          <span>ABCDEFGHIJKLMNOPQRSTUVWXYZ</span>
+          <span>{t(`${base}learn.keywordLabel`)}</span>
+          <span>KRYPTOSABCDEFGHIJLMNQUVWXZ</span>
+        </Alphabets>
+        <span>{t(`${base}learn.mixed2`)}</span>
+      </Disclosure>
+
       {onAlphabetChange && (
         <Tooltip content={t(`${tooltip}alphabet`)}>
           <TextInput
@@ -81,10 +108,19 @@ const StepAlphabet: React.FC<StepAlphabetProps> = ({ cracker }) => {
         </Tooltip>
       )}
 
-      <Verdict data-guide="alphabet-verdict" $ok={knownIsEnglish && fits}>
-        {verdict}
-        {fit !== null && ` (${t(`${base}fitScore`, { score: fit.toFixed(2) })})`}
-      </Verdict>
+      <Tooltip
+        content={fit === null
+          ? t(`${tooltip}fitScore`)
+          : `${t(`${tooltip}fitScore`)} ${t(`${base}fitScore`, { score: fit.toFixed(2) })}`}
+      >
+        <Verdict data-guide="alphabet-verdict" $ok={knownIsEnglish && fits}>
+          {verdict}
+        </Verdict>
+      </Tooltip>
+
+      <Disclosure id={`${scope}.alphabet.fit`} title={t(`${base}learn.fitTitle`)} defaultOpen={false}>
+        <span>{t(`${base}learn.fit`)}</span>
+      </Disclosure>
 
       <Tooltip content={t(`${tooltip}alphabetMode`)}>
         <div data-guide="alphabet-mode">

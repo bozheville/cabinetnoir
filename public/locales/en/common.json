@@ -500,7 +500,16 @@
             "unsupported": "The frequency tables are English: only reorderings of the 26 English letters can be checked. Rebuild the alphabet from the ciphertext instead.",
             "fitScore": "misfit {{score}}",
             "useKnown": "Use this alphabet",
-            "recover": "Rebuild it"
+            "recover": "Rebuild it",
+            "learn": {
+              "mixedTitle": "What is a mixed alphabet?",
+              "mixed1": "Vigenère shifts each letter along an alphabet. Usually that is plain A–Z, but the sender can agree on any order with the receiver — most often a keyword alphabet: the keyword first, then the remaining letters in order.",
+              "plainLabel": "plain",
+              "keywordLabel": "keyword KRYPTOS",
+              "mixed2": "With a mixed alphabet the frequency chart of the key-letters step never lines up, whatever you rotate: the bars are in the wrong order, not just shifted. So the alphabet has to be found first.",
+              "fitTitle": "How is the fit judged?",
+              "fit": "For every slice the cracker tries all 26 shifts along the alphabet above and keeps the one closest to English letter frequencies. If even the best shift of every slice is far from English, the alphabet is not the sender's. The misfit score is that average distance: below 1.4 means a fit."
+            }
           },
           "recovery": {
             "title": "Rebuild the alphabet",
@@ -519,7 +528,56 @@
             "recovered": "Recovered alphabet:",
             "keyword": "A keyword alphabet — keyword {{keyword}}.",
             "standard": "The plain A–Z alphabet after all.",
-            "unstraightened": "No keyword shape found; the ring works as it is, the key will just read differently."
+            "unstraightened": "No keyword shape found; the ring works as it is, the key will just read differently.",
+            "learn": {
+              "whyTitle": "Why this works",
+              "why1": "Every slice is shifted along the same secret alphabet, only by a different amount. So one plaintext letter turns into different cipher letters in two slices — but always the same distance apart in the secret alphabet. For example:",
+              "figure": {
+                "plain": "plaintext",
+                "first": "slice 1",
+                "second": "slice 2"
+              },
+              "why2": "Q–M, G–E and J–H are all 24 steps apart in the sender's alphabet. You do not know that alphabet yet, but you do not need to: each pair you spot says \"these two letters are a fixed step apart\". Chain enough pairs and every letter falls into place on a ring of 26 slots.",
+              "why3": "You spot pairs by frequency: the commonest letter of slice 1 and the commonest of slice 2 are probably both E; the second commonest are probably both T, and so on.",
+              "howTitle": "How to do it",
+              "how1": "Keep the two slices offered (the longest ones). Click the most frequent letter on the left, then the most frequent on the right: your first link.",
+              "how2": "Repeat down the lists: second with second, third with third. The ring fills as you go.",
+              "how3": "A red link contradicts the others: one of them is wrong. Remove the one you were less sure of.",
+              "how4": "After about eight links, switch the second slice to another one — new slices reach letters the first pair cannot.",
+              "how5": "Rare letters are hard to pair. Place the last few by hand, or leave them: the next step works even with gaps in rare letters.",
+              "readMore": "Read the full explanation",
+              "practice": "Try it on the practice cryptogram",
+              "rotatedTitle": "Why does my alphabet look rotated or jumbled?",
+              "rotated": "Links only tell distances, so the ring has no natural start and no natural direction or step. Any rotation of it, read every 1st, 3rd, 5th… slot, decrypts the text just as well — with a different key. If one of those readings is a keyword alphabet, the tool shows that one; otherwise it keeps the ring as built."
+            },
+            "coach": {
+              "firstLink": "Start here: {{from}} is the most frequent letter of slice {{first}}, {{to}} of slice {{second}}. Both probably stand for E. Click {{from}} on the left, then {{to}} on the right.",
+              "nextLink": "Next: link {{from}} (slice {{first}}) with {{to}} (slice {{second}}) — the next letters by frequency. The glowing letters on the right are other likely partners.",
+              "conflict": "The link {{link}} contradicts the ring. One of the clashing links is wrong — remove the one you are less sure of, or press Undo.",
+              "switchPair": "This pair is well worked. Switch the second slice to slice {{slice}}: its letters reach slots this pair cannot.",
+              "leftovers": "Almost there: {{count}} rare letters left. Pick one under \"Unplaced\" and click an empty slot, or continue — rare letters barely matter.",
+              "done": "The ring is complete. Check the English meter, then continue to the key letters."
+            },
+            "progress": {
+              "firstLink": "First link",
+              "sixPlaced": "Six letters placed",
+              "secondPair": "A second slice pair",
+              "complete": "Ring complete"
+            },
+            "chip": {
+              "link": "{{from}} (slice {{fromSlice}}) ↔ {{to}} (slice {{toSlice}})",
+              "place": "{{letter}} → slot {{slot}}",
+              "applied": "Placed on the ring.",
+              "pending": "Waiting: none of its letters is on the ring yet. It applies once a link reaches them.",
+              "conflict": "Contradicts the ring: remove it or the link it clashes with."
+            },
+            "showPositions": "show slot numbers",
+            "hidePositions": "hide slot numbers",
+            "meterBand": {
+              "low": "random so far",
+              "mid": "getting there",
+              "high": "reads like English"
+            }
           }
         },
         "keyLengthLabels": {
@@ -541,7 +599,8 @@
             "highlightRepeats": "Colours repeated letter groups in the text — the distances between them hint at the key length.",
             "showGaps": "Shows the distances between repeated sequences, next to each group.",
             "partnerHints": "Highlight letters of the second slice whose frequency matches the selected letter.",
-            "mergedIC": "Measure how English the slices look once re-aligned on the ring."
+            "mergedIC": "Measure how English the slices look once re-aligned on the ring.",
+            "coach": "Show the next-step coach and open the explanations. Off on medium and hard."
           },
           "keyLengthCards": "Likely key lengths ranked by two signals: distances between repeated sequences, and how English-like the text slices look. Click a card to choose.",
           "otherLength": "Enter a key length manually if none of the suggested cards fits.",
@@ -554,14 +613,16 @@
           "linkBoard": "Each slice's letters, most frequent first. Glowing letters are the likely partners by frequency; a framed one is what the ring already predicts.",
           "ring": "Your alphabet as it builds up. It is only known up to rotation and stepping — any such reading decrypts the text, with a different key.",
           "placeLetter": "Letters the links have not reached (often rare ones). Pick one, then click an empty ring slot.",
-          "mergedIC": "All slices re-aligned onto the ring and measured together: near 0.066 means English, near 0.038 means a wrong link somewhere."
+          "mergedIC": "All slices re-aligned onto the ring and measured together: near 0.066 means English, near 0.038 means a wrong link somewhere.",
+          "fitScore": "Average distance from English over all slices, each at its best shift. Lower is better; below 1.4 counts as a fit."
         },
         "hints": {
           "toggles": {
             "highlightRepeats": "Highlight repeated sequences",
             "showGaps": "Show gaps between repeats",
             "partnerHints": "Suggest partner letters",
-            "mergedIC": "Show the English meter"
+            "mergedIC": "Show the English meter",
+            "coach": "Coach me step by step"
           }
         }
       }
@@ -936,7 +997,16 @@
             "unsupported": "The frequency tables are English: only reorderings of the 26 English letters can be checked. Rebuild the alphabet from the ciphertext instead.",
             "fitScore": "misfit {{score}}",
             "useKnown": "Use this alphabet",
-            "recover": "Rebuild it"
+            "recover": "Rebuild it",
+            "learn": {
+              "mixedTitle": "What is a mixed alphabet?",
+              "mixed1": "Beaufort moves each letter along an alphabet. Usually that is plain A–Z, but the sender can agree on any order with the receiver — most often a keyword alphabet: the keyword first, then the remaining letters in order.",
+              "plainLabel": "plain",
+              "keywordLabel": "keyword KRYPTOS",
+              "mixed2": "With a mixed alphabet the frequency chart of the key-letters step never lines up, whatever you rotate: the bars are in the wrong order, not just shifted. So the alphabet has to be found first.",
+              "fitTitle": "How is the fit judged?",
+              "fit": "For every slice the cracker tries all 26 shifts along the alphabet above and keeps the one closest to English letter frequencies. If even the best shift of every slice is far from English, the alphabet is not the sender's. The misfit score is that average distance: below 1.4 means a fit."
+            }
           },
           "recovery": {
             "title": "Rebuild the alphabet",
@@ -955,7 +1025,56 @@
             "recovered": "Recovered alphabet:",
             "keyword": "A keyword alphabet — keyword {{keyword}}.",
             "standard": "The plain A–Z alphabet after all.",
-            "unstraightened": "No keyword shape found; the ring works as it is, the key will just read differently."
+            "unstraightened": "No keyword shape found; the ring works as it is, the key will just read differently.",
+            "learn": {
+              "whyTitle": "Why this works",
+              "why1": "Every slice is shifted along the same secret alphabet, only by a different amount. So one plaintext letter turns into different cipher letters in two slices — but always the same distance apart in the secret alphabet. For example:",
+              "figure": {
+                "plain": "plaintext",
+                "first": "slice 1",
+                "second": "slice 2"
+              },
+              "why2": "Q–M, G–E and J–H are all 24 steps apart in the sender's alphabet. You do not know that alphabet yet, but you do not need to: each pair you spot says \"these two letters are a fixed step apart\". Chain enough pairs and every letter falls into place on a ring of 26 slots.",
+              "why3": "You spot pairs by frequency: the commonest letter of slice 1 and the commonest of slice 2 are probably both E; the second commonest are probably both T, and so on.",
+              "howTitle": "How to do it",
+              "how1": "Keep the two slices offered (the longest ones). Click the most frequent letter on the left, then the most frequent on the right: your first link.",
+              "how2": "Repeat down the lists: second with second, third with third. The ring fills as you go.",
+              "how3": "A red link contradicts the others: one of them is wrong. Remove the one you were less sure of.",
+              "how4": "After about eight links, switch the second slice to another one — new slices reach letters the first pair cannot.",
+              "how5": "Rare letters are hard to pair. Place the last few by hand, or leave them: the next step works even with gaps in rare letters.",
+              "readMore": "Read the full explanation",
+              "practice": "Try it on the practice cryptogram",
+              "rotatedTitle": "Why does my alphabet look rotated or jumbled?",
+              "rotated": "Links only tell distances, so the ring has no natural start and no natural direction or step. Any rotation of it, read every 1st, 3rd, 5th… slot, decrypts the text just as well — with a different key. If one of those readings is a keyword alphabet, the tool shows that one; otherwise it keeps the ring as built."
+            },
+            "coach": {
+              "firstLink": "Start here: {{from}} is the most frequent letter of slice {{first}}, {{to}} of slice {{second}}. Both probably stand for E. Click {{from}} on the left, then {{to}} on the right.",
+              "nextLink": "Next: link {{from}} (slice {{first}}) with {{to}} (slice {{second}}) — the next letters by frequency. The glowing letters on the right are other likely partners.",
+              "conflict": "The link {{link}} contradicts the ring. One of the clashing links is wrong — remove the one you are less sure of, or press Undo.",
+              "switchPair": "This pair is well worked. Switch the second slice to slice {{slice}}: its letters reach slots this pair cannot.",
+              "leftovers": "Almost there: {{count}} rare letters left. Pick one under \"Unplaced\" and click an empty slot, or continue — rare letters barely matter.",
+              "done": "The ring is complete. Check the English meter, then continue to the key letters."
+            },
+            "progress": {
+              "firstLink": "First link",
+              "sixPlaced": "Six letters placed",
+              "secondPair": "A second slice pair",
+              "complete": "Ring complete"
+            },
+            "chip": {
+              "link": "{{from}} (slice {{fromSlice}}) ↔ {{to}} (slice {{toSlice}})",
+              "place": "{{letter}} → slot {{slot}}",
+              "applied": "Placed on the ring.",
+              "pending": "Waiting: none of its letters is on the ring yet. It applies once a link reaches them.",
+              "conflict": "Contradicts the ring: remove it or the link it clashes with."
+            },
+            "showPositions": "show slot numbers",
+            "hidePositions": "hide slot numbers",
+            "meterBand": {
+              "low": "random so far",
+              "mid": "getting there",
+              "high": "reads like English"
+            }
           }
         },
         "keyLengthLabels": {
@@ -986,13 +1105,16 @@
           "mergedIC": "All slices re-aligned onto the ring and measured together: near 0.066 means English, near 0.038 means a wrong link somewhere.",
           "toggle": {
             "partnerHints": "Highlight letters of the second slice whose frequency matches the selected letter.",
-            "mergedIC": "Measure how English the slices look once re-aligned on the ring."
-          }
+            "mergedIC": "Measure how English the slices look once re-aligned on the ring.",
+            "coach": "Show the next-step coach and open the explanations. Off on medium and hard."
+          },
+          "fitScore": "Average distance from English over all slices, each at its best shift. Lower is better; below 1.4 counts as a fit."
         },
         "hints": {
           "toggles": {
             "partnerHints": "Suggest partner letters",
-            "mergedIC": "Show the English meter"
+            "mergedIC": "Show the English meter",
+            "coach": "Coach me step by step"
           }
         }
       },
@@ -1388,6 +1510,9 @@
       },
       "vigenere-demo": {
         "title": "Cracker demo ciphertext"
+      },
+      "vigenere-mixed-demo": {
+        "title": "Mixed-alphabet demo ciphertext"
       },
       "vigenere-easy-2": {
         "title": "The novel continues",
