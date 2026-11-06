@@ -66,7 +66,7 @@ const Cryptanalysis: React.FC = () => {
   // from the URL, pre-fill the ciphertext and remove the parameter. Only
   // our own content ids travel through the URL, never user text.
   useEffect(() => {
-    if (!router.isReady || pendingExample) {
+    if (!router.isReady) {
       return;
     }
     const exampleId = router.query.example;
@@ -75,6 +75,7 @@ const Cryptanalysis: React.FC = () => {
     if (typeof exampleId === 'string') {
       const example = getExample(exampleId);
       if (example) {
+        setInput(example.input);
         setPendingExample({
           cipher: example.cipher,
           input: example.input,
@@ -89,6 +90,7 @@ const Cryptanalysis: React.FC = () => {
     if (typeof challengeId === 'string') {
       const challenge = getChallenge(challengeId);
       if (challenge) {
+        setInput(challenge.ciphertext);
         setPendingExample({
           cipher: challenge.cipher,
           input: challenge.ciphertext,
@@ -98,7 +100,7 @@ const Cryptanalysis: React.FC = () => {
         clearParam();
       }
     }
-  }, [router.isReady, pendingExample]);
+  }, [router.isReady, router.query.example, router.query.challenge]);
 
   const clearParam = () => {
     const { example: _e, challenge: _c, ...restQuery } = router.query;
