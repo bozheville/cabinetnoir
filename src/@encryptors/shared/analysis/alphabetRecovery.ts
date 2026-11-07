@@ -119,7 +119,7 @@ const valid = (action: RingAction): boolean => (action.kind === 'link'
 // that contradicts the ring (a letter already in another slot, a slot
 // already taken, an offset already different) is a conflict and
 // changes nothing.
-const solveFrom = (
+export const solveFrom = (
   actions: RingAction[],
   anchorIndex: number | null,
   distance: number,
