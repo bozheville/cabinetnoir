@@ -708,7 +708,10 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
             : t(`${base}pickPartner`, { letter: selected })
           : t(`${base}pickLetter`)}
       </Note>
-      {preview && !preview.rated && (
+      {preview?.origin && (
+        <Note data-guide="preview-origin">{t(`${base}preview.origin`)}</Note>
+      )}
+      {preview && !preview.rated && !preview.origin && (
         <Note data-guide="preview-unrated">{t(`${base}preview.unrated`)}</Note>
       )}
       {preview?.closeCall && Object.keys(ringState.positions).length < 6 && (
