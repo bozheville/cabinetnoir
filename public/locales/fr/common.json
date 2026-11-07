@@ -374,7 +374,7 @@
               "practice": "S'exercer sur le cryptogramme d'entraînement",
               "rotatedTitle": "Pourquoi mon alphabet semble-t-il tourné ou mélangé ?",
               "rotated": "Les liens ne donnent que des distances : l'anneau n'a ni début naturel, ni sens, ni pas naturels. N'importe quelle rotation, lue toutes les 1, 3, 5… cases, déchiffre le texte tout aussi bien — avec une autre clé. Si l'une de ces lectures est un alphabet à mot-clé, l'outil affiche celle-là ; sinon il garde l'anneau tel que construit.",
-              "how6": "Avec l'aperçu des liens, chaque lettre de droite indique son accord : ○○○ peu probable, ●○○ plausible, ●●○ la meilleure pour l'instant, ●●● nettement la meilleure. ✕ signale un conflit. Au début, seul ●○○ est possible — l'anneau a besoin de quelques lettres pour vérifier."
+              "how6": "Avec l'aperçu des liens, chaque lettre de droite indique son accord : ○○○ peu probable, ●○○ plausible, ●●○ la meilleure pour l'instant, ●●● nettement la meilleure. ✕ signale un conflit. Au début, aucun point ne s'affiche : l'anneau a besoin de quelques lettres pour vérifier."
             },
             "coach": {
               "firstLink": "Commencez ici : {{from}} est la lettre la plus fréquente de la tranche {{first}}, {{to}} celle de la tranche {{second}}. Toutes deux représentent probablement E. Cliquez {{from}} à gauche, puis {{to}} à droite.",
@@ -421,7 +421,8 @@
               "gain": "Placerait {{count}} lettre(s) sur l'anneau.",
               "waits": "Resterait en attente : aucune de ses lettres n'est encore sur l'anneau.",
               "clash": "Conflit : contredit des liens déjà faits.",
-              "closeCall": "Plusieurs lettres à droite sont aussi fréquentes que {{letter}} : la fréquence seule ne peut trancher. Reliez d'abord les lettres les plus nettes (les premières) — l'anneau vérifiera ensuite le reste."
+              "closeCall": "Plusieurs lettres à droite sont aussi fréquentes que {{letter}} : la fréquence seule ne peut trancher. Reliez d'abord les lettres les plus nettes (les premières) — l'anneau vérifiera ensuite le reste.",
+              "unrated": "Trop peu de lettres sur l'anneau pour noter les partenaires. Reliez d'abord les lettres les plus fréquentes ; les conflits (✕) et les réactions en chaîne (+N) restent affichés."
             }
           }
         },
@@ -905,7 +906,7 @@
               "practice": "S'exercer sur le cryptogramme d'entraînement",
               "rotatedTitle": "Pourquoi mon alphabet semble-t-il tourné ou mélangé ?",
               "rotated": "Les liens ne donnent que des distances : l'anneau n'a ni début naturel, ni sens, ni pas naturels. N'importe quelle rotation, lue toutes les 1, 3, 5… cases, déchiffre le texte tout aussi bien — avec une autre clé. Si l'une de ces lectures est un alphabet à mot-clé, l'outil affiche celle-là ; sinon il garde l'anneau tel que construit.",
-              "how6": "Avec l'aperçu des liens, chaque lettre de droite indique son accord : ○○○ peu probable, ●○○ plausible, ●●○ la meilleure pour l'instant, ●●● nettement la meilleure. ✕ signale un conflit. Au début, seul ●○○ est possible — l'anneau a besoin de quelques lettres pour vérifier."
+              "how6": "Avec l'aperçu des liens, chaque lettre de droite indique son accord : ○○○ peu probable, ●○○ plausible, ●●○ la meilleure pour l'instant, ●●● nettement la meilleure. ✕ signale un conflit. Au début, aucun point ne s'affiche : l'anneau a besoin de quelques lettres pour vérifier."
             },
             "coach": {
               "firstLink": "Commencez ici : {{from}} est la lettre la plus fréquente de la tranche {{first}}, {{to}} celle de la tranche {{second}}. Toutes deux représentent probablement E. Cliquez {{from}} à gauche, puis {{to}} à droite.",
@@ -952,7 +953,8 @@
               "gain": "Placerait {{count}} lettre(s) sur l'anneau.",
               "waits": "Resterait en attente : aucune de ses lettres n'est encore sur l'anneau.",
               "clash": "Conflit : contredit des liens déjà faits.",
-              "closeCall": "Plusieurs lettres à droite sont aussi fréquentes que {{letter}} : la fréquence seule ne peut trancher. Reliez d'abord les lettres les plus nettes (les premières) — l'anneau vérifiera ensuite le reste."
+              "closeCall": "Plusieurs lettres à droite sont aussi fréquentes que {{letter}} : la fréquence seule ne peut trancher. Reliez d'abord les lettres les plus nettes (les premières) — l'anneau vérifiera ensuite le reste.",
+              "unrated": "Trop peu de lettres sur l'anneau pour noter les partenaires. Reliez d'abord les lettres les plus fréquentes ; les conflits (✕) et les réactions en chaîne (+N) restent affichés."
             }
           }
         },

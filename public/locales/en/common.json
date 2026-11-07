@@ -550,7 +550,7 @@
               "practice": "Try it on the practice cryptogram",
               "rotatedTitle": "Why does my alphabet look rotated or jumbled?",
               "rotated": "Links only tell distances, so the ring has no natural start and no natural direction or step. Any rotation of it, read every 1st, 3rd, 5th… slot, decrypts the text just as well — with a different key. If one of those readings is a keyword alphabet, the tool shows that one; otherwise it keeps the ring as built.",
-              "how6": "With link preview on, each right-hand letter shows how well it fits: ○○○ unlikely, ●○○ plausible, ●●○ best so far, ●●● clear best. ✕ means it clashes. Early on only ●○○ is possible — the ring needs a few letters before it can check."
+              "how6": "With link preview on, each right-hand letter shows how well it fits: ○○○ unlikely, ●○○ plausible, ●●○ best so far, ●●● clear best. ✕ means it clashes. Early on no dots show: the ring needs a few letters before it can check."
             },
             "coach": {
               "firstLink": "Start here: {{from}} is the most frequent letter of slice {{first}}, {{to}} of slice {{second}}. Both probably stand for E. Click {{from}} on the left, then {{to}} on the right.",
@@ -597,7 +597,8 @@
               "gain": "Would place {{count}} letter(s) on the ring.",
               "waits": "Would wait: no letter of it is on the ring yet.",
               "clash": "Clash: contradicts links you already made.",
-              "closeCall": "Several letters on the right are as frequent as {{letter}}: frequency alone cannot decide. Link the clearest letters (the top few) first — then the ring checks the rest."
+              "closeCall": "Several letters on the right are as frequent as {{letter}}: frequency alone cannot decide. Link the clearest letters (the top few) first — then the ring checks the rest.",
+              "unrated": "Too few letters on the ring to rate partners yet. Link the most frequent letters first; clashes (✕) and chain reactions (+N) still show."
             }
           }
         },
@@ -1071,7 +1072,7 @@
               "practice": "Try it on the practice cryptogram",
               "rotatedTitle": "Why does my alphabet look rotated or jumbled?",
               "rotated": "Links only tell distances, so the ring has no natural start and no natural direction or step. Any rotation of it, read every 1st, 3rd, 5th… slot, decrypts the text just as well — with a different key. If one of those readings is a keyword alphabet, the tool shows that one; otherwise it keeps the ring as built.",
-              "how6": "With link preview on, each right-hand letter shows how well it fits: ○○○ unlikely, ●○○ plausible, ●●○ best so far, ●●● clear best. ✕ means it clashes. Early on only ●○○ is possible — the ring needs a few letters before it can check."
+              "how6": "With link preview on, each right-hand letter shows how well it fits: ○○○ unlikely, ●○○ plausible, ●●○ best so far, ●●● clear best. ✕ means it clashes. Early on no dots show: the ring needs a few letters before it can check."
             },
             "coach": {
               "firstLink": "Start here: {{from}} is the most frequent letter of slice {{first}}, {{to}} of slice {{second}}. Both probably stand for E. Click {{from}} on the left, then {{to}} on the right.",
@@ -1118,7 +1119,8 @@
               "gain": "Would place {{count}} letter(s) on the ring.",
               "waits": "Would wait: no letter of it is on the ring yet.",
               "clash": "Clash: contradicts links you already made.",
-              "closeCall": "Several letters on the right are as frequent as {{letter}}: frequency alone cannot decide. Link the clearest letters (the top few) first — then the ring checks the rest."
+              "closeCall": "Several letters on the right are as frequent as {{letter}}: frequency alone cannot decide. Link the clearest letters (the top few) first — then the ring checks the rest.",
+              "unrated": "Too few letters on the ring to rate partners yet. Link the most frequent letters first; clashes (✕) and chain reactions (+N) still show."
             }
           }
         },

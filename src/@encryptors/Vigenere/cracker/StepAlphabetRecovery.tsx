@@ -521,19 +521,24 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
     })
     : t(`${base}chip.place`, { letter: action.letter, slot: action.slot }));
 
-  const badge = (candidate: CandidatePreview) => {
+  // Dots only once the ring can check some candidate: before that every
+  // rating rests on one noisy comparison and says nothing.
+  const badge = (candidate: CandidatePreview, rated: boolean) => {
     if (candidate.clash) {
       return <PreviewBadge $tone="clash" title={t(`${base}preview.clash`)}>✕</PreviewBadge>;
     }
-    const dots = '●'.repeat(candidate.confidence) + '○'.repeat(3 - candidate.confidence);
     const gain = candidate.gained >= 3 ? ` +${candidate.gained}` : '';
+    if (!rated && !gain) {
+      return null;
+    }
+    const dots = rated ? '●'.repeat(candidate.confidence) + '○'.repeat(3 - candidate.confidence) : '';
     const title = [
-      t(`${base}preview.level${candidate.confidence}`),
+      rated ? t(`${base}preview.level${candidate.confidence}`) : '',
       candidate.gained > 0 ? t(`${base}preview.gain`, { count: candidate.gained }) : t(`${base}preview.waits`),
-    ].join(' ');
+    ].filter(Boolean).join(' ');
     return (
       <PreviewBadge $tone={candidate.confidence === 3 ? 'strong' : 'weak'} title={title}>
-        {`${dots}${gain}`}
+        {`${dots}${gain}`.trim()}
       </PreviewBadge>
     );
   };
@@ -689,7 +694,7 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
                 >
                   <BarFill $color={colorOf(toColumn)} style={{ width: `${(count / maxCount) * 100}%` }} />
                   <BarText>{`${letter}  ${count}`}</BarText>
-                  {preview?.candidates[letter] && badge(preview.candidates[letter])}
+                  {preview?.candidates[letter] && badge(preview.candidates[letter], preview.rated)}
                 </LetterBar>
               ))}
             </LetterList>
@@ -703,6 +708,9 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
             : t(`${base}pickPartner`, { letter: selected })
           : t(`${base}pickLetter`)}
       </Note>
+      {preview && !preview.rated && (
+        <Note data-guide="preview-unrated">{t(`${base}preview.unrated`)}</Note>
+      )}
       {preview?.closeCall && Object.keys(ringState.positions).length < 6 && (
         <Note data-guide="close-call">{t(`${base}preview.closeCall`, { letter: selected })}</Note>
       )}
