@@ -70,6 +70,8 @@ describe('previewLink', () => {
     });
     // The ring holds the longer strip; joining places the other two.
     expect(result.candidates[strip[2]].gained).toBe(2);
+    // strip[1] is the link's own new letter; strip[0] comes along.
+    expect(result.candidates[strip[2]].cascade).toBe(1);
   });
 
   it('rates only the true partner at full confidence once the ring is rich', () => {
@@ -102,6 +104,9 @@ describe('previewLink', () => {
 
   it('never rates a lone first link above plausible', () => {
     const result = preview([], 'E');
+    expect(result.origin).toBe(true);
+    expect(result.rated).toBe(false);
+    expect(Object.values(result.candidates).every((c) => c.cascade === 0 && (c.waits || c.gained === 2))).toBe(true);
     expect(Math.max(...Object.values(result.candidates).map((c) => c.confidence))).toBeLessThanOrEqual(1);
   });
 

@@ -67,6 +67,8 @@ export interface CandidatePreview {
   waits: boolean;
   // Letters newly placed on the ring by this link (cascades included).
   gained: number;
+  // Of those, letters other than the link's own two: a real cascade.
+  cascade: number;
   // Pairings checked and their mean gap in noise units.
   comparisons: number;
   meanGap: number;
@@ -78,6 +80,12 @@ export interface LinkPreview {
   // Several candidates match the selected letter's share within noise:
   // its frequency alone cannot decide, link clearer letters first.
   closeCall: boolean;
+  // Some candidate is checked against the ring (MIN_COMPARISONS); until
+  // then every rating rests on one noisy share comparison.
+  rated: boolean;
+  // Nothing is on the ring yet: this link only sets its origin, and any
+  // partner fits.
+  origin: boolean;
 }
 
 // A candidate checked against at least this many pairings is judged
@@ -214,11 +222,14 @@ export const previewLink = (params: {
     if (gaps[0] < 1) {
       nearMatches += 1;
     }
+    const gained = clash ? 0 : Object.keys(next.positions).length - placedBefore;
+    const own = [selected, letter].filter((value) => !(value in state.positions) && value in next.positions).length;
     candidates[letter] = {
       letter,
       clash,
       waits: !clash && status === 'pending',
-      gained: clash ? 0 : Object.keys(next.positions).length - placedBefore,
+      gained,
+      cascade: Math.max(0, gained - own),
       comparisons: gaps.length,
       meanGap,
       confidence: 0,
@@ -226,7 +237,12 @@ export const previewLink = (params: {
   });
 
   rate(Object.values(candidates));
-  return { candidates, closeCall: nearMatches >= 3 };
+  return {
+    candidates,
+    closeCall: nearMatches >= 3,
+    rated: Object.values(candidates).some((candidate) => !candidate.clash && candidate.comparisons >= MIN_COMPARISONS),
+    origin: !state.anchor,
+  };
 };
 
 // The link of `actions` whose own two letters disagree most in share:
