@@ -13,12 +13,16 @@ import {
   columnFrequencies,
   columnLetters,
   mergedIC,
+  previewLink,
+  sliceShares,
   suggestPartners,
+  weakestLink,
 } from '@encryptors/shared/analysis';
 import { HIGHLIGHT_COLORS, useCrackerKey, useCrackerScope } from '@encryptors/shared/cracker';
 import { useCracker } from './useCracker';
 import { checklist as buildChecklist, coachTip } from './recoveryCoach';
 import { ringChains } from './ringChains';
+import type { CandidatePreview } from '@encryptors/shared/analysis';
 
 // Random letters ~0.038, English ~0.066: the merged-IC meter's scale.
 const IC_RANDOM = 0.038;
@@ -125,6 +129,18 @@ const BarFill = styled.span<{ $color: string }>`
 
 const BarText = styled.span`
   position: relative;
+`;
+
+// Link preview badge at the bar's right end: confidence dots, letters
+// a link would place, or a clash cross.
+const PreviewBadge = styled.span<{ $tone: 'clash' | 'strong' | 'weak' }>`
+  position: relative;
+  margin-left: auto;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: ${({ $tone, theme }) => ($tone === 'clash'
+    ? theme.ink.red
+    : $tone === 'strong' ? theme.metal.copper.dark : theme.ink.secondary)};
 `;
 
 // The ring: 26 slots in a row, filled as the links chain up.
@@ -460,6 +476,17 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
     return ringState.slots[slot];
   }, [selected, hints.partnerHints, ringState, fromColumn, toColumn]);
 
+  const shares = useMemo(() => (length > 0 ? sliceShares(letters, length) : []), [letters, length]);
+
+  const preview = useMemo(() => {
+    if (!selected || !hints.linkPreview || length === 0) {
+      return null;
+    }
+    return previewLink({
+      letters, keyLength: length, actions: ringActions, state: ringState, fromColumn, toColumn, selected, shares,
+    });
+  }, [selected, hints.linkPreview, letters, length, ringActions, ringState, fromColumn, toColumn, shares]);
+
   const meter = useMemo(
     () => (hints.mergedIC ? mergedIC(letters, length, ringState) : null),
     [hints.mergedIC, letters, length, ringState],
@@ -494,6 +521,23 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
     })
     : t(`${base}chip.place`, { letter: action.letter, slot: action.slot }));
 
+  const badge = (candidate: CandidatePreview) => {
+    if (candidate.clash) {
+      return <PreviewBadge $tone="clash" title={t(`${base}preview.clash`)}>✕</PreviewBadge>;
+    }
+    const dots = '●'.repeat(candidate.confidence) + '○'.repeat(3 - candidate.confidence);
+    const gain = candidate.gained >= 3 ? ` +${candidate.gained}` : '';
+    const title = [
+      t(`${base}preview.level${candidate.confidence}`),
+      candidate.gained > 0 ? t(`${base}preview.gain`, { count: candidate.gained }) : t(`${base}preview.waits`),
+    ].join(' ');
+    return (
+      <PreviewBadge $tone={candidate.confidence === 3 ? 'strong' : 'weak'} title={title}>
+        {`${dots}${gain}`}
+      </PreviewBadge>
+    );
+  };
+
   const chipTip = (index: number): string => t(`${base}chip.${ringState.statuses[index]}`);
 
   const coachText = (() => {
@@ -506,8 +550,15 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
           first: fromColumn + 1,
           second: toColumn + 1,
         });
-      case 'conflict':
-        return t(`${base}coach.conflict`, { link: describe(tip.link) });
+      case 'conflict': {
+        const weakest = hints.linkPreview ? weakestLink(letters, keyLength, ringActions, shares) : null;
+        return weakest && weakest.gap > 1.5
+          ? t(`${base}coach.conflictWeakest`, {
+            link: describe(tip.link),
+            weakest: describe(ringActions[weakest.index]),
+          })
+          : t(`${base}coach.conflict`, { link: describe(tip.link) });
+      }
       case 'switchPair':
         return t(`${base}coach.switchPair`, { slice: tip.column + 1 });
       case 'leftovers':
@@ -564,7 +615,7 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
 
       <Disclosure id={`${scope}.recovery.how`} title={t(`${base}learn.howTitle`)} defaultOpen={coachOn}>
         <ol style={{ margin: 0, paddingLeft: 18 }}>
-          {['how1', 'how2', 'how3', 'how4', 'how5'].map((key) => (
+          {['how1', 'how2', 'how3', 'how4', 'how5', ...(hints.linkPreview ? ['how6'] : [])].map((key) => (
             <li key={key}>{t(`${base}learn.${key}`)}</li>
           ))}
         </ol>
@@ -638,6 +689,7 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
                 >
                   <BarFill $color={colorOf(toColumn)} style={{ width: `${(count / maxCount) * 100}%` }} />
                   <BarText>{`${letter}  ${count}`}</BarText>
+                  {preview?.candidates[letter] && badge(preview.candidates[letter])}
                 </LetterBar>
               ))}
             </LetterList>
@@ -651,6 +703,9 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
             : t(`${base}pickPartner`, { letter: selected })
           : t(`${base}pickLetter`)}
       </Note>
+      {preview?.closeCall && Object.keys(ringState.positions).length < 6 && (
+        <Note data-guide="close-call">{t(`${base}preview.closeCall`, { letter: selected })}</Note>
+      )}
 
       {chains.length > 0 && (
         <Tooltip content={t(`${tooltip}chains`)}>

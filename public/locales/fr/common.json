@@ -373,7 +373,8 @@
               "readMore": "Lire l'explication complète",
               "practice": "S'exercer sur le cryptogramme d'entraînement",
               "rotatedTitle": "Pourquoi mon alphabet semble-t-il tourné ou mélangé ?",
-              "rotated": "Les liens ne donnent que des distances : l'anneau n'a ni début naturel, ni sens, ni pas naturels. N'importe quelle rotation, lue toutes les 1, 3, 5… cases, déchiffre le texte tout aussi bien — avec une autre clé. Si l'une de ces lectures est un alphabet à mot-clé, l'outil affiche celle-là ; sinon il garde l'anneau tel que construit."
+              "rotated": "Les liens ne donnent que des distances : l'anneau n'a ni début naturel, ni sens, ni pas naturels. N'importe quelle rotation, lue toutes les 1, 3, 5… cases, déchiffre le texte tout aussi bien — avec une autre clé. Si l'une de ces lectures est un alphabet à mot-clé, l'outil affiche celle-là ; sinon il garde l'anneau tel que construit.",
+              "how6": "Avec l'aperçu des liens, chaque lettre de droite indique son accord : ○○○ peu probable, ●○○ plausible, ●●○ la meilleure pour l'instant, ●●● nettement la meilleure. ✕ signale un conflit. Au début, seul ●○○ est possible — l'anneau a besoin de quelques lettres pour vérifier."
             },
             "coach": {
               "firstLink": "Commencez ici : {{from}} est la lettre la plus fréquente de la tranche {{first}}, {{to}} celle de la tranche {{second}}. Toutes deux représentent probablement E. Cliquez {{from}} à gauche, puis {{to}} à droite.",
@@ -381,7 +382,8 @@
               "conflict": "Le lien {{link}} contredit l'anneau. L'un des liens en conflit est faux — retirez celui dont vous êtes le moins sûr, ou appuyez sur Annuler.",
               "switchPair": "Cette paire est bien exploitée. Passez la seconde tranche à la tranche {{slice}} : ses lettres atteignent des cases que cette paire ne peut pas atteindre.",
               "leftovers": "Presque fini : il reste {{count}} lettres rares. Choisissez-en une sous « Non placées » et cliquez une case vide, ou continuez — les lettres rares comptent à peine.",
-              "done": "L'anneau est complet. Vérifiez l'indicateur d'anglais, puis passez aux lettres de la clé."
+              "done": "L'anneau est complet. Vérifiez l'indicateur d'anglais, puis passez aux lettres de la clé.",
+              "conflictWeakest": "Le lien {{link}} contredit l'anneau. Le coupable le plus probable est {{weakest}} : ses deux lettres diffèrent le plus en fréquence. Retirez-le, ou appuyez sur Annuler."
             },
             "progress": {
               "firstLink": "Premier lien",
@@ -410,6 +412,16 @@
               "onRing": "Sur l'anneau : un lien place déjà ces lettres.",
               "waiting": "Pas encore sur l'anneau : reliez l'une de ces lettres à une lettre placée, ou continuez jusqu'à ce qu'une bande atteigne l'anneau.",
               "loop": "Une boucle fermée : la chaîne est revenue à son départ."
+            },
+            "preview": {
+              "level0": "Peu probable : sa fréquence ne correspond pas.",
+              "level1": "Plausible par la fréquence seule.",
+              "level2": "Meilleure correspondance pour l'instant, vérifiée sur l'anneau — pas encore nette.",
+              "level3": "Nettement la meilleure : tout l'anneau confirme ce lien.",
+              "gain": "Placerait {{count}} lettre(s) sur l'anneau.",
+              "waits": "Resterait en attente : aucune de ses lettres n'est encore sur l'anneau.",
+              "clash": "Conflit : contredit des liens déjà faits.",
+              "closeCall": "Plusieurs lettres à droite sont aussi fréquentes que {{letter}} : la fréquence seule ne peut trancher. Reliez d'abord les lettres les plus nettes (les premières) — l'anneau vérifiera ensuite le reste."
             }
           }
         },
@@ -433,7 +445,8 @@
             "showGaps": "Affiche les distances entre les séquences répétées, à côté de chaque groupe.",
             "partnerHints": "Surligne les lettres de la seconde tranche dont la fréquence correspond à la lettre choisie.",
             "mergedIC": "Mesure à quel point les tranches réalignées sur l'anneau ressemblent à l'anglais.",
-            "coach": "Affiche le guide de l'étape suivante et ouvre les explications. Désactivé en moyen et difficile."
+            "coach": "Affiche le guide de l'étape suivante et ouvre les explications. Désactivé en moyen et difficile.",
+            "linkPreview": "Après le choix d'une lettre, note chaque partenaire : des points ● selon l'accord avec les fréquences et l'anneau, +N pour les lettres qu'il placerait, ✕ pour un conflit. Désactivé en moyen et difficile."
           },
           "keyLengthCards": "Longueurs de clé probables, classées par deux signaux : les distances entre séquences répétées et la ressemblance des tranches avec l'anglais. Cliquez sur une carte pour choisir.",
           "otherLength": "Saisissez une longueur de clé manuellement si aucune carte ne convient.",
@@ -456,7 +469,8 @@
             "showGaps": "Afficher les écarts entre les répétitions",
             "partnerHints": "Suggérer les lettres partenaires",
             "mergedIC": "Afficher l'indicateur d'anglais",
-            "coach": "Me guider pas à pas"
+            "coach": "Me guider pas à pas",
+            "linkPreview": "Aperçu des liens"
           }
         }
       }
@@ -890,7 +904,8 @@
               "readMore": "Lire l'explication complète",
               "practice": "S'exercer sur le cryptogramme d'entraînement",
               "rotatedTitle": "Pourquoi mon alphabet semble-t-il tourné ou mélangé ?",
-              "rotated": "Les liens ne donnent que des distances : l'anneau n'a ni début naturel, ni sens, ni pas naturels. N'importe quelle rotation, lue toutes les 1, 3, 5… cases, déchiffre le texte tout aussi bien — avec une autre clé. Si l'une de ces lectures est un alphabet à mot-clé, l'outil affiche celle-là ; sinon il garde l'anneau tel que construit."
+              "rotated": "Les liens ne donnent que des distances : l'anneau n'a ni début naturel, ni sens, ni pas naturels. N'importe quelle rotation, lue toutes les 1, 3, 5… cases, déchiffre le texte tout aussi bien — avec une autre clé. Si l'une de ces lectures est un alphabet à mot-clé, l'outil affiche celle-là ; sinon il garde l'anneau tel que construit.",
+              "how6": "Avec l'aperçu des liens, chaque lettre de droite indique son accord : ○○○ peu probable, ●○○ plausible, ●●○ la meilleure pour l'instant, ●●● nettement la meilleure. ✕ signale un conflit. Au début, seul ●○○ est possible — l'anneau a besoin de quelques lettres pour vérifier."
             },
             "coach": {
               "firstLink": "Commencez ici : {{from}} est la lettre la plus fréquente de la tranche {{first}}, {{to}} celle de la tranche {{second}}. Toutes deux représentent probablement E. Cliquez {{from}} à gauche, puis {{to}} à droite.",
@@ -898,7 +913,8 @@
               "conflict": "Le lien {{link}} contredit l'anneau. L'un des liens en conflit est faux — retirez celui dont vous êtes le moins sûr, ou appuyez sur Annuler.",
               "switchPair": "Cette paire est bien exploitée. Passez la seconde tranche à la tranche {{slice}} : ses lettres atteignent des cases que cette paire ne peut pas atteindre.",
               "leftovers": "Presque fini : il reste {{count}} lettres rares. Choisissez-en une sous « Non placées » et cliquez une case vide, ou continuez — les lettres rares comptent à peine.",
-              "done": "L'anneau est complet. Vérifiez l'indicateur d'anglais, puis passez aux lettres de la clé."
+              "done": "L'anneau est complet. Vérifiez l'indicateur d'anglais, puis passez aux lettres de la clé.",
+              "conflictWeakest": "Le lien {{link}} contredit l'anneau. Le coupable le plus probable est {{weakest}} : ses deux lettres diffèrent le plus en fréquence. Retirez-le, ou appuyez sur Annuler."
             },
             "progress": {
               "firstLink": "Premier lien",
@@ -927,6 +943,16 @@
               "onRing": "Sur l'anneau : un lien place déjà ces lettres.",
               "waiting": "Pas encore sur l'anneau : reliez l'une de ces lettres à une lettre placée, ou continuez jusqu'à ce qu'une bande atteigne l'anneau.",
               "loop": "Une boucle fermée : la chaîne est revenue à son départ."
+            },
+            "preview": {
+              "level0": "Peu probable : sa fréquence ne correspond pas.",
+              "level1": "Plausible par la fréquence seule.",
+              "level2": "Meilleure correspondance pour l'instant, vérifiée sur l'anneau — pas encore nette.",
+              "level3": "Nettement la meilleure : tout l'anneau confirme ce lien.",
+              "gain": "Placerait {{count}} lettre(s) sur l'anneau.",
+              "waits": "Resterait en attente : aucune de ses lettres n'est encore sur l'anneau.",
+              "clash": "Conflit : contredit des liens déjà faits.",
+              "closeCall": "Plusieurs lettres à droite sont aussi fréquentes que {{letter}} : la fréquence seule ne peut trancher. Reliez d'abord les lettres les plus nettes (les premières) — l'anneau vérifiera ensuite le reste."
             }
           }
         },
@@ -959,7 +985,8 @@
           "toggle": {
             "partnerHints": "Surligne les lettres de la seconde tranche dont la fréquence correspond à la lettre choisie.",
             "mergedIC": "Mesure à quel point les tranches réalignées sur l'anneau ressemblent à l'anglais.",
-            "coach": "Affiche le guide de l'étape suivante et ouvre les explications. Désactivé en moyen et difficile."
+            "coach": "Affiche le guide de l'étape suivante et ouvre les explications. Désactivé en moyen et difficile.",
+            "linkPreview": "Après le choix d'une lettre, note chaque partenaire : des points ● selon l'accord avec les fréquences et l'anneau, +N pour les lettres qu'il placerait, ✕ pour un conflit. Désactivé en moyen et difficile."
           },
           "fitScore": "Distance moyenne à l'anglais sur toutes les tranches, chacune à son meilleur décalage. Plus bas, c'est mieux ; en dessous de 1,4, l'alphabet convient.",
           "chains": "Chaque lien créé, aligné par paire de tranches. Montre la progression avant même que l'anneau puisse placer les lettres."
@@ -968,7 +995,8 @@
           "toggles": {
             "partnerHints": "Suggérer les lettres partenaires",
             "mergedIC": "Afficher l'indicateur d'anglais",
-            "coach": "Me guider pas à pas"
+            "coach": "Me guider pas à pas",
+            "linkPreview": "Aperçu des liens"
           }
         }
       },

@@ -549,7 +549,8 @@
               "readMore": "Read the full explanation",
               "practice": "Try it on the practice cryptogram",
               "rotatedTitle": "Why does my alphabet look rotated or jumbled?",
-              "rotated": "Links only tell distances, so the ring has no natural start and no natural direction or step. Any rotation of it, read every 1st, 3rd, 5th… slot, decrypts the text just as well — with a different key. If one of those readings is a keyword alphabet, the tool shows that one; otherwise it keeps the ring as built."
+              "rotated": "Links only tell distances, so the ring has no natural start and no natural direction or step. Any rotation of it, read every 1st, 3rd, 5th… slot, decrypts the text just as well — with a different key. If one of those readings is a keyword alphabet, the tool shows that one; otherwise it keeps the ring as built.",
+              "how6": "With link preview on, each right-hand letter shows how well it fits: ○○○ unlikely, ●○○ plausible, ●●○ best so far, ●●● clear best. ✕ means it clashes. Early on only ●○○ is possible — the ring needs a few letters before it can check."
             },
             "coach": {
               "firstLink": "Start here: {{from}} is the most frequent letter of slice {{first}}, {{to}} of slice {{second}}. Both probably stand for E. Click {{from}} on the left, then {{to}} on the right.",
@@ -557,7 +558,8 @@
               "conflict": "The link {{link}} contradicts the ring. One of the clashing links is wrong — remove the one you are less sure of, or press Undo.",
               "switchPair": "This pair is well worked. Switch the second slice to slice {{slice}}: its letters reach slots this pair cannot.",
               "leftovers": "Almost there: {{count}} rare letters left. Pick one under \"Unplaced\" and click an empty slot, or continue — rare letters barely matter.",
-              "done": "The ring is complete. Check the English meter, then continue to the key letters."
+              "done": "The ring is complete. Check the English meter, then continue to the key letters.",
+              "conflictWeakest": "The link {{link}} contradicts the ring. The likeliest culprit is {{weakest}}: its two letters differ most in frequency. Remove it, or press Undo."
             },
             "progress": {
               "firstLink": "First link",
@@ -586,6 +588,16 @@
               "onRing": "On the ring: a link already places these letters.",
               "waiting": "Not on the ring yet: link one of these letters to a placed letter, or keep linking until a strip reaches the ring.",
               "loop": "A closed loop: the chain came back to its start."
+            },
+            "preview": {
+              "level0": "Unlikely: its frequency does not match.",
+              "level1": "Plausible by frequency alone.",
+              "level2": "Best match so far, checked against the ring — not yet clear-cut.",
+              "level3": "Clear best: the whole ring agrees with this link.",
+              "gain": "Would place {{count}} letter(s) on the ring.",
+              "waits": "Would wait: no letter of it is on the ring yet.",
+              "clash": "Clash: contradicts links you already made.",
+              "closeCall": "Several letters on the right are as frequent as {{letter}}: frequency alone cannot decide. Link the clearest letters (the top few) first — then the ring checks the rest."
             }
           }
         },
@@ -609,7 +621,8 @@
             "showGaps": "Shows the distances between repeated sequences, next to each group.",
             "partnerHints": "Highlight letters of the second slice whose frequency matches the selected letter.",
             "mergedIC": "Measure how English the slices look once re-aligned on the ring.",
-            "coach": "Show the next-step coach and open the explanations. Off on medium and hard."
+            "coach": "Show the next-step coach and open the explanations. Off on medium and hard.",
+            "linkPreview": "After you pick a letter, rate each partner: ● dots for how well it fits the frequencies and the ring, +N for the letters it would place, ✕ for a clash. Off on medium and hard."
           },
           "keyLengthCards": "Likely key lengths ranked by two signals: distances between repeated sequences, and how English-like the text slices look. Click a card to choose.",
           "otherLength": "Enter a key length manually if none of the suggested cards fits.",
@@ -632,7 +645,8 @@
             "showGaps": "Show gaps between repeats",
             "partnerHints": "Suggest partner letters",
             "mergedIC": "Show the English meter",
-            "coach": "Coach me step by step"
+            "coach": "Coach me step by step",
+            "linkPreview": "Preview links"
           }
         }
       }
@@ -1056,7 +1070,8 @@
               "readMore": "Read the full explanation",
               "practice": "Try it on the practice cryptogram",
               "rotatedTitle": "Why does my alphabet look rotated or jumbled?",
-              "rotated": "Links only tell distances, so the ring has no natural start and no natural direction or step. Any rotation of it, read every 1st, 3rd, 5th… slot, decrypts the text just as well — with a different key. If one of those readings is a keyword alphabet, the tool shows that one; otherwise it keeps the ring as built."
+              "rotated": "Links only tell distances, so the ring has no natural start and no natural direction or step. Any rotation of it, read every 1st, 3rd, 5th… slot, decrypts the text just as well — with a different key. If one of those readings is a keyword alphabet, the tool shows that one; otherwise it keeps the ring as built.",
+              "how6": "With link preview on, each right-hand letter shows how well it fits: ○○○ unlikely, ●○○ plausible, ●●○ best so far, ●●● clear best. ✕ means it clashes. Early on only ●○○ is possible — the ring needs a few letters before it can check."
             },
             "coach": {
               "firstLink": "Start here: {{from}} is the most frequent letter of slice {{first}}, {{to}} of slice {{second}}. Both probably stand for E. Click {{from}} on the left, then {{to}} on the right.",
@@ -1064,7 +1079,8 @@
               "conflict": "The link {{link}} contradicts the ring. One of the clashing links is wrong — remove the one you are less sure of, or press Undo.",
               "switchPair": "This pair is well worked. Switch the second slice to slice {{slice}}: its letters reach slots this pair cannot.",
               "leftovers": "Almost there: {{count}} rare letters left. Pick one under \"Unplaced\" and click an empty slot, or continue — rare letters barely matter.",
-              "done": "The ring is complete. Check the English meter, then continue to the key letters."
+              "done": "The ring is complete. Check the English meter, then continue to the key letters.",
+              "conflictWeakest": "The link {{link}} contradicts the ring. The likeliest culprit is {{weakest}}: its two letters differ most in frequency. Remove it, or press Undo."
             },
             "progress": {
               "firstLink": "First link",
@@ -1093,6 +1109,16 @@
               "onRing": "On the ring: a link already places these letters.",
               "waiting": "Not on the ring yet: link one of these letters to a placed letter, or keep linking until a strip reaches the ring.",
               "loop": "A closed loop: the chain came back to its start."
+            },
+            "preview": {
+              "level0": "Unlikely: its frequency does not match.",
+              "level1": "Plausible by frequency alone.",
+              "level2": "Best match so far, checked against the ring — not yet clear-cut.",
+              "level3": "Clear best: the whole ring agrees with this link.",
+              "gain": "Would place {{count}} letter(s) on the ring.",
+              "waits": "Would wait: no letter of it is on the ring yet.",
+              "clash": "Clash: contradicts links you already made.",
+              "closeCall": "Several letters on the right are as frequent as {{letter}}: frequency alone cannot decide. Link the clearest letters (the top few) first — then the ring checks the rest."
             }
           }
         },
@@ -1125,7 +1151,8 @@
           "toggle": {
             "partnerHints": "Highlight letters of the second slice whose frequency matches the selected letter.",
             "mergedIC": "Measure how English the slices look once re-aligned on the ring.",
-            "coach": "Show the next-step coach and open the explanations. Off on medium and hard."
+            "coach": "Show the next-step coach and open the explanations. Off on medium and hard.",
+            "linkPreview": "After you pick a letter, rate each partner: ● dots for how well it fits the frequencies and the ring, +N for the letters it would place, ✕ for a clash. Off on medium and hard."
           },
           "fitScore": "Average distance from English over all slices, each at its best shift. Lower is better; below 1.4 counts as a fit.",
           "chains": "Every link you made, lined up per slice pair. Shows progress even before the ring can place the letters."
@@ -1134,7 +1161,8 @@
           "toggles": {
             "partnerHints": "Suggest partner letters",
             "mergedIC": "Show the English meter",
-            "coach": "Coach me step by step"
+            "coach": "Coach me step by step",
+            "linkPreview": "Preview links"
           }
         }
       },
