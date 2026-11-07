@@ -527,7 +527,8 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
     if (candidate.clash) {
       return <PreviewBadge $tone="clash" title={t(`${base}preview.clash`)}>✕</PreviewBadge>;
     }
-    const gain = candidate.gained >= 3 ? ` +${candidate.gained}` : '';
+    // +N only for a real chain reaction, not the link's own two letters.
+    const gain = candidate.cascade > 0 ? ` +${candidate.gained}` : '';
     if (!rated && !gain) {
       return null;
     }
@@ -535,6 +536,7 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
     const title = [
       rated ? t(`${base}preview.level${candidate.confidence}`) : '',
       candidate.gained > 0 ? t(`${base}preview.gain`, { count: candidate.gained }) : t(`${base}preview.waits`),
+      candidate.cascade > 0 ? t(`${base}preview.cascade`, { count: candidate.cascade }) : '',
     ].filter(Boolean).join(' ');
     return (
       <PreviewBadge $tone={candidate.confidence === 3 ? 'strong' : 'weak'} title={title}>

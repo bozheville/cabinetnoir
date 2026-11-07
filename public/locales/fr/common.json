@@ -423,7 +423,8 @@
               "clash": "Conflit : contredit des liens déjà faits.",
               "closeCall": "Plusieurs lettres à droite sont aussi fréquentes que {{letter}} : la fréquence seule ne peut trancher. Reliez d'abord les lettres les plus nettes (les premières) — l'anneau vérifiera ensuite le reste.",
               "unrated": "Trop peu de lettres sur l'anneau pour noter les partenaires. Reliez d'abord les lettres les plus fréquentes ; les conflits (✕) et les réactions en chaîne (+N) restent affichés.",
-              "origin": "Votre premier lien fixe seulement le point de départ de l'anneau : n'importe quel partenaire convient ici, il ne peut donc pas encore être vérifié. Les liens suivants qui ajoutent une nouvelle tranche le testeront."
+              "origin": "Votre premier lien fixe seulement le point de départ de l'anneau : n'importe quel partenaire convient ici, il ne peut donc pas encore être vérifié. Les liens suivants qui ajoutent une nouvelle tranche le testeront.",
+              "cascade": "Réaction en chaîne : place aussi {{count}} lettre(s) de plus issues de liens en attente."
             }
           }
         },
@@ -956,7 +957,8 @@
               "clash": "Conflit : contredit des liens déjà faits.",
               "closeCall": "Plusieurs lettres à droite sont aussi fréquentes que {{letter}} : la fréquence seule ne peut trancher. Reliez d'abord les lettres les plus nettes (les premières) — l'anneau vérifiera ensuite le reste.",
               "unrated": "Trop peu de lettres sur l'anneau pour noter les partenaires. Reliez d'abord les lettres les plus fréquentes ; les conflits (✕) et les réactions en chaîne (+N) restent affichés.",
-              "origin": "Votre premier lien fixe seulement le point de départ de l'anneau : n'importe quel partenaire convient ici, il ne peut donc pas encore être vérifié. Les liens suivants qui ajoutent une nouvelle tranche le testeront."
+              "origin": "Votre premier lien fixe seulement le point de départ de l'anneau : n'importe quel partenaire convient ici, il ne peut donc pas encore être vérifié. Les liens suivants qui ajoutent une nouvelle tranche le testeront.",
+              "cascade": "Réaction en chaîne : place aussi {{count}} lettre(s) de plus issues de liens en attente."
             }
           }
         },

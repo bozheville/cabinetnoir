@@ -599,7 +599,8 @@
               "clash": "Clash: contradicts links you already made.",
               "closeCall": "Several letters on the right are as frequent as {{letter}}: frequency alone cannot decide. Link the clearest letters (the top few) first — then the ring checks the rest.",
               "unrated": "Too few letters on the ring to rate partners yet. Link the most frequent letters first; clashes (✕) and chain reactions (+N) still show.",
-              "origin": "Your first link only sets where the ring starts: any partner fits here, so it cannot be checked yet. The next links that bring in a new slice will test it."
+              "origin": "Your first link only sets where the ring starts: any partner fits here, so it cannot be checked yet. The next links that bring in a new slice will test it.",
+              "cascade": "Chain reaction: also places {{count}} more letter(s) from links already waiting."
             }
           }
         },
@@ -1122,7 +1123,8 @@
               "clash": "Clash: contradicts links you already made.",
               "closeCall": "Several letters on the right are as frequent as {{letter}}: frequency alone cannot decide. Link the clearest letters (the top few) first — then the ring checks the rest.",
               "unrated": "Too few letters on the ring to rate partners yet. Link the most frequent letters first; clashes (✕) and chain reactions (+N) still show.",
-              "origin": "Your first link only sets where the ring starts: any partner fits here, so it cannot be checked yet. The next links that bring in a new slice will test it."
+              "origin": "Your first link only sets where the ring starts: any partner fits here, so it cannot be checked yet. The next links that bring in a new slice will test it.",
+              "cascade": "Chain reaction: also places {{count}} more letter(s) from links already waiting."
             }
           }
         },
