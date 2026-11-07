@@ -531,6 +531,7 @@
             "unstraightened": "No keyword shape found; the ring works as it is, the key will just read differently.",
             "learn": {
               "whyTitle": "Why this works",
+              "why0": "First the text is cut into slices by the key length: with a 3-letter key, slice 1 holds letters 1, 4, 7…, slice 2 letters 2, 5, 8…, and so on. Encryption has two layers — the secret alphabet and the key shift — but inside one slice both are the same for every letter. Together they act as one fixed letter swap: every E of slice 1 becomes the same cipher letter. A swap renames letters but keeps their counts, so the commonest cipher letter of a slice is still most likely E. That is why the text must be sliced first: mix the slices and E turns into several letters.",
               "why1": "Every slice is shifted along the same secret alphabet, only by a different amount. So one plaintext letter turns into different cipher letters in two slices — but always the same distance apart in the secret alphabet. For example:",
               "figure": {
                 "plain": "plaintext",
@@ -1028,6 +1029,7 @@
             "unstraightened": "No keyword shape found; the ring works as it is, the key will just read differently.",
             "learn": {
               "whyTitle": "Why this works",
+              "why0": "First the text is cut into slices by the key length: with a 3-letter key, slice 1 holds letters 1, 4, 7…, slice 2 letters 2, 5, 8…, and so on. Encryption has two layers — the secret alphabet and the key shift — but inside one slice both are the same for every letter. Together they act as one fixed letter swap: every E of slice 1 becomes the same cipher letter. A swap renames letters but keeps their counts, so the commonest cipher letter of a slice is still most likely E. That is why the text must be sliced first: mix the slices and E turns into several letters.",
               "why1": "Every slice is shifted along the same secret alphabet, only by a different amount. So one plaintext letter turns into different cipher letters in two slices — but always the same distance apart in the secret alphabet. For example:",
               "figure": {
                 "plain": "plaintext",

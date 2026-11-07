@@ -52,6 +52,10 @@ alphabet ring. The mirror changes nothing here — two slices still show
 the same plaintext letter a fixed distance apart — so the cracker's
 alphabet step works for both variants unchanged.
 
+The frequencies survive both layers for the same reason too: inside
+one slice the alphabet and the key letter are fixed, so the slice is a
+single letter swap — it renames letters but keeps their counts.
+
 ## A shortcut — cribs
 
 A guessed word works here too, with the subtraction flipped: each

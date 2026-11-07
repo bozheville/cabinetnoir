@@ -56,6 +56,16 @@ le vérifie juste après la longueur de clé : il compare chaque tranche
 à l'anglais sous son meilleur décalage, et si même le meilleur
 ajustement est mauvais, il propose de reconstruire l'alphabet.
 
+Pourquoi les fréquences survivent-elles à deux couches de chiffrement ?
+Parce que le texte a d'abord été découpé en tranches selon la longueur
+de la clé. Dans une tranche, l'alphabet secret et le décalage de la clé
+sont les mêmes pour chaque lettre : ensemble, ils agissent comme une
+seule substitution fixe, et chaque E de la tranche 1 devient la même
+lettre chiffrée. Une substitution renomme les lettres sans changer leur
+nombre : chaque tranche garde son « E », simplement sous un autre nom.
+Mélanger les tranches casserait cela — E deviendrait plusieurs lettres
+— d'où la longueur de clé en premier.
+
 La reconstruction fonctionne parce que chaque tranche a été décalée
 le long du *même* alphabet. Prenez le E du clair : dans la tranche 1
 il est devenu, disons, X, dans la tranche 2, Q. Alors X et Q sont à

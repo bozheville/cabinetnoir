@@ -51,6 +51,15 @@ The cracker checks this right after the key length: it fits every
 slice against English under its best shift, and if even the best fit
 is poor it proposes rebuilding the alphabet.
 
+Why do frequencies survive two layers of encryption? Because the text
+was cut into slices by the key length first. Inside one slice the
+secret alphabet and the key shift are the same for every letter, so
+together they act as one fixed letter swap: every E of slice 1 becomes
+the same cipher letter. A swap renames letters but keeps their counts,
+so each slice still has its "E", only under another name. Mixing the
+slices would break this — E would turn into several letters — which is
+why the key length comes first.
+
 The rebuild works because every slice was moved along the *same*
 alphabet. Take the plaintext E: in slice 1 it became, say, X, in
 slice 2 it became Q. Then X and Q sit a fixed distance apart in the

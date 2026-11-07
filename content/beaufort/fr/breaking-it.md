@@ -55,6 +55,11 @@ deux tranches montrent toujours la même lettre du clair à une distance
 fixe — si bien que l'étape alphabet de l'assistant fonctionne telle
 quelle pour les deux variantes.
 
+Les fréquences survivent aux deux couches pour la même raison : dans
+une tranche, l'alphabet et la lettre de clé sont fixes, la tranche est
+donc une seule substitution — elle renomme les lettres sans changer
+leur nombre.
+
 ## Un raccourci — les mots probables
 
 Un mot deviné marche ici aussi, soustraction inversée : chaque lettre du

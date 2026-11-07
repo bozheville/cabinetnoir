@@ -492,6 +492,7 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
       <StepHint>{t(`${base}hint`)}</StepHint>
 
       <Disclosure id={`${scope}.recovery.why`} title={t(`${base}learn.whyTitle`)} defaultOpen={coachOn}>
+        <span>{t(`${base}learn.why0`)}</span>
         <span>{t(`${base}learn.why1`)}</span>
         <Figure>
           <tbody>

@@ -355,6 +355,7 @@
             "unstraightened": "Aucune forme de mot-clé trouvée ; l'anneau fonctionne tel quel, la clé se lira simplement autrement.",
             "learn": {
               "whyTitle": "Pourquoi ça marche",
+              "why0": "D'abord, le texte est découpé en tranches selon la longueur de la clé : avec une clé de 3 lettres, la tranche 1 contient les lettres 1, 4, 7…, la tranche 2 les lettres 2, 5, 8…, et ainsi de suite. Le chiffrement a deux couches — l'alphabet secret et le décalage de la clé — mais à l'intérieur d'une tranche, les deux sont les mêmes pour chaque lettre. Ensemble, elles agissent comme une seule substitution fixe : chaque E de la tranche 1 devient la même lettre chiffrée. Une substitution renomme les lettres sans changer leur nombre, donc la lettre chiffrée la plus courante d'une tranche est toujours très probablement E. C'est pourquoi il faut d'abord découper le texte : mélangez les tranches et E devient plusieurs lettres.",
               "why1": "Chaque tranche est décalée le long du même alphabet secret, seulement d'une quantité différente. Une lettre du clair devient donc des lettres chiffrées différentes dans deux tranches — mais toujours à la même distance dans l'alphabet secret. Par exemple :",
               "figure": {
                 "plain": "clair",
@@ -862,6 +863,7 @@
             "unstraightened": "Aucune forme de mot-clé trouvée ; l'anneau fonctionne tel quel, la clé se lira simplement autrement.",
             "learn": {
               "whyTitle": "Pourquoi ça marche",
+              "why0": "D'abord, le texte est découpé en tranches selon la longueur de la clé : avec une clé de 3 lettres, la tranche 1 contient les lettres 1, 4, 7…, la tranche 2 les lettres 2, 5, 8…, et ainsi de suite. Le chiffrement a deux couches — l'alphabet secret et le décalage de la clé — mais à l'intérieur d'une tranche, les deux sont les mêmes pour chaque lettre. Ensemble, elles agissent comme une seule substitution fixe : chaque E de la tranche 1 devient la même lettre chiffrée. Une substitution renomme les lettres sans changer leur nombre, donc la lettre chiffrée la plus courante d'une tranche est toujours très probablement E. C'est pourquoi il faut d'abord découper le texte : mélangez les tranches et E devient plusieurs lettres.",
               "why1": "Chaque tranche est décalée le long du même alphabet secret, seulement d'une quantité différente. Une lettre du clair devient donc des lettres chiffrées différentes dans deux tranches — mais toujours à la même distance dans l'alphabet secret. Par exemple :",
               "figure": {
                 "plain": "clair",
