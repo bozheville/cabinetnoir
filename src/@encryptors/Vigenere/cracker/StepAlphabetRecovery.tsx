@@ -18,6 +18,7 @@ import {
 import { HIGHLIGHT_COLORS, useCrackerKey, useCrackerScope } from '@encryptors/shared/cracker';
 import { useCracker } from './useCracker';
 import { checklist as buildChecklist, coachTip } from './recoveryCoach';
+import { ringChains } from './ringChains';
 
 // Random letters ~0.038, English ~0.066: the merged-IC meter's scale.
 const IC_RANDOM = 0.038;
@@ -311,6 +312,57 @@ const PositionsToggle = styled.button`
   cursor: pointer;
 `;
 
+// Chain strips: the links of each slice pair lined up, so work the
+// ring cannot place yet stays visible.
+const Chains = styled.div`
+  ${paper('vellum')}
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: ${({ theme }) => theme.radius.paper};
+  color: ${({ theme }) => theme.ink.primary};
+`;
+
+const ChainPair = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+`;
+
+const PairLabel = styled(Minion)<{ $from: string; $to: string }>`
+  min-width: 110px;
+  font-weight: 700;
+  padding-left: 6px;
+  border-left: 3px solid ${({ $from }) => $from};
+  box-shadow: inset 3px 0 0 ${({ $to }) => $to};
+`;
+
+const Strip = styled.span<{ $placed: boolean; $closed: boolean }>`
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 6px;
+  border-radius: ${({ $closed }) => ($closed ? '12px' : '3px')};
+  border: 1px ${({ $placed }) => ($placed ? 'solid' : 'dashed')}
+    ${({ $placed, theme }) => ($placed ? theme.metal.copper.dark : theme.paper.rule)};
+  opacity: ${({ $placed }) => ($placed ? 1 : 0.7)};
+  font-family: ${({ theme }) => theme.type.mono};
+  font-size: 13px;
+`;
+
+const StripArrow = styled.span`
+  font-size: 11px;
+  opacity: 0.6;
+`;
+
+const ChainLegend = styled(Minion)`
+  display: block;
+  font-size: 11px;
+  opacity: 0.75;
+`;
+
 const colorOf = (column: number): string => HIGHLIGHT_COLORS[column % HIGHLIGHT_COLORS.length];
 
 
@@ -426,6 +478,7 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
   };
 
   const anchored = Object.keys(ringState.positions).length > 0;
+  const chains = useMemo(() => ringChains(ringActions, ringState.statuses), [ringActions, ringState.statuses]);
 
   const tip = coachTip({ letters, keyLength, fromColumn, toColumn, actions: ringActions, state: ringState });
   const progress = buildChecklist(ringActions, ringState);
@@ -597,6 +650,41 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
             : t(`${base}pickPartner`, { letter: selected })
           : t(`${base}pickLetter`)}
       </Note>
+
+      {chains.length > 0 && (
+        <Tooltip content={t(`${tooltip}chains`)}>
+          <Chains data-guide="chain-strips">
+            <Minion>{t(`${base}chains.title`)}</Minion>
+            {chains.map(({ from, to, strips }) => (
+              <ChainPair key={`${from}-${to}`}>
+                <PairLabel $from={colorOf(from)} $to={colorOf(to)}>
+                  {t(`${base}chains.pair`, { from: from + 1, to: to + 1 })}
+                </PairLabel>
+                {strips.map((strip) => {
+                  const onRing = strip.letters.every((letter) => letter in ringState.positions);
+                  return (
+                    <Strip
+                      key={strip.letters.join('')}
+                      $placed={onRing}
+                      $closed={strip.closed}
+                      title={t(`${base}chains.${strip.closed ? 'loop' : onRing ? 'onRing' : 'waiting'}`)}
+                    >
+                      {strip.letters.map((letter, index) => (
+                        <React.Fragment key={letter}>
+                          {index > 0 && <StripArrow>→</StripArrow>}
+                          {letter}
+                        </React.Fragment>
+                      ))}
+                      {strip.closed && <StripArrow>↻</StripArrow>}
+                    </Strip>
+                  );
+                })}
+              </ChainPair>
+            ))}
+            <ChainLegend>{t(`${base}chains.legend`, { from: chains[0].from + 1, to: chains[0].to + 1 })}</ChainLegend>
+          </Chains>
+        </Tooltip>
+      )}
 
       <Tooltip content={t(`${tooltip}ring`)}>
         <div data-guide="alphabet-ring">

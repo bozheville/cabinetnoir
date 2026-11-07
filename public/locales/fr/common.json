@@ -402,6 +402,14 @@
               "low": "aléatoire pour l'instant",
               "mid": "on s'approche",
               "high": "ressemble à l'anglais"
+            },
+            "chains": {
+              "title": "Vos chaînes pour l'instant",
+              "pair": "Tranches {{from}} → {{to}}",
+              "legend": "Chaque flèche est un lien : la lettre de gauche (tranche {{from}}) et celle de droite (tranche {{to}}) représentent la même lettre du clair, elles sont donc toujours au même pas dans l'alphabet secret. Les bandes s'allongent et se rejoignent au fil des liens ; une bande pleine est déjà sur l'anneau, une bande en pointillés attend un lien qui la raccorde.",
+              "onRing": "Sur l'anneau : un lien place déjà ces lettres.",
+              "waiting": "Pas encore sur l'anneau : reliez l'une de ces lettres à une lettre placée, ou continuez jusqu'à ce qu'une bande atteigne l'anneau.",
+              "loop": "Une boucle fermée : la chaîne est revenue à son départ."
             }
           }
         },
@@ -439,7 +447,8 @@
           "ring": "Votre alphabet en construction. Il n'est connu qu'à une rotation et un pas près — chacune de ces lectures déchiffre le texte, avec une autre clé.",
           "placeLetter": "Les lettres que les liens n'ont pas atteintes (souvent les rares). Choisissez-en une, puis cliquez une case vide de l'anneau.",
           "mergedIC": "Toutes les tranches réalignées sur l'anneau et mesurées ensemble : près de 0,066 c'est de l'anglais, près de 0,038 un lien est faux quelque part.",
-          "fitScore": "Distance moyenne à l'anglais sur toutes les tranches, chacune à son meilleur décalage. Plus bas, c'est mieux ; en dessous de 1,4, l'alphabet convient."
+          "fitScore": "Distance moyenne à l'anglais sur toutes les tranches, chacune à son meilleur décalage. Plus bas, c'est mieux ; en dessous de 1,4, l'alphabet convient.",
+          "chains": "Chaque lien créé, aligné par paire de tranches. Montre la progression avant même que l'anneau puisse placer les lettres."
         },
         "hints": {
           "toggles": {
@@ -910,6 +919,14 @@
               "low": "aléatoire pour l'instant",
               "mid": "on s'approche",
               "high": "ressemble à l'anglais"
+            },
+            "chains": {
+              "title": "Vos chaînes pour l'instant",
+              "pair": "Tranches {{from}} → {{to}}",
+              "legend": "Chaque flèche est un lien : la lettre de gauche (tranche {{from}}) et celle de droite (tranche {{to}}) représentent la même lettre du clair, elles sont donc toujours au même pas dans l'alphabet secret. Les bandes s'allongent et se rejoignent au fil des liens ; une bande pleine est déjà sur l'anneau, une bande en pointillés attend un lien qui la raccorde.",
+              "onRing": "Sur l'anneau : un lien place déjà ces lettres.",
+              "waiting": "Pas encore sur l'anneau : reliez l'une de ces lettres à une lettre placée, ou continuez jusqu'à ce qu'une bande atteigne l'anneau.",
+              "loop": "Une boucle fermée : la chaîne est revenue à son départ."
             }
           }
         },
@@ -944,7 +961,8 @@
             "mergedIC": "Mesure à quel point les tranches réalignées sur l'anneau ressemblent à l'anglais.",
             "coach": "Affiche le guide de l'étape suivante et ouvre les explications. Désactivé en moyen et difficile."
           },
-          "fitScore": "Distance moyenne à l'anglais sur toutes les tranches, chacune à son meilleur décalage. Plus bas, c'est mieux ; en dessous de 1,4, l'alphabet convient."
+          "fitScore": "Distance moyenne à l'anglais sur toutes les tranches, chacune à son meilleur décalage. Plus bas, c'est mieux ; en dessous de 1,4, l'alphabet convient.",
+          "chains": "Chaque lien créé, aligné par paire de tranches. Montre la progression avant même que l'anneau puisse placer les lettres."
         },
         "hints": {
           "toggles": {

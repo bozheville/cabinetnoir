@@ -578,6 +578,14 @@
               "low": "random so far",
               "mid": "getting there",
               "high": "reads like English"
+            },
+            "chains": {
+              "title": "Your chains so far",
+              "pair": "Slices {{from}} → {{to}}",
+              "legend": "Each arrow is one link: the letter on the left (slice {{from}}) and the one on the right (slice {{to}}) stand for the same plaintext letter, so they are always the same step apart in the secret alphabet. Strips grow and join as you link; a solid strip is already on the ring, a dashed one waits for a link that connects it.",
+              "onRing": "On the ring: a link already places these letters.",
+              "waiting": "Not on the ring yet: link one of these letters to a placed letter, or keep linking until a strip reaches the ring.",
+              "loop": "A closed loop: the chain came back to its start."
             }
           }
         },
@@ -615,7 +623,8 @@
           "ring": "Your alphabet as it builds up. It is only known up to rotation and stepping — any such reading decrypts the text, with a different key.",
           "placeLetter": "Letters the links have not reached (often rare ones). Pick one, then click an empty ring slot.",
           "mergedIC": "All slices re-aligned onto the ring and measured together: near 0.066 means English, near 0.038 means a wrong link somewhere.",
-          "fitScore": "Average distance from English over all slices, each at its best shift. Lower is better; below 1.4 counts as a fit."
+          "fitScore": "Average distance from English over all slices, each at its best shift. Lower is better; below 1.4 counts as a fit.",
+          "chains": "Every link you made, lined up per slice pair. Shows progress even before the ring can place the letters."
         },
         "hints": {
           "toggles": {
@@ -1076,6 +1085,14 @@
               "low": "random so far",
               "mid": "getting there",
               "high": "reads like English"
+            },
+            "chains": {
+              "title": "Your chains so far",
+              "pair": "Slices {{from}} → {{to}}",
+              "legend": "Each arrow is one link: the letter on the left (slice {{from}}) and the one on the right (slice {{to}}) stand for the same plaintext letter, so they are always the same step apart in the secret alphabet. Strips grow and join as you link; a solid strip is already on the ring, a dashed one waits for a link that connects it.",
+              "onRing": "On the ring: a link already places these letters.",
+              "waiting": "Not on the ring yet: link one of these letters to a placed letter, or keep linking until a strip reaches the ring.",
+              "loop": "A closed loop: the chain came back to its start."
             }
           }
         },
@@ -1110,7 +1127,8 @@
             "mergedIC": "Measure how English the slices look once re-aligned on the ring.",
             "coach": "Show the next-step coach and open the explanations. Off on medium and hard."
           },
-          "fitScore": "Average distance from English over all slices, each at its best shift. Lower is better; below 1.4 counts as a fit."
+          "fitScore": "Average distance from English over all slices, each at its best shift. Lower is better; below 1.4 counts as a fit.",
+          "chains": "Every link you made, lined up per slice pair. Shows progress even before the ring can place the letters."
         },
         "hints": {
           "toggles": {
