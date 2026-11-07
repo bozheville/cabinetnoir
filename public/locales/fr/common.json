@@ -425,7 +425,8 @@
               "unrated": "Trop peu de lettres sur l'anneau pour noter les partenaires. Reliez d'abord les lettres les plus fréquentes ; les conflits (✕) et les réactions en chaîne (+N) restent affichés.",
               "origin": "Votre premier lien fixe seulement le point de départ de l'anneau : n'importe quel partenaire convient ici, il ne peut donc pas encore être vérifié. Les liens suivants qui ajoutent une nouvelle tranche le testeront.",
               "cascade": "Réaction en chaîne : place aussi {{count}} lettre(s) de plus issues de liens en attente."
-            }
+            },
+            "shortSlices": "Tranches courtes : environ {{count}} lettres chacune. À cette longueur, l'appariement par fréquence se trompe souvent : attendez-vous à annuler des liens. Un texte plus long aide ; 150 lettres ou plus par tranche, c'est confortable."
           }
         },
         "keyLengthLabels": {
@@ -959,7 +960,8 @@
               "unrated": "Trop peu de lettres sur l'anneau pour noter les partenaires. Reliez d'abord les lettres les plus fréquentes ; les conflits (✕) et les réactions en chaîne (+N) restent affichés.",
               "origin": "Votre premier lien fixe seulement le point de départ de l'anneau : n'importe quel partenaire convient ici, il ne peut donc pas encore être vérifié. Les liens suivants qui ajoutent une nouvelle tranche le testeront.",
               "cascade": "Réaction en chaîne : place aussi {{count}} lettre(s) de plus issues de liens en attente."
-            }
+            },
+            "shortSlices": "Tranches courtes : environ {{count}} lettres chacune. À cette longueur, l'appariement par fréquence se trompe souvent : attendez-vous à annuler des liens. Un texte plus long aide ; 150 lettres ou plus par tranche, c'est confortable."
           }
         },
         "keyLengthLabels": {

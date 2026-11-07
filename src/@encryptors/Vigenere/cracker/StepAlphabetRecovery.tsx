@@ -234,6 +234,9 @@ const Note = styled(Minion)`
   color: ${({ theme }) => theme.ink.creamMuted};
 `;
 
+// Below this many letters a slice, frequency pairing is often wrong.
+const SHORT_SLICE = 80;
+
 const ConflictNote = styled(Minion)`
   color: ${({ theme }) => theme.ink.red};
 `;
@@ -582,6 +585,7 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
   const looseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').filter((letter) => !(letter in ringState.positions));
   const conflicts = ringState.statuses.filter((status) => status === 'conflict').length;
   const placed = RING_SIZE - looseLetters.length;
+  const sliceLength = Math.floor(letters.length / keyLength);
 
   const columnTabs = (value: number, onChange: (column: number) => void, other: number) => (
     Array.from({ length: keyLength }, (_, column) => (
@@ -627,6 +631,12 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
           ))}
         </ol>
       </Disclosure>
+
+      {sliceLength < SHORT_SLICE && (
+        <ConflictNote data-guide="short-slices" role="note">
+          {t(`${base}shortSlices`, { count: sliceLength })}
+        </ConflictNote>
+      )}
 
       <LinkRow>
         <Link href={`/encoder/${scope}/learn`}>{t(`${base}learn.readMore`)}</Link>
