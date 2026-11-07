@@ -465,6 +465,8 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
     [hints.mergedIC, letters, length, ringState],
   );
 
+  const chains = useMemo(() => ringChains(ringActions, ringState.statuses), [ringActions, ringState.statuses]);
+
   if (!analysis || keyLength === null) {
     return null;
   }
@@ -478,7 +480,6 @@ const StepAlphabetRecovery: React.FC<StepAlphabetRecoveryProps> = ({ cracker }) 
   };
 
   const anchored = Object.keys(ringState.positions).length > 0;
-  const chains = useMemo(() => ringChains(ringActions, ringState.statuses), [ringActions, ringState.statuses]);
 
   const tip = coachTip({ letters, keyLength, fromColumn, toColumn, actions: ringActions, state: ringState });
   const progress = buildChecklist(ringActions, ringState);
