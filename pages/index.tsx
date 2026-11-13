@@ -92,10 +92,20 @@ const Index: React.FC = () => {
         path="/"
         jsonLd={[
           {
+            '@type': 'Organization',
+            '@id': `${SITE_URL}/#organization`,
+            name: t('name'),
+            url: SITE_URL,
+            logo: `${SITE_URL}/icon-512.png`,
+            description: t('seo.home.description'),
+          },
+          {
             '@type': 'WebSite',
+            '@id': `${SITE_URL}/#website`,
             name: t('name'),
             url: SITE_URL,
             description: t('seo.home.description'),
+            publisher: { '@id': `${SITE_URL}/#organization` },
           },
         ]}
       />

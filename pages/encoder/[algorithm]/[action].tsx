@@ -8,7 +8,7 @@ import { Encryptor, LearningMaterial, Cryptanalysis } from '@templates';
 import { encodingsList, encryptorsList } from '@encryptors';
 import { LEARNING_TABS, CRYPTANALYSIS_TAB, hasTab, hasCryptanalysis } from '@learning/config';
 import { MARKDOWN_TOPICS } from '@learning/content';
-import { DEFAULT_LOCALE, ogImagePath } from '@lib/sitemap-data';
+import { DEFAULT_LOCALE, SITE_URL, ogImagePath, urlFor } from '@lib/sitemap-data';
 
 // The second URL segment is shared by the encryption modes (direct /
 // reverse), the cryptanalysis tab and the learning tabs (learn /
@@ -73,18 +73,36 @@ const Home: React.FC<HomeProps> = ({ learningContent = {} }) => {
         breadcrumbs={breadcrumbs}
         image={ogImagePath(algorithm as string, locale)}
         imageAlt={`${cipherTitle} • ${t('name')}`}
+        // All entities link to the site graph by @id; Google merges them
+        // with the Organization and WebSite the home page defines.
         jsonLd={[
           learningTab || cryptanalysisTab
-            ? { '@type': 'LearningResource', name: title, description, learningResourceType: action }
+            ? {
+              '@type': 'LearningResource',
+              name: baseTitle,
+              description,
+              learningResourceType:
+                action === 'practice' ? 'exercise' : 'tutorial',
+              about: { '@type': 'DefinedTerm', name: cipherTitle },
+              url: urlFor(`/encoder/${algorithm as string}/${action as string}`, locale),
+              image: `${SITE_URL}${ogImagePath(algorithm as string, locale)}`,
+              isAccessibleForFree: true,
+              isPartOf: { '@id': `${SITE_URL}/#website` },
+              publisher: { '@id': `${SITE_URL}/#organization` },
+            }
             : {
               '@type': 'WebApplication',
-              name: title,
+              name: baseTitle,
               description,
+              url: urlFor(`/encoder/${algorithm as string}/${action as string}`, locale),
+              image: `${SITE_URL}${ogImagePath(algorithm as string, locale)}`,
               applicationCategory: 'UtilitiesApplication',
               operatingSystem: 'Any',
               browserRequirements: 'Requires JavaScript',
               isAccessibleForFree: true,
               offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+              isPartOf: { '@id': `${SITE_URL}/#website` },
+              publisher: { '@id': `${SITE_URL}/#organization` },
             },
         ]}
       />

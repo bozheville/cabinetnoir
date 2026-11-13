@@ -4,12 +4,16 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Footer, Header, LanguageSelector, Seo } from '@molecues';
 import Identification from '@templates/Identification/Identification';
+import { DEFAULT_LOCALE, SITE_URL, urlFor } from '@lib/sitemap-data';
+import { useRouter } from 'next/router';
 
 // The cipher identification tool: paste a ciphertext, get a ranked tree
 // of candidate ciphers (spec: specs/cipher-identification/).
 const IdentifyPage: React.FC = () => {
   const { t } = useTranslation('common');
-  const title = `${t('seo.identify.title')} • ${t('name')}`;
+  const { locale = DEFAULT_LOCALE } = useRouter();
+  const baseTitle = t('seo.identify.title');
+  const title = `${baseTitle} • ${t('name')}`;
 
   return (
     <>
@@ -24,13 +28,17 @@ const IdentifyPage: React.FC = () => {
         jsonLd={[
           {
             '@type': 'WebApplication',
-            name: title,
+            name: baseTitle,
             description: t('seo.identify.description'),
+            url: urlFor('/identify', locale),
+            image: `${SITE_URL}/og-image.png`,
             applicationCategory: 'UtilitiesApplication',
             operatingSystem: 'Any',
             browserRequirements: 'Requires JavaScript',
             isAccessibleForFree: true,
             offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+            isPartOf: { '@id': `${SITE_URL}/#website` },
+            publisher: { '@id': `${SITE_URL}/#organization` },
           },
         ]}
       />
