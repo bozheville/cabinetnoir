@@ -2329,9 +2329,9 @@
     },
     "editorial": {
       "title": "Ligne éditoriale",
-      "p1": "Les explications, les pages d’histoire et les traductions sont rédigées avec l’aide d’outils d’IA. Chaque texte est relu par l’auteur, qui assume la responsabilité éditoriale de ce qui est publié.",
+      "p1": "Les explications, les pages d’histoire et les traductions sont rédigées avec l’aide d’outils d’IA. L’auteur relit chaque page une par une ; une page relue porte une signature. L’auteur assume la responsabilité éditoriale de ce qui est publié.",
       "p2": "Les pages d’histoire sont vérifiées par rapport aux sources citées en fin de page. Les exemples détaillés et les défis sont générés par le même code que les outils : ils correspondent toujours à ce que produisent les outils.",
-      "p3": "Le site existe en anglais, en français et en ukrainien. Les traductions sont elles aussi assistées par IA et relues de la même manière."
+      "p3": "Le site existe en anglais, en français et en ukrainien. Les traductions sont elles aussi automatisées et relues langue par langue ; les pages relues dans une langue l’indiquent sur la page."
     },
     "privacy": {
       "title": "Confidentialité",
