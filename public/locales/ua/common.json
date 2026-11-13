@@ -1164,6 +1164,12 @@
     "related": {
       "title": "Схожі шифри"
     },
+    "review": {
+      "by": "Автор:",
+      "updated": "Оновлено",
+      "author": "Denys Grybov",
+      "autoTranslatedNote": "Цей переклад зроблено автоматичними інструментами й може містити помилки."
+    },
     "furtherReading": {
       "wikipedia": "Вікіпедія: шифр"
     },

@@ -1164,6 +1164,12 @@
     "related": {
       "title": "Chiffres apparentés"
     },
+    "review": {
+      "by": "Par",
+      "updated": "Mis à jour",
+      "author": "Denys Grybov",
+      "autoTranslatedNote": "Cette traduction a été réalisée par des outils automatiques et peut contenir des erreurs."
+    },
     "furtherReading": {
       "wikipedia": "Wikipédia : le chiffre"
     },

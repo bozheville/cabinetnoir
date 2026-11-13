@@ -1,0 +1,16 @@
+{
+  "caesar": {
+    "history": {
+      "en": { "reviewed": true, "autoTranslated": false },
+      "fr": { "reviewed": false, "autoTranslated": true },
+      "ua": { "reviewed": false, "autoTranslated": true }
+    }
+  },
+  "enigma": {
+    "history": {
+      "en": { "reviewed": true, "autoTranslated": false },
+      "fr": { "reviewed": false, "autoTranslated": true },
+      "ua": { "reviewed": false, "autoTranslated": true }
+    }
+  }
+}

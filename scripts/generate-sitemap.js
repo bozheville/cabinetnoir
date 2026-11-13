@@ -73,9 +73,13 @@ const sourcesFor = (pagePath, locale) => {
   const segment = match[2];
   const sources = [localeFile(locale)];
 
-  // Learning tabs: the tab's markdown, this locale only.
+  // Learning tabs: the tab's markdown, this locale only. History layout
+  // also depends on the review config (tasks 06 + 12).
   for (const topic of SEGMENT_TOPICS[segment]) {
     sources.push(`content/${algorithm}/${locale}/${topic}.md`);
+  }
+  if (segment === 'history') {
+    sources.push('content/review-status.json');
   }
 
   // Tool pages and the cryptanalysis wizard run the cipher's own code.

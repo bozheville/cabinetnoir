@@ -44,6 +44,8 @@ ALLOWLIST = {
     'processing.adfgvx.variants.adfgx',
     'processing.adfgvx.variants.adfgvx',
     'learning.autokey.origin',
+    # The author's name is a proper name, identical in every locale.
+    'learning.review.author',
 }
 
 # The dynamic families the UI resolves with template literals, and the

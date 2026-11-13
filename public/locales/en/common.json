@@ -1330,6 +1330,12 @@
     "related": {
       "title": "Related ciphers"
     },
+    "review": {
+      "by": "By",
+      "updated": "Updated",
+      "author": "Denys Grybov",
+      "autoTranslatedNote": "This translation was produced with automated tools and may contain mistakes."
+    },
     "furtherReading": {
       "wikipedia": "Wikipedia: the cipher"
     },

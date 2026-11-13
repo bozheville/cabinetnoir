@@ -8,7 +8,8 @@ import { Encryptor, LearningMaterial, Cryptanalysis } from '@templates';
 import { encodingsList, encryptorsList } from '@encryptors';
 import { LEARNING_TABS, CRYPTANALYSIS_TAB, hasTab, hasCryptanalysis } from '@learning/config';
 import { MARKDOWN_TOPICS, TOOL_TOPICS } from '@learning/content';
-import { DEFAULT_LOCALE, SITE_URL, ogImagePath, urlFor } from '@lib/sitemap-data';
+import type { HistoryReviewInfo } from '@learning/review';
+import { DEFAULT_LOCALE, SITE_URL, languageTag, ogImagePath, urlFor } from '@lib/sitemap-data';
 
 // The second URL segment is shared by the encryption modes (direct /
 // reverse), the cryptanalysis tab and the learning tabs (learn /
@@ -21,9 +22,11 @@ const isCryptanalysisTab = (action: string | string[] | undefined): boolean =>
 
 interface HomeProps {
   learningContent?: Record<string, string>;
+  // History-tab review state (task 06); null on every other tab.
+  review?: HistoryReviewInfo | null;
 }
 
-const Home: React.FC<HomeProps> = ({ learningContent = {} }) => {
+const Home: React.FC<HomeProps> = ({ learningContent = {}, review }) => {
   const { t } = useTranslation('common');
   const router = useRouter();
 
@@ -75,8 +78,27 @@ const Home: React.FC<HomeProps> = ({ learningContent = {} }) => {
         imageAlt={`${cipherTitle} • ${t('name')}`}
         // All entities link to the site graph by @id; Google merges them
         // with the Organization and WebSite the home page defines.
+        // Reviewed history pages (task 06) get Article markup instead of
+        // LearningResource: they carry a visible byline and an <article>
+        // element, and the structured data must match what is visible.
+        // Dates come from git at build time and are omitted, not faked,
+        // when history is unavailable.
         jsonLd={[
-          learningTab || cryptanalysisTab
+          action === 'history' && review?.reviewed
+            ? {
+              '@type': 'Article',
+              headline: t(`seo.heading.${action as string}`, { cipher: cipherTitle }),
+              description,
+              image: `${SITE_URL}${ogImagePath(algorithm as string, locale)}`,
+              inLanguage: languageTag(locale),
+              author: { '@id': `${SITE_URL}/about#author` },
+              publisher: { '@id': `${SITE_URL}/#organization` },
+              mainEntityOfPage: { '@type': 'WebPage', '@id': urlFor(`/encoder/${algorithm as string}/${action as string}`, locale) },
+              isPartOf: { '@id': `${SITE_URL}/#website` },
+              ...(review.datePublished && { datePublished: review.datePublished }),
+              ...(review.dateModified && { dateModified: review.dateModified }),
+            }
+            : learningTab || cryptanalysisTab
             ? {
               '@type': 'LearningResource',
               name: baseTitle,
@@ -118,7 +140,7 @@ const Home: React.FC<HomeProps> = ({ learningContent = {} }) => {
       {cryptanalysisTab ? (
         <Cryptanalysis />
       ) : learningTab ? (
-        <LearningMaterial learningContent={learningContent} />
+        <LearningMaterial learningContent={learningContent} review={review} />
       ) : (
         <Encryptor toolContent={learningContent.tool} />
       )}
@@ -158,9 +180,18 @@ export const getStaticProps = async ({ locale, params }) => {
     learningContent = loadTopicsForTab(algorithm, locale, topics);
   }
 
+  // Review state + git dates for history pages (tasks 06 + 12). Also a
+  // Node-only import: review.ts shells out to git.
+  let review: HistoryReviewInfo | null = null;
+  if (action === 'history' && typeof algorithm === 'string') {
+    const { getHistoryReview } = await import('@learning/review');
+    review = getHistoryReview(algorithm, locale);
+  }
+
   return {
     props: {
       learningContent,
+      review,
       ...await serverSideTranslations(locale, ['common']),
     },
   };
