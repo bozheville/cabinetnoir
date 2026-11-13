@@ -7,7 +7,7 @@ import { Footer, Header, LanguageSelector, Seo } from '@molecues';
 import { Encryptor, LearningMaterial, Cryptanalysis } from '@templates';
 import { encodingsList, encryptorsList } from '@encryptors';
 import { LEARNING_TABS, CRYPTANALYSIS_TAB, hasTab, hasCryptanalysis } from '@learning/config';
-import { MARKDOWN_TOPICS } from '@learning/content';
+import { MARKDOWN_TOPICS, TOOL_TOPICS } from '@learning/content';
 import { DEFAULT_LOCALE, SITE_URL, ogImagePath, urlFor } from '@lib/sitemap-data';
 
 // The second URL segment is shared by the encryption modes (direct /
@@ -120,7 +120,7 @@ const Home: React.FC<HomeProps> = ({ learningContent = {} }) => {
       ) : learningTab ? (
         <LearningMaterial learningContent={learningContent} />
       ) : (
-        <Encryptor />
+        <Encryptor toolContent={learningContent.tool} />
       )}
       <Footer />
     </>
@@ -148,7 +148,9 @@ export const getStaticProps = async ({ locale, params }) => {
   const { algorithm, action } = params;
 
   let learningContent: Record<string, string> = {};
-  const topics = (MARKDOWN_TOPICS as Record<string, string[]>)[action as string];
+  const topics = (actions as string[]).includes(action)
+    ? TOOL_TOPICS
+    : (MARKDOWN_TOPICS as Record<string, string[]>)[action as string];
   if (Array.isArray(topics) && typeof algorithm === 'string') {
     // Node-only loader: import inside getStaticProps so `fs` never reaches
     // the client bundle.

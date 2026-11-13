@@ -8,5 +8,8 @@ export const MARKDOWN_TOPICS: Record<LearningTabName, string[]> = {
   practice: [],
 };
 
+// Markdown shown under the tool on the direct / reverse pages.
+export const TOOL_TOPICS = ['tool'];
+
 export const contentPath = (cipher: string, locale: string, topic: string): string =>
   `content/${cipher}/${locale}/${topic}.md`;

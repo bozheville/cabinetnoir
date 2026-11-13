@@ -2,9 +2,11 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import Section from '@atoms/Section/Section';
+import { Paper } from '@atoms';
 import { EncryptionInputs, EncryptionSettings, ToolCase } from '@organisms';
 import TabPlates from '@molecues/TabPlates';
 import AtGlanceCard from '@molecues/AtGlanceCard';
+import MarkdownContent from '@molecues/MarkdownContent';
 import { useRouter } from 'next/router';
 import { getExample } from '@learning/examples';
 import { getChallenge } from '@learning/challenges';
@@ -14,7 +16,23 @@ const EncryptorSection = styled(Section)`
   flex: 1 0 auto;
 `;
 
-const Encryptor: React.FC = () => {
+// Short server-rendered guide under the tool case: a quieter sheet,
+// narrower than the case so it does not compete with the tool.
+const ToolNotes = styled(Paper)`
+  max-width: ${({ theme }) => theme.widths.sheet};
+  margin: 8px auto 32px;
+  padding: 24px;
+  ${({ theme }) => theme.breakpoints.small} {
+    margin: 8px 12px 24px;
+  }
+`;
+
+interface EncryptorProps {
+  /** Markdown from content/<cipher>/<locale>/tool.md, loaded at build time. */
+  toolContent?: string;
+}
+
+const Encryptor: React.FC<EncryptorProps> = ({ toolContent }) => {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   // Pigpen's variant selection lives in its pane; the mirror here lets
@@ -92,6 +110,11 @@ const Encryptor: React.FC = () => {
             />
           </PendingExampleContext.Provider>
         </ToolCase>
+        {toolContent && (
+          <ToolNotes forwardedAs="article">
+            <MarkdownContent source={toolContent} />
+          </ToolNotes>
+        )}
       </EncryptorSection>
     </>
   );

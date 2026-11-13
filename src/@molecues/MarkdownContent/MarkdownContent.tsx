@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { Marked } from 'marked';
 import styled from 'styled-components';
 
@@ -127,6 +128,15 @@ const renderInlineTokens = (tokens: any[] = [], keyPrefix = 'i'): React.ReactNod
         return <React.Fragment key={key}>{token.text}</React.Fragment>;
       case 'link': {
         const external = /^https?:\/\//.test(token.href);
+        // Site-internal paths go through next/link so the active locale
+        // prefix (/fr, /ua) is added.
+        if (token.href.startsWith('/')) {
+          return (
+            <Link key={key} href={token.href}>
+              {renderInlineTokens(token.tokens, key)}
+            </Link>
+          );
+        }
         return (
           <a
             key={key}
