@@ -103,6 +103,20 @@ const COMMIT_STEPS = [
 // worktree dirty after a push.
 const PUSH_STEPS = [
   {
+    name: 'content-dates',
+    description: 'Content dates freshness (generate-content-dates.js --check)',
+    bin: nodeBin,
+    args: ['scripts/generate-content-dates.js', '--check'],
+    timeoutMs: 30 * 1000,
+  },
+  {
+    name: 'sitemap',
+    description: 'Sitemap freshness (generate-sitemap.js --check)',
+    bin: nodeBin,
+    args: ['scripts/generate-sitemap.js', '--check'],
+    timeoutMs: 30 * 1000,
+  },
+  {
     name: 'env',
     description: 'Release env file (pre-deploy.js)',
     bin: nodeBin,

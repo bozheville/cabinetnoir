@@ -15,6 +15,7 @@
 import { execFileSync } from 'child_process';
 
 import reviewStatus from '../../content/review-status.json';
+import reviewDates from '../../content/review-dates.json';
 
 export interface ReviewFlags {
   reviewed: boolean;
@@ -35,6 +36,12 @@ export interface HistoryReviewInfo extends ReviewFlags {
 const LANG_TAGS: Record<string, string> = { en: 'en', fr: 'fr', ua: 'uk' };
 
 const data = reviewStatus as Record<string, Record<string, Record<string, ReviewFlags>>>;
+
+// Committed git dates (scripts/generate-content-dates.js), keyed by
+// repo path. The deploy build (Cloudflare) has no usable git history,
+// so this file is the primary source; live git is only a fallback for
+// local development with fresh, not-yet-regenerated content.
+const committedDates = reviewDates as Record<string, { first: string | null; last: string | null } | undefined>;
 
 export const getReviewFlags = (
   cipher: string,
@@ -70,6 +77,10 @@ const historyDates = (
   locale: string
 ): { datePublished: string | null; dateModified: string | null } => {
   const file = `content/${cipher}/${locale}/history.md`;
+  const committed = committedDates[file];
+  if (committed?.last) {
+    return { datePublished: committed.first ?? null, dateModified: committed.last };
+  }
   if (!gitHistoryUsable()) {
     return { datePublished: null, dateModified: null };
   }

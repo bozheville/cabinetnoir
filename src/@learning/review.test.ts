@@ -1,7 +1,11 @@
 import { describe, expect, it } from 'vitest';
 
+import fs from 'fs';
+import path from 'path';
+
 import { encodingsList, encryptorsList } from '../@encryptors/algorithms';
 import reviewStatus from '../../content/review-status.json';
+import reviewDates from '../../content/review-dates.json';
 import { getHistoryReview, getReviewFlags } from './review';
 
 const CIPHERS: string[] = [...encodingsList, ...encryptorsList];
@@ -70,5 +74,23 @@ describe('review-status config', () => {
       dateModified: null,
       dateModifiedLabel: null,
     });
+  });
+
+  it('shipped dates cover every history.md (deploy builds have no git)', () => {
+    const dates = reviewDates as Record<string, unknown>;
+    for (const cipher of CIPHERS) {
+      for (const locale of LOCALES) {
+        const key = `content/${cipher}/${locale}/history.md`;
+        // Only history pages that ship need a date entry, but every
+        // existing history.md is listed so future flags never break.
+        expect(fs.existsSync(path.join('content', cipher, locale, 'history.md'))).toBe(true);
+        if (getReviewFlags(cipher, 'history', locale).reviewed) {
+          expect(dates[key], `${key} missing from content/review-dates.json`).toEqual({
+            first: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T/),
+            last: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T/),
+          });
+        }
+      }
+    }
   });
 });

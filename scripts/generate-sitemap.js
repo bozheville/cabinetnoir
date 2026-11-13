@@ -125,8 +125,7 @@ const lastCommitDate = (paths) => {
 
 // Every URL carries its hreflang alternates so search engines treat the
 // en / fr / ua pages as translations, not duplicates.
-const linksToXML = (paths) => {
-  const useGit = gitHistoryUsable();
+const linksToXML = (paths, useGit) => {
   const lastmodCache = new Map();
 
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -155,4 +154,29 @@ const linksToXML = (paths) => {
   return xml + '\n</urlset>\n';
 };
 
-fs.writeFileSync(path.join(__dirname, '../public/sitemap.xml'), linksToXML(buildSitemapPaths()));
+// Writing rules:
+// - Git available (developer machine): always regenerate and overwrite.
+// - Git unavailable but a sitemap is committed (the Cloudflare deploy
+//   build, which clones without usable history): KEEP the committed
+//   file. Regenerating would strip every <lastmod> and ship a worse
+//   sitemap than the one in the repo.
+// - No git and no committed sitemap (fresh checkout edge case): write
+//   one without <lastmod>.
+// --check never writes: it exits 1 when the committed sitemap is stale
+// (pre-push guard, same contract as generate-content-dates.js).
+const dest = path.join(__dirname, '../public/sitemap.xml');
+const useGit = gitHistoryUsable();
+const xml = linksToXML(buildSitemapPaths(), useGit);
+
+if (process.argv.includes('--check')) {
+  const committed = fs.existsSync(dest) ? fs.readFileSync(dest, 'utf8') : null;
+  if (committed !== xml) {
+    console.error('[sitemap] public/sitemap.xml is stale: run scripts/generate-sitemap.js and commit it.');
+    process.exit(1);
+  }
+  console.log('[sitemap] fresh');
+} else if (!useGit && fs.existsSync(dest)) {
+  console.log('[sitemap] git history unavailable: keeping committed sitemap.xml');
+} else {
+  fs.writeFileSync(dest, xml);
+}

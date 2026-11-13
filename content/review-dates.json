@@ -1,0 +1,242 @@
+{
+  "content/adfgvx/en/history.md": {
+    "first": "2026-10-16T17:35:51+02:00",
+    "last": "2026-10-16T17:35:51+02:00"
+  },
+  "content/adfgvx/fr/history.md": {
+    "first": "2026-10-16T17:37:02+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/adfgvx/ua/history.md": {
+    "first": "2026-10-16T17:37:02+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/affine/en/history.md": {
+    "first": "2026-10-16T15:25:57+02:00",
+    "last": "2026-10-16T15:25:57+02:00"
+  },
+  "content/affine/fr/history.md": {
+    "first": "2026-10-16T15:25:57+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/affine/ua/history.md": {
+    "first": "2026-10-16T15:25:57+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/alberti/en/history.md": {
+    "first": "2026-10-16T15:15:07+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/alberti/fr/history.md": {
+    "first": "2026-10-16T15:15:07+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/alberti/ua/history.md": {
+    "first": "2026-10-16T15:15:07+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/atbash/en/history.md": {
+    "first": "2026-10-16T15:29:44+02:00",
+    "last": "2026-10-16T15:29:44+02:00"
+  },
+  "content/atbash/fr/history.md": {
+    "first": "2026-10-16T15:29:44+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/atbash/ua/history.md": {
+    "first": "2026-10-16T15:29:44+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/autokey/en/history.md": {
+    "first": "2026-10-27T12:21:11+01:00",
+    "last": "2026-10-27T12:21:11+01:00"
+  },
+  "content/autokey/fr/history.md": {
+    "first": "2026-10-27T12:21:11+01:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/autokey/ua/history.md": {
+    "first": "2026-10-27T12:21:11+01:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/base64/en/history.md": {
+    "first": "2026-10-16T15:34:37+02:00",
+    "last": "2026-10-16T15:34:37+02:00"
+  },
+  "content/base64/fr/history.md": {
+    "first": "2026-10-16T15:34:37+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/base64/ua/history.md": {
+    "first": "2026-10-16T15:34:37+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/beaufort/en/history.md": {
+    "first": "2026-10-27T12:21:11+01:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/beaufort/fr/history.md": {
+    "first": "2026-10-27T12:21:11+01:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/beaufort/ua/history.md": {
+    "first": "2026-10-27T12:21:11+01:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/caesar/en/history.md": {
+    "first": "2026-10-16T14:59:05+02:00",
+    "last": "2026-10-16T14:59:05+02:00"
+  },
+  "content/caesar/fr/history.md": {
+    "first": "2026-10-16T14:59:05+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/caesar/ua/history.md": {
+    "first": "2026-10-16T14:59:05+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/columnar/en/history.md": {
+    "first": "2026-10-20T12:48:52+02:00",
+    "last": "2026-10-20T12:48:52+02:00"
+  },
+  "content/columnar/fr/history.md": {
+    "first": "2026-10-20T12:50:47+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/columnar/ua/history.md": {
+    "first": "2026-10-20T12:50:47+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/enigma/en/history.md": {
+    "first": "2026-10-16T16:10:06+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/enigma/fr/history.md": {
+    "first": "2026-10-16T16:10:06+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/enigma/ua/history.md": {
+    "first": "2026-10-16T16:10:06+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/keyword/en/history.md": {
+    "first": "2026-10-20T12:17:41+02:00",
+    "last": "2026-10-20T12:17:41+02:00"
+  },
+  "content/keyword/fr/history.md": {
+    "first": "2026-10-20T12:21:13+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/keyword/ua/history.md": {
+    "first": "2026-10-20T12:21:13+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/morse/en/history.md": {
+    "first": "2026-10-16T15:32:37+02:00",
+    "last": "2026-10-16T15:32:37+02:00"
+  },
+  "content/morse/fr/history.md": {
+    "first": "2026-10-16T15:32:37+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/morse/ua/history.md": {
+    "first": "2026-10-16T15:32:37+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/nihilist/en/history.md": {
+    "first": "2026-10-20T16:21:06+02:00",
+    "last": "2026-10-20T16:21:06+02:00"
+  },
+  "content/nihilist/fr/history.md": {
+    "first": "2026-10-20T16:21:06+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/nihilist/ua/history.md": {
+    "first": "2026-10-20T16:21:06+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/pigpen/en/history.md": {
+    "first": "2026-10-18T11:19:09+02:00",
+    "last": "2026-11-01T12:26:12+01:00"
+  },
+  "content/pigpen/fr/history.md": {
+    "first": "2026-10-18T11:20:30+02:00",
+    "last": "2026-11-01T12:26:12+01:00"
+  },
+  "content/pigpen/ua/history.md": {
+    "first": "2026-10-18T11:20:30+02:00",
+    "last": "2026-11-01T12:26:12+01:00"
+  },
+  "content/playfair/en/history.md": {
+    "first": "2026-10-16T15:42:43+02:00",
+    "last": "2026-10-16T15:42:43+02:00"
+  },
+  "content/playfair/fr/history.md": {
+    "first": "2026-10-16T15:42:43+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/playfair/ua/history.md": {
+    "first": "2026-10-16T15:42:43+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/polybius/en/history.md": {
+    "first": "2026-10-20T16:21:06+02:00",
+    "last": "2026-10-20T16:21:06+02:00"
+  },
+  "content/polybius/fr/history.md": {
+    "first": "2026-10-20T16:21:06+02:00",
+    "last": "2026-10-20T16:21:06+02:00"
+  },
+  "content/polybius/ua/history.md": {
+    "first": "2026-10-20T16:21:06+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/railFence/en/history.md": {
+    "first": "2026-10-20T12:57:38+02:00",
+    "last": "2026-10-20T12:57:38+02:00"
+  },
+  "content/railFence/fr/history.md": {
+    "first": "2026-10-20T12:59:01+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/railFence/ua/history.md": {
+    "first": "2026-10-20T12:59:01+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/rot13/en/history.md": {
+    "first": "2026-10-16T15:37:24+02:00",
+    "last": "2026-10-16T15:37:24+02:00"
+  },
+  "content/rot13/fr/history.md": {
+    "first": "2026-10-16T15:37:24+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/rot13/ua/history.md": {
+    "first": "2026-10-16T15:37:24+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/saknussemm/en/history.md": {
+    "first": "2026-10-27T10:55:17+01:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/saknussemm/fr/history.md": {
+    "first": "2026-10-27T10:55:17+01:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/saknussemm/ua/history.md": {
+    "first": "2026-10-27T10:55:17+01:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/vigenere/en/history.md": {
+    "first": "2026-10-15T19:42:42+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/vigenere/fr/history.md": {
+    "first": "2026-10-15T19:55:43+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  },
+  "content/vigenere/ua/history.md": {
+    "first": "2026-10-15T19:55:43+02:00",
+    "last": "2026-11-01T12:23:16+01:00"
+  }
+}
