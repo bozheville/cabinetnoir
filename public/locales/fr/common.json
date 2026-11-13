@@ -1104,7 +1104,8 @@
     "pages": {
       "home": "Accueil",
       "identify": "Identification de chiffre",
-      "sitemap": "Plan du site"
+      "sitemap": "Plan du site",
+      "about": "À propos"
     },
     "groups": {
       "pages": "Pages",
@@ -2304,6 +2305,40 @@
       "learn": "{{oneLiner}} Guides pas à pas et méthode pour le casser.",
       "practice": "{{cipher}} : énigmes du facile au difficile, avec indices. {{oneLiner}}",
       "cryptanalysis": "{{cipher}} : le casser sans la clé, pas à pas. {{oneLiner}}"
+    },
+    "about": {
+      "title": "À propos : auteur et ligne éditoriale",
+      "description": "Qui fait Cabinet Noir, comment les textes et les traductions sont rédigés et vérifiés, ce que devient le texte saisi et comment signaler une erreur."
+    }
+  },
+  "about": {
+    "headerTitle": "À propos de Cabinet Noir",
+    "who": {
+      "title": "Qui le fait",
+      "p1": "Cabinet Noir est réalisé par Denys Grybov, qui l’a lancé en 2021 comme un décodeur pratique pour les chiffrements classiques.",
+      "p2": "Le site est devenu un lieu pour apprendre la cryptographie en cassant de vrais chiffrements : chaque chiffre a son outil, une explication pas à pas, son histoire et des énigmes d’entraînement. Il est gratuit et sans publicité."
+    },
+    "editorial": {
+      "title": "Ligne éditoriale",
+      "p1": "Les explications, les pages d’histoire et les traductions sont rédigées avec l’aide d’outils d’IA. Chaque texte est relu par l’auteur, qui assume la responsabilité éditoriale de ce qui est publié.",
+      "p2": "Les pages d’histoire sont vérifiées par rapport aux sources citées en fin de page. Les exemples détaillés et les défis sont générés par le même code que les outils : ils correspondent toujours à ce que produisent les outils.",
+      "p3": "Le site existe en anglais, en français et en ukrainien. Les traductions sont elles aussi assistées par IA et relues de la même manière."
+    },
+    "privacy": {
+      "title": "Confidentialité",
+      "p1": "Tout ce que vous saisissez dans les outils est traité dans votre navigateur. Rien n’est envoyé à un serveur ni enregistré.",
+      "p2": "Seule la liste des chiffres utilisés récemment est conservée, dans votre navigateur, pour que le sélecteur de chiffres les affiche en premier. Effacer les données du navigateur la supprime."
+    },
+    "sources": {
+      "title": "Sources",
+      "p1": "Chaque onglet Histoire se termine par les sources utilisées pour ce chiffre : articles d’encyclopédie sur le chiffre et sur les techniques pour le casser, et histoires publiées de la cryptographie.",
+      "p2": "Pour une histoire générale de l’écriture secrète, la référence est David Kahn, The Codebreakers (1967)."
+    },
+    "corrections": {
+      "title": "Corrections et contact",
+      "p1": "Une erreur dans une date, une explication ou une traduction, ou un outil qui donne un mauvais résultat ? Ouvrez un ticket sur GitHub : les corrections sont faites et la page est mise à jour.",
+      "reportLink": "Signaler une erreur ou un bug",
+      "suggestLink": "Proposer une fonctionnalité ou un chiffre"
     }
   }
 }

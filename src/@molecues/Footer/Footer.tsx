@@ -107,9 +107,9 @@ const Footer: React.FC = () => {
         </Button>
       </BMCWrapper>
       <LinksWrapper>
-        <a href="#">
+        <Link href="/about">
           {`${t(`footer.about`)}`}
-        </a>
+        </Link>
         <LinkSep aria-hidden="true"><Lozenge size={5} /></LinkSep>
         <a
           href="https://github.com/bozheville/cabinetnoir/issues/new"

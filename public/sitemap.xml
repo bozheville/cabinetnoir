@@ -43,6 +43,27 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/identify"/>
   </url>
   <url>
+    <loc>https://cabinetnoir.eu/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/about"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/about"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/about"/>
+  </url>
+  <url>
+    <loc>https://cabinetnoir.eu/fr/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/about"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/about"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/about"/>
+  </url>
+  <url>
+    <loc>https://cabinetnoir.eu/ua/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/about"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/about"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://cabinetnoir.eu/ua/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cabinetnoir.eu/about"/>
+  </url>
+  <url>
     <loc>https://cabinetnoir.eu/sitemap</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cabinetnoir.eu/sitemap"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cabinetnoir.eu/fr/sitemap"/>

@@ -119,6 +119,7 @@ const SitemapPage: React.FC = () => {
   const staticLabel = (path: string): string => {
     if (path === '/') return t('sitemap.pages.home');
     if (path === '/identify') return t('identify.title');
+    if (path === '/about') return t('sitemap.pages.about');
     return t('sitemap.title');
   };
 

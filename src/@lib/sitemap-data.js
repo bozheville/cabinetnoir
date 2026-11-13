@@ -46,6 +46,7 @@ const ACTIONS = ['direct', 'reverse'];
 const STATIC_PAGES = [
   { path: '/' },
   { path: '/identify' },
+  { path: '/about' },
   { path: '/sitemap' },
 ];
 

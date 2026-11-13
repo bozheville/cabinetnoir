@@ -3,7 +3,7 @@
 unique; flags titles over 60 and descriptions outside 70–170 characters.
 
 Mirrors the title/description logic in pages/encoder/[algorithm]/[action].tsx,
-pages/index.tsx, pages/identify/index.tsx and pages/sitemap.tsx.
+pages/index.tsx, pages/identify/index.tsx, pages/about.tsx and pages/sitemap.tsx.
 
 Usage: python3 scripts/seo_meta_audit.py [--list]
 Exits 1 on duplicates, 0 otherwise (length issues are warnings).
@@ -48,6 +48,7 @@ def pages(locale):
     name = d['name']
     yield '/', get(d, 'seo.home.title'), get(d, 'seo.home.description')
     yield '/identify', f"{get(d, 'seo.identify.title')} • {name}", get(d, 'seo.identify.description')
+    yield '/about', f"{get(d, 'seo.about.title')} • {name}", get(d, 'seo.about.description')
     yield '/sitemap', f"{get(d, 'sitemap.title')} • {name}", get(d, 'sitemap.subtitle')
     for entry in data:
         alg = entry['alg']
