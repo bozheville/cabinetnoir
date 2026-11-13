@@ -18,7 +18,7 @@ connue : il protège d'un coup d'œil, pas d'un amateur d'énigmes.
   de J.
 - Les espaces, les chiffres et la ponctuation ne sont pas dessinés :
   ils passent tels quels.
-- {{control:output}} contient une légende texte de la variante
+- Dans {{control:output}}, vous trouvez une légende texte de la variante
   (A→┘, B→⊔ …), car les glyphes ne survivent pas au copier-coller.
 - Appuyez sur {{control:swap}} pour déchiffrer : {{control:glyph-keyboard}}
   apparaît, et chaque symbole cliqué ajoute sa lettre au message. Vous

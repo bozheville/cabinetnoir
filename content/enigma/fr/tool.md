@@ -21,8 +21,8 @@ l'a lue à grande échelle.
   réflecteur B et pas de tableau de connexions. Sur une vraie feuille
   de clés, la position de départ n'était qu'une partie de la clé.
 - Enigma est réciproque : avec la même position de départ, chiffrer le
-  cryptogramme redonne le clair. {{control:swap}} n'est là que par
-  symétrie.
+  cryptogramme redonne le clair. Appuyer sur {{control:swap}}
+  ne change que l'intitulé.
 
 ## Un exemple rapide
 

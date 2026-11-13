@@ -20,8 +20,8 @@ cryptologists broke it first; Bletchley Park read it at scale.
   B and no plugboard. On a real key sheet the start position was only
   one part of the key.
 - Enigma is self-reciprocal: with the same start position, encrypting
-  the ciphertext gives the plaintext back. {{control:swap}} is there
-  only for symmetry.
+  the ciphertext gives the plaintext back. Pressing {{control:swap}}
+  only changes the label.
 
 ## A quick example
 

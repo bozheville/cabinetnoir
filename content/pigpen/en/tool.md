@@ -16,7 +16,7 @@ messages from a glance, not from a puzzle solver.
   different pens and dots. The Templar set has no J.
 - Spaces, digits and punctuation are not drawn: they pass through
   unchanged.
-- {{control:output}} holds a text legend of the variant (A→┘, B→⊔ …),
+- In {{control:output}} you get a text legend of the variant (A→┘, B→⊔ …),
   because glyphs do not survive copy and paste.
 - Press {{control:swap}} to decrypt: {{control:glyph-keyboard}} appears,
   and each symbol you click adds its letter to the message. You can
