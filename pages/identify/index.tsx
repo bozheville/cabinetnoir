@@ -30,7 +30,7 @@ const IdentifyPage: React.FC = () => {
           },
         ]}
       />
-      <Header title={t('identify.headerTitle')}>
+      <Header title={t('identify.headerTitle')} titleAs="span">
         <LanguageSelector />
       </Header>
       <Identification />

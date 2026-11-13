@@ -2099,7 +2099,7 @@
     }
   },
   "home": {
-    "title": "Décodeur moderne et pratique pour les vieilles méthodes de dissimulation de la vérité",
+    "title": "Décodeur de chiffres classiques : des outils modernes pour les vieilles méthodes de dissimulation de la vérité",
     "subtitle": "Apprenez la cryptographie en déchiffrant de vrais chiffrements, étape par étape.",
     "hero": {
       "beginner": "Débutant ? Commencez par les classiques et progressez — chaque chiffrement s'accompagne d'un apprentissage guidé et d'un outil de déchiffrement.",
@@ -2288,6 +2288,12 @@
         "direct": "{{cipher}} : chiffrez un message en ligne — gratuit, instantané, directement dans votre navigateur.",
         "reverse": "{{cipher}} : déchiffrez un message en ligne — gratuit, instantané, directement dans votre navigateur."
       }
+    },
+    "heading": {
+      "learn": "{{cipher}} : fonctionnement",
+      "history": "{{cipher}} : histoire",
+      "practice": "{{cipher}} : exercices pratiques",
+      "cryptanalysis": "{{cipher}} : casser sans la clé"
     }
   }
 }

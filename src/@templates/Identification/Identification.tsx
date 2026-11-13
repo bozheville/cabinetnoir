@@ -12,8 +12,9 @@ import { IdentificationSection, Wrapper, Inner } from './elements';
 import ResultsTree from './ResultsTree';
 import MetricsPanel from './MetricsPanel';
 
-// Cream text on the navy band.
-const InputHeading = styled(GreatPrimer)`
+// Cream text on the navy band. The page's <h1>: the header crumb is
+// only "Identify".
+const InputHeading = styled(GreatPrimer).attrs({ as: 'h1' })`
   margin: 0;
   color: ${({ theme }) => theme.ink.cream};
 `;

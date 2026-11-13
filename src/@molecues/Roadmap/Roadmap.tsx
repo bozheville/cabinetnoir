@@ -51,7 +51,7 @@ const NextBullet = styled(Bullet)`
   color: ${({ theme }) => theme.metal.copper.dark};
 `;
 
-const Title = styled.h3`
+const Title = styled.h2`
   margin: 0;
   font-family: ${({ theme }) => theme.type.body};
   font-weight: 700;

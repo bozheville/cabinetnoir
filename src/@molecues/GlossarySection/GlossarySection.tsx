@@ -15,7 +15,7 @@ const Wrap = styled.div`
   text-align: left;
 `;
 
-const Title = styled.h4`
+const Title = styled.h2`
   margin: 0 0 8px;
   font-family: ${({ theme }) => theme.type.engraved};
   font-weight: 500;

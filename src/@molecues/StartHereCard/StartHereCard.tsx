@@ -129,7 +129,7 @@ const StartHereCard: React.FC = () => {
           <Rivet aria-hidden="true" />
           <div>
             <PinnedLabel>{`★ ${t('home.startHere.label')}`}</PinnedLabel>
-            <CardTitle>{t(`processing.${START_HERE_CIPHER}.title`)}</CardTitle>
+            <CardTitle as="h2">{t(`processing.${START_HERE_CIPHER}.title`)}</CardTitle>
             <CardText>{t('home.startHere.text')}</CardText>
           </div>
           <Button href={`/encoder/${START_HERE_CIPHER}/learn`} variant="primary">

@@ -74,7 +74,7 @@ const AlgoListWrapper = styled.div`
   min-width: 0;
 `;
 
-const DialogHeading = styled(GreatPrimer)`
+const DialogHeading = styled(GreatPrimer).attrs({ as: 'h2' })`
   margin: 8px 0 4px;
 
   &:first-child {

@@ -2,7 +2,7 @@
   "welcome": "Encryptor",
   "name": "Cabinet Noir",
   "home": {
-    "title": "Modern handy decoder for old-fashioned ways of hiding a truth",
+    "title": "Classical cipher decoder: modern tools for old-fashioned ways of hiding the truth",
     "subtitle": "Learn cryptography by breaking real ciphers, step by step.",
     "hero": {
       "beginner": "New to ciphers? Start with the classics and work your way up — every cipher comes with guided learning and a breaking tool.",
@@ -2288,6 +2288,12 @@
         "direct": "{{cipher}}: encrypt a message online — free, instant, right in your browser.",
         "reverse": "{{cipher}}: decrypt a message online — free, instant, right in your browser."
       }
+    },
+    "heading": {
+      "learn": "{{cipher}}: how it works",
+      "history": "{{cipher}}: history",
+      "practice": "{{cipher}}: practice challenges",
+      "cryptanalysis": "{{cipher}}: break it without the key"
     }
   }
 }

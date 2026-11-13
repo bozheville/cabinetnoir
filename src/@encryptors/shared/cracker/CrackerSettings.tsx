@@ -24,7 +24,8 @@ interface CrackerSettingsProps {
   i18nScope?: string;
 }
 
-const Title = styled(GreatPrimer)`
+// First heading of the cryptanalysis tab, right under the page <h1>.
+const Title = styled(GreatPrimer).attrs({ as: 'h2' })`
   color: ${({ theme }) => theme.ink.cream};
   margin-bottom: 8px;
 `;

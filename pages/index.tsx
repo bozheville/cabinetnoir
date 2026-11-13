@@ -112,7 +112,7 @@ const Index: React.FC = () => {
             <CardSunburst aria-hidden="true">
               <Sunburst size={160} radius={80} rays={12} />
             </CardSunburst>
-            <GreatPrimer>{t('home.identify.title')}</GreatPrimer>
+            <GreatPrimer as="h2">{t('home.identify.title')}</GreatPrimer>
             <Minion>{t('home.identify.subtitle')}</Minion>
           </IdentifyCard>
         </div>

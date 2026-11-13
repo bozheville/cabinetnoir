@@ -123,7 +123,7 @@ const CipherLadder: React.FC = () => {
   return (
     <>
       <LadderHead>
-        <GreatPrimer>{t('home.ladder.title')}</GreatPrimer>
+        <GreatPrimer as="h2">{t('home.ladder.title')}</GreatPrimer>
         <Minion>{t('home.ladder.subtitle')}</Minion>
       </LadderHead>
       <Grid>

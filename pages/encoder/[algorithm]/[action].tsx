@@ -69,11 +69,9 @@ const Home: React.FC<HomeProps> = ({ learningContent = {} }) => {
       />
       <Header
         title={
-          cryptanalysisTab
-            ? `${t('learning.tabs.cryptanalysis')} / ${t(`processing.${algorithm as string}.title`)}`
-            : learningTab
-              ? `${t(`learning.tabs.${action as string}`)} / ${t(`processing.${algorithm as string}.title`)}`
-              : `${t(`processing.${algorithm as string}.${action as string}Action`)} / ${t(`processing.${algorithm as string}.title`)}`
+          learningTab || cryptanalysisTab
+            ? t(`seo.heading.${action as string}`, { cipher: cipherTitle })
+            : `${t(`processing.${algorithm as string}.${action as string}Action`)} / ${cipherTitle}`
         }
       >
         <LanguageSelector />

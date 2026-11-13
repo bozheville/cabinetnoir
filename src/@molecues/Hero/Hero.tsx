@@ -96,9 +96,10 @@ const Hero: React.FC = () => {
       </SunburstBack>
       <HeroInner>
         <NameplatePlate>
-          <Nameplate>{t('name')}</Nameplate>
+          <Nameplate as="p">{t('name')}</Nameplate>
         </NameplatePlate>
-        <Subtitle>{t('home.title')}</Subtitle>
+        {/* The tagline, not the wordmark, is the page's <h1>. */}
+        <Subtitle as="h1">{t('home.title')}</Subtitle>
         <HeroBody>{t('home.subtitle')}</HeroBody>
         <Ctas>
           <Button href="#cipher-ladder" variant="primary" size="lg">

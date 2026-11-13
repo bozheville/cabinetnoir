@@ -9,6 +9,8 @@ import { Caption } from '@typography';
 
 interface HeaderProps {
   title: string;
+  // Pages whose body carries a better <h1> render the crumb as a span.
+  titleAs?: 'h1' | 'span';
 }
 
 const StyledHeader = styled(Section)`
@@ -53,7 +55,9 @@ const Wordmark = styled(Link)`
   white-space: nowrap;
 `;
 
+// The page's <h1> by default: the current page in the trail.
 const TitleCrumb = styled(Caption)`
+  margin: 0;
   color: ${({ theme }) => theme.ink.cream};
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
   overflow: hidden;
@@ -93,6 +97,7 @@ const IdentifyLink = styled(Link)`
 
 const Header: React.FC<React.PropsWithChildren<HeaderProps>> = ({
   title,
+  titleAs = 'h1',
   children,
 }) => {
   const { t } = useTranslation('common');
@@ -108,7 +113,7 @@ const Header: React.FC<React.PropsWithChildren<HeaderProps>> = ({
         <CrumbSeparator aria-hidden="true">
           <Chevron size={7} />
         </CrumbSeparator>
-        <TitleCrumb>{title}</TitleCrumb>
+        <TitleCrumb as={titleAs}>{title}</TitleCrumb>
       </Breadcrumb>
       <RightCluster>
         {!pathname.startsWith('/identify') && (
