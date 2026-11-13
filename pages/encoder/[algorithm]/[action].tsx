@@ -35,9 +35,21 @@ const Home: React.FC<HomeProps> = ({ learningContent = {} }) => {
   const kind = (encodingsList as string[]).includes(algorithm as string) ? 'encoding' : 'encryptor';
 
   const tabTitleKey = `seo.tabTitle.${action as string}`;
-  const title = learningTab || cryptanalysisTab
-    ? `${t(tabTitleKey, { cipher: cipherTitle })} • ${t('name')}`
-    : `${t(`seo.toolTitle.${kind}.${action as string}`, { cipher: cipherTitle })} • ${t('name')}`;
+  const baseTitle = learningTab || cryptanalysisTab
+    ? t(tabTitleKey, { cipher: cipherTitle })
+    : t(`seo.toolTitle.${kind}.${action as string}`, { cipher: cipherTitle });
+  const title = `${baseTitle} • ${t('name')}`;
+
+  // Trail shown in the header: Cabinet Noir › <cipher> › this tab. Tool
+  // pages sit directly under the cipher's landing page, so their trail is
+  // two crumbs.
+  const breadcrumbs = [
+    { label: t('name'), path: '/' },
+    ...(learningTab || cryptanalysisTab
+      ? [{ label: cipherTitle, path: `/encoder/${algorithm as string}/direct` }]
+      : []),
+    { label: baseTitle },
+  ];
 
   // Every description carries the cipher's own one-liner (or, for
   // history, its era and origin), so no two pages share one.
@@ -58,6 +70,7 @@ const Home: React.FC<HomeProps> = ({ learningContent = {} }) => {
         title={title}
         description={description}
         path={`/encoder/${algorithm as string}/${action as string}`}
+        breadcrumbs={breadcrumbs}
         image={ogImagePath(algorithm as string, locale)}
         imageAlt={`${cipherTitle} • ${t('name')}`}
         jsonLd={[

@@ -17,6 +17,10 @@ const IdentifyPage: React.FC = () => {
         title={title}
         description={t('seo.identify.description')}
         path="/identify"
+        breadcrumbs={[
+          { label: t('name'), path: '/' },
+          { label: t('seo.identify.title') },
+        ]}
         jsonLd={[
           {
             '@type': 'WebApplication',

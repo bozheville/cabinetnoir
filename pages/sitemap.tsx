@@ -131,6 +131,10 @@ const SitemapPage: React.FC = () => {
         title={`${t('sitemap.title')} • ${t('name')}`}
         description={t('sitemap.subtitle')}
         path="/sitemap"
+        breadcrumbs={[
+          { label: t('name'), path: '/' },
+          { label: t('sitemap.title') },
+        ]}
       />
       <Header title={t('sitemap.headerTitle')}>
         <LanguageSelector />

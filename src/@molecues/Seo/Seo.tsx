@@ -3,14 +3,8 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
-import {
-  DEFAULT_LOCALE,
-  OG_LOCALES,
-  SITE_URL,
-  alternatesFor,
-  languageTag,
-  urlFor,
-} from '@lib/sitemap-data';
+import { DEFAULT_LOCALE, OG_LOCALES, SITE_URL, alternatesFor, languageTag, urlFor } from '@lib/sitemap-data';
+import { breadcrumbLd, Crumb } from '@lib/breadcrumbs';
 
 interface SeoProps {
   title: string;
@@ -19,6 +13,8 @@ interface SeoProps {
   path: string;
   // schema.org objects, rendered as JSON-LD.
   jsonLd?: Record<string, unknown>[];
+  // Breadcrumb trail; rendered as a BreadcrumbList JSON-LD object.
+  breadcrumbs?: Crumb[];
   // Site-relative 1200x630 PNG; defaults to the site-wide card.
   image?: string;
   imageAlt?: string;
@@ -39,11 +35,15 @@ const Seo: React.FC<SeoProps> = ({
   description,
   path,
   jsonLd = [],
+  breadcrumbs,
   image = DEFAULT_OG_IMAGE,
   imageAlt,
 }) => {
   const { t } = useTranslation('common');
   const { locale = DEFAULT_LOCALE } = useRouter();
+  const structured = breadcrumbs
+    ? [...jsonLd, breadcrumbLd(breadcrumbs, locale)]
+    : jsonLd;
   const canonical = urlFor(path, locale);
   const imageUrl = `${SITE_URL}${image}`;
   const alt = imageAlt || t('name');
@@ -73,7 +73,7 @@ const Seo: React.FC<SeoProps> = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={imageUrl} />
       <meta name="twitter:image:alt" content={alt} />
-      {jsonLd.map((data, index) => (
+      {structured.map((data, index) => (
         <script
           key={index}
           type="application/ld+json"
