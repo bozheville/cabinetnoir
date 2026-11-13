@@ -9,19 +9,19 @@ import Identification from '@templates/Identification/Identification';
 // of candidate ciphers (spec: specs/cipher-identification/).
 const IdentifyPage: React.FC = () => {
   const { t } = useTranslation('common');
-  const title = `${t('identify.title')} • ${t('name')}`;
+  const title = `${t('seo.identify.title')} • ${t('name')}`;
 
   return (
     <>
       <Seo
         title={title}
-        description={t('identify.subtitle')}
+        description={t('seo.identify.description')}
         path="/identify"
         jsonLd={[
           {
             '@type': 'WebApplication',
             name: title,
-            description: t('identify.subtitle'),
+            description: t('seo.identify.description'),
             applicationCategory: 'UtilitiesApplication',
             operatingSystem: 'Any',
             browserRequirements: 'Requires JavaScript',

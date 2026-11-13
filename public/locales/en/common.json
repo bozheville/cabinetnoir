@@ -1287,12 +1287,6 @@
       "tabsLabel": "Cipher page sections",
       "cryptanalysis": "Cryptanalysis"
     },
-    "metaDescription": {
-      "learn": "Learn how the cipher works, follow step-by-step guides and see how it is broken.",
-      "history": "The history of the cipher: where it came from, who used it and how it was broken.",
-      "practice": "Practice on ready-made challenges, from easy to hard.",
-      "cryptanalysis": "Break real ciphertexts step by step with the guided cryptanalysis tool."
-    },
     "placeholder": "Learning content is coming soon.",
     "types": {
       "polyalphabetic": "polyalphabetic substitution cipher",
@@ -2271,22 +2265,22 @@
     },
     "toolTitle": {
       "encoding": {
-        "direct": "{{cipher}}: encode online",
-        "reverse": "{{cipher}}: decode online"
+        "direct": "{{cipher}} encoder online",
+        "reverse": "{{cipher}} decoder online"
       },
       "encryptor": {
-        "direct": "{{cipher}}: encrypt online",
-        "reverse": "{{cipher}}: decrypt online"
+        "direct": "{{cipher}} encoder — encrypt online",
+        "reverse": "{{cipher}} decoder — decrypt online"
       }
     },
     "toolDescription": {
       "encoding": {
-        "direct": "{{cipher}}: encode text online — free, instant, right in your browser.",
-        "reverse": "{{cipher}}: decode text online — free, instant, right in your browser."
+        "direct": "Free {{cipher}} encoder in your browser.",
+        "reverse": "Free {{cipher}} decoder in your browser."
       },
       "encryptor": {
-        "direct": "{{cipher}}: encrypt a message online — free, instant, right in your browser.",
-        "reverse": "{{cipher}}: decrypt a message online — free, instant, right in your browser."
+        "direct": "{{cipher}} encryption, free and right in your browser.",
+        "reverse": "{{cipher}} decryption, free and right in your browser."
       }
     },
     "heading": {
@@ -2294,6 +2288,22 @@
       "history": "{{cipher}}: history",
       "practice": "{{cipher}}: practice challenges",
       "cryptanalysis": "{{cipher}}: break it without the key"
+    },
+    "tabTitle": {
+      "learn": "{{cipher}}: how it works",
+      "history": "{{cipher}}: history",
+      "practice": "{{cipher}}: puzzles to solve",
+      "cryptanalysis": "{{cipher}} solver without the key"
+    },
+    "historyDescription": "{{cipher}} — history ({{era}}). {{origin}}",
+    "identify": {
+      "title": "Cipher identifier: name an unknown cipher",
+      "description": "Paste a ciphertext you cannot name: the identifier measures frequencies, periodicity and structure, then ranks the likely ciphers."
+    },
+    "tabDescription": {
+      "learn": "{{oneLiner}} Step-by-step guides and how it is broken.",
+      "practice": "{{cipher}} puzzles from easy to hard, with hints. {{oneLiner}}",
+      "cryptanalysis": "{{cipher}}: break it without the key, step by step. {{oneLiner}}"
     }
   }
 }

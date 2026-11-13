@@ -34,15 +34,23 @@ const Home: React.FC<HomeProps> = ({ learningContent = {} }) => {
   const cipherTitle = t(`processing.${algorithm as string}.title`);
   const kind = (encodingsList as string[]).includes(algorithm as string) ? 'encoding' : 'encryptor';
 
-  const title = cryptanalysisTab
-    ? `${t('learning.tabs.cryptanalysis')} • ${cipherTitle} • ${t('name')}`
-    : learningTab
-      ? `${t(`learning.tabs.${action as string}`)} • ${cipherTitle} • ${t('name')}`
-      : `${t(`seo.toolTitle.${kind}.${action as string}`, { cipher: cipherTitle })} • ${t('name')}`;
+  const tabTitleKey = `seo.tabTitle.${action as string}`;
+  const title = learningTab || cryptanalysisTab
+    ? `${t(tabTitleKey, { cipher: cipherTitle })} • ${t('name')}`
+    : `${t(`seo.toolTitle.${kind}.${action as string}`, { cipher: cipherTitle })} • ${t('name')}`;
 
-  const description = learningTab || cryptanalysisTab
-    ? `${cipherTitle}. ${t(`learning.metaDescription.${action as string}`)}`
-    : `${t(`seo.toolDescription.${kind}.${action as string}`, { cipher: cipherTitle })} ${t(`learning.${algorithm as string}.description`)}`;
+  // Every description carries the cipher's own one-liner (or, for
+  // history, its era and origin), so no two pages share one.
+  const cipherDescription = t(`learning.${algorithm as string}.description`);
+  const description = action === 'history'
+    ? t('seo.historyDescription', {
+      cipher: cipherTitle,
+      era: t(`learning.${algorithm as string}.era`),
+      origin: t(`learning.${algorithm as string}.origin`),
+    })
+    : learningTab || cryptanalysisTab
+      ? t(`seo.tabDescription.${action as string}`, { cipher: cipherTitle, oneLiner: cipherDescription })
+      : `${t(`seo.toolDescription.${kind}.${action as string}`, { cipher: cipherTitle })} ${cipherDescription}`;
 
   return (
     <>

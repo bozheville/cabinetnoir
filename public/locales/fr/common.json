@@ -1121,12 +1121,6 @@
       "tabsLabel": "Sections de la page du chiffre",
       "cryptanalysis": "Cryptanalyse"
     },
-    "metaDescription": {
-      "learn": "Découvrez le fonctionnement du chiffre, suivez des guides pas à pas et voyez comment le déchiffrer.",
-      "history": "L'histoire du chiffre : son origine, ses utilisateurs et son déchiffrement.",
-      "practice": "Entraînez-vous sur des défis prêts à l'emploi, du plus facile au plus difficile.",
-      "cryptanalysis": "Déchiffrez de vrais messages chiffrés étape par étape avec l'outil guidé de cryptanalyse."
-    },
     "placeholder": "Le contenu pédagogique arrive bientôt.",
     "types": {
       "polyalphabetic": "chiffre de substitution polyalphabétique",
@@ -2266,8 +2260,8 @@
   },
   "seo": {
     "home": {
-      "title": "Cabinet Noir — apprenez et cassez les chiffrements classiques en ligne",
-      "description": "Outils en ligne gratuits pour les chiffrements classiques : César, Vigenère, Playfair, Enigma et plus. Chiffrez, déchiffrez, identifiez un chiffre inconnu et apprenez la cryptanalyse pas à pas."
+      "title": "Cabinet Noir — chiffrements classiques en ligne",
+      "description": "Outils gratuits pour les chiffrements classiques : César, Vigenère, Playfair, Enigma… Chiffrez, déchiffrez, identifiez et apprenez la cryptanalyse."
     },
     "toolTitle": {
       "encoding": {
@@ -2281,12 +2275,12 @@
     },
     "toolDescription": {
       "encoding": {
-        "direct": "{{cipher}} : encodez un texte en ligne — gratuit, instantané, directement dans votre navigateur.",
-        "reverse": "{{cipher}} : décodez un texte en ligne — gratuit, instantané, directement dans votre navigateur."
+        "direct": "Encodeur {{cipher}} gratuit, dans votre navigateur.",
+        "reverse": "Décodeur {{cipher}} gratuit, dans votre navigateur."
       },
       "encryptor": {
-        "direct": "{{cipher}} : chiffrez un message en ligne — gratuit, instantané, directement dans votre navigateur.",
-        "reverse": "{{cipher}} : déchiffrez un message en ligne — gratuit, instantané, directement dans votre navigateur."
+        "direct": "{{cipher}} : chiffrez gratuitement, dans votre navigateur.",
+        "reverse": "{{cipher}} : déchiffrez gratuitement, dans votre navigateur."
       }
     },
     "heading": {
@@ -2294,6 +2288,22 @@
       "history": "{{cipher}} : histoire",
       "practice": "{{cipher}} : exercices pratiques",
       "cryptanalysis": "{{cipher}} : casser sans la clé"
+    },
+    "tabTitle": {
+      "learn": "{{cipher}} : fonctionnement",
+      "history": "{{cipher}} : histoire",
+      "practice": "{{cipher}} : énigmes à résoudre",
+      "cryptanalysis": "{{cipher}} : casser sans la clé"
+    },
+    "historyDescription": "{{cipher}} — histoire ({{era}}). {{origin}}",
+    "identify": {
+      "title": "Identifier un chiffre inconnu en ligne",
+      "description": "Un texte chiffré inconnu ? L'outil mesure fréquences, périodicité et structure, puis classe les chiffrements probables."
+    },
+    "tabDescription": {
+      "learn": "{{oneLiner}} Guides pas à pas et méthode pour le casser.",
+      "practice": "{{cipher}} : énigmes du facile au difficile, avec indices. {{oneLiner}}",
+      "cryptanalysis": "{{cipher}} : le casser sans la clé, pas à pas. {{oneLiner}}"
     }
   }
 }
