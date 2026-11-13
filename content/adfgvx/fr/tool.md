@@ -5,7 +5,7 @@ ADFGVX est le chiffre de campagne allemand de 1918. Il empile deux
 en deux lettres parmi A, D, F, G, V et X, puis une
 {{term:transposition}} par colonnes mélange ces lettres sous un second
 mot-clé. Les six lettres ont été choisies parce qu'elles se distinguent
-facilement en Morse. Le cryptanalyste français Georges Painvin l'a
+facilement en [Morse](/encoder/morse/learn). Le cryptanalyste français Georges Painvin l'a
 cassé à temps pour l'offensive de juin 1918.
 
 ## Utiliser l'outil

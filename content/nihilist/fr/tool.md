@@ -1,7 +1,7 @@
 # Le chiffre nihiliste en bref
 
 Le chiffre nihiliste transforme les lettres en coordonnées du carré de
-Polybe, puis leur ajoute une clé répétée, elle aussi convertie en
+[Polybe](/encoder/polybius/learn), puis leur ajoute une clé répétée, elle aussi convertie en
 coordonnées. L'addition se fait chiffre par chiffre, sans retenue : le
 résultat est une suite de nombres de deux ou trois chiffres. Les
 révolutionnaires russes s'en servaient dans les années 1880 pour faire

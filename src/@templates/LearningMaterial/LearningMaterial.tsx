@@ -10,6 +10,7 @@ import HeadingRule from '@ornaments/HeadingRule';
 import TabPlates from '@molecues/TabPlates';
 import AtGlanceCard from '@molecues/AtGlanceCard';
 import MarkdownContent from '@molecues/MarkdownContent';
+import RelatedCiphers from '@molecues/RelatedCiphers';
 import GlossarySection from '@molecues/GlossarySection';
 import ChallengeCard from '@molecues/ChallengeCard';
 import { Minion } from '@typography';
@@ -99,6 +100,10 @@ const LearningMaterial: React.FC<LearningMaterialProps> = ({ learningContent = {
           {tab === 'practice' && getChallenges(algorithm as string).map((challenge) => (
             <ChallengeCard key={challenge.id} challenge={challenge} />
           ))}
+          {/* Related-cipher links close every learning tab (task 08). */}
+          <Sheet>
+            <RelatedCiphers algorithm={algorithm as string} />
+          </Sheet>
         </StoryBody>
       </StoryCase>
     </LearningWrapper>

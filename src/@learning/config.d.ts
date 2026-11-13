@@ -47,6 +47,13 @@ export declare const CIPHER_LADDER: string[];
 // The cipher the pinned "Start here" card points at.
 export declare const START_HERE_CIPHER: string;
 
+// Symmetric related-cipher family pairs; the adjacency they encode is
+// exposed through getRelatedCiphers.
+export declare const RELATED_CIPHER_PAIRS: Array<[string, string]>;
+
+// Related cipher ids for a cipher (family order); empty for unknown ids.
+export declare function getRelatedCiphers(cipher: string): string[];
+
 export declare const learningConfig: Record<string, LearningConfigEntry>;
 
 export declare function getLearningConfig(cipher: string): LearningConfigEntry | null;

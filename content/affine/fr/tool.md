@@ -3,7 +3,7 @@
 Le chiffre affine transforme chaque lettre en nombre (A = 0 … Z = 25),
 le multiplie par `a`, ajoute `b` et reboucle modulo 26 :
 `E(x) = a·x + b`. C'est un chiffre par {{term:substitution}} qui va un
-pas plus loin que César — César est le cas particulier `a = 1` — et un
+pas plus loin que [César](/encoder/caesar/learn) — César est le cas particulier `a = 1` — et un
 premier exercice classique d'{{term:modular-arithmetic}}.
 
 ## Utiliser l'outil

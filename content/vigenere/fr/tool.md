@@ -1,6 +1,6 @@
 # Le chiffre de Vigenère en bref
 
-Le chiffre de Vigenère chiffre chaque lettre avec un décalage de César
+Le chiffre de Vigenère chiffre chaque lettre avec un décalage de [César](/encoder/caesar/learn)
 différent, pris tour à tour dans les lettres d'un mot-clé. C'est donc
 un chiffre {{term:polyalphabetic}} : une même lettre du clair peut
 donner plusieurs lettres différentes dans le chiffré. Pendant trois

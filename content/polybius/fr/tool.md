@@ -5,7 +5,7 @@ chaque lettre par deux chiffres : sa ligne et sa colonne. L'historien
 grec Polybe l'a décrit au IIᵉ siècle av. J.-C. comme un moyen de
 transmettre des lettres avec des torches. Seul, c'est une simple
 {{term:substitution}}, mais ses paires de chiffres sont la brique de
-base du chiffre nihiliste, d'ADFGVX et de bien d'autres chiffres
+base du [chiffre nihiliste](/encoder/nihilist/learn), d'[ADFGVX](/encoder/adfgvx/learn) et de bien d'autres chiffres
 ultérieurs.
 
 ## Utiliser l'outil

@@ -5,7 +5,7 @@ each letter with two digits: its row and its column. The Greek
 historian Polybius described it in the second century BC as a way to
 signal letters with torches. On its own it is a simple
 {{term:substitution}}, but its number pairs are the building block of
-the Nihilist, ADFGVX and many later ciphers.
+the [Nihilist](/encoder/nihilist/learn), [ADFGVX](/encoder/adfgvx/learn) and many later ciphers.
 
 ## How to use this tool
 

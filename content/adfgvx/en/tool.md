@@ -4,7 +4,7 @@ ADFGVX is the German field cipher of 1918. It stacks two steps: a keyed
 {{term:polybius-square}} turns each character into two letters from
 A, D, F, G, V and X, and a columnar {{term:transposition}} then
 shuffles those letters under a second keyword. The six letters were
-chosen because they are easy to tell apart in Morse code. French
+chosen because they are easy to tell apart in [Morse code](/encoder/morse/learn). French
 cryptanalyst Georges Painvin broke it in time to matter for the June
 1918 offensive.
 

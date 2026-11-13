@@ -7,6 +7,7 @@ import { EncryptionInputs, EncryptionSettings, ToolCase } from '@organisms';
 import TabPlates from '@molecues/TabPlates';
 import AtGlanceCard from '@molecues/AtGlanceCard';
 import MarkdownContent from '@molecues/MarkdownContent';
+import RelatedCiphers from '@molecues/RelatedCiphers';
 import { useRouter } from 'next/router';
 import { getExample } from '@learning/examples';
 import { getChallenge } from '@learning/challenges';
@@ -113,6 +114,7 @@ const Encryptor: React.FC<EncryptorProps> = ({ toolContent }) => {
         {toolContent && (
           <ToolNotes forwardedAs="article">
             <MarkdownContent source={toolContent} />
+            <RelatedCiphers algorithm={algorithm as string} />
           </ToolNotes>
         )}
       </EncryptorSection>

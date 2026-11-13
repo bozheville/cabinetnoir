@@ -1,6 +1,6 @@
 # About the Nihilist cipher
 
-The Nihilist cipher turns letters into Polybius square coordinates and
+The Nihilist cipher turns letters into [Polybius square](/encoder/polybius/learn) coordinates and
 then adds a repeating key, also turned into coordinates. The addition
 is done digit by digit, without carrying, so the result is a stream of
 two- or three-digit numbers. Russian revolutionaries used it in the

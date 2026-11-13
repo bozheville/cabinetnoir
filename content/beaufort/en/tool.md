@@ -1,6 +1,6 @@
 # About the Beaufort cipher
 
-The Beaufort cipher is a close relative of Vigenère: each letter is
+The Beaufort cipher is a close relative of [Vigenère](/encoder/vigenere/learn): each letter is
 encrypted with a key letter from a repeating keyword, but the key is
 subtracted from instead of added to. In classic Beaufort the
 ciphertext letter is `key − plaintext`, which makes the cipher

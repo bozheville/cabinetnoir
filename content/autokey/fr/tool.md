@@ -1,6 +1,6 @@
 # Le chiffre autokey en bref
 
-Le chiffre autokey (ou autoclave) est un Vigenère dont la clé ne se répète
+Le chiffre autokey (ou autoclave) est un [Vigenère](/encoder/vigenere/learn) dont la clé ne se répète
 jamais : une courte {{term:primer}} lance la clé, puis le message
 lui-même la prolonge. La période répétée qui trahit le Vigenère
 ordinaire disparaît. Giovan Battista Bellaso a proposé l'idée en 1553,

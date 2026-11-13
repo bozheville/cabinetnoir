@@ -5,7 +5,7 @@ write the message in rows under a keyword, then read the columns in the
 alphabetical order of the keyword's letters. It is a
 {{term:transposition}}, not a substitution, so letter frequencies stay
 those of the plaintext. It was a field workhorse of the First World War
-and the second stage of the German ADFGVX cipher.
+and the second stage of the German [ADFGVX](/encoder/adfgvx/learn) cipher.
 
 ## How to use this tool
 

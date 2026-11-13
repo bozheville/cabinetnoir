@@ -671,13 +671,48 @@ const hasCryptanalysis = (cipher) => {
   return !!config && config.atGlance.modes.indexOf('cryptanalysis') !== -1;
 };
 
+// Related ciphers (internal links, task 08): symmetric family pairs,
+// so every cipher page can link to at least two siblings from its own
+// family. Order is first-appearance; the derived map keeps it.
+const RELATED_CIPHER_PAIRS = [
+  ['caesar', 'affine'], ['caesar', 'atbash'], ['caesar', 'rot13'],
+  ['affine', 'atbash'], ['affine', 'keyword'],
+  ['atbash', 'keyword'], ['atbash', 'pigpen'],
+  ['caesar', 'pigpen'],
+  ['keyword', 'playfair'],
+  ['playfair', 'polybius'],
+  ['polybius', 'nihilist'], ['polybius', 'adfgvx'],
+  ['nihilist', 'adfgvx'],
+  ['adfgvx', 'columnar'],
+  ['columnar', 'railFence'], ['columnar', 'saknussemm'],
+  ['railFence', 'saknussemm'],
+  ['vigenere', 'beaufort'], ['vigenere', 'autokey'], ['vigenere', 'alberti'],
+  ['beaufort', 'autokey'], ['beaufort', 'alberti'],
+  ['autokey', 'alberti'],
+  ['alberti', 'enigma'],
+  ['vigenere', 'enigma'],
+  ['rot13', 'base64'], ['rot13', 'morse'],
+  ['base64', 'morse'],
+];
+
+const relatedCiphers = {};
+for (const [a, b] of RELATED_CIPHER_PAIRS) {
+  (relatedCiphers[a] = relatedCiphers[a] || []).push(b);
+  (relatedCiphers[b] = relatedCiphers[b] || []).push(a);
+}
+
+// Related ids for a cipher, in family order; empty for unknown ids.
+const getRelatedCiphers = (cipher) => relatedCiphers[cipher] || [];
+
 module.exports = {
   LEARNING_TABS,
   CRYPTANALYSIS_TAB,
   CIPHER_LADDER,
   START_HERE_CIPHER,
+  RELATED_CIPHER_PAIRS,
   learningConfig,
   getLearningConfig,
+  getRelatedCiphers,
   hasTab,
   hasCryptanalysis,
 };

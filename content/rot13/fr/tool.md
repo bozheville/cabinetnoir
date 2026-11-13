@@ -1,6 +1,6 @@
 # ROT13 en bref
 
-ROT13 est un chiffre de César au décalage fixe de 13. Comme
+ROT13 est un [chiffre de César](/encoder/caesar/learn) au décalage fixe de 13. Comme
 l'{{term:alphabet}} latin compte 26 lettres, deux décalages de 13
 ramènent chaque lettre à sa place : la même opération encode et
 décode. Les groupes Usenet s'en servaient pour masquer les spoilers et

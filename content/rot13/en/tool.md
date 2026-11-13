@@ -1,6 +1,6 @@
 # About ROT13
 
-ROT13 is a Caesar cipher with a fixed shift of 13. Because the Latin
+ROT13 is a [Caesar cipher](/encoder/caesar/learn) with a fixed shift of 13. Because the Latin
 {{term:alphabet}} has 26 letters, shifting by 13 twice brings every
 letter back: the same operation both encodes and decodes. Usenet
 groups used it to hide spoilers and punchlines — it protects against a

@@ -3,7 +3,7 @@
 The Affine cipher turns each letter into a number (A = 0 … Z = 25),
 multiplies it by `a`, adds `b` and wraps around modulo 26:
 `E(x) = a·x + b`. It is a {{term:substitution}} cipher one step beyond
-Caesar — Caesar is the special case `a = 1` — and a classic first
+[Caesar](/encoder/caesar/learn) — Caesar is the special case `a = 1` — and a classic first
 exercise in {{term:modular-arithmetic}}.
 
 ## How to use this tool

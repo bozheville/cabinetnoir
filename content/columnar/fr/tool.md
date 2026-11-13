@@ -5,7 +5,7 @@ ordre : on écrit le message en lignes sous un mot-clé, puis on lit les
 colonnes dans l'ordre alphabétique des lettres du mot-clé. C'est une
 {{term:transposition}}, pas une substitution : les fréquences des
 lettres restent celles du clair. Ce fut un outil de terrain de la
-Première Guerre mondiale et le second étage du chiffre allemand ADFGVX.
+Première Guerre mondiale et le second étage du chiffre allemand [ADFGVX](/encoder/adfgvx/learn).
 
 ## Utiliser l'outil
 

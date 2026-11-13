@@ -1,7 +1,7 @@
 # About the Vigenère cipher
 
-The Vigenère cipher encrypts each letter with a different Caesar
-shift, taken in turn from the letters of a keyword. That makes it a
+The Vigenère cipher encrypts each letter with a different
+[Caesar shift](/encoder/caesar/learn), taken in turn from the letters of a keyword. That makes it a
 {{term:polyalphabetic}} cipher: the same plaintext letter can come out
 as several different ciphertext letters. For three centuries it was
 called "le chiffre indéchiffrable", the unbreakable cipher.

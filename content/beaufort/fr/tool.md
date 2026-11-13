@@ -1,6 +1,6 @@
 # Le chiffre de Beaufort en bref
 
-Le chiffre de Beaufort est un proche parent du Vigenère : chaque lettre
+Le chiffre de Beaufort est un proche parent du [Vigenère](/encoder/vigenere/learn) : chaque lettre
 est chiffrée par une lettre d'un mot-clé répété, mais on soustrait au
 lieu d'additionner. Dans le Beaufort classique, la lettre chiffrée
 vaut `clé − clair`, ce qui rend le chiffre réciproque : la même

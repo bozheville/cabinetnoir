@@ -1,6 +1,6 @@
 # About the Autokey cipher
 
-The Autokey cipher is a Vigenère cipher whose key never repeats: a
+The Autokey cipher is a [Vigenère cipher](/encoder/vigenere/learn) whose key never repeats: a
 short {{term:primer}} starts the key, and then the message itself
 continues it. That removes the repeating period that breaks ordinary
 Vigenère. Giovan Battista Bellaso proposed the idea in 1553, and Blaise

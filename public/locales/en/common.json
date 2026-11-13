@@ -1327,6 +1327,9 @@
       "title": "Glossary",
       "furtherReading": "Further reading"
     },
+    "related": {
+      "title": "Related ciphers"
+    },
     "furtherReading": {
       "wikipedia": "Wikipedia: the cipher"
     },
