@@ -20,6 +20,7 @@ DESC_RANGE = (70, 170)
 data = json.loads(subprocess.check_output(['node', '-e', '''
 const a = require('./src/@encryptors/algorithms');
 const c = require('./src/@learning/config');
+const cat = require('./src/@learning/categories');
 const out = [];
 for (const alg of [...a.encodingsList, ...a.encryptorsList]) {
   const actions = ['direct', 'reverse'];
@@ -27,6 +28,7 @@ for (const alg of [...a.encodingsList, ...a.encryptorsList]) {
   for (const tab of c.LEARNING_TABS) if (c.hasTab(alg, tab)) actions.push(tab);
   out.push({ alg, encoding: a.encodingsList.includes(alg), actions });
 }
+out.push({ categoryPaths: cat.getAllCategoryPaths() });
 console.log(JSON.stringify(out));
 ''']))
 
@@ -50,7 +52,14 @@ def pages(locale):
     yield '/identify', f"{get(d, 'seo.identify.title')} • {name}", get(d, 'seo.identify.description')
     yield '/about', f"{get(d, 'seo.about.title')} • {name}", get(d, 'seo.about.description')
     yield '/sitemap', f"{get(d, 'sitemap.title')} • {name}", get(d, 'sitemap.subtitle')
+    yield '/category', f"{get(d, 'categories.hub.headerTitle')} • {name}", get(d, 'categories.hub.description')
     for entry in data:
+        if 'categoryPaths' in entry:
+            for segments in entry['categoryPaths']:
+                cat_id = segments[-1]
+                title = fill(get(d, 'seo.category.title'), category=get(d, f'categories.{cat_id}.name'))
+                yield f"/category/{'/'.join(segments)}", f"{title} • {name}", get(d, f'categories.{cat_id}.description')
+            continue
         alg = entry['alg']
         kind = 'encoding' if entry['encoding'] else 'encryptor'
         cipher = get(d, f'processing.{alg}.title')

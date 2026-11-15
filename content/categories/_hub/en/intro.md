@@ -1,0 +1,1 @@
+Every cipher in the cabinet belongs to a family. Substitution replaces letters, transposition reorders them, product ciphers do both, and codes spell the message in another public alphabet. Pick a family to see how its members work, how they are broken, and which ones are coming next.

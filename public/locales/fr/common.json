@@ -2318,6 +2318,12 @@
     "about": {
       "title": "À propos : auteur et ligne éditoriale",
       "description": "Qui fait Cabinet Noir, comment les textes et les traductions sont rédigés et vérifiés, ce que devient le texte saisi et comment signaler une erreur."
+    },
+    "category": {
+      "category": {
+        "title": "{{category}}: encode, decode and learn • Cabinet Noir"
+      },
+      "title": "{{category}}: encode, decode, learn"
     }
   },
   "about": {
@@ -2355,7 +2361,8 @@
       "title": "Cipher families",
       "headerTitle": "Cipher families",
       "intro": "Every cipher in the cabinet belongs to a family. Substitution replaces letters, transposition reorders them, product ciphers do both, and codes spell the message in another public alphabet. Pick a family to see how its members work, how they are broken, and which ones are coming next.",
-      "description": "Browse every cipher by family: substitution, transposition, product ciphers and codes. How each family works and how it is broken."
+      "description": "Browse every cipher by family: substitution, transposition, product ciphers and codes. How each family works and how it is broken.",
+      "name": "Cipher families"
     },
     "labels": {
       "comingSoon": "Coming soon",
@@ -2370,11 +2377,6 @@
       "families": "Cipher families",
       "browseByFamily": "Browse by family",
       "showPath": "Show full path"
-    },
-    "seo": {
-      "category": {
-        "title": "{{category}}: encode, decode and learn • Cabinet Noir"
-      }
     },
     "substitution": {
       "name": "Substitution ciphers",

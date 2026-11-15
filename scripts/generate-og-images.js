@@ -11,12 +11,14 @@ const path = require('path');
 
 const { banner } = require('./generate-brand-images');
 const { encodingsList, encryptorsList } = require('../src/@encryptors/algorithms');
-const { SUPPORTED_LOCALES, ogImagePath } = require('../src/@lib/sitemap-data');
+const { getAllCategoryPaths } = require('../src/@learning/categories');
+const { SUPPORTED_LOCALES, ogImagePath, ogCategoryImagePath } = require('../src/@lib/sitemap-data');
 
 const ROOT = path.join(__dirname, '..');
 
 const main = async () => {
   const algorithms = [...encodingsList, ...encryptorsList];
+  const categories = [null, ...getAllCategoryPaths().map((segments) => segments[segments.length - 1])];
   fs.rmSync(path.join(ROOT, 'public', 'og'), { recursive: true, force: true });
 
   for (const locale of SUPPORTED_LOCALES) {
@@ -34,8 +36,23 @@ const main = async () => {
         file: path.join(ROOT, 'public', ogImagePath(algorithm, locale)),
       });
     }
+    for (const id of categories) {
+      const key = id === null ? 'hub' : id;
+      const node = common.categories?.[key];
+      const title = node?.name;
+      const body = node?.description;
+      if (!title || !body) {
+        throw new Error(`Missing ${key}.name or .description in ${locale}`);
+      }
+      await banner({
+        title,
+        body,
+        footer: common.name,
+        file: path.join(ROOT, 'public', ogCategoryImagePath(id, locale)),
+      });
+    }
   }
-  console.log(`og images: ${algorithms.length * SUPPORTED_LOCALES.length} written to public/og`);
+  console.log(`og images: ${(algorithms.length + categories.length) * SUPPORTED_LOCALES.length} written to public/og`);
 };
 
 main().catch((err) => {

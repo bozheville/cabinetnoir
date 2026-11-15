@@ -68,6 +68,18 @@ const sourcesFor = (pagePath, locale) => {
     return [STATIC_PAGE_FILES[pagePath], localeFile(locale)];
   }
 
+  if (pagePath === '/category') {
+    return ['pages/category/[[...path]].tsx', 'src/@learning/categories.js',
+      + `content/categories/_hub/${locale}/intro.md`, localeFile(locale)];
+  }
+
+  const categoryMatch = pagePath.match(/^\/category\/([a-z0-9-]+(?:\/[a-z0-9-]+)*)$/);
+  if (categoryMatch) {
+    const id = categoryMatch[1].split('/').pop();
+    return ['pages/category/[[...path]].tsx', 'src/@learning/categories.js',
+      + `content/categories/${id}/${locale}/intro.md`, localeFile(locale)];
+  }
+
   const match = pagePath.match(/^\/encoder\/([a-zA-Z0-9]+)\/([a-z]+)$/);
   const algorithm = match[1];
   const segment = match[2];

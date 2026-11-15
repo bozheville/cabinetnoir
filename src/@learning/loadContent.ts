@@ -16,6 +16,13 @@ const readTopic = (cipher: string, locale: string, topic: string): string | null
 
 // One markdown topic. Falls back to the `en` file when the locale file is
 // missing (warns in dev); a missing `en` file means the topic is absent.
+export const loadCategoryIntro = (id: string, locale: string): string | null => {
+  const base = id === null ? '_hub' : id;
+  return loadTopic(`categories/${base}`, locale, 'intro');
+};
+
+// One markdown topic. Falls back to the `en` file when the locale file is
+// missing (warns in dev); a missing `en` file means the topic is absent.
 export const loadTopic = (cipher: string, locale: string, topic: string): string | null => {
   const localized = readTopic(cipher, locale, topic);
   if (localized !== null) {

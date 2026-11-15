@@ -13,6 +13,7 @@ const {
   hasTab,
   hasCryptanalysis,
 } = require('../@learning/config');
+const { getAllCategoryPaths, isIndexable } = require('../@learning/categories');
 
 // The canonical origin. NEXT_PUBLIC_SITE_URL lets a preview/staging deploy
 // emit absolute URLs against its own domain without code changes.
@@ -36,6 +37,9 @@ const languageTag = (locale) => LANGUAGE_TAGS[locale] || locale;
 // Per-algorithm Open Graph card, written by scripts/generate-og-images.js.
 // Site-relative, with a leading slash.
 const ogImagePath = (algorithm, locale) => `/og/${locale}/${algorithm}.png`;
+// Per-category Open Graph card, written by scripts/generate-og-images.js.
+const ogCategoryImagePath = (id, locale) =>
+  id === null ? `/og/${locale}/category-hub.png` : `/og/${locale}/category-${id}.png`;
 
 const localePrefix = (locale) => (locale === 'en' ? '' : `/${locale}`);
 
@@ -50,11 +54,21 @@ const STATIC_PAGES = [
   { path: '/sitemap' },
 ];
 
+// Cipher category pages: the hub plus every indexable category (the thin
+// ones stay out of the XML sitemap per spec).
+const buildCategoryEntries = () => [
+  { id: null, path: '/category' },
+  ...getAllCategoryPaths()
+    .filter((segments) => isIndexable(segments[segments.length - 1]))
+    .map((segments) => ({ id: segments[segments.length - 1], path: `/category/${segments.join('/')}` })),
+];
+
 // Every encoder page with the URL segments it actually serves: the tool
 // modes, plus the learning tabs (and the cracker wizard) only where the
 // per-cipher learning config says they exist.
 const buildSitemapEntries = () => ({
   staticPages: STATIC_PAGES,
+  categories: buildCategoryEntries(),
   encoders: [...encodingsList, ...encryptorsList].map((algorithm) => ({
     algorithm,
     segments: [
@@ -86,9 +100,10 @@ const alternatesFor = (path) => [
 // Every locale-free page path, in sitemap.xml order: static pages first,
 // then every encoder segment.
 const buildSitemapPaths = () => {
-  const { staticPages, encoders } = buildSitemapEntries();
+  const { staticPages, categories, encoders } = buildSitemapEntries();
   return [
     ...staticPages.map((page) => page.path),
+    ...categories.map((entry) => entry.path),
     ...encoders.flatMap((encoder) =>
       encoder.segments.map((segment) => `/encoder/${encoder.algorithm}/${segment}`),
     ),
@@ -111,7 +126,9 @@ module.exports = {
   ogImagePath,
   alternatesFor,
   buildSitemapEntries,
+  buildCategoryEntries,
   buildSitemapPaths,
   buildSitemapUrls,
   urlFor,
+  ogCategoryImagePath,
 };
