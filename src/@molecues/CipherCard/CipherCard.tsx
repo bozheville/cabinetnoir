@@ -10,7 +10,7 @@ import { Button, Patch } from '@atoms';
 import { focusRing } from '@theme/mixins';
 import { Caption, GreatPrimer, Minion } from '@typography';
 import { getLearningConfig } from '@learning/config';
-import { getCategory, getCipherCategories, getPrimaryCategory } from '@learning/categories';
+import { categoryPath, getCategory, getCipherCategories, getPrimaryCategory } from '@learning/categories';
 
 // The cipher card shared by the home ladder and the category pages. Leather
 // comes from the cipher's primary category (spec: cipher-categories, task 04);
@@ -141,7 +141,7 @@ const CipherCard: React.FC<CipherCardProps> = ({
     >
       <FamilyLabel>
         {primary && labelAsLink ? (
-          <Link href={`/category/${primary}`}>{t(`categories.${primary}.shortName`)}</Link>
+          <Link href={categoryPath(primary)}>{t(`categories.${primary}.shortName`)}</Link>
         ) : (
           t(atGlance.type)
         )}
@@ -149,7 +149,7 @@ const CipherCard: React.FC<CipherCardProps> = ({
       <CardTitle>{t(`processing.${cipher}.title`)}</CardTitle>
       <GlanceLine>
         {secondaryOf && primary ? (
-          <Link href={`/category/${primary}`}>
+          <Link href={categoryPath(primary)}>
             {t('categories.labels.primaryFamily', {
               family: t(`categories.${primary}.shortName`),
             })}

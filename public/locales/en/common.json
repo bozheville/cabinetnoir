@@ -2322,9 +2322,6 @@
       "description": "Who makes Cabinet Noir, how its text and translations are written and checked, what happens to the text you type, and how to report a mistake."
     },
     "category": {
-      "category": {
-        "title": "{{category}}: encode, decode and learn • Cabinet Noir"
-      },
       "title": "{{category}}: encode, decode, learn"
     }
   },

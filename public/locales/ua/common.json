@@ -1111,7 +1111,7 @@
       "pages": "Сторінки",
       "encodings": "Кодування",
       "encryptors": "Шифри",
-      "categories": "Cipher families"
+      "categories": "Родини шифрів"
     }
   },
   "learning": {
@@ -1157,7 +1157,7 @@
       "modes": "Режими",
       "collapse": "Згорнути",
       "expand": "Розгорнути",
-      "families": "Cipher families"
+      "families": "Родини шифрів"
     },
     "glossary": {
       "title": "Глосарій",
@@ -2322,10 +2322,7 @@
       "description": "Хто створює Cabinet Noir, як пишуться й перевіряються тексти та переклади, що відбувається з введеним текстом і як повідомити про помилку."
     },
     "category": {
-      "category": {
-        "title": "{{category}}: encode, decode and learn • Cabinet Noir"
-      },
-      "title": "{{category}}: encode, decode, learn"
+      "title": "{{category}}: онлайн і теорія"
     }
   },
   "about": {
@@ -2360,130 +2357,130 @@
   },
   "categories": {
     "hub": {
-      "title": "Cipher families",
-      "headerTitle": "Cipher families",
-      "intro": "Every cipher in the cabinet belongs to a family. Substitution replaces letters, transposition reorders them, product ciphers do both, and codes spell the message in another public alphabet. Pick a family to see how its members work, how they are broken, and which ones are coming next.",
-      "description": "Browse every cipher by family: substitution, transposition, product ciphers and codes. How each family works and how it is broken.",
-      "name": "Cipher families"
+      "title": "Родини шифрів",
+      "headerTitle": "Родини шифрів",
+      "intro": "Кожен шифр у кабінеті належить до родини. Заміна підміняє літери, перестановка змінює їхній порядок, складені шифри роблять і те, і те, а коди записують повідомлення іншою публічною абеткою. Оберіть родину, щоб побачити, як працюють її шифри, як їх зламують і які з'являться незабаром.",
+      "description": "Усі шифри за родинами: заміна, перестановка, складені шифри та коди. Як працює кожна родина і як її зламують.",
+      "name": "Родини шифрів"
     },
     "labels": {
-      "comingSoon": "Coming soon",
-      "subcategories": "Sub-families",
-      "ciphers": "All ciphers",
-      "otherFamilies": "Other cipher families",
-      "siblings": "Also in {{parent}}",
-      "primaryFamily": "Primary family: {{family}}",
-      "liveCount_one": "{{count}} cipher",
-      "liveCount_other": "{{count}} ciphers",
-      "seeAll": "All families",
-      "families": "Cipher families",
-      "browseByFamily": "Browse by family",
-      "showPath": "Show full path",
-      "kicker": "Cipher family",
-      "hubStats": "{{live}} ciphers in {{families}} families",
-      "readMore": "Read more",
-      "showLess": "Show less",
-      "identifyTitle": "Not sure which family your ciphertext is from?",
-      "identifyLine": "Paste it into the identifier: it ranks the likely ciphers.",
-      "breadcrumb": "Breadcrumb",
-      "familiesShort": "Families"
+      "comingSoon": "Незабаром",
+      "subcategories": "Підродини",
+      "ciphers": "Усі шифри",
+      "otherFamilies": "Інші родини шифрів",
+      "siblings": "Також у: {{parent}}",
+      "primaryFamily": "Основна родина: {{family}}",
+      "liveCount_one": "Шифрів: {{count}}",
+      "liveCount_other": "Шифрів: {{count}}",
+      "seeAll": "Усі родини",
+      "families": "Родини шифрів",
+      "browseByFamily": "Огляд за родинами",
+      "showPath": "Показати повний шлях",
+      "kicker": "Родина шифрів",
+      "hubStats": "Шифрів: {{live}} · родин: {{families}}",
+      "readMore": "Читати далі",
+      "showLess": "Згорнути",
+      "identifyTitle": "Не знаєте, з якої родини ваш шифротекст?",
+      "identifyLine": "Вставте його в ідентифікатор: він упорядкує ймовірні шифри.",
+      "breadcrumb": "Навігаційний ланцюжок",
+      "familiesShort": "Родини"
     },
     "substitution": {
-      "name": "Substitution ciphers",
-      "shortName": "Substitution",
-      "oneLiner": "Every letter is replaced; the order stays put.",
-      "description": "How substitution ciphers work: monoalphabetic, polyalphabetic, polygraphic, Polybius square — encode, decode and break them at Cabinet Noir."
+      "name": "Шифри заміни",
+      "shortName": "Заміна",
+      "oneLiner": "Кожна літера замінюється; порядок не змінюється.",
+      "description": "Як працюють шифри заміни: моноалфавітні, поліалфавітні, поліграмні, квадрат Полібія. Шифруйте, розшифровуйте та зламуйте їх у Cabinet Noir."
     },
     "monoalphabetic": {
-      "name": "Monoalphabetic substitution",
-      "shortName": "Monoalphabetic",
-      "oneLiner": "One fixed cipher alphabet for the whole message.",
-      "description": "Monoalphabetic substitution ciphers: one cipher alphabet for the whole message. Caesar, Atbash, Keyword, Pigpen — learn and break them."
+      "name": "Моноалфавітна заміна",
+      "shortName": "Моноалфавітні",
+      "oneLiner": "Одна незмінна шифрабетка на все повідомлення.",
+      "description": "Шифри моноалфавітної заміни: одна шифрабетка на все повідомлення. Цезар, Атбаш, ключове слово, Pigpen — вивчайте та зламуйте їх."
     },
     "shift": {
-      "name": "Shift ciphers",
-      "shortName": "Shift",
-      "oneLiner": "Slide the alphabet a fixed number of places.",
-      "description": "Shift ciphers slide the alphabet a fixed number of places: Caesar and ROT13. Online tools and how frequency analysis breaks them."
+      "name": "Шифри зсуву",
+      "shortName": "Зсув",
+      "oneLiner": "Абетка зсувається на сталу кількість позицій.",
+      "description": "Шифри зсуву зсувають абетку на сталу кількість позицій: Цезар і ROT13. Онлайн-інструменти та частотний аналіз, що їх зламує."
     },
     "affine-family": {
-      "name": "Affine ciphers",
-      "shortName": "Affine",
-      "oneLiner": "Multiply, then shift: a straight line mod 26.",
-      "description": "Affine ciphers multiply and shift letters along a line mod 26: Affine and Atbash. Encode, decode and break them at Cabinet Noir."
+      "name": "Афінні шифри",
+      "shortName": "Афінні",
+      "oneLiner": "Помножити, потім зсунути: пряма за модулем 26.",
+      "description": "Афінні шифри множать і зсувають літери вздовж прямої за модулем 26: афінний шифр і Атбаш. Шифруйте, розшифровуйте та зламуйте їх."
     },
     "polyalphabetic": {
-      "name": "Polyalphabetic substitution",
-      "shortName": "Polyalphabetic",
-      "oneLiner": "The cipher alphabet changes as you go.",
-      "description": "Polyalphabetic ciphers change the alphabet as the message goes on: tabula recta and rotor machines. Learn Kasiski’s test and the index of coincidence."
+      "name": "Поліалфавітна заміна",
+      "shortName": "Поліалфавітні",
+      "oneLiner": "Шифрабетка змінюється по ходу повідомлення.",
+      "description": "Поліалфавітні шифри змінюють абетку по ходу повідомлення: tabula recta і роторні машини. Тест Касиського та індекс збігів."
     },
     "tabula-recta": {
-      "name": "Tabula recta ciphers",
+      "name": "Шифри tabula recta",
       "shortName": "Tabula recta",
-      "oneLiner": "A repeating key picks a row of the square table.",
-      "description": "Tabula recta ciphers: Vigenère, Beaufort, Autokey — a repeating key picks rows of the 26×26 square. Encode, decode and break them."
+      "oneLiner": "Повторюваний ключ обирає рядок квадратної таблиці.",
+      "description": "Шифри tabula recta: Віженер, Бофорт, Autokey — повторюваний ключ обирає рядки квадрата 26×26. Шифруйте, розшифровуйте та зламуйте їх."
     },
     "disks-and-rotors": {
-      "name": "Cipher disks and rotor machines",
-      "shortName": "Disks and rotors",
-      "oneLiner": "Turning wheels switch the alphabet for you.",
-      "description": "Cipher disks and rotor machines: Alberti’s disk and the Enigma machine. How rotation spreads frequencies and how it was broken."
+      "name": "Шифрувальні диски та роторні машини",
+      "shortName": "Диски й ротори",
+      "oneLiner": "Колеса, що обертаються, самі змінюють абетку.",
+      "description": "Шифрувальні диски й роторні машини: диск Альберті та машина «Енігма». Як обертання розмиває частоти і як її зламали."
     },
     "polygraphic": {
-      "name": "Polygraphic substitution",
-      "shortName": "Polygraphic",
-      "oneLiner": "Letters are replaced in pairs or blocks.",
-      "description": "Polygraphic substitution replaces letters in pairs or blocks: Playfair cipher and the coming-soon Hill cipher. Online tools and history."
+      "name": "Поліграмна заміна",
+      "shortName": "Поліграмні",
+      "oneLiner": "Літери замінюються парами або блоками.",
+      "description": "Поліграмна заміна підміняє літери парами або блоками: шифр Плейфера і незабаром шифр Гілла. Онлайн-інструменти та історія."
     },
     "polybius-square": {
-      "name": "Polybius-square ciphers",
-      "shortName": "Polybius square",
-      "oneLiner": "Letters become row and column coordinates.",
-      "description": "Polybius-square ciphers turn letters into row and column coordinates: Polybius, Nihilist, ADFGVX. Encode and decode them online."
+      "name": "Шифри квадрата Полібія",
+      "shortName": "Квадрат Полібія",
+      "oneLiner": "Літери стають координатами рядка й стовпця.",
+      "description": "Шифри квадрата Полібія перетворюють літери на координати рядка й стовпця: Полібій, нігілістів, ADFGVX. Шифруйте онлайн."
     },
     "transposition": {
-      "name": "Transposition ciphers",
-      "shortName": "Transposition",
-      "oneLiner": "The letters stay; their order is shuffled.",
-      "description": "Transposition ciphers keep the letters and shuffle their order: rail fence, columnar, Saknussemm. Tools, history and how to break them."
+      "name": "Шифри перестановки",
+      "shortName": "Перестановка",
+      "oneLiner": "Літери лишаються; змінюється їхній порядок.",
+      "description": "Шифри перестановки зберігають літери й перемішують їхній порядок: «огорожа», стовпцевий, Сакнуссемм. Інструменти, історія та злам."
     },
     "product": {
-      "name": "Product ciphers",
-      "shortName": "Product",
-      "oneLiner": "Substitution and transposition, combined.",
-      "description": "Product ciphers combine substitution with transposition: ADFGVX and Nihilist. The WWI field ciphers and how they were broken."
+      "name": "Складені шифри",
+      "shortName": "Складені",
+      "oneLiner": "Заміна й перестановка разом.",
+      "description": "Складені шифри поєднують заміну з перестановкою: ADFGVX і шифр нігілістів. Польові шифри Першої світової і як їх зламали."
     },
     "codes-and-encodings": {
-      "name": "Codes and encodings",
-      "shortName": "Codes",
-      "oneLiner": "Public mappings, no key: not encryption.",
-      "description": "Codes and encodings map text to public alphabets without a key: Morse and Base64. Tools and history at Cabinet Noir."
+      "name": "Коди та кодування",
+      "shortName": "Коди",
+      "oneLiner": "Публічні відповідності без ключа: це не шифрування.",
+      "description": "Коди й кодування відображають текст у публічні абетки без ключа: Морзе та Base64. Інструменти та історія в Cabinet Noir."
     },
     "comingSoon": {
       "hill": {
-        "name": "Hill cipher",
-        "oneLiner": "Letter blocks times a key matrix."
+        "name": "Шифр Гілла",
+        "oneLiner": "Блоки літер, помножені на матрицю-ключ."
       },
       "homophonic": {
-        "name": "Homophonic substitution",
-        "oneLiner": "Many symbols per frequent letter."
+        "name": "Омофонна заміна",
+        "oneLiner": "Кілька символів для частої літери."
       },
       "bifid": {
-        "name": "Bifid cipher",
-        "oneLiner": "Coordinates split and re-paired."
+        "name": "Шифр Біфід",
+        "oneLiner": "Координати розділяють і знову парують."
       },
       "straddlingCheckerboard": {
-        "name": "Straddling checkerboard (VIC)",
-        "oneLiner": "Letters to one or two digits (VIC)."
+        "name": "Шахівниця зі зміщенням (VIC)",
+        "oneLiner": "Літери в одну чи дві цифри (VIC)."
       },
       "baconian": {
-        "name": "Baconian cipher",
-        "oneLiner": "Five-bit A/B groups."
+        "name": "Шифр Бекона",
+        "oneLiner": "П’ятибітові групи A/B."
       },
       "tapCode": {
-        "name": "Tap code",
-        "oneLiner": "Knocks for row and column."
+        "name": "Тюремна азбука",
+        "oneLiner": "Стукіт для рядка і стовпця."
       }
     }
   }

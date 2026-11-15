@@ -26,7 +26,7 @@ const Description = styled(BodyCopy)`
 
 const FactsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
   gap: 4px 16px;
   margin-top: 8px;
 `;
@@ -83,7 +83,7 @@ const AtGlanceCard: React.FC = () => {
             <FactLabel>{t('learning.atGlance.modes')}</FactLabel>
             <FactValue>{config.atGlance.modes.map((mode) => t(`learning.modes.${mode}`)).join(' · ')}</FactValue>
           </div>
-          <div style={{ gridColumn: '1 / -1' }}>
+          <div style={{ gridColumn: '1 / -1', minWidth: 0 }}>
             <FactLabel>{t('learning.atGlance.families')}</FactLabel>
             <CategoryChips
               ids={[...new Set(getCipherCategories(algorithm as string))].sort((a, b) =>

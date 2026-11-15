@@ -20,14 +20,15 @@ const StyledHeader = styled(Section)`
   }
   padding: 16px 24px;
 
-  /* Mobile-first: three rows — brand + actions, the trail, the h1
-     (task 05c, replaces the deprecated small column layout). */
+  /* Mobile-first: stacked rows — wordmark, links + language, the h1.
+     The trail lives in the page content, not here. */
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
-    'brand actions'
-    'trail trail'
-    'title title';
+    'brand'
+    'actions'
+    'title';
+  gap: 8px;
   align-items: center;
   justify-items: start;
 
@@ -53,6 +54,7 @@ const Wordmark = styled(Link)`
   color: ${({ theme }) => theme.metal.brass.light};
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
   white-space: nowrap;
+  grid-area: brand;
 `;
 
 // The page's <h1> by default: the current page in the trail.
@@ -79,9 +81,15 @@ const CrumbSeparator = styled.span`
 const RightCluster = styled.div`
   grid-area: actions;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
-  flex: none;
+  gap: 8px 16px;
+  min-width: 0;
+
+  ${({ theme }) => theme.breakpoints.tablet} {
+    flex: none;
+    flex-wrap: nowrap;
+  }
 `;
 
 // "Cipher families" header link (task 06), styled like IdentifyLink.
@@ -110,7 +118,13 @@ const CategoriesLink = styled(Link)`
 `;
 
 const IdentifyLink = styled(Link)`
-  flex-shrink: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+
+  ${({ theme }) => theme.breakpoints.tablet} {
+    flex-shrink: 0;
+  }
+
   font-family: ${({ theme }) => theme.type.engraved};
   font-size: 12px;
   letter-spacing: 0.16em;

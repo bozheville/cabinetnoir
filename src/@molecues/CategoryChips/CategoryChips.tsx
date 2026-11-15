@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import { focusRing } from '@theme/mixins';
-import { getCategory } from '@learning/categories';
+import { categoryPath, getCategory } from '@learning/categories';
 
 // Brass-engraved link chips for family cross-links. Desktop: rows wrap.
 // Mobile: one scroll-snap row with a hidden scrollbar and a right-edge fade,
@@ -22,23 +22,28 @@ export interface CategoryChipsProps {
 
 const Row = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px;
   margin-top: 8px;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
 
-  ${({ theme }) => theme.breakpoints.small} {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-    scroll-snap-type: x proximity;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  /* Fade hint that the row continues past the edge. */
+  mask-image: linear-gradient(to right, black 0%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 0%, black 85%, transparent 100%);
 
-    /* Fade hint that the row continues past the edge. */
-    mask-image: linear-gradient(to right, black 0%, black 85%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, black 0%, black 85%, transparent 100%);
+  ${({ theme }) => theme.breakpoints.tablet} {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    mask-image: none;
+    -webkit-mask-image: none;
   }
 `;
 
@@ -46,7 +51,8 @@ const Chip = styled(Link)`
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  height: 36px;
+  flex: none;
+  min-height: 44px;
   padding: 0 16px;
   border-radius: 4px;
   background: linear-gradient(
@@ -98,7 +104,7 @@ const CategoryChips: React.FC<CategoryChipsProps> = ({ ids, seeAllPath, titles, 
         return (
           <Chip
             key={id}
-            href={`/category/${id}`}
+            href={categoryPath(id)}
             title={titles?.[id]}
           >
             {cat && <Swatch $leather={cat.leather} />}

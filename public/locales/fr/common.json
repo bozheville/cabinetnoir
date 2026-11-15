@@ -1111,7 +1111,7 @@
       "pages": "Pages",
       "encodings": "Encodages",
       "encryptors": "Chiffres",
-      "categories": "Cipher families"
+      "categories": "Familles de chiffrements"
     }
   },
   "learning": {
@@ -1157,7 +1157,7 @@
       "modes": "Modes",
       "collapse": "Réduire",
       "expand": "Afficher plus",
-      "families": "Cipher families"
+      "families": "Familles de chiffrements"
     },
     "glossary": {
       "title": "Glossaire",
@@ -2322,10 +2322,7 @@
       "description": "Qui fait Cabinet Noir, comment les textes et les traductions sont rédigés et vérifiés, ce que devient le texte saisi et comment signaler une erreur."
     },
     "category": {
-      "category": {
-        "title": "{{category}}: encode, decode and learn • Cabinet Noir"
-      },
-      "title": "{{category}}: encode, decode, learn"
+      "title": "{{category}} : outils et théorie"
     }
   },
   "about": {
@@ -2360,130 +2357,130 @@
   },
   "categories": {
     "hub": {
-      "title": "Cipher families",
-      "headerTitle": "Cipher families",
-      "intro": "Every cipher in the cabinet belongs to a family. Substitution replaces letters, transposition reorders them, product ciphers do both, and codes spell the message in another public alphabet. Pick a family to see how its members work, how they are broken, and which ones are coming next.",
-      "description": "Browse every cipher by family: substitution, transposition, product ciphers and codes. How each family works and how it is broken.",
-      "name": "Cipher families"
+      "title": "Familles de chiffrements",
+      "headerTitle": "Familles de chiffrements",
+      "intro": "Chaque chiffrement du cabinet appartient à une famille. La substitution remplace les lettres, la transposition les réordonne, les chiffrements produits font les deux, et les codes écrivent le message dans un autre alphabet public. Choisissez une famille pour voir comment ses membres fonctionnent, comment on les casse et lesquels arrivent bientôt.",
+      "description": "Tous les chiffrements classés par famille : substitution, transposition, chiffrements produits et codes. Fonctionnement et cryptanalyse de chaque famille.",
+      "name": "Familles de chiffrements"
     },
     "labels": {
-      "comingSoon": "Coming soon",
-      "subcategories": "Sub-families",
-      "ciphers": "All ciphers",
-      "otherFamilies": "Other cipher families",
-      "siblings": "Also in {{parent}}",
-      "primaryFamily": "Primary family: {{family}}",
-      "liveCount_one": "{{count}} cipher",
-      "liveCount_other": "{{count}} ciphers",
-      "seeAll": "All families",
-      "families": "Cipher families",
-      "browseByFamily": "Browse by family",
-      "showPath": "Show full path",
-      "kicker": "Cipher family",
-      "hubStats": "{{live}} ciphers in {{families}} families",
-      "readMore": "Read more",
-      "showLess": "Show less",
-      "identifyTitle": "Not sure which family your ciphertext is from?",
-      "identifyLine": "Paste it into the identifier: it ranks the likely ciphers.",
-      "breadcrumb": "Breadcrumb",
-      "familiesShort": "Families"
+      "comingSoon": "Bientôt",
+      "subcategories": "Sous-familles",
+      "ciphers": "Tous les chiffrements",
+      "otherFamilies": "Autres familles de chiffrements",
+      "siblings": "Aussi dans {{parent}}",
+      "primaryFamily": "Famille principale : {{family}}",
+      "liveCount_one": "{{count}} chiffrement",
+      "liveCount_other": "{{count}} chiffrements",
+      "seeAll": "Toutes les familles",
+      "families": "Familles de chiffrements",
+      "browseByFamily": "Parcourir par famille",
+      "showPath": "Afficher le chemin complet",
+      "kicker": "Famille de chiffrements",
+      "hubStats": "{{live}} chiffrements dans {{families}} familles",
+      "readMore": "Lire la suite",
+      "showLess": "Réduire",
+      "identifyTitle": "Vous ne savez pas de quelle famille vient votre texte chiffré ?",
+      "identifyLine": "Collez-le dans l’identificateur : il classe les chiffrements probables.",
+      "breadcrumb": "Fil d’Ariane",
+      "familiesShort": "Familles"
     },
     "substitution": {
-      "name": "Substitution ciphers",
+      "name": "Chiffrements par substitution",
       "shortName": "Substitution",
-      "oneLiner": "Every letter is replaced; the order stays put.",
-      "description": "How substitution ciphers work: monoalphabetic, polyalphabetic, polygraphic, Polybius square — encode, decode and break them at Cabinet Noir."
+      "oneLiner": "Chaque lettre est remplacée ; l’ordre ne bouge pas.",
+      "description": "Comment fonctionnent les chiffrements par substitution : monoalphabétique, polyalphabétique, polygraphique, carré de Polybe. Chiffrez, déchiffrez et cassez-les."
     },
     "monoalphabetic": {
-      "name": "Monoalphabetic substitution",
-      "shortName": "Monoalphabetic",
-      "oneLiner": "One fixed cipher alphabet for the whole message.",
-      "description": "Monoalphabetic substitution ciphers: one cipher alphabet for the whole message. Caesar, Atbash, Keyword, Pigpen — learn and break them."
+      "name": "Substitution monoalphabétique",
+      "shortName": "Monoalphabétique",
+      "oneLiner": "Un seul alphabet chiffré pour tout le message.",
+      "description": "Chiffrements par substitution monoalphabétique : un seul alphabet chiffré pour tout le message. César, Atbash, mot-clé, Pigpen : apprenez et cassez-les."
     },
     "shift": {
-      "name": "Shift ciphers",
-      "shortName": "Shift",
-      "oneLiner": "Slide the alphabet a fixed number of places.",
-      "description": "Shift ciphers slide the alphabet a fixed number of places: Caesar and ROT13. Online tools and how frequency analysis breaks them."
+      "name": "Chiffrements par décalage",
+      "shortName": "Décalage",
+      "oneLiner": "On décale l’alphabet d’un nombre fixe de rangs.",
+      "description": "Les chiffrements par décalage glissent l’alphabet d’un nombre fixe de rangs : César et ROT13. Outils en ligne et cryptanalyse par fréquences."
     },
     "affine-family": {
-      "name": "Affine ciphers",
+      "name": "Chiffrements affines",
       "shortName": "Affine",
-      "oneLiner": "Multiply, then shift: a straight line mod 26.",
-      "description": "Affine ciphers multiply and shift letters along a line mod 26: Affine and Atbash. Encode, decode and break them at Cabinet Noir."
+      "oneLiner": "Multiplier, puis décaler : une droite modulo 26.",
+      "description": "Les chiffrements affines multiplient puis décalent les lettres le long d’une droite modulo 26 : Affine et Atbash. Chiffrez, déchiffrez et cassez-les."
     },
     "polyalphabetic": {
-      "name": "Polyalphabetic substitution",
-      "shortName": "Polyalphabetic",
-      "oneLiner": "The cipher alphabet changes as you go.",
-      "description": "Polyalphabetic ciphers change the alphabet as the message goes on: tabula recta and rotor machines. Learn Kasiski’s test and the index of coincidence."
+      "name": "Substitution polyalphabétique",
+      "shortName": "Polyalphabétique",
+      "oneLiner": "L’alphabet chiffré change au fil du message.",
+      "description": "Les chiffrements polyalphabétiques changent d’alphabet au fil du message : tabula recta et machines à rotors. Test de Kasiski et indice de coïncidence."
     },
     "tabula-recta": {
-      "name": "Tabula recta ciphers",
+      "name": "Chiffrements à tabula recta",
       "shortName": "Tabula recta",
-      "oneLiner": "A repeating key picks a row of the square table.",
-      "description": "Tabula recta ciphers: Vigenère, Beaufort, Autokey — a repeating key picks rows of the 26×26 square. Encode, decode and break them."
+      "oneLiner": "Une clé répétée choisit une ligne du tableau carré.",
+      "description": "Chiffrements à tabula recta : Vigenère, Beaufort, Autokey — une clé répétée choisit les lignes du carré 26×26. Chiffrez, déchiffrez et cassez-les."
     },
     "disks-and-rotors": {
-      "name": "Cipher disks and rotor machines",
-      "shortName": "Disks and rotors",
-      "oneLiner": "Turning wheels switch the alphabet for you.",
-      "description": "Cipher disks and rotor machines: Alberti’s disk and the Enigma machine. How rotation spreads frequencies and how it was broken."
+      "name": "Disques chiffrants et machines à rotors",
+      "shortName": "Disques et rotors",
+      "oneLiner": "Des roues qui tournent changent l’alphabet pour vous.",
+      "description": "Disques chiffrants et machines à rotors : le disque d’Alberti et la machine Enigma. Comment la rotation étale les fréquences et comment on l’a cassée."
     },
     "polygraphic": {
-      "name": "Polygraphic substitution",
-      "shortName": "Polygraphic",
-      "oneLiner": "Letters are replaced in pairs or blocks.",
-      "description": "Polygraphic substitution replaces letters in pairs or blocks: Playfair cipher and the coming-soon Hill cipher. Online tools and history."
+      "name": "Substitution polygraphique",
+      "shortName": "Polygraphique",
+      "oneLiner": "Les lettres sont remplacées par paires ou par blocs.",
+      "description": "La substitution polygraphique remplace les lettres par paires ou par blocs : le chiffre de Playfair et bientôt le chiffre de Hill. Outils et histoire."
     },
     "polybius-square": {
-      "name": "Polybius-square ciphers",
-      "shortName": "Polybius square",
-      "oneLiner": "Letters become row and column coordinates.",
-      "description": "Polybius-square ciphers turn letters into row and column coordinates: Polybius, Nihilist, ADFGVX. Encode and decode them online."
+      "name": "Chiffrements à carré de Polybe",
+      "shortName": "Carré de Polybe",
+      "oneLiner": "Les lettres deviennent des coordonnées ligne-colonne.",
+      "description": "Les chiffrements à carré de Polybe changent les lettres en coordonnées ligne-colonne : Polybe, nihiliste, ADFGVX. Chiffrez et déchiffrez en ligne."
     },
     "transposition": {
-      "name": "Transposition ciphers",
+      "name": "Chiffrements par transposition",
       "shortName": "Transposition",
-      "oneLiner": "The letters stay; their order is shuffled.",
-      "description": "Transposition ciphers keep the letters and shuffle their order: rail fence, columnar, Saknussemm. Tools, history and how to break them."
+      "oneLiner": "Les lettres restent ; leur ordre est brassé.",
+      "description": "Les chiffrements par transposition gardent les lettres et brassent leur ordre : rail fence, colonnes, Saknussemm. Outils, histoire et cryptanalyse."
     },
     "product": {
-      "name": "Product ciphers",
-      "shortName": "Product",
-      "oneLiner": "Substitution and transposition, combined.",
-      "description": "Product ciphers combine substitution with transposition: ADFGVX and Nihilist. The WWI field ciphers and how they were broken."
+      "name": "Chiffrements produits",
+      "shortName": "Produit",
+      "oneLiner": "Substitution et transposition combinées.",
+      "description": "Les chiffrements produits combinent substitution et transposition : ADFGVX et nihiliste. Les chiffres de campagne de 14-18 et comment on les a cassés."
     },
     "codes-and-encodings": {
-      "name": "Codes and encodings",
+      "name": "Codes et encodages",
       "shortName": "Codes",
-      "oneLiner": "Public mappings, no key: not encryption.",
-      "description": "Codes and encodings map text to public alphabets without a key: Morse and Base64. Tools and history at Cabinet Noir."
+      "oneLiner": "Correspondances publiques, sans clé : pas du chiffrement.",
+      "description": "Les codes et encodages font correspondre le texte à des alphabets publics, sans clé : Morse et Base64. Outils et histoire sur Cabinet Noir."
     },
     "comingSoon": {
       "hill": {
-        "name": "Hill cipher",
-        "oneLiner": "Letter blocks times a key matrix."
+        "name": "Chiffre de Hill",
+        "oneLiner": "Blocs de lettres fois une matrice clé."
       },
       "homophonic": {
-        "name": "Homophonic substitution",
-        "oneLiner": "Many symbols per frequent letter."
+        "name": "Substitution homophonique",
+        "oneLiner": "Plusieurs symboles par lettre fréquente."
       },
       "bifid": {
-        "name": "Bifid cipher",
-        "oneLiner": "Coordinates split and re-paired."
+        "name": "Chiffre bifide",
+        "oneLiner": "Coordonnées séparées puis réappariées."
       },
       "straddlingCheckerboard": {
-        "name": "Straddling checkerboard (VIC)",
-        "oneLiner": "Letters to one or two digits (VIC)."
+        "name": "Damier à cheval (VIC)",
+        "oneLiner": "Lettres en un ou deux chiffres (VIC)."
       },
       "baconian": {
-        "name": "Baconian cipher",
-        "oneLiner": "Five-bit A/B groups."
+        "name": "Chiffre de Bacon",
+        "oneLiner": "Groupes A/B de cinq bits."
       },
       "tapCode": {
-        "name": "Tap code",
-        "oneLiner": "Knocks for row and column."
+        "name": "Code des prisonniers",
+        "oneLiner": "Des coups pour la ligne et la colonne."
       }
     }
   }

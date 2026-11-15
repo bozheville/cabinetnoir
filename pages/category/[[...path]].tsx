@@ -128,7 +128,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId, intro }) => {
       </Header>
       <CategorySection>
         <div>
-          <Breadcrumbs trail={[{ label: t('name'), path: '/' }, ...ancestorCrumbs]} />
+          <Breadcrumbs align="start" trail={[{ label: t('name'), path: '/' }, ...ancestorCrumbs]} />
           <Category categoryId={categoryId} intro={intro} />
         </div>
       </CategorySection>
@@ -138,12 +138,13 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId, intro }) => {
 };
 
 export const getStaticPaths = () => ({
-  paths: [
-    ...SUPPORTED_LOCALES.flatMap(() => [{ params: { path: [] } }]),
+  paths: SUPPORTED_LOCALES.flatMap((locale) => [
+    { params: { path: [] }, locale },
     ...getAllCategoryPaths().map((segments) => ({
       params: { path: segments },
+      locale,
     })),
-  ],
+  ]),
   fallback: false,
 });
 

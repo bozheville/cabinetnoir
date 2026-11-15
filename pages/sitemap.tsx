@@ -11,7 +11,7 @@ import HeadingRule from '@ornaments/HeadingRule';
 import { GreatPrimer, Minion } from '@typography';
 import { encodingsList, encryptorsList } from '@encryptors/algorithms';
 import { buildSitemapEntries, localePrefix } from '@lib/sitemap-data';
-import { getAllCategoryPaths, categoryFromSegments } from '@learning/categories';
+import { getAllCategoryPaths } from '@learning/categories';
 
 // Standard page anatomy (spec 06 §6): tan band, sheet width, groups as
 // drawers with heading rules, links as paper index cards.
@@ -30,6 +30,12 @@ const Group = styled.div`
   margin-top: 32px;
 `;
 
+const TreeList = styled.div`
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+`;
+
 const Grid = styled.div`
   margin-top: 12px;
   display: grid;
@@ -44,7 +50,8 @@ const Grid = styled.div`
   }
 `;
 
-const Card = styled.div`
+const Card = styled.div<{ $depth?: number }>`
+  margin-inline-start: ${({ $depth = 0 }) => $depth * 24}px;
   padding: 12px 16px;
   border-radius: ${({ theme }) => theme.radius.paper};
   border: 1px solid ${({ theme }) => theme.paper.rule};
@@ -66,15 +73,16 @@ const PageLink = styled(Link)`
 
 const CardHead = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
-  gap: 12px;
+  gap: 4px 12px;
 `;
 
 const CardLinks = styled.div`
   display: flex;
   gap: 12px;
-  flex-shrink: 0;
+  min-width: 0;
   flex-wrap: wrap;
 `;
 
@@ -109,7 +117,7 @@ const SitemapPage: React.FC = () => {
   const locale = router.locale || 'en';
   const prefix = localePrefix(locale);
 
-  const { staticPages, categories, encoders } = buildSitemapEntries();
+  const { staticPages, encoders } = buildSitemapEntries();
   const encodings = encoders.filter(
     (encoder) => encodingsList.indexOf(encoder.algorithm) !== -1,
   );
@@ -158,19 +166,21 @@ const SitemapPage: React.FC = () => {
           </Group>
           <Group>
             <HeadingRule>{t('sitemap.groups.categories')}</HeadingRule>
-            <Grid>
-              {categories.map((entry) => (
-                <Card key={entry.path}>
-                  <PageLink href={`${prefix}${entry.path}`}>
-                    <GreatPrimer
-                      style={{ paddingInlineStart: `${entry.path.split('/').length - 2} * 12px` }}
-                    >
-                      {t(`categories.${categoryFromSegments(entry.path.split('/').slice(2))}.name`)}
-                    </GreatPrimer>
+            {/* People see every family, noindexed ones too; indent = depth. */}
+            <TreeList>
+              <Card>
+                <PageLink href={`${prefix}/category`}>
+                  <GreatPrimer>{t('categories.hub.name')}</GreatPrimer>
+                </PageLink>
+              </Card>
+              {getAllCategoryPaths().map((segments) => (
+                <Card key={segments.join('/')} $depth={segments.length}>
+                  <PageLink href={`${prefix}/category/${segments.join('/')}`}>
+                    <GreatPrimer>{t(`categories.${segments[segments.length - 1]}.name`)}</GreatPrimer>
                   </PageLink>
                 </Card>
               ))}
-            </Grid>
+            </TreeList>
           </Group>
           {[
             { key: 'encodings', entries: encodings },
