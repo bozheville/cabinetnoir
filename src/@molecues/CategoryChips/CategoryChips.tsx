@@ -14,6 +14,10 @@ export interface CategoryChipsProps {
   ids: string[];
   /** Locale-free path of the trailing "All families" link; omit to hide it. */
   seeAllPath?: string;
+  /** Full-path tooltips per id (AtGlanceCard, task 06). */
+  titles?: Record<string, string>;
+  /** Live member counts per id (home BrowseByFamily strip, task 06). */
+  counts?: Record<string, number>;
 }
 
 const Row = styled.div`
@@ -84,7 +88,7 @@ const Swatch = styled.span<{ $leather: string }>`
   border: 1px solid rgba(42, 26, 18, 0.5);
 `;
 
-const CategoryChips: React.FC<CategoryChipsProps> = ({ ids, seeAllPath }) => {
+const CategoryChips: React.FC<CategoryChipsProps> = ({ ids, seeAllPath, titles, counts }) => {
   const { t } = useTranslation('common');
 
   return (
@@ -92,9 +96,14 @@ const CategoryChips: React.FC<CategoryChipsProps> = ({ ids, seeAllPath }) => {
       {ids.map((id) => {
         const cat = getCategory(id);
         return (
-          <Chip key={id} href={`/category/${id}`}>
+          <Chip
+            key={id}
+            href={`/category/${id}`}
+            title={titles?.[id]}
+          >
             {cat && <Swatch $leather={cat.leather} />}
             {t(`categories.${id}.shortName`)}
+            {counts?.[id] !== undefined && ` · ${counts[id]}`}
           </Chip>
         );
       })}

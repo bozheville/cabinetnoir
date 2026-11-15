@@ -7,6 +7,8 @@ import { Button, Paper } from '@atoms';
 import { BodyCopy, Caption, Minion } from '@typography';
 
 import { getLearningConfig } from '@learning/config';
+import { getAncestry, getCipherCategories, getPrimaryCategory } from '@learning/categories';
+import CategoryChips from '@molecues/CategoryChips';
 
 // Slim library index card on vellum. The 24px top offset keeps it off
 // the band's top stitch — the wrapping band carries no padding itself.
@@ -80,6 +82,15 @@ const AtGlanceCard: React.FC = () => {
           <div>
             <FactLabel>{t('learning.atGlance.modes')}</FactLabel>
             <FactValue>{config.atGlance.modes.map((mode) => t(`learning.modes.${mode}`)).join(' · ')}</FactValue>
+          </div>
+          <div style={{ gridColumn: '1 / -1' }}>
+            <FactLabel>{t('learning.atGlance.families')}</FactLabel>
+            <CategoryChips
+              ids={[...new Set(getCipherCategories(algorithm as string))].sort((a, b) =>
+                a === getPrimaryCategory(algorithm as string) ? -1 : b === getPrimaryCategory(algorithm as string) ? 1 : 0,
+              )}
+              titles={Object.fromEntries(getCipherCategories(algorithm as string).map((id) => [id, getAncestry(id).join(' › ')]))}
+            />
           </div>
         </FactsGrid>
       )}

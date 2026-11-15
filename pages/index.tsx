@@ -5,10 +5,14 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import { CipherLadder, Footer, Hero, Roadmap, Seo, StartHereCard } from '@molecues';
+import CategoryChips from '@molecues/CategoryChips';
+import HeadingRule from '@ornaments/HeadingRule';
+import { GreatPrimer } from '@typography';
+import { getRootCategories, liveCount } from '@learning/categories';
 import Section from '@atoms/Section/Section';
 import { leather } from '@theme/mixins';
 import { Sunburst } from '@ornaments';
-import { GreatPrimer, Minion } from '@typography';
+import { Minion } from '@typography';
 import { SITE_URL } from '@lib/sitemap-data';
 
 // The cabinet has no band: the cards lie directly on the desk
@@ -111,6 +115,14 @@ const Index: React.FC = () => {
       />
       <Hero />
       <StartHereCard />
+      <div>
+        <HeadingRule on="dark">{t('categories.labels.browseByFamily')}</HeadingRule>
+        <CategoryChips
+          ids={getRootCategories()}
+          counts={Object.fromEntries(getRootCategories().map((root) => [root, liveCount(root)]))}
+          seeAllPath="/category"
+        />
+      </div>
       <LadderZone id="cipher-ladder">
         <div>
           <CipherLadder />

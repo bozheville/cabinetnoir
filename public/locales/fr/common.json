@@ -1110,7 +1110,8 @@
     "groups": {
       "pages": "Pages",
       "encodings": "Encodages",
-      "encryptors": "Chiffres"
+      "encryptors": "Chiffres",
+      "categories": "Cipher families"
     }
   },
   "learning": {
@@ -1155,7 +1156,8 @@
       "origin": "Nom",
       "modes": "Modes",
       "collapse": "Réduire",
-      "expand": "Afficher plus"
+      "expand": "Afficher plus",
+      "families": "Cipher families"
     },
     "glossary": {
       "title": "Glossaire",
@@ -2383,7 +2385,8 @@
       "showLess": "Show less",
       "identifyTitle": "Not sure which family your ciphertext is from?",
       "identifyLine": "Paste it into the identifier: it ranks the likely ciphers.",
-      "breadcrumb": "Breadcrumb"
+      "breadcrumb": "Breadcrumb",
+      "familiesShort": "Families"
     },
     "substitution": {
       "name": "Substitution ciphers",

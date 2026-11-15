@@ -11,6 +11,7 @@ import HeadingRule from '@ornaments/HeadingRule';
 import { GreatPrimer, Minion } from '@typography';
 import { encodingsList, encryptorsList } from '@encryptors/algorithms';
 import { buildSitemapEntries, localePrefix } from '@lib/sitemap-data';
+import { getAllCategoryPaths, categoryFromSegments } from '@learning/categories';
 
 // Standard page anatomy (spec 06 §6): tan band, sheet width, groups as
 // drawers with heading rules, links as paper index cards.
@@ -108,7 +109,7 @@ const SitemapPage: React.FC = () => {
   const locale = router.locale || 'en';
   const prefix = localePrefix(locale);
 
-  const { staticPages, encoders } = buildSitemapEntries();
+  const { staticPages, categories, encoders } = buildSitemapEntries();
   const encodings = encoders.filter(
     (encoder) => encodingsList.indexOf(encoder.algorithm) !== -1,
   );
@@ -150,6 +151,22 @@ const SitemapPage: React.FC = () => {
                 <Card key={page.path}>
                   <PageLink href={staticHref(page.path)}>
                     <GreatPrimer>{staticLabel(page.path)}</GreatPrimer>
+                  </PageLink>
+                </Card>
+              ))}
+            </Grid>
+          </Group>
+          <Group>
+            <HeadingRule>{t('sitemap.groups.categories')}</HeadingRule>
+            <Grid>
+              {categories.map((entry) => (
+                <Card key={entry.path}>
+                  <PageLink href={`${prefix}${entry.path}`}>
+                    <GreatPrimer
+                      style={{ paddingInlineStart: `${entry.path.split('/').length - 2} * 12px` }}
+                    >
+                      {t(`categories.${categoryFromSegments(entry.path.split('/').slice(2))}.name`)}
+                    </GreatPrimer>
                   </PageLink>
                 </Card>
               ))}

@@ -111,6 +111,10 @@ const Footer: React.FC = () => {
           {`${t(`footer.about`)}`}
         </Link>
         <LinkSep aria-hidden="true"><Lozenge size={5} /></LinkSep>
+        <Link href="/category">
+          {`${t(`categories.labels.families`)}`}
+        </Link>
+        <LinkSep aria-hidden="true"><Lozenge size={5} /></LinkSep>
         <a
           href="https://github.com/bozheville/cabinetnoir/issues/new"
           target="_blank"

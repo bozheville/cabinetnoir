@@ -1110,7 +1110,8 @@
     "groups": {
       "pages": "Сторінки",
       "encodings": "Кодування",
-      "encryptors": "Шифри"
+      "encryptors": "Шифри",
+      "categories": "Cipher families"
     }
   },
   "learning": {
@@ -1155,7 +1156,8 @@
       "origin": "Назва",
       "modes": "Режими",
       "collapse": "Згорнути",
-      "expand": "Розгорнути"
+      "expand": "Розгорнути",
+      "families": "Cipher families"
     },
     "glossary": {
       "title": "Глосарій",
@@ -2383,7 +2385,8 @@
       "showLess": "Show less",
       "identifyTitle": "Not sure which family your ciphertext is from?",
       "identifyLine": "Paste it into the identifier: it ranks the likely ciphers.",
-      "breadcrumb": "Breadcrumb"
+      "breadcrumb": "Breadcrumb",
+      "familiesShort": "Families"
     },
     "substitution": {
       "name": "Substitution ciphers",

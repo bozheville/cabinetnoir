@@ -63,7 +63,7 @@ const CipherLadder: React.FC = () => {
       </LadderHead>
       <Grid>
         {CIPHER_LADDER.map((cipher) => (
-          <CipherCard key={cipher} cipher={cipher} />
+          <CipherCard key={cipher} cipher={cipher} labelAsLink />
         ))}
       </Grid>
       <UtilitiesNote>

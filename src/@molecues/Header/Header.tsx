@@ -84,6 +84,31 @@ const RightCluster = styled.div`
   flex: none;
 `;
 
+// "Cipher families" header link (task 06), styled like IdentifyLink.
+const CategoriesLink = styled(Link)`
+  flex-shrink: 0;
+  font-family: ${({ theme }) => theme.type.engraved};
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.metal.brass.light};
+  text-decoration: underline;
+  text-decoration-color: ${({ theme }) => theme.metal.brass.dark};
+  text-underline-offset: 3px;
+
+  &:hover {
+    color: ${({ theme }) => theme.metal.copper.light};
+    text-decoration-color: ${({ theme }) => theme.metal.copper.base};
+  }
+
+  /* Shorter label below tablet so row 1 fits at 375 px in every locale. */
+  .long { display: none; }
+  ${({ theme }) => theme.breakpoints.tablet} {
+    .short { display: none; }
+    .long { display: inline; }
+  }
+`;
+
 const IdentifyLink = styled(Link)`
   flex-shrink: 0;
   font-family: ${({ theme }) => theme.type.engraved};
@@ -117,6 +142,12 @@ const Header: React.FC<React.PropsWithChildren<HeaderProps>> = ({
       </Wordmark>
       <TitleCrumb as={titleAs}>{title}</TitleCrumb>
       <RightCluster>
+        {!pathname.startsWith('/category') && (
+          <CategoriesLink href="/category">
+            <span className="short">{t('categories.labels.familiesShort')}</span>
+            <span className="long">{t('categories.labels.families')}</span>
+          </CategoriesLink>
+        )}
         {!pathname.startsWith('/identify') && (
           <IdentifyLink href="/identify">
             {t('identify.headerEntry')}
