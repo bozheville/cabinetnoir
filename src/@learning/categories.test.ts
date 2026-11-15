@@ -153,8 +153,8 @@ describe('categories data model', () => {
     ]);
     expect(primaryTrail('vigenere', t)).toEqual([
       { label: 'categories.substitution.shortName', path: '/category/substitution' },
-      { label: 'categories.polyalphabetic.shortName', path: '/category/polyalphabetic' },
-      { label: 'categories.tabula-recta.shortName', path: '/category/tabula-recta' },
+      { label: 'categories.polyalphabetic.shortName', path: '/category/substitution/polyalphabetic' },
+      { label: 'categories.tabula-recta.shortName', path: '/category/substitution/polyalphabetic/tabula-recta' },
     ]);
   });
 

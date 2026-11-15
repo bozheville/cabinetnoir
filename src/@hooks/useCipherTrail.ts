@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'next-i18next';
 import type { Crumb } from '@lib/breadcrumbs';
-import { getAncestry, getCategory, getPrimaryCategory, isMemberOf } from '@learning/categories';
+import { categoryPath, getAncestry, getCategory, getPrimaryCategory, isMemberOf } from '@learning/categories';
 import { useCategoryTrailContext } from '@contexts/CategoryTrailContext';
 
 // The category part of a cipher page's breadcrumb trail: the visitor's
@@ -12,7 +12,7 @@ export const primaryTrail = (cipher: string, t: (key: string) => string): Crumb[
     .filter(Boolean)
     .map((id) => ({
       label: t(`categories.${id}.shortName`),
-      path: `/category/${id}`,
+      path: categoryPath(id),
     }));
 
 export interface CipherTrailResult {
@@ -30,7 +30,7 @@ export const useCipherTrail = (cipher: string): CipherTrailResult => {
     trail: primaryTrail(cipher, t).length > 0
       ? getAncestry(categoryId ?? '').filter(Boolean).map((id) => ({
           label: t(`categories.${id}.shortName`),
-          path: `/category/${id}`,
+          path: categoryPath(id),
         }))
       : [],
     remembered,

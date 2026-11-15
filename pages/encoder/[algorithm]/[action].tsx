@@ -141,7 +141,7 @@ const Home: React.FC<HomeProps> = ({ learningContent = {}, review }) => {
             ? t(`seo.heading.${action as string}`, { cipher: cipherTitle })
             : `${t(`processing.${algorithm as string}.${action as string}Action`)} / ${cipherTitle}`
         }
-        trail={cipherTrail}
+        trail={[...cipherTrail, { label: cipherTitle }]}
       >
         <LanguageSelector />
       </Header>

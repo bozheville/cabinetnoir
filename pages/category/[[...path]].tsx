@@ -11,6 +11,7 @@ import { DEFAULT_LOCALE, SITE_URL, SUPPORTED_LOCALES, languageTag, ogCategoryIma
 import {
   getAllCategoryPaths,
   categoryFromSegments,
+  categoryPath,
   getAncestry,
   getChildren,
   getCipherCategories,
@@ -65,7 +66,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId, intro }) => {
         .slice(0, -1)
         .map((id) => ({
           label: t(`categories.${id}.shortName`),
-          path: `/category/${id}`,
+          path: categoryPath(id),
         }));
 
   return (
