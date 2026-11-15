@@ -15,6 +15,7 @@ import {
   isIndexable,
   isMemberOf,
 } from './categories';
+import { primaryTrail } from '@hooks/useCipherTrail';
 
 const CIPHERS: string[] = [...encodingsList, ...encryptorsList];
 
@@ -143,6 +144,25 @@ describe('categories data model', () => {
     expect(getPrimaryCategory('adfgvx')).toBe('product');
     expect(getPrimaryCategory('vigenere')).toBe('tabula-recta');
     expect(getPrimaryCategory('saknussemm')).toBe('transposition');
+  });
+
+  it('primaryTrail returns the primary tree as crumbs', () => {
+    const t = (key: string) => key; // identity: labels are translation keys
+    expect(primaryTrail('adfgvx', t)).toEqual([
+      { label: 'categories.product.shortName', path: '/category/product' },
+    ]);
+    expect(primaryTrail('vigenere', t)).toEqual([
+      { label: 'categories.substitution.shortName', path: '/category/substitution' },
+      { label: 'categories.polyalphabetic.shortName', path: '/category/polyalphabetic' },
+      { label: 'categories.tabula-recta.shortName', path: '/category/tabula-recta' },
+    ]);
+  });
+
+  it('primaryTrail falls back to an empty trail outside the tree', () => {
+    const t = (key: string) => key;
+    expect(primaryTrail('saknussemm', t)).toEqual([
+      { label: 'categories.transposition.shortName', path: '/category/transposition' },
+    ]);
   });
 
   it('isIndexable pins polygraphic as false and the others as true', () => {

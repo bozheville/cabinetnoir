@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styled, { css } from 'styled-components';
 import { metal, focusRing, engraved } from '@theme/mixins';
 
@@ -84,9 +85,19 @@ const ButtonBase = styled.button<{ $variant: ButtonVariant; $size: ButtonSize; $
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', size = 'md', href, fullWidth, children, ...rest }, ref) => {
     const shared = { $variant: variant, $size: size, $full: fullWidth };
+    // Internal links go through next/link so the locale prefix and client
+    // navigation apply (trail memory survives). Anchors (#…) and absolute
+    // URLs stay plain <a>.
+    const internal = typeof href === 'string' && href.startsWith('/') && !href.startsWith('//');
     if (href) {
       return (
-        <ButtonBase as="a" href={href} ref={ref as never} {...shared} {...(rest as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>)}>
+        <ButtonBase
+          as={internal ? Link : 'a'}
+          href={href}
+          ref={ref as never}
+          {...shared}
+          {...(rest as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+        >
           {children}
         </ButtonBase>
       );

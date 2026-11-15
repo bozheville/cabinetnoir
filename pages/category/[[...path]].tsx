@@ -57,6 +57,17 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId, intro }) => {
   const live = getMembers(categoryId ?? 'substitution', { includeDescendants: !isHub }).live;
   const ciphers = [...new Set(live.map((cipher) => getPrimaryCategory(cipher) ?? cipher))];
 
+  // Header trail: the ancestors above this category (task 05); the
+  // page itself is the h1 in the body.
+  const ancestorCrumbs = isHub
+    ? []
+    : getAncestry(categoryId)
+        .slice(0, -1)
+        .map((id) => ({
+          label: t(`categories.${id}.shortName`),
+          path: `/category/${id}`,
+        }));
+
   return (
     <>
       <Seo
@@ -107,7 +118,11 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId, intro }) => {
           },
         ]}
       />
-      <Header title={isHub ? t('categories.hub.headerTitle') : name} titleAs="span">
+      <Header
+        title={isHub ? t('categories.hub.headerTitle') : name}
+        titleAs="span"
+        trail={ancestorCrumbs}
+      >
         <LanguageSelector />
       </Header>
       <CategorySection>

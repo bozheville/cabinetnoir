@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useTheme } from 'styled-components';
 import styled from 'styled-components';
 
+import { useCategoryTrailContext } from '@contexts/CategoryTrailContext';
+
 import { Button, Patch } from '@atoms';
 import { focusRing } from '@theme/mixins';
 import { Caption, GreatPrimer, Minion } from '@typography';
@@ -122,6 +124,7 @@ const CipherCard: React.FC<CipherCardProps> = ({
   const { t } = useTranslation('common');
   const theme = useTheme();
   const { atGlance } = getLearningConfig(cipher);
+  const { setTrail } = useCategoryTrailContext();
   const primary = getPrimaryCategory(cipher);
   const primaryCat = primary ? getCategory(primary) : null;
   const leather = primaryCat?.leather || 'tan';
@@ -156,10 +159,22 @@ const CipherCard: React.FC<CipherCardProps> = ({
         )}
       </GlanceLine>
       <CardLinks>
-        <Button href={`${base}/direct`} variant="primary" size="sm">
+        {/* Remember the tree the visitor clicked from (task 05). Runs before
+            navigation, and must not preventDefault. */}
+        <Button
+          href={`${base}/direct`}
+          variant="primary"
+          size="sm"
+          onClick={() => categoryId && setTrail({ cipher, categoryId })}
+        >
           {t('home.ladder.tool')}
         </Button>
-        <Button href={`${base}/learn`} variant="secondary" size="sm">
+        <Button
+          href={`${base}/learn`}
+          variant="secondary"
+          size="sm"
+          onClick={() => categoryId && setTrail({ cipher, categoryId })}
+        >
           {t('home.ladder.learn')}
         </Button>
       </CardLinks>

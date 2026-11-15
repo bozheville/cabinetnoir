@@ -2382,7 +2382,8 @@
       "readMore": "Read more",
       "showLess": "Show less",
       "identifyTitle": "Not sure which family your ciphertext is from?",
-      "identifyLine": "Paste it into the identifier: it ranks the likely ciphers."
+      "identifyLine": "Paste it into the identifier: it ranks the likely ciphers.",
+      "breadcrumb": "Breadcrumb"
     },
     "substitution": {
       "name": "Substitution ciphers",

@@ -10,6 +10,8 @@ import { LEARNING_TABS, CRYPTANALYSIS_TAB, hasTab, hasCryptanalysis } from '@lea
 import { MARKDOWN_TOPICS, TOOL_TOPICS } from '@learning/content';
 import type { HistoryReviewInfo } from '@learning/review';
 import { DEFAULT_LOCALE, SITE_URL, languageTag, ogImagePath, urlFor } from '@lib/sitemap-data';
+import { primaryTrail } from '@hooks/useCipherTrail';
+import { useCipherTrail } from '@hooks/useCipherTrail';
 
 // The second URL segment is shared by the encryption modes (direct /
 // reverse), the cryptanalysis tab and the learning tabs (learn /
@@ -43,11 +45,15 @@ const Home: React.FC<HomeProps> = ({ learningContent = {}, review }) => {
     : t(`seo.toolTitle.${kind}.${action as string}`, { cipher: cipherTitle });
   const title = `${baseTitle} • ${t('name')}`;
 
+  // JSON-LD always shows the primary tree, never the remembered one.
+  const categoryCrumbs = primaryTrail(algorithm as string, t);
+
   // Trail shown in the header: Cabinet Noir › <cipher> › this tab. Tool
   // pages sit directly under the cipher's landing page, so their trail is
   // two crumbs.
   const breadcrumbs = [
     { label: t('name'), path: '/' },
+    ...categoryCrumbs,
     ...(learningTab || cryptanalysisTab
       ? [{ label: cipherTitle, path: `/encoder/${algorithm as string}/direct` }]
       : []),
@@ -56,6 +62,7 @@ const Home: React.FC<HomeProps> = ({ learningContent = {}, review }) => {
 
   // Every description carries the cipher's own one-liner (or, for
   // history, its era and origin), so no two pages share one.
+  const { trail: cipherTrail } = useCipherTrail(algorithm as string);
   const cipherDescription = t(`learning.${algorithm as string}.description`);
   const description = action === 'history'
     ? t('seo.historyDescription', {
@@ -134,6 +141,7 @@ const Home: React.FC<HomeProps> = ({ learningContent = {}, review }) => {
             ? t(`seo.heading.${action as string}`, { cipher: cipherTitle })
             : `${t(`processing.${algorithm as string}.${action as string}Action`)} / ${cipherTitle}`
         }
+        trail={cipherTrail}
       >
         <LanguageSelector />
       </Header>

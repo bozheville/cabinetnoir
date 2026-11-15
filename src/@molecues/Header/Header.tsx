@@ -7,10 +7,15 @@ import { Chevron, Lozenge } from '@ornaments';
 import Section from '@atoms/Section/Section';
 import { Caption } from '@typography';
 
+import Breadcrumbs from '@molecues/Breadcrumbs';
+import type { Crumb } from '@lib/breadcrumbs';
+
 interface HeaderProps {
   title: string;
   // Pages whose body carries a better <h1> render the crumb as a span.
   titleAs?: 'h1' | 'span';
+  // Category trail crumbs (task 05): wordmark › …crumbs › title.
+  trail?: Crumb[];
 }
 
 const StyledHeader = styled(Section)`
@@ -19,24 +24,29 @@ const StyledHeader = styled(Section)`
     display: none;
   }
   padding: 16px 24px;
-  display: flex;
 
-  flex-direction: row;
-  justify-content: space-between;
+  /* Mobile-first: three rows — brand + actions, the trail, the h1
+     (task 05c, replaces the deprecated small column layout). */
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'brand actions'
+    'trail trail'
+    'title title';
   align-items: center;
+  justify-items: start;
 
-  ${({ theme }) => theme.breakpoints.small} {
-    flex-direction: column;
-    justify-content: center;
+  /* The trail nav lands in the middle row on mobile. */
+  > nav {
+    grid-area: trail;
+  }
+
+  ${({ theme }) => theme.breakpoints.tablet} {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
   }
-`;
-
-const Breadcrumb = styled.nav`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
 `;
 
 // Wordmark plate: lozenge + engraved brass wordmark on the chestnut band.
@@ -57,12 +67,17 @@ const Wordmark = styled(Link)`
 
 // The page's <h1> by default: the current page in the trail.
 const TitleCrumb = styled(Caption)`
+  grid-area: title;
   margin: 0;
   color: ${({ theme }) => theme.ink.cream};
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+
+  ${({ theme }) => theme.breakpoints.tablet} {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 `;
 
 const CrumbSeparator = styled.span`
@@ -72,6 +87,7 @@ const CrumbSeparator = styled.span`
 `;
 
 const RightCluster = styled.div`
+  grid-area: actions;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -98,6 +114,7 @@ const IdentifyLink = styled(Link)`
 const Header: React.FC<React.PropsWithChildren<HeaderProps>> = ({
   title,
   titleAs = 'h1',
+  trail,
   children,
 }) => {
   const { t } = useTranslation('common');
@@ -105,16 +122,12 @@ const Header: React.FC<React.PropsWithChildren<HeaderProps>> = ({
 
   return (
     <StyledHeader color="header" stitch="bottom">
-      <Breadcrumb aria-label="Breadcrumb">
-        <Wordmark href="/">
-          <Lozenge size={7} />
-          Cabinet Noir
-        </Wordmark>
-        <CrumbSeparator aria-hidden="true">
-          <Chevron size={7} />
-        </CrumbSeparator>
-        <TitleCrumb as={titleAs}>{title}</TitleCrumb>
-      </Breadcrumb>
+      <Wordmark href="/">
+        <Lozenge size={7} />
+        Cabinet Noir
+      </Wordmark>
+      <Breadcrumbs trail={trail} />
+      <TitleCrumb as={titleAs}>{title}</TitleCrumb>
       <RightCluster>
         {!pathname.startsWith('/identify') && (
           <IdentifyLink href="/identify">

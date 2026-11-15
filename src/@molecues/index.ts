@@ -1,5 +1,7 @@
 export { default as AlphabetSelector } from './AlphabetSelector';
 export { default as AtGlanceCard } from './AtGlanceCard';
+export { default as Breadcrumbs } from './Breadcrumbs';
+export type { BreadcrumbsProps } from './Breadcrumbs';
 export { default as CipherCard } from './CipherCard';
 export type { CipherCardProps } from './CipherCard';
 export { default as ComingSoonCard } from './ComingSoonCard';

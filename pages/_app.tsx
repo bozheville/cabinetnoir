@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { appWithTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
 import { RecentlyUsedContext, useRecentlyUsedContext } from '@contexts';
+import { CategoryTrailProvider, useCategoryTrailContext } from '@contexts/CategoryTrailContext';
 
 import '../styles/globals.css';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
@@ -113,12 +115,34 @@ body {
 `;
 
 const MyApp = ({ Component, pageProps }) => {
+  const router = useRouter();
+  const { trail, setTrail } = useCategoryTrailContext();
+
+  // The trail lives only while the visitor stays on the remembered cipher's
+  // pages: any navigation elsewhere (including back/forward) clears it. This
+  // runs before the new page mounts, so the next render sees it gone.
+  useEffect(() => {
+    const onRouteChangeStart = (url: string) => {
+      // Strip the locale prefix, query and hash before matching.
+      const bare = url.replace(/^\/(?:fr|ua)\//, '/').split('?')[0].split('#')[0];
+      if (trail && !bare.startsWith(`/encoder/${trail.cipher}/`)) {
+        setTrail(null);
+      }
+    };
+    router.events.on('routeChangeStart', onRouteChangeStart);
+    return () => {
+      router.events.off('routeChangeStart', onRouteChangeStart);
+    };
+  }, [router, trail, setTrail]);
+
   return (
     <ThemeProvider theme={theme}>
-      <RecentlyUsedContext.Provider value={useRecentlyUsedContext()}>
-        <GlobalCSS />
-        <Component {...pageProps} />
-      </RecentlyUsedContext.Provider>
+      <CategoryTrailProvider>
+        <RecentlyUsedContext.Provider value={useRecentlyUsedContext()}>
+          <GlobalCSS />
+          <Component {...pageProps} />
+        </RecentlyUsedContext.Provider>
+      </CategoryTrailProvider>
     </ThemeProvider>
   );
 };
