@@ -91,6 +91,13 @@ FAMILIES = [
     ('challenges', r"'(learning\.challenges[.A-Za-z0-9-]+)'", None,
      'src/@learning/challenges.ts',
      lambda k: [k]),
+    ('cipher categories (tree)', r"const CATEGORIES = \{([\s\S]*?)\};", r"^\s{2}'?([a-z0-9-]+)'?:",
+     'src/@learning/categories.js',
+     lambda i: [f'categories.{i}.name', f'categories.{i}.shortName',
+                f'categories.{i}.oneLiner', f'categories.{i}.description']),
+    ('coming-soon ciphers', r"const COMING_SOON = \{([\s\S]*?)\};", r"^\s{2}(\w+):",
+     'src/@learning/categories.js',
+     lambda i: [f'categories.comingSoon.{i}.name', f'categories.comingSoon.{i}.oneLiner']),
 ]
 
 # Full keys the shared wizard frame resolves through its i18nScope prop

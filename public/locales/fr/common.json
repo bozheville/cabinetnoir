@@ -1288,9 +1288,9 @@
         "1586": "La correspondance de Babington — une substitution fixe en son cœur — est lue par l'analyse fréquentielle de Thomas Phelippes ; Marie, reine d'Écosse, est exécutée sur cette preuve."
       },
       "columnar": {
-        "wwi": "La transposition colonnaire — souvent doublée — est un chiffre de campagne standard de plusieurs armées de la Première Guerre mondiale.",
         "1918": "ADFGVX enchaîne la fractionation et une transposition colonnaire clé ; Painvin doit d'abord retrouver l'ordre des colonnes.",
-        "1942": "Les agents du SOE derrière les lignes ennemies utilisent la double transposition clé par des poèmes mémorisés — les vers de Leo Marks."
+        "1942": "Les agents du SOE derrière les lignes ennemies utilisent la double transposition clé par des poèmes mémorisés — les vers de Leo Marks.",
+        "wwi": "La transposition colonnaire — souvent doublée — est un chiffre de campagne standard de plusieurs armées de la Première Guerre mondiale."
       },
       "caesar": {
         "121": "Suétone décrit le décalage de 3 de César et celui de 1 d'Auguste dans Vie des douze Césars.",
@@ -1366,9 +1366,9 @@
         "vic": "Le chiffre VIC soviétique descend de l’addition nihiliste — le dernier grand chiffre au crayon et papier."
       },
       "saknussemm": {
-        "1530s": "Dans la chronologie du roman, l'alchimiste Arne Saknussemm descend dans le volcan islandais Snæfellsjökull et grave son message sur un parchemin runique.",
         "1864": "Jules Verne publie « Voyage au centre de la Terre » — les runes du parchemin mènent toute l’intrigue.",
-        "1871": "La première traduction anglaise imprime la dictée brouillée « mm.rnlls esruel seecJde… » — le texte que ce site reproduit."
+        "1871": "La première traduction anglaise imprime la dictée brouillée « mm.rnlls esruel seecJde… » — le texte que ce site reproduit.",
+        "1530s": "Dans la chronologie du roman, l'alchimiste Arne Saknussemm descend dans le volcan islandais Snæfellsjökull et grave son message sur un parchemin runique."
       },
       "beaufort": {
         "1553": "Giovan Battista Bellaso publie la famille de chiffres à phrase-clé à laquelle appartiennent les variantes de Beaufort.",
@@ -2348,6 +2348,131 @@
       "p1": "Une erreur dans une date, une explication ou une traduction, ou un outil qui donne un mauvais résultat ? Ouvrez un ticket sur GitHub : les corrections sont faites et la page est mise à jour.",
       "reportLink": "Signaler une erreur ou un bug",
       "suggestLink": "Proposer une fonctionnalité ou un chiffre"
+    }
+  },
+  "categories": {
+    "hub": {
+      "title": "Cipher families",
+      "headerTitle": "Cipher families",
+      "intro": "Every cipher in the cabinet belongs to a family. Substitution replaces letters, transposition reorders them, product ciphers do both, and codes spell the message in another public alphabet. Pick a family to see how its members work, how they are broken, and which ones are coming next.",
+      "description": "Browse every cipher by family: substitution, transposition, product ciphers and codes. How each family works and how it is broken."
+    },
+    "labels": {
+      "comingSoon": "Coming soon",
+      "subcategories": "Sub-families",
+      "ciphers": "All ciphers",
+      "otherFamilies": "Other cipher families",
+      "siblings": "Also in {{parent}}",
+      "primaryFamily": "Primary family: {{family}}",
+      "liveCount_one": "{{count}} cipher",
+      "liveCount_other": "{{count}} ciphers",
+      "seeAll": "All families",
+      "families": "Cipher families",
+      "browseByFamily": "Browse by family",
+      "showPath": "Show full path"
+    },
+    "seo": {
+      "category": {
+        "title": "{{category}}: encode, decode and learn • Cabinet Noir"
+      }
+    },
+    "substitution": {
+      "name": "Substitution ciphers",
+      "shortName": "Substitution",
+      "oneLiner": "Every letter is replaced; the order stays put.",
+      "description": "How substitution ciphers work: monoalphabetic, polyalphabetic, polygraphic, Polybius square — encode, decode and break them at Cabinet Noir."
+    },
+    "monoalphabetic": {
+      "name": "Monoalphabetic substitution",
+      "shortName": "Monoalphabetic",
+      "oneLiner": "One fixed cipher alphabet for the whole message.",
+      "description": "Monoalphabetic substitution ciphers: one cipher alphabet for the whole message. Caesar, Atbash, Keyword, Pigpen — learn and break them."
+    },
+    "shift": {
+      "name": "Shift ciphers",
+      "shortName": "Shift",
+      "oneLiner": "Slide the alphabet a fixed number of places.",
+      "description": "Shift ciphers slide the alphabet a fixed number of places: Caesar and ROT13. Online tools and how frequency analysis breaks them."
+    },
+    "affine-family": {
+      "name": "Affine ciphers",
+      "shortName": "Affine",
+      "oneLiner": "Multiply, then shift: a straight line mod 26.",
+      "description": "Affine ciphers multiply and shift letters along a line mod 26: Affine and Atbash. Encode, decode and break them at Cabinet Noir."
+    },
+    "polyalphabetic": {
+      "name": "Polyalphabetic substitution",
+      "shortName": "Polyalphabetic",
+      "oneLiner": "The cipher alphabet changes as you go.",
+      "description": "Polyalphabetic ciphers change the alphabet as the message goes on: tabula recta and rotor machines. Learn Kasiski’s test and the index of coincidence."
+    },
+    "tabula-recta": {
+      "name": "Tabula recta ciphers",
+      "shortName": "Tabula recta",
+      "oneLiner": "A repeating key picks a row of the square table.",
+      "description": "Tabula recta ciphers: Vigenère, Beaufort, Autokey — a repeating key picks rows of the 26×26 square. Encode, decode and break them."
+    },
+    "disks-and-rotors": {
+      "name": "Cipher disks and rotor machines",
+      "shortName": "Disks and rotors",
+      "oneLiner": "Turning wheels switch the alphabet for you.",
+      "description": "Cipher disks and rotor machines: Alberti’s disk and the Enigma machine. How rotation spreads frequencies and how it was broken."
+    },
+    "polygraphic": {
+      "name": "Polygraphic substitution",
+      "shortName": "Polygraphic",
+      "oneLiner": "Letters are replaced in pairs or blocks.",
+      "description": "Polygraphic substitution replaces letters in pairs or blocks: Playfair cipher and the coming-soon Hill cipher. Online tools and history."
+    },
+    "polybius-square": {
+      "name": "Polybius-square ciphers",
+      "shortName": "Polybius square",
+      "oneLiner": "Letters become row and column coordinates.",
+      "description": "Polybius-square ciphers turn letters into row and column coordinates: Polybius, Nihilist, ADFGVX. Encode and decode them online."
+    },
+    "transposition": {
+      "name": "Transposition ciphers",
+      "shortName": "Transposition",
+      "oneLiner": "The letters stay; their order is shuffled.",
+      "description": "Transposition ciphers keep the letters and shuffle their order: rail fence, columnar, Saknussemm. Tools, history and how to break them."
+    },
+    "product": {
+      "name": "Product ciphers",
+      "shortName": "Product",
+      "oneLiner": "Substitution and transposition, combined.",
+      "description": "Product ciphers combine substitution with transposition: ADFGVX and Nihilist. The WWI field ciphers and how they were broken."
+    },
+    "codes-and-encodings": {
+      "name": "Codes and encodings",
+      "shortName": "Codes",
+      "oneLiner": "Public mappings, no key: not encryption.",
+      "description": "Codes and encodings map text to public alphabets without a key: Morse and Base64. Tools and history at Cabinet Noir."
+    },
+    "comingSoon": {
+      "hill": {
+        "name": "Hill cipher",
+        "oneLiner": "Letter blocks times a key matrix."
+      },
+      "homophonic": {
+        "name": "Homophonic substitution",
+        "oneLiner": "Many symbols per frequent letter."
+      },
+      "bifid": {
+        "name": "Bifid cipher",
+        "oneLiner": "Coordinates split and re-paired."
+      },
+      "straddlingCheckerboard": {
+        "name": "Straddling checkerboard (VIC)",
+        "oneLiner": "Letters to one or two digits (VIC)."
+      },
+      "baconian": {
+        "name": "Baconian cipher",
+        "oneLiner": "Five-bit A/B groups."
+      },
+      "tapCode": {
+        "name": "Tap code",
+        "oneLiner": "Knocks for row and column."
+      }
     }
   }
 }
