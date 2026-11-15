@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
+import type { Crumb } from '@lib/breadcrumbs';
 
 import Section from '@atoms/Section/Section';
 import TabPlates from '@molecues/TabPlates';
@@ -41,7 +42,7 @@ const IdentifyHint = styled.div`
 // The Cryptanalysis tab: guided cracking as a first-class tab. The
 // template owns the ciphertext input and hands it to the cipher's
 // cracker organism; the wizard lives entirely inside.
-const Cryptanalysis: React.FC = () => {
+const Cryptanalysis: React.FC<{ trail?: Crumb[] }> = ({ trail }) => {
   const [input, setInput] = useState('');
   const [pendingExample, setPendingExample] = useState<PendingExampleLoad | null>(null);
   const router = useRouter();

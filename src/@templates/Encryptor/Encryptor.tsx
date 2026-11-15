@@ -1,3 +1,4 @@
+import type { Crumb } from '@lib/breadcrumbs';
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
@@ -6,6 +7,7 @@ import { Paper } from '@atoms';
 import { EncryptionInputs, EncryptionSettings, ToolCase } from '@organisms';
 import TabPlates from '@molecues/TabPlates';
 import AtGlanceCard from '@molecues/AtGlanceCard';
+import Breadcrumbs from '@molecues/Breadcrumbs';
 import MarkdownContent from '@molecues/MarkdownContent';
 import RelatedCiphers from '@molecues/RelatedCiphers';
 import { useRouter } from 'next/router';
@@ -29,11 +31,13 @@ const ToolNotes = styled(Paper)`
 `;
 
 interface EncryptorProps {
+  /** Classic breadcrumb trail above the AtGlanceCard (task 05). */
+  trail?: Crumb[];
   /** Markdown from content/<cipher>/<locale>/tool.md, loaded at build time. */
   toolContent?: string;
 }
 
-const Encryptor: React.FC<EncryptorProps> = ({ toolContent }) => {
+const Encryptor: React.FC<EncryptorProps> = ({ toolContent, trail }) => {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   // Pigpen's variant selection lives in its pane; the mirror here lets
@@ -92,7 +96,8 @@ const Encryptor: React.FC<EncryptorProps> = ({ toolContent }) => {
   return (
     <>
       <EncryptorSection stitch="both" zone="tool">
-        <AtGlanceCard />
+        {trail && trail.length > 0 && <Breadcrumbs trail={trail} />}
+      <AtGlanceCard />
         <ToolCase tabs={<TabPlates algorithm={algorithm as string} activeTab="tool" />}>
           <PendingExampleContext.Provider value={pending}>
             <EncryptionSettings

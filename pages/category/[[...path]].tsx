@@ -7,6 +7,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Footer, Header, LanguageSelector, Seo } from '@molecues';
 import { Patch } from '@atoms';
 import { Category } from '@templates';
+import { Breadcrumbs } from '@molecues';
 import { DEFAULT_LOCALE, SITE_URL, SUPPORTED_LOCALES, languageTag, ogCategoryImagePath, urlFor } from '@lib/sitemap-data';
 import {
   getAllCategoryPaths,
@@ -122,12 +123,12 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId, intro }) => {
       <Header
         title={isHub ? t('categories.hub.headerTitle') : name}
         titleAs="span"
-        trail={ancestorCrumbs}
       >
         <LanguageSelector />
       </Header>
       <CategorySection>
         <div>
+          <Breadcrumbs trail={[{ label: t('name'), path: '/' }, ...ancestorCrumbs]} />
           <Category categoryId={categoryId} intro={intro} />
         </div>
       </CategorySection>

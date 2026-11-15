@@ -63,6 +63,8 @@ const Home: React.FC<HomeProps> = ({ learningContent = {}, review }) => {
   // Every description carries the cipher's own one-liner (or, for
   // history, its era and origin), so no two pages share one.
   const { trail: cipherTrail } = useCipherTrail(algorithm as string);
+  // Classic in-content trail: home › family tree › cipher (unclickable).
+  const contentTrail = [{ label: t('name'), path: '/' }, ...cipherTrail, { label: cipherTitle }];
   const cipherDescription = t(`learning.${algorithm as string}.description`);
   const description = action === 'history'
     ? t('seo.historyDescription', {
@@ -141,16 +143,15 @@ const Home: React.FC<HomeProps> = ({ learningContent = {}, review }) => {
             ? t(`seo.heading.${action as string}`, { cipher: cipherTitle })
             : `${t(`processing.${algorithm as string}.${action as string}Action`)} / ${cipherTitle}`
         }
-        trail={[...cipherTrail, { label: cipherTitle }]}
       >
         <LanguageSelector />
       </Header>
       {cryptanalysisTab ? (
-        <Cryptanalysis />
+        <Cryptanalysis trail={contentTrail} />
       ) : learningTab ? (
-        <LearningMaterial learningContent={learningContent} review={review} />
+        <LearningMaterial learningContent={learningContent} review={review} trail={contentTrail} />
       ) : (
-        <Encryptor toolContent={learningContent.tool} />
+        <Encryptor toolContent={learningContent.tool} trail={contentTrail} />
       )}
       <Footer />
     </>

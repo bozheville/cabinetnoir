@@ -7,15 +7,10 @@ import { Chevron, Lozenge } from '@ornaments';
 import Section from '@atoms/Section/Section';
 import { Caption } from '@typography';
 
-import Breadcrumbs from '@molecues/Breadcrumbs';
-import type { Crumb } from '@lib/breadcrumbs';
-
 interface HeaderProps {
   title: string;
   // Pages whose body carries a better <h1> render the crumb as a span.
   titleAs?: 'h1' | 'span';
-  // Category trail crumbs (task 05): wordmark › …crumbs › title.
-  trail?: Crumb[];
 }
 
 const StyledHeader = styled(Section)`
@@ -35,11 +30,6 @@ const StyledHeader = styled(Section)`
     'title title';
   align-items: center;
   justify-items: start;
-
-  /* The trail nav lands in the middle row on mobile. */
-  > nav {
-    grid-area: trail;
-  }
 
   ${({ theme }) => theme.breakpoints.tablet} {
     display: flex;
@@ -114,7 +104,6 @@ const IdentifyLink = styled(Link)`
 const Header: React.FC<React.PropsWithChildren<HeaderProps>> = ({
   title,
   titleAs = 'h1',
-  trail,
   children,
 }) => {
   const { t } = useTranslation('common');
@@ -126,7 +115,6 @@ const Header: React.FC<React.PropsWithChildren<HeaderProps>> = ({
         <Lozenge size={7} />
         Cabinet Noir
       </Wordmark>
-      <Breadcrumbs trail={trail} />
       <TitleCrumb as={titleAs}>{title}</TitleCrumb>
       <RightCluster>
         {!pathname.startsWith('/identify') && (

@@ -1,3 +1,4 @@
+import type { Crumb } from '@lib/breadcrumbs';
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -10,6 +11,7 @@ import { ToolCase } from '@organisms';
 import HeadingRule from '@ornaments/HeadingRule';
 import TabPlates from '@molecues/TabPlates';
 import AtGlanceCard from '@molecues/AtGlanceCard';
+import Breadcrumbs from '@molecues/Breadcrumbs';
 import MarkdownContent from '@molecues/MarkdownContent';
 import RelatedCiphers from '@molecues/RelatedCiphers';
 import GlossarySection from '@molecues/GlossarySection';
@@ -96,13 +98,15 @@ const PlaceholderText = styled(Minion)`
 // via getStaticProps (build time) and renders in the tab's topic order.
 const TOPIC_ORDER = ['how-it-works', 'guides', 'breaking-it', 'history'];
 interface LearningMaterialProps {
+  /** Classic breadcrumb trail above the AtGlanceCard (task 05). */
+  trail?: Crumb[];
   learningContent?: Record<string, string>;
   // History-tab review state (task 06): flags + dates from git, resolved
   // in getStaticProps; undefined on every other tab.
   review?: HistoryReviewInfo | null;
 }
 
-const LearningMaterial: React.FC<LearningMaterialProps> = ({ learningContent = {}, review }) => {
+const LearningMaterial: React.FC<LearningMaterialProps> = ({ learningContent = {}, review, trail }) => {
   const { t } = useTranslation('common');
   const { algorithm, action } = useRouter().query;
   const tab = action as string;
@@ -142,6 +146,7 @@ const LearningMaterial: React.FC<LearningMaterialProps> = ({ learningContent = {
 
   return (
     <LearningWrapper stitch="both" zone="learn">
+      {trail && trail.length > 0 && <Breadcrumbs trail={trail} />}
       <AtGlanceCard />
       <StoryCase
         variant="lintel"
