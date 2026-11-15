@@ -1,1 +1,3 @@
-Every cipher in the cabinet belongs to a family. Substitution replaces letters, transposition reorders them, product ciphers do both, and codes spell the message in another public alphabet. Pick a family to see how its members work, how they are broken, and which ones are coming next.
+Every cipher in the cabinet belongs to at least one family, and the family says more about a cipher than its name. **Substitution** ciphers replace letters and leave them in place. **Transposition** ciphers keep the letters and shuffle their order. **Product** ciphers do both, one after the other, so each lock covers the other's weakness. **Codes and encodings** spell the message in another public alphabet, with no key at all.
+
+Some ciphers belong to more than one family: ADFGVX is a Polybius square, a transposition and a product cipher at once. Pick a family below to see how its members work, which attack breaks them, and which ciphers are coming next.
