@@ -2376,7 +2376,13 @@
       "seeAll": "All families",
       "families": "Cipher families",
       "browseByFamily": "Browse by family",
-      "showPath": "Show full path"
+      "showPath": "Show full path",
+      "kicker": "Cipher family",
+      "hubStats": "{{live}} ciphers in {{families}} families",
+      "readMore": "Read more",
+      "showLess": "Show less",
+      "identifyTitle": "Not sure which family your ciphertext is from?",
+      "identifyLine": "Paste it into the identifier: it ranks the likely ciphers."
     },
     "substitution": {
       "name": "Substitution ciphers",

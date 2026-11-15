@@ -6,9 +6,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Footer, Header, LanguageSelector, Seo } from '@molecues';
 import { Patch } from '@atoms';
-import { BodyCopy } from '@typography';
+import { Category } from '@templates';
 import { DEFAULT_LOCALE, SITE_URL, SUPPORTED_LOCALES, languageTag, ogCategoryImagePath, urlFor } from '@lib/sitemap-data';
-import MarkdownContent from '@molecues/MarkdownContent';
 import {
   getAllCategoryPaths,
   categoryFromSegments,
@@ -36,13 +35,6 @@ const CategorySection = styled(Patch).attrs({ leather: 'tan', stitch: 'both' })`
   }
 `;
 
-const Block = styled.section`
-  margin-top: 32px;
-
-  ${BodyCopy} {
-    margin-top: 12px;
-  }
-`;
 
 interface CategoryPageProps {
   categoryId: string | null;
@@ -120,62 +112,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId, intro }) => {
       </Header>
       <CategorySection>
         <div>
-          <h1>{name}</h1>
-          {intro && (
-            <Block>
-              <MarkdownContent source={intro} />
-            </Block>
-          )}
-          {/* Task 04 replaces this crawlable skeleton with the real
-              sub-family cards and cipher grid. */}
-          {!isHub && getChildren(categoryId).length > 0 && (
-            <Block>
-              <h2>{t('categories.labels.subcategories')}</h2>
-              <ul>
-                {getChildren(categoryId).map((child) => (
-                  <li key={child}>
-                    <a href={urlFor(`/category/${getAncestry(child).join('/')}`, locale)}>
-                      {t(`categories.${child}.name`)}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </Block>
-          )}
-          {isHub && (
-            <Block>
-              <ul>
-                {getRootCategories().map((root) => (
-                  <li key={root}>
-                    <a href={urlFor(`/category/${root}`, locale)}>
-                      {t(`categories.${root}.name`)}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </Block>
-          )}
-          <Block>
-            <h2>{t('categories.labels.ciphers')}</h2>
-            <ul>
-              {getMembers(categoryId ?? 'substitution', { includeDescendants: !isHub }).live.map(
-                (cipher) => (
-                  <li key={cipher}>
-                    <a href={urlFor(`/encoder/${cipher}/direct`, locale)}>
-                      {t(`processing.${cipher}.title`)}
-                    </a>
-                  </li>
-                ),
-              )}
-              {getMembers(categoryId ?? 'substitution', { includeDescendants: !isHub }).comingSoon.map(
-                (cipher) => (
-                  <li key={cipher}>
-                    {t(`categories.comingSoon.${cipher}.name`)} ({t('categories.labels.comingSoon')})
-                  </li>
-                ),
-              )}
-            </ul>
-          </Block>
+          <Category categoryId={categoryId} intro={intro} />
         </div>
       </CategorySection>
       <Footer />
