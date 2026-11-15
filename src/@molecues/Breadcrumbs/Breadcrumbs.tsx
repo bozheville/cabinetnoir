@@ -19,6 +19,7 @@ const Nav = styled.nav`
   align-items: center;
   gap: 10px;
   min-width: 0;
+  margin-top: 24px;
 `;
 
 const CrumbLink = styled(Link)`
