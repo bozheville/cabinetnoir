@@ -30,7 +30,7 @@ const CategorySection = styled(Patch).attrs({ leather: 'tan', stitch: 'both' })`
   & > div {
     margin: 0 auto;
     width: 100%;
-    max-width: ${({ theme }) => theme.widths.read};
+    max-width: ${({ theme }) => theme.widths.tool};
     padding: 0 16px 32px;
   }
 `;
