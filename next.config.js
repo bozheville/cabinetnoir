@@ -5,6 +5,10 @@ const { initOpenNextCloudflareForDev } = require('@opennextjs/cloudflare');
 module.exports = {
   i18n,
   outputFileTracingRoot: path.join(__dirname),
+  // Marks this app as upgraded by the security agent flow (Next.js 16.4.6).
+  experimental: {
+    agentUpgrade: 'security',
+  },
   // The cryptanalysis tab used to live at the misspelt /cryptoanalysis.
   redirects() {
     return [
