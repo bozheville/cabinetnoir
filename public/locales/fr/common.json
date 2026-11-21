@@ -1085,6 +1085,64 @@
           }
         }
       }
+    },
+    "vic": {
+      "title": "Chiffre VIC",
+      "short_title": "VIC",
+      "directAction": "Chiffrer",
+      "reverseAction": "Déchiffrer",
+      "messageLabel": "Cryptogramme",
+      "phraseLabel": "Phrase",
+      "dateLabel": "Date",
+      "personalNumberLabel": "Numéro perso",
+      "keygroupLabel": "Groupe-clé",
+      "alphabetLabel": "Alphabet",
+      "alphabets": {
+        "latin": "Latin (AT ONE SIR)",
+        "cyrillic": "Cyrillique (СНЕГОПА)"
+      },
+      "rollKeygroup": "Tirer un groupe-clé frais",
+      "settings": {
+        "bisect": "Bisecter le message",
+        "cutIndex": "Couper à",
+        "workings": "Montrer les calculs de clé"
+      },
+      "errors": {
+        "phrase": "La phrase doit contenir au moins 20 lettres.",
+        "date": "La date exige six chiffres — jour, mois, année, p. ex. 13/9/1959.",
+        "personalNumber": "Le numéro personnel est compris entre 1 et 20.",
+        "keygroup": "Le groupe-clé fait cinq chiffres, renouvelé à chaque message.",
+        "widths": "Ces secrets donnent des tableaux trop larges — tirez un autre groupe-clé.",
+        "board": "L'échiquier ne peut pas être construit avec cette phrase et cet alphabet.",
+        "ciphertext": "Le cryptogramme doit être en groupes de cinq chiffres — le groupe-clé voyage dedans."
+      },
+      "worksheet": {
+        "A": "Le groupe-clé : cinq chiffres aléatoires, neufs à chaque message.",
+        "B": "Les cinq premiers chiffres de la date (jour, mois, année, sans zéros de tête).",
+        "C": "A moins B, chiffre par chiffre sans emprunt.",
+        "D": "Les vingt premières lettres de la phrase.",
+        "E1": "La première moitié de D, séquencée (classée par ordre alphabétique).",
+        "E2": "La seconde moitié de D, séquencée.",
+        "F1": "C prolongée par addition en chaîne jusqu’à dix chiffres.",
+        "F2": "La suite standard 1234567890.",
+        "G": "E1 plus F1, chiffre par chiffre sans report.",
+        "H": "Chaque chiffre de G encodé sous la ligne-clé E2.",
+        "J": "H, séquencée.",
+        "K": "Bloc de chaîne, rangée 1 — H prolongée de cinquante chiffres.",
+        "L": "Bloc de chaîne, rangée 2.",
+        "M": "Bloc de chaîne, rangée 3.",
+        "N": "Bloc de chaîne, rangée 4.",
+        "P": "Bloc de chaîne, rangée 5.",
+        "Q": "Le bloc lu colonne par colonne sous J — la clé du premier tableau, a chiffres.",
+        "R": "Les b chiffres suivants du bloc lu — la clé du second tableau.",
+        "S": "P, séquencée — les étiquettes de colonnes de l’échiquier.",
+        "widths": "Les largeurs des tableaux : les deux derniers chiffres dissemblables de P plus le numéro personnel.",
+        "insertAt": "La position du groupe-clé : ce nombre de groupes depuis la fin (le sixième chiffre de la date)."
+      },
+      "workings": {
+        "title": "Calculs de clé — le programme papier-crayon",
+        "summary": "Tableaux de {{a}} × {{b}} de large ; le groupe-clé se glisse à {{insertAt}} groupe(s) de la fin ; {{pad}} lettre(s) de bourrage complètent le message."
+      }
     }
   },
   "message": "Message",
@@ -1129,7 +1187,8 @@
       "substitution": "chiffre de substitution",
       "transposition": "chiffre de transposition",
       "encoding": "encodage, pas un chiffrement",
-      "fractionation": "chiffre par fractionnement et transposition"
+      "fractionation": "chiffre par fractionnement et transposition",
+      "product": "chiffre produit"
     },
     "difficulty": {
       "trivial": "déchiffrable de façon triviale",
@@ -1203,7 +1262,9 @@
         "keyNumber": "Nombre de la clé",
         "sum": "Somme (sans retenue)",
         "cluster": "Groupe",
-        "keystream": "Flux de clé"
+        "keystream": "Flux de clé",
+        "worksheetLine": "Ligne",
+        "worksheetValue": "Valeur"
       }
     },
     "tryInTool": "Essayer dans l'outil",
@@ -1381,6 +1442,12 @@
         "1553": "Giovan Battista Bellaso propose le plus ancien autokey connu : le message lui-même poursuit la clé.",
         "1586": "Blaise de Vigenère publie sa construction autokey dans son Traicté des chiffres — le chiffre qui porte son nom est le plus simple, le plus faible.",
         "1863": "Kasiski publie l'attaque par périodicité ; l'absence de période de l'autokey le défend — mais le glissement de mot probable le brise quand même."
+      },
+      "vic": {
+        "1940s-ancestors": "Les chiffres manuels des illégaux soviétiques gagnent échiquiers et additifs numériques — le réseau Sorge et la Kapelle rouge en portent des variantes.",
+        "1953-nickel": "Un journalier de Brooklyn fend une pièce de cinq cents creuse et y trouve une microfilm : dix colonnes de groupes de cinq chiffres ; le FBI ne sait pas le lire.",
+        "1957-defection": "Reino Häyhänen fait défection et ouvre le message du nickel ; son chef Rudolf Abel est arrêté. Le chiffre est tombé par trahison, pas par cryptanalyse.",
+        "1959-kahn": "David Kahn reconstitue le système dans « Number One From Moscow » — le plus beau chiffre mnémonique jamais rendu public."
       }
     },
     "challenge": {
@@ -1772,6 +1839,24 @@
         "hint1": "Longueur d'amorce 8, mode difficile : ni scores ni marqueur. Jugez les fragments à l'œil.",
         "hint2": "Les mauvaises positions ressemblent à du bruit ; la bonne se lit comme la pièce.",
         "hint3": "Le mot probable « OUTRAGEOUS » convient."
+      },
+      "vic-easy-1": {
+        "title": "Déchiffrer avec les quatre secrets",
+        "hint1": "La phrase est « Twas the night before Christmas » ; la date est 13/9/1959 ; le numéro personnel est 6.",
+        "hint2": "Le groupe-clé est 72401 — il voyage dans le message."
+      },
+      "vic-medium-1": {
+        "title": "Déchiffrer un rendez-vous minuté",
+        "hint1": "La phrase est « A lonely accordion plays long into the night ».",
+        "hint2": "La date est le 3 septembre 1945 ; le numéro personnel est 13.",
+        "hint3": "Le groupe-clé est 20818."
+      },
+      "vic-hard-1": {
+        "title": "Déchiffrer une dépêche bisectée",
+        "hint1": "La phrase est « It was the best of times it was the worst of times ».",
+        "hint2": "La date est le 22 juin 1941 ; le numéro personnel est 8.",
+        "hint3": "Le groupe-clé est 39614.",
+        "hint4": "Le message a été bisecté : activez l’interrupteur et coupez à 20."
       }
     },
     "tooltips": {
@@ -1848,6 +1933,17 @@
         "clusterWidth": "Combien de lettres contient chaque groupe-colonne — c’est aussi la hauteur de la grille. Le parchemin en compte 7.",
         "clustersPerLine": "Combien de groupes imprime chaque ligne du cryptogramme. Le parchemin en imprime 3.",
         "parchment": "Remplit le champ avec le parchemin du roman — le message latin en mode chiffrement, la dictée brouillée de Saknussemm en mode déchiffrement."
+      },
+      "vic": {
+        "phrase": "Une phrase mémorable d’au moins 20 lettres — ses vingt premières lettres nourrissent le programme de clés.",
+        "date": "Jour, mois, année : les cinq premiers chiffres nourrissent les lignes de clé, le sixième inutilisé cache la position du groupe-clé.",
+        "personalNumber": "Le numéro propre de l’agent (celui de Häyhänen était 13). Il fixe la largeur des deux tableaux.",
+        "keygroup": "Cinq chiffres aléatoires, neufs à chaque message — la seule partie de la clé qui voyage avec le cryptogramme.",
+        "keygroupExtracted": "En mode déchiffrement, le groupe-clé est lu dans le cryptogramme lui-même.",
+        "alphabet": "L’échiquier latin épelle AT ONE SIR en haut ; le cyrillique épelle СНЕГОПА — le moyen mnémotechnique de Häyhänen, la « tourmente de neige » russe.",
+        "bisect": "Le renforcement facultatif de Kahn : couper le message à un index convenu et échanger les moitiés avant l’encodage.",
+        "cutIndex": "Où couper — un secret convenu entre vous et votre correspondant.",
+        "workings": "Montrer tout le programme de clés : les lignes A–S, l’échiquier et les largeurs des tableaux."
       }
     },
     "caesar": {
@@ -1944,6 +2040,14 @@
       "era": "Renaissance — le vrai Vigenère de 1586",
       "origin": "Giovan Battista Bellaso, 1553",
       "description": "Le vrai chiffre de Vigenère : la clé commence par une courte amorce, puis le texte clair lui-même nourrit le flux de clé."
+    },
+    "vic": {
+      "description": "Le meilleur chiffre manuel de la guerre froide : une phrase, une date et un numéro personnel déploient un échiquier à califourchon et deux transpositions — des groupes de cinq chiffres qu’aucun cryptanalyste n’a jamais percés sans la clé.",
+      "era": "Années 1950 (guerre froide)",
+      "origin": "Renseignement soviétique (KGB) ; porté par Reino Häyhänen, « VICTOR » de l’affaire du nickel creux",
+      "furtherReading": {
+        "kahn": "David Kahn, « Number One From Moscow » (CIA, Studies in Intelligence)"
+      }
     }
   },
   "glossary": {
@@ -2102,6 +2206,30 @@
     "keystream": {
       "name": "Flux de clé",
       "definition": "La suite de lettres de clé qu'un chiffre consomme, une par lettre du texte clair. Dans l'autokey, le flux est l'amorce suivie du texte clair."
+    },
+    "straddling-checkerboard": {
+      "name": "Échiquier à califourchon",
+      "definition": "Une grille où les lettres fréquentes prennent un chiffre et les autres deux — elle change le texte en chiffres plus vite qu’un carré de Polybe."
+    },
+    "chain-addition": {
+      "name": "Addition en chaîne",
+      "definition": "Prolonger une ligne de chiffres en additionnant des paires modulo 10 : les deux premiers chiffres en produisent un nouveau après le dernier, et ainsi de suite."
+    },
+    "sequencing": {
+      "name": "Séquençage",
+      "definition": "Ranger les caractères d’une ligne de 1 à n par ordre alphabétique, les ex æquo numérotés de gauche à droite ; 0 vaut dix."
+    },
+    "keygroup": {
+      "name": "Groupe-clé",
+      "definition": "Cinq chiffres aléatoires qui voyagent avec un message VIC et amorcent sa dérivation de clé — renouvelés à chaque message."
+    },
+    "disrupted-transposition": {
+      "name": "Transposition perturbée",
+      "definition": "Une transposition colonnaire dont la grille porte des zones triangulaires de « perturbation » remplies en dernier — elle brise la régularité que les anagrammeurs exploitent."
+    },
+    "product-cipher": {
+      "name": "Chiffre produit",
+      "definition": "Un chiffre qui superpose substitution et transposition : casser une couche laisse encore les autres."
     }
   },
   "home": {
@@ -2134,7 +2262,8 @@
         "ciphers": "Seize pages de chiffres avec onglets d'apprentissage guidés — outil, apprendre, histoire, pratique",
         "cryptanalysis": "Assistants de cryptanalyse guidée pour Vigenère, Beaufort, Autokey, ADFGVX, Affine, Playfair, Alberti, Keyword, Columnar et Rail fence",
         "challenges": "Défis pratiques avec indices adaptés à la difficulté — en trois langues",
-        "saknussemm": "L’œuf de Pâques Arne Saknussemm — le parchemin runique du « Voyage au centre de la Terre »"
+        "saknussemm": "L’œuf de Pâques Arne Saknussemm — le parchemin runique du « Voyage au centre de la Terre »",
+        "vic": "Le chiffre VIC — le chiffre manuel infrangible de la guerre froide, avec sa fiche de clé papier-crayon complète"
       },
       "next": {
         "substitution": "Le chiffre par substitution homophonique — des nombres à la place des lettres fréquentes",
@@ -2194,7 +2323,8 @@
       "nihilist": "Nihiliste",
       "polybius": "Carré de Polybe",
       "beaufort": "Beaufort",
-      "autokey": "Autokey"
+      "autokey": "Autokey",
+      "vic": "VIC"
     },
     "reasons": {
       "transpositionShape": "Les fréquences des lettres correspondent exactement à l'anglais (indice de coïncidence {{ic}}) — les lettres ont été déplacées, pas remplacées.",
@@ -2227,7 +2357,9 @@
       "knownText.saknussemm": "C'est le parchemin d'Arne Saknussemm du « Voyage au centre de la Terre » de Jules Verne — {{letters}} lettres correspondantes.",
       "polybiusPairs": "Toutes les {{pairs}} paires tiennent dans la plage du carré de Polybe (11–55).",
       "beaufortSlices": "Les tranches périodiques s'ajustent aux décalages inverses (Beaufort), pas aux directs",
-      "autokeyAperiodic": "Aucune période, mais des suites de lettres ressemblent à l'anglais simple (autokey ou clé courante)"
+      "autokeyAperiodic": "Aucune période, mais des suites de lettres ressemblent à l'anglais simple (autokey ou clé courante)",
+      "vicGroups": "Des chiffres en groupes de cinq — la présentation radio-espion classique d’un chiffre manuel comme VIC.",
+      "vicNotSums": "Les groupes de chiffres ne se lisent pas comme une suite de sommes nihilistes — des groupes uniformes, pas des additions."
     },
     "metrics": {
       "letters": {
@@ -2449,7 +2581,7 @@
       "name": "Chiffrements produits",
       "shortName": "Produit",
       "oneLiner": "Substitution et transposition combinées.",
-      "description": "Les chiffrements produits combinent substitution et transposition : ADFGVX et nihiliste. Les chiffres de campagne de 14-18 et comment on les a cassés."
+      "description": "Les chiffres produits combinent substitution et transposition : ADFGVX, Nihiliste et VIC. Les chiffres de campagne de 14-18, le chiffre manuel de la guerre froide — et comment deux d’entre eux sont tombés."
     },
     "codes-and-encodings": {
       "name": "Codes et encodages",

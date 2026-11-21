@@ -70,6 +70,7 @@ const Roadmap: React.FC = () => {
     'home.roadmap.built.cryptanalysis',
     'home.roadmap.built.challenges',
     'home.roadmap.built.saknussemm',
+    'home.roadmap.built.vic',
   ];
   const next = [
     'home.roadmap.next.substitution',

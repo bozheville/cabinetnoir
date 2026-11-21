@@ -40,6 +40,7 @@ const CIPHER_LADDER = [
   'autokey',
   'nihilist',
   'adfgvx',
+  'vic',
   'alberti',
   'enigma',
 ];
@@ -655,6 +656,48 @@ const learningConfig = {
       },
     ],
   },
+  // VIC: Häyhänen's Cold War hand cipher — checkerboard + double
+  // transposition from an agent's four secrets. No cracker: the
+  // Breaking-it section explains why (standard §10 exemption, like
+  // Enigma).
+  vic: {
+    tabs: LEARNING_TABS,
+    sections: {
+      learn: ['how-it-works', 'guides', 'breaking-it', 'glossary'],
+      history: ['history'],
+      practice: ['challenges'],
+    },
+    atGlance: {
+      type: 'learning.types.product',
+      difficulty: 'learning.difficulty.hard',
+      era: 'learning.vic.era',
+      origin: 'learning.vic.origin',
+      modes: ['encrypt', 'decrypt'],
+    },
+    glossary: [
+      'plaintext',
+      'ciphertext',
+      'key',
+      'polybius-square',
+      'straddling-checkerboard',
+      'chain-addition',
+      'sequencing',
+      'keygroup',
+      'disrupted-transposition',
+      'transposition',
+      'product-cipher',
+    ],
+    furtherReading: [
+      {
+        url: 'https://en.wikipedia.org/wiki/VIC_cipher',
+        labelKey: 'learning.furtherReading.wikipedia',
+      },
+      {
+        url: 'https://www.cia.gov/resources/csi/static/Number-One-From-Moscow.pdf',
+        labelKey: 'learning.vic.furtherReading.kahn',
+      },
+    ],
+  },
 };
 
 const getLearningConfig = (cipher) => learningConfig[cipher] || null;
@@ -684,6 +727,9 @@ const RELATED_CIPHER_PAIRS = [
   ['polybius', 'nihilist'], ['polybius', 'adfgvx'],
   ['nihilist', 'adfgvx'],
   ['adfgvx', 'columnar'],
+  ['nihilist', 'vic'],
+  ['adfgvx', 'vic'],
+  ['columnar', 'vic'],
   ['columnar', 'railFence'], ['columnar', 'saknussemm'],
   ['railFence', 'saknussemm'],
   ['vigenere', 'beaufort'], ['vigenere', 'autokey'], ['vigenere', 'alberti'],

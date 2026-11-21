@@ -45,6 +45,9 @@ export const CATALOGUE: CatalogueEntry[] = [
   { id: 'playfair', family: 'block', inApp: true, breakingTarget: 'cracker' },
   { id: 'adfgvx', family: 'block', inApp: true, breakingTarget: 'cracker' },
   { id: 'nihilist', family: 'block', inApp: true, breakingTarget: 'cracker' },
+  // No cracker: the Cryptanalysis exemption (standard §10) — the tool
+  // is as far as the app goes, matching the cipher's real history.
+  { id: 'vic', family: 'block', inApp: true, breakingTarget: 'tool' },
 ];
 
 // Fixed tie-break order: catalogue position.

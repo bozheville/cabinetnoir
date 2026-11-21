@@ -31,7 +31,8 @@
         "ciphers": "Sixteen cipher pages with guided learning tabs — tool, learn, history, practice",
         "cryptanalysis": "Guided cryptanalysis wizards for Vigenère, Beaufort, Autokey, ADFGVX, Affine, Playfair, Alberti, Keyword, Columnar and Rail fence",
         "challenges": "Practice challenges with difficulty-matched hint presets — in three languages",
-        "saknussemm": "The Arne Saknussemm easter egg — the runic parchment from “Journey to the Centre of the Earth”"
+        "saknussemm": "The Arne Saknussemm easter egg — the runic parchment from “Journey to the Centre of the Earth”",
+        "vic": "The VIC cipher — the unbreakable Cold War hand cipher, with its full pencil-and-paper key worksheet"
       },
       "next": {
         "substitution": "The homophonic substitution cipher — numbers replacing the frequent letters",
@@ -91,7 +92,8 @@
       "nihilist": "Nihilist",
       "polybius": "Polybius square",
       "beaufort": "Beaufort",
-      "autokey": "Autokey"
+      "autokey": "Autokey",
+      "vic": "VIC"
     },
     "reasons": {
       "transpositionShape": "The letter frequencies match English exactly (index of coincidence {{ic}}) — the letters were moved, not replaced.",
@@ -124,7 +126,9 @@
       "knownText.saknussemm": "This is the Arne Saknussemm parchment from Jules Verne's “Journey to the Centre of the Earth” — {{letters}} matching letters.",
       "polybiusPairs": "All {{pairs}} pairs sit inside the Polybius square range (11–55).",
       "beaufortSlices": "Periodic slices fit reflected shifts (Beaufort), not plain ones.",
-      "autokeyAperiodic": "No period, but letter runs look like plain English (autokey or running key)."
+      "autokeyAperiodic": "No period, but letter runs look like plain English (autokey or running key).",
+      "vicGroups": "Digits in five-figure groups — the classic spy-radio presentation of a hand cipher like VIC.",
+      "vicNotSums": "The digit groups parse as no Nihilist sum sequence — the digits behave like uniform groups, not additive numbers."
     },
     "metrics": {
       "letters": {
@@ -1251,6 +1255,64 @@
           }
         }
       }
+    },
+    "vic": {
+      "title": "VIC cipher",
+      "short_title": "VIC",
+      "directAction": "Encrypt",
+      "reverseAction": "Decrypt",
+      "messageLabel": "Cryptogram",
+      "phraseLabel": "Phrase",
+      "dateLabel": "Date",
+      "personalNumberLabel": "Personal №",
+      "keygroupLabel": "Keygroup",
+      "alphabetLabel": "Alphabet",
+      "alphabets": {
+        "latin": "Latin (AT ONE SIR)",
+        "cyrillic": "Cyrillic (СНЕГОПА)"
+      },
+      "rollKeygroup": "Roll a fresh keygroup",
+      "settings": {
+        "bisect": "Bisect the message",
+        "cutIndex": "Cut at",
+        "workings": "Show the key workings"
+      },
+      "errors": {
+        "phrase": "The phrase needs at least 20 letters.",
+        "date": "The date needs six digits — day, month, year, e.g. 13/9/1959.",
+        "personalNumber": "The personal number is between 1 and 20.",
+        "keygroup": "The keygroup is five digits, fresh for every message.",
+        "widths": "These secrets derive tableaus too wide to write — roll another keygroup.",
+        "board": "The checkerboard cannot be built from this phrase and alphabet.",
+        "ciphertext": "The ciphertext must be five-digit groups — the keygroup rides inside."
+      },
+      "worksheet": {
+        "A": "The keygroup: five random digits, fresh for every message.",
+        "B": "The date's first five digits (day, month, year, no leading zeros).",
+        "C": "A minus B, digit by digit without borrowing.",
+        "D": "The phrase's first twenty letters.",
+        "E1": "The first half of D, sequenced (ranked in alphabetical order).",
+        "E2": "The second half of D, sequenced.",
+        "F1": "C chain-added out to ten digits.",
+        "F2": "The standard sequence 1234567890.",
+        "G": "E1 plus F1, digit by digit without carrying.",
+        "H": "Each digit of G encoded under the E2 key line.",
+        "J": "H, sequenced.",
+        "K": "Chain block, row 1 — H chain-added fifty more digits.",
+        "L": "Chain block, row 2.",
+        "M": "Chain block, row 3.",
+        "N": "Chain block, row 4.",
+        "P": "Chain block, row 5.",
+        "Q": "The block read column by column under J — the first tableau key, a digits.",
+        "R": "The next b digits of the block read — the second tableau key.",
+        "S": "P, sequenced — the checkerboard's column labels.",
+        "widths": "The tableau widths: the last two dissimilar digits of P plus the personal number.",
+        "insertAt": "The keygroup's position: this many groups from the end (the date's sixth digit)."
+      },
+      "workings": {
+        "title": "Key workings — the pencil-and-paper schedule",
+        "summary": "Tableaus {{a}} × {{b}} wide; the keygroup rides {{insertAt}} group(s) from the end; {{pad}} filler letter(s) pad the message."
+      }
     }
   },
   "message": "Message",
@@ -1295,7 +1357,8 @@
       "substitution": "substitution cipher",
       "transposition": "transposition cipher",
       "encoding": "encoding, not encryption",
-      "fractionation": "fractionation + transposition cipher"
+      "fractionation": "fractionation + transposition cipher",
+      "product": "product cipher"
     },
     "difficulty": {
       "trivial": "trivial to break",
@@ -1369,7 +1432,9 @@
         "keyNumber": "Key number",
         "sum": "Sum (no carry)",
         "cluster": "Cluster",
-        "keystream": "Keystream"
+        "keystream": "Keystream",
+        "worksheetLine": "Line",
+        "worksheetValue": "Value"
       }
     },
     "tryInTool": "Try it in the tool",
@@ -1547,6 +1612,12 @@
         "1553": "Giovan Battista Bellaso proposes the earliest known autokey: the message itself continues the key.",
         "1586": "Blaise de Vigenère publishes his autokey construction in his Traicté des chiffres — the cipher that carries his name is the simpler, weaker one.",
         "1863": "Kasiski publishes the periodicity attack; the autokey's lack of a period is its defence — but crib-dragging breaks it anyway."
+      },
+      "vic": {
+        "1940s-ancestors": "Soviet illegals' hand ciphers grow checkerboards and number additives — Sorge's ring and the Rote Kapelle carry variants.",
+        "1953-nickel": "A Brooklyn newsboy splits a hollow nickel and finds microfilm with ten columns of five-figure groups; the FBI cannot read it.",
+        "1957-defection": "Reino Häyhänen defects and unlocks the nickel message; his handler Rudolf Abel is arrested. The cipher fell to defection, not cryptanalysis.",
+        "1959-kahn": "David Kahn reconstructs the system in \"Number One From Moscow\" — the finest mnemonic hand cipher ever made public."
       }
     },
     "challenge": {
@@ -1938,6 +2009,24 @@
         "hint1": "Primer length 8, hard preset: no scores, no glow. Judge the fragments by eye.",
         "hint2": "Wrong placements look like noise; the right one reads like the play.",
         "hint3": "The crib \"OUTRAGEOUS\" fits."
+      },
+      "vic-easy-1": {
+        "title": "Decrypt with all four secrets",
+        "hint1": "The phrase is \"Twas the night before Christmas\"; the date is 13/9/1959; the personal number is 6.",
+        "hint2": "The keygroup is 72401 — it rides inside the message."
+      },
+      "vic-medium-1": {
+        "title": "Decrypt a timed rendezvous",
+        "hint1": "The phrase is \"A lonely accordion plays long into the night\".",
+        "hint2": "The date is 3 September 1945; the personal number is 13.",
+        "hint3": "The keygroup is 20818."
+      },
+      "vic-hard-1": {
+        "title": "Decrypt a bisected dispatch",
+        "hint1": "The phrase is \"It was the best of times it was the worst of times\".",
+        "hint2": "The date is 22 June 1941; the personal number is 8.",
+        "hint3": "The keygroup is 39614.",
+        "hint4": "The message was bisected: turn the toggle on and cut at 20."
       }
     },
     "tooltips": {
@@ -2014,6 +2103,17 @@
         "clusterWidth": "How many letters each column-cluster holds — also the height of the layout grid. The parchment uses 7.",
         "clustersPerLine": "How many clusters are printed on each line of the cryptogram. The parchment prints 3.",
         "parchment": "Fill the input with the novel's own parchment — the Latin message in encrypt mode, Saknussemm's scrambled dictation in decrypt mode."
+      },
+      "vic": {
+        "phrase": "A memorable phrase of at least 20 letters — its first twenty letters feed the key schedule.",
+        "date": "Day, month, year: the first five digits feed the key lines, the unused sixth hides the keygroup's position.",
+        "personalNumber": "The agent's own number (Häyhänen's was 13). It sizes the two transposition tableaus.",
+        "keygroup": "Five random digits, fresh for every message — the only part of the key that travels with the ciphertext.",
+        "keygroupExtracted": "In decrypt mode the keygroup is read from the ciphertext itself.",
+        "alphabet": "The Latin board spells AT ONE SIR on top; the Cyrillic board spells СНЕГОПА — Häyhänen’s own mnemonic, the Russian for snowfall.",
+        "bisect": "Kahn's optional strengthening: cut the message at an agreed index and swap the halves before encoding.",
+        "cutIndex": "Where to cut — an agreed secret between you and your recipient.",
+        "workings": "Show the whole key schedule: worksheet lines A–S, the checkerboard and the tableau widths."
       }
     },
     "caesar": {
@@ -2110,6 +2210,14 @@
       "era": "Renaissance — the real 1586 Vigenère",
       "origin": "Giovan Battista Bellaso, 1553",
       "description": "Vigenère's actual cipher: the key starts with a short primer, then the plaintext itself feeds the keystream."
+    },
+    "vic": {
+      "description": "The Cold War's finest hand cipher: a phrase, a date and a personal number unfold into a straddling checkerboard and two transpositions — five-figure groups no cryptanalyst ever broke without the key.",
+      "era": "1950s (Cold War)",
+      "origin": "Soviet intelligence (KGB); carried by Reino Häyhänen, \"VICTOR\" of the Hollow Nickel case",
+      "furtherReading": {
+        "kahn": "David Kahn, \"Number One From Moscow\" (CIA, Studies in Intelligence)"
+      }
     }
   },
   "glossary": {
@@ -2268,6 +2376,30 @@
     "keystream": {
       "name": "Keystream",
       "definition": "The running sequence of key letters a cipher consumes, one per plaintext letter. In autokey the keystream is the primer followed by the plaintext."
+    },
+    "straddling-checkerboard": {
+      "name": "Straddling checkerboard",
+      "definition": "A grid where frequent letters take one digit and the rest take two — it turns text into digits faster than a Polybius square."
+    },
+    "chain-addition": {
+      "name": "Chain addition",
+      "definition": "Extending a digit line by adding pairs of digits mod 10: the first two digits produce a new one after the last, the second and third the next, and so on."
+    },
+    "sequencing": {
+      "name": "Sequencing",
+      "definition": "Ranking the characters of a line 1 to n in alphabetical order, ties numbered left to right; 0 counts as ten."
+    },
+    "keygroup": {
+      "name": "Keygroup",
+      "definition": "Five random digits that travel with a VIC message and seed its key derivation — fresh for every message."
+    },
+    "disrupted-transposition": {
+      "name": "Disrupted transposition",
+      "definition": "A columnar transposition whose grid carries triangular 'disruption' areas filled last — it breaks the column regularity anagrammers exploit."
+    },
+    "product-cipher": {
+      "name": "Product cipher",
+      "definition": "A cipher that layers substitution and transposition stages, so breaking one layer still leaves the others."
     }
   },
   "seo": {
@@ -2449,7 +2581,7 @@
       "name": "Product ciphers",
       "shortName": "Product",
       "oneLiner": "Substitution and transposition, combined.",
-      "description": "Product ciphers combine substitution with transposition: ADFGVX and Nihilist. The WWI field ciphers and how they were broken."
+      "description": "Product ciphers combine substitution with transposition: ADFGVX, Nihilist and VIC. The WWI field ciphers, the Cold War hand cipher, and how two of them were broken."
     },
     "codes-and-encodings": {
       "name": "Codes and encodings",

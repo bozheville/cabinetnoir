@@ -37,6 +37,10 @@ import {
   nihilistKeyNumbers,
   noCarryAdd,
 } from '@encryptors/Nihilist/nihilist-crypt';
+import {
+  deriveVicKeys,
+  vicKeyHandoff,
+} from '@encryptors/Vic/vic-crypt';
 import { createEnigmaMachine, enigmaPass } from '@learning/enigma-machine';
 
 export interface WorkedExampleColumn {
@@ -710,6 +714,41 @@ const buildSaknussemmExample = (
   };
 };
 
+// VIC: the worked example walks the whole key schedule — every
+// worksheet line from the four secrets down to the transposition keys,
+// exactly as Kahn's article walks them. The Wikipedia example secrets.
+const VIC_EXAMPLE_SECRETS = {
+  phrase: 'Twas the night before Christmas',
+  date: '13/9/1959',
+  personalNumber: 6,
+  keygroup: '72401',
+};
+
+const buildVicExample = (id: string): WorkedExample => {
+  const keys = deriveVicKeys(VIC_EXAMPLE_SECRETS);
+  const lines: Array<[string, string]> = [
+    ['A', keys.A], ['B', keys.B], ['C', keys.C], ['D', keys.D],
+    ['E1', keys.E1], ['E2', keys.E2], ['F1', keys.F1], ['F2', keys.F2],
+    ['G', keys.G], ['H', keys.H], ['J', keys.J],
+    ['K', keys.K], ['L', keys.L], ['M', keys.M], ['N', keys.N],
+    ['P', keys.P], ['Q', keys.Q], ['R', keys.R], ['S', keys.S],
+    ['a·b', `${keys.a} × ${keys.b}`],
+  ];
+  return {
+    id,
+    cipher: 'vic',
+    input: 'ATTACKATDAWN. BY DAWN I MEAN 0500. NOT 0915 LIKE YOU DID LAST TIME.',
+    key: vicKeyHandoff(VIC_EXAMPLE_SECRETS),
+    alphabet: keys.S,
+    mode: 'encrypt',
+    columns: [
+      { key: 'line', labelKey: 'learning.example.columns.worksheetLine' },
+      { key: 'value', labelKey: 'learning.example.columns.worksheetValue' },
+    ],
+    rows: lines,
+  };
+};
+
 const EXAMPLES: Record<string, WorkedExample> = {
   'vigenere-basic': buildVigenereExample('vigenere-basic', 'ATTACKATDAWN', 'LEMON'),
   'beaufort-basic': buildBeaufortExample('beaufort-basic', 'ATTACKATDAWN', 'LEMON'),
@@ -732,6 +771,7 @@ const EXAMPLES: Record<string, WorkedExample> = {
   'nihilist-basic': buildNihilistExample('nihilist-basic', 'ATTACKATDAWN', '', 'RUSSIA'),
   'enigma-basic': buildEnigmaExample('enigma-basic', 'AAAAA', 'AAA'),
   'saknussemm-basic': buildSaknussemmExample('saknussemm-basic', 'SNEFFELS', 3, 2),
+  'vic-basic': buildVicExample('vic-basic'),
 };
 
 export const getExample = (id: string): WorkedExample | null => EXAMPLES[id] || null;

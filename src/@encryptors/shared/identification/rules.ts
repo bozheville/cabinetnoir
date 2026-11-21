@@ -357,4 +357,23 @@ export const CIPHER_RULES: Rule[] = [
     (profile) => ((profile.polybiusLike && !profile.nihilistLike)
       ? { pairs: profile.digitPairs }
       : null)),
+
+  // VIC: five-figure groups of digits, the spy-radio presentation. The
+  // digits parse as no other number cipher's stream (not Nihilist sums,
+  // not square pairs) — but the grouping still fires, so Nihilist and
+  // Polybius outputs never land here.
+  rule('vicGroups', cipher('vic'), 45,
+    (profile) => (profile.digitsOnly && profile.grouped
+      && !profile.nihilistLike
+      ? {}
+      : null)),
+
+  // VIC support: the groups parse as Nihilist sums only by rare
+  // accident (uniform digits, ~78% of random pairs in range), so a
+  // mostly-invalid parse backs the five-figure shape.
+  rule('vicNotSums', cipher('vic'), 15,
+    (profile) => (profile.digitsOnly && profile.grouped
+      && profile.nihilistInRangeRatio < NIHILIST_IN_RANGE_RATIO
+      ? {}
+      : null)),
 ];

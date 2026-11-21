@@ -48,6 +48,7 @@ const SHARED_ENGINES = {
   polybius: ['src/@encryptors/shared/polybius'],
   nihilist: ['src/@encryptors/shared/polybius'],
   adfgvx: ['src/@encryptors/shared/polybius'],
+  vic: ['src/@encryptors/shared/checkerboard', 'src/@encryptors/shared/transposition'],
 };
 
 // Markdown topics per URL segment. Mirrors MARKDOWN_TOPICS and TOOL_TOPICS

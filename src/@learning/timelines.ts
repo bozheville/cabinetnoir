@@ -298,6 +298,28 @@ export const TIMELINES: Record<string, TimelineEvent[]> = {
       sourceUrl: 'https://en.wikipedia.org/wiki/VIC_cipher',
     },
   ],
+  vic: [
+    {
+      year: '1941–43',
+      textKey: 'learning.timeline.vic.1940s-ancestors',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Richard_Sorge',
+    },
+    {
+      year: '1953',
+      textKey: 'learning.timeline.vic.1953-nickel',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Hollow_Nickel_Case',
+    },
+    {
+      year: '1957',
+      textKey: 'learning.timeline.vic.1957-defection',
+      sourceUrl: 'https://en.wikipedia.org/wiki/Reino_H%C3%A4yh%C3%A4nen',
+    },
+    {
+      year: '1959',
+      textKey: 'learning.timeline.vic.1959-kahn',
+      sourceUrl: 'https://www.cia.gov/resources/csi/static/Number-One-From-Moscow.pdf',
+    },
+  ],
   vigenere: [
     {
       year: '1467',

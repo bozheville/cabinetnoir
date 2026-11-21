@@ -40,6 +40,7 @@ const CIPHER_CATEGORIES = {
   autokey: ['tabula-recta'],
   nihilist: ['product', 'polybius-square'],
   adfgvx: ['product', 'polybius-square', 'transposition'],
+  vic: ['product', 'transposition'],
   alberti: ['disks-and-rotors'],
   enigma: ['disks-and-rotors'],
   base64: ['codes-and-encodings'],

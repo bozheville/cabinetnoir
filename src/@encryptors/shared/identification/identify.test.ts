@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { identify } from './identify';
 import { nihilistEncrypt } from '@encryptors/Nihilist/nihilist-crypt';
+import { vicEncrypt } from '@encryptors/Vic/vic-crypt';
 
 const longEnglish =
   'THEQUICKBROWNFOXJUMPSOVERTHELAZYDOGANDTHENHERANINTOTHEWOODSWHERETHEHENSROOSTALLDAYLONGUNTILTHEFARMERCAMEHOMEPASTTHEOLDMILLANDDOWNTHELANE'.repeat(2);
@@ -58,6 +59,23 @@ describe('identify()', () => {
       const found = findCandidate(identify(ciphertext), 'nihilist');
       expect(found?.candidate.confidence).toBe('veryLikely');
     }
+  });
+
+  it('identifies a real VIC ciphertext as very likely — and not as Nihilist', () => {
+    const ciphertext = vicEncrypt(
+      'THE AGENT REPORTS AT DAWN BY WAY OF THE OLD MILL ROAD BY THE RIVER BEND',
+      {
+        phrase: 'Twas the night before Christmas',
+        date: '13/9/1959',
+        personalNumber: 6,
+        keygroup: '72401',
+      },
+    );
+    const result = identify(ciphertext);
+    const vic = findCandidate(result, 'vic');
+    expect(vic?.candidate.confidence).toBe('veryLikely');
+    const nihilist = findCandidate(result, 'nihilist');
+    expect(nihilist?.candidate.confidence).not.toBe('veryLikely');
   });
 
   it('keeps plain English away from substitution', () => {

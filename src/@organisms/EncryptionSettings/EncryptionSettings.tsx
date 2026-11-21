@@ -27,6 +27,7 @@ import {
   Nihilist,
   Adfgvx,
   Saknussemm,
+  Vic,
   encodingsList,
   encryptorsList,
   Base64,
@@ -128,6 +129,7 @@ const EncryptionSettings: React.FC<EncryptionSettingsProps> = ({
     algorithm === 'rot13' ? Rot13 :
     algorithm === 'pigpen' ? Pigpen :
     algorithm === 'saknussemm' ? Saknussemm :
+    algorithm === 'vic' ? Vic :
     null;
 
   return (

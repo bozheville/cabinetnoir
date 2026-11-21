@@ -27,6 +27,7 @@ import {
   saknussemmEncrypt,
 } from '@encryptors/Saknussemm/saknussemm-crypt';
 import { polybiusEncrypt } from '@encryptors/Polybius/polybius-crypt';
+import { vicEncrypt } from '@encryptors/Vic/vic-crypt';
 import { createEnigmaMachine } from '@learning/enigma-machine';
 
 export type ChallengeDifficulty = 'easy' | 'medium' | 'hard';
@@ -686,6 +687,39 @@ const buildNihilistChallenge = (
   ciphertext: nihilistEncrypt({ input: plaintext, squareKey, key }),
   difficulty,
   keyLength: nihilistKeyNumbers(key, squareKey).length,
+  hints,
+  answer: plaintext,
+  mode: 'decrypt',
+  listOnPractice,
+});
+
+// VIC: the four secrets travel in the hints (there is no cracker —
+// the challenge is to run the decrypt tool like Häyhänen's recipient).
+// The hard challenge adds the bisection with its agreed cut index.
+const buildVicChallenge = (
+  id: string,
+  secrets: {
+    phrase: string;
+    date: string;
+    personalNumber: number;
+    keygroup: string;
+  },
+  bisectAt: number | undefined,
+  plaintext: string,
+  difficulty: ChallengeDifficulty,
+  hints: string[],
+  listOnPractice?: boolean,
+): Challenge => ({
+  id,
+  cipher: 'vic',
+  titleKey: `learning.challenges.${id}.title`,
+  ciphertext: vicEncrypt(
+    plaintext,
+    secrets,
+    bisectAt ? { bisectAt } : {},
+  ),
+  difficulty,
+  keyLength: secrets.keygroup.length,
   hints,
   answer: plaintext,
   mode: 'decrypt',
@@ -1385,6 +1419,57 @@ export const CHALLENGES: Record<string, Challenge> = {
       'learning.challenges.saknussemm-parchment.hint1',
       'learning.challenges.saknussemm-parchment.hint2',
       'learning.challenges.saknussemm-parchment.hint3',
+    ],
+  ),
+  'vic-easy-1': buildVicChallenge(
+    'vic-easy-1',
+    {
+      phrase: 'Twas the night before Christmas',
+      date: '13/9/1959',
+      personalNumber: 6,
+      keygroup: '72401',
+    },
+    undefined,
+    'ATTACK THE BRIDGE AT DAWN. BY DAWN I MEAN 0500.',
+    'easy',
+    [
+      'learning.challenges.vic-easy-1.hint1',
+      'learning.challenges.vic-easy-1.hint2',
+    ],
+  ),
+  'vic-medium-1': buildVicChallenge(
+    'vic-medium-1',
+    {
+      phrase: 'A lonely accordion plays long into the night',
+      date: '3/9/1945',
+      personalNumber: 13,
+      keygroup: '20818',
+    },
+    undefined,
+    'MEET ME AT THE NORTH GATE AT 0500. NOT 0915 LIKE LAST TIME.',
+    'medium',
+    [
+      'learning.challenges.vic-medium-1.hint1',
+      'learning.challenges.vic-medium-1.hint2',
+      'learning.challenges.vic-medium-1.hint3',
+    ],
+  ),
+  'vic-hard-1': buildVicChallenge(
+    'vic-hard-1',
+    {
+      phrase: 'It was the best of times it was the worst of times',
+      date: '22/6/1941',
+      personalNumber: 8,
+      keygroup: '39614',
+    },
+    20,
+    DICKENS_PLAINTEXT_ADFGVX + '. ATTACK AT 0500.',
+    'hard',
+    [
+      'learning.challenges.vic-hard-1.hint1',
+      'learning.challenges.vic-hard-1.hint2',
+      'learning.challenges.vic-hard-1.hint3',
+      'learning.challenges.vic-hard-1.hint4',
     ],
   ),
 };
