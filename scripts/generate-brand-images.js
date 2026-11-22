@@ -20,6 +20,8 @@ const path = require('path');
 const React = require('react');
 const sharp = require('sharp');
 
+const { cardGround } = require('../src/@brand/og-looks');
+
 const PUBLIC = path.join(__dirname, '..', 'public');
 const FONTS = path.join(PUBLIC, 'fonts');
 
@@ -227,8 +229,10 @@ const fitText = async (content, { sizes, maxLines, ...options }) => {
 };
 
 // 1200x630 Open Graph card: mark on the left; title, copper rule, body and
-// an optional small-caps footer on the right, centred as one block.
-const banner = async ({ title, body, footer, file, titleSizes = [64, 56, 50, 44], bodySizes = [28, 25] }) => {
+// an optional small-caps footer on the right, centred as one block. `look`
+// (from src/@brand/og-looks) swaps the green ground for a per-card tone +
+// ornament + frame; without it the card stays the plain brand green.
+const banner = async ({ title, body, footer, file, look, titleSizes = [64, 56, 50, 44], bodySizes = [28, 25] }) => {
   const W = 1200;
   const H = 630;
   const markW = 440;
@@ -259,7 +263,8 @@ const banner = async ({ title, body, footer, file, titleSizes = [64, 56, 50, 44]
   if (foot) layers.push({ input: foot.buffer, left: textLeft, top: textTop + footTop });
 
   fs.mkdirSync(path.dirname(file), { recursive: true });
-  await sharp(ground(W, H, 24, 4)).composite(layers).png().toFile(file);
+  const groundBuffer = look ? cardGround(W, H, look) : ground(W, H, 24, 4);
+  await sharp(groundBuffer).composite(layers).png().toFile(file);
 };
 
 const square = async () => {
