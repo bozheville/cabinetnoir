@@ -7,26 +7,30 @@ const {
   buildSitemapPaths,
   urlFor,
 } = require('../src/@lib/sitemap-data');
+const { getLearningConfig } = require('../src/@learning/config');
 
 const REPO_ROOT = path.join(__dirname, '..');
 
 // ---------------------------------------------------------------------------
-// <lastmod> sources (task 09): per URL, the files whose content feeds it.
-// The date is the last commit that touched any of them (`git log -1
-// --format=%cI`, W3C datetime), so it moves only when the content does —
-// never on a rebuild. When git history is unavailable (shallow CI clone,
-// uncommitted new file, no git at all) <lastmod> is omitted rather than
-// falling back to the build date, which crawlers would learn to ignore.
+// <lastmod> sources (task 09): per URL, the files and JSON keys whose
+// content feeds it. The date is the last commit that touched any of the
+// files, or changed any of the keys inside the shared JSON files (locale
+// copy, review config) — committer date, W3C datetime — so it moves only
+// when that page's content does, never on a rebuild or on an edit to
+// another page's strings. When git history is unavailable (shallow CI
+// clone, uncommitted new file, no git at all) <lastmod> is omitted rather
+// than falling back to the build date, which crawlers would learn to ignore.
 // ---------------------------------------------------------------------------
 
 const localeFile = (locale) => `public/locales/${locale}/common.json`;
+const REVIEW_STATUS_FILE = 'content/review-status.json';
 
-// Static pages: their page component + their locale copy.
-const STATIC_PAGE_FILES = {
-  '/': 'pages/index.tsx',
-  '/identify': 'pages/identify/index.tsx',
-  '/about': 'pages/about.tsx',
-  '/sitemap': 'pages/sitemap.tsx',
+// Static pages: their page component + their own locale keys.
+const STATIC_PAGES = {
+  '/': { file: 'pages/index.tsx', keys: ['home', 'seo.home'] },
+  '/identify': { file: 'pages/identify/index.tsx', keys: ['identify', 'seo.identify'] },
+  '/about': { file: 'pages/about.tsx', keys: ['about', 'seo.about'] },
+  '/sitemap': { file: 'pages/sitemap.tsx', keys: ['sitemap'] },
 };
 
 // Algorithm id → encryptor folder (engine + pane + cracker + analysis).
@@ -63,49 +67,87 @@ const SEGMENT_TOPICS = {
   cryptanalysis: [],
 };
 
-// Files whose content decides a URL's <lastmod>, in that locale.
+// Placeholder ids a markdown file embeds ({{term:keygroup}} → keygroup).
+const placeholderIds = (file, type) => {
+  const full = path.join(REPO_ROOT, file);
+  if (!fs.existsSync(full)) return [];
+  const pattern = new RegExp(`\\{\\{${type}:([^}]+)\\}\\}`, 'g');
+  return [...fs.readFileSync(full, 'utf8').matchAll(pattern)].map((m) => m[1]);
+};
+
+// What decides a URL's <lastmod>, in that locale:
+// - files: any commit touching them counts (page code, markdown, engines);
+// - keys: JSON key paths inside the shared JSON files (locale copy,
+//   review config). Only commits that changed one of these keys count, so
+//   a VIC copy edit in common.json does not date every page. Shared UI
+//   strings (footer, header, seo templates, tab labels) are left out on
+//   purpose: a wording tweak there is not a content change of every page.
+// A key path is an array of segments; a RegExp segment matches any key.
 const sourcesFor = (pagePath, locale) => {
-  if (STATIC_PAGE_FILES[pagePath]) {
-    return [STATIC_PAGE_FILES[pagePath], localeFile(locale)];
+  const locales = localeFile(locale);
+
+  if (STATIC_PAGES[pagePath]) {
+    const { file, keys } = STATIC_PAGES[pagePath];
+    return { files: [file], keys: { [locales]: keys.map((k) => k.split('.')) } };
   }
 
-  if (pagePath === '/category') {
-    return ['pages/category/[[...path]].tsx', 'src/@learning/categories.js',
-      + `content/categories/_hub/${locale}/intro.md`, localeFile(locale)];
-  }
-
-  const categoryMatch = pagePath.match(/^\/category\/([a-z0-9-]+(?:\/[a-z0-9-]+)*)$/);
+  const categoryMatch = pagePath.match(/^\/category(?:\/([a-z0-9-]+(?:\/[a-z0-9-]+)*))?$/);
   if (categoryMatch) {
-    const id = categoryMatch[1].split('/').pop();
-    return ['pages/category/[[...path]].tsx', 'src/@learning/categories.js',
-      + `content/categories/${id}/${locale}/intro.md`, localeFile(locale)];
+    const id = categoryMatch[1] ? categoryMatch[1].split('/').pop() : 'hub';
+    const folder = id === 'hub' ? '_hub' : id;
+    return {
+      files: ['pages/category/[[...path]].tsx', 'src/@learning/categories.js',
+        `content/categories/${folder}/${locale}/intro.md`],
+      keys: { [locales]: [['categories', id]] },
+    };
   }
 
   const match = pagePath.match(/^\/encoder\/([a-zA-Z0-9]+)\/([a-z]+)$/);
   const algorithm = match[1];
   const segment = match[2];
-  const sources = [localeFile(locale)];
+  const files = [];
+  const localeKeys = [
+    ['processing', algorithm],
+    ['learning', algorithm],
+    ['learning', 'tooltips', algorithm],
+  ];
+  const keys = { [locales]: localeKeys };
 
-  // Learning tabs: the tab's markdown, this locale only. History layout
-  // also depends on the review config (tasks 06 + 12).
+  // Learning tabs: the tab's markdown, this locale only, plus the glossary
+  // terms, timelines and challenge links it embeds.
   for (const topic of SEGMENT_TOPICS[segment]) {
-    sources.push(`content/${algorithm}/${locale}/${topic}.md`);
+    const file = `content/${algorithm}/${locale}/${topic}.md`;
+    files.push(file);
+    for (const id of placeholderIds(file, 'term')) localeKeys.push(['glossary', id]);
+    for (const id of placeholderIds(file, 'timeline')) localeKeys.push(['learning', 'timeline', id]);
+    for (const id of placeholderIds(file, 'challenge')) localeKeys.push(['learning', 'challenges', id]);
   }
+
+  // The learn tab's glossary section lists the cipher's configured terms.
+  if (segment === 'learn') {
+    for (const id of getLearningConfig(algorithm)?.glossary || []) {
+      localeKeys.push(['glossary', id]);
+    }
+  }
+
+  // History layout also depends on the cipher's review config (tasks 06 + 12).
   if (segment === 'history') {
-    sources.push('content/review-status.json');
+    localeKeys.push(['learning', 'timeline', algorithm]);
+    keys[REVIEW_STATUS_FILE] = [[algorithm]];
   }
 
   // Tool pages and the cryptanalysis wizard run the cipher's own code.
   if (segment === 'direct' || segment === 'reverse' || segment === 'cryptanalysis') {
-    sources.push(cipherFolder(algorithm), ...(SHARED_ENGINES[algorithm] || []));
+    files.push(cipherFolder(algorithm), ...(SHARED_ENGINES[algorithm] || []));
   }
 
   // Practice challenges are component-driven: their data lives here.
   if (segment === 'practice') {
-    sources.push('src/@learning/challenges.ts');
+    files.push('src/@learning/challenges.ts');
+    localeKeys.push(['learning', 'challenges', new RegExp(`^${algorithm}-`)]);
   }
 
-  return sources;
+  return { files, keys };
 };
 
 // Full history present? A shallow clone may not reach the last commit
@@ -124,17 +166,103 @@ const gitHistoryUsable = () => {
 
 // Last committer date (W3C datetime) of the newest commit touching any of
 // the paths; null when no history covers them (untracked file, no git).
-const lastCommitDate = (paths) => {
+const git = (args) => {
   try {
-    return execFileSync('git', ['log', '-1', '--format=%cI', '--', ...paths], {
+    return execFileSync('git', args, {
       cwd: REPO_ROOT,
       encoding: 'utf8',
+      maxBuffer: 256 * 1024 * 1024,
       stdio: ['ignore', 'pipe', 'ignore'],
-    }).trim() || null;
+    });
   } catch {
     return null;
   }
 };
+
+const lastCommitDate = (paths) => {
+  if (paths.length === 0) return null;
+  return (git(['log', '-1', '--format=%cI', '--', ...paths]) || '').trim() || null;
+};
+
+// Leaf key paths that differ between two parsed JSON values. A subtree
+// added or removed whole is reported at its root.
+const changedKeyPaths = (before, after, prefix = [], out = []) => {
+  if (JSON.stringify(before) === JSON.stringify(after)) return out;
+  const isObject = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
+  if (isObject(before) && isObject(after)) {
+    for (const key of new Set([...Object.keys(before), ...Object.keys(after)])) {
+      changedKeyPaths(before[key], after[key], [...prefix, key], out);
+    }
+  } else {
+    out.push(prefix);
+  }
+  return out;
+};
+
+const readJsonAt = (rev, file) => {
+  const text = git(['show', `${rev}:${file}`]);
+  if (text === null) return undefined;
+  try {
+    return JSON.parse(text);
+  } catch {
+    // Unparseable revision: report the whole file as changed.
+    return Symbol('invalid');
+  }
+};
+
+// Per keyed JSON file: every non-merge commit touching it, with the key
+// paths it changed (first parent → commit).
+const keyHistoryCache = new Map();
+const keyHistory = (file) => {
+  if (!keyHistoryCache.has(file)) {
+    const log = git(['log', '--no-merges', '--format=%H %cI', '--', file]) || '';
+    const commits = log.trim().split('\n').filter(Boolean).map((line) => {
+      const [sha, date] = line.split(' ');
+      const before = readJsonAt(`${sha}^`, file);
+      const after = readJsonAt(sha, file);
+      const changed = typeof before === 'symbol' || typeof after === 'symbol'
+        ? [[]]
+        : changedKeyPaths(before, after);
+      return { date, changed };
+    });
+    keyHistoryCache.set(file, commits);
+  }
+  return keyHistoryCache.get(file);
+};
+
+const segmentMatches = (pattern, key) =>
+  pattern instanceof RegExp ? pattern.test(key) : pattern === key;
+
+// A watched key and a changed path overlap when one is a prefix of the other.
+const overlaps = (watched, changed) => {
+  const length = Math.min(watched.length, changed.length);
+  for (let i = 0; i < length; i++) {
+    if (!segmentMatches(watched[i], changed[i])) return false;
+  }
+  return true;
+};
+
+const lastKeyChangeDate = (file, watchedKeys) => {
+  for (const { date, changed } of keyHistory(file)) {
+    if (changed.some((c) => watchedKeys.some((w) => overlaps(w, c)))) return date;
+  }
+  return null;
+};
+
+const newest = (dates) => dates
+  .filter(Boolean)
+  .reduce((best, d) => (best === null || Date.parse(d) > Date.parse(best) ? d : best), null);
+
+const lastmodFor = ({ files, keys }) => newest([
+  lastCommitDate(files),
+  ...Object.entries(keys).map(([file, watched]) => lastKeyChangeDate(file, watched)),
+]);
+
+const sourcesKey = ({ files, keys }) => JSON.stringify({
+  files,
+  keys: Object.fromEntries(Object.entries(keys).map(([file, watched]) =>
+    [file, watched.map((p) => p.map(String))])),
+});
 
 // Every URL carries its hreflang alternates so search engines treat the
 // en / fr / ua pages as translations, not duplicates.
@@ -153,10 +281,11 @@ const linksToXML = (paths, useGit) => {
       xml += `\n  <url>\n    <loc>${urlFor(pagePath, locale)}</loc>`;
       if (useGit) {
         const sources = sourcesFor(pagePath, locale);
-        if (!lastmodCache.has(sources.join('|'))) {
-          lastmodCache.set(sources.join('|'), lastCommitDate(sources));
+        const cacheKey = sourcesKey(sources);
+        if (!lastmodCache.has(cacheKey)) {
+          lastmodCache.set(cacheKey, lastmodFor(sources));
         }
-        const lastmod = lastmodCache.get(sources.join('|'));
+        const lastmod = lastmodCache.get(cacheKey);
         if (lastmod) {
           xml += `\n    <lastmod>${lastmod}</lastmod>`;
         }

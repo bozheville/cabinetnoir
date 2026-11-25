@@ -12,7 +12,9 @@
     "prepare": "husky",
     "test": "vitest run",
     "test:watch": "vitest",
-    "i18n:audit": "python3 scripts/locale_audit.py"
+    "i18n:audit": "python3 scripts/locale_audit.py",
+    "sitemap": "node scripts/generate-sitemap.js",
+    "sitemap:check": "node scripts/generate-sitemap.js --check"
   },
   "engines": {
     "node": ">=22.0.0"
