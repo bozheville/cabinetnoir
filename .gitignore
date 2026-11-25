@@ -46,3 +46,4 @@ next-env.d.ts
 
 # per-cipher Open Graph cards, written by scripts/generate-og-images.js at build
 /public/og/
+/tmp/
