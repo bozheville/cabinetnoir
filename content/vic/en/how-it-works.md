@@ -1,64 +1,91 @@
 # How the VIC cipher works
 
-## The idea in one sentence
+## The idea in short
 
-Four small secrets — a phrase, a date, a personal number and a fresh
-five-digit keygroup — are stretched through mod-10 arithmetic into a
-{{term:straddling-checkerboard}} and two {{term:transposition}} keys,
-so one message costs the cryptanalyst a substitution he cannot see,
-two transpositions he cannot undo, and a key that never repeats.
+The VIC cipher turns four small secrets into one large key. The
+secrets are a phrase, a date, a personal number and a random
+five-digit {{term:keygroup}}. From them, simple arithmetic builds a
+{{term:straddling-checkerboard}} and two {{term:transposition}} keys.
+
+The checkerboard changes letters into digits. The two transpositions
+then shuffle those digits twice. Because the keygroup is new for every
+message, the whole key is new for every message too.
 
 ## The five stages
 
-1. **The key schedule.** The keygroup minus the date's five digits
-   (no borrow) starts a {{term:chain-addition}} line; the phrase's
-   twenty letters are {{term:sequencing}}-ranked and mixed in; out of
-   the arithmetic fall Line Q and Line R — the two transposition
-   tableaus — and Line S, the checkerboard's mixed digit header.
-   Turn on **Show the key workings** in the tool and watch every line
-   appear; the tooltips name each operation, Kahn's A through S.
-2. **The checkerboard.** A mnemonic (`AT ONE SIR`) sits on top of the
-   Line S digits: eight frequent letters take one digit each, the two
-   blank cells become row labels for the rest of the alphabet below.
-   Every other letter, the period and the number-shift `/` straddle
-   two digits. Digits travel inside a `/…/` pair, written three times
-   each.
-3. **The first tableau.** The digit stream is written into a grid
-   `a` columns wide (Line Q's width comes from the personal number)
-   and read out column by column in Line Q's rank order.
-4. **The disrupted tableau.** A second transposition, `b` columns
-   wide, whose grid carries triangular *disruption* areas — filled
-   last, after every ordinary cell. The triangles break exactly the
-   column regularity an anagrammer needs.
-5. **The keygroup.** The digits are cut into five-figure groups and
-   the keygroup is inserted a date-chosen number of groups from the
-   end. It travels with the message — which is safe, because alone it
-   seeds everything and reveals nothing.
+1. **Build the key.** This is the long part, done on a worksheet with
+   lines named A to S (David Kahn's names).
+   - Subtract the first five digits of the date from the keygroup,
+     digit by digit, without borrowing (line C).
+   - Stretch the result to ten digits with {{term:chain-addition}}:
+     each new digit is the sum of two neighbours, keeping only the
+     last digit (line F1).
+   - Take the first 20 letters of the phrase. Number each half in
+     alphabetical order. This is called {{term:sequencing}} (lines E1
+     and E2).
+   - Mix these lines together (lines G and H), then chain-add 50 more
+     digits (lines K to P).
+   - From this block you read three keys: line Q for the first table,
+     line R for the second table and line S for the checkerboard.
+
+   Turn on **Show the key workings** in the tool to watch every line
+   appear. Each one has a tooltip that says how it was made.
+2. **Change letters into digits.** The checkerboard has a top row of
+   eight common letters, `AT ONE SIR` on the Latin board. Each of them
+   becomes one digit. The two empty cells in that row label two more
+   rows, which hold every other letter, the full stop and a number
+   sign `/`. Those take two digits each. Numbers go between two `/`
+   signs, and each digit is written three times.
+3. **Shuffle the digits, first time.** Write the digits in rows under
+   line Q, one digit per column. Then read them out column by column,
+   in the order of line Q's numbers. The width of the table comes from
+   the personal number.
+4. **Shuffle again, with traps.** Do the same with line R, but in a
+   {{term:disrupted-transposition}}. Some cells form triangles that
+   are filled only at the end. These triangles break the regular
+   column pattern that a codebreaker would look for.
+5. **Hide the keygroup.** Cut the digits into groups of five. Then
+   insert the keygroup into the message. The sixth digit of the date
+   says where: that many groups from the end. The keygroup travels
+   in the open, but without the other three secrets it is useless.
 
 ## A worked example
 
 {{example:vic-basic}}
 
-The Wikipedia example's secrets, the whole schedule from keygroup to
-checkerboard header. Line S `5961328470` heads the board; the blanks
-over `6` and `8` label the straddled rows.
+These are the secrets from the Wikipedia example: the phrase *Twas
+the night before Christmas*, the date `13/9/1959`, personal number `6`
+and keygroup `72401`. The table shows each worksheet line, from the
+keygroup down to line S, `5961328470`. Line S becomes the header of
+the checkerboard. The empty cells sit above `6` and `8`, so those two
+digits label the lower rows.
+
+The two tables are 13 and 6 columns wide. The date's digits are
+`1391959`, so the sixth digit is `5`: the keygroup goes five groups
+from the end.
 
 {{try:vic-basic}}
 
-## Decryption
+## How decryption works
 
-Run the same schedule from the three remembered secrets, but first
-lift the keygroup out of its date-chosen position — the message tells
-you its own seed. Then undo both transpositions (the disrupted one
-last-in-first-out), read the checkerboard back, and undo the optional
-bisection at the agreed cut. The trailing `X`s were padding; the
-message ends where they begin.
+The receiver knows the phrase, the date and the personal number. The
+date's sixth digit tells them where the keygroup sits, so they lift it
+out of the message first. With all four secrets, they rebuild the same
+worksheet.
 
-## The tells — and why there are none
+Then they undo each stage in reverse order: the second table, the
+first table, and finally the checkerboard. If the message was
+bisected, they swap the halves back. Any `X` letters at the end are
+filler and can be dropped.
 
-A Nihilist stream betrays its key's period; a columnar transposition
-betrays its column counts; a checkerboard's digits betray nothing,
-because they are one-time-pad-flat: the keygroup is fresh every
-message, so the whole schedule is fresh every message. That is the
-cipher's whole secret, and the reason the next page is a history
-lesson instead of a cracker.
+## Why the ciphertext gives nothing away
+
+Most classical ciphers leave a trace. A repeating key shows up as a
+pattern every few letters. A single transposition keeps the letter
+counts of the language. The VIC cipher hides both.
+
+The checkerboard turns letters into digits of different lengths, so
+letter counts blur. Two transpositions in a row, one with traps, wipe
+out the order. And because every message has its own keygroup, no two
+messages share a key. A codebreaker has nothing to compare. That is
+why this site has no VIC cracker.

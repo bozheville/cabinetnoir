@@ -1,55 +1,69 @@
 # About the VIC cipher
 
-The VIC cipher is the last great hand cipher of the pencil-and-paper
-era: a Cold War Soviet system that carried espionage messages as
-five-figure digit groups, unbroken from 1953 to 1957 — and broken then
-only because its courier defected. Four small secrets (a memorable
-phrase, a date, the agent's personal number and a fresh five-digit
-{{term:keygroup}}) unfold through mod-10 arithmetic into a
-{{term:straddling-checkerboard}} and two
-{{term:transposition}} tableaus. Kahn called it the finest mnemonic
-cipher ever made public.
+The VIC cipher is a Soviet hand cipher from the Cold War. KGB spies
+used it in the 1950s to send messages as groups of five digits. The
+FBI found one such message in a hollow nickel in 1953 and could not
+read it for four years. It is often called the strongest cipher ever
+worked with pencil and paper.
+
+You need four small secrets to use it: a phrase, a date, a personal
+number and a random five-digit {{term:keygroup}}. Simple arithmetic
+turns them into a {{term:straddling-checkerboard}}, which changes
+letters into digits, and two {{term:transposition}} keys, which shuffle
+those digits.
 
 ## How to use this tool
 
-- Type your message into {{control:message-input}}; the five-digit
+- Type your message into {{control:message-input}}. The five-digit
   groups appear in {{control:output}}.
-- The four secrets go in their own fields: the Phrase (at least twenty
-  letters), the Date (day, month, year — e.g. `13/9/1959`), the
-  personal number and the keygroup. Roll a fresh keygroup with the
-  dice button for every message, exactly as the agents did.
-- Turn on **Show the key workings** to watch the whole pencil-and-paper
-  schedule: worksheet lines A–S, the checkerboard and the two tableau
-  widths, each line explained in a tooltip.
-- The message is optionally **bisected**: the halves are swapped at an
-  agreed cut index before encoding. Your recipient must know the cut —
-  it is a secret like the others. Leave it off for a first try.
-- Letters, digits and periods travel; everything else is dropped.
-  Digits ride inside a shift pair and are written three times each, so
-  `0500` costs twelve digits plus two shift codes.
-- A few trailing `X`s pad the message to a multiple of five digits —
-  the classic five-figure-group presentation. Your recipient simply
-  ignores them at the end.
-- Press {{control:swap}} to decrypt: paste the groups, re-enter the
-  three remembered secrets — the keygroup is read from the message
-  itself.
+- Fill in the four secrets:
+  - **Phrase**: any sentence with at least 20 letters.
+  - **Date**: day, month and year, for example `13/9/1959`.
+  - **Personal №**: a number from 1 to 20.
+  - **Keygroup**: five digits. Press **Roll a fresh keygroup** to get
+    new ones. Use a new keygroup for every message, as real agents
+    did.
+- **Alphabet** switches between a Latin board (`AT ONE SIR`) and a
+  Cyrillic one (`СНЕГОПА`, the board Häyhänen used).
+- Turn on **Show the key workings** to see every step of the key
+  calculation: the worksheet lines A to S, the checkerboard and the
+  width of both tables. Each line has a tooltip.
+- **Bisect the message** is optional. The tool cuts your message at
+  the position in **Cut at** and swaps the two halves before encrypting.
+  The person you write to must know that number too. Leave it off for
+  your first try.
+- Letters, digits and full stops are kept. Everything else is dropped.
+  Each digit is written three times between two number signs, so
+  `0500` becomes 12 digits plus the signs.
+- The tool may add up to six `X` letters at the end, so the digit count
+  divides by five. When you decrypt, just ignore them.
+- To decrypt, press {{control:swap}}, paste the groups and enter the
+  phrase, date and personal number. You do not type the keygroup: the
+  tool finds it inside the message.
 
 ## A quick example
 
-`ATTACKATDAWN. BY DAWN I MEAN 0500.` with the phrase *Twas the night
-before Christmas*, the date 13/9/1959, personal number 6 and keygroup
-`72401` encodes through the checkerboard to
-`60253800005550000008087…` — and then through both transpositions
-into five-figure groups with `72401` hidden among them.
+Take the message `ATTACKATDAWN. BY DAWN I MEAN 0500.` and these
+secrets: the phrase *Twas the night before Christmas*, the date
+`13/9/1959`, personal number `6` and keygroup `72401`.
+
+The checkerboard first turns the text into digits:
+`599569645966583387658866583376025380000555000000808782828282`. Then
+two transpositions mix them up. The result has 13 groups, and the
+keygroup `72401` sits among them, five groups from the end:
+
+`36468 87820 86582 86639 59530 50098 00052 72401 86536 78885 50052
+75803 60092`
 
 ## Go further
 
-- [How the VIC cipher works](/encoder/vic/learn) — the full key
-  schedule, line by line
-- [VIC cipher guides](/encoder/vic/learn#guides) — encrypt your first
-  message, then decrypt with the four secrets
-- [Breaking the VIC cipher](/encoder/vic/learn#breaking-it) — why
-  nobody ever did
-- [The history of the VIC cipher](/encoder/vic/history) — the hollow
-  nickel, the defector, the arrest in a Brooklyn hotel
-- [VIC cipher practice challenges](/encoder/vic/practice)
+- [How the VIC cipher works](/encoder/vic/learn): the key calculation,
+  line by line
+- [Step-by-step VIC guides](/encoder/vic/learn#guides): encrypt and
+  decrypt your first message
+- [Breaking the VIC cipher](/encoder/vic/learn#breaking-it): why the
+  FBI could not read it
+- [History of the VIC cipher](/encoder/vic/history): the hollow
+  nickel, the spy who defected and the arrest of Rudolf Abel
+- [VIC cipher challenges](/encoder/vic/practice): decrypt real
+  messages yourself

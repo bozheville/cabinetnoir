@@ -1,53 +1,58 @@
-# VIC cipher: guides
+# VIC cipher: step-by-step guides
 
-## Guide 1 — encrypt your first message
+## Guide 1: encrypt your first message
 
-1. Open the tool and type a message: `ATTACK AT DAWN. BY DAWN I MEAN
-   0500.` The phrase, date, personal number and keygroup fields are
-   the four secrets — fill them with the Wikipedia example: *Twas the
-   night before Christmas*, `13/9/1959`, `6`, and roll a keygroup.
-2. Turn on **Show the key workings**. Follow the schedule downward:
-   the keygroup (A), the date digits (B), their no-borrow subtraction
-   (C) — each tooltip names the operation.
-3. Watch the checkerboard at the bottom: `A` sits under `5`, `T` under
-   `9`, and the blanks under `6` and `8` label the straddled rows.
-   Your message's digits are spelled by that board.
-4. The output is five-figure groups with your keygroup hidden inside
-   — count from the end to find it (the date's sixth digit says how
-   far).
+1. Type a message into {{control:message-input}}, for example
+   `ATTACK AT DAWN. BY DAWN I MEAN 0500.`
+2. Fill in the secrets from the Wikipedia example. **Phrase**: *Twas
+   the night before Christmas*. **Date**: `13/9/1959`. **Personal №**:
+   `6`. **Keygroup**: `72401`. (For real messages you would press
+   **Roll a fresh keygroup** instead.)
+3. Five-digit groups appear in {{control:output}}. That is your
+   ciphertext.
+4. Turn on **Show the key workings**. Read the worksheet from the top:
+   the keygroup (line A), the date digits (line B) and their
+   difference (line C). Hover over a line to see how it was made.
+5. Scroll to the checkerboard. `A` sits on `5` and `T` on `9`. The
+   empty cells sit on `6` and `8`, so every letter in the lower rows
+   starts with `6` or `8`.
+6. Find your keygroup in the output. Count five groups from the end:
+   the date's sixth digit, `5`, decides the position.
 
-## Guide 2 — decrypt with the four secrets
+## Guide 2: decrypt with the secrets
 
-1. Switch to decrypt mode and paste the groups. Three secrets are
-   remembered (phrase, date, personal number); the keygroup is read
-   from the message itself — watch the field fill itself in.
-2. Decode, then trim the trailing `X`s: they are padding that pushed
-   the digit count to a multiple of five.
-3. Break it deliberately: change one secret digit and decode again.
-   The output collapses into noise — every stage depends on every
-   secret, which is the point of a product cipher.
+1. Press {{control:swap}} to switch to decryption. Paste the
+   five-digit groups.
+2. Enter the phrase, the date and the personal number. Leave the
+   keygroup alone: the tool reads it from the message and fills the
+   field for you.
+3. The plaintext appears. If it ends with a few `X` letters, drop them.
+   They were filler that made the digit count divide by five.
+4. Now change one digit of the date and look again. The text turns
+   into nonsense. Every stage depends on every secret, which makes
+   VIC a {{term:product-cipher}}.
 
-## Guide 3 — design your own checkerboard
+## Guide 3: try Häyhänen's own board
 
-1. The board's top row is a mnemonic of your choosing: up to eight
-   letters and two blanks. `AT ONE SIR` gives A, T, O, N, E, S, I, R —
-   the most frequent English letters, one digit each.
-2. The blanks decide everything below: their header digits become row
-   labels, and the remaining letters plus the period and the shift
-   sign fill two more rows.
-3. Switch the alphabet to Cyrillic and the same machinery runs on
-   Häyhänen's own board: `СНЕГОПА` — the start of *снегопад*,
-   snowfall — with three blanks and three straddled rows.
+1. Open **Alphabet** and choose the Cyrillic board.
+2. Look at the top row of the checkerboard: `СНЕГОПА`. These are the
+   first seven letters of *снегопад*, Russian for "snowfall". Häyhänen
+   used exactly this word.
+3. The Latin board has two empty cells, the Cyrillic one has three. So
+   it has three lower rows, enough room for a longer alphabet and a
+   few extra signs.
+4. Type a short message in Russian and encrypt it. Then decrypt it to
+   check that it comes back unchanged. The board uses the Russian
+   alphabet, so Ukrainian letters such as І or Ї are dropped.
 
-## Guide 4 — the bisection, Kahn's extra lock
+## Guide 4: bisect the message
 
-1. Turn on **Bisect the message** and set the cut at 20. Encrypt: the
-   ciphertext changes completely, because the halves swapped places
-   before a single digit was written.
-2. Send the cut index to your recipient out of band — agreed in
-   advance, like the other secrets. Without it, even the correct
-   checkerboard reads the message inside out.
-3. This was the historical system's optional final strengthening:
-   cheap for the agent, devastating for the analyst, because it
-   destroys the only remaining structure — the position of words
-   within the message.
+1. Turn on **Bisect the message** and set **Cut at** to `20`.
+2. Encrypt the same message as in guide 1. The ciphertext changes
+   completely, because the tool swapped the two halves of the text
+   before encrypting.
+3. The person you write to needs this number as well. Agree on it in
+   advance, like the other secrets.
+4. Decrypt with bisection switched off. The message comes out with its
+   halves in the wrong order. Turn it back on with the same cut, and
+   the text reads normally again.

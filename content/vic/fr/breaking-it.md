@@ -1,80 +1,78 @@
 # Casser le chiffre VIC
 
-Personne n'a jamais cassé le chiffre VIC par cryptanalyse. Le message
-qui l'a rendu célèbre est resté illisible dans un coffre du FBI de
-1953 à 1957 — dix colonnes de groupes de cinq chiffres sur un bout de
-microfilm — et il ne s'est ouvert que lorsque Reino Häyhänen, l'espion
-à qui il était adressé, a fait défection et a appris au FBI ses
-propres clés. Cette page explique pourquoi les tentatives ont échoué,
-et ce que cela coûterait aujourd'hui.
+Personne n'a jamais cassé le chiffre VIC par la cryptanalyse. Le
+message de la pièce creuse est resté illisible de 1953 à 1957. Le FBI
+ne l'a lu qu'après la défection de Reino Häyhänen, l'espion à qui il
+était destiné, qui a livré ses clés. Cette page explique pourquoi les
+experts ont échoué, et ce que coûterait une attaque aujourd'hui.
 
 {{challenge:vic-easy-1}}
 
 ## Pourquoi le FBI et la NSA n'ont pas pu le lire
 
-Un cryptanalyste attaque des structures : la période d'une clé qui se
-répète, les comptes de colonnes d'une grille, la plage de coordonnées
-d'un carré. VIC n'en offre aucune.
+Les cryptanalystes cherchent des régularités : une clé qui se répète,
+une grille de taille fixe, des lettres trop fréquentes. Le chiffre VIC
+a été conçu pour n'en laisser aucune.
 
-1. **Aucune répétition.** Le groupe-clé est neuf pour chaque message,
-   et chaque ligne du programme en pousse — donc la clé entière,
-   échiquier compris, est nouvelle à chaque fois. Il n'y a jamais de
-   période à trouver.
-2. **Aucune couche visible.** Le flux de chiffres de l'échiquier est
-   statistiquement plat — lettres fréquentes et rares ne se
-   distinguent plus par la fréquence des chiffres comme elles se
-   distinguent par la fréquence des lettres.
-3. **Des serrures composées.** Même en admettant la substitution,
-   l'analyste affronte deux transpositions d'affilée, la seconde
-   perturbée, dont les largeurs viennent de chiffres qu'il n'a pas.
-   Chaque couche résolue laisse le message scellé ; les couches n'ont
-   même pas la même longueur.
-4. **Une goutte de masque jetable.** La Ligne G additionne un dérivé
-   de la clé du message dans l'en-tête de l'échiquier — une
-   composante petite mais véritable de clé courante, quarante ans
-   après l'idée de Mauborgne.
+1. **La clé ne se répète jamais.** Chaque message a son propre
+   groupe-clé, et toute la clé en découle. Deux messages ne partagent
+   donc jamais la même clé : il n'y a rien à superposer ni à comparer.
+2. **Les lettres se cachent dans les chiffres.** L'échiquier donne un
+   chiffre aux lettres fréquentes et deux aux lettres rares. Le message
+   n'est qu'une suite de chiffres : impossible de compter les lettres
+   comme d'habitude.
+3. **Plusieurs verrous à la suite.** Après l'échiquier viennent deux
+   transpositions, la seconde piégée. Leurs largeurs dépendent de
+   secrets que l'attaquant n'a pas. Ouvrir un verrou laisse le message
+   toujours fermé.
+4. **Un seul message, aucune méthode.** En 1953, le FBI n'avait qu'un
+   message et ignorait tout du système. Toutes les attaques classiques
+   demandent davantage.
 
-Le verdict de Kahn dans « Number One From Moscow » : pas
-théoriquement insoluble, mais effectivement inviolable sans une
-connaissance préalable du système et sur la base d'un message unique.
+David Kahn le résume en 1961 : le chiffre n'est pas incassable en
+théorie, mais il l'est en pratique sans connaître le système et avec un
+seul message.
 
-## Comment il est réellement tombé
+## Comment il a finalement été lu
 
-Pas par les mathématiques — par un homme. En 1957, Häyhänen, l'illégal
-soviétique qui portait le message du nickel creux, se dégoûta, fut
-rappelé à Moscou, et choisit Washington à la place. Il reconstitua le
-système VIC pour le FBI de mémoire, ouvrant le message de 1953 et
-démasquant son propre chef — le colonel Rudolf Abel, arrêté dans un
-hôtel de Brooklyn la même année. La leçon du chiffre est la plus
-ancienne du livre : le maillon le plus fort d'un système
-cryptographique, ce sont ses humains.
+Il a fallu un homme, pas une formule. En mai 1957, Häyhänen est
+rappelé à Moscou. Il se rend plutôt à l'ambassade des États-Unis à
+Paris et demande l'asile. Il explique le système au FBI et lui donne sa
+phrase, sa date et son numéro personnel. Avec cela, le message du
+nickel s'ouvre en quelques semaines.
 
-## Ce que cela coûte aujourd'hui
+Il mène aussi le FBI jusqu'à son chef, Rudolf Abel, arrêté à New York
+en juin 1957. Le meilleur chiffre de son temps a cédé à la plus
+ancienne des failles : les gens qui s'en servent.
 
-La force brute a enfin une étiquette de prix, sinon une bonne
-affaire. Les secrets inconnus, une fois le système connu, sont les dix
-chiffres de la Ligne H (gardés par la phrase et la date — dans le
-pire cas, environ 10^34 permutations de la ligne elle-même) plus le
-numéro personnel des largeurs de tableaux — avec un ordinateur
-moderne, un attaquant déterminé peut fouiller l'espace plausible des
-phrases et dates d'une correspondance *connue* en quelques heures à
-quelques semaines. Mais cela suppose le système connu, le message
-identifié et les secrets devinables — trois choses qui ont toutes
-échoué en 1953. Comme chiffre manuel entre deux gens prudents, VIC
-reste inviolable en pratique.
+## Ce que coûterait une attaque aujourd'hui
 
-## Pourquoi il n'y a pas d'outil de cassage ici
+Supposons que vous connaissiez parfaitement le chiffre VIC. Il vous
+faut encore les secrets. La plupart se concentrent dans une seule
+ligne de dix chiffres de la feuille, la ligne H. Ajoutez le sixième
+chiffre de la date et le numéro personnel : la clé vaut environ
+38 bits, soit à peu près 300 milliards de possibilités.
 
-Chaque outil de cassage de ce site exploite une faiblesse structurelle
-— une période, une grille, une contrainte. Le but de conception de VIC
-était de n'en avoir aucune, et il a réussi : un assistant n'aurait
-rien à mesurer. L'outil vous donne l'autre côté de l'histoire — le
-panneau des calculs de clé, où vous regardez le système faire
-exactement ce que le FBI n'a pas pu défaire.
+Un ordinateur moderne les essaie toutes en moins d'une journée. Le VIC
+ne résiste donc pas aux ordinateurs. Mais cette attaque suppose trois
+choses que personne n'avait en 1953 : la méthode, un message chiffré
+propre et beaucoup de puissance de calcul. Face à quelqu'un armé d'un
+crayon et de papier, le VIC a tenu.
 
-## Le verdict
+## Pourquoi ce site n'a pas de casseur VIC
 
-VIC a fermé l'ère du papier-crayon à son point culminant : une
-sécurité née de la platitude informationnelle et de la discipline
-opérationnelle plutôt que de la difficulté de calcul. On ne l'a jamais
-cassé ; il a été livré.
+Chaque casseur de ce site suit une faiblesse : une clé qui se répète,
+une grille fixe, une lettre qui ne peut pas se chiffrer en elle-même.
+Le chiffre VIC n'offre aucune faiblesse de ce genre. Un casseur pas à
+pas n'aurait rien à montrer.
+
+À la place, cochez **Montrer les calculs de clé** dans
+[l'outil du chiffre VIC](/encoder/vic/direct). Vous verrez, ligne par
+ligne, chaque étape que le FBI n'a pas pu défaire.
+
+## En résumé
+
+Le chiffre VIC marque le sommet des chiffres manuels. Il combine une
+substitution, deux transpositions et une clé neuve pour chaque
+message. Personne ne l'a cassé à son époque. Il n'a été lu que parce
+qu'un transfuge a livré les clés.
