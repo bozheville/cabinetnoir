@@ -1,16 +1,45 @@
 {
+  "autokey": {
+    "history": {
+      "en": { "reviewed": true, "autoTranslated": false },
+      "fr": { "reviewed": true, "autoTranslated": true },
+      "ua": { "reviewed": true, "autoTranslated": false }
+    }
+  },
   "caesar": {
     "history": {
       "en": { "reviewed": true, "autoTranslated": false },
-      "fr": { "reviewed": false, "autoTranslated": true },
-      "ua": { "reviewed": false, "autoTranslated": true }
+      "fr": { "reviewed": true, "autoTranslated": true },
+      "ua": { "reviewed": true, "autoTranslated": false }
     }
   },
   "enigma": {
     "history": {
       "en": { "reviewed": true, "autoTranslated": false },
-      "fr": { "reviewed": false, "autoTranslated": true },
-      "ua": { "reviewed": false, "autoTranslated": true }
+      "fr": { "reviewed": true, "autoTranslated": true },
+      "ua": { "reviewed": true, "autoTranslated": false }
+    }
+  },
+  "playfair": {
+    "history": {
+      "en": { "reviewed": true, "autoTranslated": false },
+      "fr": { "reviewed": true, "autoTranslated": true },
+      "ua": { "reviewed": true, "autoTranslated": false }
+    }
+  },
+  "vic": {
+    "history": {
+      "en": { "reviewed": true, "autoTranslated": false },
+      "fr": { "reviewed": true, "autoTranslated": false },
+      "ua": { "reviewed": true, "autoTranslated": false }
+    },
+    "cnVoice": true
+  },
+  "vigenere": {
+    "history": {
+      "en": { "reviewed": true, "autoTranslated": false },
+      "fr": { "reviewed": true, "autoTranslated": true },
+      "ua": { "reviewed": true, "autoTranslated": false }
     }
   }
 }

@@ -21,6 +21,9 @@ describe('review-status config', () => {
     for (const [cipher, pages] of Object.entries(asRecord(reviewStatus))) {
       expect(CIPHERS).toContain(cipher);
       for (const [page, locales] of Object.entries(asRecord(pages))) {
+        // Cipher-level flags (e.g. vic.cnVoice: true) are not page
+        // entries; only nested objects are page × locale maps.
+        if (locales === null || typeof locales !== 'object') continue;
         expect(PAGES).toContain(page);
         for (const locale of Object.keys(asRecord(locales))) {
           expect(LOCALES).toContain(locale);
@@ -35,11 +38,11 @@ describe('review-status config', () => {
       autoTranslated: false,
     });
     expect(getReviewFlags('caesar', 'history', 'fr')).toEqual({
-      reviewed: false,
+      reviewed: true,
       autoTranslated: true,
     });
     // No entry: current layout, no claims.
-    expect(getReviewFlags('vigenere', 'history', 'en')).toEqual({
+    expect(getReviewFlags('adfgvx', 'history', 'en')).toEqual({
       reviewed: false,
       autoTranslated: false,
     });
@@ -54,20 +57,21 @@ describe('review-status config', () => {
     });
   });
 
-  it('computes git dates for reviewed pages, none for machine translations', () => {
+  it('computes git dates for reviewed pages, none without review', () => {
     const en = getHistoryReview('caesar', 'en');
     expect(en.reviewed).toBe(true);
     expect(en.dateModified).toMatch(/^\d{4}-\d{2}-\d{2}T/);
     expect(en.dateModifiedLabel).toBeTruthy();
 
+    // A reviewed machine translation gets the byline and dates too.
     const fr = getHistoryReview('caesar', 'fr');
     expect(fr.autoTranslated).toBe(true);
-    expect(fr.reviewed).toBe(false);
-    expect(fr.datePublished).toBeNull();
-    expect(fr.dateModified).toBeNull();
+    expect(fr.reviewed).toBe(true);
+    expect(fr.dateModified).toMatch(/^\d{4}-\d{2}-\d{2}T/);
+    expect(fr.dateModifiedLabel).toBeTruthy();
 
     // No entry at all: plain page, no dates to report.
-    expect(getHistoryReview('vigenere', 'en')).toEqual({
+    expect(getHistoryReview('adfgvx', 'en')).toEqual({
       reviewed: false,
       autoTranslated: false,
       datePublished: null,

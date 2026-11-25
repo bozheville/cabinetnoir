@@ -35,7 +35,10 @@ export interface HistoryReviewInfo extends ReviewFlags {
 // The Ukrainian route prefix is /ua, but the language tag is `uk`.
 const LANG_TAGS: Record<string, string> = { en: 'en', fr: 'fr', ua: 'uk' };
 
-const data = reviewStatus as Record<string, Record<string, Record<string, ReviewFlags>>>;
+const data = reviewStatus as unknown as Record<
+  string,
+  Record<string, Record<string, ReviewFlags> | boolean>
+>;
 
 // Committed git dates (scripts/generate-content-dates.js), keyed by
 // repo path. The deploy build (Cloudflare) has no usable git history,
