@@ -315,8 +315,8 @@ export const TIMELINES: Record<string, TimelineEvent[]> = {
       sourceUrl: 'https://en.wikipedia.org/wiki/Reino_H%C3%A4yh%C3%A4nen',
     },
     {
-      year: '1959',
-      textKey: 'learning.timeline.vic.1959-kahn',
+      year: '1961',
+      textKey: 'learning.timeline.vic.1961-kahn',
       sourceUrl: 'https://www.cia.gov/resources/csi/static/Number-One-From-Moscow.pdf',
     },
   ],

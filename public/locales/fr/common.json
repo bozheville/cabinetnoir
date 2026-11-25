@@ -1101,9 +1101,9 @@
         "latin": "Latin (AT ONE SIR)",
         "cyrillic": "Cyrillique (СНЕГОПА)"
       },
-      "rollKeygroup": "Tirer un groupe-clé frais",
+      "rollKeygroup": "Tirer un nouveau groupe-clé",
       "settings": {
-        "bisect": "Bisecter le message",
+        "bisect": "Couper le message en deux",
         "cutIndex": "Couper à",
         "workings": "Montrer les calculs de clé"
       },
@@ -1114,7 +1114,7 @@
         "keygroup": "Le groupe-clé fait cinq chiffres, renouvelé à chaque message.",
         "widths": "Ces secrets donnent des tableaux trop larges — tirez un autre groupe-clé.",
         "board": "L'échiquier ne peut pas être construit avec cette phrase et cet alphabet.",
-        "ciphertext": "Le cryptogramme doit être en groupes de cinq chiffres — le groupe-clé voyage dedans."
+        "ciphertext": "Le cryptogramme doit être en groupes de cinq chiffres, groupe-clé compris."
       },
       "worksheet": {
         "A": "Le groupe-clé : cinq chiffres aléatoires, neufs à chaque message.",
@@ -1141,7 +1141,7 @@
       },
       "workings": {
         "title": "Calculs de clé — le programme papier-crayon",
-        "summary": "Tableaux de {{a}} × {{b}} de large ; le groupe-clé se glisse à {{insertAt}} groupe(s) de la fin ; {{pad}} lettre(s) de bourrage complètent le message."
+        "summary": "Tableaux de {{a}} × {{b}} colonnes ; le groupe-clé est à {{insertAt}} groupe(s) de la fin ; {{pad}} lettre(s) de bourrage à la fin."
       }
     }
   },
@@ -1444,10 +1444,10 @@
         "1863": "Kasiski publie l'attaque par périodicité ; l'absence de période de l'autokey le défend — mais le glissement de mot probable le brise quand même."
       },
       "vic": {
-        "1940s-ancestors": "Les chiffres manuels des illégaux soviétiques gagnent échiquiers et additifs numériques — le réseau Sorge et la Kapelle rouge en portent des variantes.",
-        "1953-nickel": "Un journalier de Brooklyn fend une pièce de cinq cents creuse et y trouve une microfilm : dix colonnes de groupes de cinq chiffres ; le FBI ne sait pas le lire.",
-        "1957-defection": "Reino Häyhänen fait défection et ouvre le message du nickel ; son chef Rudolf Abel est arrêté. Le chiffre est tombé par trahison, pas par cryptanalyse.",
-        "1959-kahn": "David Kahn reconstitue le système dans « Number One From Moscow » — le plus beau chiffre mnémonique jamais rendu public."
+        "1940s-ancestors": "Les espions soviétiques utilisent déjà des chiffres manuels qui mêlent échiquier et additions de chiffres, par exemple le réseau de Richard Sorge à Tokyo.",
+        "1953-nickel": "À Brooklyn, un livreur de journaux laisse tomber une pièce creuse. Dedans, un microfilm couvert de groupes de cinq chiffres. Le FBI ne parvient pas à le lire.",
+        "1957-defection": "Reino Häyhänen passe à l'Ouest à Paris et livre ses clés. Le FBI lit le message du nickel et arrête son chef, Rudolf Abel.",
+        "1961-kahn": "David Kahn décrit tout le système dans « Number One From Moscow » et le juge le meilleur chiffre mnémonique jamais rendu public."
       }
     },
     "challenge": {
@@ -1843,7 +1843,7 @@
       "vic-easy-1": {
         "title": "Déchiffrer avec les quatre secrets",
         "hint1": "La phrase est « Twas the night before Christmas » ; la date est 13/9/1959 ; le numéro personnel est 6.",
-        "hint2": "Le groupe-clé est 72401 — il voyage dans le message."
+        "hint2": "Le groupe-clé est 72401. Il est transmis dans le message."
       },
       "vic-medium-1": {
         "title": "Déchiffrer un rendez-vous minuté",
@@ -1852,11 +1852,11 @@
         "hint3": "Le groupe-clé est 20818."
       },
       "vic-hard-1": {
-        "title": "Déchiffrer une dépêche bisectée",
+        "title": "Déchiffrer une dépêche coupée en deux",
         "hint1": "La phrase est « It was the best of times it was the worst of times ».",
         "hint2": "La date est le 22 juin 1941 ; le numéro personnel est 8.",
         "hint3": "Le groupe-clé est 39614.",
-        "hint4": "Le message a été bisecté : activez l’interrupteur et coupez à 20."
+        "hint4": "Le message a été coupé en deux : activez l’option et coupez à 20."
       }
     },
     "tooltips": {
@@ -1935,15 +1935,15 @@
         "parchment": "Remplit le champ avec le parchemin du roman — le message latin en mode chiffrement, la dictée brouillée de Saknussemm en mode déchiffrement."
       },
       "vic": {
-        "phrase": "Une phrase mémorable d’au moins 20 lettres — ses vingt premières lettres nourrissent le programme de clés.",
-        "date": "Jour, mois, année : les cinq premiers chiffres nourrissent les lignes de clé, le sixième inutilisé cache la position du groupe-clé.",
-        "personalNumber": "Le numéro propre de l’agent (celui de Häyhänen était 13). Il fixe la largeur des deux tableaux.",
-        "keygroup": "Cinq chiffres aléatoires, neufs à chaque message — la seule partie de la clé qui voyage avec le cryptogramme.",
+        "phrase": "Une phrase d’au moins 20 lettres. Ses 20 premières lettres entrent dans le calcul de la clé.",
+        "date": "Jour, mois, année. Les cinq premiers chiffres entrent dans la clé ; le sixième indique où se place le groupe-clé.",
+        "personalNumber": "Le numéro de l’agent, de 1 à 20 (celui de Häyhänen était 13). Il fixe la largeur des deux tableaux.",
+        "keygroup": "Cinq chiffres aléatoires, nouveaux à chaque message. C’est la seule partie de la clé envoyée avec le message chiffré.",
         "keygroupExtracted": "En mode déchiffrement, le groupe-clé est lu dans le cryptogramme lui-même.",
-        "alphabet": "L’échiquier latin épelle AT ONE SIR en haut ; le cyrillique épelle СНЕГОПА — le moyen mnémotechnique de Häyhänen, la « tourmente de neige » russe.",
-        "bisect": "Le renforcement facultatif de Kahn : couper le message à un index convenu et échanger les moitiés avant l’encodage.",
-        "cutIndex": "Où couper — un secret convenu entre vous et votre correspondant.",
-        "workings": "Montrer tout le programme de clés : les lignes A–S, l’échiquier et les largeurs des tableaux."
+        "alphabet": "L’échiquier latin porte AT ONE SIR en haut. Le cyrillique porte СНЕГОПА, tiré du mot russe pour « chute de neige », comme chez Häyhänen.",
+        "bisect": "Étape facultative : couper le message à une position convenue et inverser les deux moitiés avant de chiffrer.",
+        "cutIndex": "Où couper. Votre correspondant a besoin de ce nombre lui aussi.",
+        "workings": "Montrer tout le calcul de la clé : les lignes A à S, l’échiquier et la largeur des tableaux."
       }
     },
     "caesar": {
@@ -2042,9 +2042,9 @@
       "description": "Le vrai chiffre de Vigenère : la clé commence par une courte amorce, puis le texte clair lui-même nourrit le flux de clé."
     },
     "vic": {
-      "description": "Le meilleur chiffre manuel de la guerre froide : une phrase, une date et un numéro personnel déploient un échiquier à califourchon et deux transpositions — des groupes de cinq chiffres qu’aucun cryptanalyste n’a jamais percés sans la clé.",
+      "description": "Le chiffre VIC, chiffre manuel soviétique de l'affaire du nickel creux. Découvrez comment une phrase, une date et un numéro deviennent une clé, et essayez-le.",
       "era": "Années 1950 (guerre froide)",
-      "origin": "Renseignement soviétique (KGB) ; porté par Reino Häyhänen, « VICTOR » de l’affaire du nickel creux",
+      "origin": "Renseignement soviétique (KGB) ; utilisé par Reino Häyhänen, nom de code « VICTOR », dans l'affaire du nickel creux",
       "furtherReading": {
         "kahn": "David Kahn, « Number One From Moscow » (CIA, Studies in Intelligence)"
       }
@@ -2221,15 +2221,15 @@
     },
     "keygroup": {
       "name": "Groupe-clé",
-      "definition": "Cinq chiffres aléatoires qui voyagent avec un message VIC et amorcent sa dérivation de clé — renouvelés à chaque message."
+      "definition": "Cinq chiffres aléatoires envoyés avec un message VIC. Toute la clé en découle : ils doivent changer à chaque message."
     },
     "disrupted-transposition": {
       "name": "Transposition perturbée",
-      "definition": "Une transposition colonnaire dont la grille porte des zones triangulaires de « perturbation » remplies en dernier — elle brise la régularité que les anagrammeurs exploitent."
+      "definition": "Une transposition par colonnes avec des zones triangulaires remplies en dernier. Ces triangles cassent la régularité des colonnes que cherchent les cryptanalystes."
     },
     "product-cipher": {
       "name": "Chiffre produit",
-      "definition": "Un chiffre qui superpose substitution et transposition : casser une couche laisse encore les autres."
+      "definition": "Un chiffre qui empile des étapes de substitution et de transposition. Casser une couche laisse encore les autres."
     }
   },
   "home": {

@@ -1284,7 +1284,7 @@
         "keygroup": "The keygroup is five digits, fresh for every message.",
         "widths": "These secrets derive tableaus too wide to write — roll another keygroup.",
         "board": "The checkerboard cannot be built from this phrase and alphabet.",
-        "ciphertext": "The ciphertext must be five-digit groups — the keygroup rides inside."
+        "ciphertext": "The ciphertext must be five-digit groups, with the keygroup among them."
       },
       "worksheet": {
         "A": "The keygroup: five random digits, fresh for every message.",
@@ -1311,7 +1311,7 @@
       },
       "workings": {
         "title": "Key workings — the pencil-and-paper schedule",
-        "summary": "Tableaus {{a}} × {{b}} wide; the keygroup rides {{insertAt}} group(s) from the end; {{pad}} filler letter(s) pad the message."
+        "summary": "Tables {{a}} × {{b}} wide; the keygroup sits {{insertAt}} group(s) from the end; {{pad}} filler letter(s) at the end."
       }
     }
   },
@@ -1614,10 +1614,10 @@
         "1863": "Kasiski publishes the periodicity attack; the autokey's lack of a period is its defence — but crib-dragging breaks it anyway."
       },
       "vic": {
-        "1940s-ancestors": "Soviet illegals' hand ciphers grow checkerboards and number additives — Sorge's ring and the Rote Kapelle carry variants.",
-        "1953-nickel": "A Brooklyn newsboy splits a hollow nickel and finds microfilm with ten columns of five-figure groups; the FBI cannot read it.",
-        "1957-defection": "Reino Häyhänen defects and unlocks the nickel message; his handler Rudolf Abel is arrested. The cipher fell to defection, not cryptanalysis.",
-        "1959-kahn": "David Kahn reconstructs the system in \"Number One From Moscow\" — the finest mnemonic hand cipher ever made public."
+        "1940s-ancestors": "Soviet spies already use hand ciphers that mix a checkerboard with number additions. Richard Sorge's network in Tokyo is one example.",
+        "1953-nickel": "A Brooklyn paperboy drops a hollow nickel. Inside is microfilm with ten columns of five-digit groups. The FBI cannot read it.",
+        "1957-defection": "Reino Häyhänen defects in Paris and hands over his keys. The FBI reads the nickel message and arrests his boss, Rudolf Abel.",
+        "1961-kahn": "David Kahn describes the full system in \"Number One From Moscow\" and calls it the finest mnemonic cipher ever made public."
       }
     },
     "challenge": {
@@ -2013,7 +2013,7 @@
       "vic-easy-1": {
         "title": "Decrypt with all four secrets",
         "hint1": "The phrase is \"Twas the night before Christmas\"; the date is 13/9/1959; the personal number is 6.",
-        "hint2": "The keygroup is 72401 — it rides inside the message."
+        "hint2": "The keygroup is 72401. It is sent inside the message."
       },
       "vic-medium-1": {
         "title": "Decrypt a timed rendezvous",
@@ -2026,7 +2026,7 @@
         "hint1": "The phrase is \"It was the best of times it was the worst of times\".",
         "hint2": "The date is 22 June 1941; the personal number is 8.",
         "hint3": "The keygroup is 39614.",
-        "hint4": "The message was bisected: turn the toggle on and cut at 20."
+        "hint4": "The message was bisected: turn on bisection and cut at 20."
       }
     },
     "tooltips": {
@@ -2105,15 +2105,15 @@
         "parchment": "Fill the input with the novel's own parchment — the Latin message in encrypt mode, Saknussemm's scrambled dictation in decrypt mode."
       },
       "vic": {
-        "phrase": "A memorable phrase of at least 20 letters — its first twenty letters feed the key schedule.",
-        "date": "Day, month, year: the first five digits feed the key lines, the unused sixth hides the keygroup's position.",
-        "personalNumber": "The agent's own number (Häyhänen's was 13). It sizes the two transposition tableaus.",
-        "keygroup": "Five random digits, fresh for every message — the only part of the key that travels with the ciphertext.",
+        "phrase": "Any phrase with at least 20 letters. Its first 20 letters go into the key calculation.",
+        "date": "Day, month, year. The first five digits go into the key; the sixth says where the keygroup sits.",
+        "personalNumber": "The agent's own number, from 1 to 20 (Häyhänen's was 13). It sets the width of the two tables.",
+        "keygroup": "Five random digits, new for every message. It is the only part of the key sent with the ciphertext.",
         "keygroupExtracted": "In decrypt mode the keygroup is read from the ciphertext itself.",
-        "alphabet": "The Latin board spells AT ONE SIR on top; the Cyrillic board spells СНЕГОПА — Häyhänen’s own mnemonic, the Russian for snowfall.",
-        "bisect": "Kahn's optional strengthening: cut the message at an agreed index and swap the halves before encoding.",
-        "cutIndex": "Where to cut — an agreed secret between you and your recipient.",
-        "workings": "Show the whole key schedule: worksheet lines A–S, the checkerboard and the tableau widths."
+        "alphabet": "The Latin board has AT ONE SIR on top. The Cyrillic board has СНЕГОПА, from the Russian word for snowfall, as Häyhänen used.",
+        "bisect": "Optional extra step: cut the message at an agreed position and swap the two halves before encrypting.",
+        "cutIndex": "Where to cut. Your recipient needs this number too.",
+        "workings": "Show the whole key calculation: worksheet lines A to S, the checkerboard and the table widths."
       }
     },
     "caesar": {
@@ -2212,9 +2212,9 @@
       "description": "Vigenère's actual cipher: the key starts with a short primer, then the plaintext itself feeds the keystream."
     },
     "vic": {
-      "description": "The Cold War's finest hand cipher: a phrase, a date and a personal number unfold into a straddling checkerboard and two transpositions — five-figure groups no cryptanalyst ever broke without the key.",
+      "description": "The VIC cipher: the Soviet hand cipher of the Hollow Nickel Case. Learn how a phrase, a date and a number become a key, and try it yourself.",
       "era": "1950s (Cold War)",
-      "origin": "Soviet intelligence (KGB); carried by Reino Häyhänen, \"VICTOR\" of the Hollow Nickel case",
+      "origin": "Soviet intelligence (KGB); used by Reino Häyhänen, code name \"VICTOR\", in the Hollow Nickel Case",
       "furtherReading": {
         "kahn": "David Kahn, \"Number One From Moscow\" (CIA, Studies in Intelligence)"
       }
@@ -2391,15 +2391,15 @@
     },
     "keygroup": {
       "name": "Keygroup",
-      "definition": "Five random digits that travel with a VIC message and seed its key derivation — fresh for every message."
+      "definition": "Five random digits sent with a VIC message. The whole key is calculated from them, so they must be new for every message."
     },
     "disrupted-transposition": {
       "name": "Disrupted transposition",
-      "definition": "A columnar transposition whose grid carries triangular 'disruption' areas filled last — it breaks the column regularity anagrammers exploit."
+      "definition": "A columnar transposition with triangular areas that are filled last. The triangles break the regular column pattern that codebreakers look for."
     },
     "product-cipher": {
       "name": "Product cipher",
-      "definition": "A cipher that layers substitution and transposition stages, so breaking one layer still leaves the others."
+      "definition": "A cipher that stacks substitution and transposition steps. Breaking one layer still leaves the others."
     }
   },
   "seo": {
