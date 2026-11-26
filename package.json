@@ -14,7 +14,8 @@
     "test:watch": "vitest",
     "i18n:audit": "python3 scripts/locale_audit.py",
     "sitemap": "node scripts/generate-sitemap.js",
-    "sitemap:check": "node scripts/generate-sitemap.js --check"
+    "sitemap:check": "node scripts/generate-sitemap.js --check",
+    "indexnow": "node scripts/indexnow-ping.js"
   },
   "engines": {
     "node": ">=22.0.0"
