@@ -55,12 +55,15 @@ const SHARED_ENGINES = {
   vic: ['src/@encryptors/shared/checkerboard', 'src/@encryptors/shared/transposition'],
 };
 
-// Markdown topics per URL segment. Mirrors MARKDOWN_TOPICS and TOOL_TOPICS
-// in src/@learning/content.ts (TS — not requirable from this plain Node
-// script, hence the copy; keep the two in sync).
-const SEGMENT_TOPICS = {
+// Markdown topics per URL segment. Mirrors MARKDOWN_TOPICS and
+// TOOL_TOPIC_BY_ACTION in src/@learning/content.ts (TS — not requirable
+// from this plain Node script, hence the copy; keep the two in sync).
+// Tool segments list candidates: the first file present is the page's.
+const TOOL_SEGMENTS = {
   direct: ['tool'],
-  reverse: ['tool'],
+  reverse: ['tool-reverse', 'tool'],
+};
+const SEGMENT_TOPICS = {
   learn: ['how-it-works', 'guides', 'breaking-it'],
   history: ['history'],
   practice: [],
@@ -115,7 +118,11 @@ const sourcesFor = (pagePath, locale) => {
 
   // Learning tabs: the tab's markdown, this locale only, plus the glossary
   // terms, timelines and challenge links it embeds.
-  for (const topic of SEGMENT_TOPICS[segment]) {
+  const toolCandidates = TOOL_SEGMENTS[segment];
+  const toolTopic = toolCandidates && toolCandidates.find((topic) =>
+    fs.existsSync(path.join(REPO_ROOT, `content/${algorithm}/${locale}/${topic}.md`)));
+  const topics = toolCandidates ? (toolTopic ? [toolTopic] : []) : SEGMENT_TOPICS[segment];
+  for (const topic of topics) {
     const file = `content/${algorithm}/${locale}/${topic}.md`;
     files.push(file);
     for (const id of placeholderIds(file, 'term')) localeKeys.push(['glossary', id]);

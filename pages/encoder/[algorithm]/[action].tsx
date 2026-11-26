@@ -7,7 +7,7 @@ import { Footer, Header, LanguageSelector, Seo } from '@molecues';
 import { Encryptor, LearningMaterial, Cryptanalysis } from '@templates';
 import { encodingsList, encryptorsList } from '@encryptors';
 import { LEARNING_TABS, CRYPTANALYSIS_TAB, hasTab, hasCryptanalysis } from '@learning/config';
-import { MARKDOWN_TOPICS, TOOL_TOPICS } from '@learning/content';
+import { MARKDOWN_TOPICS, TOOL_TOPIC, TOOL_TOPIC_BY_ACTION } from '@learning/content';
 import type { HistoryReviewInfo } from '@learning/review';
 import { DEFAULT_LOCALE, SITE_URL, languageTag, ogImagePath, urlFor } from '@lib/sitemap-data';
 import { primaryTrail } from '@hooks/useCipherTrail';
@@ -179,14 +179,24 @@ export const getStaticProps = async ({ locale, params }) => {
   const { algorithm, action } = params;
 
   let learningContent: Record<string, string> = {};
-  const topics = (actions as string[]).includes(action)
-    ? TOOL_TOPICS
-    : (MARKDOWN_TOPICS as Record<string, string[]>)[action as string];
-  if (Array.isArray(topics) && typeof algorithm === 'string') {
+  const toolCandidates = TOOL_TOPIC_BY_ACTION[action as string];
+  const topics = (MARKDOWN_TOPICS as Record<string, string[]>)[action as string];
+  if (typeof algorithm === 'string' && (toolCandidates || Array.isArray(topics))) {
     // Node-only loader: import inside getStaticProps so `fs` never reaches
     // the client bundle.
-    const { loadTopicsForTab } = await import('@learning/loadContent');
-    learningContent = loadTopicsForTab(algorithm, locale, topics);
+    const { loadTopic, loadTopicsForTab } = await import('@learning/loadContent');
+    if (toolCandidates) {
+      // First topic present wins (tool-reverse → tool on the decrypt page).
+      for (const topic of toolCandidates) {
+        const content = loadTopic(algorithm, locale, topic);
+        if (content !== null) {
+          learningContent = { [TOOL_TOPIC]: content };
+          break;
+        }
+      }
+    } else {
+      learningContent = loadTopicsForTab(algorithm, locale, topics);
+    }
   }
 
   // Review state + git dates for history pages (tasks 06 + 12). Also a
