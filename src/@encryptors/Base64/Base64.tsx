@@ -7,9 +7,18 @@ const Base64: React.FC<CrypterProps> = ({
   isDecryptMode,
 }) => {
   useEffect(() => {
-    const output = isDecryptMode
-      ? atob(input)
-      : btoa(input);
+    let output;
+    if (isDecryptMode) {
+      try {
+        output = atob(input);
+      } catch {
+        // Invalid input: `atob` throws on characters outside its
+        // alphabet, missing padding rules and stray `=` signs.
+        output = '';
+      }
+    } else {
+      output = btoa(input);
+    }
 
       onProcessingEnd({ output });
   }, [input, isDecryptMode]);
