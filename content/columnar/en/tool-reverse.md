@@ -12,6 +12,10 @@ every letter but puts them in the wrong order.
   appears in {{control:output}}.
 - Enter the keyword in {{control:keyword-input}}. Only the alphabetical
   order of its letters counts, so `BCA` decrypts the same as `SUN`.
+- For a double transposition, tick {{control:double-toggle}} and fill
+  the second keyword, {{control:second-keyword-input}}. The tool undoes
+  the second keyword first — the last one the sender applied — then
+  the first.
 - Set {{control:grid-toggle}} the way the sender did. A padded grid
   decrypts either way, but a short last row needs the toggle on.
 - Spaces, digits and punctuation are dropped. Padding X at the end

@@ -1,7 +1,9 @@
 # Casser le carré de Polybe
 
-Il n'y a pas d'onglet d'analyse pour ce chiffre — ce n'est pas un
-oubli, c'est la leçon.
+Il existe un onglet d'analyse pour ce chiffre, mais il ne retrouve
+le mot-clé du carré qu'une fois les paires déjà obtenues : c'est un
+casseur de substitution qui porte une grille. Cette page explique
+comment y arriver sans lui.
 
 {{challenge:polybius-easy-1}}
 

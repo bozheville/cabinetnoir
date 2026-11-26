@@ -13,8 +13,8 @@ casual glance, never against a reader who wants to know.
 - There is no key and no setting: the shift is always 13 and the
   alphabet is always A–Z.
 - Spaces, punctuation, digits and capitals are kept exactly as they
-  are; only Latin letters change. Accented and non-Latin letters pass
-  through untouched.
+  are; only Latin letters change. Accented and non-Latin letters are
+  dropped, the same as in the Caesar tool.
 - Pressing {{control:swap}} changes nothing but the label: encoding
   and decoding give the same result.
 

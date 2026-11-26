@@ -15,7 +15,7 @@ d'un lecteur qui veut savoir.
   l'alphabet est toujours A–Z.
 - Les espaces, la ponctuation, les chiffres et les majuscules restent
   tels quels ; seules les lettres latines changent. Les lettres
-  accentuées et non latines passent sans modification.
+  accentuées et non latines sont supprimées, comme dans l'outil César.
 - Appuyer sur {{control:swap}} ne change que l'intitulé : encoder et
   décoder donnent le même résultat.
 

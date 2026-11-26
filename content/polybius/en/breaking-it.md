@@ -1,7 +1,9 @@
 # Breaking the Polybius square
 
-There is no cracker tab for this cipher — and that is not an oversight,
-it is the lesson.
+There is a cracker tab for this cipher, but it only recovers the
+square's keyword once you already have the pairs: it is a
+substitution cracker wearing a grid. This page is about how you get
+there without it.
 
 {{challenge:polybius-easy-1}}
 

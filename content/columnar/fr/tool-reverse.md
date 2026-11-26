@@ -13,6 +13,10 @@ le désordre.
   clair s'affiche dans {{control:output}}.
 - Saisissez le mot-clé dans {{control:keyword-input}}. Seul compte
   l'ordre alphabétique de ses lettres : `BCA` déchiffre comme `SUN`.
+- Pour une double transposition, cochez {{control:double-toggle}} et
+  remplissez le second mot-clé, {{control:second-keyword-input}}.
+  L'outil annule d'abord le second mot-clé — le dernier appliqué par
+  l'expéditeur — puis le premier.
 - Réglez {{control:grid-toggle}} comme l'expéditeur. Une grille
   complétée se déchiffre dans les deux cas, mais une dernière ligne
   courte exige la case cochée.
