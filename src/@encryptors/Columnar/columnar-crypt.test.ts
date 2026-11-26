@@ -54,4 +54,17 @@ describe('doubleColumnarEncryptText / doubleColumnarDecryptText', () => {
     expect(doubleColumnarEncryptText('ATTACKATDAWN', 'KRIEGS', 'MARINE'))
       .not.toBe(columnarEncryptText('ATTACKATDAWN', 'KRIEGS'));
   });
+
+  // The decrypt wrapper undoes the second keyword first. Both keys must
+  // divide the uneven intermediate lengths, so the wrong order cannot
+  // round-trip by luck.
+  it('round-trips with uneven lengths (order regression)', () => {
+    const text = 'ATTACKATDAWN';
+    const encrypted = doubleColumnarEncryptText(text, 'SUN', 'LEMON', { irregular: true });
+    expect(doubleColumnarDecryptText(encrypted, 'SUN', 'LEMON', { irregular: true })).toBe(text);
+    // ...and the reversed argument order must NOT round-trip.
+    expect(
+      doubleColumnarDecryptText(encrypted, 'LEMON', 'SUN', { irregular: true }),
+    ).not.toBe(text);
+  });
 });

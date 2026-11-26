@@ -37,6 +37,28 @@ export const parseHandoffKey = (key: string): number[] | null => {
   return order.every(Number.isInteger) && order.length > 0 ? order : null;
 };
 
+// Double decrypt undoes the second keyword first — the last one the
+// sender applied (same order as doubleColumnarDecrypt). Pure helper so
+// the order is unit-testable without React.
+export const doubleColumnarDecryptInput = (
+  cleaned: string,
+  keyword: string,
+  secondKeyword: string,
+  customOrder: number[] | null,
+  options: { irregular: boolean },
+): string => {
+  const second = normalizeTranspositionKey(secondKeyword);
+  let result = cleaned;
+  if (second) {
+    result = customOrder
+      ? columnarDecrypt(result, columnOrder(second), options)
+      : columnarDecryptTextSafe(result, secondKeyword, options);
+  }
+  return customOrder
+    ? columnarDecrypt(result, customOrder, options)
+    : columnarDecryptTextSafe(result, keyword, options);
+};
+
 export const useColumnar = ({
   input,
   onProcessingEnd,
@@ -59,15 +81,11 @@ export const useColumnar = ({
     const options = { irregular };
     let result = '';
     if (isDecryptMode) {
-      result = customOrder
-        ? columnarDecrypt(cleaned, customOrder, options)
-        : columnarDecryptTextSafe(cleaned, keyword, options);
-      if (double && second) {
-        // Decrypt undoes the second key first.
-        result = customOrder
-          ? columnarDecrypt(result, columnOrder(second), options)
-          : columnarDecryptTextSafe(result, secondKeyword, options);
-      }
+      result = double
+        ? doubleColumnarDecryptInput(cleaned, keyword, secondKeyword, customOrder, options)
+        : customOrder
+          ? columnarDecrypt(cleaned, customOrder, options)
+          : columnarDecryptTextSafe(cleaned, keyword, options);
     } else {
       result = customOrder
         ? columnarEncrypt(cleaned, customOrder, options)
