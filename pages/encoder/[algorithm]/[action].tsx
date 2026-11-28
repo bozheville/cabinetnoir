@@ -5,7 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { Footer, Header, LanguageSelector, Seo } from '@molecues';
 import { Encryptor, LearningMaterial, Cryptanalysis } from '@templates';
-import { encodingsList, encryptorsList } from '@encryptors';
+import { encodingsList, encryptorsList, selfInverseList } from '@encryptors';
 import { LEARNING_TABS, CRYPTANALYSIS_TAB, hasTab, hasCryptanalysis } from '@learning/config';
 import { MARKDOWN_TOPICS, TOOL_TOPIC, TOOL_TOPIC_BY_ACTION } from '@learning/content';
 import type { HistoryReviewInfo } from '@learning/review';
@@ -40,9 +40,18 @@ const Home: React.FC<HomeProps> = ({ learningContent = {}, review }) => {
   const kind = (encodingsList as string[]).includes(algorithm as string) ? 'encoding' : 'encryptor';
 
   const tabTitleKey = `seo.tabTitle.${action as string}`;
+  // Self-inverse ciphers (Atbash, ROT13, Enigma): the same operation
+  // encrypts and decrypts, so the direct page serves both intents and
+  // its title says so. The reverse page keeps the decoder-first title
+  // — two near-identical titles on the direct/reverse pair would
+  // cannibalise. See specs/seo-indexing/indexing-log.md Issue 6.
+  const selfInverseDirect =
+    action === 'direct' && (selfInverseList as string[]).includes(algorithm as string);
   const baseTitle = learningTab || cryptanalysisTab
     ? t(tabTitleKey, { cipher: cipherTitle })
-    : t(`seo.toolTitle.${kind}.${action as string}`, { cipher: cipherTitle });
+    : selfInverseDirect
+      ? t('seo.toolTitle.selfInverse.direct', { cipher: cipherTitle })
+      : t(`seo.toolTitle.${kind}.${action as string}`, { cipher: cipherTitle });
   const title = `${baseTitle} • ${t('name')}`;
 
   // JSON-LD always shows the primary tree, never the remembered one.

@@ -2415,6 +2415,9 @@
       "encryptor": {
         "direct": "{{cipher}}: зашифрувати онлайн",
         "reverse": "{{cipher}}: розшифрувати онлайн"
+      },
+      "selfInverse": {
+        "direct": "{{cipher}}: зашифрувати і розшифрувати онлайн"
       }
     },
     "toolDescription": {

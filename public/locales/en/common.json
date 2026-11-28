@@ -2415,6 +2415,9 @@
       "encryptor": {
         "direct": "{{cipher}} encoder — encrypt online",
         "reverse": "{{cipher}} decoder — decrypt online"
+      },
+      "selfInverse": {
+        "direct": "{{cipher}} encoder & decoder online"
       }
     },
     "toolDescription": {

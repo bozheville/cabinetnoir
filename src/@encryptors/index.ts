@@ -20,5 +20,5 @@ export { default as Rot13 } from './Rot13';
 export { default as Saknussemm } from './Saknussemm';
 export { default as Vic } from './Vic';
 
-import { encodingsList, encryptorsList } from './algorithms';
-export { encodingsList, encryptorsList };
+import { encodingsList, encryptorsList, selfInverseList } from './algorithms';
+export { encodingsList, encryptorsList, selfInverseList };

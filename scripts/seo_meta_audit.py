@@ -26,7 +26,7 @@ for (const alg of [...a.encodingsList, ...a.encryptorsList]) {
   const actions = ['direct', 'reverse'];
   if (c.hasCryptanalysis(alg)) actions.push(c.CRYPTANALYSIS_TAB);
   for (const tab of c.LEARNING_TABS) if (c.hasTab(alg, tab)) actions.push(tab);
-  out.push({ alg, encoding: a.encodingsList.includes(alg), actions });
+  out.push({ alg, encoding: a.encodingsList.includes(alg), selfInverse: a.selfInverseList.includes(alg), actions });
 }
 out.push({ categoryPaths: cat.getAllCategoryPaths() });
 console.log(JSON.stringify(out));
@@ -66,7 +66,10 @@ def pages(locale):
         one_liner = get(d, f'learning.{alg}.description')
         for action in entry['actions']:
             if action in ('direct', 'reverse'):
-                title = fill(get(d, f'seo.toolTitle.{kind}.{action}'), cipher=cipher)
+                if action == 'direct' and entry['selfInverse']:
+                    title = fill(get(d, 'seo.toolTitle.selfInverse.direct'), cipher=cipher)
+                else:
+                    title = fill(get(d, f'seo.toolTitle.{kind}.{action}'), cipher=cipher)
                 desc = f"{fill(get(d, f'seo.toolDescription.{kind}.{action}'), cipher=cipher)} {one_liner}"
             else:
                 title = fill(get(d, f'seo.tabTitle.{action}'), cipher=cipher)
